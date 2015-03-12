@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<widget id="com.ionicframework.mamaempresaria604952" version="1.0.0" 
+xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" 
+xmlns:gap = "http://phonegap.com/ns/1.0" >
+  <name>Mama Empresaria</name>
+  <description>
+        Aplicación de Novaventa para las Mamás Empresarias
+    </description>
+  <author email="jdmazo@serviciosnutresa.com" href="http://wwww.novaventa.com/">
+		Novaventa
+    </author>
+  <content src="index.html"/>
+  
+  <access origin="*"/>
+  
+  <preference name="webviewbounce" value="false"/>
+  <preference name="UIWebViewBounce" value="false"/>
+  <preference name="DisallowOverscroll" value="true"/>
+  <preference name="BackupWebStorage" value="none"/>
+  <preference name="Orientation" value="portrait" />
+    <preference name="SplashScreen" value="splash" />
+  
+  <feature name="StatusBar">
+    <param name="ios-package" value="CDVStatusBar" onload="true"/>
+  </feature>
+  
+  <feature name="NetworkStatus">
+    <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
+</feature>
+  
+  <gap:plugin name="org.apache.cordova.geolocation" />
+  <gap:plugin name="com.adobe.plugins.gaplugin" />
+  <gap:plugin name="org.apache.cordova.network-information" />
+  
+  <icon src="icon.png" />
+    <!-- <icon gap:platform="android" gap:qualifier="ldpi" src="res/icon/android/icon-36-ldpi.png" /> -->
+    <icon gap:platform="android" gap:qualifier="mdpi" src="res/icons/android/icon-48-mdpi.png" />
+    <icon gap:platform="android" gap:qualifier="hdpi" src="res/icons/android/icon-72-hdpi.png" />
+    <icon gap:platform="android" gap:qualifier="xhdpi" src="res/icons/android/icon-96-xhdpi.png" />
+    
+    
+    <gap:splash gap:platform="android" gap:qualifier="port-ldpi" src="res/screen/android/screen-ldpi-portrait.png" />
+    <gap:splash gap:platform="android" gap:qualifier="port-mdpi" src="res/screen/android/screen-mdpi-portrait.png" />
+    <gap:splash gap:platform="android" gap:qualifier="port-hdpi" src="res/screen/android/screen-hdpi-portrait.png" />
+    <gap:splash gap:platform="android" gap:qualifier="port-xhdpi" src="res/screen/android/screen-xhdpi-portrait.png" />
+  
+</widget>

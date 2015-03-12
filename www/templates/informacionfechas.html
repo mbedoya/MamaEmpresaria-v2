@@ -1,0 +1,102 @@
+<ion-view view-title="" >
+    <ion-content >
+    	
+    	<div class="titulo-calendario">
+    	<div class="row">
+  <div class="col sin-borde" >
+     <a class="item sin-borde" href="#" ng-click="disminuirMes()" ng-show="mostrarAtras()" >
+        <
+     </a>
+  </div>
+  <div class="col col-50">
+    <a class="item" href="#" >
+  {{ fechaVisibleCalendario() | date: 'MMMM' | pascal }} de {{ fechaVisibleCalendario() | date: 'yyyy' }}
+    </a>
+  </div>
+  <div class="col" >
+     <a class="item" href="#" ng-click="aumentarMes()" >
+        >
+     </a>
+  </div>
+</div>
+
+</div>
+
+<div class="row no-padding">
+  <div class="col week">D</div>
+  <div class="col week">L</div>
+  <div class="col week">M</div>
+  <div class="col week">M</div>
+  <div class="col week">J</div>
+  <div class="col week">V</div>
+  <div class="col week">S</div>
+</div>
+
+<div class="calendario">
+
+<div class="row" ng-repeat="semana in semanas">
+  <div class="col" ng-repeat="dia in semana">
+      <a id='{{dia.fechaCompleta}}' class="item item-icon-right {{estiloTexto(dia.fechaCompleta)}}" href="#" ng-click="seleccionarFecha(dia.fechaCompleta)" ng-show="!fechaEsCampanaVisible(dia.fechaCompleta)">
+         <i class="icon ion-edit" ng-show="false"></i>
+         <i class="icon ion-android-desktop" ng-show="fechaEsCorreteo(dia.fechaCompleta)"></i>
+         <i class="icon ion-ios-people-outline" ng-show="fechaEsEncuentro(dia.fechaCompleta)"></i>
+         <i class="icon ion-cube" ng-show="fechaEsRepartoPedido(dia.fechaCompleta)"></i>
+         {{ dia.dia }}
+      </a>
+      
+      <a id='{{dia.fechaCompleta}}' class="item item-icon-right campana-actual {{estiloTexto(dia.fechaCompleta)}}" href="#" ng-click="seleccionarFecha(dia.fechaCompleta)" ng-show="fechaEsCampanaVisible(dia.fechaCompleta)">
+         <i class="icon ion-edit" ng-show="false"></i>
+         <i class="icon ion-android-desktop" ng-show="fechaEsCorreteo(dia.fechaCompleta)"></i>
+         <i class="icon ion-ios-people-outline" ng-show="fechaEsEncuentro(dia.fechaCompleta)"></i>
+         <i class="icon ion-cube" ng-show="fechaEsRepartoPedido(dia.fechaCompleta)"></i>
+         {{ dia.dia }}
+      </a>
+      
+  </div>
+</div>
+
+ <div class="padding campanas" >
+      <span class="leyenda-campana">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span>
+      Campaña {{ numeroCampana() }}
+      <span class="leyenda-campana-siguiente">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span>
+      Campaña {{ numeroCampana() + 1 }}
+ </div> 
+
+
+</div>
+
+<div class="list dia">
+
+  <div class="item item-divider">
+    {{ fechaSeleccionada | date: 'MMMM' | pascal }} {{ fechaSeleccionada | date: 'dd' }} de {{ fechaSeleccionada | date: 'yyyy' }}
+  </div>
+
+</div>
+
+<div class="row detalle no-padding" ng-repeat="detalle in detalleFecha">
+
+  <div class="col" href="#" >
+    <a href="#" class="item item-avatar">
+      <img src="img/reloj.png" />
+      <h2>{{ detalle.hora }}</h2>
+       <p>{{ detalle.actividad }} <span ng-show="detalle.lugar">en</span> {{ detalle.lugar }} <br />
+          {{ detalle.direccion }}
+      </p>
+    </a>
+  </div>
+
+</div>
+  
+  <a class="item positive" href="#" ng-show="detalleFecha.length == 0">
+    No tienes eventos para este día.
+  </a>
+  
+  <a id="final" class="item" href="#">
+    <h2>&nbsp;</h2>
+    <p>&nbsp;</p>
+  </a>
+    	
+    </ion-content>
+</ion-view>

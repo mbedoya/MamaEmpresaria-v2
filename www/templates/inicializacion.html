@@ -1,0 +1,20 @@
+<ion-view view-title="Iniciando">
+    <ion-content class="{{ segmentoFormateado() }}">
+    <div class="content-bienvenida">
+        <h3><span><strong>¡Hola!</strong> {{ nombre() }}</span></h3>
+        <div class="estrella">
+          <span class="estrella-img"></span>
+          <span class="estrella-text">Mamá Empresaria <strong>{{ segmento() }}</strong></span>
+        </div>
+        <img src="img/bienvenida.png" class="bienvenida-img" />
+        <div class="mensaje-internet" style="text-align:center" ng-show="mostrarMensajeError">
+           Mamá Empresaria recuerda que para acceder a esta aplicación debes estar conectada a Internet.
+        </div>
+    </div>
+    </ion-content>
+    <ion-footer-bar >
+        <div class="footer-nutresa">
+            <img src="img/nutresa.png" />
+        </div>
+    </ion-footer-bar>
+</ion-view>

@@ -1,0 +1,733 @@
+/* Novaventa */
+.scroll {
+    height: 100%;
+}
+#map {
+    width: 100%;
+    height: 100%;
+}
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: 'Droid Sans', sans-serif;
+}
+strong{
+  font-family: 'Droid Sans Bold', sans-serif;
+}
+
+/* Fuentes */
+@font-face {
+  font-family: "Droid Sans";
+  src: url("../lib/ionic/fonts/DroidSans.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Droid Sans Bold";
+  src: url("../lib/ionic/fonts/DroidSans-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Barra superior */
+.has-header {
+  top:50px;
+}
+.bar.bar-stable {
+  background:#005e81;
+  border-bottom:3px solid #055073;
+  height:50px;
+}
+.bar .title.title-left {
+  display:none;
+}
+
+/*
+.bar .buttons {
+  width:100%;
+}
+*/
+
+/* Hamburguesa */
+.bar-stable .left-buttons .button-clear {
+  color: white;
+  margin: -6px -5px 0px -3px;
+  border-radius: 0;
+  padding: 7px 10px 39px 8px;
+  border-right: 3px solid #055073;
+}
+
+/* Logo Novaventa */
+
+/*
+.primary-buttons {
+  width:75%;
+  margin-right:0;
+}
+.primary-buttons .button-clear.button-clear {
+  display:inline-block;
+  width:100%;
+}
+*/
+
+/* Barra lateral */
+.menu-left .bar.bar-stable {
+  display:none;
+}
+.menu-left .has-header {
+  top:0px;
+}
+.menu-left .item {
+  font-size: 15px;
+  color: #666666;
+  padding: 14px 15px;
+}
+.menu-left .item.active {
+  background:#e4e4e4;
+  font-weight:bold;
+}
+
+/* Breadcrumb */
+.bread {
+  text-align:center;
+  border-bottom:1px solid #808080;
+  color:#808080;
+  font-size:12px;
+    margin: auto;
+}
+.bread .col {
+  padding:0;
+  margin-top: 50px;
+}
+
+/* Menú inferior */
+.menu-principal > .tabs {
+  height:85px;
+}
+.tabs-dark > .tabs, .tabs.tabs-dark {
+  border-top:1px solid rgba(0,0,0,0.1);
+  background:white;
+}
+
+.tabs-light > .tabs, .tabs.tabs-light {
+  border-top:1px solid rgba(0,0,0,0.1);
+  background:white;
+}
+
+.menu-principal > .tabs > .tab-item {
+  background-image: url(../img/tabs.png);
+  background-repeat:no-repeat;
+  opacity:1;
+  position:relative;
+  font-size:13px !important;
+  overflow:visible;
+}
+.menu-principal > .tabs > .tab-item i {
+  position:absolute;
+  left:50%;
+  top:-21px;
+  margin-left:-10px !important;
+}
+.tab-item{
+   color: #FFF;
+}
+
+.tab-inicio {
+  background-color:#1594ac;
+  background-position: center 10px;
+}
+.tab-inicio i {
+  color:#1594ac;
+}
+.tab-negocio {
+  background-color:#f5921e;
+  background-position: center -95px;
+}
+.tab-negocio i {
+  color:#f5921e;
+}
+.tab-pedido {
+  background-color:#eb0c6e;
+  background-position: center -195px;
+}
+.tab-pedido i {
+  color:#eb0c6e;
+}
+.tab-puntos {
+  background-color:#077885;
+  background-position: center -301px;
+}
+.tab-puntos i {
+  color:#077885;
+}
+.tab-mas {
+  background-color:#f74094;
+  background-position: center -405px;
+}
+.tab-mas i {
+  color:#f74094;
+}
+.menu-principal > .tabs .tab-title {
+  padding-top: 60px;
+  display: block;
+}
+
+/* Menú superior / Pestañas */
+.has-tabs-top {
+  top: 110px;
+}
+.tabs-top > .tabs, .tabs.tabs-top {
+  height:60px;
+}
+.tabs-striped.tabs-positive .tabs {
+  background:white;
+  top:50px;
+}
+.tabs-striped.tabs-positive .tabs .tab-item {
+  background:#1594ac;
+  border:2px solid #077885 !important;
+  border-radius:4px;
+  font-weight:bold;
+  box-shadow: 0px 4px 0px #077885;
+  text-shadow: 0px 2px 0px rgba(0,0,0,0.1);
+  color:white;
+  margin: 7px 1% 0px;
+  height:42px;
+  line-height: 35px;
+}
+.tabs-striped.tabs-positive .tabs .tab-item-active {
+  background:#077885;
+  border:2px solid #077885 !important;
+  box-shadow: 0px 4px 0px #056a72;
+  line-height: 35px;
+}
+
+/* PÁGINAS */
+/* Login */
+.content-login {
+  background: transparent url(../img/fondologin.png) no-repeat center top;
+}
+.login-img {
+  margin: 5px auto 10px;
+  max-width:100%;
+  display:block;
+}
+.content-login h4 {
+  color:#4d4d4d;
+  text-align:center;
+  font-family: "Droid Sans Bold", sans-serif;
+  font-size:20px;
+  margin-bottom:5px;
+}
+
+.content-login h3 {
+    color:#808080;
+    text-align:center;
+    font-family: "Droid Sans Bold", sans-serif;
+    font-size:18px;
+    margin-top:0px;
+    margin-bottom:20px;
+    font-weight: normal;
+}
+
+.content-login form {
+  width:85%;
+  margin:0 auto;
+}
+.login-label {
+  margin-top:10px;
+  font-size:18px;
+  color:#808080;
+}
+.login-input input {
+  border-radius:8px;
+  background:#e4e4e4;
+  padding:15px;
+  height:auto;
+  margin:8px 0px 25px;
+}
+.login-button button {
+  background:#eb0c6e;
+  border-radius:8px;
+  border: 2px solid #cc0a52;
+  box-shadow: 0px 4px 0px #cc0a52;
+  text-shadow: 0px 2px 0px rgba(0,0,0,0.1);
+  color:white;
+  font-family: "Droid Sans Bold";
+  font-size:18px;
+}
+.login-button button:hover {
+  color:white;
+}
+.login-button button:active, .login-button button.activated {
+  color:white;
+  border: 2px solid #b40a52;
+  box-shadow: 0px 4px 0px #b40a52;
+  text-shadow: 0px 2px 0px rgba(0,0,0,0.1);
+  background:#cc0a52;
+}
+.footer-nutresa {
+  position: absolute;
+  bottom:0;
+  width:100%;
+  border-top:1px solid #cacaca;
+  background:white;
+}
+.footer-nutresa img {
+  margin:15px auto;
+  display:block;
+}
+
+/* Estrellas */
+.estrella {
+    margin: 10px auto 15px auto;
+    text-align:center;
+}
+.estrella-img {
+    width: 60px;
+    height: 72px;
+    background-repeat:no-repeat;
+    background-color:transparent;
+    background-image: url(../img/estrella.png);
+    display:inline-block;
+    vertical-align:top;
+}
+.estrella-text {
+    font-size:20px;
+    display:inline-block;
+    vertical-align:top;
+    line-height:1.2em;
+    padding:5px 0px 0px 6px;
+    text-align:left;
+}
+.estrella-text strong {
+    font-size:25px;
+    display:block;
+    text-transform: capitalize;
+}
+
+/* Colores y segmentos */
+.esmeralda .estrella-img {
+    background-position: -1px 0;
+}
+.esmeralda .estrella-text {
+    color:#45986c;
+}
+.esmeralda .bread {
+    color:#45986c;
+    border-color:#45986c;
+}
+.esmeralda .campana-title {
+    background:#45986c;
+}
+.diamante .estrella-img {
+    background-position: -2px -91px;
+}
+.diamante .estrella-text {
+    color:#1794aa;
+}
+.diamante .bread {
+    color:#1794aa;
+    border-color:#1794aa;
+}
+.diamante .campana-title {
+    background:#1794aa;
+}
+.zafiro .estrella-img {
+    background-position: -0px -181px;
+}
+.zafiro .estrella-text {
+    color:#27667d;
+}
+.zafiro .bread {
+    color:#27667d;
+    border-color:#27667d;
+}
+.zafiro .campana-title {
+    background:#27667d;
+}
+.rubi .estrella-img {
+    background-position: -1px -274px;
+}
+.rubi .estrella-text {
+    color:#b12136;
+}
+.rubi .bread {
+    color:#b12136;
+    border-color:#b12136;
+}
+.rubi .campana-title {
+    background:#b12136;
+}
+.negocio-content .bread {
+    color:#f5921e;
+    border-color:#f5921e;
+}
+.pedido-content .bread {
+    color:#eb0c6e;
+    border-color:#eb0c6e;
+}
+.puntos-content .bread {
+    color:#077885;
+    border-color:#077885;
+}
+.mas-content .bread {
+    color:#f74094;
+    border-color:#f74094;
+}
+
+/* Íconos para listado */
+.icono {
+    width:54px;
+    height:54px;
+    background-repeat:no-repeat;
+    background-color: transparent;
+    background-image: url(../img/icono.png);
+    vertical-align: top;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+}
+.icono.regalo {
+    background-position: -4px 0px;
+}
+.icono.bocina {
+    background-position: -113px -5px;
+}
+.icono.punto {
+    background-position: -221px -4px;
+}
+.icono.caja {
+    background-position: -5px -113px;
+}
+.icono.moneda {
+    background-position: -112px -112px;
+}
+.icono.calendario {
+    background-position: -219px -112px;
+}
+
+/* Flecha ver más */
+.list .item > i.icon.ion-ios-arrow-forward:before {
+  background:#1594ac;
+  color:white;
+  padding: 4px;
+  width:27px;
+  font-size:19px;
+  border-radius:50%;
+}
+
+/* Bienvenida */
+.content-bienvenida {
+  background: url(../img/estrellas2.png) no-repeat right bottom;
+}
+.content-bienvenida h3 {
+  background: url(../img/fondobienvenida.png) no-repeat center bottom;
+  text-align:center;
+  color:white;
+  display:block;
+  font-size:22px;
+  margin-bottom:0px;
+}
+
+.zafiro .content-bienvenida h3{
+  background-color: #27667d;
+}
+
+.esmeralda .content-bienvenida h3{
+    background-color: #45986c;
+}
+.diamante .content-bienvenida h3{
+    background-color: #1794aa;
+}
+.rubi .content-bienvenida h3{
+    background-color: #b12136;
+}
+
+.content-bienvenida h3 strong {
+  display: block;
+  font-size:26px;
+  margin-bottom:5px;
+}
+.content-bienvenida h3 span {
+  background: url(../img/estrellas.png) no-repeat 10px 10px;
+  padding:25px 20px 80px;
+  display:block;
+}
+.content-bienvenida .estrella {
+  margin:0px;
+}
+.bienvenida-img {
+  margin: 10px auto 10px;
+  max-width:55%;
+  display:block;
+}
+.content-bienvenida form {
+  width:60%;
+  margin:0 auto;
+}
+.bienvenida-button button {
+  background:#1594ac;
+  border-radius:8px;
+  border: 2px solid #077885;
+  box-shadow: 0px 4px 0px #077885;
+  text-shadow: 0px 2px 0px rgba(0,0,0,0.1);
+  color:white;
+  font-family: "Droid Sans Bold";
+  font-size:18px;
+}
+.bienvenida-button button:hover {
+  color:white;
+}
+.bienvenida-button button:active, .bienvenida-button button.activated {
+  color:white;
+  border: 2px solid #077885 !important;
+  box-shadow: 0px 4px 0px #056a72;
+  text-shadow: 0px 2px 0px rgba(0,0,0,0.1);
+  background:#077885;
+}
+.content-bienvenida .bar-footer {
+  position:static;
+}
+
+
+/* Inicio */
+.home-content .list {
+  text-align: center;
+}
+.home-content .list a {
+  text-align:left;
+}
+.alternate {
+  background:#f0f0f0;
+}
+
+.campana{
+   margin: 0px auto;
+   text-align: center;
+}
+
+.campana-title {
+  padding:10px 15px;
+  background:#ccc;
+  border-radius:8px;
+  display:inline-block;
+  text-align:center;
+  font-size:24px;
+  color:white;
+  margin: 0px 10px 15px;
+}
+.list h2, .list a {
+  color: #4d4d4d;
+  font-size: 16px;
+}
+.list p {
+  font-size:14px;
+  color:#808080;
+}
+
+/* Pedido */
+.pedido .item {
+    border-top: none;
+    border-bottom: none;
+    padding-top:8px;
+    padding-bottom: 1px;
+    background: transparent url(../img/linea.png) repeat-y 63px top;
+}
+.list.pedido img {
+    width: 100px;
+    height: 102px;
+    border-radius: 0px;
+    position: static;
+    float: left;
+    margin-right:10px;
+}
+.list.pedido h2 {
+    padding: 20px 0px 0px 0px;
+    font-size: 20px;
+    color: #808080;
+    font-family: 'Droid Sans Bold', sans-serif;
+}
+.list.pedido .item.selected h2, .list.pedido .item.selected p {
+    color:#eb0c6e;
+}
+
+
+/* Estilo anterior */
+.pedido .item {
+    border-color: #fff !important;
+    padding-bottom: 0px;
+}
+
+.titulo-calendario .row {
+  background:#f74094;
+  border-radius:8px;
+  padding:0;
+  margin:10px;
+  width: auto;
+}
+.titulo-calendario .item {
+  background:transparent;
+  border: none;
+  padding: 5px 10px;
+}
+.titulo-calendario .arrowleft {
+  text-align:left;
+}
+.titulo-calendario .col-50 {
+  text-align:center;
+}
+.titulo-calendario .arrowright {
+  text-align:right;
+}
+.titulo-calendario a {
+  color:white;
+  text-transform:uppercase;
+  font-family: 'Droid Sans Bold', sans-serif;
+}
+.row.no-padding, .col.no-padding {
+  padding:0;
+}
+.week.col {
+  color:#005e81;
+  text-align:center;
+  border-top: 1px solid #005e81;
+  border-bottom: 2px solid #005e81;
+  border-left: 1px solid #cacaca;
+  border-right: 1px solid #cacaca;
+  padding: 7px 5px;
+  margin-right: -1px;
+  font-family: 'Droid Sans Bold', sans-serif;
+}
+.calendario .row, .calendario .col {
+  padding: 0;
+}
+.calendario .row:first-of-type .item {
+  border-top:none;
+}
+.calendario .item {
+  padding:8px 5px;
+  text-align:center;
+  color:#808080;
+}
+.calendario .item-icon-left .icon, .calendario .item-icon-right .icon{
+  font-size: 18px;
+  position:static;
+  display:inline-block;
+  margin:0 0 0 3px;
+}
+.calendario .item-icon-left .icon:before, .calendario .item-icon-right .icon:before {
+  width:16px;
+}
+.calendario .evento {
+  color:#f74094;
+  font-family: 'Droid Sans Bold', sans-serif;
+}
+.calendario .positive {
+  background:#f74094;
+  font-family: 'Droid Sans Bold', sans-serif;
+  color:white;
+}
+.calendario .campana-actual {
+    background-color: #E0EBEB;
+}
+.campanas {
+  color:#666;
+  text-align: center;
+}
+.campanas span {
+  border: solid 1px #ccc;
+   border-radius:2px;
+}
+.leyenda-campana{
+   background-color: #E0EBEB;
+   height: 10px;
+   width: 50px;
+   margin: 0px 10px 0px 0px;
+}
+.leyenda-campana-siguiente{
+   height: 10px;
+   width: 50px;
+   margin: 0px 10px 0px 15px;
+}
+.mas-content .dia {
+  margin-bottom:0;
+}
+.mas-content .dia .item {
+  background:#979797;
+  color:white;
+  font-size:16px;
+}
+.detalle a.item-avatar {
+  padding-left:50px;
+}
+.detalle a.item-avatar img {
+  width: auto !important;
+}
+
+/* Action Sheet (Más +) */
+.action-sheet-group {
+  background-color:#f74094;
+}
+
+.action-sheet-group[ng-if="cancelText"] {
+  background-color:#red !important;
+}
+
+.action-sheet .button {
+  color: #FFF;
+}
+
+.item-note{
+  color: #444;
+}
+
+/*  Titulos y textos  */
+
+.no-procesado .item {
+    font-size:15px;
+    line-height:1.3em;
+    border-color: #FFF;
+}
+.no-procesado .highlighted {
+    display:inline-block;
+    text-align: center;
+    color:white;
+    background:#f74094;
+    border-radius:4px;
+    padding:4px 12px;
+    font-family: 'Droid Sans Bold', sans-serif;
+    margin: 0px 0px 8px 0px;
+}
+.no-procesado p {
+    margin-top:5px;
+}
+.no-procesado p strong {
+    background: #1594ac;
+    color: white;
+    display: inline-block;
+    padding: 0px 6px;
+    border-radius: 50%;
+    font-size: 12px;
+}
+
+/* Varios */
+
+.mensaje-internet{
+  color: #FFF;
+  width: 100%;
+  text-align:center;
+  padding: 10px;
+}
+
+.zafiro .mensaje-internet{
+  background-color: #27667d;
+}
+
+.esmeralda .mensaje-internet{
+    background-color: #45986c;
+}
+.diamante .mensaje-internet{
+    background-color: #1794aa;
+}
+.rubi .mensaje-internet{
+    background-color: #b12136;
+}

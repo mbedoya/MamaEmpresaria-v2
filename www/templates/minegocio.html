@@ -1,0 +1,40 @@
+<ion-view view-title="" >
+    <ion-content>
+        <div class="row bread">
+            Mi Negocio
+        </div>
+        <div class="list">
+            <!--
+            <a class="item" href="#">
+                En tu último pedido tus ganancias fueron:
+                <span class="item-note">
+                  $52.000
+                </span>
+            </a> -->
+            <a class="item item-avatar alternate" href="#" ng-show="mostrarSaldoPagar()" >
+                <div class="icono bocina"></div>
+                <h2>Debes pagar: <strong> {{ saldo() | currency }} </strong>
+                </h2>
+                <p>Este valor ya incluye los saldos <br />
+                a favor o en contra que puedas tener</p>
+            </a>
+            <a class="item item-avatar alternate" href="#" ng-show="mostrarSaldoFavor()" >
+                <div class="icono bocina"></div>
+                <h2>Tienes un saldo a favor de:
+                </h2>
+                <span class="item-note">
+                  <strong> {{ saldo() | currency }} </strong>
+                </span>
+            </a>
+            <a class="item item-avatar item-icon-right" href="#" ng-click="mostrarAyudaFlexibilizacion()" ng-show="cupo()>0" >
+                <div class="icono moneda"></div>
+                <i class="icon ion-plus-circled"></i>
+                <h2>Cuentas con un beneficio <br /> de flexibilizazión de máximo:
+                </h2>
+                <span class="item-note">
+                  <strong> {{ flexibilizacion() | currency }} </strong>
+                </span>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

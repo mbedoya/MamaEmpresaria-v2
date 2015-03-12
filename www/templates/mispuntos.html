@@ -1,0 +1,37 @@
+<ion-view view-title="" >
+    <ion-content>
+        <div class="list" >
+            <label class="item item-avatar">
+                <div class="icono punto"></div>
+                Puntos disponibles
+                <span class="item-note">
+                    <strong>{{ puntosDisponibles() }}</strong>
+                </span>
+            </label>
+            <label class="item item-avatar" ng-show="mostrarPuntosPorPerder()">
+                <div class="icono bocina"></div>
+                Puntos a perder <br />
+                (si no pagas antes del {{fechaMontajePedidoCampana() | date: 'dd' | lowercase}} de {{fechaMontajePedidoCampana() | date: 'MMMM' | lowercase}} )
+                <span class="item-note">
+                    <strong> {{ puntosPorPerder() }} </strong>
+                </span>
+            </label>
+            <label class="item item-avatar" ng-show="mostrarPuntosAVencer()">
+                <div class="icono calendario"></div>
+                Puntos a vencer <br />
+                esta campaña <!--  {{campanaVencimientoPuntos()}} -->
+                <span class="item-note">
+                    <strong> {{ puntosAVencer() }} </strong>
+                </span>
+            </label>
+            <a class="item item-avatar item-icon-right" ng-show="mostrarPuntosRedimidos()" ng-click="mostrarPremios()" >
+               <div class="icono regalo"></div>
+                Puntos redimidos campaña <br /> anterior
+                <span class="item-note">
+                  <strong> {{ puntosRedimidos() }} </strong>
+                </span>
+                <i class="icon ion-chevron-right"></i>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>
