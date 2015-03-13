@@ -370,8 +370,6 @@ angular.module('novaventa.services', [])
                     self.padStr(1 + fecha.getMonth()) + "-" +
                     fecha.getDate();
                     
-                console.log(dateStr);    
-                    
                return dateStr;     
             },
             formatearFecha: function(fecha){
