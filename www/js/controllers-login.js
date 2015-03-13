@@ -71,6 +71,8 @@ moduloControlador.controller('LoginCtrl', function($scope, $rootScope, $ionicLoa
                             
                             $scope.datosInicio = {cedula: '' };
 
+                            $ionicHistory.clearCache();
+                            
                             $ionicHistory.nextViewOptions({
                              disableBack: true
                             });

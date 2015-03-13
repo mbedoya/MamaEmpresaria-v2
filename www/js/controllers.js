@@ -8,10 +8,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
             if(localStorage && localStorage.cedula){
                 localStorage.removeItem("cedula");
             }
-            $ionicHistory.clearHistory();
-            $ionicHistory.nextViewOptions({
-                disableBack: true
-            });
+            $ionicHistory.clearCache();
             $state.go('app.login');
         };
     })
@@ -23,7 +20,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
         }
 
         $scope.mostrarOpcionesMas = function() {
-            // Show the action sheet
+            //Mostrar las opciones
             var hojaOpciones = $ionicActionSheet.show({
 
                 /*
@@ -105,8 +102,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
              title: titulo,
              template: mensaje
            });
-         };
-         
+         }; 
          
          $scope.inicializar = function(){
             if(Internet.get()){
