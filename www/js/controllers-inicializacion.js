@@ -1,6 +1,6 @@
 moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, $ionicPopup, $ionicLoading, $ionicHistory, $http, $state, $filter, Internet, Mama, GA, Utilidades) {
 
-        $scope.mostrarMensajeError = false;
+    $scope.mostrarMensajeError = false;
 
      setTimeout(function(){
      
@@ -24,13 +24,6 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
         }, false);     
               
      }, 2000);
-
-      $scope.mostrarAyuda = function(titulo, mensaje) {
-           var alertPopup = $ionicPopup.alert({
-             title: titulo,
-             template: mensaje
-           });
-         };
          
          $scope.segmentoFormateado = function(){
             if(localStorage){

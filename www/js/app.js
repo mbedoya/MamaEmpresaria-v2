@@ -1,6 +1,6 @@
 angular.module('novaventa', ['ionic', 'novaventa.controllers', 'novaventa.services'])
 
-.run(function($ionicPlatform, $rootScope) {
+.run(function($ionicPlatform, $rootScope, $ionicPopup) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -11,6 +11,13 @@ angular.module('novaventa', ['ionic', 'novaventa.controllers', 'novaventa.servic
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+    
+    $rootScope.mostrarAyuda = function(titulo, mensaje) {
+	   var alertPopup = $ionicPopup.alert({
+		 title: titulo,
+		 template: mensaje
+	   });
+	 };
 
   });
 })

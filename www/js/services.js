@@ -32,9 +32,79 @@ $rootScope.puntos.puntosRedimidos
 
 
 angular.module('novaventa.services', [])
-
-    .factory('Campana', function($rootScope, $http){
+    .factory('Pedido', function($rootScope, $http, Utilidades){
+    
+        var self = this;
+        
         return {
+           
+           getTrazabilidad: function(cedula, fx) {
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula;
+
+                $http.get(urlServicio).
+                    success(function(data, status, headers, config) {
+                        fx(true, data);
+                    }).
+                    error(function(data, status, headers, config) {
+                        fx(false, {});
+                    });
+            },
+            estadoEncontrado: function(estado){
+			   var encontrado = false;
+		   
+			   if($rootScope.pedido && $rootScope.pedido.historiaEstados){
+				 for (i = 0; i < $rootScope.pedido.historiaEstados.length; i++) { 
+				  if(Utilidades.cambiarNombreEstadoPedido($rootScope.pedido.historiaEstados[i].estado) == estado){
+					 encontrado = true;
+					 break;
+				  }
+				 }
+			   }
+		   
+			   return encontrado;
+			}
+           
+        }
+    })
+
+    .factory('Campana', function($rootScope, $http, Utilidades){
+        
+        var self = this;
+        
+        return {
+            hoyEsCorreteo: function(){
+                var realizado = false;
+        
+               if($rootScope.fechas && $rootScope.fechas.length > 0){
+               
+                 for (i = 0; i < $rootScope.fechas.length; i++){
+                  if($rootScope.fechas[i].actividad.toLowerCase() == 'fecha correteo'){
+                     if(Utilidades.formatearFechaActual() == new Date($rootScope.fechas[i].fecha)){
+                         realizado = true;
+                        break;
+                     }
+                  }
+                }
+              }
+              return realizado;
+            },
+            campanaFinalizada: function(){
+                var realizado = false;
+        
+               if($rootScope.fechas && $rootScope.fechas.length > 0){
+               
+                 for (i = 0; i < $rootScope.fechas.length; i++){
+                  if($rootScope.fechas[i].actividad.toLowerCase() == 'fecha correteo'){
+                     if(new Date() > new Date($rootScope.fechas[i].fecha)){
+                         realizado = true;
+                        break;
+                     }
+                  }
+                }
+              }
+              
+              return realizado;
+            },
             encuentroRealizado: function(){
                 var realizado = false;
         
@@ -53,6 +123,7 @@ angular.module('novaventa.services', [])
               return realizado;
             },
             getRecordatoriosCampanaOperativa: function(fx){
+                
                 var zona = $rootScope.zona;
                 var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/getRecordatoriosAntares/" + zona;
 
@@ -78,7 +149,7 @@ angular.module('novaventa.services', [])
         }
     })
      
-    .factory('Mama', function(Campana) {
+    .factory('Mama', function(Campana, Pedido) {
 
         return {
             autenticar: function(cedula, rootScope, http, filter, factoryMama, fx) {
@@ -111,7 +182,7 @@ angular.module('novaventa.services', [])
                                 rootScope.campana = {numero: '-', fechaMontajePedido:'-', fechaEncuentro:'-'};
                                 
                                 //Obtener el estado del pedido 
-                                factoryMama.getTrazabilidadPedido(rootScope.datos.cedula, rootScope, http, function (success, data){
+                                Pedido.getTrazabilidad(rootScope.datos.cedula, function (success, data){
                                     if(success){
                                         rootScope.pedido = data;
                                     }else{
@@ -136,7 +207,8 @@ angular.module('novaventa.services', [])
                                         
                                         //Buscar si el encuentro ya se ha realizado, si es así entonces se debe ir a la 
                                         //siguiente campaña
-                                         if(Campana.encuentroRealizado()){
+                                         if(Campana.campanaFinalizada() || 
+                                             ( Campana.encuentroRealizado() && ( Pedido.estadoEncontrado('Novedad') || Pedido.estadoEncontrado('Facturado')  ) )){
                                          
                                              //Obtener la campaña siguiente
                                             Campana.getRecordatorios(new Date().getFullYear(), rootScope.campana.numero + 1,rootScope.zona, function (success, data){
@@ -144,14 +216,22 @@ angular.module('novaventa.services', [])
 									  
 													 //Obtener la fecha de montaje de pedido (Encuentro)
 													 encuentro = '';
+													 
+													 //Obtener la fecha de Correteo
+													 correteo = '';
+													 
+													 
 													 for (i = 0; i < data.listaRecordatorios.length; i++){
 													   if(data.listaRecordatorios[i].actividad.toLowerCase() == 'encuentro'){
 														encuentro = data.listaRecordatorios[i].fecha;
-														break;
+													   }
+													   
+													   if(data.listaRecordatorios[i].actividad.toLowerCase() == 'fecha correteo'){
+														correteo = data.listaRecordatorios[i].fecha;
 													   }
 													 }
 										
-													rootScope.campana = {numero: data.listaRecordatorios[0].campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro};
+													rootScope.campana = {numero: data.listaRecordatorios[0].campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro, fechaCorreteo: correteo};
 													rootScope.fechas = data.listaRecordatorios;
 													
 													console.log("Moviendose a nueva camapaña " + rootScope.campana.numero);
@@ -197,17 +277,6 @@ angular.module('novaventa.services', [])
             	var urlServicio = rootScope.configuracion.ip_servidores +  "/AntaresWebServices/resumenPuntos/ResumenPuntosEmpresaria/" + cedula;
             	
                     http.get(urlServicio).
-                    success(function(data, status, headers, config) {
-                        fx(true, data);
-                    }).
-                    error(function(data, status, headers, config) {
-                        fx(false, {});
-                    });
-            },
-            getTrazabilidadPedido: function(cedula, rootScope, http, fx) {
-                var urlServicio = rootScope.configuracion.ip_servidores +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula;
-
-                http.get(urlServicio).
                     success(function(data, status, headers, config) {
                         fx(true, data);
                     }).
@@ -282,13 +351,53 @@ angular.module('novaventa.services', [])
     })
     
     .factory('Utilidades', function() {
+    
+        this.padStr = function(i) {
+            return (i < 10) ? "0" + i : "" + i;
+        };
 
+		var self = this;
+		
         return {
             mostrarMensaje: function(scope, mensaje) {
             
-               
                 
             },
+            formatearFechaActual: function(){
+               var fecha = new Date();
+              
+               var dateStr = self.padStr(fecha.getFullYear()) + "-" +
+                    self.padStr(1 + fecha.getMonth()) + "-" +
+                    fecha.getDate();
+                    
+                console.log(dateStr);    
+                    
+               return dateStr;     
+            },
+            formatearFecha: function(fecha){
+               var dateStr = self.padStr(fecha.getFullYear()) + "-" +
+                    self.padStr(1 + fecha.getMonth()) + "-" +
+                    fecha.getDate();
+                    
+               return dateStr;     
+            },
+            cambiarNombreEstadoPedido: function(nombre){
+
+				if(nombre.toLowerCase() == "ingresado" || nombre.toLowerCase() == "ingresada"){
+					return "Recibido";
+				}else{
+					if(nombre.toLowerCase() == "en línea"){
+						return "En proceso de empaque";
+					}else{
+
+						if(nombre.toLowerCase() == "cargue"){
+							return "Entregado al transportador";
+						}
+					}
+				}
+				
+				return nombre;
+			},
             
             getPlantillaEspera: function(mensaje) {
                return mensaje + '<br /><br /> <img style="max-width:50px; max-height:50px;" src="img/loading.gif">';

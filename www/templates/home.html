@@ -17,7 +17,7 @@
                </div>
             </div>
             
-            <a class="item item-avatar alternate" href="#" ng-show="mostrarSaldoPagar() && saldo()>0 && !saldoEsDeProximaCampana()" ng-click="mostrarAyudaSaldoPagar()">
+            <a class="item item-avatar alternate" href="#" ng-show="mostrarSaldoPagar() && saldo()>0" ng-click="mostrarAyudaSaldoPagar()">
                 <div class="icono bocina"></div>
                 <!-- <i class="icon ion-plus-circled"></i> -->
               <h2>Tienes un pago pendiente por <br /> {{ saldo() | currency:"$":0 }}.
@@ -26,7 +26,7 @@
               </h2>
             </a>
 
-            <a class="item item-avatar alternate" href="#" ng-show="( mostrarSaldoPagar() && saldo()==0 ) || saldoEsDeProximaCampana()" >
+            <a class="item item-avatar alternate" href="#" ng-show="mostrarSaldoPagar() && saldo()==0" >
                 <div class="icono bocina"></div>
                 <h2>No tienes pagos pendientes
                 </h2>
@@ -61,9 +61,19 @@
                 <p>Realízalo por la Página Web hasta <br /> mañana antes de las 12:00 del medio día</p>
             </a>
 
-            <a class="item item-avatar {{ estiloAlternateFechaPago() }}" href="#" ng-show="diasParaPago()==-1 && pedido().razonRechazo" >
+            <a class="item item-avatar {{ estiloAlternateFechaPago() }}" href="#" ng-show="diasParaPago()<0 && hoyEsCorreteo() && pedido().razonRechazo" >
                 <div class="icono calendario"></div>
                 <h2 ng-show="esAntesMedioDia()">Realiza tu pedido hoy por la <br />Página Web antes de las <br />12:00 del medio día
+                </h2>
+                <h2 ng-show="!esAntesMedioDia()">Mamá ya no puedes montar pedido. <br />
+                   El horario para Campaña {{campana.numero}} ya cerró.
+                </h2>
+                <p>&nbsp;</p>
+            </a>
+            
+            <a class="item item-avatar {{ estiloAlternateFechaPago() }}" href="#" ng-show="diasParaPago()<0 && !hoyEsCorreteo() && pedido().razonRechazo" >
+                <div class="icono calendario"></div>
+                <h2 ng-show="esAntesMedioDia()">Realiza tu pedido hasta el {{ campana.fechaCorreteo | date: 'dd' }} de {{campana.fechaCorreteo | date: 'MMMM' }} por la <br />Página Web antes de las <br />12:00 del medio día
                 </h2>
                 <h2 ng-show="!esAntesMedioDia()">Mamá ya no puedes montar pedido. <br /> 
                    El horario para Campaña {{campana.numero}} ya cerró.

@@ -1,14 +1,7 @@
-moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $ionicPopup, GA) {
+moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $ionicPopup, GA, Campana) {
 
         //Registro en Analytics      
        GA.trackPage($rootScope.gaPlugin, "Home");
-       
-         $scope.mostrarAyuda = function(titulo, mensaje) {
-           var alertPopup = $ionicPopup.alert({
-             title: titulo,
-             template: mensaje
-           });
-         };
 
         $scope.mostrarCupo = function(){
             return Number($rootScope.datos.cupo) > 0;
@@ -137,6 +130,10 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
             return $rootScope.campana.fechaMontajePedido;
         }
         
+        $scope.fechaCorreteo = function(){
+            return $rootScope.campana.fechaCorreteo;
+        }
+        
         $scope.flexibilizacion = function(){
            return $rootScope.datos.valorFlexibilizacion;
         }
@@ -186,6 +183,10 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
         
         $scope.mostrarAyudaSaldoPagar = function(){
            //$scope.mostrarAyuda('Pagos','El pago que dejas de hacer es debido al beneficio que tienes llamado "Flexibilización", los $' + $scope.flexibilizacionDeuda() + ' que quedas debiendo, los debes cancelar antes de tu próximo pedido.');
+        }
+        
+        $scope.hoyEsCorreteo = function(){
+           return Campana.hoyEsCorreteo();
         }
 
     });
