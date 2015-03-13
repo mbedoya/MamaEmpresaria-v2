@@ -47,18 +47,7 @@ moduloControlador.controller('LoginCtrl', function($scope, $rootScope, $ionicLoa
                     
                     if(success){
                                 
-                                /*
-                                Mama.getPuntos($rootScope.datos.cedula, $rootScope, $http, function (success, data){
-                                 if(success){
-                                    $rootScope.puntos = data;
-
-                                   }else{
-                                    //alert("En este momento no podemos acceder a tu información");
-                                   }
-                                });
-                                */
-                                
-                                var irABienvenida = !(localStorage && localStorage.nombre);
+                            var irABienvenida = !(localStorage && localStorage.nombre);
 
                             //Almacenar la cédula si hay almacenamiento local
                             if(localStorage ){
@@ -66,12 +55,9 @@ moduloControlador.controller('LoginCtrl', function($scope, $rootScope, $ionicLoa
                                 localStorage.cedula = $scope.datosInicio.cedula;
                                 localStorage.nombre = $rootScope.datos.nombre;
                                 localStorage.segmento = $rootScope.datos.segmento;
-                                
                             }
                             
                             $scope.datosInicio = {cedula: '' };
-
-                            $ionicHistory.clearCache();
                             
                             $ionicHistory.nextViewOptions({
                              disableBack: true

@@ -44,7 +44,8 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
         // ya se ha efectuado el encuentro y tengo información de pedido
         // y no tengo novedad de morosidad
         $scope.saldoEsDeProximaCampana = function(){
-           return $scope.encuentroRealizado() && !$scope.pedido().razonRechazo && !$scope.mamaEnMora();
+           return false;
+           //return $scope.encuentroRealizado() && !$scope.pedido().razonRechazo && !$scope.mamaEnMora();
         }
 
         $scope.pedido = function(){

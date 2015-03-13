@@ -33,10 +33,55 @@ $rootScope.puntos.puntosRedimidos
 
 angular.module('novaventa.services', [])
 
-    .factory('Mama', function() {
+    .factory('Campana', function($rootScope, $http){
+        return {
+            encuentroRealizado: function(){
+                var realizado = false;
+        
+               if($rootScope.fechas && $rootScope.fechas.length > 0){
+               
+                 for (i = 0; i < $rootScope.fechas.length; i++){
+                  if($rootScope.fechas[i].actividad.toLowerCase() == 'encuentro'){
+                     if(new Date() >= new Date($rootScope.fechas[i].fecha)){
+                         realizado = true;
+                        break;
+                     }
+                  }
+                }
+              }
+              
+              return realizado;
+            },
+            getRecordatoriosCampanaOperativa: function(fx){
+                var zona = $rootScope.zona;
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/getRecordatoriosAntares/" + zona;
+
+                $http.get(urlServicio).
+                    success(function(data, status, headers, config) {
+                        fx(true, data);
+                    }).
+                    error(function(data, status, headers, config) {
+                        fx(false, {});
+                    });
+            },
+            getRecordatorios: function(ano, campana, zona, fx){
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/getRecordatoriosAntares/"+ ano +"/" + campana + "/" + zona;
+
+                $http.get(urlServicio).
+                    success(function(data, status, headers, config) {
+                        fx(true, data);
+                    }).
+                    error(function(data, status, headers, config) {
+                        fx(false, {});
+                    });
+            }
+        }
+    })
+     
+    .factory('Mama', function(Campana) {
 
         return {
-            autenticar: function(cedula, rootScope, http, filter, factory, fx) {
+            autenticar: function(cedula, rootScope, http, filter, factoryMama, fx) {
             	http.get(rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/validacionAntares/" + cedula +"/1").
                     success(function(data, status, headers, config) {
                         
@@ -66,7 +111,7 @@ angular.module('novaventa.services', [])
                                 rootScope.campana = {numero: '-', fechaMontajePedido:'-', fechaEncuentro:'-'};
                                 
                                 //Obtener el estado del pedido 
-                                factory.getTrazabilidadPedido(rootScope.datos.cedula, rootScope, http, function (success, data){
+                                factoryMama.getTrazabilidadPedido(rootScope.datos.cedula, rootScope, http, function (success, data){
                                     if(success){
                                         rootScope.pedido = data;
                                     }else{
@@ -74,7 +119,7 @@ angular.module('novaventa.services', [])
                                 });
                                 
                                 //Obtener la campaña operativa
-                                factory.getRecordatoriosCampanaOperativa(rootScope.zona, rootScope, http, function (success, data){
+                                Campana.getRecordatoriosCampanaOperativa(function (success, data){
                                     if(success){
                                       
                                          //Obtener la fecha de montaje de pedido (Encuentro)
@@ -88,6 +133,34 @@ angular.module('novaventa.services', [])
                                         
                                         rootScope.campana = {numero: data.listaRecordatorios[0].campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro};
                                         rootScope.fechas = data.listaRecordatorios;
+                                        
+                                        //Buscar si el encuentro ya se ha realizado, si es así entonces se debe ir a la 
+                                        //siguiente campaña
+                                         if(Campana.encuentroRealizado()){
+                                         
+                                             //Obtener la campaña siguiente
+                                            Campana.getRecordatorios(new Date().getFullYear(), rootScope.campana.numero + 1,rootScope.zona, function (success, data){
+												if(success){
+									  
+													 //Obtener la fecha de montaje de pedido (Encuentro)
+													 encuentro = '';
+													 for (i = 0; i < data.listaRecordatorios.length; i++){
+													   if(data.listaRecordatorios[i].actividad.toLowerCase() == 'encuentro'){
+														encuentro = data.listaRecordatorios[i].fecha;
+														break;
+													   }
+													 }
+										
+													rootScope.campana = {numero: data.listaRecordatorios[0].campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro};
+													rootScope.fechas = data.listaRecordatorios;
+													
+													console.log("Moviendose a nueva camapaña " + rootScope.campana.numero);
+										
+												}else{                                        
+												}
+											});
+                                            
+                                         }
                                         
                                     }else{                                        
                                     }
@@ -155,28 +228,6 @@ angular.module('novaventa.services', [])
                         fx(false, {});
                     });
                
-            },
-            getRecordatoriosCampanaOperativa: function(zona, rootScope, http, fx){
-                var urlServicio = rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/getRecordatoriosAntares/" + zona;
-
-                http.get(urlServicio).
-                    success(function(data, status, headers, config) {
-                        fx(true, data);
-                    }).
-                    error(function(data, status, headers, config) {
-                        fx(false, {});
-                    });
-            },
-            getRecordatorios: function(ano, campana, zona, rootScope, http, fx){
-                var urlServicio = rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/getRecordatoriosAntares/"+ ano +"/" + campana + "/" + zona;
-
-                http.get(urlServicio).
-                    success(function(data, status, headers, config) {
-                        fx(true, data);
-                    }).
-                    error(function(data, status, headers, config) {
-                        fx(false, {});
-                    });
             }
         }
     })

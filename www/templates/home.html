@@ -1,17 +1,20 @@
 <ion-view view-title="" >
     <ion-content class="{{ segmentoFormateado() }}" >
+    
         <div class="row bread">
          <div class="col" >{{ nombre() }}</div>
        </div>
+       
         <div class="list" ng-init="init()">
+        
             <div class="estrella">
                 <span class="estrella-img"></span>
                 <span class="estrella-text">Mamá Empresaria <strong>{{ segmento() | pascal }}</strong></span>
             </div>
             <div class="campana">
-            <div class="campana-title">
-                Estás en <strong>Campaña {{campana.numero}}</strong>
-            </div>
+               <div class="campana-title">
+                 Estás en <strong>Campaña {{campana.numero}}</strong>
+               </div>
             </div>
             
             <a class="item item-avatar alternate" href="#" ng-show="mostrarSaldoPagar() && saldo()>0 && !saldoEsDeProximaCampana()" ng-click="mostrarAyudaSaldoPagar()">

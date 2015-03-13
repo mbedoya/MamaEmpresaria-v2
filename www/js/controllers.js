@@ -91,89 +91,6 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
             $state.go('app.menu.tabs.home');
         };
     })
-
-    .controller('MisPuntosCtrl', function($scope, $rootScope, $state, $ionicLoading, $ionicPopup, $http, Mama, Internet, GA) {
-
-         //Registro en Analytics      
-       GA.trackPage($rootScope.gaPlugin, "Mis Puntos");
-       
-       $scope.mostrarAyuda = function(titulo, mensaje) {
-           var alertPopup = $ionicPopup.alert({
-             title: titulo,
-             template: mensaje
-           });
-         }; 
-         
-         $scope.inicializar = function(){
-            if(Internet.get()){
-        
-           $scope.loading =  $ionicLoading.show({
-                    template: 'Estamos consultando tus puntos'
-                });
-          
-            Mama.getPuntos($rootScope.datos.cedula, $rootScope, $http, function (success, data){
-                if(success){
-					$ionicLoading.hide();
-                    $rootScope.puntos = data;
-
-                }else{
-                    $ionicLoading.hide();
-                    $scope.mostrarAyuda("Mis Puntos","En este momento no podemos acceder a tu información");
-                }
-            });
-          }else{
-            $scope.mostrarAyuda("Mis Puntos","Por favor verifica tu conexión a internet");
-          }  
-         }
-        
-        $scope.$on('online', function(event, args){
-           $scope.inicializar();
-        });
-        
-        $scope.inicializar();
-        
-        $scope.mostrarPremios = function(){
-           $state.go('app.menu.tabs.mispuntos.mispremiosredimidos');
-           //href="#/app/menu/tabs/mispremiosredimidos"
-        }
-
-        $scope.campanaVencimientoPuntos = function(){
-            return String($rootScope.puntos.agnoCampagnaVencimiento).substr(4,2) + " de " + String($rootScope.puntos.agnoCampagnaVencimiento).substr(0,4);
-        }
-
-        $scope.puntosDisponibles = function(){
-            return $rootScope.puntos.puntosDisponibles;
-        }
-
-        $scope.puntosPorPerder = function(){
-            return $rootScope.puntos.puntosPorPerder;
-        }
-
-        $scope.puntosAVencer = function(){
-            return $rootScope.puntos.puntosAVencer;
-        }
-
-        $scope.puntosRedimidos = function(){
-            return $rootScope.puntos.puntosRedimidos;
-        }
-        
-        $scope.fechaMontajePedidoCampana = function(){
-            return $rootScope.campana.fechaMontajePedido;
-        }
-
-        $scope.mostrarPuntosRedimidos = function(){
-            return $rootScope.puntos.puntosRedimidos && Number($rootScope.puntos.puntosRedimidos) > 0;
-        }
-
-        $scope.mostrarPuntosAVencer = function(){
-            return $rootScope.puntos.puntosAVencer && Number($rootScope.puntos.puntosAVencer) > 0;
-        }
-
-        $scope.mostrarPuntosPorPerder = function(){
-            return $rootScope.puntos.puntosPorPerder && Number($rootScope.puntos.puntosPorPerder) > 0;
-        }
-
-    })
     
     .controller('MiPedidoCtrl', function($scope, $rootScope, $state, $ionicLoading, $http, $ionicPopup, Mama, Internet, GA) {
 
@@ -605,7 +522,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
 
     })
     
-    .controller('InformacionFechasCtrl', function($scope, $rootScope, $ionicLoading, $state, $ionicPopup, $http, Mama) {
+    .controller('InformacionFechasCtrl', function($scope, $rootScope, $ionicLoading, $state, $ionicPopup, $http, Mama, Campana) {
 
             $scope.mostrarAyuda = function(titulo, mensaje) {
                 var alertPopup = $ionicPopup.alert({
@@ -670,7 +587,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                 //Disminuir la campana
                 $scope.campana = $scope.campana - 1;
 
-                Mama.getRecordatorios($scope.fechaCalendario.getFullYear(), $scope.campana, $rootScope.zona, $rootScope, $http, function (success, data){
+                Campana.getRecordatorios($scope.fechaCalendario.getFullYear(), $scope.campana, $rootScope.zona, function (success, data){
                     if(success){
                         $scope.fechas = data.listaRecordatorios;
 
@@ -711,7 +628,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                 //Aumentar la campana
                 $scope.campana = $scope.campana + 1;
 
-                Mama.getRecordatorios($scope.fechaCalendario.getFullYear(), $scope.campana, $rootScope.zona, $rootScope, $http, function (success, data){
+                Campana.getRecordatorios($scope.fechaCalendario.getFullYear(), $scope.campana, $rootScope.zona, function (success, data){
                     if(success){
                         $scope.fechas = data.listaRecordatorios;
 
@@ -898,7 +815,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
             $scope.semanasCalendario = function(){
 
                 //Obtener los recordatorios de la siguiente campana
-                Mama.getRecordatorios($scope.fechaCalendario.getFullYear(), $scope.campana+1, $rootScope.zona, $rootScope, $http, function (success, data){
+                Campana.getRecordatorios($scope.fechaCalendario.getFullYear(), $scope.campana+1, $rootScope.zona, function (success, data){
                     if(success){
                         $scope.fechasSiguienteCampana = data.listaRecordatorios;
                     }else{
