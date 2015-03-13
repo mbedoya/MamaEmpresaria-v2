@@ -46,9 +46,8 @@ moduloControlador.controller('LoginCtrl', function($scope, $rootScope, $ionicLoa
                     $ionicLoading.hide();
                     
                     if(success){
-                        
-                               $rootScope.campana = {numero: '-', fechaMontajePedido:'-'};
                                 
+                                /*
                                 Mama.getPuntos($rootScope.datos.cedula, $rootScope, $http, function (success, data){
                                  if(success){
                                     $rootScope.puntos = data;
@@ -57,6 +56,7 @@ moduloControlador.controller('LoginCtrl', function($scope, $rootScope, $ionicLoa
                                     //alert("En este momento no podemos acceder a tu información");
                                    }
                                 });
+                                */
                                 
                                 var irABienvenida = !(localStorage && localStorage.nombre);
 
