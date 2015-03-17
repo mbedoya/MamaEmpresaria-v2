@@ -1,4 +1,4 @@
-moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $ionicPopup, GA, Campana) {
+moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $ionicPopup, GA, Campana, Utilidades, Pedido) {
 
         //Registro en Analytics      
        GA.trackPage($rootScope.gaPlugin, "Home");
@@ -8,22 +8,11 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
         }
         
         $scope.buscarEstado = function(estado){
-           var miestado = null;
-           
-           if($rootScope.pedido && $rootScope.pedido.historiaEstados){
-             for (i = 0; i < $rootScope.pedido.historiaEstados.length; i++) { 
-              if($scope.cambiarNombreEstado($rootScope.pedido.historiaEstados[i].estado) == estado){
-                 miestado = $rootScope.pedido.historiaEstados[i];
-                 break;
-              }
-             }
-           }
-           
-           return miestado;
+           return Pedido.buscarEstado(estado);
         }
         
         $scope.mamaEnMora = function(){
-            var estadoNovedad = $scope.buscarEstado('Novedad');
+            var estadoNovedad = Pedido.buscarEstado('Novedad');
             if(estadoNovedad){
                if (estadoNovedad.motivo.toLowerCase().indexOf('morosa')>=0){
                   return true;
@@ -47,22 +36,17 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
 
         //Indica si ya se hizo el Encuentro para la campaña actual
         $scope.encuentroRealizado = function(){
-            
-            var realizado = false;
+            return Campana.encuentroRealizado();
+        }
         
-            if($rootScope.fechas && $rootScope.fechas.length > 0){
-               
-               for (i = 0; i < $rootScope.fechas.length; i++){
-                if($rootScope.fechas[i].actividad.toLowerCase() == 'encuentro'){
-                    if(new Date() >= new Date($rootScope.fechas[i].fecha)){
-                        realizado = true;
-                        break;
-                    }
-                }
-              }
-            }
-
-            return realizado;
+        //Indica si hoy es encuentro
+        $scope.hoyEsEncuentro = function(){
+            return Campana.hoyEsEncuentro();
+        }
+        
+        //Indica si hoy es correteo
+        $scope.hoyEsCorreteo = function(){
+            return Campana.hoyEsCorreteo();
         }
 
         $scope.etiquetaSaldo = function(){
@@ -156,24 +140,14 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
            }
         }
         
-        $scope.padStr = function(i) {
-           return (i < 10) ? "0" + i : "" + i;
-        }
-        
         $scope.diasParaPago = function(){
         
-           var fechaActual = new Date();
-           var stringFecha = $scope.padStr(fechaActual.getFullYear()) + "-" +
-                  $scope.padStr(1 + fechaActual.getMonth()) + "-" + fechaActual.getDate()
-          
+           var stringFecha =  Utilidades.formatearFechaActual();  
         
            if($rootScope.campana && $rootScope.campana.fechaMontajePedido){
-               var t2 = new Date($rootScope.campana.fechaMontajePedido).getTime();
-               var t1 = new Date(stringFecha).getTime();
-
-               return parseInt((t2-t1)/(24*3600*1000));    
+               return Utilidades.diferenciaFechaDias(new Date(stringFecha), new Date($rootScope.campana.fechaMontajePedido));
            }else{
-              return -2;
+              return "";
            }
         }
         

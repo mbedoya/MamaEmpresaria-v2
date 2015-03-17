@@ -21,8 +21,12 @@
                 <div class="icono bocina"></div>
                 <!-- <i class="icon ion-plus-circled"></i> -->
               <h2>Tienes un pago pendiente por <br /> {{ saldo() | currency:"$":0 }}.
-                Realízalo <span ng-show="diasParaPago()>-1">máximo el <br /> {{campana.fechaMontajePedido | date: 'dd' }} de  {{campana.fechaMontajePedido | date: 'MMMM' }}</span>
-                 <span ng-show="diasParaPago()<=0">hoy</span> antes de <br /> las 4 de la tarde
+                Realízalo 
+                <span ng-show="diasParaPago()>=1">máximo el <br /> 
+                {{campana.fechaMontajePedido | date: 'dd' }} de  {{campana.fechaMontajePedido | date: 'MMMM' }}</span>
+                <span ng-show="diasParaPago()<0 && !hoyEsEncuentro() && !hoyEsCorreteo()">máximo el <br /> 
+                {{campana.fechaCorreteo | date: 'dd' }} de  {{campana.fechaCorreteo | date: 'MMMM' }}</span>
+                 <span ng-show="diasParaPago()<=0 && (hoyEsEncuentro() || hoyEsCorreteo())">hoy</span> antes de <br /> las 4 de la tarde
               </h2>
             </a>
 

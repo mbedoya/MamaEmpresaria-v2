@@ -2,6 +2,10 @@
 Guía de datos de que la aplicación maneja
 Los datos se almacenan generalmente en $rootScope.
 
+Configuracion
+$rootScope.configuracion.ip_servidores
+$rootScope.numeroCampanasAno
+
 Informacion basica
 $rootScope.datos.nombre
 $rootScope.datos.segmento
@@ -14,9 +18,11 @@ Campana
 $rootScope.campana.numero
 $rootScope.campana.fechaMontajePedido
 $rootScope.campana.fechaEncuentro
+$rootScope.campana.fechaReparto
 
 Recordatorios - Informacion de campana para la zona de la Mamá
 $rootScope.fechas
+$rootScope.fechasAnteriores - Campaña anterior a la operativa
 
 Pedido
 $rootScope.pedido
@@ -48,6 +54,20 @@ angular.module('novaventa.services', [])
                     error(function(data, status, headers, config) {
                         fx(false, {});
                     });
+            },
+            buscarEstado: function(estado){
+               var miestado = null;
+           
+			   if($rootScope.pedido && $rootScope.pedido.historiaEstados){
+				 for (i = 0; i < $rootScope.pedido.historiaEstados.length; i++) { 
+				  if(Utilidades.cambiarNombreEstado($rootScope.pedido.historiaEstados[i].estado) == estado){
+					 miestado = $rootScope.pedido.historiaEstados[i];
+					 break;
+				  }
+				 }
+			   }
+           
+			   return miestado;
             },
             estadoEncontrado: function(estado){
 			   var encontrado = false;
@@ -88,14 +108,32 @@ angular.module('novaventa.services', [])
               }
               return realizado;
             },
-            campanaFinalizada: function(){
+            hoyEsEncuentro: function(){
                 var realizado = false;
         
                if($rootScope.fechas && $rootScope.fechas.length > 0){
                
                  for (i = 0; i < $rootScope.fechas.length; i++){
+                  if($rootScope.fechas[i].actividad.toLowerCase() == 'encuentro'){
+                     if(Utilidades.formatearFechaActual() == new Date($rootScope.fechas[i].fecha)){
+                         realizado = true;
+                        break;
+                     }
+                  }
+                }
+              }
+              return realizado;
+            },
+            campanaFinalizada: function(){
+                var realizado = false;
+                
+                var fechaActual = new Date();
+        
+               if($rootScope.fechas && $rootScope.fechas.length > 0){
+               
+                 for (i = 0; i < $rootScope.fechas.length; i++){
                   if($rootScope.fechas[i].actividad.toLowerCase() == 'fecha correteo'){
-                     if(new Date() > new Date($rootScope.fechas[i].fecha)){
+                     if(fechaActual > new Date($rootScope.fechas[i].fecha)){
                          realizado = true;
                         break;
                      }
@@ -149,7 +187,7 @@ angular.module('novaventa.services', [])
         }
     })
      
-    .factory('Mama', function(Campana, Pedido) {
+    .factory('Mama', function(Campana, Pedido, Utilidades, $rootScope, $http) {
 
         return {
             autenticar: function(cedula, rootScope, http, filter, factoryMama, fx) {
@@ -195,23 +233,39 @@ angular.module('novaventa.services', [])
                                       
                                          //Obtener la fecha de montaje de pedido (Encuentro)
                                          encuentro = '';
+                                         
+ 										correteo = '';
                                          for (i = 0; i < data.listaRecordatorios.length; i++){
                                            if(data.listaRecordatorios[i].actividad.toLowerCase() == 'encuentro'){
                                             encuentro = data.listaRecordatorios[i].fecha;
                                             break;
                                            }
+                                           if(data.listaRecordatorios[i].actividad.toLowerCase() == 'fecha correteo'){
+												correteo = data.listaRecordatorios[i].fecha;
+											   }
                                          }
                                         
-                                        rootScope.campana = {numero: data.listaRecordatorios[0].campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro};
+                                        rootScope.campana = {numero: data.listaRecordatorios[0].campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro, 
+                                        fechaCorreteo: correteo, fechaReparto: ''};
+                                        
                                         rootScope.fechas = data.listaRecordatorios;
                                         
                                         //Buscar si el encuentro ya se ha realizado, si es así entonces se debe ir a la 
                                         //siguiente campaña
                                          if(Campana.campanaFinalizada() || 
                                              ( Campana.encuentroRealizado() && ( Pedido.estadoEncontrado('Novedad') || Pedido.estadoEncontrado('Facturado')  ) )){
+                                             
+                                             var ano = new Date().getFullYear();
+                                             var siguienteCampana = rootScope.campana.numero + 1;
+                                             //Si la siguiente campana supera al numero de campanas al 
+                                             //ano entonces moverse a la campana 1 del siguiente ano
+                                             if(siguienteCampana > rootScope.numeroCampanasAno){
+                                                siguienteCampana = 1;
+                                                ano = ano + 1;
+                                             }
                                          
                                              //Obtener la campaña siguiente
-                                            Campana.getRecordatorios(new Date().getFullYear(), rootScope.campana.numero + 1,rootScope.zona, function (success, data){
+                                            Campana.getRecordatorios(ano, siguienteCampana, rootScope.zona, function (success, data){
 												if(success){
 									  
 													 //Obtener la fecha de montaje de pedido (Encuentro)
@@ -219,7 +273,6 @@ angular.module('novaventa.services', [])
 													 
 													 //Obtener la fecha de Correteo
 													 correteo = '';
-													 
 													 
 													 for (i = 0; i < data.listaRecordatorios.length; i++){
 													   if(data.listaRecordatorios[i].actividad.toLowerCase() == 'encuentro'){
@@ -230,8 +283,19 @@ angular.module('novaventa.services', [])
 														correteo = data.listaRecordatorios[i].fecha;
 													   }
 													 }
+													 
+													 //Obtener la fecha de reparto. Esta es la campaña anterior si me muevo
+													 reparto = '';
+													 
+													 for (i = 0; i < rootScope.fechas.length; i++){
+													   if(rootScope.fechas[i].actividad.toLowerCase() == 'reparto de pedido 1'){
+														reparto = rootScope.fechas[i].fecha;
+													   }
+													 }
 										
-													rootScope.campana = {numero: data.listaRecordatorios[0].campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro, fechaCorreteo: correteo};
+													rootScope.campana = {numero: data.listaRecordatorios[0].campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro, 
+													fechaCorreteo: correteo, fechaReparto: reparto};
+													rootScope.fechasAnteriores = rootScope.fechas;
 													rootScope.fechas = data.listaRecordatorios;
 													
 													console.log("Moviendose a nueva camapaña " + rootScope.campana.numero);
@@ -240,10 +304,71 @@ angular.module('novaventa.services', [])
 												}
 											});
                                             
-                                         }
+                                         }else{
+                                           
+                                           //Obtener la campaña anterior
+                                           var ano = new Date().getFullYear();
+                                             var siguienteCampana = rootScope.campana.numero - 1;
+                                             //Si la siguiente campana supera al numero de campanas al 
+                                             //ano entonces moverse a la campana 1 del siguiente ano
+                                             if(siguienteCampana == 0){
+                                                siguienteCampana = rootScope.numeroCampanasAno;
+                                                ano = ano - 1;
+                                             }                     
+                                
+                                            Campana.getRecordatorios(ano, siguienteCampana, rootScope.zona, function (success, data){
+												if(success){
+													rootScope.fechasAnteriores = data.listaRecordatorios;
+													
+													//Obtener la fecha de Correteo
+													 correteo = '';
+													 
+													 for (i = 0; i < data.listaRecordatorios.length; i++){
+													   if(data.listaRecordatorios[i].actividad.toLowerCase() == 'fecha correteo'){
+														correteo = data.listaRecordatorios[i].fecha;
+													   }
+													 }
+													
+													//Para la fecha de reparto de pedido, si han transcurrido 5 días o menos de campaña
+                                                    //entonces se muestra la fecha anterior, de lo contrario la actual
+                                                    var diferenciaDias = Utilidades.diferenciaFechaDias(new Date(correteo), new Date());
+                                                    console.log('La campaña lleva ' + diferenciaDias);
+                                                    
+                                                    //Si han pasado mas de 5 días entonces mostrar campaña actual
+                                                    //si no mostrar campaña anterior
+                                                    if(diferenciaDias > 5){
+                                                       	 //Obtener la fecha de reparto.
+														 reparto = '';
+													 
+														 for (i = 0; i < rootScope.fechas.length; i++){
+														   if(rootScope.fechas[i].actividad.toLowerCase() == 'reparto de pedido 1'){
+															reparto = rootScope.fechas[i].fecha;
+														   }
+														 }
+														 
+														 rootScope.campana.fechaReparto = reparto;
+                                                    }else{
+                                                       //Obtener la fecha de reparto.
+														 reparto = '';
+													 
+														 for (i = 0; i < rootScope.fechasAnteriores.length; i++){
+														   if(rootScope.fechasAnteriores[i].actividad.toLowerCase() == 'reparto de pedido 1'){
+															reparto = rootScope.fechasAnteriores[i].fecha;
+														   }
+														 }
+														 
+														 rootScope.campana.fechaReparto = reparto;
+                                                    }
+													
+												}else{                                        
+												}
+											});
+                                           
+                                           
+                                         }//mover de campaña
                                         
                                     }else{                                        
-                                    }
+                                    }//success
                                 });
 
                             }else{
@@ -273,10 +398,10 @@ angular.module('novaventa.services', [])
                     });
             
             },
-            getPuntos: function(cedula, rootScope, http, fx) {
-            	var urlServicio = rootScope.configuracion.ip_servidores +  "/AntaresWebServices/resumenPuntos/ResumenPuntosEmpresaria/" + cedula;
+            getPuntos: function(cedula, fx) {
+            	var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/resumenPuntos/ResumenPuntosEmpresaria/" + cedula;
             	
-                    http.get(urlServicio).
+                    $http.get(urlServicio).
                     success(function(data, status, headers, config) {
                         fx(true, data);
                     }).
@@ -284,12 +409,12 @@ angular.module('novaventa.services', [])
                         fx(false, {});
                     });
             },
-            getAgotadosPedido: function(pedido, rootScope, http, fx){
+            getAgotadosPedido: function(pedido, fx){
             
-               //var urlServicio = rootScope.configuracion.ip_servidores +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula;
+               //var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula;
                var urlServicio = "http://www.mocky.io/v2/54ee3b594e65b0e60a4fb38f";
 
-                http.get(urlServicio).
+                $http.get(urlServicio).
                     success(function(data, status, headers, config) {
                         fx(true, data);
                     }).
@@ -362,6 +487,19 @@ angular.module('novaventa.services', [])
             mostrarMensaje: function(scope, mensaje) {
             
                 
+            },
+            diferenciaFechaDias: function(fechaInicial, fechaFinal){
+
+               var stringFechaInicial = self.padStr(fechaInicial.getFullYear()) + "-" +
+                  self.padStr(1 + fechaInicial.getMonth()) + "-" + fechaInicial.getDate()
+                  
+               var stringFechaFinal = self.padStr(fechaFinal.getFullYear()) + "-" +
+                  self.padStr(1 + fechaFinal.getMonth()) + "-" + fechaFinal.getDate()
+          
+               var t2 = new Date(stringFechaFinal).getTime();
+               var t1 = new Date(stringFechaInicial).getTime();
+
+               return parseInt((t2-t1)/(24*3600*1000));  
             },
             formatearFechaActual: function(){
                var fecha = new Date();

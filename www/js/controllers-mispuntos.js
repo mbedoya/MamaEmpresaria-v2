@@ -17,7 +17,7 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
                     template: Utilidades.getPlantillaEspera('Estamos consultando tus puntos')
                 });
           
-            Mama.getPuntos($rootScope.datos.cedula, $rootScope, $http, function (success, data){
+            Mama.getPuntos($rootScope.datos.cedula, function (success, data){
                 if(success){
 					$ionicLoading.hide();
                     $rootScope.puntos = data;

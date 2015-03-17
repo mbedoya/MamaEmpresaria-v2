@@ -91,14 +91,7 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
         }
         
         $scope.fechaRepartoPedido = function(){
-            var fecha = '';
-            for (i = 0; i < $rootScope.fechas.length; i++){
-                if($rootScope.fechas[i].actividad.toLowerCase() == 'reparto de pedido 1'){
-                     fecha = $rootScope.fechas[i].fecha;
-                     break;
-                }
-            }
-            return fecha;
+            return $rootScope.campana.fechaReparto;
        }
         
         $scope.estadoEncontrado = function(estado){
@@ -150,14 +143,7 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
         }
 
         $scope.fechaCorreteo = function(){
-            fecha = null;
-            for (i = 0; i < $rootScope.fechas.length; i++){
-                if($rootScope.fechas[i].actividad.toLowerCase() == 'fecha correteo'){
-                     fecha = $rootScope.fechas[i].fecha;
-                     break;
-                }
-            }
-            return fecha;
+            return $rootScope.campana.fechaCorreteo;
         }
 
         $scope.mostrarNovedad = function(novedad){
