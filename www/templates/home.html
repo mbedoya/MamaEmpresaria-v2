@@ -50,6 +50,7 @@
             <p>Si superas este valor debes cancelar <br />el excedente el día que haces tu pedido</p>
             </a>
 
+            <!-- (Momentos 1 y 2) -->
             <a class="item item-avatar {{ estiloAlternateFechaPago() }}" href="#" ng-show="diasParaPago()>0" >
                 <div class="icono calendario"></div>
               <h2>Realiza tu próximo pedido el<br />
@@ -58,13 +59,17 @@
               <p>Te quedan {{ diasParaPago() }} días</p>
             </a>
 
-            <a class="item item-avatar {{ estiloAlternateFechaPago() }}" href="#" ng-show="diasParaPago()==0 && pedido().razonRechazo" >
+			<!-- Encuentro (Momento 3) -->
+            <a class="item item-avatar {{ estiloAlternateFechaPago() }}" href="#" ng-show="hoyEsEncuentro() && pedido().razonRechazo" >
                 <div class="icono calendario"></div>
                 <h2>Realiza tu pedido el día de hoy
                 </h2>
-                <p>Realízalo por la Página Web hasta <br /> mañana antes de las 12:00 del medio día</p>
+                <p>Realízalo por la Página Web hasta <br /> el <br /> 
+                {{campana.fechaCorreteo | date: 'dd' }} de  {{campana.fechaCorreteo | date: 'MMMM' }} <br /> 
+                antes de las 12:00 del medio día</p>
             </a>
 
+     		<!-- Correteo (Momento 5) -->
             <a class="item item-avatar {{ estiloAlternateFechaPago() }}" href="#" ng-show="diasParaPago()<0 && hoyEsCorreteo() && pedido().razonRechazo" >
                 <div class="icono calendario"></div>
                 <h2 ng-show="esAntesMedioDia()">Realiza tu pedido hoy por la <br />Página Web antes de las <br />12:00 del medio día
@@ -75,12 +80,11 @@
                 <p>&nbsp;</p>
             </a>
             
+            <!-- Entre Encuentro y Correteo (Momento 4) -->
             <a class="item item-avatar {{ estiloAlternateFechaPago() }}" href="#" ng-show="diasParaPago()<0 && !hoyEsCorreteo() && pedido().razonRechazo" >
                 <div class="icono calendario"></div>
-                <h2 ng-show="esAntesMedioDia()">Realiza tu pedido hasta el {{ campana.fechaCorreteo | date: 'dd' }} de {{campana.fechaCorreteo | date: 'MMMM' }} por la <br />Página Web antes de las <br />12:00 del medio día
-                </h2>
-                <h2 ng-show="!esAntesMedioDia()">Mamá ya no puedes montar pedido. <br /> 
-                   El horario para Campaña {{campana.numero}} ya cerró.
+                <h2 >Realiza tu pedido hasta el {{ campana.fechaCorreteo | date: 'dd' }} de {{campana.fechaCorreteo | date: 'MMMM' }} por la <br />
+                Página Web antes de las <br />12:00 del medio día
                 </h2>
                 <p>&nbsp;</p>
             </a>
