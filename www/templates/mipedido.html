@@ -4,6 +4,20 @@
             Mi Pedido
         </div>
         
+         <!-- Agotados
+        <div class="list list-inset" ng-show="false" >
+            <a class="item item-icon-right assertive" href="#">
+                <i class="icon ion-ios-arrow-down" ></i>
+                Tu pedido tiene presenta algunos agotados.
+            </a>
+            <a class="item assertive" href="#" ng-repeat="agotado in agotados()" >
+                <h2>{{ agotado.nombre }}</h2>
+                <p>{{ agotado.tipoAgotado }}</p>
+            </a>
+        </div>
+        -->
+        
+        <!-- Novedad gestionable -->
         <div class="list list-inset no-procesado" ng-show="!estadoEncontrado('Facturado') && estadoEncontrado('Novedad') && !estadoEncontrado('Anulado') && mostrarNovedad(buscarEstado('Novedad').motivo)">
             <div class="item">
                 <span class="highlighted">
@@ -20,26 +34,15 @@
                     Si ya cancelaste ignora este mensaje.
                 </div>
                 <div ng-show="motivoNovedadEncontrado('cupo')">
-                    
+                    Mamá Empresaria tu pedido no será enviado <br />
+                    ya que aún cuentas con un saldo pendiente <br />
+                    por pagar. Si realizaste el pago, envía el <br /> 
+                    comprobante a servicioalcliente@novaventa.com
                 </div>
-                
-                {{ buscarEstado('Novedad').motivo }}
             </a>
         </div>
-        
-        <!-- 
-        <div class="list list-inset" ng-show="false" >
-            <a class="item item-icon-right assertive" href="#">
-                <i class="icon ion-ios-arrow-down" ></i>
-                Tu pedido tiene presenta algunos agotados.
-            </a>
-            <a class="item assertive" href="#" ng-repeat="agotado in agotados()" >
-                <h2>{{ agotado.nombre }}</h2>
-                <p>{{ agotado.tipoAgotado }}</p>
-            </a>
-        </div>
-        -->
 
+		<!-- Anulado -->
         <div class="list list-inset no-procesado" ng-show="estadoEncontrado('Anulado') && estadoEncontrado('Novedad')">
             <div class="item">
                 <span class="highlighted">Tu pedido no será enviado,<br /> puedes ver el detalle a continuación:</span>
@@ -48,20 +51,36 @@
                 {{ buscarEstado('Novedad').motivo }}
             </p>
             
-            <p class="item assertive" ng-show="motivoNovedadEncontrado('morosa')">
-                    Mamá, en estos momentos cuentas con un <br />
-                    saldo pendiente por pagar de {{ saldo() | currency:"$":0 }}. <br />
-                    Cancélalo lo más pronto posible.<br /> 
-                    Recuerda que durante el día se están<br />
-                    reflejando los pagos.<br />
-                    Si ya cancelaste ignora este mensaje.
-                </p>
+            <!-- General -->
+            <div class="item assertive" ng-show="!motivoNovedadEncontrado('morosa') && !motivoNovedadEncontrado('cupo')">
+                    Mamá tu pedido no será enviado para conocer <br />
+                    la razón de esta situación comunícate con tu <br /> 
+                    Mamá Líder o con la Línea de Atención {{ lineaAtencion }}
+                </div>
+            
+            <!-- Morosidad -->
+            <div class="item assertive" ng-show="motivoNovedadEncontrado('morosa')">
+                    Mamá Empresaria tu pedido no será enviado <br />
+                    ya que aún cuentas con un saldo pendiente <br />
+                    por pagar. Si realizaste el pago, envía el <br /> 
+                    comprobante a servicioalcliente@novaventa.com
+                </div>
+                
+                <!-- Cupo -->
+                <div class="item assertive" ng-show="motivoNovedadEncontrado('cupo')">
+                    Mamá Empresaria tu pedido no será enviado <br />
+                    ya que aún cuentas con un saldo pendiente <br />
+                    por pagar. Si realizaste el pago, envía el <br /> 
+                    comprobante a servicioalcliente@novaventa.com
+                </div>
             
         </div>
         
-        <div class="list no-procesado" ng-show="pedido().razonRechazo && hoyEsCorreteo()">
+        <!-- Sin información y ya es encuentro o posteriores -->
+        <div class="list no-procesado" ng-show="pedido().razonRechazo && encuentroRealizado()">
             <div class="item">
-                <span class="highlighted">Aún no tenemos información sobre tu pedido <br />. Si lo enviaste hoy por favor verifica mañana. <br />
+                <span class="highlighted">Aún no tenemos información sobre tu pedido <br />. 
+                Si lo enviaste hoy por favor verifica mañana. <br />
                 Si ya hiciste el envío de tu pedido y aún <br />
                 no registra verifica: <br /></span>
                 <p><strong>1</strong> Que no se haya quedado en estado
@@ -70,10 +89,20 @@
             </div>
         </div>
         
-        <div class="list no-procesado" ng-show="pedido().razonRechazo && !hoyEsCorreteo()">
+        <!-- Sin información y no es encuentro todavía, primeros 5 días -->
+        <div class="list no-procesado" ng-show="pedido().razonRechazo && !encuentroRealizado() && diasEnEjecucionCampana() <= 5">
            <div class="item" href="#" >
-                <span class="highlighted"> Aún no tenemos información sobre tu pedido<br /> de esta campaña, te invitamos <br />
-                    a consultar a partir del {{fechaCorreteo() | date: 'dd' }} de {{fechaCorreteo() | date: 'MMMM' }}.</span>
+                <span class="highlighted">No tienes un pedido registrado para <br />
+                la campaña {{ campanaAnterior() }}.</span>
+            </div>
+        </div>
+        
+        <!-- Sin información y no es encuentro todavía, día 6 a antes de encuentro -->
+        <div class="list no-procesado" ng-show="pedido().razonRechazo && !encuentroRealizado() && diasEnEjecucionCampana() && diasEnEjecucionCampana() > 5">
+           <div class="item" href="#" >
+                <span class="highlighted"> Aún no tenemos información sobre tu pedido<br />
+                de esta campaña, te invitamos <br />
+                a consultar a partir del {{fechaCorreteo() | date: 'dd' }} de {{fechaCorreteo() | date: 'MMMM' }}.</span>
             </div>
         </div>
 

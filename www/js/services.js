@@ -5,6 +5,8 @@ Los datos se almacenan generalmente en $rootScope.
 Configuracion
 $rootScope.configuracion.ip_servidores
 $rootScope.numeroCampanasAno
+$rootScope.lineaAtencion
+$rootScope.correo
 
 Informacion basica
 $rootScope.datos.nombre
@@ -19,6 +21,7 @@ $rootScope.campana.numero
 $rootScope.campana.fechaMontajePedido
 $rootScope.campana.fechaEncuentro
 $rootScope.campana.fechaReparto
+$rootScope.campana.diasEnEjecucion
 
 Recordatorios - Informacion de campana para la zona de la Mamá
 $rootScope.fechas
@@ -60,7 +63,7 @@ angular.module('novaventa.services', [])
            
 			   if($rootScope.pedido && $rootScope.pedido.historiaEstados){
 				 for (i = 0; i < $rootScope.pedido.historiaEstados.length; i++) { 
-				  if(Utilidades.cambiarNombreEstado($rootScope.pedido.historiaEstados[i].estado) == estado){
+				  if(Utilidades.cambiarNombreEstadoPedido($rootScope.pedido.historiaEstados[i].estado) == estado){
 					 miestado = $rootScope.pedido.historiaEstados[i];
 					 break;
 				  }
@@ -217,7 +220,7 @@ angular.module('novaventa.services', [])
                                 rootScope.datos.valorFlexibilizacion = data.valorFlexibilizacion;
                                 rootScope.zona = data.listaZonas[0];
                                 
-                                rootScope.campana = {numero: '-', fechaMontajePedido:'-', fechaEncuentro:'-'};
+                                rootScope.campana = {numero: '-', fechaMontajePedido:'-', fechaEncuentro:'-', fechaCorreteo: '-', fechaMontajePedido: '-', diasEnEjecucion: ''};
                                 
                                 //Obtener el estado del pedido 
                                 Pedido.getTrazabilidad(rootScope.datos.cedula, function (success, data){
@@ -246,7 +249,7 @@ angular.module('novaventa.services', [])
                                          }
                                         
                                         rootScope.campana = {numero: data.listaRecordatorios[0].campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro, 
-                                        fechaCorreteo: correteo, fechaReparto: ''};
+                                        fechaCorreteo: correteo, fechaReparto: '',  diasEnEjecucion: ''};
                                         
                                         rootScope.fechas = data.listaRecordatorios;
                                         
@@ -292,9 +295,19 @@ angular.module('novaventa.services', [])
 														reparto = rootScope.fechas[i].fecha;
 													   }
 													 }
+													 
+													 //Correteo Anterior
+													 correteoAnterior = ''
+													 for (i = 0; i < rootScope.fechas.length; i++){					   
+													   if(rootScope.fechas[i].actividad.toLowerCase() == 'fecha correteo'){
+														correteoAnterior = rootScope.fechas[i].fecha;
+													   }
+													 }
+										
+										             var diferenciaDias = Utilidades.diferenciaFechaDias(new Date(correteoAnterior), new Date());
 										
 													rootScope.campana = {numero: data.listaRecordatorios[0].campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro, 
-													fechaCorreteo: correteo, fechaReparto: reparto};
+													fechaCorreteo: correteo, fechaReparto: reparto,  diasEnEjecucion: diferenciaDias};
 													rootScope.fechasAnteriores = rootScope.fechas;
 													rootScope.fechas = data.listaRecordatorios;
 													
@@ -332,7 +345,7 @@ angular.module('novaventa.services', [])
 													//Para la fecha de reparto de pedido, si han transcurrido 5 días o menos de campaña
                                                     //entonces se muestra la fecha anterior, de lo contrario la actual
                                                     var diferenciaDias = Utilidades.diferenciaFechaDias(new Date(correteo), new Date());
-                                                    console.log('La campaña lleva ' + diferenciaDias);
+                                                    rootScope.campana.diasEnEjecucion = diferenciaDias;
                                                     
                                                     //Si han pasado mas de 5 días entonces mostrar campaña actual
                                                     //si no mostrar campaña anterior

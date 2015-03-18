@@ -1,14 +1,7 @@
-moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state, $ionicLoading, $http, $ionicPopup, Mama, Internet, GA) {
+moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state, $ionicLoading, $http, $ionicPopup, Mama, Internet, GA, Pedido, Utilidades, Campana) {
 
         //Registro en Analytics
         GA.trackPage($rootScope.gaPlugin, "Mi Pedido");
-
-        $scope.mostrarAyuda = function(titulo, mensaje) {
-            var alertPopup = $ionicPopup.alert({
-                title: titulo,
-                template: mensaje
-                });
-            };
             
             
         $scope.agotados = function(){
@@ -95,51 +88,16 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
        }
         
         $scope.estadoEncontrado = function(estado){
-           var encontrado = false;
-           
-           if($rootScope.pedido && $rootScope.pedido.historiaEstados){
-             for (i = 0; i < $rootScope.pedido.historiaEstados.length; i++) { 
-              if($scope.cambiarNombreEstado($rootScope.pedido.historiaEstados[i].estado) == estado){
-                 encontrado = true;
-                 break;
-              }
-             }
-           }
-           
-           return encontrado;
+           return Pedido.estadoEncontrado(estado);
         }
         
         $scope.buscarEstado = function(estado){
-           var miestado = null;
-           
-           if($rootScope.pedido && $rootScope.pedido.historiaEstados){
-             for (i = 0; i < $rootScope.pedido.historiaEstados.length; i++) { 
-              if($scope.cambiarNombreEstado($rootScope.pedido.historiaEstados[i].estado) == estado){
-                 miestado = $rootScope.pedido.historiaEstados[i];
-                 break;
-              }
-             }
-           }
-           
-           return miestado;
+           console.log(estado);
+           return Pedido.buscarEstado(estado);
         }
 
         $scope.cambiarNombreEstado = function(nombre){
-
-            if(nombre.toLowerCase() == "ingresado" || nombre.toLowerCase() == "ingresada"){
-                return "Recibido";
-            }else{
-                if(nombre.toLowerCase() == "en línea"){
-                    return "En proceso de empaque";
-                }else{
-
-                    if(nombre.toLowerCase() == "cargue"){
-                        return "Entregado al transportador";
-                    }else{
-                        return nombre;
-                    }
-                }
-            }
+           return Utilidades.cambiarNombreEstado(nombre);
         }
 
         $scope.fechaCorreteo = function(){
@@ -149,7 +107,7 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
         $scope.mostrarNovedad = function(novedad){
             var mostrar = false;
             if(novedad.toLowerCase().indexOf('morosa')>=0 ||
-                novedad.toLowerCase().indexOf('tope')>=0){
+                novedad.toLowerCase().indexOf('cupo')>=0){
                 mostrar = true;
             }
             return mostrar;
@@ -159,20 +117,28 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
            return (i < 10) ? "0" + i : "" + i;
         }
         
-        $scope.hoyEsCorreteo = function(){
-        
-           var temp = new Date();
-           var dateStr = $scope.padStr(temp.getFullYear()) + "-" +
-                  $scope.padStr(1 + temp.getMonth()) + "-" +
-                  $scope.padStr(temp.getDate());
-           
-           correteo = false;
-            for (i = 0; i < $rootScope.fechas.length; i++){
-                if($rootScope.fechas[i].fecha == dateStr){
-                     correteo = true;
-                     break;
-                }
-            }
-            return correteo;
+        $scope.encuentroRealizado = function(){
+          return Campana.encuentroRealizado();
         }
+        
+        $scope.hoyEsCorreteo = function(){
+            return Campana.hoyEsCorreteo();
+        }
+        
+        $scope.diasEnEjecucionCampana = function(){
+          if ($rootScope.campana.diasEnEjecucion != '-'){
+             return Number($rootScope.campana.diasEnEjecucion);
+          }else{
+             return null;
+          }
+        }
+        
+        $scope.campanaAnterior = function(){
+          if($rootScope.campana.numero == 1){
+             return $rootScope.numeroCampanasAno;
+          }else{
+             return $rootScope.campana.numero-1;
+          }
+        }
+        
     });

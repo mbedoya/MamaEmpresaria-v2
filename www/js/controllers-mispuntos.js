@@ -68,7 +68,8 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
         }
 
         $scope.mostrarPuntosRedimidos = function(){
-            return $rootScope.puntos.puntosRedimidos && Number($rootScope.puntos.puntosRedimidos) > 0;
+            return false;
+            //return $rootScope.puntos.puntosRedimidos && Number($rootScope.puntos.puntosRedimidos) > 0;
         }
 
         $scope.mostrarPuntosAVencer = function(){

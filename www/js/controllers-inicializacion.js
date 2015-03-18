@@ -55,6 +55,8 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
             $rootScope.configuracion = { ip_servidores: 'http://transferenciaelectronica.novaventa.com.co' };
             //Número de campañas que se ejecutan al año
             $rootScope.numeroCampanasAno = 18;
+            $rootScope.lineaAtencion = "01 8000 515 101";
+            $rootScope.correo = "servicioalcliente@novaventa.com";
 
             //Almacenar la cédula si hay almacenamiento local
             if(localStorage && localStorage.cedula){

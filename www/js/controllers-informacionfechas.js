@@ -1,12 +1,5 @@
 moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScope, $ionicLoading, $state, $ionicPopup, $http, Mama, Campana) {
 
-            $scope.mostrarAyuda = function(titulo, mensaje) {
-                var alertPopup = $ionicPopup.alert({
-                    title: titulo,
-                    template: mensaje
-                });
-            };
-
             $scope.padStr = function(i) {
                 return (i < 10) ? "0" + i : "" + i;
             }
@@ -130,21 +123,39 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 encontrado = false;
 
                 var fechaCalendario = new Date(fecha);
-
+                var fechaMinimaCampana;
+                
                 var cadenaFechaCorreteo = '';
-                //Buscar la fecha de encuentro
-                for (i = 0; i < $scope.fechas.length; i++){
-                    if($scope.fechas[i].actividad.toLowerCase() == 'fecha correteo'){
-                        cadenaFechaCorreteo = $scope.fechas[i].fecha;
-                        break;
-                    }
-                }
+				//Buscar la fecha de correteo
+				for (i = 0; i < $scope.fechas.length; i++){
+					if($scope.fechas[i].actividad.toLowerCase() == 'fecha correteo'){
+						cadenaFechaCorreteo = $scope.fechas[i].fecha;
+						break;
+					}
+				}
 
-                var fechaCorreteo = new Date(cadenaFechaCorreteo);
+				var fechaCorreteo = new Date(cadenaFechaCorreteo);
 
-                //Buscar la fecha de inicio de la campaña
-                var fechaMinimaCampana = new Date(cadenaFechaCorreteo);
-                fechaMinimaCampana.setDate(fechaMinimaCampana.getDate()-21);
+                //Si no se conocen las fechas anteriores entonces devolverse 21 días
+				if(!$scope.fechasCampanaAnterior && !$scope.fechasCampanaAnterior.length > 0){
+				   
+					//Buscar la fecha de inicio de la campaña
+					fechaMinimaCampana = new Date(cadenaFechaCorreteo);
+					fechaMinimaCampana.setDate(fechaMinimaCampana.getDate()-21);  
+				}else{
+				  
+				  //Buscar el Correteo Anterior
+				  var cadenaFechaCorreteoAnterior = '';
+					//Buscar la fecha de encuentro
+					for (i = 0; i < $scope.fechasCampanaAnterior.length; i++){
+						if($scope.fechasCampanaAnterior[i].actividad.toLowerCase() == 'fecha correteo'){
+							cadenaFechaCorreteoAnterior = $scope.fechasCampanaAnterior[i].fecha;
+							break;
+						}
+					}
+					fechaMinimaCampana = new Date(cadenaFechaCorreteoAnterior);
+					fechaMinimaCampana.setDate(fechaMinimaCampana.getDate()+1);
+				}
 
                 for (i = 0; i < $scope.fechas.length; i++){
                     if(fechaCalendario <= fechaCorreteo &&
@@ -294,6 +305,15 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 Campana.getRecordatorios($scope.fechaCalendario.getFullYear(), $scope.campana+1, $rootScope.zona, function (success, data){
                     if(success){
                         $scope.fechasSiguienteCampana = data.listaRecordatorios;
+                    }else{
+
+                    }
+                });
+                
+                //Obtener los recordatorios de la campana anterior
+                Campana.getRecordatorios($scope.fechaCalendario.getFullYear(), $scope.campana-1, $rootScope.zona, function (success, data){
+                    if(success){
+                        $scope.fechasCampanaAnterior = data.listaRecordatorios;
                     }else{
 
                     }
