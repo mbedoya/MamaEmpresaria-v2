@@ -1,4 +1,23 @@
-moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScope, $ionicLoading, $state, $ionicPopup, $http, Mama, Campana) {
+moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScope, $ionicLoading, $state, $ionicPopup, $ionicModal, $http, Mama, Campana) {
+
+	$ionicModal.fromTemplateUrl('/templates/informacionfechas-modal.html', {
+		scope: $scope,
+		animation: 'slide-in-up'
+	  }).then(function(modal) {
+		$scope.modal = modal
+	  })  
+
+	  $scope.openModal = function() {
+		$scope.modal.show();
+	  }
+
+	  $scope.closeModal = function() {
+		$scope.modal.hide();
+	  };
+
+	  $scope.$on('$destroy', function() {
+		$scope.modal.remove();
+	  });
 
             $scope.padStr = function(i) {
                 return (i < 10) ? "0" + i : "" + i;
@@ -297,6 +316,8 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 }
 
                 $scope.detalleFecha = listaEventos;
+                
+                $scope.openModal();
             }
 
             $scope.semanasCalendario = function(){
@@ -427,9 +448,9 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 $scope.semanasCalendario();
 
                 //Seleccionar la fecha actual
-                $scope.seleccionarFecha($scope.padStr($scope.fechaCalendario.getFullYear()) + "-" +
-                    $scope.padStr(1 + $scope.fechaCalendario.getMonth()) + "-" +
-                    $scope.fechaCalendario.getDate());
+                //$scope.seleccionarFecha($scope.padStr($scope.fechaCalendario.getFullYear()) + "-" +
+                //    $scope.padStr(1 + $scope.fechaCalendario.getMonth()) + "-" +
+                //    $scope.fechaCalendario.getDate());
 
             }
 
