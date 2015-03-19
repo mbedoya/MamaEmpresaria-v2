@@ -1,6 +1,6 @@
 moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScope, $ionicLoading, $state, $ionicPopup, $ionicModal, $http, Mama, Campana) {
 
-	$ionicModal.fromTemplateUrl('/templates/informacionfechas-modal.html', {
+	$ionicModal.fromTemplateUrl('/informacionfechas-modal.html', {
 		scope: $scope,
 		animation: 'slide-in-up'
 	  }).then(function(modal) {
