@@ -1,8 +1,29 @@
 <ion-modal-view>
-    <ion-header-bar>
-      <h1 class="title">My Modal title</h1>
-    </ion-header-bar>
     <ion-content>
-      Hello!
+      <div class="list dia">
+
+            <div class="item item-divider">
+                {{ fechaSeleccionada | date: 'MMMM' | pascal }} {{ fechaSeleccionada | date: 'dd' }} de {{ fechaSeleccionada | date: 'yyyy' }}
+            </div>
+
+        </div>
+
+        <div class="row detalle no-padding" ng-repeat="detalle in detalleFecha">
+
+            <div class="col" href="#" ng-show="detalle.actividad.toLowerCase() != 'fecha de pago'" >
+                <a href="#" class="item item-avatar">
+                    <img src="img/reloj.png" />
+                    <h2>{{ detalle.hora }}</h2>
+                    <p>{{ detalle.actividad }} <span ng-show="detalle.lugar">en</span> {{ detalle.lugar }} <br />
+                        {{ detalle.direccion }}
+                    </p>
+                </a>
+            </div>
+
+        </div>
+
+        <a class="item positive" href="#" ng-show="detalleFecha.length == 0">
+            No tienes eventos para este día.
+        </a>
     </ion-content>
   </ion-modal-view>
