@@ -138,6 +138,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             }
 
             $scope.fechaEsCampanaVisible = function(fecha){
+            
+                if($scope.cadenaFechaSeleccionada == fecha){
+                    return false;
+                }
 
                 encontrado = false;
 
@@ -260,13 +264,13 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             }
 
             $scope.seleccionarFecha = function(fecha){
-
+            
                 if($scope.cadenaFechaSeleccionada != ''){
-                    $("#" + $scope.cadenaFechaSeleccionada).removeClass("positive");
-                }
+					$("#" + $scope.cadenaFechaSeleccionada).removeClass("positive");
+				}
 
-                $scope.cadenaFechaSeleccionada = fecha;
-                $("#" + $scope.cadenaFechaSeleccionada).addClass("positive");
+				$scope.cadenaFechaSeleccionada = fecha;
+				$("#" + $scope.cadenaFechaSeleccionada).addClass("positive");
 
                 var fechaEsCorreteo = false;
                 var fechaEsRepartoPedido = false;
@@ -317,7 +321,11 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
                 $scope.detalleFecha = listaEventos;
                 
-                $scope.openModal();
+                try{
+                  $scope.openModal();
+                }catch(err){
+                  alert(err.message);
+				}
             }
 
             $scope.semanasCalendario = function(){
