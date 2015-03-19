@@ -1,4 +1,4 @@
-moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScope, $ionicLoading, $state, $ionicPopup, $ionicModal, $http, Mama, Campana) {
+moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScope, $ionicLoading, $state, $ionicPopup, $ionicModal, $http, Mama, Campana, Utilidades) {
 
 	$ionicModal.fromTemplateUrl('templates/informacionfechas-modal.html', {
 		scope: $scope,
@@ -67,7 +67,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             $scope.disminuirMes = function(){
 
                 $scope.loading =  $ionicLoading.show({
-                    template: 'Cargando información de campaña.'
+                    template: Utilidades.getPlantillaEspera('Cargando información de campaña')
                 });
 
                 $scope.fechaCalendario = $scope.mesAnterior();
@@ -94,7 +94,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             $scope.aumentarMes = function(){
 
                 $scope.loading =  $ionicLoading.show({
-                    template: 'Cargando información de campaña.'
+                    template: Utilidades.getPlantillaEspera('Cargando información de campaña')
                 });
 
                 //Establecer la fecha al día 1 del mes actual
@@ -160,7 +160,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 				var fechaCorreteo = new Date(cadenaFechaCorreteo);
 
                 //Si no se conocen las fechas anteriores entonces devolverse 21 días
-				if(!$scope.fechasCampanaAnterior && !$scope.fechasCampanaAnterior.length > 0){
+				if(!$scope.fechasCampanaAnterior){
 				   
 					//Buscar la fecha de inicio de la campaña
 					fechaMinimaCampana = new Date(cadenaFechaCorreteo);
@@ -296,14 +296,28 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 return encontrado;
             }
 
-            $scope.seleccionarFecha = function(fecha){
-            
+            $scope.seleccionarFecha = function(fecha, mostrarDetalle){
+
                 if($scope.cadenaFechaSeleccionada != ''){
 					$("#" + $scope.cadenaFechaSeleccionada).removeClass("positive");
+                    $("#" + $scope.cadenaFechaSeleccionada).removeClass("hoy");
 				}
 
 				$scope.cadenaFechaSeleccionada = fecha;
-				$("#" + $scope.cadenaFechaSeleccionada).addClass("positive");
+                if(mostrarDetalle){
+                    $("#" + $scope.cadenaFechaSeleccionada).addClass("positive");
+                }else{
+
+                    console.log(fecha);
+                    console.log(Utilidades.formatearFechaActual());
+                    console.log($scope.fechaEsCampanaVisible(fecha));
+
+                    if(fecha == Utilidades.formatearFechaActual() && $scope.fechaEsCampanaVisible(fecha)){
+                        $("#" + $scope.cadenaFechaSeleccionada).addClass("hoy-campana");
+                    }else{
+                        $("#" + $scope.cadenaFechaSeleccionada).addClass("hoy");
+                    }
+                }
 
                 var fechaEsCorreteo = false;
                 var fechaEsRepartoPedido = false;
@@ -367,12 +381,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 }
 
                 $scope.detalleFecha = listaEventos;
-                
-                try{
-                  $scope.openModal();
-                }catch(err){
-                  alert(err.message);
-				}
+
+                if(mostrarDetalle){
+                    $scope.openModal();
+                }
             }
 
             $scope.semanasCalendario = function(){
@@ -484,6 +496,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
             $scope.inicializar = function(){
 
+                $scope.loading =  $ionicLoading.show({
+                    template: Utilidades.getPlantillaEspera('Cargando información de campaña')
+                });
+
                 $scope.cadenaFechaSeleccionada = '';
 
                 $scope.detalleFecha = null;
@@ -502,10 +518,12 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
                 $scope.semanasCalendario();
 
+                $ionicLoading.hide();
+
                 //Seleccionar la fecha actual
-                //$scope.seleccionarFecha($scope.padStr($scope.fechaCalendario.getFullYear()) + "-" +
-                //    $scope.padStr(1 + $scope.fechaCalendario.getMonth()) + "-" +
-                //    $scope.fechaCalendario.getDate());
+                $scope.seleccionarFecha($scope.padStr($scope.fechaCalendario.getFullYear()) + "-" +
+                    $scope.padStr(1 + $scope.fechaCalendario.getMonth()) + "-" +
+                    $scope.fechaCalendario.getDate(), false);
 
             }
 

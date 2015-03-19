@@ -626,8 +626,20 @@ strong{
   font-family: 'Droid Sans Bold', sans-serif;
   color:white;
 }
+
+.calendario .hoy {
+    font-family: 'Droid Sans Bold', sans-serif;
+    color:#f74094;
+}
+
+.calendario .hoy-campana {
+    font-family: 'Droid Sans Bold', sans-serif;
+    color:#f74094;
+    background-color: #99CCFF;
+}
+
 .calendario .campana-actual {
-    background-color: #E0EBEB;
+    background-color: #99CCFF;
 }
 .campanas {
   color:#666;
@@ -638,7 +650,7 @@ strong{
    border-radius:2px;
 }
 .leyenda-campana{
-   background-color: #E0EBEB;
+   background-color: #99CCFF;
    height: 10px;
    width: 50px;
    margin: 0px 10px 0px 0px;

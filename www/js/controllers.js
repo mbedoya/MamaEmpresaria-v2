@@ -8,7 +8,11 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
             if(localStorage && localStorage.cedula){
                 localStorage.removeItem("cedula");
             }
-            $ionicHistory.clearCache();
+
+            $ionicHistory.nextViewOptions({
+                disableBack: true
+            });
+
             $state.go('app.login');
         };
     })
