@@ -8,19 +8,20 @@
 
         </div>
 
-        <div class="row detalle no-padding" ng-repeat="detalle in detalleFecha">
+       <div class="row detalle" ng-repeat="detalle in detalleFecha">
 
-            <div class="col" href="#" ng-show="detalle.actividad.toLowerCase() != 'fecha de pago'" >
-                <a href="#" class="item item-avatar">
-                    <img src="img/reloj.png" />
-                    <h2>{{ detalle.hora }}</h2>
-                    <p>{{ detalle.actividad }} <span ng-show="detalle.lugar">en</span> {{ detalle.lugar }} <br />
+            <p style="text-align:left" ng-show="detalle.actividad.toLowerCase() != 'fecha de pago'" >
+             <!-- <a href="#" class="item item-avatar" > -->
+                    <img style="float:left" src="img/reloj.png" />
+                    <span style="display:block;">{{ detalle.hora }}</span>
+                    <p class="col" style="color: #808080">{{ detalle.actividad }} <span ng-show="detalle.lugar">en</span> {{ detalle.lugar }} <br />
                         {{ detalle.direccion }}
                     </p>
-                </a>
-            </div>
+             <!-- </a> -->
+                
+            </p>
 
-        </div>
+         </div>
 
         <a class="item positive" href="#" ng-show="detalleFecha.length == 0">
             No tienes eventos para este día.

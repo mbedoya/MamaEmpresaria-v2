@@ -211,6 +211,17 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                         }
                     }
                 }
+                
+                //Si no se ha encontrado buscar en la siguiente campana
+                if(!encontrado && $scope.fechasCampanaAnterior){
+                    for (i = 0; i < $scope.fechasCampanaAnterior.length; i++){
+                        if($scope.fechasCampanaAnterior[i].actividad.toLowerCase() == 'fecha correteo' &&
+                            $scope.fechasCampanaAnterior[i].fecha == fecha ){
+                            encontrado = true;
+                            break;
+                        }
+                    }
+                }
 
                 return encontrado;
             }
@@ -235,6 +246,17 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                         }
                     }
                 }
+                
+                //Si no se ha encontrado buscar en la siguiente campana
+                if(!encontrado && $scope.fechasCampanaAnterior){
+                    for (i = 0; i < $scope.fechasCampanaAnterior.length; i++){
+                        if($scope.fechasCampanaAnterior[i].actividad.toLowerCase() == 'encuentro' &&
+                            $scope.fechasCampanaAnterior[i].fecha == fecha ){
+                            encontrado = true;
+                            break;
+                        }
+                    }
+                }
 
                 return encontrado;
             }
@@ -254,6 +276,17 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                     for (i = 0; i < $scope.fechasSiguienteCampana.length; i++){
                         if($scope.fechasSiguienteCampana[i].actividad.toLowerCase() == 'reparto de pedido 1' &&
                             $scope.fechasSiguienteCampana[i].fecha == fecha ){
+                            encontrado = true;
+                            break;
+                        }
+                    }
+                }
+                
+                //Si no se ha encontrado buscar en la siguiente campana
+                if(!encontrado && $scope.fechasCampanaAnterior){
+                    for (i = 0; i < $scope.fechasCampanaAnterior.length; i++){
+                        if($scope.fechasCampanaAnterior[i].actividad.toLowerCase() == 'reparto de pedido 1' &&
+                            $scope.fechasCampanaAnterior[i].fecha == fecha ){
                             encontrado = true;
                             break;
                         }
@@ -292,11 +325,25 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 if($scope.fechasSiguienteCampana && $scope.fechasSiguienteCampana.length > 0 ){
                     for (i = 0; i < $scope.fechasSiguienteCampana.length; i++){
                         if($scope.fechasSiguienteCampana[i].fecha == fecha){
-                            listaEventos.push($scope.fechas[i]);
+                            listaEventos.push($scope.fechasSiguienteCampana[i]);
                             if($scope.fechasSiguienteCampana[i].actividad.toLowerCase() == "fecha correteo"){
                                 fechaEsCorreteo = true;
                             }
                             if($scope.fechasSiguienteCampana[i].actividad.toLowerCase() == "reparto de pedido 1"){
+                                fechaEsRepartoPedido = true;
+                            }
+                        }
+                    }
+                }
+                
+                if($scope.fechasCampanaAnterior && $scope.fechasCampanaAnterior.length > 0 ){
+                    for (i = 0; i < $scope.fechasCampanaAnterior.length; i++){
+                        if($scope.fechasCampanaAnterior[i].fecha == fecha){
+                            listaEventos.push($scope.fechasCampanaAnterior[i]);
+                            if($scope.fechasCampanaAnterior[i].actividad.toLowerCase() == "fecha correteo"){
+                                fechaEsCorreteo = true;
+                            }
+                            if($scope.fechasCampanaAnterior[i].actividad.toLowerCase() == "reparto de pedido 1"){
                                 fechaEsRepartoPedido = true;
                             }
                         }
