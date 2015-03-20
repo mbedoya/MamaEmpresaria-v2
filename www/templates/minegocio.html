@@ -16,7 +16,8 @@
                 <h2>Debes pagar: <strong> {{ saldo() | currency }} </strong>
                 </h2>
                 <p>Este valor ya incluye los saldos <br />
-                a favor o en contra que puedas tener</p>
+                a favor o en contra que puedas <br />
+                tener</p>
             </a>
             <a class="item item-avatar alternate" href="#" ng-show="mostrarSaldoFavor()" >
                 <div class="icono bocina"></div>
@@ -29,7 +30,7 @@
             <a class="item item-avatar item-icon-right" href="#" ng-click="mostrarAyudaFlexibilizacion()" ng-show="cupo()>0" >
                 <div class="icono moneda"></div>
                 <i class="icon ion-plus-circled"></i>
-                <h2>Cuentas con un beneficio <br /> de flexibilizazión de máximo:
+                <h2>Cuentas con un beneficio <br /> de flexibilizazión de <br /> máximo:
                 </h2>
                 <span class="item-note">
                   <strong> {{ flexibilizacion() | currency }} </strong>
