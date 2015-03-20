@@ -47,10 +47,6 @@
             <div class="item">
                 <span class="highlighted">Tu pedido no será enviado,<br /> puedes ver el detalle a continuación:</span>
             </div>
-            <p class="item assertive" ng-click="verAyudaNovedad()">
-                {{ buscarEstado('Novedad').motivo }}
-            </p>
-            
             <!-- General -->
             <div class="item assertive" ng-show="!motivoNovedadEncontrado('morosa') && !motivoNovedadEncontrado('cupo')">
                     Mamá tu pedido no será enviado para conocer <br />
@@ -75,15 +71,23 @@
             
         </div>
         
-        <!-- Sin información y ya es encuentro o posteriores -->
-        <div class="list no-procesado" ng-show="pedido().razonRechazo && encuentroRealizado()">
+        <!-- Sin información y es encuentro -->
+        <div class="list no-procesado" ng-show="pedido().razonRechazo && hoyEsEncuentro()">
             <div class="item">
-                <span class="highlighted">Aún no tenemos información sobre tu pedido <br />. 
+                <span class="highlighted">Aún no tenemos información sobre tu pedido.<br />
+                Si lo enviaste hoy por favor verifica mañana. <br />
+            </div>
+        </div>
+
+        <!-- Sin información y ya es posteriores a encuentro -->
+        <div class="list no-procesado" ng-show="pedido().razonRechazo && encuentroRealizado() && !hoyEsEncuentro()">
+            <div class="item">
+                <span class="highlighted">Aún no tenemos información sobre tu pedido.<br />
                 Si lo enviaste hoy por favor verifica mañana. <br />
                 Si ya hiciste el envío de tu pedido y aún <br />
                 no registra verifica: <br /></span>
                 <p><strong>1</strong> Que no se haya quedado en estado
-                "Guardado" en la página web. </p>
+                    "Guardado" en la página web. </p>
                 <p><strong>2</strong> Que lo hayas llevado al buzón en los horarios y fechas establecidas.</p>
             </div>
         </div>

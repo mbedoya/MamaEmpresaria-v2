@@ -134,9 +134,16 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
         return Campana.hoyEsCorreteo();
     }
 
+    $scope.hoyEsEncuentro = function(){
+        return Campana.hoyEsEncuentro();
+    }
+
     $scope.diasEnEjecucionCampana = function(){
+
+        console.log("dias" + $rootScope.campana.diasEnEjecucion);
+
         if ($rootScope.campana.diasEnEjecucion != '-'){
-            return Number($rootScope.campana.diasEnEjecucion);
+            console.log("dias:" + Number($rootScope.campana.diasEnEjecucion));
         }else{
             return null;
         }
