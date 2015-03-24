@@ -283,7 +283,13 @@ angular.module('novaventa.services', [])
                                         //Buscar si el encuentro ya se ha realizado, si es así entonces se debe ir a la
                                         //siguiente campaña
                                         if(Campana.campanaFinalizada() ||
-                                            ( Campana.encuentroRealizado() && ( Pedido.estadoEncontrado('Novedad') || Pedido.estadoEncontrado('Facturado')  ) )){
+                                             ( Campana.encuentroRealizado() && 
+                                               ( Pedido.estadoEncontrado('Novedad') 
+                                                 || Pedido.estadoEncontrado('Facturado') 
+                                                 || Pedido.estadoEncontrado('Recibido')   
+                                                ) 
+                                             )
+                                           ){
 
                                             var ano = new Date().getFullYear();
                                             var siguienteCampana = rootScope.campana.numero + 1;
