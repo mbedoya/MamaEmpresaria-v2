@@ -116,7 +116,8 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
     $scope.mostrarNovedad = function(novedad){
         var mostrar = false;
         if(novedad.toLowerCase().indexOf('morosa')>=0 ||
-            novedad.toLowerCase().indexOf('cupo')>=0){
+            novedad.toLowerCase().indexOf('cupo')>=0 ||
+            novedad.toLowerCase().indexOf('tope')>=0){
             mostrar = true;
         }
         return mostrar;

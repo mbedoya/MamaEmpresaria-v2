@@ -62,7 +62,8 @@ angular.module('novaventa.services', [])
                     for (i = 0; i < $rootScope.pedido.historiaEstados.length; i++) {
                         if($rootScope.pedido.historiaEstados[i].motivo && 
                              ( $rootScope.pedido.historiaEstados[i].motivo.toLowerCase().indexOf('cupo') >= 0 ||
-                                $rootScope.pedido.historiaEstados[i].motivo.toLowerCase().indexOf('morosa') >= 0 
+                                $rootScope.pedido.historiaEstados[i].motivo.toLowerCase().indexOf('morosa') >= 0 ||
+                                $rootScope.pedido.historiaEstados[i].motivo.toLowerCase().indexOf('tope') >= 0 
                               ) 
                            ){
                             novedad = true;

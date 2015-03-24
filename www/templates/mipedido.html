@@ -33,11 +33,11 @@
                     reflejando los pagos.<br />
                     Si ya cancelaste ignora este mensaje.
                 </div>
-                <div ng-show="motivoNovedadEncontrado('cupo')">
-                    Mamá Empresaria tu pedido no será enviado <br />
-                    ya que aún cuentas con un saldo pendiente <br />
-                    por pagar. Si realizaste el pago, envía el <br /> 
-                    comprobante a servicioalcliente@novaventa.com
+                <div ng-show="motivoNovedadEncontrado('cupo') || motivoNovedadEncontrado('tope')">
+                    Mamá, en estos momentos cuentas con un <br />
+                    saldo pendiente por pagar. <br />
+                    Cancélalo lo más pronto posible <br />
+                    para que tu pedido te sea enviado.
                 </div>
             </a>
         </div>
@@ -63,7 +63,7 @@
                 </div>
                 
                 <!-- Cupo -->
-                <div class="item assertive" ng-show="motivoNovedadEncontrado('cupo')">
+                <div class="item assertive" ng-show="motivoNovedadEncontrado('cupo') || motivoNovedadEncontrado('tope')">
                     Mamá Empresaria tu pedido no será enviado <br />
                     ya que excediste el valor permitido para <br />
                     hacer tu pedido.

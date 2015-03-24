@@ -30,14 +30,6 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                 && Pedido.hayNovedadGestionable();
             }
             
-            $scope.estiloBadge = function(){
-               if($scope.mostrarBadge()){
-                  return "badge-energized";
-			   }else{
-			      return "";
-			   }
-            }
-            
             $scope.cantidadBadge = function(){
                if($scope.mostrarBadge()){
                   return "1";
