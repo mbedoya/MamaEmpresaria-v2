@@ -34,11 +34,17 @@
                     Si ya cancelaste ignora este mensaje.
                 </div>
                 <div ng-show="motivoNovedadEncontrado('cupo') || motivoNovedadEncontrado('tope')">
-
-                    Mamá, en estos momentos cuentas con un <br />
-                    saldo pendiente por pagar. <br />
-                    Cancélalo lo más pronto posible <br />
-                    para que tu pedido te sea enviado.
+                    Mamá, has excedido el valor máximo <br />
+                    con el que cuentas para montar tu pedido.<br />
+                    Paga el excedente <br />
+                    <span ng-show="hoyEsEncuentro() || hoyEsCorreteo()">
+                        hoy antes de las <br />
+                        4 de la tarde<br />
+                    </span>
+                    <span ng-show="!hoyEsEncuentro() && !hoyEsCorreteo()">
+                       máximo el {{campana.fechaCorreteo | date: 'dd' }} de  {{campana.fechaCorreteo | date: 'MMMM' }}</span> <br />
+                        antes a las 4 de la tarde
+                    </span>
                 </div>
             </a>
         </div>
