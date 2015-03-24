@@ -46,7 +46,33 @@ angular.module('novaventa.services', [])
         var self = this;
 
         return {
+            hayPedido: function(){
+				if($rootScope.pedido){
+				   if(!$rootScope.pedido.razonRechazo){
+				      return true;
+				   }
+				}
+				
+				return false;
+            },
+            hayNovedadGestionable: function(){
+               var novedad = false;
 
+                if($rootScope.pedido && $rootScope.pedido.historiaEstados){
+                    for (i = 0; i < $rootScope.pedido.historiaEstados.length; i++) {
+                        if($rootScope.pedido.historiaEstados[i].motivo && 
+                             ( $rootScope.pedido.historiaEstados[i].motivo.toLowerCase().indexOf('cupo') >= 0 ||
+                                $rootScope.pedido.historiaEstados[i].motivo.toLowerCase().indexOf('morosa') >= 0 
+                              ) 
+                           ){
+                            novedad = true;
+                            break;
+                        }
+                    }
+                }
+
+                return novedad;
+            },
             getTrazabilidad: function(cedula, fx) {
                 var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula;
 
@@ -234,8 +260,6 @@ angular.module('novaventa.services', [])
                                 //Obtener la campaña operativa
                                 Campana.getRecordatoriosCampanaOperativa(function (success, data){
                                     if(success){
-
-                                        console.log(data.listaRecordatorios);
 
                                         //Obtener la fecha de montaje de pedido (Encuentro)
                                         encuentro = '';

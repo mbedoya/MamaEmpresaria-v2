@@ -140,10 +140,11 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
 
     $scope.diasEnEjecucionCampana = function(){
 
-        console.log("dias" + $rootScope.campana.diasEnEjecucion);
+        console.log("dias: " + $rootScope.campana.diasEnEjecucion);
 
         if ($rootScope.campana.diasEnEjecucion != '-'){
-            console.log("dias:" + Number($rootScope.campana.diasEnEjecucion));
+            console.log("dias: " + Number($rootScope.campana.diasEnEjecucion));
+            return Number($rootScope.campana.diasEnEjecucion);
         }else{
             return null;
         }

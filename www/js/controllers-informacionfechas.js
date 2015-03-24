@@ -308,10 +308,6 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                     $("#" + $scope.cadenaFechaSeleccionada).addClass("positive");
                 }else{
 
-                    console.log(fecha);
-                    console.log(Utilidades.formatearFechaActual());
-                    console.log($scope.fechaEsCampanaVisible(fecha));
-
                     if(fecha == Utilidades.formatearFechaActual() && $scope.fechaEsCampanaVisible(fecha)){
                         $("#" + $scope.cadenaFechaSeleccionada).addClass("hoy-campana");
                     }else{
