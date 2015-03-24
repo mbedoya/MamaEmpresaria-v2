@@ -11,10 +11,20 @@
             <label class="item item-avatar" ng-show="mostrarPuntosPorPerder()">
                 <div class="icono bocina"></div>
                 Puntos a perder <br />
-                (si no pagas antes del <br /> {{fechaMontajePedidoCampana() | date: 'dd' | lowercase}} de {{fechaMontajePedidoCampana() | date: 'MMMM' | lowercase}} )
+                (<span ng-show="diasParaPago()>=1">Si no pagas antes del<br />
+                    {{campana.fechaMontajePedido | date: 'dd' }} de  {{campana.fechaMontajePedido | date: 'MMMM' }}
+                </span>
+                <span ng-show="diasParaPago()<0 && !hoyEsEncuentro() && !hoyEsCorreteo()">
+                    Si no pagas antes del<br />
+                    {{campana.fechaCorreteo | date: 'dd' }} de  {{campana.fechaCorreteo | date: 'MMMM' }}
+                </span>
+                <span ng-show="diasParaPago()<=0 && (hoyEsEncuentro() || hoyEsCorreteo())">
+                    Si no pagas hoy
+                </span> antes de <br /> las 4 de la tarde)
                 <span class="item-note">
                     <strong> {{ puntosPorPerder() }} </strong>
                 </span>
+
             </label>
             <label class="item item-avatar" ng-show="mostrarPuntosAVencer()">
                 <div class="icono calendario"></div>

@@ -62,11 +62,12 @@
 			<!-- Encuentro (Momento 3) -->
             <a class="item item-avatar {{ estiloAlternateFechaPago() }}" href="#" ng-show="hoyEsEncuentro() && pedido().razonRechazo" >
                 <div class="icono calendario"></div>
-                <h2>Realiza tu pedido el día de hoy
+                <h2>Si aún no has realizado tu pedido,<br />
+                    puedes hacerlo máximo<br />
+                    hasta el {{campana.fechaCorreteo | date: 'dd' }} de  {{campana.fechaCorreteo | date: 'MMMM' }} <br />
+                    por la Página Web<br />
+                    antes de las 12:00 del medio día
                 </h2>
-                <p>Realízalo por la Página Web hasta <br /> el
-                {{campana.fechaCorreteo | date: 'dd' }} de  {{campana.fechaCorreteo | date: 'MMMM' }} <br /> 
-                antes de las 12:00 del medio día</p>
             </a>
 
      		<!-- Correteo (Momento 5) -->

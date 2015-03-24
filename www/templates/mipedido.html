@@ -34,6 +34,7 @@
                     Si ya cancelaste ignora este mensaje.
                 </div>
                 <div ng-show="motivoNovedadEncontrado('cupo') || motivoNovedadEncontrado('tope')">
+
                     Mamá, en estos momentos cuentas con un <br />
                     saldo pendiente por pagar. <br />
                     Cancélalo lo más pronto posible <br />
@@ -68,14 +69,15 @@
                     ya que excediste el valor permitido para <br />
                     hacer tu pedido.
                 </div>
-            
         </div>
         
         <!-- Sin información y es encuentro -->
         <div class="list no-procesado" ng-show="pedido().razonRechazo && hoyEsEncuentro()">
             <div class="item">
-                <span class="highlighted">Aún no tenemos información sobre tu pedido.<br />
-                Si lo enviaste hoy por favor verifica mañana. <br />
+                <span class="highlighted">
+                    Aún no tenemos información sobre tu pedido.<br />
+                    Si lo enviaste hoy por favor verifica mañana. <br />
+                </span>
             </div>
         </div>
 
