@@ -11,6 +11,17 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
         return Campana.hoyEsEncuentro();
     }
 
+    $scope.diasParaPago = function(){
+
+        var stringFecha =  Utilidades.formatearFechaActual();
+
+        if($rootScope.campana && $rootScope.campana.fechaMontajePedido){
+            return Utilidades.diferenciaFechaDias(new Date(stringFecha), new Date($rootScope.campana.fechaMontajePedido));
+        }else{
+            return "";
+        }
+    }
+
     $scope.mostrarAyuda = function(titulo, mensaje) {
         var alertPopup = $ionicPopup.alert({
             title: titulo,
