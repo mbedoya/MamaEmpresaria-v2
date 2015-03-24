@@ -1,7 +1,15 @@
-moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $state, $ionicLoading, $ionicPopup, $http, Mama, Internet, GA, Utilidades) {
+moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $state, $ionicLoading, $ionicPopup, $http, Mama, Internet, GA, Utilidades, Campana) {
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Mis Puntos");
+
+    $scope.hoyEsCorreteo = function(){
+        return Campana.hoyEsCorreteo();
+    }
+
+    $scope.hoyEsEncuentro = function(){
+        return Campana.hoyEsEncuentro();
+    }
 
     $scope.mostrarAyuda = function(titulo, mensaje) {
         var alertPopup = $ionicPopup.alert({
