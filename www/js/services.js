@@ -254,167 +254,171 @@ angular.module('novaventa.services', [])
                                 Pedido.getTrazabilidad(rootScope.datos.cedula, function (success, data){
                                     if(success){
                                         rootScope.pedido = data;
-                                    }else{
+                                        
+                                        //Obtener la campaña operativa
+										Campana.getRecordatoriosCampanaOperativa(function (success, data){
+											if(success){
+
+												//Obtener la fecha de montaje de pedido (Encuentro)
+												encuentro = '';
+
+												correteo = '';
+												for (i = 0; i < data.listaRecordatorios.length; i++){
+													if(data.listaRecordatorios[i].actividad.toLowerCase() == 'encuentro'){
+														encuentro = data.listaRecordatorios[i].fecha;
+													}
+													if(data.listaRecordatorios[i].actividad.toLowerCase() == 'fecha correteo'){
+														correteo = data.listaRecordatorios[i].fecha;
+													}
+												}
+
+												rootScope.campana = {numero: data.listaRecordatorios[0].campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
+													fechaCorreteo: correteo, fechaReparto: '',  diasEnEjecucion: ''};
+
+												rootScope.fechas = data.listaRecordatorios;
+										
+												console.log("a validar campaña");
+
+												//Buscar si el encuentro ya se ha realizado, si es así entonces se debe ir a la
+												//siguiente campaña
+												if(Campana.campanaFinalizada() ||
+													 ( Campana.encuentroRealizado() && 
+													   ( Pedido.estadoEncontrado('Novedad') 
+														 || Pedido.estadoEncontrado('Facturado') 
+														 || Pedido.estadoEncontrado('Recibido')   
+														) 
+													 )
+												   ){
+
+													var ano = new Date().getFullYear();
+													var siguienteCampana = rootScope.campana.numero + 1;
+													//Si la siguiente campana supera al numero de campanas al
+													//ano entonces moverse a la campana 1 del siguiente ano
+													if(siguienteCampana > rootScope.numeroCampanasAno){
+														siguienteCampana = 1;
+														ano = ano + 1;
+													}
+
+													//Obtener la campaña siguiente
+													Campana.getRecordatorios(ano, siguienteCampana, rootScope.zona, function (success, data){
+														if(success){
+
+															//Obtener la fecha de montaje de pedido (Encuentro)
+															encuentro = '';
+
+															//Obtener la fecha de Correteo
+															correteo = '';
+
+															for (i = 0; i < data.listaRecordatorios.length; i++){
+																if(data.listaRecordatorios[i].actividad.toLowerCase() == 'encuentro'){
+																	encuentro = data.listaRecordatorios[i].fecha;
+																}
+
+																if(data.listaRecordatorios[i].actividad.toLowerCase() == 'fecha correteo'){
+																	correteo = data.listaRecordatorios[i].fecha;
+																}
+															}
+
+															//Obtener la fecha de reparto. Esta es la campaña anterior si me muevo
+															reparto = '';
+
+															for (i = 0; i < rootScope.fechas.length; i++){
+																if(rootScope.fechas[i].actividad.toLowerCase() == 'reparto de pedido 1'){
+																	reparto = rootScope.fechas[i].fecha;
+																}
+															}
+
+															//Correteo Anterior
+															correteoAnterior = ''
+															for (i = 0; i < rootScope.fechas.length; i++){
+																if(rootScope.fechas[i].actividad.toLowerCase() == 'fecha correteo'){
+																	correteoAnterior = rootScope.fechas[i].fecha;
+																}
+															}
+
+															var diferenciaDias = Utilidades.diferenciaFechaDias(new Date(correteoAnterior), new Date());
+
+															rootScope.campana = {numero: data.listaRecordatorios[0].campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
+																fechaCorreteo: correteo, fechaReparto: reparto,  diasEnEjecucion: diferenciaDias};
+															rootScope.fechasAnteriores = rootScope.fechas;
+															rootScope.fechas = data.listaRecordatorios;
+
+															console.log("Moviendose a nueva camapaña " + rootScope.campana.numero);
+
+														}else{
+														}
+													});
+
+												}else{
+
+													//Obtener la campaña anterior
+													var ano = new Date().getFullYear();
+													var siguienteCampana = rootScope.campana.numero - 1;
+													//Si la siguiente campana supera al numero de campanas al
+													//ano entonces moverse a la campana 1 del siguiente ano
+													if(siguienteCampana == 0){
+														siguienteCampana = rootScope.numeroCampanasAno;
+														ano = ano - 1;
+													}
+
+													Campana.getRecordatorios(ano, siguienteCampana, rootScope.zona, function (success, data){
+														if(success){
+															rootScope.fechasAnteriores = data.listaRecordatorios;
+
+															//Obtener la fecha de Correteo
+															correteo = '';
+
+															for (i = 0; i < data.listaRecordatorios.length; i++){
+																if(data.listaRecordatorios[i].actividad.toLowerCase() == 'fecha correteo'){
+																	correteo = data.listaRecordatorios[i].fecha;
+																}
+															}
+
+															//Para la fecha de reparto de pedido, si han transcurrido 5 días o menos de campaña
+															//entonces se muestra la fecha anterior, de lo contrario la actual
+															var diferenciaDias = Utilidades.diferenciaFechaDias(new Date(correteo), new Date());
+															rootScope.campana.diasEnEjecucion = diferenciaDias;
+
+															//Si han pasado mas de 5 días entonces mostrar campaña actual
+															//si no mostrar campaña anterior
+															if(diferenciaDias > 5){
+																//Obtener la fecha de reparto.
+																reparto = '';
+
+																for (i = 0; i < rootScope.fechas.length; i++){
+																	if(rootScope.fechas[i].actividad.toLowerCase() == 'reparto de pedido 1'){
+																		reparto = rootScope.fechas[i].fecha;
+																	}
+																}
+
+																rootScope.campana.fechaReparto = reparto;
+															}else{
+																//Obtener la fecha de reparto.
+																reparto = '';
+
+																for (i = 0; i < rootScope.fechasAnteriores.length; i++){
+																	if(rootScope.fechasAnteriores[i].actividad.toLowerCase() == 'reparto de pedido 1'){
+																		reparto = rootScope.fechasAnteriores[i].fecha;
+																	}
+																}
+
+																rootScope.campana.fechaReparto = reparto;
+															}
+
+														}else{
+														}
+													});
+
+
+												}//mover de campaña
+
+											}else{
+											}//success
+										});
+                                        
+                                        
+                                    }else{//else getTrazabilidad
                                     }
-                                });
-
-                                //Obtener la campaña operativa
-                                Campana.getRecordatoriosCampanaOperativa(function (success, data){
-                                    if(success){
-
-                                        //Obtener la fecha de montaje de pedido (Encuentro)
-                                        encuentro = '';
-
-                                        correteo = '';
-                                        for (i = 0; i < data.listaRecordatorios.length; i++){
-                                            if(data.listaRecordatorios[i].actividad.toLowerCase() == 'encuentro'){
-                                                encuentro = data.listaRecordatorios[i].fecha;
-                                            }
-                                            if(data.listaRecordatorios[i].actividad.toLowerCase() == 'fecha correteo'){
-                                                correteo = data.listaRecordatorios[i].fecha;
-                                            }
-                                        }
-
-                                        rootScope.campana = {numero: data.listaRecordatorios[0].campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
-                                            fechaCorreteo: correteo, fechaReparto: '',  diasEnEjecucion: ''};
-
-                                        rootScope.fechas = data.listaRecordatorios;
-
-                                        //Buscar si el encuentro ya se ha realizado, si es así entonces se debe ir a la
-                                        //siguiente campaña
-                                        if(Campana.campanaFinalizada() ||
-                                             ( Campana.encuentroRealizado() && 
-                                               ( Pedido.estadoEncontrado('Novedad') 
-                                                 || Pedido.estadoEncontrado('Facturado') 
-                                                 || Pedido.estadoEncontrado('Recibido')   
-                                                ) 
-                                             )
-                                           ){
-
-                                            var ano = new Date().getFullYear();
-                                            var siguienteCampana = rootScope.campana.numero + 1;
-                                            //Si la siguiente campana supera al numero de campanas al
-                                            //ano entonces moverse a la campana 1 del siguiente ano
-                                            if(siguienteCampana > rootScope.numeroCampanasAno){
-                                                siguienteCampana = 1;
-                                                ano = ano + 1;
-                                            }
-
-                                            //Obtener la campaña siguiente
-                                            Campana.getRecordatorios(ano, siguienteCampana, rootScope.zona, function (success, data){
-                                                if(success){
-
-                                                    //Obtener la fecha de montaje de pedido (Encuentro)
-                                                    encuentro = '';
-
-                                                    //Obtener la fecha de Correteo
-                                                    correteo = '';
-
-                                                    for (i = 0; i < data.listaRecordatorios.length; i++){
-                                                        if(data.listaRecordatorios[i].actividad.toLowerCase() == 'encuentro'){
-                                                            encuentro = data.listaRecordatorios[i].fecha;
-                                                        }
-
-                                                        if(data.listaRecordatorios[i].actividad.toLowerCase() == 'fecha correteo'){
-                                                            correteo = data.listaRecordatorios[i].fecha;
-                                                        }
-                                                    }
-
-                                                    //Obtener la fecha de reparto. Esta es la campaña anterior si me muevo
-                                                    reparto = '';
-
-                                                    for (i = 0; i < rootScope.fechas.length; i++){
-                                                        if(rootScope.fechas[i].actividad.toLowerCase() == 'reparto de pedido 1'){
-                                                            reparto = rootScope.fechas[i].fecha;
-                                                        }
-                                                    }
-
-                                                    //Correteo Anterior
-                                                    correteoAnterior = ''
-                                                    for (i = 0; i < rootScope.fechas.length; i++){
-                                                        if(rootScope.fechas[i].actividad.toLowerCase() == 'fecha correteo'){
-                                                            correteoAnterior = rootScope.fechas[i].fecha;
-                                                        }
-                                                    }
-
-                                                    var diferenciaDias = Utilidades.diferenciaFechaDias(new Date(correteoAnterior), new Date());
-
-                                                    rootScope.campana = {numero: data.listaRecordatorios[0].campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
-                                                        fechaCorreteo: correteo, fechaReparto: reparto,  diasEnEjecucion: diferenciaDias};
-                                                    rootScope.fechasAnteriores = rootScope.fechas;
-                                                    rootScope.fechas = data.listaRecordatorios;
-
-                                                    console.log("Moviendose a nueva camapaña " + rootScope.campana.numero);
-
-                                                }else{
-                                                }
-                                            });
-
-                                        }else{
-
-                                            //Obtener la campaña anterior
-                                            var ano = new Date().getFullYear();
-                                            var siguienteCampana = rootScope.campana.numero - 1;
-                                            //Si la siguiente campana supera al numero de campanas al
-                                            //ano entonces moverse a la campana 1 del siguiente ano
-                                            if(siguienteCampana == 0){
-                                                siguienteCampana = rootScope.numeroCampanasAno;
-                                                ano = ano - 1;
-                                            }
-
-                                            Campana.getRecordatorios(ano, siguienteCampana, rootScope.zona, function (success, data){
-                                                if(success){
-                                                    rootScope.fechasAnteriores = data.listaRecordatorios;
-
-                                                    //Obtener la fecha de Correteo
-                                                    correteo = '';
-
-                                                    for (i = 0; i < data.listaRecordatorios.length; i++){
-                                                        if(data.listaRecordatorios[i].actividad.toLowerCase() == 'fecha correteo'){
-                                                            correteo = data.listaRecordatorios[i].fecha;
-                                                        }
-                                                    }
-
-                                                    //Para la fecha de reparto de pedido, si han transcurrido 5 días o menos de campaña
-                                                    //entonces se muestra la fecha anterior, de lo contrario la actual
-                                                    var diferenciaDias = Utilidades.diferenciaFechaDias(new Date(correteo), new Date());
-                                                    rootScope.campana.diasEnEjecucion = diferenciaDias;
-
-                                                    //Si han pasado mas de 5 días entonces mostrar campaña actual
-                                                    //si no mostrar campaña anterior
-                                                    if(diferenciaDias > 5){
-                                                        //Obtener la fecha de reparto.
-                                                        reparto = '';
-
-                                                        for (i = 0; i < rootScope.fechas.length; i++){
-                                                            if(rootScope.fechas[i].actividad.toLowerCase() == 'reparto de pedido 1'){
-                                                                reparto = rootScope.fechas[i].fecha;
-                                                            }
-                                                        }
-
-                                                        rootScope.campana.fechaReparto = reparto;
-                                                    }else{
-                                                        //Obtener la fecha de reparto.
-                                                        reparto = '';
-
-                                                        for (i = 0; i < rootScope.fechasAnteriores.length; i++){
-                                                            if(rootScope.fechasAnteriores[i].actividad.toLowerCase() == 'reparto de pedido 1'){
-                                                                reparto = rootScope.fechasAnteriores[i].fecha;
-                                                            }
-                                                        }
-
-                                                        rootScope.campana.fechaReparto = reparto;
-                                                    }
-
-                                                }else{
-                                                }
-                                            });
-
-
-                                        }//mover de campaña
-
-                                    }else{
-                                    }//success
                                 });
 
                             }else{
