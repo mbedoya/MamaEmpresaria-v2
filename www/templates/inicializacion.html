@@ -1,5 +1,6 @@
 <ion-view view-title="Iniciando">
-    <ion-content class="{{ segmentoFormateado() }}">
+    <ion-content >
+      <div class="{{ segmentoFormateado() }}">
     <div class="content-bienvenida">
         <h3><span><strong>¡Hola!</strong> {{ nombre() }}</span></h3>
         <div class="estrella">
@@ -10,6 +11,7 @@
         <div class="mensaje-internet" style="text-align:center" ng-show="mostrarMensajeError">
            Mamá Empresaria recuerda que para acceder a esta aplicación debes estar conectada a Internet.
         </div>
+    </div>
     </div>
     </ion-content>
     <ion-footer-bar >
