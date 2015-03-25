@@ -137,18 +137,19 @@ strong{
   color:#1594ac;
 }
 .tab-negocio {
-  background-color:#f5921e;
+    background-color:#eb0c6e;
   background-position: center -95px;
 }
 .tab-negocio i {
-  color:#f5921e;
+    color:#eb0c6e;
 }
 .tab-pedido {
-  background-color:#eb0c6e;
+    background-color:#f5921e;
+
   background-position: center -195px;
 }
 .tab-pedido i {
-  color:#eb0c6e;
+    color:#f5921e;
 }
 .tab-puntos {
   background-color:#077885;
