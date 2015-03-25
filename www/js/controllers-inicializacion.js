@@ -1,6 +1,15 @@
 moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, $ionicPopup, $ionicLoading, $ionicHistory, $http, $state, $filter, Internet, Mama, GA, Utilidades) {
 
     $scope.mostrarMensajeError = false;
+    
+    //Existe un método en el rootscope para esto, sin embargo,
+    //por ser la primera página algunas veces no está disponible
+    $scope.mostrarAyuda = function(titulo, mensaje) {
+	   var alertPopup = $ionicPopup.alert({
+		 title: titulo,
+		 template: mensaje
+	   });
+	 };
 
      setTimeout(function(){
      
