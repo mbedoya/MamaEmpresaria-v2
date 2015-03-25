@@ -111,6 +111,10 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
 
             }
         }
+        
+        $scope.$on('online', function(event, args){
+			$scope.inicializar(true);
+		});
 
         $scope.inicializar();
 
