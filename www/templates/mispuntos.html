@@ -15,7 +15,7 @@
                     {{campana.fechaMontajePedido | date: 'dd' }} de  {{campana.fechaMontajePedido | date: 'MMMM' }}
                 </span>
                 <span ng-show="diasParaPago()<0 && !hoyEsEncuentro() && !hoyEsCorreteo()">
-                    Si no pagas antes del<br />
+                    Si no pagas máximo el<br />
                     {{campana.fechaCorreteo | date: 'dd' }} de  {{campana.fechaCorreteo | date: 'MMMM' }}
                 </span>
                 <span ng-show="diasParaPago()<=0 && (hoyEsEncuentro() || hoyEsCorreteo())">

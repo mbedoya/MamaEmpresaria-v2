@@ -284,9 +284,8 @@ angular.module('novaventa.services', [])
 												if(Campana.campanaFinalizada() ||
 													 ( Campana.encuentroRealizado() && 
 													   ( Pedido.estadoEncontrado('Novedad') 
-														 || Pedido.estadoEncontrado('Facturado') 
-														 || Pedido.estadoEncontrado('Recibido')   
-														) 
+														 || Pedido.estadoEncontrado('Facturado')
+														)
 													 )
 												   ){
 

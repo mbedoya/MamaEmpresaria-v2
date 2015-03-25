@@ -28,6 +28,10 @@
                 {{campana.fechaCorreteo | date: 'dd' }} de  {{campana.fechaCorreteo | date: 'MMMM' }}</span>
                  <span ng-show="diasParaPago()<=0 && (hoyEsEncuentro() || hoyEsCorreteo())">hoy</span> <br /> antes de las 4 de la tarde
               </h2>
+                <p>
+                    Si ya pagaste consulta más tarde<br />
+                    que tu pago se vea reflejado
+                </p>
             </a>
 
             <a class="item item-avatar alternate" href="#" ng-show="mostrarSaldoPagar() && saldo()==0" >
