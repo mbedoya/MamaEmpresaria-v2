@@ -283,7 +283,7 @@ angular.module('novaventa.services', [])
 												//siguiente campaña
 												if(Campana.campanaFinalizada() ||
 													 ( Campana.encuentroRealizado() && 
-													   ( Pedido.estadoEncontrado('Novedad') 
+													   ( Pedido.estadoEncontrado('Anulado')
 														 || Pedido.estadoEncontrado('Facturado')
 														)
 													 )

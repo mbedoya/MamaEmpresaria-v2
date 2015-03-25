@@ -43,13 +43,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="services.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="services.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3723" max-vertical-offset="9503">
+            <state vertical-scroll-proportion="0.35915494" vertical-offset="3961" max-vertical-offset="9503">
               <caret line="287" column="57" selection-start-line="287" selection-start-column="57" selection-end-line="287" selection-end-column="57" />
               <folding>
-                <marker date="1427316438685" expanded="false" signature="22744:22776" placeholder="..." />
+                <marker date="1427317911723" expanded="false" signature="22743:22775" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -75,10 +75,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9294606" vertical-offset="12248" max-vertical-offset="13039">
+            <state vertical-scroll-proportion="0.0" vertical-offset="12248" max-vertical-offset="13039">
               <caret line="760" column="27" selection-start-line="760" selection-start-column="27" selection-end-line="760" selection-end-column="27" />
               <folding />
             </state>
@@ -133,9 +133,9 @@
         <option value="$PROJECT_DIR$/www/templates/mipedido.html" />
         <option value="$PROJECT_DIR$/www/templates/home.html" />
         <option value="$PROJECT_DIR$/www/templates/mispuntos.html" />
-        <option value="$PROJECT_DIR$/www/js/services.js" />
         <option value="$PROJECT_DIR$/www/templates/tabs.html" />
         <option value="$PROJECT_DIR$/www/css/style.css" />
+        <option value="$PROJECT_DIR$/www/js/services.js" />
       </list>
     </option>
   </component>
@@ -718,16 +718,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/services.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3723" max-vertical-offset="9503">
-          <caret line="287" column="57" selection-start-line="287" selection-start-column="57" selection-end-line="287" selection-end-column="57" />
-          <folding>
-            <marker date="1427316438685" expanded="false" signature="22744:22776" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/mipedido.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.076923" vertical-offset="68" max-vertical-offset="3621">
@@ -754,9 +744,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9294606" vertical-offset="12248" max-vertical-offset="13039">
+        <state vertical-scroll-proportion="0.0" vertical-offset="12248" max-vertical-offset="13039">
           <caret line="760" column="27" selection-start-line="760" selection-start-column="27" selection-end-line="760" selection-end-column="27" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35915494" vertical-offset="3961" max-vertical-offset="9503">
+          <caret line="287" column="57" selection-start-line="287" selection-start-column="57" selection-end-line="287" selection-end-column="57" />
+          <folding>
+            <marker date="1427317911723" expanded="false" signature="22743:22775" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
