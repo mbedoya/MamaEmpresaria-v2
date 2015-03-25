@@ -756,3 +756,7 @@ strong{
   margin: auto;
   width: 80%; 
 }
+
+.tabs .tab-item .badge.badge-assertive, .badge.badge-assertive {
+    background-color: #ff0000;
+}
