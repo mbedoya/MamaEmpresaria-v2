@@ -367,7 +367,14 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 //Si la fecha es correteo mostramos una información diferente
                 if(fechaEsCorreteo){
                     listaEventos = [];
-                    listaEventos.push({ "actividad": "Monta tu pedido este día, por la Página web, antes de las 12 del medio día." });
+                    
+                    //El día de correteo luego de las 12 se debe decir que 
+                    //ya no se puede montar pedido
+                    if($scope.hoyEsCorreteo() && !$scope.esAntesMedioDia()){
+                       listaEventos.push({ "actividad": "Ya no puedes montar pedido." });
+                    }else{
+                       listaEventos.push({ "actividad": "Monta tu pedido este día, por la Página web, antes de las 12 del medio día." });
+                    }
                     listaEventos.push({ "actividad": "Cancela tu pedido anterior este día antes de las 4 de la tarde." });
                 }
 

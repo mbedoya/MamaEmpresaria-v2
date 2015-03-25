@@ -26,7 +26,7 @@
                 {{campana.fechaMontajePedido | date: 'dd' }} de  {{campana.fechaMontajePedido | date: 'MMMM' }}</span>
                 <span ng-show="diasParaPago()<0 && !hoyEsEncuentro() && !hoyEsCorreteo()">máximo el <br /> 
                 {{campana.fechaCorreteo | date: 'dd' }} de  {{campana.fechaCorreteo | date: 'MMMM' }}</span>
-                 <span ng-show="diasParaPago()<=0 && (hoyEsEncuentro() || hoyEsCorreteo())">hoy</span> antes de <br /> las 4 de la tarde
+                 <span ng-show="diasParaPago()<=0 && (hoyEsEncuentro() || hoyEsCorreteo())">hoy</span> <br /> antes de las 4 de la tarde
               </h2>
             </a>
 
@@ -84,7 +84,8 @@
             <!-- Entre Encuentro y Correteo (Momento 4) -->
             <a class="item item-avatar {{ estiloAlternateFechaPago() }}" href="#" ng-show="diasParaPago()<0 && !hoyEsCorreteo() && pedido().razonRechazo" >
                 <div class="icono calendario"></div>
-                <h2 >Realiza tu pedido hasta el {{ campana.fechaCorreteo | date: 'dd' }} de {{campana.fechaCorreteo | date: 'MMMM' }} por la <br />
+                <h2 >Realiza tu pedido hasta el <br />
+                {{ campana.fechaCorreteo | date: 'dd' }} de {{campana.fechaCorreteo | date: 'MMMM' }} por la <br />
                 Página Web antes de las <br />12:00 del medio día
                 </h2>
                 <p>&nbsp;</p>

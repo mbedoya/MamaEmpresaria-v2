@@ -1,6 +1,6 @@
 angular.module('novaventa', ['ionic', 'novaventa.controllers', 'novaventa.services'])
 
-.run(function($ionicPlatform, $rootScope, $ionicPopup) {
+.run(function($ionicPlatform, $rootScope, $ionicPopup, Campana) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -18,6 +18,18 @@ angular.module('novaventa', ['ionic', 'novaventa.controllers', 'novaventa.servic
 		 template: mensaje
 	   });
 	 };
+	 
+	 $rootScope.esAntesMedioDia = function(){
+        return new Date().getHours() < 12;
+     }
+        
+     $rootScope.hoyEsCorreteo = function(){
+        return Campana.hoyEsCorreteo();
+     }
+        
+     $rootScope.hoyEsEncuentro = function(){
+        return Campana.hoyEsEncuentro();
+     }
 
   });
 })
