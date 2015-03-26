@@ -36,6 +36,7 @@
 
             <div class="row" ng-repeat="semana in semanas">
                 <div class="col" ng-repeat="dia in semana">
+                    <!-- 
                     <a id='{{dia.fechaCompleta}}' class="item item-icon-right {{estiloTexto(dia.fechaCompleta)}}" href="#" ng-click="seleccionarFecha(dia.fechaCompleta, true)" ng-show="!fechaEsCampanaVisible(dia.fechaCompleta)">
                         <i class="icon ion-edit" ng-show="false"></i>
                         <i class="icon ion-android-desktop" ng-show="fechaEsCorreteo(dia.fechaCompleta)"></i>
@@ -51,19 +52,36 @@
                         <i class="icon ion-cube" ng-show="fechaEsRepartoPedido(dia.fechaCompleta)"></i>
                         {{ dia.dia }}
                     </a>
+                    -->
+                    
+                    <a id='{{dia.fechaCompleta}}' class="item item-icon-right" href="#" ng-click="seleccionarFecha(dia.fechaCompleta, true)" >
+                        <i class="icon ion-edit" ng-show="false"></i>
+                        <i class="icon ion-android-desktop" ng-show="fechaEsCorreteo(dia.fechaCompleta)"></i>
+                        <i class="icon ion-ios-people-outline" ng-show="fechaEsEncuentro(dia.fechaCompleta)"></i>
+                        <i class="icon ion-cube" ng-show="fechaEsRepartoPedido(dia.fechaCompleta)"></i>
+                        {{ dia.dia }}
+                    </a>
 
                 </div>
             </div>
 
+			<!-- Leyendas de las campañas -->
             <div class="padding campanas" >
-      <span class="leyenda-campana">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      </span>
-                Campaña {{ numeroCampana() }}
-      <span class="leyenda-campana-siguiente">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      </span>
+               <span style="border-color: #FFF;" ng-repeat="campana in misCampanas">
+               <span style="background-color:{{campana.color}}" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			  </span>&nbsp;
+              Campaña {{ campana.numero }}
+              </span>
+              <!--  
+			  <span class="leyenda-campana">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			  </span>
+              Campaña {{ numeroCampana() }}
+     
+              <span class="leyenda-campana-siguiente">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </span>
                 Campaña {{ numeroCampana() + 1 }}
+                -->
             </div>
-
 
         </div>
 
