@@ -125,14 +125,14 @@
 
             <a class="item selected" href="#" ng-show="estadoEncontrado('Recibido')" >
                 <img src="img/pedido1-selected.png">
-                <h2 class="balanced">Recibido en la Empresa
+                <h2 class="balanced">Recibido en la <br />Empresa
                 </h2>
                 <p >{{ buscarEstado('Recibido').fecha | date: 'dd'}} de {{ buscarEstado('Recibido').fecha | date: 'MMMM'}}</p>
             </a>
 
             <a class="item" href="#" ng-show="!estadoEncontrado('Recibido')" >
                 <img src="img/pedido1.png">
-                <h2 class="balanced">Recibido en la Empresa
+                <h2 class="balanced">Recibido en la <br />Empresa
                 </h2>
                 <p >&nbsp;</p>
             </a>
