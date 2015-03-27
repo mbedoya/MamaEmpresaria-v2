@@ -423,7 +423,7 @@ angular.module('novaventa.services', [])
                             }else{
 
                                 if(data.tiposUsuarios && data.tiposUsuarios.length > 0 && (data.tiposUsuarios[0] == "2")){
-                                    mensajeError = "Hola Mamá, te invitamos a montar tu primer pedido para disfurtar de esta Aplicación, para este cuentas con un cupo de " + filter('currency')(data.cupo, '$', 0);
+                                    mensajeError = "Hola Mamá, te invitamos a montar tu primer pedido para disfrutar de esta Aplicación, para este cuentas con un cupo de " + filter('currency')(data.cupo, '$', 0);
                                 }else{
                                     if(data.tiposUsuarios){
                                         mensajeError = "Tu rol no es válido para nuestra Aplicación";
