@@ -426,9 +426,9 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
             $scope.mostrarAyudaFlexibilizacion = function() {
 
                 if($scope.flexibilizacionPago() > 0){
-                    $scope.mostrarAyuda('Mi Negocio','Este beneficio te permite cubrir parte de tu pago en caso de tener inconvenientes con tus clientes.  De ser necesario usa los ' + $filter('currency')($scope.flexibilizacionDeuda()) + ' o parte de estos. Ejemplo: Paga ' +
-                        $filter('currency')($scope.flexibilizacionEjemploPago()) + ' y queda debiendo ' +
-                        $filter('currency')($scope.flexibilizacionEjemploDeuda()) + ', debes cancelar este valor antes de tu próximo pedido.');
+                    $scope.mostrarAyuda('Mi Negocio','Este beneficio te permite cubrir parte de tu pago en caso de tener inconvenientes con tus clientes.  De ser necesario usa los ' + $filter('currency')($scope.flexibilizacionDeuda(), '$', 0) + ' o parte de estos. Ejemplo: Paga ' +
+                        $filter('currency')($scope.flexibilizacionEjemploPago(), '$', 0) + ' y queda debiendo ' +
+                        $filter('currency')($scope.flexibilizacionEjemploDeuda(), '$', 0) + ', debes cancelar este valor antes de tu próximo pedido.');
                 }else{
                     if($scope.flexibilizacionPago() == 0){
                         $scope.mostrarAyuda('Mi Negocio','Este beneficio te permite cubrir parte de tu pago en caso de tener inconvenientes con tus clientes.');
