@@ -761,7 +761,7 @@ strong{
     background-color: #ff0000;
 }
 
-.ion-ios-people-outline:before {
+.ion-ios-people-outline:before, .ion-android-desktop:before, .ion-cube:before, .ion-android-people:before{
   font-weight: bold;
-  color: #000;
+  color: #f74094;
 }

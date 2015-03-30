@@ -40,17 +40,11 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
 
             Mama.getPuntos($rootScope.datos.cedula, function (success, data){
 
+                $ionicLoading.hide();
                 if(success){
-
-                    if(mostrarIndicador) {
-                        $ionicLoading.hide();
-                    }
                     $rootScope.puntos = data;
 
                 }else{
-                    if(mostrarIndicador) {
-                        $ionicLoading.hide();
-                    }
                     $scope.mostrarAyuda("Mis Puntos","En este momento no podemos acceder a tu información");
                 }
             });
