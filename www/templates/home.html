@@ -16,21 +16,32 @@
                  Estás en <strong>Campaña {{campana.numero}}</strong>
                </div>
             </div>
-            
+
+            <a class="item item-avatar alternate" href="#" >
+                <div class="icono bocina"></div>
+                <!-- <i class="icon ion-plus-circled"></i> -->
+                <h2>Este es un texto de prueba para la solución al problema de los textos que se están cortando.
+                    Este es un texto de prueba para la solución al problema de los textos que se están cortando.
+                    Este es un texto de prueba para la solución al problema de los textos que se están cortando.
+                </h2>
+                <p>
+                    Si ya pagaste consulta más tarde que tu pago se vea reflejado
+                </p>
+            </a>
+
             <a class="item item-avatar alternate" href="#" ng-show="mostrarSaldoPagar() && saldo()>0" ng-click="mostrarAyudaSaldoPagar()">
                 <div class="icono bocina"></div>
                 <!-- <i class="icon ion-plus-circled"></i> -->
-              <h2>Tienes un pago pendiente por <br /> {{ saldo() | currency:"$":0 }}.
+              <h2>Tienes un pago pendiente por {{ saldo() | currency:"$":0 }}.
                 Realízalo 
-                <span ng-show="diasParaPago()>=1">máximo el <br /> 
+                <span ng-show="diasParaPago()>=1">máximo el
                 {{campana.fechaMontajePedido | date: 'dd' }} de  {{campana.fechaMontajePedido | date: 'MMMM' }}</span>
-                <span ng-show="diasParaPago()<0 && !hoyEsEncuentro() && !hoyEsCorreteo()">máximo el <br /> 
+                <span ng-show="diasParaPago()<0 && !hoyEsEncuentro() && !hoyEsCorreteo()">máximo el
                 {{campana.fechaCorreteo | date: 'dd' }} de  {{campana.fechaCorreteo | date: 'MMMM' }}</span>
-                 <span ng-show="diasParaPago()<=0 && (hoyEsEncuentro() || hoyEsCorreteo())">hoy</span> <br /> antes de las 4 de la tarde
+                 <span ng-show="diasParaPago()<=0 && (hoyEsEncuentro() || hoyEsCorreteo())">hoy</span> antes de las 4 de la tarde
               </h2>
                 <p>
-                    Si ya pagaste consulta más tarde<br />
-                    que tu pago se vea reflejado
+                    Si ya pagaste consulta más tarde que tu pago se vea reflejado
                 </p>
             </a>
 
@@ -42,22 +53,22 @@
             
             <a class="item item-avatar alternate" href="#" ng-show="mostrarSaldoFavor()">
                 <div class="icono bocina"></div>
-              <h2>Tienes un saldo a favor de <br /> {{ saldo() | currency:"$":0 }}
+              <h2>Tienes un saldo a favor de {{ saldo() | currency:"$":0 }}
               </h2>
             <p>&nbsp;</p>
             </a>
                         
             <a class="item item-avatar" href="#" ng-show="mostrarCupo()">
                 <div class="icono moneda"></div>
-              <h2>Realiza tu próximo pedido <br /> máximo por {{ cupo() | currency:"$":0 }}
+              <h2>Realiza tu próximo pedido máximo por {{ cupo() | currency:"$":0 }}
               </h2>
-            <p>Si superas este valor debes cancelar <br />el excedente el día que haces tu <br />pedido</p>
+            <p>Si superas este valor debes cancelar el excedente el día que haces tu pedido</p>
             </a>
 
             <!-- (Momentos 1 y 2) -->
             <a class="item item-avatar {{ estiloAlternateFechaPago() }}" href="#" ng-show="diasParaPago()>0" >
                 <div class="icono calendario"></div>
-              <h2>Realiza tu próximo pedido el<br />
+              <h2>Realiza tu próximo pedido el
                   {{campana.fechaMontajePedido | date: 'dd' }} de {{campana.fechaMontajePedido | date: 'MMMM' }}
               </h2>
               <p>Te quedan {{ diasParaPago() }} días</p>
@@ -66,10 +77,10 @@
 			<!-- Encuentro (Momento 3) -->
             <a class="item item-avatar {{ estiloAlternateFechaPago() }}" href="#" ng-show="hoyEsEncuentro() && pedido().razonRechazo" >
                 <div class="icono calendario"></div>
-                <h2>Si aún no has realizado tu pedido,<br />
-                    puedes hacerlo máximo<br />
-                    hasta el {{campana.fechaCorreteo | date: 'dd' }} de  {{campana.fechaCorreteo | date: 'MMMM' }} <br />
-                    por la Página Web<br />
+                <h2>Si aún no has realizado tu pedido,
+                    puedes hacerlo máximo
+                    hasta el {{campana.fechaCorreteo | date: 'dd' }} de  {{campana.fechaCorreteo | date: 'MMMM' }}
+                    por la Página Web
                     antes de las 12:00 del medio día
                 </h2>
             </a>
@@ -77,7 +88,7 @@
      		<!-- Correteo (Momento 5) -->
             <a class="item item-avatar {{ estiloAlternateFechaPago() }}" href="#" ng-show="diasParaPago()<0 && hoyEsCorreteo() && pedido().razonRechazo" >
                 <div class="icono calendario"></div>
-                <h2 ng-show="esAntesMedioDia()">Realiza tu pedido hoy por la <br />Página Web antes de las <br />12:00 del medio día
+                <h2 ng-show="esAntesMedioDia()">Realiza tu pedido hoy por la Página Web antes de las 12:00 del medio día
                 </h2>
                 <h2 ng-show="!esAntesMedioDia()">Mamá ya no puedes montar pedido. <br />
                    El horario para Campaña {{campana.numero}} ya cerró.
@@ -88,9 +99,9 @@
             <!-- Entre Encuentro y Correteo (Momento 4) -->
             <a class="item item-avatar {{ estiloAlternateFechaPago() }}" href="#" ng-show="diasParaPago()<0 && !hoyEsCorreteo() && pedido().razonRechazo" >
                 <div class="icono calendario"></div>
-                <h2 >Realiza tu pedido hasta el <br />
-                {{ campana.fechaCorreteo | date: 'dd' }} de {{campana.fechaCorreteo | date: 'MMMM' }} por la <br />
-                Página Web antes de las <br />12:00 del medio día
+                <h2 >Realiza tu pedido hasta el
+                {{ campana.fechaCorreteo | date: 'dd' }} de {{campana.fechaCorreteo | date: 'MMMM' }} por la
+                Página Web antes de las 12:00 del medio día
                 </h2>
                 <p>&nbsp;</p>
             </a>

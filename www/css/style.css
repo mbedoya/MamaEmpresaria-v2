@@ -765,3 +765,10 @@ strong{
   font-weight: bold;
   color: #f74094;
 }
+
+.item h2, .item p {
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
+    text-align: justify;
+}
