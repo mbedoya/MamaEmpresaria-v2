@@ -38,8 +38,8 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
                 });
             }
 
-
             Mama.getPuntos($rootScope.datos.cedula, function (success, data){
+
                 if(success){
 
                     if(mostrarIndicador) {
@@ -75,19 +75,36 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
     }
 
     $scope.puntosDisponibles = function(){
-        return $rootScope.puntos.puntosDisponibles;
+
+        if ($rootScope.puntos){
+            return $rootScope.puntos.puntosDisponibles;
+        }else{
+            return "";
+        }
     }
 
     $scope.puntosPorPerder = function(){
-        return $rootScope.puntos.puntosPorPerder;
+        if ($rootScope.puntos){
+            return $rootScope.puntos.puntosPorPerder;
+        }else{
+            return "";
+        }
     }
 
     $scope.puntosAVencer = function(){
-        return $rootScope.puntos.puntosAVencer;
+        if ($rootScope.puntos){
+            return $rootScope.puntos.puntosAVencer;
+        }else{
+            return "";
+        }
     }
 
     $scope.puntosRedimidos = function(){
-        return $rootScope.puntos.puntosRedimidos;
+        if ($rootScope.puntos){
+            return $rootScope.puntos.puntosRedimidos;
+        }else{
+            return "";
+        }
     }
 
     $scope.fechaMontajePedidoCampana = function(){
@@ -100,11 +117,11 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
     }
 
     $scope.mostrarPuntosAVencer = function(){
-        return $rootScope.puntos.puntosAVencer && Number($rootScope.puntos.puntosAVencer) > 0;
+        return $rootScope.puntos && $rootScope.puntos.puntosAVencer && Number($rootScope.puntos.puntosAVencer) > 0;
     }
 
     $scope.mostrarPuntosPorPerder = function(){
-        return $rootScope.puntos.puntosPorPerder && Number($rootScope.puntos.puntosPorPerder) > 0;
+        return $rootScope.puntos && $rootScope.puntos.puntosPorPerder && Number($rootScope.puntos.puntosPorPerder) > 0;
     }
 
     $scope.$on('loggedin', function(event, args){
