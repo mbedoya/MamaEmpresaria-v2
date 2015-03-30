@@ -760,3 +760,8 @@ strong{
 .tabs .tab-item .badge.badge-assertive, .badge.badge-assertive {
     background-color: #ff0000;
 }
+
+.ion-ios-people-outline:before {
+  font-weight: bold;
+  color: #000;
+}
