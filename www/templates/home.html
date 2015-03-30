@@ -11,23 +11,12 @@
                 <span class="estrella-img"></span>
                 <span class="estrella-text">Mamá Empresaria <strong>{{ segmento() | pascal }}</strong></span>
             </div>
+            
             <div class="campana">
                <div class="campana-title">
                  Estás en <strong>Campaña {{campana.numero}}</strong>
                </div>
             </div>
-
-            <a class="item item-avatar alternate" href="#" >
-                <div class="icono bocina"></div>
-                <!-- <i class="icon ion-plus-circled"></i> -->
-                <h2>Este es un texto de prueba para la solución al problema de los textos que se están cortando.
-                    Este es un texto de prueba para la solución al problema de los textos que se están cortando.
-                    Este es un texto de prueba para la solución al problema de los textos que se están cortando.
-                </h2>
-                <p>
-                    Si ya pagaste consulta más tarde que tu pago se vea reflejado
-                </p>
-            </a>
 
             <a class="item item-avatar alternate" href="#" ng-show="mostrarSaldoPagar() && saldo()>0" ng-click="mostrarAyudaSaldoPagar()">
                 <div class="icono bocina"></div>
