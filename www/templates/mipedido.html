@@ -21,28 +21,27 @@
         <div class="list list-inset no-procesado" ng-show="!estadoEncontrado('Facturado') && estadoEncontrado('Novedad') && !estadoEncontrado('Anulado') && mostrarNovedad(buscarEstado('Novedad').motivo)">
             <div class="item">
                 <span class="highlighted">
-                Tu pedido presenta novedad. <br />Te invitamos a resolverla
+                Tu pedido presenta novedad. Te invitamos a resolverla
                     </span>
             </div>
             <a class="item assertive" ng-click="verAyudaNovedad()" href="#">
                 <div ng-show="motivoNovedadEncontrado('morosa')">
-                    Mamá, en estos momentos cuentas con un <br />
-                    saldo pendiente por pagar de {{ saldo() | currency:"$":0 }}. <br />
-                    Cancélalo lo más pronto posible.<br /> 
-                    Recuerda que durante el día se están<br />
-                    reflejando los pagos.<br />
+                    Mamá, en estos momentos cuentas con un 
+                    saldo pendiente por pagar de {{ saldo() | currency:"$":0 }}.
+                    Cancélalo lo más pronto posible.
+                    Recuerda que durante el día se están
+                    reflejando los pagos.
                     Si ya cancelaste ignora este mensaje.
                 </div>
                 <div ng-show="motivoNovedadEncontrado('cupo') || motivoNovedadEncontrado('tope')">
-                    Mamá, has excedido el valor máximo <br />
-                    con el que cuentas para montar tu pedido.<br />
+                    Mamá, has excedido el valor máximo 
+                    con el que cuentas para montar tu pedido.
                     Paga el excedente
-                    <br />
                     <span ng-show="hoyEsCorreteo()">
                         hoy
                     </span>
                     <span ng-show="!hoyEsCorreteo()">
-                       máximo el {{campana.fechaCorreteo | date: 'dd' }} de  {{campana.fechaCorreteo | date: 'MMMM' }}</span> <br />
+                       máximo el {{campana.fechaCorreteo | date: 'dd' }} de  {{campana.fechaCorreteo | date: 'MMMM' }}</span>
                         antes a las 4 de la tarde
                     </span>
                 </div>
@@ -52,27 +51,27 @@
 		<!-- Anulado -->
         <div class="list list-inset no-procesado" ng-show="estadoEncontrado('Anulado') && estadoEncontrado('Novedad')">
             <div class="item">
-                <span class="highlighted">Tu pedido no será enviado,<br /> puedes ver el detalle a continuación:</span>
+                <span class="highlighted">Tu pedido no será enviado, puedes ver el detalle a continuación:</span>
             </div>
             <!-- General -->
             <div class="item assertive" ng-show="!motivoNovedadEncontrado('morosa') && !motivoNovedadEncontrado('cupo')">
-                    Mamá tu pedido no será enviado para conocer <br />
-                    la razón de esta situación comunícate con tu <br /> 
+                    Mamá tu pedido no será enviado para conocer
+                    la razón de esta situación comunícate con tu 
                     Mamá Líder o con la Línea de Atención {{ lineaAtencion }}
                 </div>
             
             <!-- Morosidad -->
             <div class="item assertive" ng-show="motivoNovedadEncontrado('morosa')">
-                    Mamá Empresaria tu pedido no será enviado <br />
-                    ya que aún cuentas con un saldo pendiente <br />
-                    por pagar. Si realizaste el pago, envía el <br /> 
+                    Mamá Empresaria tu pedido no será enviado 
+                    ya que aún cuentas con un saldo pendiente 
+                    por pagar. Si realizaste el pago, envía el 
                     comprobante a servicioalcliente@novaventa.com
                 </div>
                 
                 <!-- Cupo -->
                 <div class="item assertive" ng-show="motivoNovedadEncontrado('cupo') || motivoNovedadEncontrado('tope')">
-                    Mamá Empresaria tu pedido no será enviado <br />
-                    ya que excediste el valor permitido para <br />
+                    Mamá Empresaria tu pedido no será enviado 
+                    ya que excediste el valor permitido para 
                     hacer tu pedido.
                 </div>
         </div>
