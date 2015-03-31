@@ -37,5 +37,9 @@
                 </span>
             </a>
         </div>
+
+        <!-- Zona de Automatización de Pruebas -->
+        <input id="saldo" type="hidden" value='{{ saldo() | currency:"$":0 }}' />
+        <input id="flexibiilizacion" type="hidden" value='{{ flexibilizacion() | currency:"$":0 }}' />
     </ion-content>
 </ion-view>

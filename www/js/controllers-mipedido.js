@@ -96,7 +96,7 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
     }
 
     $scope.cambiarNombreEstado = function(nombre){
-        return Utilidades.cambiarNombreEstado(nombre);
+        return Utilidades.cambiarNombreEstadoPedido(nombre);
     }
 
     $scope.fechaCorreteo = function(){
@@ -158,5 +158,15 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
             return $rootScope.campana.numero-1;
         }
     }
+
+    $scope.$on('$ionicView.beforeEnter', function(){
+        var valorHiddenEstados = '';
+        if($rootScope.pedido && $rootScope.pedido.historiaEstados){
+            for (i = 0; i < $rootScope.pedido.historiaEstados.length; i++) {
+                valorHiddenEstados = valorHiddenEstados + Utilidades.cambiarNombreEstadoPedido($rootScope.pedido.historiaEstados[i].estado) + ";"
+            }
+        }
+        $("#estados").val(valorHiddenEstados);
+    });
 
 });
