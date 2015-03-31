@@ -81,8 +81,7 @@
         <div class="list no-procesado" ng-show="pedido().razonRechazo && hoyEsEncuentro()">
             <div class="item">
                 <span class="highlighted">
-                    Aún no tenemos información sobre tu pedido.<br />
-                    Si lo enviaste hoy por favor verifica mañana. <br />
+                    Aún no tenemos información sobre tu pedido. Si lo enviaste hoy por favor verifica mañana.
                 </span>
             </div>
         </div>
@@ -104,7 +103,7 @@
         <!-- Sin información y no es encuentro todavía, primeros 5 días -->
         <div class="list no-procesado" ng-show="pedido().razonRechazo && !encuentroRealizado() && diasEnEjecucionCampana() <= 5">
            <div class="item" href="#" >
-                <span class="highlighted">No tienes un pedido registrado para <br />
+                <span class="highlighted">No tienes un pedido registrado para
                 la campaña {{ campanaAnterior() }}.</span>
             </div>
         </div>
@@ -112,8 +111,8 @@
         <!-- Sin información y no es encuentro todavía, día 6 a antes de encuentro -->
         <div class="list no-procesado" ng-show="pedido().razonRechazo && !encuentroRealizado() && diasEnEjecucionCampana() && diasEnEjecucionCampana() > 5">
            <div class="item" href="#" >
-                <span class="highlighted"> Aún no tenemos información sobre <br />
-                tu pedido de esta campaña, te invitamos <br />
+                <span class="highlighted"> Aún no tenemos información sobre
+                tu pedido de esta campaña, te invitamos
                 a consultar a partir del {{fechaLuegoEncuentro() | date: 'dd' }} de {{fechaLuegoEncuentro() | date: 'MMMM' }}.</span>
             </div>
         </div>

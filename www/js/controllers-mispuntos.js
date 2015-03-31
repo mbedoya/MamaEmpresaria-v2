@@ -40,7 +40,10 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
 
             Mama.getPuntos($rootScope.datos.cedula, function (success, data){
 
-                $ionicLoading.hide();
+                if(mostrarIndicador){
+                   $ionicLoading.hide();
+                }
+
                 if(success){
                     $rootScope.puntos = data;
 
@@ -52,12 +55,6 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
             $scope.mostrarAyuda("Mis Puntos","Por favor verifica tu conexión a internet");
         }
     }
-
-    $scope.$on('online', function(event, args){
-        $scope.inicializar(true);
-    });
-
-    $scope.inicializar(true);
 
     $scope.mostrarPremios = function(){
         $state.go('app.menu.tabs.mispuntos.mispremiosredimidos');
@@ -106,8 +103,7 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
     }
 
     $scope.mostrarPuntosRedimidos = function(){
-        return false;
-        //return $rootScope.puntos.puntosRedimidos && Number($rootScope.puntos.puntosRedimidos) > 0;
+        return $rootScope.puntos && $rootScope.puntos.puntosRedimidos && Number($rootScope.puntos.puntosRedimidos) > 0;
     }
 
     $scope.mostrarPuntosAVencer = function(){
@@ -117,9 +113,15 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
     $scope.mostrarPuntosPorPerder = function(){
         return $rootScope.puntos && $rootScope.puntos.puntosPorPerder && Number($rootScope.puntos.puntosPorPerder) > 0;
     }
+    
+    $scope.$on('online', function(event, args){
+        $scope.inicializar(true);
+    });
 
     $scope.$on('loggedin', function(event, args){
         $scope.inicializar(false);
     });
+    
+    $scope.inicializar(true);
 
 });

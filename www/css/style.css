@@ -767,7 +767,7 @@ strong{
 }
 
 /* Hacer que el texto tome todo el ancho disponible */
-.item h2, .item p {
+.item h2, .item p, .item {
     overflow: visible;
     text-overflow: clip;
     white-space: normal;

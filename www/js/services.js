@@ -359,6 +359,8 @@ angular.module('novaventa.services', [])
 														siguienteCampana = rootScope.numeroCampanasAno;
 														ano = ano - 1;
 													}
+													
+													console.log("a consultar campaña anterior");
 
 													Campana.getRecordatorios(ano, siguienteCampana, rootScope.zona, function (success, data){
 														if(success){
@@ -377,6 +379,8 @@ angular.module('novaventa.services', [])
 															//entonces se muestra la fecha anterior, de lo contrario la actual
 															var diferenciaDias = Utilidades.diferenciaFechaDias(new Date(correteo), new Date());
 															rootScope.campana.diasEnEjecucion = diferenciaDias;
+															
+															console.log("dias ejecucion" + diferenciaDias);
 
 															//Si han pasado mas de 5 días entonces mostrar campaña actual
 															//si no mostrar campaña anterior
@@ -448,7 +452,11 @@ angular.module('novaventa.services', [])
 
             },
             getPuntos: function(cedula, fx) {
-                var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/resumenPuntos/ResumenPuntosEmpresaria/" + cedula;
+            
+            	var fecha = new Date();
+            	var anoCampana = fecha.getFullYear() + Utilidades.Pad($rootScope.campana.numero);
+            	
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/resumenPuntos/ResumenPuntosEmpresaria/" + cedula + "/" + anoCampana;
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -533,6 +541,9 @@ angular.module('novaventa.services', [])
         var self = this;
 
         return {
+        	Pad: function(i){
+        	   return self.padStr(i);
+        	},
             mostrarMensaje: function(scope, mensaje) {
 
 
