@@ -766,9 +766,17 @@ strong{
   color: #f74094;
 }
 
+/* Hacer que el texto tome todo el ancho disponible */
 .item h2, .item p {
     overflow: visible;
     text-overflow: clip;
     white-space: normal;
     text-align: justify;
+}
+
+.item-formato-anterior{
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    text-align: justify !important;
 }
