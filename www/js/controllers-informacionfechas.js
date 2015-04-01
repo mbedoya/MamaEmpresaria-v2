@@ -23,6 +23,14 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         return (i < 10) ? "0" + i : "" + i;
     }
 
+    $scope.hoyEsCorreteo = function(){
+        return Campana.hoyEsCorreteo();
+    }
+
+    $scope.esAntesMedioDia = function(){
+        return new Date().getHours() < 12;
+    }
+
     $scope.estiloTexto = function(fecha){
         var fechaActual = $scope.fechaCalendario;
 
@@ -298,8 +306,6 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
     $scope.seleccionarFecha = function(fecha, mostrarDetalle){
 
-        alert(fecha);
-
         try{
             if($scope.cadenaFechaSeleccionada != ''){
                 $("#" + $scope.cadenaFechaSeleccionada).removeClass("positive");
@@ -393,14 +399,12 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         }
 
         try{
-            alert(mostrarDetalle);
             if(mostrarDetalle){
                 $scope.openModal();
             }
         }catch(err){
             alert(err.message);
         }
-
     }
 
 
