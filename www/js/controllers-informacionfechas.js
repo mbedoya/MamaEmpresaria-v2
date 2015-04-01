@@ -385,9 +385,15 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
         $scope.detalleFecha = listaEventos;
 
-        if(mostrarDetalle){
-            $scope.openModal();
+        try{
+            alert(mostrarDetalle);
+            if(mostrarDetalle){
+                $scope.openModal();
+            }
+        }catch(err){
+            alert(err.message);
         }
+
     }
 
 
