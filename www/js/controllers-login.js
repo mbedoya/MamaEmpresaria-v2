@@ -62,12 +62,6 @@ moduloControlador.controller('LoginCtrl', function($scope, $rootScope, $ionicLoa
                             $ionicHistory.nextViewOptions({
                              disableBack: true
                             });
-   
-                            //Si se notifica inmediatamente no son alcanzados todos los controladores                         
-                            setTimeout( function(){
-                               //Notificar que el usuario se ha logueado
-                               $rootScope.$broadcast('loggedin');
-                            }, 1500);
                             
                             if(irABienvenida){
                                $state.go('app.bienvenida');

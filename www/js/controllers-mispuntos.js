@@ -22,13 +22,6 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
         }
     }
 
-    $scope.mostrarAyuda = function(titulo, mensaje) {
-        var alertPopup = $ionicPopup.alert({
-            title: titulo,
-            template: mensaje
-        });
-    };
-
     $scope.inicializar = function(mostrarIndicador){
         if(Internet.get()){
 
@@ -117,8 +110,9 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
     $scope.$on('online', function(event, args){
         $scope.inicializar(true);
     });
-
+    
     $scope.$on('loggedin', function(event, args){
+        console.log('logging in - puntos');
         $scope.inicializar(false);
     });
     

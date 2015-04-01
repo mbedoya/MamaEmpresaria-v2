@@ -343,12 +343,30 @@ angular.module('novaventa.services', [])
 															rootScope.fechas = data.listaRecordatorios;
 
 															console.log("Moviendose a nueva camapaña " + rootScope.campana.numero);
+															
+															//NOTIFICAR LOGGEDIN
+															
+															//Si se notifica inmediatamente no son alcanzados todos los controladores                         
+															setTimeout( function(){
+															   //Notificar que el usuario se ha logueado
+															   rootScope.$broadcast('loggedin');
+															   console.log('loggedin');
+															}, 1500);
 
 														}else{
 														}
 													});
 
 												}else{
+												
+													//NOTIFICAR LOGGEDIN
+													
+													//Si se notifica inmediatamente no son alcanzados todos los controladores                         
+													setTimeout( function(){
+													   //Notificar que el usuario se ha logueado
+													   rootScope.$broadcast('loggedin');
+													   console.log('loggedin');
+													}, 1500);
 
 													//Obtener la campaña anterior
 													var ano = new Date().getFullYear();

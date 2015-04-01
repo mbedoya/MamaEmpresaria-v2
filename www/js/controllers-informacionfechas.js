@@ -628,6 +628,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
     $scope.$on('loggedin', function(event, args){
         $scope.inicializar();
+        console.log('logging in - calendario');
     });
 
     $scope.inicializar();
