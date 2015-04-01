@@ -96,8 +96,18 @@
       <file leaf-file-name="controllers-informacionfechas.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/controllers-informacionfechas.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8589212" vertical-offset="6043" max-vertical-offset="11526">
-              <caret line="392" column="20" selection-start-line="392" selection-start-column="20" selection-end-line="392" selection-end-column="20" />
+            <state vertical-scroll-proportion="0.31811896" vertical-offset="4870" max-vertical-offset="11560">
+              <caret line="300" column="19" selection-start-line="300" selection-start-column="19" selection-end-line="300" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="informacionfechas.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/templates/informacionfechas.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-17.153847" vertical-offset="557" max-vertical-offset="1513">
+              <caret line="59" column="57" selection-start-line="59" selection-start-column="57" selection-end-line="59" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -665,17 +675,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/informacionfechas.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42836258" vertical-offset="710" max-vertical-offset="1513">
-          <caret line="59" column="57" selection-start-line="59" selection-start-column="57" selection-end-line="59" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.85338867" vertical-offset="12592" max-vertical-offset="13379">
           <caret line="777" column="22" selection-start-line="777" selection-start-column="22" selection-end-line="777" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -756,10 +760,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/informacionfechas.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.153847" vertical-offset="557" max-vertical-offset="1513">
+          <caret line="59" column="57" selection-start-line="59" selection-start-column="57" selection-end-line="59" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controllers-informacionfechas.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8589212" vertical-offset="6043" max-vertical-offset="11526">
-          <caret line="392" column="20" selection-start-line="392" selection-start-column="20" selection-end-line="392" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.31811896" vertical-offset="4870" max-vertical-offset="11560">
+          <caret line="300" column="19" selection-start-line="300" selection-start-column="19" selection-end-line="300" selection-end-column="19" />
           <folding />
         </state>
       </provider>

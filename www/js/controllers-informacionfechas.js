@@ -298,6 +298,8 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
     $scope.seleccionarFecha = function(fecha, mostrarDetalle){
 
+        alert(fecha);
+
         if($scope.cadenaFechaSeleccionada != ''){
             $("#" + $scope.cadenaFechaSeleccionada).removeClass("positive");
             $("#" + $scope.cadenaFechaSeleccionada).removeClass("hoy");
