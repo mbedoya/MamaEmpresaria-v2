@@ -300,92 +300,97 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
         alert(fecha);
 
-        if($scope.cadenaFechaSeleccionada != ''){
-            $("#" + $scope.cadenaFechaSeleccionada).removeClass("positive");
-            $("#" + $scope.cadenaFechaSeleccionada).removeClass("hoy");
-        }
+        try{
+            if($scope.cadenaFechaSeleccionada != ''){
+                $("#" + $scope.cadenaFechaSeleccionada).removeClass("positive");
+                $("#" + $scope.cadenaFechaSeleccionada).removeClass("hoy");
+            }
 
-        $scope.cadenaFechaSeleccionada = fecha;
-        if(mostrarDetalle){
-            $("#" + $scope.cadenaFechaSeleccionada).addClass("positive");
-        }else{
-
-            if(fecha == Utilidades.formatearFechaActual() && $scope.fechaEsCampanaVisible(fecha)){
-                $("#" + $scope.cadenaFechaSeleccionada).addClass("hoy-campana");
+            $scope.cadenaFechaSeleccionada = fecha;
+            if(mostrarDetalle){
+                $("#" + $scope.cadenaFechaSeleccionada).addClass("positive");
             }else{
-                $("#" + $scope.cadenaFechaSeleccionada).addClass("hoy");
-            }
-        }
 
-        var fechaEsCorreteo = false;
-        var fechaEsRepartoPedido = false;
-
-        var listaEventos = new Array();
-
-        for (i = 0; i < $scope.fechas.length; i++){
-            if($scope.fechas[i].fecha == fecha){
-                listaEventos.push($scope.fechas[i]);
-                if($scope.fechas[i].actividad.toLowerCase() == "fecha correteo"){
-                    fechaEsCorreteo = true;
-                }
-                if($scope.fechas[i].actividad.toLowerCase() == "reparto de pedido 1"){
-                    fechaEsRepartoPedido = true;
+                if(fecha == Utilidades.formatearFechaActual() && $scope.fechaEsCampanaVisible(fecha)){
+                    $("#" + $scope.cadenaFechaSeleccionada).addClass("hoy-campana");
+                }else{
+                    $("#" + $scope.cadenaFechaSeleccionada).addClass("hoy");
                 }
             }
-        }
 
-        if($scope.fechasSiguienteCampana && $scope.fechasSiguienteCampana.length > 0 ){
-            for (i = 0; i < $scope.fechasSiguienteCampana.length; i++){
-                if($scope.fechasSiguienteCampana[i].fecha == fecha){
-                    listaEventos.push($scope.fechasSiguienteCampana[i]);
-                    if($scope.fechasSiguienteCampana[i].actividad.toLowerCase() == "fecha correteo"){
+            var fechaEsCorreteo = false;
+            var fechaEsRepartoPedido = false;
+
+            var listaEventos = new Array();
+
+            for (i = 0; i < $scope.fechas.length; i++){
+                if($scope.fechas[i].fecha == fecha){
+                    listaEventos.push($scope.fechas[i]);
+                    if($scope.fechas[i].actividad.toLowerCase() == "fecha correteo"){
                         fechaEsCorreteo = true;
                     }
-                    if($scope.fechasSiguienteCampana[i].actividad.toLowerCase() == "reparto de pedido 1"){
+                    if($scope.fechas[i].actividad.toLowerCase() == "reparto de pedido 1"){
                         fechaEsRepartoPedido = true;
                     }
                 }
             }
-        }
 
-        if($scope.fechasCampanaAnterior && $scope.fechasCampanaAnterior.length > 0 ){
-            for (i = 0; i < $scope.fechasCampanaAnterior.length; i++){
-                if($scope.fechasCampanaAnterior[i].fecha == fecha){
-                    listaEventos.push($scope.fechasCampanaAnterior[i]);
-                    if($scope.fechasCampanaAnterior[i].actividad.toLowerCase() == "fecha correteo"){
-                        fechaEsCorreteo = true;
-                    }
-                    if($scope.fechasCampanaAnterior[i].actividad.toLowerCase() == "reparto de pedido 1"){
-                        fechaEsRepartoPedido = true;
+            if($scope.fechasSiguienteCampana && $scope.fechasSiguienteCampana.length > 0 ){
+                for (i = 0; i < $scope.fechasSiguienteCampana.length; i++){
+                    if($scope.fechasSiguienteCampana[i].fecha == fecha){
+                        listaEventos.push($scope.fechasSiguienteCampana[i]);
+                        if($scope.fechasSiguienteCampana[i].actividad.toLowerCase() == "fecha correteo"){
+                            fechaEsCorreteo = true;
+                        }
+                        if($scope.fechasSiguienteCampana[i].actividad.toLowerCase() == "reparto de pedido 1"){
+                            fechaEsRepartoPedido = true;
+                        }
                     }
                 }
             }
-        }
 
-        $scope.fechaSeleccionada = new Date(fecha);
-        //Esto se hace por bug en manejo de fechas
-        $scope.fechaSeleccionada.setDate($scope.fechaSeleccionada.getDate() + 1);
-
-        //Si la fecha es correteo mostramos una información diferente
-        if(fechaEsCorreteo){
-            listaEventos = [];
-
-            //El día de correteo luego de las 12 se debe decir que
-            //ya no se puede montar pedido
-            if($scope.hoyEsCorreteo() && !$scope.esAntesMedioDia()){
-                listaEventos.push({ "actividad": "Ya no puedes montar pedido." });
-            }else{
-                listaEventos.push({ "actividad": "Monta tu pedido este día, por la Página web, antes de las 12 del medio día." });
+            if($scope.fechasCampanaAnterior && $scope.fechasCampanaAnterior.length > 0 ){
+                for (i = 0; i < $scope.fechasCampanaAnterior.length; i++){
+                    if($scope.fechasCampanaAnterior[i].fecha == fecha){
+                        listaEventos.push($scope.fechasCampanaAnterior[i]);
+                        if($scope.fechasCampanaAnterior[i].actividad.toLowerCase() == "fecha correteo"){
+                            fechaEsCorreteo = true;
+                        }
+                        if($scope.fechasCampanaAnterior[i].actividad.toLowerCase() == "reparto de pedido 1"){
+                            fechaEsRepartoPedido = true;
+                        }
+                    }
+                }
             }
-            listaEventos.push({ "actividad": "Cancela tu pedido anterior este día antes de las 4 de la tarde." });
-        }
 
-        if(fechaEsRepartoPedido){
-            listaEventos = [];
-            listaEventos.push({ "actividad": "Posible entrega de pedido." });
-        }
+            $scope.fechaSeleccionada = new Date(fecha);
+            //Esto se hace por bug en manejo de fechas
+            $scope.fechaSeleccionada.setDate($scope.fechaSeleccionada.getDate() + 1);
 
-        $scope.detalleFecha = listaEventos;
+            //Si la fecha es correteo mostramos una información diferente
+            if(fechaEsCorreteo){
+                listaEventos = [];
+
+                //El día de correteo luego de las 12 se debe decir que
+                //ya no se puede montar pedido
+                if($scope.hoyEsCorreteo() && !$scope.esAntesMedioDia()){
+                    listaEventos.push({ "actividad": "Ya no puedes montar pedido." });
+                }else{
+                    listaEventos.push({ "actividad": "Monta tu pedido este día, por la Página web, antes de las 12 del medio día." });
+                }
+                listaEventos.push({ "actividad": "Cancela tu pedido anterior este día antes de las 4 de la tarde." });
+            }
+
+            if(fechaEsRepartoPedido){
+                listaEventos = [];
+                listaEventos.push({ "actividad": "Posible entrega de pedido." });
+            }
+
+            $scope.detalleFecha = listaEventos;
+
+        }catch(err){
+            alert(err.message);
+        }
 
         try{
             alert(mostrarDetalle);
@@ -657,7 +662,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         //Seleccionar la fecha actual
         $scope.seleccionarFecha($scope.padStr($scope.fechaCalendario.getFullYear()) + "-" +
             $scope.padStr(1 + $scope.fechaCalendario.getMonth()) + "-" +
-            $scope.fechaCalendario.getDate(), false);
+            $scope.padStr($scope.fechaCalendario.getDate()), false);
 
     }
 
