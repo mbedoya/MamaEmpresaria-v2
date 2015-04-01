@@ -142,8 +142,8 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
         
         $scope.diasParaPago = function(){
         
-           var stringFecha =  Utilidades.formatearFechaActual();  
-        
+           var stringFecha =  Utilidades.formatearFechaActual();
+                      
            if($rootScope.campana && $rootScope.campana.fechaMontajePedido){
                return Utilidades.diferenciaFechaDias(new Date(stringFecha), new Date($rootScope.campana.fechaMontajePedido));
            }else{

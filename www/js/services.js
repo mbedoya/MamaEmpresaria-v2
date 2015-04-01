@@ -586,7 +586,7 @@ angular.module('novaventa.services', [])
 
                 var dateStr = self.padStr(fecha.getFullYear()) + "-" +
                     self.padStr(1 + fecha.getMonth()) + "-" +
-                    fecha.getDate();
+                    self.padStr(fecha.getDate());
 
                 return dateStr;
             },
