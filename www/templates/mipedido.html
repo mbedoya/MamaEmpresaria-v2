@@ -55,24 +55,30 @@
             </div>
             <!-- General -->
             <div class="item assertive" ng-show="!motivoNovedadEncontrado('morosa') && !motivoNovedadEncontrado('cupo')">
+                <span>
                     Mamá tu pedido no será enviado para conocer
-                    la razón de esta situación comunícate con tu 
+                    la razón de esta situación comunícate con tu
                     Mamá Líder o con la Línea de Atención {{ lineaAtencion }}
-                </div>
+                </span>
+            </div>
             
             <!-- Morosidad -->
             <div class="item assertive" ng-show="motivoNovedadEncontrado('morosa')">
+                <span>
                     Mamá Empresaria tu pedido no será enviado 
                     ya que aún cuentas con un saldo pendiente 
                     por pagar. Si realizaste el pago, envía el 
                     comprobante a servicioalcliente@novaventa.com
+                   </span>
                 </div>
                 
                 <!-- Cupo -->
                 <div class="item assertive" ng-show="motivoNovedadEncontrado('cupo') || motivoNovedadEncontrado('tope')">
+                    <span>
                     Mamá Empresaria tu pedido no será enviado 
                     ya que excediste el valor permitido para 
                     hacer tu pedido.
+                        </span>
                 </div>
         </div>
         
