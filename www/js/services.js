@@ -402,7 +402,9 @@ angular.module('novaventa.services', [])
 
 															//Si han pasado mas de 5 días entonces mostrar campaña actual
 															//si no mostrar campaña anterior
-															if(diferenciaDias > 5){
+															if(Campana.encuentroRealizado() &&
+															 !( Pedido.estadoEncontrado('Anulado') || Pedido.estadoEncontrado('Facturado'))
+														      ){
 																//Obtener la fecha de reparto.
 																reparto = '';
 
