@@ -397,29 +397,41 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         //Se inicia por la campaña del medio
         var correteo = "";
 
-        //Buscar correteo actual
-        for (i = 0; i < $scope.fechas.length; i++){
-            if($scope.fechas[i].actividad.toLowerCase() == "fecha correteo"){
-                correteo = $scope.fechas[i].fecha;
+        //Buscar correteo anterior
+        for (i = 0; i < $scope.fechasCampanaAnterior.length; i++){
+            if($scope.fechasCampanaAnterior[i].actividad.toLowerCase() == "fecha correteo"){
+                correteo = $scope.fechasCampanaAnterior[i].fecha;
             }
         }
 
-        //Campaña siguiente?
-        if(new Date(fecha) > new Date(correteo)){
-            return $scope.estiloCampana($scope.campana +1);
+        //Campaña anterior?
+        if(new Date(fecha) <= new Date(correteo)){
+            return $scope.estiloCampana($scope.campana-1);
         }else{
-            //Buscar correteo anterior
-            for (i = 0; i < $scope.fechasCampanaAnterior.length; i++){
-                if($scope.fechasCampanaAnterior[i].actividad.toLowerCase() == "fecha correteo"){
-                    correteo = $scope.fechasCampanaAnterior[i].fecha;
+            //Buscar correteo actual
+            for (i = 0; i < $scope.fechas.length; i++){
+                if($scope.fechas[i].actividad.toLowerCase() == "fecha correteo"){
+                    correteo = $scope.fechas[i].fecha;
                 }
             }
 
-            //Campaña siguiente?
-            if(new Date(fecha) > new Date(correteo)){
+            //Campaña actual?
+            if(new Date(fecha) <= new Date(correteo)){
                 return $scope.estiloCampana($scope.campana);
             }else{
-                return $scope.estiloCampana($scope.campana-1);
+            	//Buscar correteo siguiente
+				for (i = 0; i < $scope.fechasSiguienteCampana.length; i++){
+					if($scope.fechasSiguienteCampana[i].actividad.toLowerCase() == "fecha correteo"){
+						correteo = $scope.fechasSiguienteCampana[i].fecha;
+					}
+				}
+				
+				if(new Date(fecha) <= new Date(correteo)){
+					return $scope.estiloCampana($scope.campana+1);
+				}else{
+				    return $scope.estiloCampana($scope.campana+2);
+				}
+        
             }
         }
     }
@@ -450,8 +462,6 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 }
             }
 
-            console.log(correteo);
-
             if(new Date(correteo).getMonth() == new Date($scope.fechaCalendario).getMonth()){
                 $scope.misCampanas.push({numero: $scope.campana-1, color: $scope.estiloCampana($scope.campana-1)});
             }
@@ -459,7 +469,9 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
         //Campana actual
         $scope.misCampanas.push({numero: $scope.campana, color: $scope.estiloCampana($scope.campana)});
+        console.log("camp actual: " + Number($scope.campana));
 
+        var campSiguienteAdicionada = false;
         //Campana siguiente
         if($scope.fechas){
             for (i = 0; i < $scope.fechas.length; i++){
@@ -470,6 +482,23 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
             if(new Date(correteo).getMonth() == new Date($scope.fechaCalendario).getMonth()){
                 $scope.misCampanas.push({numero: $scope.campana+1, color: $scope.estiloCampana($scope.campana+1)});
+                campSiguienteAdicionada = true;
+            }
+        }
+        
+        //Campana siguiente a la siguiente
+        if($scope.fechasSiguienteCampana){
+            for (i = 0; i < $scope.fechasSiguienteCampana.length; i++){
+                if($scope.fechasSiguienteCampana[i].actividad.toLowerCase() == "fecha correteo"){
+                    correteo = $scope.fechasSiguienteCampana[i].fecha;
+                }
+            }
+            
+            if(new Date(correteo).getMonth() == new Date($scope.fechaCalendario).getMonth()){
+                if(!campSiguienteAdicionada){
+                   $scope.misCampanas.push({numero: $scope.campana+1, color: $scope.estiloCampana($scope.campana+1)});
+                }
+                $scope.misCampanas.push({numero: $scope.campana+2, color: $scope.estiloCampana($scope.campana+2)});
             }
         }
 
@@ -484,6 +513,8 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         Campana.getRecordatorios($scope.fechaCalendario.getFullYear(), $scope.campana+1, $rootScope.zona, function (success, data){
             if(success){
                 $scope.fechasSiguienteCampana = data.listaRecordatorios;
+                
+                $scope.actualizarCampanasMes();
             }else{
 
             }
