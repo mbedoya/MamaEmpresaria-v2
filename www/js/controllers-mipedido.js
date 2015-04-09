@@ -163,7 +163,7 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
         var valorHiddenEstados = '';
         if($rootScope.pedido && $rootScope.pedido.historiaEstados){
             for (i = 0; i < $rootScope.pedido.historiaEstados.length; i++) {
-                valorHiddenEstados = valorHiddenEstados + Utilidades.cambiarNombreEstadoPedido($rootScope.pedido.historiaEstados[i].estado) + ";"
+                valorHiddenEstados = valorHiddenEstados + Utilidades.cambiarNombreEstadoPedido($rootScope.pedido.historiaEstados[i].estado) + ","
             }
         }
         $("#estados").val(valorHiddenEstados);
