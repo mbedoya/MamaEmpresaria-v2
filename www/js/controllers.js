@@ -52,7 +52,8 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
 
                      */
                     buttons: [
-                        { text: 'Fechas importantes' }
+                        { text: 'Mi Negocio' },
+                        { text: 'Productos no disponibles' }
                     ],
                     cancelText: 'Cancelar',
                     cancel: function() {
@@ -60,11 +61,12 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                     buttonClicked: function(index) {
 
                         if(index == 0){
-                            $state.go('app.menu.tabs.mas.informacion.fechas');
+                            $state.go('app.menu.tabs.mas.informacion.minegocio');
                             //$state.go('app.menu.tabs.mas.club.piedrapreciosa');
                         }else{
                             if(index == 1){
-                                $state.go('app.menu.tabs.mas.informacion.fechas');
+                                $state.go('app.menu.tabs.mas.informacion.agotados');
+                                //$state.go('app.menu.tabs.mas.informacion.fechas');
                             }else{
                                 $state.go('app.menu.tabs.mas.contacto');
                             }

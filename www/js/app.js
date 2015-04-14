@@ -111,16 +111,16 @@ angular.module('novaventa', ['ionic', 'novaventa.controllers', 'novaventa.servic
                     }
                 }
             })
-
-            .state('app.menu.tabs.minegocio', {
-                url: "/minegocio",
+            
+            .state('app.menu.tabs.fechas', {
+                url: "/fechas",
                 views: {
-                    'negocio-content': {
-                        templateUrl: "templates/minegocio.html",
-                        controller: 'MiNegocioCtrl'
+                    'informacion-fechas-content': {
+                        templateUrl: "templates/informacionfechas.html",
+                        controller: 'InformacionFechasCtrl'
                     }
                 }
-            })
+            })            
 
             .state('app.menu.tabs.mipedido', {
                 url: "/mipedido",
@@ -268,12 +268,12 @@ angular.module('novaventa', ['ionic', 'novaventa.controllers', 'novaventa.servic
                 }
             })
             
-            .state('app.menu.tabs.mas.informacion.fechas', {
-                url: "/fechas",
+            .state('app.menu.tabs.mas.informacion.minegocio', {
+                url: "/minegocio",
                 views: {
-                    'informacion-fechas-content': {
-                        templateUrl: "templates/informacionfechas.html",
-                        controller: 'InformacionFechasCtrl'
+                    'informacion-minegocio-content': {
+                        templateUrl: "templates/minegocio.html",
+                        controller: 'MiNegocioCtrl'
                     }
                 }
             })
