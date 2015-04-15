@@ -486,6 +486,21 @@ angular.module('novaventa.services', [])
                         fx(false, {});
                     });
             },
+            getPuntosCampanaAnterior: function(cedula, fx) {
+
+                var fecha = new Date();
+                var anoCampana = fecha.getFullYear() + Utilidades.Pad($rootScope.campana.numero - 1);
+
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/resumenPuntos/ResumenPuntosEmpresaria/" + cedula + "/" + anoCampana;
+
+                $http.get(urlServicio).
+                    success(function(data, status, headers, config) {
+                        fx(true, data);
+                    }).
+                    error(function(data, status, headers, config) {
+                        fx(false, {});
+                    });
+            },
             getAgotadosPedido: function(pedido, fx){
 
                 //var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula;

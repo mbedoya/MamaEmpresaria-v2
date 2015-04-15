@@ -44,6 +44,22 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
                     $scope.mostrarAyuda("Mis Puntos","En este momento no podemos acceder a tu información");
                 }
             });
+
+            Mama.getPuntosCampanaAnterior($rootScope.datos.cedula, function (success, data){
+
+                if(mostrarIndicador){
+                    $ionicLoading.hide();
+                }
+
+                if(success){
+                    $rootScope.puntosCampanaAnterior = data;
+
+                }else{
+                    $scope.mostrarAyuda("Mis Puntos","En este momento no podemos acceder a tu información");
+                }
+            });
+
+
         }else{
             $scope.mostrarAyuda("Mis Puntos","Por favor verifica tu conexión a internet");
         }
@@ -84,8 +100,8 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
     }
 
     $scope.puntosRedimidos = function(){
-        if ($rootScope.puntos){
-            return $rootScope.puntos.puntosRedimidos;
+        if ($rootScope.puntosCampanaAnterior){
+            return $rootScope.puntosCampanaAnterior.puntosRedimidos;
         }else{
             return "";
         }
@@ -96,7 +112,7 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
     }
 
     $scope.mostrarPuntosRedimidos = function(){
-        return $rootScope.puntos && $rootScope.puntos.puntosRedimidos && Number($rootScope.puntos.puntosRedimidos) > 0;
+        return $rootScope.puntosCampanaAnterior && $rootScope.puntosCampanaAnterior.puntosRedimidos && Number($rootScope.puntosCampanaAnterior.puntosRedimidos) > 0;
     }
 
     $scope.mostrarPuntosAVencer = function(){

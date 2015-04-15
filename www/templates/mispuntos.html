@@ -3,24 +3,27 @@
         <div class="list" >
             <label class="item item-avatar">
                 <div class="icono punto"></div>
-                Puntos disponibles
+                <h2>Puntos disponibles</h2>
+                <p>
+                    Estos son los puntos que puedes redimir
+                </p>
                 <span class="item-note">
                     <strong>{{ puntosDisponibles() }}</strong>
                 </span>
             </label>
             <label class="item item-avatar" ng-show="mostrarPuntosPorPerder()">
                 <div class="icono bocina"></div>
-                Puntos a perder <br />
-                (<span ng-show="diasParaPago()>=1">Si no pagas antes del<br />
+                Puntos que no acumulas
+                <span ng-show="diasParaPago()>=1">si no pagas antes del
                     {{campana.fechaMontajePedido | date: 'dd' }} de  {{campana.fechaMontajePedido | date: 'MMMM' }}
                 </span>
                 <span ng-show="diasParaPago()<0 && !hoyEsEncuentro() && !hoyEsCorreteo()">
-                    Si no pagas máximo el<br />
+                    si no pagas máximo el
                     {{campana.fechaCorreteo | date: 'dd' }} de  {{campana.fechaCorreteo | date: 'MMMM' }}
                 </span>
                 <span ng-show="diasParaPago()<=0 && (hoyEsEncuentro() || hoyEsCorreteo())">
-                    Si no pagas hoy
-                </span> antes de <br /> las 4 de la tarde)
+                    si no pagas hoy
+                </span> antes de las 4 de la tarde
                 <span class="item-note">
                     <strong> {{ puntosPorPerder() }} </strong>
                 </span>
@@ -28,15 +31,14 @@
             </label>
             <label class="item item-avatar" ng-show="mostrarPuntosAVencer()">
                 <div class="icono calendario"></div>
-                Puntos a vencer <br />
-                esta campaña <!--  {{campanaVencimientoPuntos()}} -->
+                Puntos a vencer en Campaña {{campana.numero}} <!--  {{campanaVencimientoPuntos()}} -->
                 <span class="item-note">
                     <strong> {{ puntosAVencer() }} </strong>
                 </span>
             </label>
             <a class="item item-avatar item-icon-right" ng-show="mostrarPuntosRedimidos()" ng-click="mostrarPremios()" >
                <div class="icono regalo"></div>
-                Puntos redimidos campaña <br /> anterior
+                Puntos redimidos campaña anterior
                 <span class="item-note">
                   <strong> {{ puntosRedimidos() }} </strong>
                 </span>
