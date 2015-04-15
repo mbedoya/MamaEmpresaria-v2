@@ -37,11 +37,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mispuntos.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="mispuntos.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/templates/mispuntos.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.653847" vertical-offset="221" max-vertical-offset="918">
-              <caret line="40" column="40" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.70414203" vertical-offset="17" max-vertical-offset="969">
+              <caret line="29" column="73" selection-start-line="29" selection-start-column="73" selection-end-line="29" selection-end-column="73" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="controllers-home.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/controllers-home.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1041" max-vertical-offset="2907">
+              <caret line="76" column="100" selection-start-line="76" selection-start-column="20" selection-end-line="76" selection-end-column="100" />
               <folding />
             </state>
           </provider>
@@ -59,10 +69,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mispremiosredimidos.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="mispremiosredimidos.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/templates/mispremiosredimidos.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.07317073" vertical-offset="0" max-vertical-offset="697">
+            <state vertical-scroll-proportion="-1.9615384" vertical-offset="0" max-vertical-offset="323">
               <caret line="3" column="90" selection-start-line="3" selection-start-column="90" selection-end-line="3" selection-end-column="90" />
               <folding />
             </state>
@@ -84,8 +94,8 @@
       <file leaf-file-name="controllers-mispuntos.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/controllers-mispuntos.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1113" max-vertical-offset="2414">
-              <caret line="102" column="44" selection-start-line="102" selection-start-column="44" selection-end-line="102" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1589" max-vertical-offset="2482">
+              <caret line="121" column="35" selection-start-line="121" selection-start-column="11" selection-end-line="121" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -159,10 +169,10 @@
         <option value="$PROJECT_DIR$/www/templates/home.html" />
         <option value="$PROJECT_DIR$/www/css/style.css" />
         <option value="$PROJECT_DIR$/www/templates/informacionfechas.html" />
-        <option value="$PROJECT_DIR$/www/js/controllers-mispuntos.js" />
         <option value="$PROJECT_DIR$/www/js/services.js" />
-        <option value="$PROJECT_DIR$/www/templates/mispuntos.html" />
         <option value="$PROJECT_DIR$/www/templates/mispremiosredimidos.html" />
+        <option value="$PROJECT_DIR$/www/js/controllers-mispuntos.js" />
+        <option value="$PROJECT_DIR$/www/templates/mispuntos.html" />
       </list>
     </option>
   </component>
@@ -626,13 +636,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/controllers-home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2129" max-vertical-offset="2907">
-          <caret line="151" column="9" selection-start-line="142" selection-start-column="8" selection-end-line="151" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.68188107" vertical-offset="0" max-vertical-offset="884">
@@ -750,14 +753,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/controllers-mispuntos.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1113" max-vertical-offset="2414">
-          <caret line="102" column="44" selection-start-line="102" selection-start-column="44" selection-end-line="102" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/services.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="7399" max-vertical-offset="10285">
@@ -765,14 +760,6 @@
           <folding>
             <marker date="1429127858557" expanded="false" signature="24763:24795" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/mispuntos.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.653847" vertical-offset="221" max-vertical-offset="918">
-          <caret line="40" column="40" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -788,8 +775,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/mispremiosredimidos.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07317073" vertical-offset="0" max-vertical-offset="697">
+        <state vertical-scroll-proportion="-1.9615384" vertical-offset="0" max-vertical-offset="323">
           <caret line="3" column="90" selection-start-line="3" selection-start-column="90" selection-end-line="3" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controllers-home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1041" max-vertical-offset="2907">
+          <caret line="76" column="100" selection-start-line="76" selection-start-column="20" selection-end-line="76" selection-end-column="100" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controllers-mispuntos.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1589" max-vertical-offset="2482">
+          <caret line="121" column="35" selection-start-line="121" selection-start-column="11" selection-end-line="121" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/mispuntos.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.70414203" vertical-offset="17" max-vertical-offset="969">
+          <caret line="29" column="73" selection-start-line="29" selection-start-column="73" selection-end-line="29" selection-end-column="73" />
           <folding />
         </state>
       </provider>

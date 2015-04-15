@@ -119,6 +119,10 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
         return $rootScope.puntos && $rootScope.puntos.puntosAVencer && Number($rootScope.puntos.puntosAVencer) > 0;
     }
 
+    $scope.mostrarMensajeAcumulados = function(){
+        return $rootScope.datos && $rootScope.datos.saldo && Number($rootScope.datos.saldo) > 0;
+    }
+
     $scope.mostrarPuntosPorPerder = function(){
         return $rootScope.puntos && $rootScope.puntos.puntosPorPerder && Number($rootScope.puntos.puntosPorPerder) > 0;
     }
