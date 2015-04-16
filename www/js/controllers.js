@@ -61,11 +61,11 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                     buttonClicked: function(index) {
 
                         if(index == 0){
-                            $state.go('app.menu.tabs.mas.informacion.minegocio');
+                            $state.go('app.menu.tabs.mas.minegocio');
                             //$state.go('app.menu.tabs.mas.club.piedrapreciosa');
                         }else{
                             if(index == 1){
-                                $state.go('app.menu.tabs.mas.informacion.agotados');
+                                $state.go('app.menu.tabs.mas.agotados.actual');
                                 //$state.go('app.menu.tabs.mas.informacion.fechas');
                             }else{
                                 $state.go('app.menu.tabs.mas.contacto');

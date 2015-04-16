@@ -267,22 +267,41 @@ angular.module('novaventa', ['ionic', 'novaventa.controllers', 'novaventa.servic
                     }
                 }
             })
-            
-            .state('app.menu.tabs.mas.informacion.minegocio', {
-                url: "/minegocio",
+
+            .state('app.menu.tabs.mas.agotados', {
+                url: "/agotados",
+                abstract: true,
                 views: {
-                    'informacion-minegocio-content': {
-                        templateUrl: "templates/minegocio.html",
-                        controller: 'MiNegocioCtrl'
+                    'mas-interna-content': {
+                        templateUrl: "templates/tabsinformacion-agotados.html"
+                    }
+                }
+            })
+
+            .state('app.menu.tabs.mas.agotados.actual', {
+                url: "/agotadosactual",
+                views: {
+                    'informacion-agotados-actual': {
+                        templateUrl: "templates/informacionagotados.html"
+                    }
+                }
+            })
+
+            .state('app.menu.tabs.mas.agotados.siguiente', {
+                url: "/agotadossiguiente",
+                views: {
+                    'informacion-agotados-siguiente': {
+                        templateUrl: "templates/informacionagotados.html"
                     }
                 }
             })
             
-            .state('app.menu.tabs.mas.informacion.agotados', {
-                url: "/agotados",
+            .state('app.menu.tabs.mas.minegocio', {
+                url: "/minegocio",
                 views: {
-                    'informacion-agotados-content': {
-                        templateUrl: "templates/informacionagotados.html"
+                    'mas-interna-content': {
+                        templateUrl: "templates/minegocio.html",
+                        controller: 'MiNegocioCtrl'
                     }
                 }
             })
