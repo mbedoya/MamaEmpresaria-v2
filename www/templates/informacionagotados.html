@@ -5,21 +5,12 @@
             <div class="col">Los productos listados a continuación no están disponibles para la Campaña:</div>
         </div>
 
-        <div class="row alternate">
+        <div class="row {{estiloAlternate($index)}}" ng-repeat="item in agotados()">
             <div class="col">
-                Corona Pastillas Individuales x 1000g. Contiene 40 Pastillas<br />
-                4315-5<br />
-                Pág. 22<br />
-                <span class="positive">Campaña 3</span><br />
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                Cacerola Vaca<br />
-                8327-6<br />
-                Pág. 54<br />
-                <span class="positive">Campaña 3</span><br />
+            	{{ item.descripcion }}<br />	
+                {{ item.codigo }}<br />
+                Página {{ item.pagina }}<br />
+                <span class="positive">{{ item.catalogo }}</span><br />
             </div>
         </div>
 

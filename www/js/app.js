@@ -279,7 +279,7 @@ angular.module('novaventa', ['ionic', 'novaventa.controllers', 'novaventa.servic
             })
 
             .state('app.menu.tabs.mas.agotados.actual', {
-                url: "/agotadosactual",
+                url: "/actual",
                 views: {
                     'informacion-agotados-actual': {
                         templateUrl: "templates/informacionagotados.html",
@@ -289,11 +289,11 @@ angular.module('novaventa', ['ionic', 'novaventa.controllers', 'novaventa.servic
             })
 
             .state('app.menu.tabs.mas.agotados.siguiente', {
-                url: "/agotadossiguiente",
+                url: "/siguiente",
                 views: {
                     'informacion-agotados-siguiente': {
                         templateUrl: "templates/informacionagotados.html",
-                        controller: "AgotadosCampanaCtrl"
+                        controller: "AgotadosCampanaSiguienteCtrl"
                     }
                 }
             })

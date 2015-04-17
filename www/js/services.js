@@ -22,6 +22,8 @@
  $rootScope.campana.fechaEncuentro
  $rootScope.campana.fechaReparto
  $rootScope.campana.diasEnEjecucion
+ 
+ $rootScope.agotadosCampana
 
  Recordatorios - Informacion de campana para la zona de la Mamá
  $rootScope.fechas
@@ -206,6 +208,21 @@ angular.module('novaventa.services', [])
             },
             getRecordatorios: function(ano, campana, zona, fx){
                 var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/getRecordatoriosAntares/"+ ano +"/" + campana + "/" + zona;
+
+                $http.get(urlServicio).
+                    success(function(data, status, headers, config) {
+                        fx(true, data);
+                    }).
+                    error(function(data, status, headers, config) {
+                        fx(false, {});
+                    });
+            },
+            getAgotados: function(fx){
+                var fecha = new Date();
+            	var anoCampana = fecha.getFullYear() + Utilidades.Pad($rootScope.campana.numero);
+                
+                var urlServicio = "http://200.47.173.66:9081/AntaresWebServices/productoDeCampagna/agotadosCampagna/201503";
+                //var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/getRecordatoriosAntares/"+ ano +"/" + campana + "/" + zona;
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {

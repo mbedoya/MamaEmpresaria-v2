@@ -440,8 +440,77 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
 
         })
 
-        .controller('AgotadosCampanaCtrl', function($scope, $rootScope) {
-            alert($rootScope.campana.numero);
+        .controller('AgotadosCampanaCtrl', function($scope, $rootScope, $ionicLoading, Campana, Utilidades) {
+        
+        	$scope.agotados = function(){
+        	   return $rootScope.agotadosCampana;
+        	}
+        	
+        	$scope.estiloAlternate = function(indice){
+        	   if (indice % 2 == 0){
+        	      return "alternate";
+        	   }else{
+        	      return "";
+        	   }
+        	}
+        
+        	$scope.inicializar = function(){
+        	
+        	   $scope.loading =  $ionicLoading.show({
+                        template: Utilidades.getPlantillaEspera('Buscando Productos no disponibles')
+                    });
+        	
+        	    Campana.getAgotados(function(success, data){
+
+                    $ionicLoading.hide();
+                    
+                    if(success){
+                          $rootScope.agotadosCampana = data.listaCatalogo;                            
+                        }else{
+                           $scope.mostrarAyuda("Productos no disponibles", "No es posible consultar los productos no disponibles");
+                        }
+
+            	});
+        	  
+        	}	
+        	
+        	$scope.inicializar();
+        })
+        
+        .controller('AgotadosCampanaSiguienteCtrl', function($scope, $rootScope, $ionicLoading, Campana, Utilidades) {
+            $scope.agotados = function(){
+        	   return $rootScope.agotadosCampanaSiguiente;
+        	}
+        	
+        	$scope.estiloAlternate = function(indice){
+        	   if (indice % 2 == 0){
+        	      return "alternate";
+        	   }else{
+        	      return "";
+        	   }
+        	}
+        
+        	$scope.inicializar = function(){
+        	
+        	   $scope.loading =  $ionicLoading.show({
+                        template: Utilidades.getPlantillaEspera('Buscando Productos no disponibles')
+                    });
+        	
+        	    Campana.getAgotados(function(success, data){
+
+                    $ionicLoading.hide();
+                    
+                    if(success){
+                          $rootScope.agotadosCampanaSiguiente = data.listaCatalogo;                            
+                        }else{
+                           $scope.mostrarAyuda("Productos no disponibles", "No es posible consultar los productos no disponibles");
+                        }
+
+            	});
+        	  
+        	}	
+        	
+        	$scope.inicializar();
         })
 
     ;
