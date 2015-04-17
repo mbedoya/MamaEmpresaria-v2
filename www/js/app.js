@@ -282,7 +282,8 @@ angular.module('novaventa', ['ionic', 'novaventa.controllers', 'novaventa.servic
                 url: "/agotadosactual",
                 views: {
                     'informacion-agotados-actual': {
-                        templateUrl: "templates/informacionagotados.html"
+                        templateUrl: "templates/informacionagotados.html",
+                        controller: "AgotadosCampanaCtrl"
                     }
                 }
             })
@@ -291,7 +292,8 @@ angular.module('novaventa', ['ionic', 'novaventa.controllers', 'novaventa.servic
                 url: "/agotadossiguiente",
                 views: {
                     'informacion-agotados-siguiente': {
-                        templateUrl: "templates/informacionagotados.html"
+                        templateUrl: "templates/informacionagotados.html",
+                        controller: "AgotadosCampanaCtrl"
                     }
                 }
             })

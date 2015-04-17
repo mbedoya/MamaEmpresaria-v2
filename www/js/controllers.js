@@ -24,18 +24,18 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
             }
 
             $scope.mostrarBadge = function(){
-                return Pedido.hayPedido() && Pedido.estadoEncontrado('Novedad') 
-                && !Pedido.estadoEncontrado('Anulado') 
-                && !Pedido.estadoEncontrado('Facturado') 
-                && Pedido.hayNovedadGestionable();
+                return Pedido.hayPedido() && Pedido.estadoEncontrado('Novedad')
+                    && !Pedido.estadoEncontrado('Anulado')
+                    && !Pedido.estadoEncontrado('Facturado')
+                    && Pedido.hayNovedadGestionable();
             }
-            
+
             $scope.cantidadBadge = function(){
-               if($scope.mostrarBadge()){
-                  return "1";
-			   }else{
-			      return "";
-			   }
+                if($scope.mostrarBadge()){
+                    return "1";
+                }else{
+                    return "";
+                }
             }
 
             $scope.mostrarOpcionesMas = function() {
@@ -438,6 +438,10 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                 }
             }
 
+        })
+
+        .controller('AgotadosCampanaCtrl', function($scope, $rootScope) {
+            alert($rootScope.campana.numero);
         })
 
     ;
