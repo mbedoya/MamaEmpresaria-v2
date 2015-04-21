@@ -166,7 +166,7 @@ strong{
   color:#f74094;
 }
 .menu-principal > .tabs .tab-title {
-  padding-top: 60px;
+  padding-top: 57px;
   display: block;
 }
 
@@ -759,6 +759,10 @@ strong{
 
 .tabs .tab-item .badge.badge-assertive, .badge.badge-assertive {
     background-color: #ff0000;
+}
+
+.tab-item {
+    white-space: normal;
 }
 
 .ion-ios-people-outline:before, .ion-android-desktop:before, .ion-cube:before, .ion-android-people:before{
