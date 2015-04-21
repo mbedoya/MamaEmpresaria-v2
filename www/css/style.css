@@ -405,6 +405,30 @@ strong{
     background-position: -219px -112px;
 }
 
+.icono-caja-abierta {
+    width:54px;
+    height:54px;
+    background-repeat:no-repeat;
+    background-color: transparent;
+    background-image: url(../img/caja-abierta.png);
+    vertical-align: top;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+}
+
+.icono-caja-cerrada {
+    width:54px;
+    height:54px;
+    background-repeat:no-repeat;
+    background-color: transparent;
+    background-image: url(../img/caja-cerrada.png);
+    vertical-align: top;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+}
+
 /* Flecha ver más */
 .list .item > i.icon.ion-ios-arrow-forward:before {
   background:#1594ac;

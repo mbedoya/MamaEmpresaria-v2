@@ -131,6 +131,16 @@ angular.module('novaventa', ['ionic', 'novaventa.controllers', 'novaventa.servic
                     }
                 }
             })
+            
+            .state('app.menu.tabs.mipedido-trazabilidad', {
+                url: "/mipedido",
+                views: {
+                    'pedido-content': {
+                        templateUrl: "templates/mipedido-trazabilidad.html",
+                        controller: 'MiPedidoTrazabilidadCtrl'
+                    }
+                }
+            })
 
             .state('app.menu.tabs.mispuntos', {
                 url: "/mispuntos",
