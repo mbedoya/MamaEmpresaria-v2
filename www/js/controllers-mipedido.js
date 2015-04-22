@@ -54,6 +54,24 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
         return fecha;
     }
 
+    $scope.estadoEncontrado = function(estado){
+        return Pedido.estadoEncontrado(estado);
+    }
+
+    $scope.buscarEstado = function(estado){
+        return Pedido.buscarEstado(estado);
+    }
+
+    $scope.mostrarNovedad = function(novedad){
+        var mostrar = false;
+        if(novedad.toLowerCase().indexOf('morosa')>=0 ||
+            novedad.toLowerCase().indexOf('cupo')>=0 ||
+            novedad.toLowerCase().indexOf('tope')>=0){
+            mostrar = true;
+        }
+        return mostrar;
+    }
+
     $scope.encuentroRealizado = function(){
         return Campana.encuentroRealizado();
     }

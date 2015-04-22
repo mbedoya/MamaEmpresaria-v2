@@ -6,7 +6,7 @@
 
         <div class="list">
 
-            <!-- Pedido Anterior - Encontrado  -->
+            <!-- Pedido Anterior - No Encontrado  -->
             <a class="item item-avatar item-icon-right" href="#" ng-show="ultimoEstadoPedidoAnterior()" >
                 <div class="icono-caja-abierta"></div>
                 <h2>Campaña {{campana.numero-1}}
@@ -15,7 +15,7 @@
                 </p>
             </a>
 
-            <!-- Pedido Anterior - No Encontrado  -->
+            <!-- Pedido Anterior - Encontrado  -->
             <a class="item item-avatar item-icon-right" href="#" ng-show="!ultimoEstadoPedidoAnterior()" >
                 <div class="icono-caja-abierta"></div>
                 <h2>Campaña {{campana.numero-1}}
@@ -23,8 +23,6 @@
                 <p>{{ultimoEstadoPedidoAnterior().estado}}<br />
                     {{ultimoEstadoPedidoAnterior().fecha | date: 'dd' }} de  {{ultimoEstadoPedidoAnterior().fecha | date: 'MMMM' }}
                 </p>
-				<span class="assertive" ng-show="false">Tienes algunos productos no disponibles en tu pedido.
-				</span>
                 <i class="icon ion-chevron-right"></i>
             </a>
 
@@ -36,6 +34,9 @@
                 <p>{{ultimoEstadoPedidoActual().estado}}<br />
                     {{ultimoEstadoPedidoActual().fecha | date: 'dd' }} de  {{ultimoEstadoPedidoActual().fecha | date: 'MMMM' }}
                 </p>
+                <span class="assertive" ng-show="!estadoEncontrado('Facturado') && estadoEncontrado('Novedad') && !estadoEncontrado('Anulado') && mostrarNovedad(buscarEstado('Novedad').motivo)">
+                    Tu pedido presenta novedad. Te invitamos a resolverla
+                </span>
                 <i class="icon ion-chevron-right"></i>
             </a>
 
