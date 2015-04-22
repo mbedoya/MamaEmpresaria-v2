@@ -808,3 +808,7 @@ strong{
     white-space: nowrap !important;
     text-align: justify !important;
 }
+
+.no-border{
+    border: #FFF solid 0px;
+}

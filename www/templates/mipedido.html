@@ -3,31 +3,78 @@
         <div class="row bread">
             Mi Pedido
         </div>
-        
+
         <div class="list">
-			<a class="item item-avatar item-icon-right" href="#" >
-				<div class="icono-caja-cerrada"></div>
-				<h2>Campaña {{campana.numero}}
-				</h2>
-				<p>Estado del Pedido: Recibido en la Empresa<br />
-				   Abril 18
-				</p>
-				<i class="icon ion-chevron-right"></i>
-			</a>
-			<a class="item item-avatar item-icon-right alternate" href="#" >
-				<div class="icono-caja-abierta"></div>
-				<h2>Campaña {{campana.numero-1}}
-				</h2>
-				<p>Estado del Pedido: Entregado al Transportador<br />
-				   Marzo 7
-				</p>
-				<span class="assertive">Tienes algunos productos no disponibles en tu pedido.
+
+            <!-- Pedido Anterior - Encontrado  -->
+            <a class="item item-avatar item-icon-right" href="#" ng-show="ultimoEstadoPedidoAnterior()" >
+                <div class="icono-caja-abierta"></div>
+                <h2>Campaña {{campana.numero-1}}
+                </h2>
+                <p>No tienes un pedido registrado para la campaña
+                </p>
+            </a>
+
+            <!-- Pedido Anterior - No Encontrado  -->
+            <a class="item item-avatar item-icon-right" href="#" ng-show="!ultimoEstadoPedidoAnterior()" >
+                <div class="icono-caja-abierta"></div>
+                <h2>Campaña {{campana.numero-1}}
+                </h2>
+                <p>{{ultimoEstadoPedidoAnterior().estado}}<br />
+                    {{ultimoEstadoPedidoAnterior().fecha | date: 'dd' }} de  {{ultimoEstadoPedidoAnterior().fecha | date: 'MMMM' }}
+                </p>
+				<span class="assertive" ng-show="false">Tienes algunos productos no disponibles en tu pedido.
 				</span>
-				<i class="icon ion-chevron-right"></i>
-			</a>
+                <i class="icon ion-chevron-right"></i>
+            </a>
+
+            <!-- Pedido Actual - Encontrado  -->
+            <a class="item item-avatar item-icon-right alternate" href="#/app/menu/tabs/mipedido-trazabilidad" ng-show="ultimoEstadoPedidoActual()" >
+                <div class="icono-caja-cerrada"></div>
+                <h2>Campaña {{campana.numero}}
+                </h2>
+                <p>{{ultimoEstadoPedidoActual().estado}}<br />
+                    {{ultimoEstadoPedidoActual().fecha | date: 'dd' }} de  {{ultimoEstadoPedidoActual().fecha | date: 'MMMM' }}
+                </p>
+                <i class="icon ion-chevron-right"></i>
+            </a>
+
+            <!-- Pedido Actual - No Encontrado y es Encuentro -->
+            <a class="item item-avatar item-icon-right alternate" href="#" ng-show="!ultimoEstadoPedidoActual() && hoyEsEncuentro()" >
+                <div class="icono-caja-cerrada"></div>
+                <h2>Campaña {{campana.numero}}
+                </h2>
+                <p>Aún no tenemos información sobre tu pedido. Si lo enviaste hoy por favor verifica mañana.
+                </p>
+            </a>
+
+            <!-- Pedido Actual - No Encontrado y es Posteriores a Encuentro -->
+            <a class="item item-avatar item-icon-right alternate" href="#" ng-show="!ultimoEstadoPedidoActual() && encuentroRealizado() && !hoyEsEncuentro()" >
+                <div class="icono-caja-cerrada"></div>
+                <h2>Campaña {{campana.numero}}
+                </h2>
+                <span>Aún no tenemos información sobre
+                tu pedido. Si lo enviaste hoy por favor
+                verifica mañana. Si ya hiciste el envío de
+                tu pedido y aún no registra verifica: <br /></span>
+                <p><strong>1</strong> Que no se haya quedado en estado "Guardado" en la página web. </p>
+                <p><strong>2</strong> Que lo hayas llevado al buzón en los horarios y fechas establecidas.</p>
+            </a>
+
+            <!-- Pedido Actual - No Encontrado y todavía no es Encuentro -->
+            <a class="item item-avatar item-icon-right alternate" href="#" ng-show="!ultimoEstadoPedidoActual() && !encuentroRealizado()" >
+                <div class="icono-caja-cerrada"></div>
+                <h2>Campaña {{campana.numero}}
+                </h2>
+                <p>Aún no tenemos información sobre
+                    tu pedido de esta campaña, te invitamos
+                    a consultar a partir del {{fechaLuegoEncuentro() | date: 'dd' }} de {{fechaLuegoEncuentro() | date: 'MMMM' }}.
+                </p>
+            </a>
+
         </div>
 
-        <a class="item">
+        <a class="item no-border">
             <h2>&nbsp;</h2>
         </a>
 

@@ -87,6 +87,38 @@ angular.module('novaventa.services', [])
                         fx(false, {});
                     });
             },
+            getTrazabilidadActual: function(cedula, fx) {
+
+                var fecha = new Date();
+                var anoCampana = fecha.getFullYear() + Utilidades.Pad($rootScope.campana.numero);
+
+                //var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula + "/" + anoCampana;
+                var urlServicio = "http://200.47.173.66:9081" +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula + "/" + "201503";
+
+                $http.get(urlServicio).
+                    success(function(data, status, headers, config) {
+                        fx(true, data);
+                    }).
+                    error(function(data, status, headers, config) {
+                        fx(false, {});
+                    });
+            },
+            getTrazabilidadAnterior: function(cedula, fx) {
+
+                var fecha = new Date();
+                var anoCampana = fecha.getFullYear() + Utilidades.Pad($rootScope.campana.numero-1);
+
+                //var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula + "/" + anoCampana;
+                var urlServicio = "http://200.47.173.66:9081" +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula + "/" + "201502";
+
+                $http.get(urlServicio).
+                    success(function(data, status, headers, config) {
+                        fx(true, data);
+                    }).
+                    error(function(data, status, headers, config) {
+                        fx(false, {});
+                    });
+            },
             buscarEstado: function(estado){
                 var miestado = null;
 
