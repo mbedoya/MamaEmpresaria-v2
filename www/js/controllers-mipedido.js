@@ -26,12 +26,45 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
 
             }
         });
+
+        Pedido.getAgotadosActual($rootScope.datos.cedula, function (success, data){
+            if(success){
+                $scope.agotadosActual = data;
+            }else{
+
+            }
+        });
+
+        Pedido.getAgotadosAnterior($rootScope.datos.cedula, function (success, data){
+            if(success){
+                $scope.agotadosAnterior = data;
+            }else{
+
+            }
+        });
+    }
+
+    $scope.agotadosPedidoActual = function(){
+        if($scope.agotadosActual && !$scope.agotadosActual.razonRechazo){
+            return $scope.agotadosActual;
+        }else{
+            return null;
+        }
+    }
+
+    $scope.agotadosPedidoAnterior = function(){
+        if($scope.agotadosAnterior && !$scope.agotadosAnterior.razonRechazo){
+            return $scope.agotadosAnterior;
+        }else{
+            return null;
+        }
     }
 
     $scope.ultimoEstadoPedidoActual = function(){
         if($scope.pedidoActual && $scope.pedidoActual.length > 0){
             var estadoPedido = $scope.pedidoActual[$scope.pedidoActual.length-1];
             estadoPedido.estado = Utilidades.cambiarNombreEstadoPedido(estadoPedido.estado);
+            $("#estadoPedidoActual").val(estadoPedido.estado);
             return estadoPedido;
         }
 

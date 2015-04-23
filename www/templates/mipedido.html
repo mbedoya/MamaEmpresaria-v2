@@ -23,6 +23,9 @@
                 <p>{{ultimoEstadoPedidoAnterior().estado}}<br />
                     {{ultimoEstadoPedidoAnterior().fecha | date: 'dd' }} de  {{ultimoEstadoPedidoAnterior().fecha | date: 'MMMM' }}
                 </p>
+                <span class="assertive" ng-show="agotadosPedidoAnterior()">
+                    Tienes productos no disponibles en tu pedido
+                </span>
                 <i class="icon ion-chevron-right"></i>
             </a>
 
@@ -36,6 +39,9 @@
                 </p>
                 <span class="assertive" ng-show="!estadoEncontrado('Facturado') && estadoEncontrado('Novedad') && !estadoEncontrado('Anulado') && mostrarNovedad(buscarEstado('Novedad').motivo)">
                     Tu pedido presenta novedad. Te invitamos a resolverla
+                </span>
+                <span class="assertive" ng-show="agotadosPedidoActual()">
+                    Tienes productos no disponibles en tu pedido
                 </span>
                 <i class="icon ion-chevron-right"></i>
             </a>
@@ -81,7 +87,7 @@
 
         <!-- Zona de Automatización de Pruebas -->
         <!-- Los valores de este campo se llenan desde el Controller -->
-        <input id="estados" type="hidden" value='' />
+        <input id="estadoPedidoActual" type="hidden" value='' />
 
     </ion-content>
 </ion-view>

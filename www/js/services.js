@@ -48,6 +48,38 @@ angular.module('novaventa.services', [])
         var self = this;
 
         return {
+            getAgotadosActual: function(cedula){
+
+                var anoCampana = Utilidades.getAnoCampana();
+
+                //var urlServicio = $rootScope.configuracion.ip_servidores +  "AntaresWebServices/documento/agotadosPedido/" + cedula + "/" + anoCampana;
+                var urlServicio = "http://200.47.173.66:9081/" +  "AntaresWebServices/documento/agotadosPedido/" + cedula + "/" + anoCampana;
+
+                $http.get(urlServicio).
+                    success(function(data, status, headers, config) {
+                        fx(true, data);
+                    }).
+                    error(function(data, status, headers, config) {
+                        fx(false, {});
+                    });
+            },
+
+            getAgotadosAnterior: function(cedula){
+
+                var anoCampana = Utilidades.getAnoCampanaAnterior();
+
+                //var urlServicio = $rootScope.configuracion.ip_servidores +  "AntaresWebServices/documento/agotadosPedido/" + cedula + "/" + anoCampana;
+                var urlServicio = "http://200.47.173.66:9081/" +  "AntaresWebServices/documento/agotadosPedido/" + cedula + "/" + anoCampana;
+
+                $http.get(urlServicio).
+                    success(function(data, status, headers, config) {
+                        fx(true, data);
+                    }).
+                    error(function(data, status, headers, config) {
+                        fx(false, {});
+                    });
+            },
+
             hayPedido: function(){
 				if($rootScope.pedido){
 				   if(!$rootScope.pedido.razonRechazo){
@@ -616,7 +648,7 @@ angular.module('novaventa.services', [])
         }
     })
 
-    .factory('Utilidades', function() {
+    .factory('Utilidades', function($rootScope) {
 
         this.padStr = function(i) {
             return (i < 10) ? "0" + i : "" + i;
@@ -681,6 +713,25 @@ angular.module('novaventa.services', [])
 
             getPlantillaEspera: function(mensaje) {
                 return mensaje + '<br /><br /> <img style="max-width:50px; max-height:50px;" src="img/loading.gif">';
+            },
+
+            getAnoCampana: function(){
+                var fecha = new Date();
+                var anoCampana = fecha.getFullYear() + Utilidades.Pad($rootScope.campana.numero);
+
+                return anoCampana;
+            },
+
+            getAnoCampanaAnterior: function(){
+                var fecha = new Date();
+                var anoCampana;
+                if($rootScope.campana.numero == 1){
+                    anoCampana = fecha.getFullYear() + Utilidades.Pad($rootScope.numeroCampanasAno);
+                }else{
+                    anoCampana = fecha.getFullYear() + Utilidades.Pad($rootScope.campana.numero-1);
+                }
+
+                return anoCampana;
             }
         }
     })
