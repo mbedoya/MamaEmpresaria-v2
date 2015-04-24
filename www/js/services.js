@@ -713,7 +713,7 @@ angular.module('novaventa.services', [])
 
             getAnoCampana: function(){
                 var fecha = new Date();
-                var anoCampana = fecha.getFullYear() + Utilidades.Pad($rootScope.campana.numero);
+                var anoCampana = fecha.getFullYear() + self.padStr($rootScope.campana.numero);
 
                 return anoCampana;
             },
@@ -722,9 +722,9 @@ angular.module('novaventa.services', [])
                 var fecha = new Date();
                 var anoCampana;
                 if($rootScope.campana.numero == 1){
-                    anoCampana = fecha.getFullYear() + Utilidades.Pad($rootScope.numeroCampanasAno);
+                    anoCampana = fecha.getFullYear() + self.padStr($rootScope.numeroCampanasAno);
                 }else{
-                    anoCampana = fecha.getFullYear() + Utilidades.Pad($rootScope.campana.numero-1);
+                    anoCampana = fecha.getFullYear() + self.padStr($rootScope.campana.numero-1);
                 }
 
                 return anoCampana;
