@@ -22,6 +22,13 @@
  $rootScope.campana.fechaEncuentro
  $rootScope.campana.fechaReparto
  $rootScope.campana.diasEnEjecucion
+
+ Campana Anterior
+ $rootScope.campanaAnterior.numero
+ $rootScope.campanaAnterior.fechaMontajePedido
+ $rootScope.campanaAnterior.fechaEncuentro
+ $rootScope.campanaAnterior.fechaReparto
+ $rootScope.campanaAnterior.diasEnEjecucion
  
  $rootScope.agotadosCampana
 
@@ -32,6 +39,10 @@
  Pedido
  $rootScope.pedido
  $rootScope.pedido.razonRechazo - Indica mensaje cuando no hay pedido para la Mama
+
+ Pedido Anterior
+ $rootScope.pedidoAnterior
+ $rootScope.pedidoAnterior.razonRechazo - Indica mensaje cuando no hay pedido para la Mama
 
  Puntos
  $rootScope.puntos.puntosDisponibles
@@ -332,7 +343,7 @@ angular.module('novaventa.services', [])
                                 rootScope.campana = {numero: '-', fechaMontajePedido:'-', fechaEncuentro:'-', fechaCorreteo: '-', fechaMontajePedido: '-', diasEnEjecucion: ''};
 
                                 //Obtener el estado del pedido
-                                Pedido.getTrazabilidad(rootScope.datos.cedula, function (success, data){
+                                Pedido.getTrazabilidadActual(rootScope.datos.cedula, function (success, data){
                                     if(success){
                                         rootScope.pedido = data;
                                         
@@ -343,6 +354,8 @@ angular.module('novaventa.services', [])
 												//Obtener la fecha de montaje de pedido (Encuentro)
 												encuentro = '';
 
+                                                reparto = '';
+
 												correteo = '';
 												for (i = 0; i < data.listaRecordatorios.length; i++){
 													if(data.listaRecordatorios[i].actividad.toLowerCase() == 'encuentro'){
@@ -351,10 +364,14 @@ angular.module('novaventa.services', [])
 													if(data.listaRecordatorios[i].actividad.toLowerCase() == 'fecha correteo'){
 														correteo = data.listaRecordatorios[i].fecha;
 													}
+
+                                                    if (data.listaRecordatorios[i].actividad.toLowerCase() == 'reparto de pedido 1') {
+                                                        reparto = data.listaRecordatorios[i].fecha;
+                                                    }
 												}
 
 												rootScope.campana = {numero: data.listaRecordatorios[0].campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
-													fechaCorreteo: correteo, fechaReparto: '',  diasEnEjecucion: ''};
+													fechaCorreteo: correteo, fechaReparto: reparto,  diasEnEjecucion: ''};
 
 												rootScope.fechas = data.listaRecordatorios;
 										
@@ -417,6 +434,7 @@ angular.module('novaventa.services', [])
 
 															var diferenciaDias = Utilidades.diferenciaFechaDias(new Date(correteoAnterior), new Date());
 
+                                                            rootScope.campanaAnterior = rootScope.campana;
 															rootScope.campana = {numero: data.listaRecordatorios[0].campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
 																fechaCorreteo: correteo, fechaReparto: reparto,  diasEnEjecucion: diferenciaDias};
 															rootScope.fechasAnteriores = rootScope.fechas;
@@ -463,6 +481,34 @@ angular.module('novaventa.services', [])
 													Campana.getRecordatorios(ano, siguienteCampana, rootScope.zona, function (success, data){
 														if(success){
 															rootScope.fechasAnteriores = data.listaRecordatorios;
+
+                                                            //Obtener la fecha de montaje de pedido (Encuentro)
+                                                            encuentro = '';
+
+                                                            //Obtener la fecha de Correteo
+                                                            correteo = '';
+
+                                                            //Obtener la fecha de reparto
+                                                            reparto = '';
+
+                                                            for (i = 0; i < data.listaRecordatorios.length; i++) {
+                                                                if (data.listaRecordatorios[i].actividad.toLowerCase() == 'encuentro') {
+                                                                    encuentro = data.listaRecordatorios[i].fecha;
+                                                                }
+
+                                                                if (data.listaRecordatorios[i].actividad.toLowerCase() == 'fecha correteo') {
+                                                                    correteo = data.listaRecordatorios[i].fecha;
+                                                                }
+
+                                                                if (data.listaRecordatorios[i].actividad.toLowerCase() == 'reparto de pedido 1') {
+                                                                    reparto = data.listaRecordatorios[i].fecha;
+                                                                }
+
+                                                            }
+
+                                                            rootScope.campanaAnterior = {numero: data.listaRecordatorios[0].campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
+                                                                fechaCorreteo: correteo, fechaReparto: reparto,  diasEnEjecucion: ''};
+
 														}else{
 														}
 													});

@@ -1,4 +1,4 @@
-moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootScope, $state, $ionicLoading, $http, $ionicPopup, Mama, Internet, GA, Pedido, Utilidades, Campana) {
+moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope, $rootScope, $state, $ionicLoading, $http, $ionicPopup, Mama, Internet, GA, Pedido, Utilidades, Campana) {
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Mi Pedido Detalle");
@@ -17,11 +17,11 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
                 template: 'Estamos consultando el estado de tu pedido'
             });
 
-            Pedido.getTrazabilidadActual($rootScope.datos.cedula, function (success, data){
+            Pedido.getTrazabilidadAnterior($rootScope.datos.cedula, function (success, data){
                 $ionicLoading.hide();
 
                 if(success){
-                    $scope.pedido = data;
+                    $scope.pedidoAnterior = data;
                 }else{
                     $scope.mostrarAyuda("Mi Pedido","En este momento no podemos consultar tu información");
                 }
@@ -51,7 +51,7 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
     }
 
     $scope.pedido = function(){
-        return $rootScope.pedido;
+        return $rootScope.pedidoAnterior;
     }
 
     $scope.motivoNovedadEncontrado = function(motivo){
@@ -66,7 +66,7 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
     }
 
     $scope.fechaRepartoPedido = function(){
-        return $rootScope.campana.fechaReparto;
+        return $rootScope.campanaAnterior.fechaReparto;
     }
 
     $scope.estadoEncontrado = function(estado){
@@ -82,15 +82,15 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
     }
 
     $scope.fechaCorreteo = function(){
-        return $rootScope.campana.fechaCorreteo;
+        return $rootScope.campanaAnterior.fechaCorreteo;
     }
 
     $scope.fechaEncuentro = function(){
-        return $rootScope.campana.fechaEncuentro;
+        return $rootScope.campanaAnterior.fechaEncuentro;
     }
 
     $scope.fechaLuegoEncuentro = function(){
-        var fecha = new Date($rootScope.campana.fechaEncuentro);
+        var fecha = new Date($rootScope.campanaAnterior.fechaEncuentro);
         fecha.setDate(fecha.getDate() + 2);
         return fecha;
     }
@@ -109,43 +109,11 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
         return (i < 10) ? "0" + i : "" + i;
     }
 
-    $scope.encuentroRealizado = function(){
-        return Campana.encuentroRealizado();
-    }
-
-    $scope.hoyEsCorreteo = function(){
-        return Campana.hoyEsCorreteo();
-    }
-
-    $scope.hoyEsEncuentro = function(){
-        return Campana.hoyEsEncuentro();
-    }
-
-    $scope.diasEnEjecucionCampana = function(){
-
-        console.log("dias: " + $rootScope.campana.diasEnEjecucion);
-
-        if ($rootScope.campana.diasEnEjecucion != '-'){
-            console.log("dias: " + Number($rootScope.campana.diasEnEjecucion));
-            return Number($rootScope.campana.diasEnEjecucion);
-        }else{
-            return null;
-        }
-    }
-
-    $scope.campanaAnterior = function(){
-        if($rootScope.campana.numero == 1){
-            return $rootScope.numeroCampanasAno;
-        }else{
-            return $rootScope.campana.numero-1;
-        }
-    }
-
     $scope.$on('$ionicView.beforeEnter', function(){
         var valorHiddenEstados = '';
-        if($rootScope.pedido && $rootScope.pedido.historiaEstados){
-            for (i = 0; i < $rootScope.pedido.historiaEstados.length; i++) {
-                valorHiddenEstados = valorHiddenEstados + Utilidades.cambiarNombreEstadoPedido($rootScope.pedido.historiaEstados[i].estado) + ","
+        if($rootScope.pedidoAnterior && $rootScope.pedidoAnterior.historiaEstados){
+            for (i = 0; i < $rootScope.pedidoAnterior.historiaEstados.length; i++) {
+                valorHiddenEstados = valorHiddenEstados + Utilidades.cambiarNombreEstadoPedido($rootScope.pedidoAnterior.historiaEstados[i].estado) + ","
             }
         }
         $("#estados").val(valorHiddenEstados);
