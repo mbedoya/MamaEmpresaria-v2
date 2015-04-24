@@ -132,8 +132,7 @@ angular.module('novaventa.services', [])
             },
             getTrazabilidadActual: function(cedula, fx) {
 
-                var fecha = new Date();
-                var anoCampana = fecha.getFullYear() + Utilidades.Pad($rootScope.campana.numero);
+                var anoCampana = Utilidades.getAnoCampana();
 
                 //var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula + "/" + anoCampana;
                 var urlServicio = "http://200.47.173.66:9081" +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula + "/" + "201503";
@@ -148,8 +147,7 @@ angular.module('novaventa.services', [])
             },
             getTrazabilidadAnterior: function(cedula, fx) {
 
-                var fecha = new Date();
-                var anoCampana = fecha.getFullYear() + Utilidades.Pad($rootScope.campana.numero-1);
+                var anoCampana = Utilidades.getAnoCampanaAnterior();
 
                 //var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula + "/" + anoCampana;
                 var urlServicio = "http://200.47.173.66:9081" +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula + "/" + "201502";
@@ -553,9 +551,8 @@ angular.module('novaventa.services', [])
 
             },
             getPuntos: function(cedula, fx) {
-            
-            	var fecha = new Date();
-            	var anoCampana = fecha.getFullYear() + Utilidades.Pad($rootScope.campana.numero);
+
+                var anoCampana = Utilidades.getAnoCampana();
             	
                 var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/resumenPuntos/ResumenPuntosEmpresaria/" + cedula + "/" + anoCampana;
 
@@ -569,8 +566,7 @@ angular.module('novaventa.services', [])
             },
             getPuntosCampanaAnterior: function(cedula, fx) {
 
-                var fecha = new Date();
-                var anoCampana = fecha.getFullYear() + Utilidades.Pad($rootScope.campana.numero - 1);
+                var anoCampana = Utilidades.getAnoCampanaAnterior();
 
                 var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/resumenPuntos/ResumenPuntosEmpresaria/" + cedula + "/" + anoCampana;
 
