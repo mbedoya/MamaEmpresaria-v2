@@ -389,24 +389,23 @@ angular.module('novaventa.services', [])
 															//Obtener la fecha de Correteo
 															correteo = '';
 
-															for (i = 0; i < data.listaRecordatorios.length; i++){
-																if(data.listaRecordatorios[i].actividad.toLowerCase() == 'encuentro'){
-																	encuentro = data.listaRecordatorios[i].fecha;
-																}
+                                                            //Obtener la fecha de reparto
+                                                            reparto = '';
 
-																if(data.listaRecordatorios[i].actividad.toLowerCase() == 'fecha correteo'){
-																	correteo = data.listaRecordatorios[i].fecha;
-																}
-															}
+															for (i = 0; i < data.listaRecordatorios.length; i++) {
+                                                                if (data.listaRecordatorios[i].actividad.toLowerCase() == 'encuentro') {
+                                                                    encuentro = data.listaRecordatorios[i].fecha;
+                                                                }
 
-															//Obtener la fecha de reparto. Esta es la campaña anterior si me muevo
-															reparto = '';
+                                                                if (data.listaRecordatorios[i].actividad.toLowerCase() == 'fecha correteo') {
+                                                                    correteo = data.listaRecordatorios[i].fecha;
+                                                                }
 
-															for (i = 0; i < rootScope.fechas.length; i++){
-																if(rootScope.fechas[i].actividad.toLowerCase() == 'reparto de pedido 1'){
-																	reparto = rootScope.fechas[i].fecha;
-																}
-															}
+                                                                if (data.listaRecordatorios[i].actividad.toLowerCase() == 'reparto de pedido 1') {
+                                                                    reparto = data.listaRecordatorios[i].fecha;
+                                                                }
+
+                                                            }
 
 															//Correteo Anterior
 															correteoAnterior = ''
@@ -424,10 +423,10 @@ angular.module('novaventa.services', [])
 															rootScope.fechas = data.listaRecordatorios;
 
 															console.log("Moviendose a nueva camapaña " + rootScope.campana.numero);
-															
+
 															//NOTIFICAR LOGGEDIN
-															
-															//Si se notifica inmediatamente no son alcanzados todos los controladores                         
+
+															//Si se notifica inmediatamente no son alcanzados todos los controladores
 															setTimeout( function(){
 															   //Notificar que el usuario se ha logueado
 															   rootScope.$broadcast('loggedin');
@@ -464,51 +463,6 @@ angular.module('novaventa.services', [])
 													Campana.getRecordatorios(ano, siguienteCampana, rootScope.zona, function (success, data){
 														if(success){
 															rootScope.fechasAnteriores = data.listaRecordatorios;
-
-															//Obtener la fecha de Correteo
-															correteo = '';
-
-															for (i = 0; i < data.listaRecordatorios.length; i++){
-																if(data.listaRecordatorios[i].actividad.toLowerCase() == 'fecha correteo'){
-																	correteo = data.listaRecordatorios[i].fecha;
-																}
-															}
-
-															//Para la fecha de reparto de pedido, si han transcurrido 5 días o menos de campaña
-															//entonces se muestra la fecha anterior, de lo contrario la actual
-															var diferenciaDias = Utilidades.diferenciaFechaDias(new Date(correteo), new Date());
-															rootScope.campana.diasEnEjecucion = diferenciaDias;
-															
-															console.log("dias ejecucion" + diferenciaDias);
-
-															//Si han pasado mas de 5 días entonces mostrar campaña actual
-															//si no mostrar campaña anterior
-															if(Campana.encuentroRealizado() &&
-															 !( Pedido.estadoEncontrado('Anulado') || Pedido.estadoEncontrado('Facturado'))
-														      ){
-																//Obtener la fecha de reparto.
-																reparto = '';
-
-																for (i = 0; i < rootScope.fechas.length; i++){
-																	if(rootScope.fechas[i].actividad.toLowerCase() == 'reparto de pedido 1'){
-																		reparto = rootScope.fechas[i].fecha;
-																	}
-																}
-
-																rootScope.campana.fechaReparto = reparto;
-															}else{
-																//Obtener la fecha de reparto.
-																reparto = '';
-
-																for (i = 0; i < rootScope.fechasAnteriores.length; i++){
-																	if(rootScope.fechasAnteriores[i].actividad.toLowerCase() == 'reparto de pedido 1'){
-																		reparto = rootScope.fechasAnteriores[i].fecha;
-																	}
-																}
-
-																rootScope.campana.fechaReparto = reparto;
-															}
-
 														}else{
 														}
 													});
