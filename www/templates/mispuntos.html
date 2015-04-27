@@ -29,23 +29,27 @@
                     </span> antes de las 4 de la tarde
                     <br />
                 </div>
-                <span>
+                <p>
                     Estos puntos se verán reflejados como disponibles después del {{campana.fechaCorreteo | date: 'dd' }} de  {{campana.fechaCorreteo | date: 'MMMM' }}.
-                </span>
+                </p>
                 <span class="item-note">
                     <strong> {{ puntosPorPerder() }} </strong>
                 </span>
             </label>
             <label class="item item-avatar" ng-show="mostrarPuntosAVencer()">
                 <div class="icono calendario"></div>
-                Puntos a vencer en Campaña {{campana.numero}} <!--  {{campanaVencimientoPuntos()}} -->
+                <span>
+                    Puntos a vencer en Campaña {{campana.numero}} <!--  {{campanaVencimientoPuntos()}} -->
+                </span>
                 <span class="item-note">
                     <strong> {{ puntosAVencer() }} </strong>
                 </span>
             </label>
             <a class="item item-avatar item-icon-right" ng-show="mostrarPuntosRedimidos()" ng-click="mostrarPremios()" >
                <div class="icono regalo"></div>
-                Puntos redimidos campaña anterior
+                <span>
+                    Puntos redimidos campaña anterior
+                </span>
                 <span class="item-note">
                   <strong> {{ puntosRedimidos() }} </strong>
                 </span>
