@@ -22,6 +22,9 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
         Pedido.getTrazabilidadAnterior($rootScope.datos.cedula, function (success, data){
             if(success){
                 $scope.pedidoAnterior = data.historiaEstados;
+
+                console.log("Trazabilidad anterior");
+                console.log($scope.pedidoAnterior);
             }else{
 
             }
@@ -72,9 +75,11 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
     }
 
     $scope.ultimoEstadoPedidoAnterior = function(){
+
         if($scope.pedidoAnterior && $scope.pedidoAnterior.length > 0){
             var estadoPedido = $scope.pedidoAnterior[$scope.pedidoAnterior.length-1];
             estadoPedido.estado = Utilidades.cambiarNombreEstadoPedido(estadoPedido.estado);
+
             return estadoPedido;
         }
 

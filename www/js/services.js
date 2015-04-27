@@ -59,7 +59,7 @@ angular.module('novaventa.services', [])
         var self = this;
 
         return {
-            getAgotadosActual: function(cedula){
+            getAgotadosActual: function(cedula, fx){
 
                 var anoCampana = Utilidades.getAnoCampana();
 
@@ -75,7 +75,7 @@ angular.module('novaventa.services', [])
                     });
             },
 
-            getAgotadosAnterior: function(cedula){
+            getAgotadosAnterior: function(cedula, fx){
 
                 var anoCampana = Utilidades.getAnoCampanaAnterior();
 
@@ -134,8 +134,8 @@ angular.module('novaventa.services', [])
 
                 var anoCampana = Utilidades.getAnoCampana();
 
-                //var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula + "/" + anoCampana;
-                var urlServicio = "http://200.47.173.66:9081" +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula + "/" + "201503";
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula + "/" + anoCampana;
+                //var urlServicio = "http://200.47.173.66:9081" +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula + "/" + "201503";
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -149,8 +149,8 @@ angular.module('novaventa.services', [])
 
                 var anoCampana = Utilidades.getAnoCampanaAnterior();
 
-                //var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula + "/" + anoCampana;
-                var urlServicio = "http://200.47.173.66:9081" +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula + "/" + "201502";
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula + "/" + anoCampana;
+                //var urlServicio = "http://200.47.173.66:9081" +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula + "/" + "201502";
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -344,7 +344,7 @@ angular.module('novaventa.services', [])
                                 Pedido.getTrazabilidadActual(rootScope.datos.cedula, function (success, data){
                                     if(success){
                                         rootScope.pedido = data;
-                                        
+
                                         //Obtener la campaña operativa
 										Campana.getRecordatoriosCampanaOperativa(function (success, data){
 											if(success){
@@ -368,7 +368,7 @@ angular.module('novaventa.services', [])
                                                     }
 												}
 
-												rootScope.campana = {numero: data.listaRecordatorios[0].campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
+												rootScope.campana = {numero: data.campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
 													fechaCorreteo: correteo, fechaReparto: reparto,  diasEnEjecucion: ''};
 
 												rootScope.fechas = data.listaRecordatorios;
@@ -464,19 +464,22 @@ angular.module('novaventa.services', [])
 													   console.log('loggedin');
 													}, 1500);
 
+                                                    console.log(rootScope.campana);
+                                                    console.log("Campaña anterior: " + rootScope.campana.numero);
+
 													//Obtener la campaña anterior
 													var ano = new Date().getFullYear();
-													var siguienteCampana = rootScope.campana.numero - 1;
+													var campanaAnterior = rootScope.campana.numero - 1;
 													//Si la siguiente campana supera al numero de campanas al
 													//ano entonces moverse a la campana 1 del siguiente ano
-													if(siguienteCampana == 0){
-														siguienteCampana = rootScope.numeroCampanasAno;
+													if(campanaAnterior == 0){
+                                                        campanaAnterior = rootScope.numeroCampanasAno;
 														ano = ano - 1;
 													}
 													
 													console.log("a consultar campaña anterior");
 
-													Campana.getRecordatorios(ano, siguienteCampana, rootScope.zona, function (success, data){
+													Campana.getRecordatorios(ano, campanaAnterior, rootScope.zona, function (success, data){
 														if(success){
 															rootScope.fechasAnteriores = data.listaRecordatorios;
 
