@@ -14,7 +14,9 @@
             <label class="item item-avatar" ng-show="mostrarPuntosPorPerder()">
                 <div class="icono bocina"></div>
                 <div ng-show="mostrarMensajeAcumulados()">
-                    Puntos que no acumulas
+                    <span>
+                        Puntos que no acumulas
+                    </span>
                     <span ng-show="diasParaPago()>=1">si no pagas antes del
                         {{campana.fechaMontajePedido | date: 'dd' }} de  {{campana.fechaMontajePedido | date: 'MMMM' }}
                     </span>
@@ -27,7 +29,9 @@
                     </span> antes de las 4 de la tarde
                     <br />
                 </div>
-                Estos puntos se verán reflejados como disponibles después del {{campana.fechaCorreteo | date: 'dd' }} de  {{campana.fechaCorreteo | date: 'MMMM' }}.
+                <span>
+                    Estos puntos se verán reflejados como disponibles después del {{campana.fechaCorreteo | date: 'dd' }} de  {{campana.fechaCorreteo | date: 'MMMM' }}.
+                </span>
                 <span class="item-note">
                     <strong> {{ puntosPorPerder() }} </strong>
                 </span>
