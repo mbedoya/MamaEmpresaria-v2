@@ -160,26 +160,43 @@ angular.module('novaventa.services', [])
                         fx(false, {});
                     });
             },
-            buscarEstado: function(estado){
+            buscarEstado: function(estado, pedido){
                 var miestado = null;
 
-                if($rootScope.pedido && $rootScope.pedido.historiaEstados){
-                    for (i = 0; i < $rootScope.pedido.historiaEstados.length; i++) {
-                        if(Utilidades.cambiarNombreEstadoPedido($rootScope.pedido.historiaEstados[i].estado) == estado){
-                            miestado = $rootScope.pedido.historiaEstados[i];
+                console.log("Buscando estado: " + estado);
+                console.log(pedido);
+
+                var mipedido = $rootScope.pedido;
+
+                if(pedido){
+                    mipedido = pedido;
+                }
+
+                if(mipedido && mipedido.historiaEstados){
+                    for (i = 0; i < mipedido.historiaEstados.length; i++) {
+                        if(Utilidades.cambiarNombreEstadoPedido(mipedido.historiaEstados[i].estado) == estado){
+                            miestado = mipedido.historiaEstados[i];
                             break;
                         }
                     }
                 }
 
+                console.log(miestado);
+
                 return miestado;
             },
-            estadoEncontrado: function(estado){
+            estadoEncontrado: function(estado, pedido){
                 var encontrado = false;
 
-                if($rootScope.pedido && $rootScope.pedido.historiaEstados){
-                    for (i = 0; i < $rootScope.pedido.historiaEstados.length; i++) {
-                        if(Utilidades.cambiarNombreEstadoPedido($rootScope.pedido.historiaEstados[i].estado) == estado){
+                var mipedido = $rootScope.pedido;
+
+                if(pedido){
+                    mipedido = pedido;
+                }
+
+                if(mipedido && mipedido.historiaEstados){
+                    for (i = 0; i < mipedido.historiaEstados.length; i++) {
+                        if(Utilidades.cambiarNombreEstadoPedido(mipedido.historiaEstados[i].estado) == estado){
                             encontrado = true;
                             break;
                         }

@@ -21,7 +21,7 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
                 $ionicLoading.hide();
 
                 if(success){
-                    $scope.pedidoAnterior = data;
+                    $rootScope.pedidoAnterior = data;
                 }else{
                     $scope.mostrarAyuda("Mi Pedido","En este momento no podemos consultar tu información");
                 }
@@ -70,11 +70,11 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
     }
 
     $scope.estadoEncontrado = function(estado){
-        return Pedido.estadoEncontrado(estado);
+        return Pedido.estadoEncontrado(estado, $rootScope.pedidoAnterior);
     }
 
     $scope.buscarEstado = function(estado){
-        return Pedido.buscarEstado(estado);
+        return Pedido.buscarEstado(estado, $rootScope.pedidoAnterior);
     }
 
     $scope.cambiarNombreEstado = function(nombre){

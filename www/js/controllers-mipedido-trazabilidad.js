@@ -21,7 +21,7 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
                 $ionicLoading.hide();
 
                 if(success){
-                    $scope.pedido = data;
+                    $rootScope.pedido = data;
                 }else{
                     $scope.mostrarAyuda("Mi Pedido","En este momento no podemos consultar tu información");
                 }

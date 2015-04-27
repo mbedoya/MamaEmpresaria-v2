@@ -11,8 +11,16 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
 
     $scope.inicializar = function(){
 
+        $scope.loading =  $ionicLoading.show({
+            template: 'Estamos consultando el estado de tu pedido'
+        });
+
         Pedido.getTrazabilidadActual($rootScope.datos.cedula, function (success, data){
+
+            $ionicLoading.hide();
+
             if(success){
+                console.log(data);
                 $scope.pedidoActual = data.historiaEstados;
             }else{
 
