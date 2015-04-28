@@ -11,7 +11,7 @@ moduloControlador.controller('LoginCtrl', function($scope, $rootScope, $ionicLoa
     };
 
     $scope.test = function(){
-        alert("Yes!");
+        $scope.capturarCedula();
     }
 
     $scope.datosInicio = {cedula: '' };
