@@ -1,4 +1,4 @@
-moduloControlador.controller('LoginCtrl', function($scope, $rootScope, $ionicLoading, $ionicPopup, $state, $http, $filter, $ionicHistory, Mama, Internet, GA, Utilidades) {
+moduloControlador.controller('LoginCtrl', function($scope, $location, $rootScope, $ionicLoading, $ionicPopup, $state, $http, $filter, $ionicHistory, Mama, Internet, GA, Utilidades) {
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Inicio de sesión");
@@ -70,7 +70,8 @@ moduloControlador.controller('LoginCtrl', function($scope, $rootScope, $ionicLoa
                     if(irABienvenida){
                         $state.go('app.bienvenida');
                     }else{
-                        $state.go('app.menu.tabs.home');
+                        $location.path('/app/menu/tabs/home');
+                        //$state.go('app.menu.tabs.home');
                     }
 
 
