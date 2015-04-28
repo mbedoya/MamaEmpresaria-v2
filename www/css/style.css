@@ -812,3 +812,14 @@ strong{
 .no-border{
     border: #FFF solid 0px;
 }
+
+/* Windows Phone */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak,
+.x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
+    display: none !important;
+}
+
+body.platform-windowsphone .scroll-content,
+body.platform-windowsphone8 .scroll-content {
+    overflow: auto;
+}
