@@ -41,6 +41,10 @@ angular.module('novaventa', ['ionic', 'novaventa.controllers', 'novaventa.servic
 
     }])
 
+    .config(function($stateProvider, $urlRouterProvider, $compileProvider) {
+        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|ghttps?|ms-appx|x-wmapp0):/);
+    })
+
     .config(function($stateProvider, $urlRouterProvider) {
         $stateProvider
 
