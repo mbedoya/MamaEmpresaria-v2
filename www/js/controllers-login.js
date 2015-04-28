@@ -10,6 +10,10 @@ moduloControlador.controller('LoginCtrl', function($scope, $rootScope, $ionicLoa
         });
     };
 
+    $scope.test = function(){
+        alert("Yes!");
+    }
+
     $scope.datosInicio = {cedula: '' };
 
     //Autenticar a la Mamá Empresaria
