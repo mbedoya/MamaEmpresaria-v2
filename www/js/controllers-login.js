@@ -39,50 +39,58 @@ moduloControlador.controller('LoginCtrl', function($scope, $location, $rootScope
             return;
         }
 
-        if(Internet.get()){
+        try{
 
-            $scope.loading =  $ionicLoading.show({
-                template: Utilidades.getPlantillaEspera('Iniciando sesión')
-            });
+            if(Internet.get()){
 
-            Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){
+                $scope.loading =  $ionicLoading.show({
+                    template: Utilidades.getPlantillaEspera('Iniciando sesión')
+                });
 
-                $ionicLoading.hide();
+                Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){
 
-                if(success){
+                    $ionicLoading.hide();
 
-                    var irABienvenida = !(localStorage && localStorage.nombre);
+                    if(success){
 
-                    //Almacenar la cédula si hay almacenamiento local
-                    if(localStorage ){
+                        var irABienvenida = !(localStorage && localStorage.nombre);
 
-                        localStorage.cedula = $scope.datosInicio.cedula;
-                        localStorage.nombre = $rootScope.datos.nombre;
-                        localStorage.segmento = $rootScope.datos.segmento;
-                    }
+                        //Almacenar la cédula si hay almacenamiento local
+                        if(localStorage ){
 
-                    $scope.datosInicio = {cedula: '' };
+                            localStorage.cedula = $scope.datosInicio.cedula;
+                            localStorage.nombre = $rootScope.datos.nombre;
+                            localStorage.segmento = $rootScope.datos.segmento;
+                        }
 
-                    $ionicHistory.nextViewOptions({
-                        disableBack: true
-                    });
+                        $scope.datosInicio = {cedula: '' };
 
-                    if(irABienvenida){
-                        $state.go('app.bienvenida');
+                        $ionicHistory.nextViewOptions({
+                            disableBack: true
+                        });
+
+                        if(irABienvenida){
+                            $state.go('app.bienvenida');
+                        }else{
+                            $location.path('/app/menu/tabs/home');
+                            //$state.go('app.menu.tabs.home');
+                        }
+
+
                     }else{
-                        $location.path('/app/menu/tabs/home');
-                        //$state.go('app.menu.tabs.home');
+                        $scope.mostrarAyuda("Inicio de sesión", mensajeError);
                     }
 
+                });
 
-                }else{
-                    $scope.mostrarAyuda("Inicio de sesión", mensajeError);
-                }
+            }else{
+                $scope.mostrarAyuda("Inicio de sesión","Por favor verifica tu conexión a internet");
+            }
 
-            });
-
-        }else{
-            $scope.mostrarAyuda("Inicio de sesión","Por favor verifica tu conexión a internet");
+        }catch (err){
+            alert(err.message);
         }
+
+
     }
 });
