@@ -15,6 +15,8 @@ moduloControlador.controller('LoginCtrl', function($scope, $rootScope, $ionicLoa
     	//Autenticar a la Mamá Empresaria
         $scope.capturarCedula = function() {
 
+            alert("done");
+
             $rootScope.datos = { cedula: $scope.datosInicio.cedula }
             
             //Cédula vacía
