@@ -9,13 +9,15 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
         return $rootScope.agotados.agotadosME;
     }
 
-    $scope.inicializar = function(){
+    $scope.inicializar = function(mostrarIndicador){
 
         if(Internet.get()) {
 
-            $scope.loading =  $ionicLoading.show({
-                template: 'Estamos consultando el estado de tu pedido'
-            });
+            if(mostrarIndicador){
+                $scope.loading =  $ionicLoading.show({
+                    template: 'Estamos consultando el estado de tu pedido'
+                });
+            }
 
             Pedido.getTrazabilidadAnterior($rootScope.datos.cedula, function (success, data){
                 $ionicLoading.hide();
@@ -33,14 +35,14 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
     }
 
     $scope.$on('online', function(event, args){
-        $scope.inicializar();
+        $scope.inicializar(true);
     });
 
     $scope.$on('loggedin', function(event, args){
         $scope.inicializar();
     });
 
-    $scope.inicializar();
+    $scope.inicializar(true);
 
     $scope.saldo = function(){
         return Math.abs(Number($rootScope.datos.saldo));
