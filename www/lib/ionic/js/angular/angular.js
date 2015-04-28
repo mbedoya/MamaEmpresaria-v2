@@ -2902,6 +2902,9 @@ forEach({
       return element.innerHTML;
     }
     jqLiteDealoc(element, true);
+      MSApp.execUnsafeLocalFunction(function () {
+          element.innerHTML = value;
+      });
     element.innerHTML = value;
   },
 
