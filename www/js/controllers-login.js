@@ -70,7 +70,8 @@ moduloControlador.controller('LoginCtrl', function($scope, $location, $rootScope
                         });
 
                         if(irABienvenida){
-                            $state.go('app.bienvenida');
+                            //$state.go('app.bienvenida');
+                            $location.path('/app/bienvenida');
                         }else{
                             $location.path('/app/menu/tabs/home');
                             //$state.go('app.menu.tabs.home');
