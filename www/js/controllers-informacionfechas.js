@@ -551,10 +551,12 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         var fechaActual = $scope.fechaCalendario;
 
         var dateStr = $scope.padStr(fechaActual.getFullYear()) + "-" +
-            $scope.padStr(1 + fechaActual.getMonth()) + "-" +
-            $scope.padStr('01');
+            $scope.padStr(1 + fechaActual.getMonth()) + "-" + "01";
+
+        console.log(dateStr);
 
         var primerDiaMes = new Date(dateStr).getDay();
+        console.log("primer dia mes: " + primerDiaMes);
         var inicioMes = new Date(dateStr);
 
         //Objeto con todas las semanas
@@ -632,6 +634,8 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             semanas.push(semana);
         }
 
+        console.log("Semanas:" + semanas.length);
+        console.log(semanas);
         $scope.semanas = semanas;
     }
 
