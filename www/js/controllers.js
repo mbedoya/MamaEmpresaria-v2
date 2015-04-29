@@ -78,7 +78,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
 
         })
 
-        .controller('BienvenidaCtrl', function($scope, $state, $rootScope, $ionicHistory) {
+        .controller('BienvenidaCtrl', function($scope, $state, $rootScope, $ionicHistory, $location) {
 
             $scope.segmentoFormateado = function(){
                 if(localStorage){
@@ -109,7 +109,8 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                     disableBack: true
                 });
 
-                $state.go('app.menu.tabs.home');
+                $location.path('/app/menu/tabs/home');
+                //$state.go('app.menu.tabs.home');
             };
         })
 
