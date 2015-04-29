@@ -329,9 +329,10 @@ angular.module('novaventa.services', [])
 
         return {
             autenticar: function(cedula, rootScope, http, filter, factoryMama, fx) {
+                alert(rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/validacionAntares/" + cedula +"/1");
                 http.get(rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/validacionAntares/" + cedula +"/1").
                     success(function(data, status, headers, config) {
-
+                        alert("success");
                         var mensajeError;
 
                         //Error en la autenticación?
@@ -566,6 +567,7 @@ angular.module('novaventa.services', [])
 
                     }).
                     error(function(data, status, headers, config) {
+                        alert("error");
                         fx(false, "Mamá Empresaria, esta aplicación sólo funciona con internet, verifica tu conexión. En este momento no podemos consultar tu información", {});
                     });
 
