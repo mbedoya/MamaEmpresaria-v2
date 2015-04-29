@@ -1,4 +1,4 @@
-moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, $ionicPopup, $ionicLoading, $ionicHistory, $http, $state, $filter, Internet, Mama, GA, Utilidades) {
+moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, $ionicPopup,$location, $ionicLoading, $ionicHistory, $http, $state, $filter, Internet, Mama, GA, Utilidades) {
 
     $scope.mostrarMensajeError = false;
     

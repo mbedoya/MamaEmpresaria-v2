@@ -112,6 +112,15 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                 $location.path('/app/menu/tabs/home');
                 //$state.go('app.menu.tabs.home');
             };
+
+            $scope.test = function() {
+                $ionicHistory.nextViewOptions({
+                    disableBack: true
+                });
+
+                $location.path('/app/menu/tabs/home');
+                //$state.go('app.menu.tabs.home');
+            };
         })
 
         .controller('PuntosPagoCtrl', function($scope, $rootScope, $ionicLoading, $state, $http, $ionicPopup, PuntosPago, Internet, GA) {
