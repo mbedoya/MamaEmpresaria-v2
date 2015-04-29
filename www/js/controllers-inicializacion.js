@@ -87,8 +87,9 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
 								$ionicHistory.nextViewOptions({
                                    historyRoot: true
                                 });
-                                
-                                $state.go('app.menu.tabs.home');
+
+                            $location.path('/app/menu/tabs/home');
+                            //$state.go('app.menu.tabs.home');
                            
                             
                         }else{
