@@ -67,6 +67,9 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
             $rootScope.lineaAtencion = "01 8000 515 101";
             $rootScope.correo = "servicioalcliente@novaventa.com";
 
+            jQuery.support.cors = true;
+            //$.mobile.allowCrossDomainPages = true;
+
             //Almacenar la cédula si hay almacenamiento local
             if(localStorage && localStorage.cedula){
 
