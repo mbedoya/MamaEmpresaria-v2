@@ -47,6 +47,24 @@ moduloControlador.controller('LoginCtrl', function($scope, $location, $rootScope
                     template: Utilidades.getPlantillaEspera('Iniciando sesión')
                 });
 
+                $.ajax({
+                    url: $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/validacionAntares/" + $rootScope.datos.cedula +"/1",
+                    dataType: "json",
+                    type: "GET",
+                    data: {  },
+                    success: function (data) {
+
+                    },
+                    error: function (a, b, c) {
+                        alert("Error");
+                    }
+                })
+                .then(function (response) {
+
+                    alert(response);
+
+                });
+
                 Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){
 
                     $ionicLoading.hide();
