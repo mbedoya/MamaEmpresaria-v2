@@ -551,7 +551,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         var fechaActual = $scope.fechaCalendario;
 
         var dateStr = $scope.padStr(fechaActual.getFullYear()) + "-" +
-            $scope.padStr(1 + fechaActual.getMonth()) + "-" + "01";
+            $scope.padStr(1 + fechaActual.getMonth()) + "-" + "02";
 
         console.log(dateStr);
 
