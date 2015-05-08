@@ -55,6 +55,27 @@ strong{
   border-right: 3px solid #055073;
 }
 
+/* iphone < 5 */
+@media screen and (device-aspect-ratio: 2/3) {
+    .bar-stable .left-buttons .button-clear {
+        margin: -9px -5px 0px -3px;
+    }
+}
+
+/* iphone  5 */
+@media screen and (device-aspect-ratio: 40/71) {
+    .bar-stable .left-buttons .button-clear {
+        margin: -9px -5px 0px -3px;
+    }
+}
+
+/* iphone  6 */
+@media screen and (device-aspect-ratio: 667/375) {
+    .bar-stable .left-buttons .button-clear {
+        margin: -9px -5px 0px -3px;
+    }
+}
+
 /* Logo Novaventa */
 
 /*
