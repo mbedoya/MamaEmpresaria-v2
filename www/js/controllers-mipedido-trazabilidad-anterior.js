@@ -11,6 +11,8 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
 
     $scope.inicializar = function(mostrarIndicador){
 
+        console.log("initializing trazabilida anterior");
+
         if(Internet.get()) {
 
             if(mostrarIndicador){
