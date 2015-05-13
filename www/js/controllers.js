@@ -506,7 +506,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                         template: Utilidades.getPlantillaEspera('Buscando Productos no disponibles')
                     });
         	
-        	    Campana.getAgotados(function(success, data){
+        	    Campana.getAgotadosSiguiente(function(success, data){
 
                     $ionicLoading.hide();
                     

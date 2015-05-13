@@ -74,8 +74,7 @@ angular.module('novaventa.services', [])
 
                 var anoCampana = Utilidades.getAnoCampana();
 
-                //var urlServicio = $rootScope.configuracion.ip_servidores +  "AntaresWebServices/documento/agotadosPedido/" + cedula + "/" + anoCampana;
-                var urlServicio = "http://200.47.173.66:9081/" +  "AntaresWebServices/documento/agotadosPedido/" + cedula + "/" + anoCampana;
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/documento/agotadosPedido/" + cedula + "/" + anoCampana;
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -90,8 +89,7 @@ angular.module('novaventa.services', [])
 
                 var anoCampana = Utilidades.getAnoCampanaAnterior();
 
-                //var urlServicio = $rootScope.configuracion.ip_servidores +  "AntaresWebServices/documento/agotadosPedido/" + cedula + "/" + anoCampana;
-                var urlServicio = "http://200.47.173.66:9081/" +  "AntaresWebServices/documento/agotadosPedido/" + cedula + "/" + anoCampana;
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/documento/agotadosPedido/" + cedula + "/" + anoCampana;
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -323,10 +321,24 @@ angular.module('novaventa.services', [])
             },
             getAgotados: function(fx){
                 var fecha = new Date();
-            	var anoCampana = fecha.getFullYear() + Utilidades.Pad($rootScope.campana.numero);
-                
-                var urlServicio = "http://200.47.173.66:9081/AntaresWebServices/productoDeCampagna/agotadosCampagna/201503";
-                //var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/getRecordatoriosAntares/"+ ano +"/" + campana + "/" + zona;
+            	var anoCampana = Utilidades.getAnoCampana();
+
+                var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/productoDeCampagna/agotadosCampagna/" + anoCampana;
+
+                $http.get(urlServicio).
+                    success(function(data, status, headers, config) {
+                        fx(true, data);
+                    }).
+                    error(function(data, status, headers, config) {
+                        fx(false, {});
+                    });
+            },
+            getAgotadosSiguiente: function(fx){
+                var fecha = new Date();
+                var anoCampana = Utilidades.getAnoCampanaSiguiente();
+
+                var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/productoDeCampagna/agotadosCampagna/" + anoCampana;
+
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -765,6 +777,18 @@ angular.module('novaventa.services', [])
                     anoCampana = fecha.getFullYear() + self.padStr($rootScope.numeroCampanasAno);
                 }else{
                     anoCampana = fecha.getFullYear() + self.padStr($rootScope.campana.numero-1);
+                }
+
+                return anoCampana;
+            },
+
+            getAnoCampanaSiguiente: function(){
+                var fecha = new Date();
+                var anoCampana;
+                if($rootScope.campana.numero == $rootScope.numeroCampanasAno){
+                    anoCampana = Number(fecha.getFullYear() + 1)  + "01";
+                }else{
+                    anoCampana = fecha.getFullYear() + self.padStr($rootScope.campana.numero+1);
                 }
 
                 return anoCampana;
