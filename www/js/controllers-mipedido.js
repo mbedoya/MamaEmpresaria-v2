@@ -59,6 +59,14 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
         });
     }
 
+    $scope.irATrazabilidadAnterior = function(){
+        $state.go('app.menu.tabs.mipedido-trazabilidad-anterior');
+    }
+
+    $scope.irATrazabilidadActual = function(){
+        $state.go('app.menu.tabs.mipedido-trazabilidad');
+    }
+
     $scope.agotadosPedidoActual = function(){
         if($scope.agotadosActual && !$scope.agotadosActual.razonRechazo){
             return $scope.agotadosActual;

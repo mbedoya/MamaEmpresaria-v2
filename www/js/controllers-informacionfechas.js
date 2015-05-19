@@ -384,7 +384,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 }else{
                     listaEventos.push({ "actividad": "Monta tu pedido este día, por la Página web, antes de las 12 del medio día." });
                 }
-                listaEventos.push({ "actividad": "Cancela tu pedido anterior este día antes de las 4 de la tarde." });
+                listaEventos.push({ "actividad": "Cancela tu pedido anterior máximo este día antes de las 4 de la tarde." });
             }
 
             if(fechaEsRepartoPedido){

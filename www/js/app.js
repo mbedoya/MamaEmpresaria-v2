@@ -84,6 +84,16 @@ angular.module('novaventa', ['ionic', 'novaventa.controllers', 'novaventa.servic
                 }
             })
 
+            .state('app.terminos-condiciones', {
+                url: "/terminos-condiciones",
+                views: {
+                    'app-view': {
+                        templateUrl: "templates/terminos-condiciones.html",
+                        controller: 'TerminosCondicionesCtrl'
+                    }
+                }
+            })
+
             .state('app.menu', {
                 url: "/menu",
                 abstract: true,
