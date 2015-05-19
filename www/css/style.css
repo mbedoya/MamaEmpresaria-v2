@@ -60,6 +60,9 @@ strong{
     .bar-stable .left-buttons .button-clear {
         margin: -9px -5px 0px -3px;
     }
+    .modal{
+        margin-top: 20px;
+    }
 }
 
 /* iphone  5 */
@@ -67,12 +70,18 @@ strong{
     .bar-stable .left-buttons .button-clear {
         margin: -9px -5px 0px -3px;
     }
+    .modal{
+        margin-top: 20px;
+    }
 }
 
 /* iphone  6 */
 @media screen and (device-aspect-ratio: 667/375) {
     .bar-stable .left-buttons .button-clear {
         margin: -9px -5px 0px -3px;
+    }
+    .modal{
+        margin-top: 20px;
     }
 }
 
@@ -869,4 +878,8 @@ strong{
 body.platform-windowsphone .scroll-content,
 body.platform-windowsphone8 .scroll-content {
     overflow: auto;
+}
+
+.modal{
+    margin-top: 20px;
 }

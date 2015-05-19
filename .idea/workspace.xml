@@ -63,14 +63,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controllers.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="controllers.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.78983516" vertical-offset="6905" max-vertical-offset="9044">
+            <state vertical-scroll-proportion="0.0" vertical-offset="6905" max-vertical-offset="9044">
               <caret line="440" column="87" selection-start-line="440" selection-start-column="87" selection-end-line="440" selection-end-column="87" />
               <folding>
                 <marker date="1431529156322" expanded="false" signature="9198:9209" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/www/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.780027" vertical-offset="850" max-vertical-offset="15130">
+              <caret line="84" column="5" selection-start-line="84" selection-start-column="5" selection-end-line="84" selection-end-column="5" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -117,7 +127,6 @@
         <option value="$PROJECT_DIR$/www/js/controllers-login.js" />
         <option value="$PROJECT_DIR$/config.xml" />
         <option value="$PROJECT_DIR$/www/templates/bienvenida.html" />
-        <option value="$PROJECT_DIR$/www/css/style.css" />
         <option value="$PROJECT_DIR$/www/js/controllers-mipedido-trazabilidad-anterior.js" />
         <option value="$PROJECT_DIR$/www/templates/terminos-condiciones.html" />
         <option value="$PROJECT_DIR$/www/js/services.js" />
@@ -129,6 +138,7 @@
         <option value="$PROJECT_DIR$/www/js/controllers-informacionfechas.js" />
         <option value="$PROJECT_DIR$/www/js/controllers-mipedido.js" />
         <option value="$PROJECT_DIR$/www/templates/mipedido.html" />
+        <option value="$PROJECT_DIR$/www/css/style.css" />
       </list>
     </option>
   </component>
@@ -325,7 +335,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -625,13 +635,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="8523" max-vertical-offset="14909">
-          <caret line="535" column="0" selection-start-line="535" selection-start-column="0" selection-end-line="535" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controllers-mipedido-trazabilidad.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2027" max-vertical-offset="2737">
@@ -754,11 +757,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.78983516" vertical-offset="6905" max-vertical-offset="9044">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6905" max-vertical-offset="9044">
           <caret line="440" column="87" selection-start-line="440" selection-start-column="87" selection-end-line="440" selection-end-column="87" />
           <folding>
             <marker date="1431529156322" expanded="false" signature="9198:9209" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.780027" vertical-offset="850" max-vertical-offset="15130">
+          <caret line="84" column="5" selection-start-line="84" selection-start-column="5" selection-end-line="84" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
