@@ -4,16 +4,26 @@
             Mi Pedido
         </div>
         
-         <!-- Agotados -->
+
+       <!-- Agotados -->
         <div class="list list-inset" ng-show="agotados()" >
-            <a class="item item-icon-right assertive" href="#">
+            <a class="item item-icon-right assertive" ng-click="mostrarAgotados()" href="#">
                 <i class="icon ion-plus-circled"></i>
-                Tu pedido tiene presenta algunos agotados. Presioná acá para ver detalle.
+                <span class="assertive">Tu pedido presenta algunos agotados. Te invitamos para ver el detalle.</span>
             </a>
-            <a class="item assertive" href="#" ng-repeat="agotado in agotados()" >
+
+            <!--
+            <a class="item assertive" href="#" ng-repeat="agotado in agotados().agotadosME" >
                 <h2>{{ agotado.nombre }}</h2>
                 <p>{{ agotado.tipoAgotado }}</p>
-            </a>
+                <p>Cantidad Pedida: {{ agotado.cantidadPedida }}</p>
+                <p>Cantidad Agotada: {{ agotado.cantAgotada }}</p>
+                <p ng-show="agotadoSustituido(agotado.tipoAgotado)">
+                    <span class="assertive" ng-repeat="sustituto in agotado.listaSustitutos" >
+                        {{ sustituto.sustituto }}
+                    </span>
+                </p>
+            </a> -->
         </div>
 
 		<!-- Anulado -->

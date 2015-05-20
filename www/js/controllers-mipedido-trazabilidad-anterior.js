@@ -1,11 +1,37 @@
-moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope, $rootScope, $state, $ionicLoading, $http, $ionicPopup, Mama, Internet, GA, Pedido, Utilidades, Campana) {
+moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope, $rootScope, $state, $ionicLoading, $ionicModal, $http, $ionicPopup, Mama, Internet, GA, Pedido, Utilidades, Campana) {
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Mi Pedido Detalle");
 
+    $ionicModal.fromTemplateUrl('templates/mipedido-anterior-agotados-modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function(modal) {
+        $scope.modal = modal
+    })
+
+    $scope.openModal = function() {
+        $scope.modal.show();
+    }
+
+    $scope.closeModal = function() {
+        $scope.modal.hide();
+    };
+
+    $scope.$on('$destroy', function() {
+        $scope.modal.remove();
+    });
+
+    $scope.mostrarAgotados = function(){
+        $scope.openModal();
+    }
 
     $scope.agotados = function(){
         return $scope.agotadosAnterior;
+    }
+
+    $scope.agotadoSustituido = function(tipo){
+        return tipo == 'AGOTADO SUSTITUIDO';
     }
 
     $scope.inicializar = function(mostrarIndicador){
