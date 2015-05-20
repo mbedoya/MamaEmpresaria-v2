@@ -309,6 +309,8 @@ angular.module('novaventa.services', [])
                     });
             },
             getRecordatorios: function(ano, campana, zona, fx){
+
+                campana = Utilidades.Pad(campana);
                 var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/getRecordatoriosAntares/"+ ano +"/" + campana + "/" + zona;
 
                 $http.get(urlServicio).
