@@ -99,7 +99,7 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
         if($scope.pedidoAnterior && $scope.pedidoAnterior.length > 0){
             var estadoPedido = $scope.pedidoAnterior[$scope.pedidoAnterior.length-1];
             estadoPedido.estado = Utilidades.cambiarNombreEstadoPedido(estadoPedido.estado);
-
+            $("#estadoPedidoAnterior").val(estadoPedido.estado);
             return estadoPedido;
         }
 

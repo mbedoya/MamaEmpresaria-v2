@@ -5,13 +5,10 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
 
 
     $scope.agotados = function(){
-        console.log($rootScope.agotados.agotadosME);
-        return $rootScope.agotados.agotadosME;
+        return $scope.agotadosAnterior;
     }
 
     $scope.inicializar = function(mostrarIndicador){
-
-        console.log("initializing trazabilida anterior");
 
         if(Internet.get()) {
 
@@ -28,6 +25,14 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
                     $rootScope.pedidoAnterior = data;
                 }else{
                     $scope.mostrarAyuda("Mi Pedido","En este momento no podemos consultar tu información");
+                }
+            });
+
+            Pedido.getAgotadosAnterior($rootScope.datos.cedula, function (success, data){
+                if(success){
+                    $scope.agotadosAnterior = data;
+                }else{
+
                 }
             });
         }else{

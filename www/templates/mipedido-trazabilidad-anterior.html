@@ -4,18 +4,17 @@
             Mi Pedido
         </div>
         
-         <!-- Agotados
-        <div class="list list-inset" ng-show="false" >
+         <!-- Agotados -->
+        <div class="list list-inset" ng-show="agotados()" >
             <a class="item item-icon-right assertive" href="#">
-                <i class="icon ion-ios-arrow-down" ></i>
-                Tu pedido tiene presenta algunos agotados.
+                <i class="icon ion-plus-circled"></i>
+                Tu pedido tiene presenta algunos agotados. Presioná acá para ver detalle.
             </a>
             <a class="item assertive" href="#" ng-repeat="agotado in agotados()" >
                 <h2>{{ agotado.nombre }}</h2>
                 <p>{{ agotado.tipoAgotado }}</p>
             </a>
         </div>
-        -->
 
 		<!-- Anulado -->
         <div class="list list-inset no-procesado" ng-show="estadoEncontrado('Anulado') && estadoEncontrado('Novedad')">

@@ -5,8 +5,7 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
 
 
     $scope.agotados = function(){
-        console.log($rootScope.agotados.agotadosME);
-        return $rootScope.agotados.agotadosME;
+        return $scope.agotadosActual;
     }
 
     $scope.inicializar = function(mostrarIndicador){
@@ -26,6 +25,14 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
                     $rootScope.pedido = data;
                 }else{
                     $scope.mostrarAyuda("Mi Pedido","En este momento no podemos consultar tu información");
+                }
+            });
+
+            Pedido.getAgotadosActual($rootScope.datos.cedula, function (success, data){
+                if(success){
+                    $scope.agotadosActual = data;
+                }else{
+
                 }
             });
         }else{
