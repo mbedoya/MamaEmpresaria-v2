@@ -84,11 +84,26 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
     }
 
     $scope.ultimoEstadoPedidoActual = function(){
+
         if($scope.pedidoActual && $scope.pedidoActual.length > 0){
-            var estadoPedido = $scope.pedidoActual[$scope.pedidoActual.length-1];
-            estadoPedido.estado = Utilidades.cambiarNombreEstadoPedido(estadoPedido.estado);
-            $("#estadoPedidoActual").val(estadoPedido.estado);
-            return estadoPedido;
+            cantidad = $scope.pedidoActual.length;
+            estadoEncontrado = false;
+
+            var estadoPedido = null;
+
+            while(cantidad >0 && !estadoEncontrado){
+                if($scope.pedidoActual[cantidad-1].estado.toLowerCase() != "novedad"){
+                    estadoPedido = $scope.pedidoActual[cantidad-1];
+                    estadoPedido.estado = Utilidades.cambiarNombreEstadoPedido(estadoPedido.estado);
+                    estadoEncontrado = true;
+                }
+                cantidad = cantidad-1;
+            }
+
+            if(estadoEncontrado){
+                $("#estadoPedidoActual").val(estadoPedido.estado);
+                return estadoPedido;
+            }
         }
 
         return null;
@@ -97,10 +112,24 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
     $scope.ultimoEstadoPedidoAnterior = function(){
 
         if($scope.pedidoAnterior && $scope.pedidoAnterior.length > 0){
-            var estadoPedido = $scope.pedidoAnterior[$scope.pedidoAnterior.length-1];
-            estadoPedido.estado = Utilidades.cambiarNombreEstadoPedido(estadoPedido.estado);
-            $("#estadoPedidoAnterior").val(estadoPedido.estado);
-            return estadoPedido;
+            cantidad = $scope.pedidoAnterior.length;
+            estadoEncontrado = false;
+
+            var estadoPedido = null;
+
+            while(cantidad >0 && !estadoEncontrado){
+                if($scope.pedidoAnterior[cantidad-1].estado.toLowerCase() != "novedad"){
+                    estadoPedido = $scope.pedidoAnterior[cantidad-1];
+                    estadoPedido.estado = Utilidades.cambiarNombreEstadoPedido(estadoPedido.estado);
+                    estadoEncontrado = true;
+                }
+                cantidad = cantidad-1;
+            }
+
+            if(estadoEncontrado){
+                $("#estadoPedidoAnterior").val(estadoPedido.estado);
+                return estadoPedido;
+            }
         }
 
         return null;

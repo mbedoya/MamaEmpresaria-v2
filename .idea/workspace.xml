@@ -26,11 +26,81 @@
       <file leaf-file-name="services.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.64972526" vertical-offset="3760" max-vertical-offset="12631">
-              <caret line="312" column="42" selection-start-line="312" selection-start-column="42" selection-end-line="312" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.60714287" vertical-offset="8007" max-vertical-offset="12733">
+              <caret line="560" column="109" selection-start-line="560" selection-start-column="109" selection-end-line="560" selection-end-column="109" />
               <folding>
-                <marker date="1432160387475" expanded="false" signature="35800:35832" placeholder="..." />
+                <marker date="1432330778685" expanded="false" signature="36140:36172" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="controllers-inicializacion.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/controllers-inicializacion.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="680" max-vertical-offset="2244">
+              <caret line="62" column="12" selection-start-line="62" selection-start-column="12" selection-end-line="62" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="controllers-mipedido.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/controllers-mipedido.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1465" max-vertical-offset="3247">
+              <caret line="93" column="28" selection-start-line="93" selection-start-column="28" selection-end-line="93" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mipedido-anterior-agotados-modal.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/templates/mipedido-anterior-agotados-modal.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.9615384" vertical-offset="0" max-vertical-offset="986">
+              <caret line="3" column="46" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-23.2" vertical-offset="14584" max-vertical-offset="15300">
+              <caret line="892" column="29" selection-start-line="892" selection-start-column="29" selection-end-line="892" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tabsinformacion-agotados.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/templates/tabsinformacion-agotados.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="425">
+              <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="5134" max-vertical-offset="6341">
+              <caret line="91" column="56" selection-start-line="91" selection-start-column="56" selection-end-line="91" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="informacionagotados.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/templates/informacionagotados.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.230769" vertical-offset="0" max-vertical-offset="476">
+              <caret line="8" column="105" selection-start-line="8" selection-start-column="105" selection-end-line="8" selection-end-column="105" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -60,7 +130,6 @@
         <option value="$PROJECT_DIR$/www/templates/mispremiosredimidos.html" />
         <option value="$PROJECT_DIR$/www/js/controllers-mispuntos.js" />
         <option value="$PROJECT_DIR$/www/templates/minegocio.html" />
-        <option value="$PROJECT_DIR$/www/templates/informacionagotados.html" />
         <option value="$PROJECT_DIR$/www/templates/tabsinformacion-agotados.html" />
         <option value="$PROJECT_DIR$/www/templates/tabs.html" />
         <option value="$PROJECT_DIR$/www/js/winstore-jscompat.js" />
@@ -77,18 +146,19 @@
         <option value="$PROJECT_DIR$/www/js/controllers-terminos-condiciones.js" />
         <option value="$PROJECT_DIR$/www/templates/home.html" />
         <option value="$PROJECT_DIR$/www/js/controllers-informacionfechas.js" />
-        <option value="$PROJECT_DIR$/www/css/style.css" />
         <option value="$PROJECT_DIR$/www/templates/mipedido-trazabilidad.html" />
         <option value="$PROJECT_DIR$/www/js/controllers-mipedido-trazabilidad.js" />
         <option value="$PROJECT_DIR$/www/templates/mispuntos.html" />
         <option value="$PROJECT_DIR$/www/templates/mipedido.html" />
-        <option value="$PROJECT_DIR$/www/js/controllers-mipedido.js" />
         <option value="$PROJECT_DIR$/www/templates/login.html" />
-        <option value="$PROJECT_DIR$/www/js/controllers-inicializacion.js" />
         <option value="$PROJECT_DIR$/www/templates/informacionfechas-modal.html" />
         <option value="$PROJECT_DIR$/www/templates/mipedido-trazabilidad-anterior.html" />
         <option value="$PROJECT_DIR$/www/js/controllers-mipedido-trazabilidad-anterior.js" />
+        <option value="$PROJECT_DIR$/www/templates/informacionagotados.html" />
+        <option value="$PROJECT_DIR$/www/js/controllers-mipedido.js" />
         <option value="$PROJECT_DIR$/www/templates/mipedido-anterior-agotados-modal.html" />
+        <option value="$PROJECT_DIR$/www/css/style.css" />
+        <option value="$PROJECT_DIR$/www/js/controllers-inicializacion.js" />
         <option value="$PROJECT_DIR$/www/js/services.js" />
       </list>
     </option>
@@ -293,7 +363,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.195625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.228125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -440,13 +510,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/informacionagotados.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="391">
-          <caret line="14" column="14" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/piedrapreciosa.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="723">
@@ -525,13 +588,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/tabsinformacion-agotados.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46341464" vertical-offset="0" max-vertical-offset="697">
-          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/terminos-condiciones.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="476">
@@ -560,14 +616,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.780027" vertical-offset="850" max-vertical-offset="15130">
-          <caret line="84" column="5" selection-start-line="84" selection-start-column="5" selection-end-line="84" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controllers-mipedido-trazabilidad.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2856">
@@ -580,7 +628,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="3434">
           <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -588,7 +635,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8097902" vertical-offset="135" max-vertical-offset="850">
           <caret line="42" column="102" selection-start-line="40" selection-start-column="8" selection-end-line="42" selection-end-column="102" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -596,7 +642,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.32867134" vertical-offset="479" max-vertical-offset="1207">
           <caret line="42" column="23" selection-start-line="42" selection-start-column="23" selection-end-line="42" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -604,15 +649,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.78205127" vertical-offset="981" max-vertical-offset="1683">
           <caret line="90" column="39" selection-start-line="90" selection-start-column="39" selection-end-line="90" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/controllers-mipedido.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7341431" vertical-offset="1207" max-vertical-offset="2754">
-          <caret line="103" column="9" selection-start-line="103" selection-start-column="9" selection-end-line="103" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -620,7 +656,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="2057">
           <caret line="27" column="90" selection-start-line="27" selection-start-column="90" selection-end-line="27" selection-end-column="90" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -628,7 +663,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.28531468" vertical-offset="0" max-vertical-offset="715">
           <caret line="12" column="40" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -636,23 +670,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="663">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="33" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.8717949" vertical-offset="2193" max-vertical-offset="6341">
-          <caret line="91" column="56" selection-start-line="91" selection-start-column="56" selection-end-line="91" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/controllers-inicializacion.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="680" max-vertical-offset="2244">
-          <caret line="62" column="12" selection-start-line="62" selection-start-column="12" selection-end-line="62" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -676,15 +693,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="2805">
           <caret line="9" column="81" selection-start-line="9" selection-start-column="81" selection-end-line="9" selection-end-column="81" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/mipedido-anterior-agotados-modal.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.192308" vertical-offset="0" max-vertical-offset="1020">
-          <caret line="37" column="101" selection-start-line="37" selection-start-column="101" selection-end-line="37" selection-end-column="101" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -696,12 +704,68 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/tabsinformacion-agotados.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="425">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5134" max-vertical-offset="6341">
+          <caret line="91" column="56" selection-start-line="91" selection-start-column="56" selection-end-line="91" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/informacionagotados.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.230769" vertical-offset="0" max-vertical-offset="476">
+          <caret line="8" column="105" selection-start-line="8" selection-start-column="105" selection-end-line="8" selection-end-column="105" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controllers-mipedido.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1465" max-vertical-offset="3247">
+          <caret line="93" column="28" selection-start-line="93" selection-start-column="28" selection-end-line="93" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/mipedido-anterior-agotados-modal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.9615384" vertical-offset="0" max-vertical-offset="986">
+          <caret line="3" column="46" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-23.2" vertical-offset="14584" max-vertical-offset="15300">
+          <caret line="892" column="29" selection-start-line="892" selection-start-column="29" selection-end-line="892" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controllers-inicializacion.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="680" max-vertical-offset="2244">
+          <caret line="62" column="12" selection-start-line="62" selection-start-column="12" selection-end-line="62" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/services.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.64972526" vertical-offset="3760" max-vertical-offset="12631">
-          <caret line="312" column="42" selection-start-line="312" selection-start-column="42" selection-end-line="312" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.60714287" vertical-offset="8007" max-vertical-offset="12733">
+          <caret line="560" column="109" selection-start-line="560" selection-start-column="109" selection-end-line="560" selection-end-column="109" />
           <folding>
-            <marker date="1432160387475" expanded="false" signature="35800:35832" placeholder="..." />
+            <marker date="1432330778685" expanded="false" signature="36140:36172" placeholder="..." />
           </folding>
         </state>
       </provider>

@@ -883,3 +883,13 @@ body.platform-windowsphone8 .scroll-content {
 .modal{
     margin-top: 20px;
 }
+
+.azul{
+    background-color: #1594ac;
+    color: #FFF;
+}
+
+.rosa{
+    background-color: #f74094;
+    color: #FFF;
+}

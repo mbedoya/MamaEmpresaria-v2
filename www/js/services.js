@@ -298,7 +298,8 @@ angular.module('novaventa.services', [])
             getRecordatoriosCampanaOperativa: function(fx){
 
                 var zona = $rootScope.zona;
-                var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/getRecordatoriosAntares/" + zona;
+                var seccion = $rootScope.seccion;
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/getRecordatoriosAntares/" + zona + "/" + seccion;
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -311,7 +312,8 @@ angular.module('novaventa.services', [])
             getRecordatorios: function(ano, campana, zona, fx){
 
                 campana = Utilidades.Pad(campana);
-                var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/getRecordatoriosAntares/"+ ano +"/" + campana + "/" + zona;
+                var seccion = $rootScope.seccion;
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/getRecordatoriosAntares/"+ ano +"/" + campana + "/" + zona + "/" + seccion;
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -382,7 +384,9 @@ angular.module('novaventa.services', [])
                                 rootScope.datos.cupo = data.cupo;
                                 rootScope.datos.saldo = data.saldoBalance;
                                 rootScope.datos.valorFlexibilizacion = data.valorFlexibilizacion;
-                                rootScope.zona = data.listaZonas[0];
+                                //rootScope.zona = data.listaZonas[0];
+                                rootScope.zona = data.estructuraList[0].zona;
+                                rootScope.seccion = data.estructuraList[0].seccion;
 
                                 var campanaInicial = '-';
                                 Campana.getRecordatoriosCampanaOperativa(function (success, data) {
@@ -448,6 +452,8 @@ angular.module('novaventa.services', [])
                                                             Campana.getRecordatorios(ano, siguienteCampana, rootScope.zona, function (success, data){
                                                                 if(success){
 
+                                                                    console.log(data);
+
                                                                     //Obtener la fecha de montaje de pedido (Encuentro)
                                                                     encuentro = '';
 
@@ -483,7 +489,7 @@ angular.module('novaventa.services', [])
                                                                     var diferenciaDias = Utilidades.diferenciaFechaDias(new Date(correteoAnterior), new Date());
 
                                                                     rootScope.campanaAnterior = rootScope.campana;
-                                                                    rootScope.campana = {numero: data.listaRecordatorios[0].campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
+                                                                    rootScope.campana = {numero: data.campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
                                                                         fechaCorreteo: correteo, fechaReparto: reparto,  diasEnEjecucion: diferenciaDias};
                                                                     rootScope.fechasAnteriores = rootScope.fechas;
                                                                     rootScope.fechas = data.listaRecordatorios;
@@ -552,7 +558,7 @@ angular.module('novaventa.services', [])
 
                                                                     }
 
-                                                                    rootScope.campanaAnterior = {numero: data.listaRecordatorios[0].campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
+                                                                    rootScope.campanaAnterior = {numero: data.campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
                                                                         fechaCorreteo: correteo, fechaReparto: reparto,  diasEnEjecucion: ''};
 
                                                                 }else{

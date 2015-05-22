@@ -1,9 +1,14 @@
 <ion-view view-title="" >
     <ion-content >
 
-        <div class="row">
+        <div class="row" ng-show="agotados()">
             <div class="col">Los productos listados a continuación no están disponibles para la Campaña:</div>
         </div>
+
+        <div class="row" ng-show="!agotados()">
+            <div class="col">Aún no hemos actualizado esta información, pronto contarás con este listado.</div>
+        </div>
+
 
         <div class="row {{estiloAlternate($index)}}" ng-repeat="item in agotados()">
             <div class="col">
