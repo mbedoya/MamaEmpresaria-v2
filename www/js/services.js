@@ -298,7 +298,7 @@ angular.module('novaventa.services', [])
             getRecordatoriosCampanaOperativa: function(fx){
 
                 var zona = $rootScope.zona;
-                var seccion = $rootScope.seccion;
+                var seccion = "0";//$rootScope.seccion;
                 var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/getRecordatoriosAntares/" + zona + "/" + seccion;
 
                 $http.get(urlServicio).
@@ -312,7 +312,7 @@ angular.module('novaventa.services', [])
             getRecordatorios: function(ano, campana, zona, fx){
 
                 campana = Utilidades.Pad(campana);
-                var seccion = $rootScope.seccion;
+                var seccion = "0";//$rootScope.seccion;
                 var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/getRecordatoriosAntares/"+ ano +"/" + campana + "/" + zona + "/" + seccion;
 
                 $http.get(urlServicio).

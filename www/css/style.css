@@ -202,32 +202,50 @@ strong{
 
 /* Menú superior / Pestañas */
 .has-tabs-top {
-  top: 110px;
+    top: 91px;
 }
 .tabs-top > .tabs, .tabs.tabs-top {
-  height:60px;
+    height:42px;
 }
 .tabs-striped.tabs-positive .tabs {
-  background:white;
-  top:50px;
+    background:white;
+    top:50px;
 }
 .tabs-striped.tabs-positive .tabs .tab-item {
-  background:#1594ac;
-  border:2px solid #077885 !important;
-  border-radius:4px;
-  font-weight:bold;
-  box-shadow: 0px 4px 0px #077885;
-  text-shadow: 0px 2px 0px rgba(0,0,0,0.1);
-  color:white;
-  margin: 7px 1% 0px;
-  height:42px;
-  line-height: 35px;
+    background:#1594ac;
+    border-right:1px solid #077885 !important;
+    font-weight:normal;
+    text-shadow: 0px 2px 0px rgba(0,0,0,0.1);
+    color:white;
+    margin: 0px 0 0px;
+    height:42px;
+    line-height: 35px;
+    font-size: 15px;
 }
 .tabs-striped.tabs-positive .tabs .tab-item-active {
-  background:#077885;
-  border:2px solid #077885 !important;
-  box-shadow: 0px 4px 0px #056a72;
-  line-height: 35px;
+    background:#077885;
+    border-bottom:1px solid #077885 !important;
+    line-height: 35px;
+    position:relative;
+    overflow:visible;
+    font-weight:bold;
+}
+.tabs-striped.tabs-positive .tabs .tab-item-activated {
+    border-bottom:1px solid #077885 !important;
+}
+.tabs-striped.tabs-positive .tabs .tab-item-active:after {
+    content: "\f104";
+    color:#077885;
+    display: block;
+    margin: 0 auto;
+    height: 32px;
+    font-size: 32px;
+    position: absolute;
+    left: 50%;
+    bottom: -18px;
+    margin-left: -11px !important;
+    font-family: "Ionicons";
+    text-shadow:none;
 }
 
 /* PÁGINAS */
@@ -892,4 +910,8 @@ body.platform-windowsphone8 .scroll-content {
 .rosa{
     background-color: #f74094;
     color: #FFF;
+}
+
+.tab-item {
+    max-width: 100%;
 }
