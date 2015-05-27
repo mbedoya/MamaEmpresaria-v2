@@ -30,6 +30,10 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
         return $scope.agotadosAnterior;
     }
 
+    $scope.noSeEnviaAgotado = function(cantPedida, cantEnviada){
+        return cantPedida - cantEnviada == 0;
+    }
+
     $scope.agotadoSustituido = function(tipo){
         return tipo == 'AGOTADO SUSTITUIDO';
     }
