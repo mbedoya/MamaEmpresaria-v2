@@ -6,13 +6,9 @@
 
         <!-- Agotados -->
         <div class="list list-inset" ng-show="agotados()" >
-            <a class="item item-icon-right assertive" href="#">
+            <a class="item item-icon-right assertive" ng-click="mostrarAgotados()" href="#">
                 <i class="icon ion-plus-circled"></i>
-                Tu pedido tiene presenta algunos agotados. Presioná acá para ver detalle.
-            </a>
-            <a class="item assertive" href="#" ng-repeat="agotado in agotados()" >
-                <h2>{{ agotado.nombre }}</h2>
-                <p>{{ agotado.tipoAgotado }}</p>
+                <span class="assertive">Tu pedido presenta algunos agotados. Te invitamos para ver el detalle.</span>
             </a>
         </div>
 
