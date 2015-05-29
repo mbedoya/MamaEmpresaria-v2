@@ -1,0 +1,52 @@
+<ion-modal-view>
+    <ion-content>
+        <div class="list dia">
+            <div class="item item-divider azul">
+                Productos Agotados
+            </div>
+            <p class="item">
+                Estos productos no te llegarán:
+            </p>
+        </div>
+
+        <!-- Agotados -->
+        <div class="list list-inset" ng-show="agotados()" >
+            <a class="item assertive" href="#" ng-repeat="agotado in agotados().agotadosME" ng-show="!agotadoSustituido(agotado.tipoAgotado)" >
+                <h2>{{ agotado.nombre }}</h2>
+                <p ng-show="!noSeEnviaAgotado(agotado.cantidadPedida,agotado.cantAgotada)">Pediste {{ agotado.cantidadPedida }} y te enviaremos {{ agotado.cantidadPedida - agotado.cantAgotada }} </p>
+                <p ng-show="noSeEnviaAgotado(agotado.cantidadPedida,agotado.cantAgotada)">Pediste {{ agotado.cantidadPedida }} y no podremos enviarte ninguno</p>
+                <p ng-show="agotadoSustituido(agotado.tipoAgotado)">
+                    <span class="assertive" ng-repeat="sustituto in agotado.listaSustitutos" >
+                        {{ sustituto.sustituto }}
+                    </span>
+                </p>
+            </a>
+        </div>
+
+        <div class="list dia">
+            <div class="item item-divider rosa">
+                Productos Sustituidos
+            </div>
+            <p class="item">
+                Te enviamos un reemplazo:
+            </p>
+        </div>
+
+        <!-- Agotados -->
+        <div class="list list-inset" ng-show="agotados()" >
+            <a class="item assertive" href="#" ng-repeat="agotado in agotados().agotadosME" ng-show="agotadoSustituido(agotado.tipoAgotado)" >
+                <h2>{{ agotado.nombre }}</h2>
+                <p>Pediste {{ agotado.cantidadPedida }} y a cambio te enviaremos</p>
+                <p ng-show="agotadoSustituido(agotado.tipoAgotado)">
+                    <span ng-repeat="sustituto in agotado.listaSustitutos" >
+                        {{ sustituto.sustituto }}
+                    </span>
+                </p>
+            </a>
+        </div>
+
+        <label class="modal-button">
+            <button class="button button-block" type="submit" ng-click="closeModal()">Cerrar</button>
+        </label>
+    </ion-content>
+</ion-modal-view>

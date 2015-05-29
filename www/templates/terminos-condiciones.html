@@ -1,0 +1,23 @@
+<ion-view view-title="Términos y condiciones">
+    <ion-content>
+        <div class="content-login padding">
+            <img src="img/login.png" class="login-img" />
+            <h4>Mamá Empresaria</h4>
+            <h3>Para ingresar a la aplicación es necesario que aceptes los términos y condiciones.</h3>
+            <form >
+                <span class="login-label">Cédula</span>
+                <label class="login-input">
+                    <input id="cedula" ng-model="datosInicio.cedula" type="number" >
+                </label>
+                <label class="login-button">
+                    <input type="button" value="Ingresar" class="button button-block" ng-click="aceptar()">
+                </label>
+            </form>
+        </div>
+    </ion-content>
+    <ion-footer-bar >
+        <div class="footer-nutresa">
+            <img src="img/nutresa.png" />
+        </div>
+    </ion-footer-bar>
+</ion-view>
