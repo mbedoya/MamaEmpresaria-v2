@@ -362,8 +362,8 @@ angular.module('novaventa.services', [])
                 
                 //Cadena en Base 64 usuario:clave
                 var cadenaBase64 = btoa(cedula + ":1");
-                var urlValidacion = rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/validacionAntares/" + cedula +"/1";
-                //var urlValidacion = rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/validacionAntares"; 
+                //var urlValidacion = rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/validacionAntares/" + cedula +"/1";
+                var urlValidacion = rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/validacionAntares"; 
                 
                 var req = {
                     method: 'GET',
@@ -372,8 +372,19 @@ angular.module('novaventa.services', [])
                         'Authorization': 'Basic ' + cadenaBase64
                     }
                 };
+                
+                console.log(urlValidacion);
+                console.log(cadenaBase64);
           
-                $http(req).
+                $http.defaults.headers.common['Authorization'] = 'Basic ' + cadenaBase64;
+          
+                $http({
+                    method: 'GET',
+                    url: urlValidacion,
+                    headers: {
+                        'Authorization': 'Basic ' + cadenaBase64
+                    }
+                }).
                     success(function(data, status, headers, config) {
                         //alert("success");
                         var mensajeError;
@@ -402,7 +413,7 @@ angular.module('novaventa.services', [])
                                 rootScope.seccion = data.estructuraList[0].seccion;
                   
                                 //Header con la key para todas las solicitudes              
-                                $http.defaults.headers.common.Authorization = 'apikey ' + cadenaBase64;
+                                $http.defaults.headers.common['Authorization'] = 'apikey ' + data.token;
 
                                 var campanaInicial = '-';
                                 Campana.getRecordatoriosCampanaOperativa(function (success, data) {
