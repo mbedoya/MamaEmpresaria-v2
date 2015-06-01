@@ -167,7 +167,6 @@ angular.module('novaventa.services', [])
                 var anoCampana = Utilidades.getAnoCampanaAnterior();
 
                 var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula + "/" + anoCampana;
-                //var urlServicio = "http://200.47.173.66:9081" +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula + "/" + "201502";
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -378,13 +377,7 @@ angular.module('novaventa.services', [])
           
                 $http.defaults.headers.common['Authorization'] = 'Basic ' + cadenaBase64;
           
-                $http({
-                    method: 'GET',
-                    url: urlValidacion,
-                    headers: {
-                        'Authorization': 'Basic ' + cadenaBase64
-                    }
-                }).
+                $http(req).
                     success(function(data, status, headers, config) {
                         //alert("success");
                         var mensajeError;
@@ -828,6 +821,26 @@ angular.module('novaventa.services', [])
 
                 return anoCampana;
             }
+        }
+    })
+    
+    .factory('TerminosCondiciones', function($rootScope, $http) {
+
+        return {
+        	getTerminosCondiciones: function(fx){
+        	   
+               //var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/productoDeCampagna/agotadosCampagna/" + anoCampana;
+               var urlServicio = 'http://www.mocky.io/v2/556cd17ce822501804253edc';
+
+                $http.get(urlServicio).
+                    success(function(data, status, headers, config) {
+                        fx(true, data);
+                    }).
+                    error(function(data, status, headers, config) {
+                        fx(false, {});
+                    });
+               
+        	}
         }
     })
 ;
