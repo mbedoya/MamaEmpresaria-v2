@@ -1,20 +1,19 @@
-moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootScope, $state, $ionicLoading, $http, $ionicPopup, Mama, Internet, GA, Pedido, Utilidades, Campana) {
+moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootScope, $state, $ionicLoading, GA, TerminosCondiciones) {
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Terminos y condiciones");
 
     $scope.inicializar = function(){
 
-        /*
-        Pedido.getAgotadosAnterior($rootScope.datos.cedula, function (success, data){
+        TerminosCondiciones.getTerminosCondiciones(function (success, data){
             if(success){
-                $scope.agotadosAnterior = data;
+                console.log(data);
+                $scope.texto = data.texto;
             }else{
 
             }
         });
-        */
-    }
+    };
 
     $scope.$on('online', function(event, args){
         $scope.inicializar(true);

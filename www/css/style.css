@@ -292,6 +292,17 @@ strong{
   height:auto;
   margin:8px 0px 25px;
 }
+textarea{
+  border-radius:8px;
+  background:#e4e4e4;
+  padding:15px;
+  margin:8px 0px 25px;
+  overflow-y: scroll;
+  resize: none;
+  max-height: 250px;
+  width: 100%;
+}
+
 .login-button input[type=button] {
     background:#eb0c6e;
     border-radius:8px;

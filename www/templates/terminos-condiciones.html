@@ -1,16 +1,23 @@
 <ion-view view-title="Términos y condiciones">
     <ion-content>
         <div class="content-login padding">
-            <img src="img/login.png" class="login-img" />
+            <div style="height:100px;"></div>
             <h4>Mamá Empresaria</h4>
             <h3>Para ingresar a la aplicación es necesario que aceptes los términos y condiciones.</h3>
             <form >
-                <span class="login-label">Cédula</span>
-                <label class="login-input">
-                    <input id="cedula" ng-model="datosInicio.cedula" type="number" >
+                <label>
+                    <textarea id="terminos" ng-model="texto" readonly="readonly" ></textarea>
                 </label>
+                <ul class="list">
+                    <li class="item-checkbox">
+                        <label class="checkbox">
+                            <input type="checkbox" ng-model="seleccion_acepto">
+                        </label>
+                        Acepto los terminos y condiciones y politicas de uso de datos personales        
+                    </li>
+                </ul>
                 <label class="login-button">
-                    <input type="button" value="Ingresar" class="button button-block" ng-click="aceptar()">
+                    <input id="aceptar" type="button" value="Continuar" class="button button-block" ng-disabled="!seleccion_acepto" ng-click="continuar()">
                 </label>
             </form>
         </div>
