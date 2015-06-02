@@ -392,8 +392,8 @@ angular.module('novaventa.services', [])
                             }
                         }else{
 
-                            //Tipo de usuario recibido?
-                            if(data.tiposUsuarios && data.tiposUsuarios.length > 0 && (data.tiposUsuarios[0] == "1" || data.tiposUsuarios[0] == "3")){
+                            //Tipo de usuario recibido o Mamá en Deuda 4?
+                            if((data.tiposUsuarios && data.tiposUsuarios.length > 0 && (data.tiposUsuarios[0] == "1" || data.tiposUsuarios[0] == "3")) ||  Number(data.estadoPastDue) >= 4){
 
                                 //Establecer los datos de resumen de la Mamá
                                 rootScope.datos.nombre = data.nombreCompleto;
@@ -603,15 +603,22 @@ angular.module('novaventa.services', [])
                                 });
 
                             }else{
-
-                                if(data.tiposUsuarios && data.tiposUsuarios.length > 0 && (data.tiposUsuarios[0] == "2")){
-                                    mensajeError = "Hola Mamá, te invitamos a montar tu primer pedido para disfrutar de esta Aplicación, para este cuentas con un cupo de " + filter('currency')(data.cupo, '$', 0);
+                                
+                                //Deuda >= 4?
+                                if(Number(data.estadoPastDue) >= 4){
+                                    mensajeError = "Hola Mamá, no puedes acceder a nuestra aplicación, cuentas con una deuda de " + filter('currency')(data.salBalance, '$', 0) + ' comunícate con nuestra línea de atención';
                                 }else{
-                                    if(data.tiposUsuarios){
-                                        mensajeError = "Tu rol no es válido para nuestra Aplicación";
+                                    
+                                    //Tipos de usuarios no permitidos
+                                    if(data.tiposUsuarios && data.tiposUsuarios.length > 0 && (data.tiposUsuarios[0] == "2")){
+                                        mensajeError = "Hola Mamá, te invitamos a montar tu primer pedido para disfrutar de esta Aplicación, para este cuentas con un cupo de " + filter('currency')(data.cupo, '$', 0);
                                     }else{
-                                        //$scope.mostrarMensajeError = true;
-                                        mensajeError = "Mamá Empresaria, esta aplicación sólo funciona con internet, verifica tu conexión. En este momento no podemos consultar tu información";
+                                        if(data.tiposUsuarios){
+                                            mensajeError = "Tu rol no es válido para nuestra Aplicación";
+                                        }else{
+                                            //$scope.mostrarMensajeError = true;
+                                            mensajeError = "Mamá Empresaria, esta aplicación sólo funciona con internet, verifica tu conexión. En este momento no podemos consultar tu información";
+                                        }
                                     }
                                 }
                             }
