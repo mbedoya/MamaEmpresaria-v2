@@ -392,6 +392,8 @@ angular.module('novaventa.services', [])
                             }
                         }else{
 
+                            alert(data.estadoPastDue);
+                        
                             //Tipo de usuario recibido o Mamá en Deuda 4?
                             if((data.tiposUsuarios && data.tiposUsuarios.length > 0 && (data.tiposUsuarios[0] == "1" || data.tiposUsuarios[0] == "3")) ||  Number(data.estadoPastDue) < 4){
 
