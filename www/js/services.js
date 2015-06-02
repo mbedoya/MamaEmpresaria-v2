@@ -391,11 +391,9 @@ angular.module('novaventa.services', [])
                                 mensajeError = data.razonRechazo;
                             }
                         }else{
-
-                            alert(data.estadoPastDue);
                         
                             //Tipo de usuario recibido o Mamá en Deuda 4?
-                            if((data.tiposUsuarios && data.tiposUsuarios.length > 0 && (data.tiposUsuarios[0] == "1" || data.tiposUsuarios[0] == "3")) ||  Number(data.estadoPastDue) < 4){
+                            if((data.tiposUsuarios && data.tiposUsuarios.length > 0 && (data.tiposUsuarios[0] == "1" || data.tiposUsuarios[0] == "3")) &&  Number(data.estadoPastDue) < 4){
 
                                 //Establecer los datos de resumen de la Mamá
                                 rootScope.datos.nombre = data.nombreCompleto;
