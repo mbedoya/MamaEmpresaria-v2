@@ -606,7 +606,7 @@ angular.module('novaventa.services', [])
                                 
                                 //Deuda >= 4?
                                 if(Number(data.estadoPastDue) >= 4){
-                                    mensajeError = "Hola Mamá, no puedes acceder a nuestra aplicación, cuentas con una deuda de " + filter('currency')(data.salBalance, '$', 0) + ' comunícate con nuestra línea de atención';
+                                    mensajeError = "Hola Mamá, tienes un saldo pendiente por pagar de " + filter('currency')(data.saldoBalance, '$', 0) + '. Te invitamos a ponerte al día. Ten presente que este valor puede aumentar debido a los gatos adicionales que se presentan por la entidad de cobro.';
                                 }else{
                                     
                                     //Tipos de usuarios no permitidos
