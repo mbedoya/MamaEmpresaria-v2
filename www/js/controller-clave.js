@@ -1,7 +1,7 @@
-moduloControlador.controller('LoginCtrl', function($scope, $location, $rootScope, $ionicLoading, $ionicPopup, $state, $http, $filter, $ionicHistory, Mama, Internet, GA, Utilidades) {
+moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope, $ionicLoading, $ionicPopup, $state, $http, $filter, $ionicHistory, Mama, Internet, GA, Utilidades) {
 
     //Registro en Analytics
-    GA.trackPage($rootScope.gaPlugin, "Inicio de sesión");
+    GA.trackPage($rootScope.gaPlugin, "Clave");
 
     $scope.mostrarAyuda = function(titulo, mensaje) {
         var alertPopup = $ionicPopup.alert({
@@ -10,32 +10,24 @@ moduloControlador.controller('LoginCtrl', function($scope, $location, $rootScope
         });
     };
 
-    $scope.test = function(){
-        $scope.capturarCedula();
-    }
-
-    $scope.datosInicio = {cedula: '' };
-
     //Autenticar a la Mamá Empresaria
-    $scope.capturarCedula = function() {
-
-        $rootScope.datos = { cedula: $scope.datosInicio.cedula };
+    $scope.continuar = function() {
 
         //Cédula vacía
-        if(!$rootScope.datos.cedula){
-            $scope.mostrarAyuda("Inicio de sesión","Ingresa tu cédula");
+        if(!$scope.clave){
+            $scope.mostrarAyuda("Ingreso de clave","Ingresa tu clave");
             return;
         }
 
         //Cantidad de caracteres
-        if(String($rootScope.datos.cedula).length < 6 || String($rootScope.datos.cedula).length > 10){
-            $scope.mostrarAyuda("Inicio de sesión","Ingresa entre 6 y 10 dígitos");
+        if(String($scope.clave).length != 4){
+            $scope.mostrarAyuda("Ingreso de clave","Ingresa 4 dígitos");
             return;
         }
 
         //Caracteres especiales
-        if(String($rootScope.datos.cedula).indexOf(".") >= 0 || String($rootScope.datos.cedula).indexOf(",") >= 0){
-            $scope.mostrarAyuda("Inicio de sesión","Ingresa sólo números");
+        if(String($scope.clave).indexOf(".") >= 0 || String($scope.clave).indexOf(",") >= 0){
+            $scope.mostrarAyuda("Ingreso de clave","Ingresa sólo números");
             return;
         }
 
@@ -46,26 +38,6 @@ moduloControlador.controller('LoginCtrl', function($scope, $location, $rootScope
                 $scope.loading =  $ionicLoading.show({
                     template: Utilidades.getPlantillaEspera('Iniciando sesión')
                 });
-
-                /*
-                $.ajax({
-                    url: $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/validacionAntares/" + $rootScope.datos.cedula +"/1",
-                    dataType: "json",
-                    type: "GET",
-                    data: {  },
-                    success: function (data) {
-
-                    },
-                    error: function (a, b, c) {
-                        alert("Error");
-                    }
-                })
-                .then(function (response) {
-
-                    alert(response);
-
-                });
-                */
 
                 Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){
 
@@ -99,13 +71,13 @@ moduloControlador.controller('LoginCtrl', function($scope, $location, $rootScope
 
 
                     }else{
-                        $scope.mostrarAyuda("Inicio de sesión", mensajeError);
+                        $scope.mostrarAyuda("Ingreso de clave", mensajeError);
                     }
 
                 });
 
             }else{
-                $scope.mostrarAyuda("Inicio de sesión","Por favor verifica tu conexión a internet");
+                $scope.mostrarAyuda("Ingreso de clave","Por favor verifica tu conexión a internet");
             }
 
         }catch (err){

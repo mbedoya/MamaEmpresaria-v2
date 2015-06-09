@@ -1,0 +1,24 @@
+<ion-view view-title="Clave">
+    <ion-content>
+    <div class="content-login padding">
+        <img src="img/login.png" class="login-img" />
+        <h4>¡Mamá Empresaria!</h4>
+        <h3>Ingresa tu clave</h3>
+        <form ng-submit="capturarCedula()">
+                <span class="login-label">Clave</span>
+                <label class="login-input">
+                    <input id="cedula" ng-model="clave" type="number" >
+                </label>
+                <label class="login-button">
+                    <input id="ingresar" type="button" value="Ingresar" class="button button-block" ng-click="test()">
+                    <!--  <button id="ingresar" class="button button-block" type="submit">Ingresar</button> -->
+                </label>
+        </form>
+    </div>
+    </ion-content>
+    <ion-footer-bar >
+        <div class="footer-nutresa">
+            <img src="img/nutresa.png" />
+        </div>
+    </ion-footer-bar>
+</ion-view>

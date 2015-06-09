@@ -83,6 +83,16 @@ angular.module('novaventa', ['ionic', 'novaventa.controllers', 'novaventa.servic
                     }
                 }
             })
+            
+            .state('app.clave', {
+                url: "/clave",
+                views: {
+                    'app-view': {
+                        templateUrl: "templates/clave.html",
+                        controller: 'ClaveCtrl'
+                    }
+                }
+            })
 
             .state('app.terminos-condiciones', {
                 url: "/terminos-condiciones",
