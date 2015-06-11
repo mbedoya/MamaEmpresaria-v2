@@ -268,6 +268,46 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
         return encontrado;
     }
+    
+    $scope.fechaEsTomaPedido = function(fecha){
+        
+        if($scope.fechaEsEncuentro(fecha)){
+            return false;
+        }
+        
+        encontrado = false;
+        for (i = 0; i < $scope.fechas.length; i++){
+            if($scope.fechas[i].actividad.toLowerCase() == 'toma de pedido' &&
+                $scope.fechas[i].fecha == fecha ){
+                encontrado = true;
+                break;
+            }
+        }
+
+        //Si no se ha encontrado buscar en la siguiente campana
+        if(!encontrado && $scope.fechasSiguienteCampana){
+            for (i = 0; i < $scope.fechasSiguienteCampana.length; i++){
+                if($scope.fechasSiguienteCampana[i].actividad.toLowerCase() == 'toma de pedido' &&
+                    $scope.fechasSiguienteCampana[i].fecha == fecha ){
+                    encontrado = true;
+                    break;
+                }
+            }
+        }
+
+        //Si no se ha encontrado buscar en la siguiente campana
+        if(!encontrado && $scope.fechasCampanaAnterior){
+            for (i = 0; i < $scope.fechasCampanaAnterior.length; i++){
+                if($scope.fechasCampanaAnterior[i].actividad.toLowerCase() == 'toma de pedido' &&
+                    $scope.fechasCampanaAnterior[i].fecha == fecha ){
+                    encontrado = true;
+                    break;
+                }
+            }
+        }
+
+        return encontrado;
+    }
 
     $scope.fechaEsRepartoPedido = function(fecha){
         encontrado = false;
