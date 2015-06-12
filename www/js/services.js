@@ -225,6 +225,20 @@ angular.module('novaventa.services', [])
         var self = this;
 
         return {
+            tieneEncuentro: function(){
+                var tiene = false;
+
+                if($rootScope.fechas && $rootScope.fechas.length > 0){
+                    for (i = 0; i < $rootScope.fechas.length; i++){
+                        if($rootScope.fechas[i].actividad.toLowerCase() == 'encuentro'){
+                                tiene = true;
+                                break;
+                        }
+                    }
+                }
+
+                return tiene;
+            },
             hoyEsCorreteo: function(){
                 var realizado = false;
 
@@ -362,7 +376,7 @@ angular.module('novaventa.services', [])
                 //Cadena en Base 64 usuario:clave
                 var cadenaBase64 = btoa(cedula + ":1");
                 var urlValidacion = rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/validacionAntares/" + cedula +"/1";
-                //var urlValidacion = rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/validacionAntares"; 
+                //var urlValidacion = rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/validacionAntares";
                 
                 var req = {
                     method: 'GET',
@@ -444,6 +458,14 @@ angular.module('novaventa.services', [])
                                                             }
                                                         }
 
+                                                        if(encuentro == ''){
+                                                            for (i = 0; i < data.listaRecordatorios.length; i++){
+                                                                if(data.listaRecordatorios[i].actividad.toLowerCase() == 'toma de pedido'){
+                                                                    encuentro = data.listaRecordatorios[i].fecha;
+                                                                }
+                                                            }
+                                                        }
+
                                                         rootScope.campana = {numero: data.campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
                                                             fechaCorreteo: correteo, fechaReparto: reparto,  diasEnEjecucion: ''};
 
@@ -495,7 +517,14 @@ angular.module('novaventa.services', [])
                                                                         if (data.listaRecordatorios[i].actividad.toLowerCase() == 'reparto de pedido 1') {
                                                                             reparto = data.listaRecordatorios[i].fecha;
                                                                         }
+                                                                    }
 
+                                                                    if(encuentro == ''){
+                                                                        for (i = 0; i < data.listaRecordatorios.length; i++) {
+                                                                            if (data.listaRecordatorios[i].actividad.toLowerCase() == 'toma de pedido') {
+                                                                                encuentro = data.listaRecordatorios[i].fecha;
+                                                                            }
+                                                                        }
                                                                     }
 
                                                                     //Correteo Anterior

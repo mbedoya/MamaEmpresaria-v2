@@ -18,16 +18,21 @@
                     </div>
                 </div>
 
+                <!-- SALDO -->
+
                 <a class="item item-avatar alternate" href="#" ng-show="mostrarSaldoPagar() && saldo()>0" ng-click="mostrarAyudaSaldoPagar()">
                     <div class="icono bocina"></div>
                     <!-- <i class="icon ion-plus-circled"></i> -->
                     <h2>Tienes un pago pendiente por {{ saldo() | currency:"$":0 }}.
-                        Realízalo
+                        <span ng-show="tieneEncuentro()">
+                            Realízalo
                 <span ng-show="diasParaPago()>=1">el
                 {{campana.fechaMontajePedido | date: 'dd' }} de  {{campana.fechaMontajePedido | date: 'MMMM' }}</span>
                 <span ng-show="diasParaPago()<0 && !hoyEsEncuentro() && !hoyEsCorreteo()">el
                 {{campana.fechaCorreteo | date: 'dd' }} de  {{campana.fechaCorreteo | date: 'MMMM' }}</span>
                         <span ng-show="diasParaPago()<=0 && (hoyEsEncuentro() || hoyEsCorreteo())">hoy</span> antes de las 4 de la tarde
+                        </span>
+
                     </h2>
                     <p>
                         Si ya pagaste consulta de nuevo en 24 horas
@@ -47,12 +52,16 @@
                     <p>&nbsp;</p>
                 </a>
 
+                <!-- CUPO -->
+
                 <a class="item item-avatar" href="#" ng-show="mostrarCupo()">
                     <div class="icono moneda"></div>
                     <h2>Realiza tu próximo pedido máximo por {{ cupo() | currency:"$":0 }}
                     </h2>
                     <p>Si superas este valor debes cancelar el excedente el día que haces tu pedido</p>
                 </a>
+
+                <!-- MONTAJE DE PEDIDO -->
 
                 <!-- (Momentos 1 y 2) -->
                 <a class="item item-avatar {{ estiloAlternateFechaPago() }}" href="#" ng-show="diasParaPago()>0" >

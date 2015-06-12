@@ -874,7 +874,7 @@ textarea{
     white-space: normal;
 }
 
-.ion-ios-people-outline:before, .ion-android-desktop:before, .ion-cube:before, .ion-android-people:before{
+.ion-ios-people-outline:before, .ion-android-desktop:before, .ion-cube:before, .ion-android-people:before, .ion-edit:before{
   font-weight: bold;
   color: #f74094;
 }
