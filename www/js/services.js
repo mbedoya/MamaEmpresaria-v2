@@ -385,10 +385,7 @@ angular.module('novaventa.services', [])
                         'Authorization': 'Basic ' + cadenaBase64
                     }
                 };
-                
-                console.log(urlValidacion);
-                console.log(cadenaBase64);
-          
+
                 $http.defaults.headers.common['Authorization'] = 'Basic ' + cadenaBase64;
           
                 $http(req).
