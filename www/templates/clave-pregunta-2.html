@@ -1,0 +1,66 @@
+<ion-view view-title="Clave">
+    <ion-content>
+        <div class="content-login padding">
+            <img src="img/login.png" class="login-img" />
+            <h4>¡Mamá Empresaria!</h4>
+            <h3>¿Cuál fué la última campaña en la cual montaste pedido?</h3>
+            <form ng-submit="capturarCedula()">
+                <span class="login-label">¿Cuál es el valor que de tu última factura?</span>
+                <ul class="list">
+                    <!--
+                    <li class="item-checkbox">
+                        <label class="checkbox">
+                            <input type="checkbox" ng-model="seleccion_acepto">
+                        </label>
+                        Entre 50.000 y 100.000
+                    </li>
+                    <li class="item-checkbox">
+                        <label class="checkbox">
+                            <input type="checkbox" ng-model="seleccion_acepto">
+                        </label>
+                        Entre 100.000 y 200.000
+                    </li>
+                    <li class="item-checkbox">
+                        <label class="checkbox">
+                            <input type="checkbox" ng-model="seleccion_acepto">
+                        </label>
+                        Entre 200.000 y 300.000
+                    </li>
+                    -->
+
+                    <label class="item item-radio">
+                        <input type="radio" name="group">
+                        <div class="item-content">
+                            Entre 50.000 y 100.000
+                        </div>
+                        <i class="radio-icon ion-checkmark"></i>
+                    </label>
+
+                    <label class="item item-radio">
+                        <input type="radio" name="group">
+                        <div class="item-content">
+                            Entre 100.000 y 200.000
+                        </div>
+                        <i class="radio-icon ion-checkmark"></i>
+                    </label>
+
+                    <label class="item item-radio">
+                        <input type="radio" name="group">
+                        <div class="item-content">
+                            Entre 200.000 y 300.000
+                        </div>
+                        <i class="radio-icon ion-checkmark"></i>
+                    </label>
+                </ul>
+                <label class="login-button">
+                    <input id="ingresar" type="button" value="Enviar" class="button button-block" ng-click="continuar()">
+                </label>
+            </form>
+        </div>
+    </ion-content>
+    <ion-footer-bar >
+        <div class="footer-nutresa">
+            <img src="img/nutresa.png" />
+        </div>
+    </ion-footer-bar>
+</ion-view>

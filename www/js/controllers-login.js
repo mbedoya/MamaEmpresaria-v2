@@ -89,14 +89,19 @@ moduloControlador.controller('LoginCtrl', function($scope, $location, $rootScope
                             disableBack: true
                         });
 
+                        $location.path('/app/clave-pregunta-1');
+
+                        /*
                         if(irABienvenida){
                             //$state.go('app.bienvenida');
-                            $location.path('/app/bienvenida');
+                            //$location.path('/app/bienvenida');
+                            $location.path('/app/clave');
                         }else{
-                            $location.path('/app/menu/tabs/home');
+                            //$location.path('/app/menu/tabs/home');
                             //$state.go('app.menu.tabs.home');
+                            $location.path('/app/clave-pregunta-1');
                         }
-
+                        */
 
                     }else{
                         $scope.mostrarAyuda("Inicio de sesión", mensajeError);

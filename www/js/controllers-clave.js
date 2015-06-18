@@ -36,7 +36,7 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
             if(Internet.get()){
 
                 $scope.loading =  $ionicLoading.show({
-                    template: Utilidades.getPlantillaEspera('Iniciando sesión')
+                    template: Utilidades.getPlantillaEspera('Validando clave')
                 });
 
                 Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){

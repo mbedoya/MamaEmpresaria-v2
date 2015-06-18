@@ -94,6 +94,46 @@ angular.module('novaventa', ['ionic', 'novaventa.controllers', 'novaventa.servic
                 }
             })
 
+            .state('app.clave-nueva-clave-1', {
+                url: "/clave-nueva-clave-1",
+                views: {
+                    'app-view': {
+                        templateUrl: "templates/clave-nueva-clave-1.html",
+                        controller: 'ClaveNuevaClave1Ctrl'
+                    }
+                }
+            })
+
+            .state('app.clave-nueva-clave-2', {
+                url: "/clave-nueva-clave-2",
+                views: {
+                    'app-view': {
+                        templateUrl: "templates/clave-nueva-clave-2.html",
+                        controller: 'ClaveNuevaClave2Ctrl'
+                    }
+                }
+            })
+
+            .state('app.clave-pregunta-1', {
+                url: "/clave-pregunta-1",
+                views: {
+                    'app-view': {
+                        templateUrl: "templates/clave-pregunta-1.html",
+                        controller: 'ClavePregunta1Ctrl'
+                    }
+                }
+            })
+
+            .state('app.clave-pregunta-2', {
+                url: "/clave-pregunta-2",
+                views: {
+                    'app-view': {
+                        templateUrl: "templates/clave-pregunta-2.html",
+                        controller: 'ClavePregunta2Ctrl'
+                    }
+                }
+            })
+
             .state('app.terminos-condiciones', {
                 url: "/terminos-condiciones",
                 views: {

@@ -5,14 +5,50 @@
         <h4>¡Mamá Empresaria!</h4>
         <h3>¿Cuál fué la última campaña en la cual montaste pedido?</h3>
         <form ng-submit="capturarCedula()">
-                <span class="login-label">Clave</span>
-                <label class="login-input">
-                    <input id="cedula" ng-model="clave" type="number" >
+            <span class="login-label">¿Cuál es la última campaña en la cuál montaste pedido?</span>
+            <ul class="list">
+
+                <!--
+                <li class="item-checkbox">
+                    <label class="checkbox">
+                        <input type="checkbox" ng-model="seleccion_acepto">
+                    </label>
+                    Campaña 1 de 2015
+                </li>
+                <li class="item-checkbox">
+                    <label class="checkbox">
+                        <input type="checkbox" ng-model="seleccion_acepto">
+                    </label>
+                    Campaña 16 de 2014
+                </li>
+                <li class="item-checkbox">
+                    <label class="checkbox">
+                        <input type="checkbox" ng-model="seleccion_acepto">
+                    </label>
+                    Campaña 4 de 2015
+                </li>
+                -->
+
+                <label class="item item-radio">
+                    <input type="radio" name="group">
+                    <div class="item-content">
+                        C4
+                    </div>
+                    <i class="radio-icon ion-checkmark"></i>
                 </label>
-                <label class="login-button">
-                    <input id="ingresar" type="button" value="Ingresar" class="button button-block" ng-click="test()">
-                    <!--  <button id="ingresar" class="button button-block" type="submit">Ingresar</button> -->
+
+                <label class="item item-radio">
+                    <input type="radio" name="group">
+                    <div class="item-content">
+                        C6
+                    </div>
+                    <i class="radio-icon ion-checkmark"></i>
                 </label>
+
+            </ul>
+            <label class="login-button">
+                <input id="ingresar" type="button" value="Enviar" class="button button-block" ng-click="continuar()">
+            </label>
         </form>
     </div>
     </ion-content>
