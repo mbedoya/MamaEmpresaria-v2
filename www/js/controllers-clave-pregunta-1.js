@@ -10,6 +10,8 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
         });
     };
 
+    $scope.mostrarAyuda("Creación de clave", "Mamá, nos encanta tenerte con nosotros. Para que puedas disfrutar de esta aplicación te invitamos a responder unas preguntas y crear tu clave");
+
     $scope.continuar = function() {
 
         try{
@@ -21,7 +23,7 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
                 if(respuestaValida){
                     $location.path('/app/bienvenida');
                 }else{
-                    $scope.mostrarAyuda("Creación de clave", "La campaña ingresada no es correcta, te solicitaremos una nueva información");
+                    $scope.mostrarAyuda("Creación de clave", "Lo sentimos, has fallado en esta respuesta, responde una pregunta más");
                     $location.path('/app/clave-pregunta-2');
                 }
 

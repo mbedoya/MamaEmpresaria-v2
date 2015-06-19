@@ -926,3 +926,10 @@ body.platform-windowsphone8 .scroll-content {
 .tab-item {
     max-width: 100%;
 }
+
+h5 {
+    font-size: 16px;
+    color: #808080;
+    text-align: justify;
+    margin-bottom: 15px;
+}

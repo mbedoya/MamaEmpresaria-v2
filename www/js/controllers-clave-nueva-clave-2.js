@@ -48,6 +48,7 @@ moduloControlador.controller('ClaveNuevaClave2Ctrl', function($scope, $location,
                     $ionicLoading.hide();
 
                     if(success){
+                        $scope.mostrarAyuda("Creación de clave", "Tu clave para ingresar a la Aplicación es 1234, puedes cambiarla en el momento en que lo desees");
                         $location.path('/app/bienvenida');
 
                     }else{
