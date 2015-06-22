@@ -371,6 +371,20 @@ angular.module('novaventa.services', [])
     .factory('Mama', function(Campana, Pedido, Utilidades, $rootScope, $http) {
 
         return {
+            validarCedula: function(fx){
+
+                var cedula = $rootScope.datos.cedula;
+                //var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/productoDeCampagna/agotadosCampagna/" + anoCampana;
+                var urlServicio = "http://www.mocky.io/v2/558862afaab365dd148bee53";
+
+                $http.get(urlServicio).
+                    success(function(data, status, headers, config) {
+                        fx(true, data);
+                    }).
+                    error(function(data, status, headers, config) {
+                        fx(false, {});
+                    });
+            },
             autenticar: function(cedula, rootScope, http, filter, factoryMama, fx) {
                 
                 //Cadena en Base 64 usuario:clave

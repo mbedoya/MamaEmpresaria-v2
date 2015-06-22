@@ -1,4 +1,4 @@
-moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $rootScope, $ionicLoading, $ionicPopup, $state, $http, $filter, $ionicHistory, Mama, Internet, GA, Utilidades) {
+moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $rootScope, $ionicLoading, $ionicPopup, Mama, Internet, GA, Campana) {
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Creacion Clave - Pregunta 1");
@@ -10,11 +10,32 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
         });
     };
 
+    $scope.campanaActual = "";
+    $scope.campanasAnoActual = new Array();
+
+    $scope.inicializar = function() {
+
+        $rootScope.zona = "655";
+        $rootScope.seccion = "0";
+
+        Campana.getRecordatoriosCampanaOperativa(function (success, data) {
+            if (success) {
+                console.log(data.campagna);
+                $scope.campanaActual = data.campagna;
+                var i=1;
+                while(i < Number($scope.campanaActual)){
+                    $scope.campanasAnoActual.push({"nombre": i});
+                    i=i+1;
+                }
+            }
+        });
+    }
+
+    $scope.inicializar();
+
     $scope.mostrarAyuda("Creación de clave", "Mamá, nos encanta tenerte con nosotros. Para que puedas disfrutar de esta aplicación te invitamos a responder unas preguntas y crear tu clave");
 
     $scope.continuar = function() {
-
-        try{
 
             if(Internet.get()){
 
@@ -30,11 +51,15 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
             }else{
                 $scope.mostrarAyuda("Creación de clave","Por favor verifica tu conexión a internet");
             }
-
-        }catch (err){
-            alert(err.message);
-        }
-
-
     }
+
+    $scope.mostrarAnoAnterior = function(){
+        if($scope.campanaActual != ""){
+            if($scope.campanaActual >= 10){
+                return false;
+            }
+        }
+        return true;
+    }
+
 });

@@ -1,55 +1,42 @@
 <ion-view view-title="Clave">
     <ion-content>
-    <div class="content-login padding">
-        <img src="img/login.png" class="login-img" />
-        <h3>¿Cuál fue la última Campaña en la que montaste pedido?</h3>
-        <h5>Esta información la puedes encontrar en la parte superior de la primera página de tu factura</h5>
-        <form ng-submit="capturarCedula()">
-            <ul class="list">
+        <div class="content-login padding">
+            <img src="img/login.png" class="login-img" />
+            <h3>¿Cuál fue la última Campaña en la que montaste pedido?</h3>
+            <h5>Esta información la puedes encontrar en la parte superior de la primera página de tu factura</h5>
+            <form ng-submit="capturarCedula()">
+                <div class="list">
 
-                <!--
-                <li class="item-checkbox">
-                    <label class="checkbox">
-                        <input type="checkbox" ng-model="seleccion_acepto">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Año
+                        </div>
+                        <select>
+                            <option selected>Selecciona uno</option>
+                            <option ng-show="mostrarAnoAnterior()">2014</option>
+                            <option>2015</option>
+                        </select>
                     </label>
-                    Campaña 1 de 2015
-                </li>
-                <li class="item-checkbox">
-                    <label class="checkbox">
-                        <input type="checkbox" ng-model="seleccion_acepto">
-                    </label>
-                    Campaña 16 de 2014
-                </li>
-                <li class="item-checkbox">
-                    <label class="checkbox">
-                        <input type="checkbox" ng-model="seleccion_acepto">
-                    </label>
-                    Campaña 4 de 2015
-                </li>
-                -->
 
-                <label class="item item-radio">
-                    <input type="radio" name="group">
-                    <div class="item-content">
-                        C4
-                    </div>
-                    <i class="radio-icon ion-checkmark"></i>
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Campaña
+                        </div>
+                        <select>
+                            <option selected>Selecciona una</option>
+                            <option ng-repeat="campana in campanasAnoActual">
+                                Campaña {{campana.nombre}}
+                            </option>
+                        </select>
+                    </label>
+
+                </div>
+
+                <label class="login-button">
+                    <input id="ingresar" type="button" value="Enviar" class="button button-block" ng-click="continuar()">
                 </label>
-
-                <label class="item item-radio">
-                    <input type="radio" name="group">
-                    <div class="item-content">
-                        C6
-                    </div>
-                    <i class="radio-icon ion-checkmark"></i>
-                </label>
-
-            </ul>
-            <label class="login-button">
-                <input id="ingresar" type="button" value="Enviar" class="button button-block" ng-click="continuar()">
-            </label>
-        </form>
-    </div>
+            </form>
+        </div>
     </ion-content>
     <ion-footer-bar >
         <div class="footer-nutresa">
