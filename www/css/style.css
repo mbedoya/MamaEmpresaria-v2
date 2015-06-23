@@ -933,3 +933,7 @@ h5 {
     text-align: justify;
     margin-bottom: 15px;
 }
+
+.clave{
+    -webkit-text-security: disc;
+}
