@@ -10,29 +10,32 @@ moduloControlador.controller('ClaveNuevaClave1Ctrl', function($scope, $location,
         });
     };
 
+    $scope.modelo = { clave: ''};
+
     //Autenticar a la Mamá Empresaria
     $scope.continuar = function() {
 
 
-        /*
         //Cédula vacía
-        if(!$scope.clave){
+        if(!$scope.modelo.clave){
             $scope.mostrarAyuda("Creación de clave","Ingresa tu clave");
             return;
         }
 
         //Cantidad de caracteres
-        if(String($scope.clave).length != 4){
+        if(String($scope.modelo.clave).length != 4){
             $scope.mostrarAyuda("Creación de clave","Ingresa 4 dígitos");
             return;
         }
 
         //Caracteres especiales
-        if(String($scope.clave).indexOf(".") >= 0 || String($scope.clave).indexOf(",") >= 0){
+        if(String($scope.modelo.clave).indexOf(".") >= 0 || String($scope.modelo.clave).indexOf(",") >= 0){
             $scope.mostrarAyuda("Creación de clave","Ingresa sólo números");
             return;
         }
-        */
+
+        //Guardar la clave ingresada para posterior comparac
+        $rootScope.clave1 = $scope.modelo.clave;
 
         try{
 

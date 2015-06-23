@@ -10,19 +10,21 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
         });
     };
 
-    $scope.campanaActual = "";
-    $scope.campanasAnoActual = new Array();
-
     $scope.inicializar = function() {
+
+        $scope.campanaActual = "";
+        $scope.campanasAnoActual = new Array();
 
         $rootScope.zona = "655";
         $rootScope.seccion = "0";
 
         Campana.getRecordatoriosCampanaOperativa(function (success, data) {
             if (success) {
-                console.log(data.campagna);
                 $scope.campanaActual = data.campagna;
                 var i=1;
+                if(Number($scope.campanaActual)-9 > 0){
+                    i=Number($scope.campanaActual)-9;
+                }
                 while(i < Number($scope.campanaActual)){
                     $scope.campanasAnoActual.push({"nombre": i});
                     i=i+1;

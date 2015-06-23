@@ -4,9 +4,9 @@
         <img src="img/login.png" class="login-img" />
         <h4>Es momento de elegir tu clave</h4>
         <h3>Elige una cifra de 4 dígitos</h3>
-        <form ng-submit="capturarCedula()">
+        <form >
                 <label class="login-input">
-                    <input id="clave" class="clave" ng-model="clave" type="number" >
+                    <input id="clave" class="clave" ng-model="modelo.clave" type="number" >
                 </label>
                 <label class="login-button">
                     <input id="ingresar" type="button" value="Enviar" class="button button-block" ng-click="continuar()">

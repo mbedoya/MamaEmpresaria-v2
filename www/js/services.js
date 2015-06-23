@@ -371,6 +371,20 @@ angular.module('novaventa.services', [])
     .factory('Mama', function(Campana, Pedido, Utilidades, $rootScope, $http) {
 
         return {
+            getRespuestasPregunta2: function(fx){
+
+                var cedula = $rootScope.datos.cedula;
+                //var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/productoDeCampagna/agotadosCampagna/" + anoCampana;
+                var urlServicio = "http://www.mocky.io/v2/5589bff35a23d31e1757e309";
+
+                    $http.get(urlServicio).
+                        success(function(data, status, headers, config) {
+                            fx(true, data);
+                        }).
+                        error(function(data, status, headers, config) {
+                            fx(false, {});
+                        });
+            },
             validarCedula: function(fx){
 
                 var cedula = $rootScope.datos.cedula;

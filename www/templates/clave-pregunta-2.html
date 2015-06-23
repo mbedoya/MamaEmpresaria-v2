@@ -7,50 +7,15 @@
             <form ng-submit="capturarCedula()">
 
                 <ul class="list" >
-                    <!--
-                    <li class="item-checkbox">
-                        <label class="checkbox">
-                            <input type="checkbox" ng-model="seleccion_acepto">
-                        </label>
-                        Entre 50.000 y 100.000
-                    </li>
-                    <li class="item-checkbox">
-                        <label class="checkbox">
-                            <input type="checkbox" ng-model="seleccion_acepto">
-                        </label>
-                        Entre 100.000 y 200.000
-                    </li>
-                    <li class="item-checkbox">
-                        <label class="checkbox">
-                            <input type="checkbox" ng-model="seleccion_acepto">
-                        </label>
-                        Entre 200.000 y 300.000
-                    </li>
-                    -->
 
-                    <label class="item item-radio">
+                    <label class="item item-radio" ng-repeat="respuesta in respuestas">
                         <input type="radio" name="group">
                         <div class="item-content">
-                            Entre 50.000 y 100.000
+                            {{respuesta.respuesta}}
                         </div>
                         <i class="radio-icon ion-checkmark"></i>
                     </label>
 
-                    <label class="item item-radio">
-                        <input type="radio" name="group">
-                        <div class="item-content">
-                            Entre 100.000 y 200.000
-                        </div>
-                        <i class="radio-icon ion-checkmark"></i>
-                    </label>
-
-                    <label class="item item-radio">
-                        <input type="radio" name="group">
-                        <div class="item-content">
-                            Entre 200.000 y 300.000
-                        </div>
-                        <i class="radio-icon ion-checkmark"></i>
-                    </label>
                 </ul>
                 <label class="login-button">
                     <input id="ingresar" type="button" value="Enviar" class="button button-block" ng-click="continuar()">

@@ -10,6 +10,20 @@ moduloControlador.controller('ClavePregunta2Ctrl', function($scope, $location, $
         });
     };
 
+    $scope.inicializar = function() {
+
+        $scope.respuestas = new Array();
+
+        Mama.getRespuestasPregunta2(function (success, data) {
+            if (success) {
+                $scope.respuestas = data.respuestas;
+                console.log($scope.respuestas);
+            }
+        });
+    }
+
+    $scope.inicializar();
+
     $scope.continuar = function() {
 
         try{
