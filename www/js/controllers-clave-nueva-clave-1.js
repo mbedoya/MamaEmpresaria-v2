@@ -9,12 +9,42 @@ moduloControlador.controller('ClaveNuevaClave1Ctrl', function($scope, $location,
             template: mensaje
         });
     };
+    
+    $scope.confirmar = function(){
+      // An elaborate, custom popup
+  var myPopup = $ionicPopup.show({
+    template: '',
+    title: 'Creación de clave',
+    subTitle: '¿Esta es tu Campaña?',
+    scope: $scope,
+    buttons: [
+      { text: 'No' ,
+          onTap: function(e) {
+            console.log(e);
+            return false;
+        }
+       },
+      {
+        text: '<b>Si</b>',
+        type: 'button-positive',
+        onTap: function(e) {
+            console.log(e);
+            return true;
+        }
+      }
+    ]
+  });
+  myPopup.then(function(res) {
+    console.log('Tapped!', res);
+  });  
+    };
 
     $scope.modelo = { clave: ''};
 
     //Autenticar a la Mamá Empresaria
     $scope.continuar = function() {
-
+        
+        $scope.confirmar();
 
         //Cédula vacía
         if(!$scope.modelo.clave){
