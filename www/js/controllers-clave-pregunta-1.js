@@ -12,6 +12,7 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
 
     $scope.inicializar = function() {
 
+        $scope.modelo = { campana:''};
         $scope.campanaActual = "";
         $scope.campanasAnoActual = new Array();
 
@@ -35,24 +36,59 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
 
     $scope.inicializar();
 
+    $scope.confirmar = function() {
+
+        var myPopup = $ionicPopup.show({
+            template: 'Mamá, elegiste la Campaña ' + $scope.modelo.campana + ' de ' + '2015' + ', ¿Es correcto?',
+            title: 'Creación de clave',
+            subTitle: '',
+            scope: $scope,
+            buttons: [
+                { text: 'No',
+                    onTap: function (e) {
+                        console.log(e);
+                        return false;
+                    }
+                },
+                {
+                    text: '<b>Si</b>',
+                    type: 'button-positive',
+                    onTap: function (e) {
+                        console.log(e);
+                        return true;
+                    }
+                }
+            ]
+        });
+        myPopup.then(function (res) {
+
+            if(res){
+                if(Internet.get()){
+
+                    var respuestaValida = false;
+
+                    if(respuestaValida){
+                        $location.path('/app/bienvenida');
+                    }else{
+                        $scope.mostrarAyuda("Creación de clave", "Lo sentimos, has fallado en esta respuesta. Responde una pregunta más");
+                        $location.path('/app/clave-pregunta-2');
+                    }
+
+                }else{
+                    $scope.mostrarAyuda("Creación de clave","Por favor verifica tu conexión a internet");
+                }
+            }
+
+        });
+    };
+
     $scope.mostrarAyuda("Creación de clave", "Mamá, nos encanta tenerte con nosotros. Para que puedas disfrutar de esta aplicación te invitamos a responder unas preguntas y crear tu clave");
 
     $scope.continuar = function() {
 
-            if(Internet.get()){
+        console.log($scope.modelo.campana);
+        $scope.confirmar();
 
-                var respuestaValida = false;
-
-                if(respuestaValida){
-                    $location.path('/app/bienvenida');
-                }else{
-                    $scope.mostrarAyuda("Creación de clave", "Lo sentimos, has fallado en esta respuesta, responde una pregunta más");
-                    $location.path('/app/clave-pregunta-2');
-                }
-
-            }else{
-                $scope.mostrarAyuda("Creación de clave","Por favor verifica tu conexión a internet");
-            }
     }
 
     $scope.mostrarAnoAnterior = function(){

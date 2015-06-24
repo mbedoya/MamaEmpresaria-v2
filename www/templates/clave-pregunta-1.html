@@ -22,9 +22,9 @@
                         <div class="input-label">
                             Campaña
                         </div>
-                        <select>
-                            <option selected>Selecciona</option>
-                            <option ng-repeat="campana in campanasAnoActual" >
+                        <select ng-model="modelo.campana">
+                            <option value="" selected>Selecciona</option>
+                            <option value="{{campana.nombre}}" ng-repeat="campana in campanasAnoActual" >
                                 Campaña {{campana.nombre}}
                             </option>
                         </select>

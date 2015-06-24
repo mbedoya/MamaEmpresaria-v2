@@ -9,42 +9,70 @@ moduloControlador.controller('ClaveNuevaClave1Ctrl', function($scope, $location,
             template: mensaje
         });
     };
-    
-    $scope.confirmar = function(){
-      // An elaborate, custom popup
-  var myPopup = $ionicPopup.show({
-    template: '',
-    title: 'Creación de clave',
-    subTitle: '¿Esta es tu Campaña?',
-    scope: $scope,
-    buttons: [
-      { text: 'No' ,
-          onTap: function(e) {
-            console.log(e);
-            return false;
-        }
-       },
-      {
-        text: '<b>Si</b>',
-        type: 'button-positive',
-        onTap: function(e) {
-            console.log(e);
-            return true;
-        }
-      }
-    ]
-  });
-  myPopup.then(function(res) {
-    console.log('Tapped!', res);
-  });  
-    };
 
-    $scope.modelo = { clave: ''};
+    $scope.limpiar = function(){
+        $scope.modelo = { clave: ''};
+    }
+
+    $scope.confirmar = function(){
+
+        var myPopup = $ionicPopup.show({
+            template: 'Mamá, elegiste ' + $scope.modelo.clave + ' como tu clave, ¿Es correcto?',
+            title: 'Creación de clave',
+            subTitle: '',
+            scope: $scope,
+            buttons: [
+                { text: 'No' ,
+                    onTap: function(e) {
+                        console.log(e);
+                        return false;
+                    }
+                },
+                {
+                    text: '<b>Si</b>',
+                    type: 'button-positive',
+                    onTap: function(e) {
+                        console.log(e);
+                        return true;
+                    }
+                }
+            ]
+        });
+        myPopup.then(function(res) {
+            if(res){
+
+                if(Internet.get()){
+
+                    $scope.loading =  $ionicLoading.show({
+                        template: Utilidades.getPlantillaEspera('Guardando tu clave')
+                    });
+
+                    Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){
+
+                        $ionicLoading.hide();
+
+                        if(success){
+                            $scope.mostrarAyuda("Creación de clave", "Tu clave para ingresar es " + $scope.modelo.clave + ", puedes cambiarla en el momento en que lo desees desde esta Aplicación");
+                            $location.path('/app/bienvenida');
+
+                        }else{
+                            $scope.mostrarAyuda("Creación de clave", mensajeError);
+                        }
+
+                    });
+
+                }else{
+                    $scope.mostrarAyuda("Creación de clave","Por favor verifica tu conexión a internet");
+                }
+
+            }else{
+                $scope.limpiar();
+            }
+        });
+    };
 
     //Autenticar a la Mamá Empresaria
     $scope.continuar = function() {
-        
-        $scope.confirmar();
 
         //Cédula vacía
         if(!$scope.modelo.clave){
@@ -64,23 +92,12 @@ moduloControlador.controller('ClaveNuevaClave1Ctrl', function($scope, $location,
             return;
         }
 
-        //Guardar la clave ingresada para posterior comparac
-        $rootScope.clave1 = $scope.modelo.clave;
-
-        try{
-
-            if(Internet.get()){
-
-                $location.path('/app/clave-nueva-clave-2');
-
-            }else{
-                $scope.mostrarAyuda("Creación de clave","Por favor verifica tu conexión a internet");
-            }
-
-        }catch (err){
-            alert(err.message);
-        }
-
-
+        $scope.confirmar();
     }
+
+    $scope.inicializar = function(){
+        $scope.limpiar();
+    }
+
+    $scope.inicializar();
 });
