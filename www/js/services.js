@@ -403,8 +403,8 @@ angular.module('novaventa.services', [])
                 
                 //Cadena en Base 64 usuario:clave
                 var cadenaBase64 = btoa(cedula + ":1");
-                var urlValidacion = rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/validacionAntares/" + cedula +"/1";
-                //var urlValidacion = rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/validacionAntares";
+                //var urlValidacion = rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/validacionAntares/" + cedula +"/1";
+                var urlValidacion = rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/validacionAntares";
                 
                 var req = {
                     method: 'GET',
@@ -440,6 +440,11 @@ angular.module('novaventa.services', [])
                                 rootScope.datos.cupo = data.cupo;
                                 rootScope.datos.saldo = data.saldoBalance;
                                 rootScope.datos.valorFlexibilizacion = data.valorFlexibilizacion;
+                                rootScope.datos.versionHabeasData = data.version;
+                                rootScope.datos.mensajeHabeasData = data.mensaje;
+
+                                alert(rootScope.datos.versionHabeasData);
+
                                 //rootScope.zona = data.listaZonas[0];
                                 rootScope.zona = data.estructuraList[0].zona;
                                 rootScope.seccion = data.estructuraList[0].seccion;
