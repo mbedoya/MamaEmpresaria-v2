@@ -53,7 +53,7 @@ moduloControlador.controller('ClaveNuevaClave1Ctrl', function($scope, $location,
 
                         if(success){
                             $scope.mostrarAyuda("Creación de clave", "Tu clave para ingresar es " + $scope.modelo.clave + ", puedes cambiarla en el momento en que lo desees desde esta Aplicación");
-                            $location.path('/app/bienvenida');
+                            $location.path('/app/terminos-condiciones');
 
                         }else{
                             $scope.mostrarAyuda("Creación de clave", mensajeError);

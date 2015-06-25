@@ -443,8 +443,6 @@ angular.module('novaventa.services', [])
                                 rootScope.datos.versionHabeasData = data.version;
                                 rootScope.datos.mensajeHabeasData = data.mensaje;
 
-                                alert(rootScope.datos.versionHabeasData);
-
                                 //rootScope.zona = data.listaZonas[0];
                                 rootScope.zona = data.estructuraList[0].zona;
                                 rootScope.seccion = data.estructuraList[0].seccion;

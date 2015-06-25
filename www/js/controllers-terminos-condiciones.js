@@ -1,7 +1,11 @@
-moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootScope, $state, $ionicLoading, GA, TerminosCondiciones) {
+moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootScope, $state, $location, $ionicLoading, GA, TerminosCondiciones) {
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Terminos y condiciones");
+
+    $scope.continuar = function(){
+        $location.path('/app/bienvenida');
+    };
 
     $scope.inicializar = function(){
 
