@@ -371,6 +371,18 @@ angular.module('novaventa.services', [])
     .factory('Mama', function(Campana, Pedido, Utilidades, $rootScope, $http) {
 
         return {
+            registrarHabeasData: function(fx){
+
+                var urlServicio = $rootScope.configuracion.ip_servidores + "AntaresWebServices/terminosYCondiciones/autorizarME";
+
+                $http.post(urlServicio, {version: $rootScope.datos.versionHabeasData}).
+                    success(function(data, status, headers, config) {
+                        fx(true, data);
+                    }).
+                    error(function(data, status, headers, config) {
+                        fx(false, {});
+                    });
+            },
             getRespuestasPregunta2: function(fx){
 
                 var cedula = $rootScope.datos.cedula;
