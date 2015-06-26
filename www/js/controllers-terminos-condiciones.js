@@ -1,4 +1,4 @@
-moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootScope, $state, $location, $ionicLoading, $http, $filter, GA, Mama) {
+moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootScope, $state, $location, $ionicLoading, $http, $filter, GA, Mama, Utilidades) {
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Terminos y condiciones");
