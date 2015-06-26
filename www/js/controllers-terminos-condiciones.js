@@ -1,9 +1,13 @@
-moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootScope, $state, $location, $ionicLoading, GA, Mama) {
+moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootScope, $state, $location, $ionicLoading, $http, $filter, GA, Mama) {
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Terminos y condiciones");
 
     $scope.continuar = function(){
+
+        $scope.loading =  $ionicLoading.show({
+            template: Utilidades.getPlantillaEspera('Iniciando sesión')
+        });
 
         Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){
 
