@@ -4,6 +4,22 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
     GA.trackPage($rootScope.gaPlugin, "Terminos y condiciones");
 
     $scope.continuar = function(){
+
+        Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){
+
+            $ionicLoading.hide();
+
+            if(success){
+                $location.path('/app/bienvenida');
+
+            }else{
+                $scope.mostrarAyuda("Creación de clave", mensajeError);
+            }
+
+        });
+
+        /*
+
         Mama.registrarHabeasData(function (success, data){
             if(success){
                 $location.path('/app/bienvenida');
@@ -11,6 +27,7 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
 
             }
         });
+        */
 
     };
 
