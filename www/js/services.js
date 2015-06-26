@@ -795,12 +795,12 @@ angular.module('novaventa.services', [])
 
                     }, page);
 
-                    if($rootScope.datos && $rootScope.datos.zona){
+                    if($rootScope.zona){
                         gaPlugin.trackEvent(function(){
 
                         }, function(){
 
-                        }, "Menu", "Ingreso", page);
+                        }, "Menu", "Ingreso", page + " " + $rootScope.zona);
                     }
                 }
             }
