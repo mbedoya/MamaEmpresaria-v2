@@ -783,7 +783,7 @@ angular.module('novaventa.services', [])
         }
     })
 
-    .factory('GA', function() {
+    .factory('GA', function($rootScope) {
 
         return {
             trackPage: function(gaPlugin, page) {
@@ -795,7 +795,7 @@ angular.module('novaventa.services', [])
 
                     }, page);
 
-                    if($rootScope.datos.zona){
+                    if($rootScope.datos && $rootScope.datos.zona){
                         gaPlugin.trackEvent(function(){
 
                         }, function(){
