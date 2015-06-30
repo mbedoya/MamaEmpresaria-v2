@@ -77,6 +77,8 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
                 }else{
                     $scope.mostrarAyuda("Creación de clave","Por favor verifica tu conexión a internet");
                 }
+            }else{
+                $scope.mostrarAyuda("Creación de clave","Por favor selecciona nuevamente la campaña");
             }
 
         });

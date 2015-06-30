@@ -55,6 +55,8 @@ moduloControlador.controller('ClavePregunta2Ctrl', function($scope, $location, $
                 }else{
                     $scope.mostrarAyuda("Creación de clave","Por favor verifica tu conexión a internet");
                 }
+            }else{
+                $scope.mostrarAyuda("Creación de clave","Por favor selecciona nuevamente tu último valor de factura");
             }
 
         });

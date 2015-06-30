@@ -66,8 +66,10 @@ moduloControlador.controller('ClaveNuevaClave1Ctrl', function($scope, $location,
                 }
 
             }else{
+                $scope.mostrarAyuda("Creación de clave","Por favor ingresa tu clave nuevamente");
                 $scope.limpiar();
             }
+            
         });
     };
 
