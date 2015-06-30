@@ -65,9 +65,16 @@ moduloControlador.controller('ClavePregunta2Ctrl', function($scope, $location, $
     $scope.inicializar = function() {
 
         $scope.respuesta = "";
-        $scope.respuestas = new Array();
+        $scope.respuestas = new Array()
+        
+        $scope.loading =  $ionicLoading.show({
+                    template: Utilidades.getPlantillaEspera('Cargando información')
+                });
 
         Mama.getRespuestasPregunta2(function (success, data) {
+            
+            $ionicLoading.hide();
+            
             if (success) {
                 $scope.respuestas = data.respuestas;
                 console.log($scope.respuestas);
