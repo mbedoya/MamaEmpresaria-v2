@@ -10,24 +10,28 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
         });
     };
 
+    $scope.limpiar = function(){
+        $scope.modelo = { clave: ''};
+    }
+
     //Autenticar a la Mamá Empresaria
     $scope.continuar = function() {
 
         //Cédula vacía
-        if(!$scope.clave){
-            $scope.mostrarAyuda("Ingreso de clave","Ingresa tu clave");
+        if(!$scope.modelo.clave){
+            $scope.mostrarAyuda("Creación de clave","Ingresa tu clave");
             return;
         }
 
         //Cantidad de caracteres
-        if(String($scope.clave).length != 4){
-            $scope.mostrarAyuda("Ingreso de clave","Ingresa 4 dígitos");
+        if(String($scope.modelo.clave).length != 4){
+            $scope.mostrarAyuda("Creación de clave","Ingresa 4 dígitos");
             return;
         }
 
         //Caracteres especiales
-        if(String($scope.clave).indexOf(".") >= 0 || String($scope.clave).indexOf(",") >= 0){
-            $scope.mostrarAyuda("Ingreso de clave","Ingresa sólo números");
+        if(String($scope.modelo.clave).indexOf(".") >= 0 || String($scope.modelo.clave).indexOf(",") >= 0){
+            $scope.mostrarAyuda("Creación de clave","Ingresa sólo números");
             return;
         }
 
@@ -84,6 +88,11 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
             alert(err.message);
         }
 
-
     }
+
+    $scope.inicializar = function(){
+        $scope.limpiar();
+    }
+
+    $scope.inicializar();
 });

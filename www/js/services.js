@@ -398,10 +398,8 @@ angular.module('novaventa.services', [])
                         });
             },
             validarCedula: function(fx){
-
                 var cedula = $rootScope.datos.cedula;
-                //var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/productoDeCampagna/agotadosCampagna/" + anoCampana;
-                var urlServicio = "http://www.mocky.io/v2/558862afaab365dd148bee53";
+                var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/interfaceAntares/validarME/" + cedula;
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {

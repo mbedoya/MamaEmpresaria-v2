@@ -69,43 +69,9 @@ moduloControlador.controller('LoginCtrl', function($scope, $location, $rootScope
 
                                     if(data.tieneClave  && data.tieneClave == "1"){
 
-                                        $scope.loading =  $ionicLoading.show({
-                                            template: Utilidades.getPlantillaEspera('Autenticando')
-                                        });
+                                        //Ir a la creación de la clave
+                                        $location.path('/app/clave');
 
-                                        Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){
-
-                                            $ionicLoading.hide();
-
-                                            if(success){
-
-                                                var irABienvenida = !(localStorage && localStorage.nombre);
-
-                                                //Almacenar la cédula si hay almacenamiento local
-                                                if(localStorage ){
-
-                                                    localStorage.cedula = $scope.datosInicio.cedula;
-                                                    localStorage.nombre = $rootScope.datos.nombre;
-                                                    localStorage.segmento = $rootScope.datos.segmento;
-                                                }
-
-                                                $scope.datosInicio = {cedula: '' };
-
-                                                $ionicHistory.nextViewOptions({
-                                                    disableBack: true
-                                                });
-
-                                                if(irABienvenida){
-                                                    $location.path('/app/bienvenida');
-                                                }else{
-                                                    $location.path('/app/menu/tabs/home');
-                                                }
-
-                                            }else{
-                                                $scope.mostrarAyuda("Inicio de sesión", mensajeError);
-                                            }
-
-                                        });
 
                                     }else{
 
