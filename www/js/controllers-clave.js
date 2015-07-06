@@ -49,10 +49,10 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
 
                     if(success){
 
-                        var irABienvenida = !(localStorage && localStorage.nombre);
+                        //var irABienvenida = !(localStorage && localStorage.nombre);
 
                         //Almacenar la cédula si hay almacenamiento local
-                        if(localStorage ){
+                        if(localStorage){
 
                             localStorage.cedula = $scope.datosInicio.cedula;
                             localStorage.nombre = $rootScope.datos.nombre;
@@ -65,6 +65,9 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
                             disableBack: true
                         });
 
+                        $location.path('/app/menu/tabs/home');
+
+                        /*
                         if(irABienvenida){
                             //$state.go('app.bienvenida');
                             $location.path('/app/bienvenida');
@@ -72,7 +75,7 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
                             $location.path('/app/menu/tabs/home');
                             //$state.go('app.menu.tabs.home');
                         }
-
+                        */
 
                     }else{
                         $scope.mostrarAyuda("Ingreso de clave", mensajeError);
