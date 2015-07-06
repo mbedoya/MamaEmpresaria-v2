@@ -14,24 +14,73 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
         $scope.modelo = { clave: ''};
     }
 
+    $scope.enviarSolicitudContacto = function(){
+        //Enviar solicitus de contacto
+
+        if(Internet.get()){
+            Mama.solicitarContactoAsesor(function(success, data) {
+                if (success) {
+
+                }
+            });
+        }else{
+            $scope.mostrarAyuda("Inicio de sesión","Por favor verifica tu conexión a internet, no ha sido posible enviar la solicitud de contacto");
+        }
+    }
+
+    $scope.confirmar = function(mensaje) {
+
+        var myPopup = $ionicPopup.show({
+            template: mensaje,
+            title: 'Inicio de sesión',
+            subTitle: '',
+            scope: $scope,
+            buttons: [
+                { text: 'No',
+                    onTap: function (e) {
+                        console.log(e);
+                        return false;
+                    }
+                },
+                {
+                    text: '<b>Si</b>',
+                    type: 'button-positive',
+                    onTap: function (e) {
+                        console.log(e);
+                        return true;
+                    }
+                }
+            ]
+        });
+
+        myPopup.then(function (res) {
+            if(res){
+                $scope.enviarSolicitudContacto();
+            }else{
+
+            }
+
+        });
+    };
+
     //Autenticar a la Mamá Empresaria
     $scope.continuar = function() {
 
         //Cédula vacía
         if(!$scope.modelo.clave){
-            $scope.mostrarAyuda("Creación de clave","Ingresa tu clave");
+            $scope.mostrarAyuda("Inicio de sesión","Ingresa tu clave");
             return;
         }
 
         //Cantidad de caracteres
         if(String($scope.modelo.clave).length != 4){
-            $scope.mostrarAyuda("Creación de clave","Ingresa 4 dígitos");
+            $scope.mostrarAyuda("Inicio de sesión","Ingresa 4 dígitos");
             return;
         }
 
         //Caracteres especiales
         if(String($scope.modelo.clave).indexOf(".") >= 0 || String($scope.modelo.clave).indexOf(",") >= 0){
-            $scope.mostrarAyuda("Creación de clave","Ingresa sólo números");
+            $scope.mostrarAyuda("Inicio de sesión","Ingresa sólo números");
             return;
         }
 
@@ -43,23 +92,24 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
                     template: Utilidades.getPlantillaEspera('Validando clave')
                 });
 
+                $rootScope.datos.clave = $scope.modelo.clave;
+
                 Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){
 
                     $ionicLoading.hide();
 
                     if(success){
 
-                        //var irABienvenida = !(localStorage && localStorage.nombre);
-
-                        //Almacenar la cédula si hay almacenamiento local
+                        //Almacenar datos si hay almacenamiento local
                         if(localStorage){
 
-                            localStorage.cedula = $scope.datosInicio.cedula;
+                            localStorage.cedula = $rootScope.datos.cedula;
                             localStorage.nombre = $rootScope.datos.nombre;
                             localStorage.segmento = $rootScope.datos.segmento;
+                            localStorage.clave = $scope.modelo.clave;
                         }
 
-                        $scope.datosInicio = {cedula: '' };
+                        $scope.datosInicio = {clave: '' };
 
                         $ionicHistory.nextViewOptions({
                             disableBack: true
@@ -67,24 +117,23 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
 
                         $location.path('/app/menu/tabs/home');
 
-                        /*
-                        if(irABienvenida){
-                            //$state.go('app.bienvenida');
-                            $location.path('/app/bienvenida');
-                        }else{
-                            $location.path('/app/menu/tabs/home');
-                            //$state.go('app.menu.tabs.home');
-                        }
-                        */
-
                     }else{
-                        $scope.mostrarAyuda("Ingreso de clave", mensajeError);
+
+                        if(data.mostrarSolicitudAyuda){
+                            $scope.confirmar(mensajeError);
+                        }else{
+                            $scope.mostrarAyuda("Ingreso de clave", mensajeError);
+
+                            if(data.enviarSolicitudAsesor){
+                                $scope.enviarSolicitudContacto();
+                            }
+                        }
                     }
 
                 });
 
             }else{
-                $scope.mostrarAyuda("Ingreso de clave","Por favor verifica tu conexión a internet");
+                $scope.mostrarAyuda("Inicio de sesión","Por favor verifica tu conexión a internet");
             }
 
         }catch (err){

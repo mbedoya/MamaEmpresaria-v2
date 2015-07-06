@@ -409,10 +409,22 @@ angular.module('novaventa.services', [])
                         fx(false, {});
                     });
             },
+            solicitarContactoAsesor: function(fx){
+                var cedula = $rootScope.datos.cedula;
+                var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/interfaceAntares/contactoAsesor/" + cedula;
+
+                $http.get(urlServicio).
+                    success(function(data, status, headers, config) {
+                        fx(true, data);
+                    }).
+                    error(function(data, status, headers, config) {
+                        fx(false, {});
+                    });
+            },
             autenticar: function(cedula, rootScope, http, filter, factoryMama, fx) {
                 
                 //Cadena en Base 64 usuario:clave
-                var cadenaBase64 = btoa(cedula + ":1");
+                var cadenaBase64 = btoa(cedula + ":" + rootScope.datos.clave);
                 var urlValidacion = rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/validacionAntares/" + cedula +"/1";
                 //var urlValidacion = rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/validacionAntares";
                 
@@ -695,7 +707,24 @@ angular.module('novaventa.services', [])
                                 }
 
                             }else{
-                                mensajeError = "Lo sentimos, tu clave no es válida para la cédula ingresada";
+
+                                if(data.intentos == 5){
+
+                                    mensajeError = "Lo sentimos, tu clave no es válida para la cédula ingresada. Deseas ayuda?";
+                                    data.mostrarSolicitudAyuda = true;
+
+                                }else{
+                                    if(data.intentos == 10){
+
+                                        mensajeError = "Lo sentimos, tu clave no es válida para la cédula ingresada. Nuestros asesores de servicios te estarán contactando";
+                                        data.enviarSolicitudAsesor = true;
+
+                                    }else{
+
+                                        mensajeError = "Lo sentimos, tu clave no es válida para la cédula ingresada. Recuerda que puedes hacer uso de 'Olvidaste tu contraseña'";
+
+                                    }
+                                }
                             }
 
                         }
