@@ -2,17 +2,16 @@
     <ion-content>
     <div class="content-login padding">
         <img src="img/login.png" class="login-img" />
-        <h4>¡Mamá Empresaria!</h4>
         <h3>Ingresa tu clave</h3>
         <form ng-submit="capturarCedula()">
-                <span class="login-label">Clave</span>
                 <label class="login-input">
                     <input ng-model="modelo.clave" type="number" >
                 </label>
                 <label class="login-button">
-                    <input id="ingresar" type="button" value="Ingresar" class="button button-block" ng-click="test()">
+                    <input id="ingresar" type="button" value="Enviar" class="button button-block" ng-click="test()">
                     <!--  <button id="ingresar" class="button button-block" type="submit">Ingresar</button> -->
                 </label>
+                <a href="#" ng-click="irARecuperarClave()">¿Olvidaste tu clave?</a>
         </form>
     </div>
     </ion-content>

@@ -12,6 +12,10 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
 
     $scope.inicializar = function() {
 
+        if(!$rootScope.recuperarClave){
+            $scope.mostrarAyuda("Creación de clave", "Mamá, nos encanta tenerte con nosotros. Para que puedas disfrutar de esta aplicación te invitamos a responder unas preguntas y crear tu clave");            
+        }
+
         $scope.modelo = { campana:''};
         $scope.campanaActual = "";
         $scope.campanasAnoActual = new Array();
@@ -83,8 +87,6 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
 
         });
     };
-
-    $scope.mostrarAyuda("Creación de clave", "Mamá, nos encanta tenerte con nosotros. Para que puedas disfrutar de esta aplicación te invitamos a responder unas preguntas y crear tu clave");
 
     $scope.continuar = function() {
 

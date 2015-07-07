@@ -13,6 +13,11 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
     $scope.limpiar = function(){
         $scope.modelo = { clave: ''};
     }
+    
+    $scope.irARecuperarClave = function(){
+        $rootScope.recuperarClave = true;
+        $location.path('/app/clave-pregunta-1');
+    }
 
     $scope.enviarSolicitudContacto = function(){
         //Enviar solicitus de contacto

@@ -937,3 +937,10 @@ h5 {
 .clave{
     -webkit-text-security: disc;
 }
+
+a, a:visited{
+  text-decoration: none;
+  text-align: center;
+  color: #005E81;
+  font-weight: bold;
+}
