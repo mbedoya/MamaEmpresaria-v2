@@ -47,6 +47,8 @@ moduloControlador.controller('ClaveNuevaClave1Ctrl', function($scope, $location,
                         template: Utilidades.getPlantillaEspera('Guardando tu clave')
                     });
 
+                    $rootScope.datos.clave = $scope.modelo.clave;
+
                     Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){
 
                         $ionicLoading.hide();
