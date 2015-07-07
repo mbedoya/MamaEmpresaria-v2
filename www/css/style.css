@@ -938,9 +938,15 @@ h5 {
     -webkit-text-security: disc;
 }
 
+.olvidaste{
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
 a, a:visited{
   text-decoration: none;
   text-align: center;
-  color: #005E81;
+  color: #eb0c6e;
   font-weight: bold;
 }
