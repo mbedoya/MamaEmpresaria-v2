@@ -64,7 +64,7 @@ moduloControlador.controller('LoginCtrl', function($scope, $location, $rootScope
                                 if(data.estadoPastDue && Number(data.estadoPastDue) >= 4){
 
                                     //$scope.mostrarAyuda("Inicio de sesión","Hola Mamá, tienes un saldo pendiente por pagar de " + $filter('currency')(data.saldoBalance, '$', 0) + '. Te invitamos a ponerte al día. Ten presente que este valor puede aumentar debido a los gatos adicionales que se presentan por la entidad de cobro.');
-                                    $scope.mostrarAyuda("Inicio de sesión","Hola Mamá, tienes un saldo pendiente por pagar. Te invitamos a ponerte al día. Ten presente que este valor puede aumentar debido a los gatos adicionales que se presentan por la entidad de cobro.');
+                                    $scope.mostrarAyuda("Inicio de sesión","Hola Mamá, tienes un saldo pendiente por pagar. Te invitamos a ponerte al día. Ten presente que este valor puede aumentar debido a los gatos adicionales que se presentan por la entidad de cobro.");
 
                                 }else{
 
