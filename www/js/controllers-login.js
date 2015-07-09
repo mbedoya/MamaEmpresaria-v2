@@ -58,7 +58,7 @@ moduloControlador.controller('LoginCtrl', function($scope, $location, $rootScope
                             $scope.mostrarAyuda("Inicio de sesión", data.razonRechazo);
                         }else{
                             if(data.bloqueoME && data.bloqueoME == "1"){
-                                $scope.mostrarAyuda("Inicio de sesión", "Para Novaventa será un placer tenerte de nuevo con nosotros, para poderte activar por favor comunícate con la línea " + $rootScope.lineaAtencion);
+                                $scope.mostrarAyuda("Inicio de sesión", "En estos momentos no podemos acceder a tu información. Comunícate con la Línea de Atención al Cliente " + $rootScope.lineaAtencion);
                             }else{
 
                                 if(data.estadoPastDue && Number(data.estadoPastDue) >= 4){
