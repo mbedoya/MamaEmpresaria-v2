@@ -11,10 +11,10 @@
                         <div class="input-label">
                             Año
                         </div>
-                        <select>
+                        <select ng-model="modelo.ano" ng-change="cambioAno()">
                             <option selected>Selecciona</option>
-                            <option ng-show="mostrarAnoAnterior()">2014</option>
-                            <option>2015</option>
+                            <option value="{{anoAnterior()}}" ng-show="mostrarAnoAnterior()">{{anoAnterior()}}</option>
+                            <option value="{{anoActual()}}">{{anoActual()}}</option>
                         </select>
                     </label>
 
@@ -22,7 +22,7 @@
                         <div class="input-label">
                             Campaña
                         </div>
-                        <select ng-model="modelo.campana">
+                        <select ng-model="modelo.campana" >
                             <option value="" selected>Selecciona</option>
                             <option value="{{campana.nombre}}" ng-repeat="campana in campanasAnoActual" >
                                 Campaña {{campana.nombre}}
