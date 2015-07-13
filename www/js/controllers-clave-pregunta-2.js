@@ -10,8 +10,9 @@ moduloControlador.controller('ClavePregunta2Ctrl', function($scope, $location, $
         });
     };
 
-    $scope.respuestaSeleccionada = function(respuesta){
+    $scope.respuestaSeleccionada = function(respuesta, indice){
         $scope.respuesta = respuesta;
+        $scope.indiceRespuesta = indice;
     };
 
     $scope.confirmar = function() {
@@ -44,13 +45,29 @@ moduloControlador.controller('ClavePregunta2Ctrl', function($scope, $location, $
 
                 if(Internet.get()){
 
-                    var respuestaValida = true;
+                    $scope.loading =  $ionicLoading.show({
+                        template: Utilidades.getPlantillaEspera('Validando respuesta')
+                    });
 
-                    if(respuestaValida){
-                        $location.path('/app/clave-nueva-clave-1');
-                    }else{
-                        $scope.mostrarAyuda("Creación de clave", "No hemos pedido validar correctamente tu información, uno de nuestros asesores te estará contactando en XXX");
-                    }
+                    Mama.getRespuestasPregunta2("2", $scope.indiceRespuesta , function(success, data){
+
+                        $ionicLoading.hide();
+
+                        if(success){
+
+                            if(data.valido && data.valido == 1){
+                                $location.path('/app/clave-nueva-clave-1');
+                            }else{
+                                $scope.mostrarAyuda("Creación de clave", "No hemos pedido validar correctamente tu información, uno de nuestros asesores te estará contactando en XXX");
+                            }
+
+                        }else{
+
+
+                        }
+
+                    });
+
 
                 }else{
                     $scope.mostrarAyuda("Creación de clave","Por favor verifica tu conexión a internet");

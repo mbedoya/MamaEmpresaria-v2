@@ -122,7 +122,7 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
                 if(Internet.get()){
 
                     $scope.loading =  $ionicLoading.show({
-                        template: Utilidades.getPlantillaEspera('Validando pregunta')
+                        template: Utilidades.getPlantillaEspera('Validando respuesta')
                     });
 
                     Mama.getRespuestasPregunta2("1", $scope.modelo.ano + $scope.modelo.campana , function(success, data){

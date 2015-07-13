@@ -8,7 +8,7 @@
 
                 <ul class="list" >
 
-                    <label class="item item-radio" ng-repeat="respuesta in respuestas" ng-click="respuestaSeleccionada(respuesta.respuesta)">
+                    <label class="item item-radio" ng-repeat="respuesta in respuestas" ng-click="respuestaSeleccionada(respuesta.respuesta, $index)">
                         <input type="radio" name="group">
                         <div class="item-content" >
                             {{respuesta.respuesta}}
