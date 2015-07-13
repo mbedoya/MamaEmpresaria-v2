@@ -383,11 +383,10 @@ angular.module('novaventa.services', [])
                         fx(false, {});
                     });
             },
-            getRespuestasPregunta2: function(fx){
+            getPregunta1: function(fx){
 
                 var cedula = $rootScope.datos.cedula;
-                //var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/productoDeCampagna/agotadosCampagna/" + anoCampana;
-                var urlServicio = "http://www.mocky.io/v2/5589bff35a23d31e1757e309";
+                var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/autenticacion/consultarPreguntasME/" + cedula +  "/1";
 
                     $http.get(urlServicio).
                         success(function(data, status, headers, config) {
@@ -397,12 +396,25 @@ angular.module('novaventa.services', [])
                             fx(false, {});
                         });
             },
-            responderPregunta: function(fx, pregunta, respuesta){
+            getPregunta2: function(fx){
+
+                var cedula = $rootScope.datos.cedula;
+                var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/autenticacion/consultarPreguntasME/" + cedula +  "/2";
+
+                    $http.get(urlServicio).
+                        success(function(data, status, headers, config) {
+                            fx(true, data);
+                        }).
+                        error(function(data, status, headers, config) {
+                            fx(false, {});
+                        });
+            },
+            responderPregunta: function(pregunta, respuesta, fx){
 
                 var cedula = $rootScope.datos.cedula;
                 var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/autenticacion/respuestasPreguntasME";
 
-                    $http.post(urlServicio).
+                    $http.post(urlServicio, "cedulaRepresentante=" + cedula + "&pregunta="+ pregunta +"&respuesta=" + respuesta).
                         success(function(data, status, headers, config) {
                             fx(true, data);
                         }).

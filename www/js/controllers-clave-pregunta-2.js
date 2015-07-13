@@ -49,7 +49,7 @@ moduloControlador.controller('ClavePregunta2Ctrl', function($scope, $location, $
                         template: Utilidades.getPlantillaEspera('Validando respuesta')
                     });
 
-                    Mama.getRespuestasPregunta2("2", $scope.indiceRespuesta , function(success, data){
+                    Mama.respoderPregunta("2", $scope.indiceRespuesta , function(success, data){
 
                         $ionicLoading.hide();
 
@@ -88,7 +88,7 @@ moduloControlador.controller('ClavePregunta2Ctrl', function($scope, $location, $
                     template: Utilidades.getPlantillaEspera('Cargando información')
                 });
 
-        Mama.getRespuestasPregunta2(function (success, data) {
+        Mama.getPregunta2(function (success, data) {
             
             $ionicLoading.hide();
             

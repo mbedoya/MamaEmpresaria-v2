@@ -15,6 +15,22 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
         if(!$rootScope.recuperarClave){
             $scope.mostrarAyuda("Creación de clave", "Mamá, nos encanta tenerte con nosotros. Para que puedas disfrutar de esta aplicación te invitamos a responder unas preguntas y crear tu clave");            
         }
+        
+        Mama.getPregunta1(function (success, data) {
+            if (success) {
+               
+               if(data.valido && data.valido == 1){
+                   
+               }else{
+                   console.log(data.razonRechazo);
+                   $location.path('/app/clave-pregunta-2');   
+               }
+               
+            }else{
+                $scope.mostrarAyuda("Creación de clave", "Lo sentimos, no es posible mostrarte esta pregunta. Responde una pregunta más");
+                $location.path('/app/clave-pregunta-2');
+            }
+        });
 
         $scope.modelo = { campana:'', ano: ''};
         $scope.campanaActual = "";
@@ -125,7 +141,7 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
                         template: Utilidades.getPlantillaEspera('Validando respuesta')
                     });
 
-                    Mama.getRespuestasPregunta2("1", $scope.modelo.ano + $scope.modelo.campana , function(success, data){
+                    Mama.responderPregunta("1", $scope.modelo.ano + $scope.modelo.campana , function(success, data){
 
                         $ionicLoading.hide();
 
