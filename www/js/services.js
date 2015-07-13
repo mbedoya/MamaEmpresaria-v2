@@ -397,6 +397,19 @@ angular.module('novaventa.services', [])
                             fx(false, {});
                         });
             },
+            responderPregunta: function(fx, pregunta, respuesta){
+
+                var cedula = $rootScope.datos.cedula;
+                var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/autenticacion/respuestasPreguntasME";
+
+                    $http.post(urlServicio).
+                        success(function(data, status, headers, config) {
+                            fx(true, data);
+                        }).
+                        error(function(data, status, headers, config) {
+                            fx(false, {});
+                        });
+            },
             validarCedula: function(fx){
                 var cedula = $rootScope.datos.cedula;
                 var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/interfaceAntares/validarME/" + cedula;
