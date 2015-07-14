@@ -73,20 +73,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="clave-pregunta-2.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="clave-pregunta-2.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/templates/clave-pregunta-2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.5384617" vertical-offset="0" max-vertical-offset="612">
-              <caret line="10" column="128" selection-start-line="10" selection-start-column="128" selection-end-line="10" selection-end-column="128" />
+            <state vertical-scroll-proportion="0.3184438" vertical-offset="0" max-vertical-offset="694">
+              <caret line="13" column="28" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="services.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="services.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39321074" vertical-offset="8630" max-vertical-offset="17680">
+            <state vertical-scroll-proportion="0.0" vertical-offset="8630" max-vertical-offset="17680">
               <caret line="524" column="64" selection-start-line="524" selection-start-column="64" selection-end-line="524" selection-end-column="64" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -152,11 +152,11 @@
         <option value="$PROJECT_DIR$/www/templates/clave.html" />
         <option value="$PROJECT_DIR$/www/js/controllers-login.js" />
         <option value="$PROJECT_DIR$/www/templates/clave-pregunta-1.html" />
-        <option value="$PROJECT_DIR$/www/templates/clave-pregunta-2.html" />
         <option value="$PROJECT_DIR$/www/js/controllers-clave-nueva-clave-1.js" />
         <option value="$PROJECT_DIR$/www/js/controllers-clave-pregunta-1.js" />
         <option value="$PROJECT_DIR$/www/js/controllers-clave-pregunta-2.js" />
         <option value="$PROJECT_DIR$/www/js/services.js" />
+        <option value="$PROJECT_DIR$/www/templates/clave-pregunta-2.html" />
       </list>
     </option>
   </component>
@@ -700,14 +700,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/clave-pregunta-2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.5384617" vertical-offset="0" max-vertical-offset="612">
-          <caret line="10" column="128" selection-start-line="10" selection-start-column="128" selection-end-line="10" selection-end-column="128" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controllers-clave-nueva-clave-1.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="551" max-vertical-offset="2244">
@@ -742,12 +734,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/services.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39321074" vertical-offset="8630" max-vertical-offset="17680">
+        <state vertical-scroll-proportion="0.0" vertical-offset="8630" max-vertical-offset="17680">
           <caret line="524" column="64" selection-start-line="524" selection-start-column="64" selection-end-line="524" selection-end-column="64" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <marker date="1436906413240" expanded="true" signature="47909:47941" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/clave-pregunta-2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3184438" vertical-offset="0" max-vertical-offset="694">
+          <caret line="13" column="28" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
