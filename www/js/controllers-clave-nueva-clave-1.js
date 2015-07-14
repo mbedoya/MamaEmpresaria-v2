@@ -54,7 +54,8 @@ moduloControlador.controller('ClaveNuevaClave1Ctrl', function($scope, $location,
                         $ionicLoading.hide();
 
                         if(success){
-                            //$scope.mostrarAyuda("Creación de clave", "Tu clave para ingresar es " + $scope.modelo.clave + ", puedes cambiarla en el momento en que lo desees desde esta Aplicación");
+
+                            console.log(data);
                             
                             $scope.loading =  $ionicLoading.show({
                                 template: Utilidades.getPlantillaEspera('Iniciando sesión')

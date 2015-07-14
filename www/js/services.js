@@ -29,7 +29,7 @@
  $rootScope.campanaAnterior.fechaEncuentro
  $rootScope.campanaAnterior.fechaReparto
  $rootScope.campanaAnterior.diasEnEjecucion
- 
+
  $rootScope.agotadosCampana
 
  Recordatorios - Informacion de campana para la zona de la Mamá
@@ -101,25 +101,25 @@ angular.module('novaventa.services', [])
             },
 
             hayPedido: function(){
-				if($rootScope.pedido){
-				   if(!$rootScope.pedido.razonRechazo){
-				      return true;
-				   }
-				}
-				
-				return false;
+                if($rootScope.pedido){
+                    if(!$rootScope.pedido.razonRechazo){
+                        return true;
+                    }
+                }
+
+                return false;
             },
             hayNovedadGestionable: function(){
-               var novedad = false;
+                var novedad = false;
 
                 if($rootScope.pedido && $rootScope.pedido.historiaEstados){
                     for (i = 0; i < $rootScope.pedido.historiaEstados.length; i++) {
-                        if($rootScope.pedido.historiaEstados[i].motivo && 
-                             ( $rootScope.pedido.historiaEstados[i].motivo.toLowerCase().indexOf('cupo') >= 0 ||
+                        if($rootScope.pedido.historiaEstados[i].motivo &&
+                            ( $rootScope.pedido.historiaEstados[i].motivo.toLowerCase().indexOf('cupo') >= 0 ||
                                 $rootScope.pedido.historiaEstados[i].motivo.toLowerCase().indexOf('morosa') >= 0 ||
-                                $rootScope.pedido.historiaEstados[i].motivo.toLowerCase().indexOf('tope') >= 0 
-                              ) 
-                           ){
+                                $rootScope.pedido.historiaEstados[i].motivo.toLowerCase().indexOf('tope') >= 0
+                                )
+                            ){
                             novedad = true;
                             break;
                         }
@@ -231,8 +231,8 @@ angular.module('novaventa.services', [])
                 if($rootScope.fechas && $rootScope.fechas.length > 0){
                     for (i = 0; i < $rootScope.fechas.length; i++){
                         if($rootScope.fechas[i].actividad.toLowerCase() == 'encuentro'){
-                                tiene = true;
-                                break;
+                            tiene = true;
+                            break;
                         }
                     }
                 }
@@ -338,7 +338,7 @@ angular.module('novaventa.services', [])
             },
             getAgotados: function(fx){
                 var fecha = new Date();
-            	var anoCampana = Utilidades.getAnoCampana();
+                var anoCampana = Utilidades.getAnoCampana();
 
                 var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/productoDeCampagna/agotadosCampagna/" + anoCampana;
 
@@ -388,54 +388,72 @@ angular.module('novaventa.services', [])
                 var cedula = $rootScope.datos.cedula;
                 var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/autenticacion/consultarPreguntasME/" + cedula +  "/1";
 
-                    $http.get(urlServicio).
-                        success(function(data, status, headers, config) {
-                            fx(true, data);
-                        }).
-                        error(function(data, status, headers, config) {
-                            fx(false, {});
-                        });
+                $http.get(urlServicio).
+                    success(function(data, status, headers, config) {
+                        fx(true, data);
+                    }).
+                    error(function(data, status, headers, config) {
+                        fx(false, {});
+                    });
             },
             getPregunta2: function(fx){
 
                 var cedula = $rootScope.datos.cedula;
                 var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/autenticacion/consultarPreguntasME/" + cedula +  "/2";
 
-                    $http.get(urlServicio).
-                        success(function(data, status, headers, config) {
-                            fx(true, data);
-                        }).
-                        error(function(data, status, headers, config) {
-                            fx(false, {});
-                        });
+                $http.get(urlServicio).
+                    success(function(data, status, headers, config) {
+                        fx(true, data);
+                    }).
+                    error(function(data, status, headers, config) {
+                        fx(false, {});
+                    });
             },
             responderPregunta: function(pregunta, respuesta, fx){
 
                 var cedula = $rootScope.datos.cedula;
                 var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/autenticacion/respuestasPreguntasME";
 
-                    $http.post(urlServicio, "cedulaRepresentante=" + cedula + "&pregunta="+ pregunta +"&respuesta=" + respuesta).
-                        success(function(data, status, headers, config) {
-                            fx(true, data);
-                        }).
-                        error(function(data, status, headers, config) {
-                            fx(false, {});
-                        });
+                var request = {
+                    method: 'POST',
+                    url: urlServicio,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    data: "cedulaRepresentante=" + cedula + "&pregunta="+ pregunta +"&respuesta=" + respuesta
+                };
+
+                $http(request).
+                    success(function(data, status, headers, config) {
+                        fx(true, data);
+                    }).
+                    error(function(data, status, headers, config) {
+                        fx(false, {});
+                    });
             },
             asignarClave: function(fx){
 
                 var cedula = $rootScope.datos.cedula;
                 var clave = $rootScope.datos.clave;
-                
+
                 var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/autenticacion/creacionClaveME";
 
-                    $http.post(urlServicio, "cedulaRepresentante=" + cedula + "&clave="+ clave).
-                        success(function(data, status, headers, config) {
-                            fx(true, data);
-                        }).
-                        error(function(data, status, headers, config) {
-                            fx(false, {});
-                        });
+                var request = {
+                    method: 'POST',
+                    url: urlServicio,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    data: "cedulaRepresentante=" + cedula + "&clave="+ clave
+                };
+
+                $http(request).
+                    success(function(data, status, headers, config) {
+                        fx(true, data);
+                    }).
+                    error(function(data, status, headers, config) {
+                        fx(false, {});
+                    });
             },
             validarCedula: function(fx){
                 var cedula = $rootScope.datos.cedula;
@@ -462,12 +480,12 @@ angular.module('novaventa.services', [])
                     });
             },
             autenticar: function(cedula, rootScope, http, filter, factoryMama, fx) {
-                
+
                 //Cadena en Base 64 usuario:clave
                 var cadenaBase64 = btoa(cedula + ":" + rootScope.datos.clave);
                 //var urlValidacion = rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/validacionAntares/" + cedula +"/1";
                 var urlValidacion = rootScope.configuracion.ip_servidores +  "/AntaresWebServices/autenticacion/autenticarME";
-                
+
                 var req = {
                     method: 'GET',
                     url: urlValidacion,
@@ -477,7 +495,7 @@ angular.module('novaventa.services', [])
                 };
 
                 $http.defaults.headers.common['Authorization'] = 'Basic ' + cadenaBase64;
-          
+
                 $http(req).
                     success(function(data, status, headers, config) {
                         //alert("success");
@@ -785,7 +803,7 @@ angular.module('novaventa.services', [])
             getPuntos: function(cedula, fx) {
 
                 var anoCampana = Utilidades.getAnoCampana();
-            	
+
                 var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/resumenPuntos/ResumenPuntosEmpresaria/" + cedula + "/" + anoCampana;
 
                 $http.get(urlServicio).
@@ -892,9 +910,9 @@ angular.module('novaventa.services', [])
         var self = this;
 
         return {
-        	Pad: function(i){
-        	   return self.padStr(i);
-        	},
+            Pad: function(i){
+                return self.padStr(i);
+            },
             mostrarMensaje: function(scope, mensaje) {
 
 
@@ -982,14 +1000,14 @@ angular.module('novaventa.services', [])
             }
         }
     })
-    
+
     .factory('TerminosCondiciones', function($rootScope, $http) {
 
         return {
-        	getTerminosCondiciones: function(fx){
-        	   
-               //var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/productoDeCampagna/agotadosCampagna/" + anoCampana;
-               var urlServicio = 'http://www.mocky.io/v2/556cd17ce822501804253edc';
+            getTerminosCondiciones: function(fx){
+
+                //var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/productoDeCampagna/agotadosCampagna/" + anoCampana;
+                var urlServicio = 'http://www.mocky.io/v2/556cd17ce822501804253edc';
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -998,8 +1016,8 @@ angular.module('novaventa.services', [])
                     error(function(data, status, headers, config) {
                         fx(false, {});
                     });
-               
-        	}
+
+            }
         }
     })
 ;

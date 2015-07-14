@@ -11,21 +11,21 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
     };
 
     $scope.inicializar = function() {
-
-        if(!$rootScope.recuperarClave){
-            $scope.mostrarAyuda("Creación de clave", "Mamá, nos encanta tenerte con nosotros. Para que puedas disfrutar de esta aplicación te invitamos a responder unas preguntas y crear tu clave");            
-        }
         
         Mama.getPregunta1(function (success, data) {
             if (success) {
                
                if(data.valido && data.valido == 1){
+
+                   if(!$rootScope.recuperarClave){
+                       $scope.mostrarAyuda("Creación de clave", "Mamá, nos encanta tenerte con nosotros. Para que puedas disfrutar de esta aplicación te invitamos a responder unas preguntas y crear tu clave");
+                   }
                    
                }else{
                    console.log(data.razonRechazo);
                    if(data.razonRechazo && 
                        (data.razonRechazo == "Pregunta 1 ya ha sido contestada") ){
-                       $location.path('/app/clave-nueva-clave-1');
+                       $location.path('/app/clave-pregunta-2');
                    }else{
                        $location.path('/app/clave-pregunta-2');
                    }
@@ -42,7 +42,7 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
         $scope.campanaActual = "";
         $scope.campanasAnoActual = new Array();
 
-        $scope.campanaActual = "6";
+        $scope.campanaActual = "10";
 
         /*
         $rootScope.zona = "655";
@@ -152,6 +152,8 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
                         $ionicLoading.hide();
 
                         if(success){
+
+                            console.log(data);
 
                             if(data.valido && data.valido == 1){
                                 $location.path('/app/clave-nueva-clave-1');

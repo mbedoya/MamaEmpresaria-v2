@@ -49,11 +49,13 @@ moduloControlador.controller('ClavePregunta2Ctrl', function($scope, $location, $
                         template: Utilidades.getPlantillaEspera('Validando respuesta')
                     });
 
-                    Mama.respoderPregunta("2", $scope.indiceRespuesta , function(success, data){
+                    Mama.responderPregunta("2", $scope.indiceRespuesta , function(success, data){
 
                         $ionicLoading.hide();
 
                         if(success){
+
+                            console.log(data);
 
                             if(data.valido && data.valido == 1){
                                 $location.path('/app/clave-nueva-clave-1');
@@ -93,7 +95,8 @@ moduloControlador.controller('ClavePregunta2Ctrl', function($scope, $location, $
             $ionicLoading.hide();
             
             if (success) {
-                
+
+                console.log(data);
                 if(data.valido && data.valido == 1){
                     
                     $scope.respuestas = data.respuestas;
@@ -103,9 +106,12 @@ moduloControlador.controller('ClavePregunta2Ctrl', function($scope, $location, $
                    console.log(data.razonRechazo);
                    if(data.razonRechazo && 
                        (data.razonRechazo == "Pregunta 2 ya ha sido contestada") ){
-                       $location.path('/app/clave-nueva-clave-1');
-                   }else{
                        $scope.mostrarAyuda("Creación de clave", "No hemos pedido validar correctamente tu información, uno de nuestros asesores te estará contactando en XXX");
+                       //$location.path('/app/clave-nueva-clave-1');
+                   }else{
+                       $scope.mostrarAyuda("Creación de clave",data.razonRechazo);
+                       $location.path('/app/login')
+                       //$scope.mostrarAyuda("Creación de clave", "No hemos pedido validar correctamente tu información, uno de nuestros asesores te estará contactando en XXX");
                    }
                       
                }
