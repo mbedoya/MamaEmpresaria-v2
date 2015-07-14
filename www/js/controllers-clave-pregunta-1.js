@@ -23,7 +23,13 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
                    
                }else{
                    console.log(data.razonRechazo);
-                   $location.path('/app/clave-pregunta-2');   
+                   if(data.razonRechazo && 
+                       (data.razonRechazo == "Pregunta 1 ya ha sido contestada") ){
+                       $location.path('/app/clave-nueva-clave-1');
+                   }else{
+                       $location.path('/app/clave-pregunta-2');
+                   }
+                      
                }
                
             }else{

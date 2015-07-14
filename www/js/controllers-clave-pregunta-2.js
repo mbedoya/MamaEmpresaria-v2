@@ -93,8 +93,24 @@ moduloControlador.controller('ClavePregunta2Ctrl', function($scope, $location, $
             $ionicLoading.hide();
             
             if (success) {
-                $scope.respuestas = data.respuestas;
+                
+                if(data.valido && data.valido == 1){
+                    
+                    $scope.respuestas = data.respuestas;
                 console.log($scope.respuestas);
+                   
+               }else{
+                   console.log(data.razonRechazo);
+                   if(data.razonRechazo && 
+                       (data.razonRechazo == "Pregunta 2 ya ha sido contestada") ){
+                       $location.path('/app/clave-nueva-clave-1');
+                   }else{
+                       $scope.mostrarAyuda("Creación de clave", "No hemos pedido validar correctamente tu información, uno de nuestros asesores te estará contactando en XXX");
+                   }
+                      
+               }
+                
+                
             }
         });
     }

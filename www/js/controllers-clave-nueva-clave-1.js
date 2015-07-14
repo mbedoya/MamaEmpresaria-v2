@@ -48,20 +48,39 @@ moduloControlador.controller('ClaveNuevaClave1Ctrl', function($scope, $location,
                     });
 
                     $rootScope.datos.clave = $scope.modelo.clave;
-
-                    Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){
+                    
+                    Mama.asignarClave(function(success, data){
 
                         $ionicLoading.hide();
 
                         if(success){
-                            $scope.mostrarAyuda("Creación de clave", "Tu clave para ingresar es " + $scope.modelo.clave + ", puedes cambiarla en el momento en que lo desees desde esta Aplicación");
-                            $location.path('/app/terminos-condiciones');
+                            //$scope.mostrarAyuda("Creación de clave", "Tu clave para ingresar es " + $scope.modelo.clave + ", puedes cambiarla en el momento en que lo desees desde esta Aplicación");
+                            
+                            $scope.loading =  $ionicLoading.show({
+                                template: Utilidades.getPlantillaEspera('Iniciando sesión')
+                            });    
+        
+                            Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){
+        
+                                $ionicLoading.hide();
+        
+                                if(success){
+                                    $location.path('/app/terminos-condiciones');
+        
+                                }else{
+                                    $scope.mostrarAyuda("Creación de clave", mensajeError);
+                                }
+        
+                            });
+                            
 
                         }else{
-                            $scope.mostrarAyuda("Creación de clave", mensajeError);
+                            $scope.mostrarAyuda("Creación de clave", "Mamá, no ha sido posible crear tu clave, comunícate con la línea de atención");
                         }
 
                     });
+
+                    
 
                 }else{
                     $scope.mostrarAyuda("Creación de clave","Por favor verifica tu conexión a internet");

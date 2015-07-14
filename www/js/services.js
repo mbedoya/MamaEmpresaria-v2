@@ -422,6 +422,21 @@ angular.module('novaventa.services', [])
                             fx(false, {});
                         });
             },
+            asignarClave: function(fx){
+
+                var cedula = $rootScope.datos.cedula;
+                var clave = $rootScope.datos.clave;
+                
+                var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/autenticacion/creacionClaveME";
+
+                    $http.post(urlServicio, "cedulaRepresentante=" + cedula + "&clave="+ clave).
+                        success(function(data, status, headers, config) {
+                            fx(true, data);
+                        }).
+                        error(function(data, status, headers, config) {
+                            fx(false, {});
+                        });
+            },
             validarCedula: function(fx){
                 var cedula = $rootScope.datos.cedula;
                 var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/interfaceAntares/validarME/" + cedula;
