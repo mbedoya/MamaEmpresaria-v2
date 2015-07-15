@@ -414,6 +414,8 @@ angular.module('novaventa.services', [])
                 var cedula = $rootScope.datos.cedula;
                 var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/autenticacion/respuestasPreguntasME";
 
+                console.log(respuesta);
+
                 var request = {
                     method: 'POST',
                     url: urlServicio,

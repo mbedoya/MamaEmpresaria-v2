@@ -106,7 +106,7 @@ moduloControlador.controller('ClavePregunta2Ctrl', function($scope, $location, $
                    console.log(data.razonRechazo);
                    if(data.razonRechazo && 
                        (data.razonRechazo == "Pregunta 2 ya ha sido contestada") ){
-                       $scope.mostrarAyuda("Creación de clave", "No hemos pedido validar correctamente tu información, uno de nuestros asesores te estará contactando en XXX");
+                       $scope.mostrarAyuda("Creación de clave", "No hemos podido validar correctamente tu información, uno de nuestros asesores te estará contactando en XXX");
                        //$location.path('/app/clave-nueva-clave-1');
                    }else{
                        $scope.mostrarAyuda("Creación de clave",data.razonRechazo);

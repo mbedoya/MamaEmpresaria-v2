@@ -147,7 +147,7 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
                         template: Utilidades.getPlantillaEspera('Validando respuesta')
                     });
 
-                    Mama.responderPregunta("1", $scope.modelo.ano + $scope.modelo.campana , function(success, data){
+                    Mama.responderPregunta("1", $scope.modelo.ano + Utilidades.Pad($scope.modelo.campana), function(success, data){
 
                         $ionicLoading.hide();
 

@@ -105,8 +105,14 @@ moduloControlador.controller('ClaveNuevaClave1Ctrl', function($scope, $location,
         }
 
         //Cantidad de caracteres
-        if(String($scope.modelo.clave).length != 4){
+        if(String($scope.modelo.clave).length < 4){
             $scope.mostrarAyuda("Creación de clave","Ingresa 4 dígitos");
+            return;
+        }
+
+        //Cantidad de caracteres
+        if(String($scope.modelo.clave).length > 4){
+            $scope.mostrarAyuda("Creación de clave","Ingresa únicamente 4 dígitos");
             return;
         }
 
