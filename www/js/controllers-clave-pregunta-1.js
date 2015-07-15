@@ -42,7 +42,7 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
         $scope.campanaActual = "";
         $scope.campanasAnoActual = new Array();
 
-        $scope.campanaActual = "10";
+        $scope.campanaActual = "12";
 
         /*
         $rootScope.zona = "655";
