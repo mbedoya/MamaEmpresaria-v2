@@ -517,8 +517,6 @@ angular.module('novaventa.services', [])
                             //Usuario y clave válidos?
                             if(data.valido == "1"){
 
-                                alert(data.token);
-
                                 //Header con la key para todas las solicitudes
                                 $http.defaults.headers.common['Authorization'] = 'apikey ' + data.token;
 
@@ -756,6 +754,9 @@ angular.module('novaventa.services', [])
 
                                         }).
                                         error(function(data, status, headers, config) {
+
+                                            alert(status);
+
                                             mensajeError = "En este momento no podemos consultar tu información";
                                         });
 
