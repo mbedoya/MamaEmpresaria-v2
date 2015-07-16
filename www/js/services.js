@@ -539,8 +539,6 @@ angular.module('novaventa.services', [])
                                     $http.get(urlAutenticacion).
                                         success(function(data, status, headers, config) {
 
-                                            alert(data.nombreCompleto);
-
                                             //Establecer los datos de resumen de la Mamá
                                             rootScope.datos.nombre = data.nombreCompleto;
                                             rootScope.datos.segmento = data.clasificacionValor;
