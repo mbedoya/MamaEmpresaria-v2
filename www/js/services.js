@@ -517,15 +517,19 @@ angular.module('novaventa.services', [])
                             //Usuario y clave válidos?
                             if(data.valido == "1"){
 
+                                alert(data.token);
+
                                 //Header con la key para todas las solicitudes
                                 $http.defaults.headers.common['Authorization'] = 'apikey ' + data.token;
 
-                                if(data.valido == "1"){
+                                if(true){
 
                                     var urlAutenticacion = rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/validacionAntares";
 
                                     $http.get(urlAutenticacion).
                                         success(function(data, status, headers, config) {
+
+                                            alert(data.nombreCompleto);
 
                                             //Establecer los datos de resumen de la Mamá
                                             rootScope.datos.nombre = data.nombreCompleto;
@@ -539,7 +543,6 @@ angular.module('novaventa.services', [])
                                             //rootScope.zona = data.listaZonas[0];
                                             rootScope.zona = data.estructuraList[0].zona;
                                             rootScope.seccion = data.estructuraList[0].seccion;
-
 
                                             var campanaInicial = '-';
                                             Campana.getRecordatoriosCampanaOperativa(function (success, data) {
@@ -903,6 +906,13 @@ angular.module('novaventa.services', [])
                     }, page);
 
                     if($rootScope.zona){
+
+                        gaPlugin.trackPage(function(){
+
+                        }, function(){
+
+                        }, page + " " + $rootScope.zona);
+
                         gaPlugin.trackEvent(function(){
 
                         }, function(){
