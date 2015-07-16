@@ -86,10 +86,10 @@
       <file leaf-file-name="services.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8131868" vertical-offset="15932" max-vertical-offset="16660">
-              <caret line="1035" column="6" selection-start-line="1035" selection-start-column="6" selection-end-line="1035" selection-end-column="6" />
+            <state vertical-scroll-proportion="0.48626372" vertical-offset="4950" max-vertical-offset="16626">
+              <caret line="375" column="77" selection-start-line="375" selection-start-column="77" selection-end-line="375" selection-end-column="77" />
               <folding>
-                <marker date="1437083857009" expanded="false" signature="48476:48508" placeholder="..." />
+                <marker date="1437084232446" expanded="true" signature="48417:48449" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -739,10 +739,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/services.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8131868" vertical-offset="15932" max-vertical-offset="16660">
-          <caret line="1035" column="6" selection-start-line="1035" selection-start-column="6" selection-end-line="1035" selection-end-column="6" />
+        <state vertical-scroll-proportion="0.48626372" vertical-offset="4950" max-vertical-offset="16626">
+          <caret line="375" column="77" selection-start-line="375" selection-start-column="77" selection-end-line="375" selection-end-column="77" />
           <folding>
-            <marker date="1437083857009" expanded="false" signature="48476:48508" placeholder="..." />
+            <marker date="1437084232446" expanded="true" signature="48417:48449" placeholder="..." />
           </folding>
         </state>
       </provider>

@@ -373,7 +373,7 @@ angular.module('novaventa.services', [])
         return {
             registrarHabeasData: function(fx){
 
-                var urlServicio = $rootScope.configuracion.ip_servidores + "AntaresWebServices/terminosYCondiciones/autorizarME";
+                var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/terminosYCondiciones/autorizarME";
 
                 var request = {
                     method: 'POST',
@@ -764,8 +764,6 @@ angular.module('novaventa.services', [])
 
                                         }).
                                         error(function(data, status, headers, config) {
-
-                                            alert(status);
 
                                             mensajeError = "En este momento no podemos consultar tu información";
                                         });
