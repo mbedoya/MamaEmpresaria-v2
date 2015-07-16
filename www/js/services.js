@@ -375,7 +375,16 @@ angular.module('novaventa.services', [])
 
                 var urlServicio = $rootScope.configuracion.ip_servidores + "AntaresWebServices/terminosYCondiciones/autorizarME";
 
-                $http.post(urlServicio, {version: $rootScope.datos.versionHabeasData}).
+                var request = {
+                    method: 'POST',
+                    url: urlServicio,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    data: "version=" + $rootScope.datos.versionHabeasData
+                };
+
+                $http(request).
                     success(function(data, status, headers, config) {
                         fx(true, data);
                     }).
@@ -520,6 +529,9 @@ angular.module('novaventa.services', [])
                                 //Header con la key para todas las solicitudes
                                 $http.defaults.headers.common['Authorization'] = 'apikey ' + data.token;
 
+                                rootScope.datos.versionHabeasData = data.version;
+                                rootScope.datos.mensajeHabeasData = data.mensaje;
+
                                 if(true){
 
                                     var urlAutenticacion = rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/validacionAntares";
@@ -535,8 +547,6 @@ angular.module('novaventa.services', [])
                                             rootScope.datos.cupo = data.cupo;
                                             rootScope.datos.saldo = data.saldoBalance;
                                             rootScope.datos.valorFlexibilizacion = data.valorFlexibilizacion;
-                                            rootScope.datos.versionHabeasData = data.version;
-                                            rootScope.datos.mensajeHabeasData = data.mensaje;
 
                                             //rootScope.zona = data.listaZonas[0];
                                             rootScope.zona = data.estructuraList[0].zona;
@@ -1021,26 +1031,6 @@ angular.module('novaventa.services', [])
                 }
 
                 return anoCampana;
-            }
-        }
-    })
-
-    .factory('TerminosCondiciones', function($rootScope, $http) {
-
-        return {
-            getTerminosCondiciones: function(fx){
-
-                //var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/productoDeCampagna/agotadosCampagna/" + anoCampana;
-                var urlServicio = 'http://www.mocky.io/v2/556cd17ce822501804253edc';
-
-                $http.get(urlServicio).
-                    success(function(data, status, headers, config) {
-                        fx(true, data);
-                    }).
-                    error(function(data, status, headers, config) {
-                        fx(false, {});
-                    });
-
             }
         }
     })

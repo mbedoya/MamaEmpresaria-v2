@@ -6,32 +6,37 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
     $scope.continuar = function(){
 
         $scope.loading =  $ionicLoading.show({
-            template: Utilidades.getPlantillaEspera('Iniciando sesión')
+            template: Utilidades.getPlantillaEspera('Aceptando términos y condiciones')
         });
 
-        Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){
+        Mama.registrarHabeasData(function (success, data){
 
             $ionicLoading.hide();
 
             if(success){
+
+                $scope.loading =  $ionicLoading.show({
+                    template: Utilidades.getPlantillaEspera('Iniciando sesión')
+                });
+
+                Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){
+
+                    $ionicLoading.hide();
+
+                    if(success){
+                        $location.path('/app/bienvenida');
+
+                    }else{
+                        $scope.mostrarAyuda("Creación de clave", mensajeError);
+                    }
+
+                });
+
                 $location.path('/app/bienvenida');
-
-            }else{
-                $scope.mostrarAyuda("Creación de clave", mensajeError);
-            }
-
-        });
-
-        /*
-
-        Mama.registrarHabeasData(function (success, data){
-            if(success){
-                $location.path('/app/bienvenida');
             }else{
 
             }
         });
-        */
 
     };
 
@@ -39,16 +44,6 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
 
         $scope.texto = $rootScope.datos.mensajeHabeasData;
 
-        /*
-        TerminosCondiciones.getTerminosCondiciones(function (success, data){
-            if(success){
-                console.log(data);
-                $scope.texto = data.texto;
-            }else{
-
-            }
-        });
-        */
     };
 
     $scope.$on('online', function(event, args){
