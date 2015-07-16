@@ -950,3 +950,12 @@ a, a:visited{
   color: #eb0c6e;
   font-weight: bold;
 }
+
+.divTerminos{
+    overflow: auto;
+    height: 200px;
+    width: 100%;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
