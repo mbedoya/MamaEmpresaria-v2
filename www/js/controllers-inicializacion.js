@@ -6,7 +6,7 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
     //por ser la primera página algunas veces no está disponible
     $scope.mostrarAyuda = function(titulo, mensaje) {
         var alertPopup = $ionicPopup.alert({
-            title: titulo,
+            title: "",
             template: mensaje
         });
     };
@@ -90,11 +90,46 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
                     if(success){
 
                         if(data.valido == "1"){
-                            $ionicHistory.nextViewOptions({
-                                historyRoot: true
+
+                            $scope.loading =  $ionicLoading.show({
+                                template: Utilidades.getPlantillaEspera('Iniciando sesión')
                             });
 
-                            $location.path('/app/menu/tabs/home');
+                            Mama.getInformacionBasica(function(success, mensajeError){
+
+                                $ionicLoading.hide();
+
+                                if(success){
+
+                                    //Almacenar datos si hay almacenamiento local
+                                    if(localStorage){
+
+                                        localStorage.cedula = $rootScope.datos.cedula;
+                                        localStorage.nombre = $rootScope.datos.nombre;
+                                        localStorage.segmento = $rootScope.datos.segmento;
+                                        localStorage.clave = $scope.modelo.clave;
+                                    }
+
+                                    $scope.datosInicio = {clave: '' };
+
+                                    $ionicHistory.nextViewOptions({
+                                        disableBack: true
+                                    });
+
+                                    //Si la Mamá tiene versión para aceptar entonces ir a terminos y condiciones
+                                    if ($rootScope.datos.versionHabeasData){
+                                        $rootScope.irAHomeLuegoTerminos = true;
+                                        $location.path('/app/terminos-condiciones');
+                                    }else{
+                                        $location.path('/app/menu/tabs/home');
+                                    }
+
+                                }else{
+                                    $scope.mostrarAyuda("Creación de clave", mensajeError);
+                                }
+
+                            });
+
                         }else{
                             $location.path('/app/login');
                         }

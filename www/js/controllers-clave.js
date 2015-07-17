@@ -5,7 +5,7 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
 
     $scope.mostrarAyuda = function(titulo, mensaje) {
         var alertPopup = $ionicPopup.alert({
-            title: titulo,
+            title: "",
             template: mensaje
         });
     };
@@ -13,7 +13,7 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
     $scope.limpiar = function(){
         $scope.modelo = { clave: ''};
     }
-    
+
     $scope.irARecuperarClave = function(){
         $rootScope.recuperarClave = true;
         $location.path('/app/clave-pregunta-1');
@@ -103,24 +103,44 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
 
                     $ionicLoading.hide();
 
+                    $scope.loading =  $ionicLoading.show({
+                        template: Utilidades.getPlantillaEspera('Iniciando sesión')
+                    });
+
                     if(success){
 
-                        //Almacenar datos si hay almacenamiento local
-                        if(localStorage){
+                        Mama.getInformacionBasica(function(success, mensajeError){
 
-                            localStorage.cedula = $rootScope.datos.cedula;
-                            localStorage.nombre = $rootScope.datos.nombre;
-                            localStorage.segmento = $rootScope.datos.segmento;
-                            localStorage.clave = $scope.modelo.clave;
-                        }
+                            if(success){
 
-                        $scope.datosInicio = {clave: '' };
+                                //Almacenar datos si hay almacenamiento local
+                                if(localStorage){
 
-                        $ionicHistory.nextViewOptions({
-                            disableBack: true
+                                    localStorage.cedula = $rootScope.datos.cedula;
+                                    localStorage.nombre = $rootScope.datos.nombre;
+                                    localStorage.segmento = $rootScope.datos.segmento;
+                                    localStorage.clave = $scope.modelo.clave;
+                                }
+
+                                $scope.datosInicio = {clave: '' };
+
+                                $ionicHistory.nextViewOptions({
+                                    disableBack: true
+                                });
+
+                                //Si la Mamá tiene versión para aceptar entonces ir a terminos y condiciones
+                                if ($rootScope.datos.versionHabeasData){
+                                    $rootScope.irAHomeLuegoTerminos = true;
+                                    $location.path('/app/terminos-condiciones');
+                                }else{
+                                    $location.path('/app/menu/tabs/home');
+                                }
+
+                            }else{
+                                $scope.mostrarAyuda("Creación de clave", mensajeError);
+                            }
+
                         });
-
-                        $location.path('/app/menu/tabs/home');
 
                     }else{
 

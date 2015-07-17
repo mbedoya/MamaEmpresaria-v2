@@ -24,7 +24,12 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
                     $ionicLoading.hide();
 
                     if(success){
-                        $location.path('/app/bienvenida');
+
+                        if($rootScope.irAHomeLuegoTerminos){
+                            $location.path('/app/menu/tabs/home');
+                        }else{
+                            $location.path('/app/bienvenida');
+                        }
 
                     }else{
                         $scope.mostrarAyuda("Creación de clave", mensajeError);

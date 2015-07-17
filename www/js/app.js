@@ -14,7 +14,7 @@ angular.module('novaventa', ['ionic', 'novaventa.controllers', 'novaventa.servic
     
     $rootScope.mostrarAyuda = function(titulo, mensaje) {
 	   var alertPopup = $ionicPopup.alert({
-		 title: titulo,
+		 title: "",
 		 template: mensaje
 	   });
 	 };
