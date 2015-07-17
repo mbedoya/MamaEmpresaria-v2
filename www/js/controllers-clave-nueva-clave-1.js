@@ -5,7 +5,7 @@ moduloControlador.controller('ClaveNuevaClave1Ctrl', function($scope, $location,
 
     $scope.mostrarAyuda = function(titulo, mensaje) {
         var alertPopup = $ionicPopup.alert({
-            title: titulo,
+            title: "",
             template: mensaje
         });
     };
