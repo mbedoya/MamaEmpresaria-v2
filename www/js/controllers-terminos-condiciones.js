@@ -19,7 +19,7 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
                     template: Utilidades.getPlantillaEspera('Iniciando sesión')
                 });
 
-                Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){
+                Mama.getInformacionBasica(function(success, mensajeError){
 
                     $ionicLoading.hide();
 
