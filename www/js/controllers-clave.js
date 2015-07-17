@@ -103,13 +103,15 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
 
                     $ionicLoading.hide();
 
-                    $scope.loading =  $ionicLoading.show({
-                        template: Utilidades.getPlantillaEspera('Iniciando sesión')
-                    });
-
                     if(success){
 
+                        $scope.loading =  $ionicLoading.show({
+                            template: Utilidades.getPlantillaEspera('Iniciando sesión')
+                        });
+
                         Mama.getInformacionBasica(function(success, mensajeError){
+
+                            $ionicLoading.hide();
 
                             if(success){
 
