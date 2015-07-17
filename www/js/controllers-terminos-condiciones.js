@@ -46,8 +46,6 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
     };
 
     $scope.inicializar = function(){
-
-        $scope.texto = $rootScope.datos.mensajeHabeasData;
         $("#texto").html($rootScope.datos.mensajeHabeasData);
     };
 
