@@ -905,12 +905,6 @@ angular.module('novaventa.services', [])
                         }, function(){
 
                         }, page + " " + $rootScope.zona);
-
-                        gaPlugin.trackEvent(function(){
-
-                        }, function(){
-
-                        }, "Menu", "Ingreso", page + " " + $rootScope.zona);
                     }
                 }
             }

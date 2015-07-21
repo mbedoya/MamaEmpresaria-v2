@@ -3,8 +3,6 @@ moduloControlador.controller('LoginCtrl', function($scope, $location, $rootScope
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Inicio de sesión");
 
-    $rootScope.zona = new Date().getMilliseconds();
-
     $scope.mostrarAyuda = function(titulo, mensaje) {
         var alertPopup = $ionicPopup.alert({
             title: titulo,

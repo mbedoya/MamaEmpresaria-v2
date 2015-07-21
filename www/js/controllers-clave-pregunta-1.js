@@ -116,6 +116,12 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
 
     $scope.confirmar = function() {
 
+        //Validar que se haya seleccionado año y campaña
+        if($scope.modelo.campana == "" || $scope.model.ano == ""){
+            $scope.mostrarAyuda("Creación de clave","Mamá, por favor selecciona el año y la campaña");
+            return;
+        }
+
         var myPopup = $ionicPopup.show({
             template: 'Mamá, elegiste la Campaña ' + $scope.modelo.campana + ' de ' + $scope.modelo.ano + ', ¿Es correcto?',
             title: 'Creación de clave',
