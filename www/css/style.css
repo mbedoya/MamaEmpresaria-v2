@@ -958,4 +958,7 @@ a, a:visited{
     background-color: #f8f8f8;
     border-radius: 8px;
     margin-bottom: 10px;
+    font-family: "Droid Sans", sans-serif;
+    font-weight: normal;
+    padding: 5px;
 }
