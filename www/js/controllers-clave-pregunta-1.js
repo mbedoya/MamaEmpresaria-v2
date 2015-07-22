@@ -11,7 +11,11 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
     };
 
     $scope.inicializar = function() {
-        
+
+        $scope.modelo = { campana:'', ano: ''};
+        $scope.campanaActual = "";
+        $scope.campanasAnoActual = new Array();
+
         Mama.getPregunta1(function (success, data) {
             if (success) {
                
@@ -20,6 +24,13 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
                    if(!$rootScope.recuperarClave){
                        $scope.mostrarAyuda("Creación de clave", "Mamá, nos encanta tenerte con nosotros. Para que puedas disfrutar de esta aplicación te invitamos a responder unas preguntas y crear tu clave");
                    }
+
+                   Campana.getCampanaOperativa(function (success, data) {
+                       if (success) {
+                           console.log(data);
+                           $scope.campanaActual = data.campana.toString().substr(4,2);
+                       }
+                   });
                    
                }else{
                    console.log(data.razonRechazo);
@@ -37,31 +48,6 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
                 $location.path('/app/clave-pregunta-2');
             }
         });
-
-        $scope.modelo = { campana:'', ano: ''};
-        $scope.campanaActual = "";
-        $scope.campanasAnoActual = new Array();
-
-        $scope.campanaActual = "12";
-
-        /*
-        $rootScope.zona = "655";
-        $rootScope.seccion = "0";
-
-        Campana.getRecordatoriosCampanaOperativa(function (success, data) {
-            if (success) {
-                $scope.campanaActual = data.campagna;
-                var i=1;
-                if(Number($scope.campanaActual)-9 > 0){
-                    i=Number($scope.campanaActual)-9;
-                }
-                while(i < Number($scope.campanaActual)){
-                    $scope.campanasAnoActual.push({"nombre": i});
-                    i=i+1;
-                }
-            }
-        });
-        */
     }
 
     $scope.inicializar();
