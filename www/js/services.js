@@ -478,9 +478,9 @@ angular.module('novaventa.services', [])
                         fx(false, {});
                     });
             },
-            solicitarContactoAsesor: function(fx){
+            solicitarContactoAsesor: function(tipoContacto, fx){
                 var cedula = $rootScope.datos.cedula;
-                var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/interfaceAntares/contactoAsesor/" + cedula;
+                var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/autenticacion/emailAsesor/" + cedula + "/" + tipoContacto;
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {

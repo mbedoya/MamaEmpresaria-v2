@@ -23,7 +23,7 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
         //Enviar solicitus de contacto
 
         if(Internet.get()){
-            Mama.solicitarContactoAsesor(function(success, data) {
+            Mama.solicitarContactoAsesor("INTENTOS_FALLIDOS", function(success, data) {
                 if (success) {
 
                 }

@@ -13,9 +13,29 @@ moduloControlador.controller('ClavePregunta2Ctrl', function($scope, $location, $
     $scope.respuestaSeleccionada = function(respuesta, indice){
         $scope.respuesta = respuesta;
         $scope.indiceRespuesta = indice;
-    };
+    }
+    
+    $scope.enviarSolicitudContacto = function(){
+        //Enviar solicitus de contacto
+
+        if(Internet.get()){
+            Mama.solicitarContactoAsesor("SEGUNDA_RESPUESTA_INCORRECTA", function(success, data) {
+                if (success) {
+
+                }
+            });
+        }else{
+            $scope.mostrarAyuda("Inicio de sesión","Por favor verifica tu conexión a internet, no ha sido posible enviar la solicitud de contacto");
+        }
+    }
 
     $scope.confirmar = function() {
+
+        //Validar que se haya seleccionado año y campaña
+        if($scope.respuesta == ""){
+            $scope.mostrarAyuda("Creación de clave","Mamá, por favor selecciona una opción");
+            return;
+        }    
 
         var myPopup = $ionicPopup.show({
             template: 'Mamá, elegiste la opción "' + $scope.respuesta + '" ¿Es correcto?',
@@ -60,7 +80,8 @@ moduloControlador.controller('ClavePregunta2Ctrl', function($scope, $location, $
                             if(data.valido && data.valido == 1){
                                 $location.path('/app/clave-nueva-clave-1');
                             }else{
-                                $scope.mostrarAyuda("Creación de clave", "No hemos pedido validar correctamente tu información, uno de nuestros asesores te estará contactando en XXX");
+                                $scope.enviarSolicitudContacto();
+                                $scope.mostrarAyuda("Creación de clave", "No hemos pedido validar correctamente tu información, uno de nuestros asesores te estará contactando");
                             }
 
                         }else{
@@ -106,7 +127,7 @@ moduloControlador.controller('ClavePregunta2Ctrl', function($scope, $location, $
                    console.log(data.razonRechazo);
                    if(data.razonRechazo && 
                        (data.razonRechazo == "Pregunta 2 ya ha sido contestada") ){
-                       $scope.mostrarAyuda("Creación de clave", "No hemos podido validar correctamente tu información, uno de nuestros asesores te estará contactando en XXX");
+                       $scope.mostrarAyuda("Creación de clave", "No hemos podido validar correctamente tu información, uno de nuestros asesores te estará contactando");
                        //$location.path('/app/clave-nueva-clave-1');
                    }else{
                        $scope.mostrarAyuda("Creación de clave",data.razonRechazo);
