@@ -479,6 +479,27 @@ angular.module('novaventa.services', [])
                         fx(false, {});
                     });
             },
+            cambiarClave: function(claveActual, claveNueva, fx){
+
+                var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/autenticacion/cambioClaveME";
+
+                var request = {
+                    method: 'POST',
+                    url: urlServicio,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    data: "claveActual=" + claveActual + "&claveNueva="+ claveNueva
+                };
+
+                $http(request).
+                    success(function(data, status, headers, config) {
+                        fx(true, data);
+                    }).
+                    error(function(data, status, headers, config) {
+                        fx(false, {});
+                    });
+            },
             validarCedula: function(fx){
                 var cedula = $rootScope.datos.cedula;
                 var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/interfaceAntares/validarME/" + cedula;
