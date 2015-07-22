@@ -364,6 +364,19 @@ angular.module('novaventa.services', [])
                     error(function(data, status, headers, config) {
                         fx(false, {});
                     });
+            },
+            getCampanaOperativa: function(fx){
+
+                var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/interfaceAntares/campagnaOperativa";
+
+                $http.get(urlServicio).
+                    success(function(data, status, headers, config) {
+                        fx(true, data);
+                    }).
+                    error(function(data, status, headers, config) {
+                        fx(false, {});
+                    });
+
             }
         }
     })
