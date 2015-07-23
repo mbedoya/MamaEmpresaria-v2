@@ -81,7 +81,8 @@ moduloControlador.controller('ClavePregunta2Ctrl', function($scope, $location, $
                                 $location.path('/app/clave-nueva-clave-1');
                             }else{
                                 $scope.enviarSolicitudContacto();
-                                $scope.mostrarAyuda("Creación de clave", "No hemos pedido validar correctamente tu información, uno de nuestros asesores te estará contactando");
+                                $scope.mostrarAyuda("Creación de clave", "No hemos podido validar correctamente tu información, uno de nuestros asesores te estará contactando");
+                                $location.path('/app/login');
                             }
 
                         }else{

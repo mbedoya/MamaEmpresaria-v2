@@ -3,11 +3,10 @@
         <div class="content-login padding">
             <img src="img/pregunta2.png" class="login-img" />
             <h4>Ésta es tu segunda oportunidad</h4>
-            <h3>¿Dentro de cuál de las siguientes opciones se encuentra tu última factura?</h3>
+            <h3>¿Dentro de cuál de las siguientes opciones se encuentra el valor de tu última factura?</h3>
             <form ng-submit="capturarCedula()">
 
                 <ul class="list" >
-
                     <label class="item item-radio" ng-repeat="respuesta in respuestas" ng-click="respuestaSeleccionada(respuesta, $index)">
                         <input type="radio" name="group">
                         <div class="item-content" >
