@@ -175,6 +175,26 @@ angular.module('novaventa', ['ionic', 'novaventa.controllers', 'novaventa.servic
                     }
                 }
             })
+
+            .state('app.menu.tabs.home.cambio-clave-actual', {
+                url: "/cambio-clave-actual",
+                views: {
+                    'home-content': {
+                        templateUrl: "templates/cambio-clave-actual.html",
+                        controller: 'CambioClaveActualCtrl'
+                    }
+                }
+            })
+
+            .state('app.menu.tabs.home.cambio-clave-nueva', {
+                url: "/cambio-clave-nueva",
+                views: {
+                    'home-content': {
+                        templateUrl: "templates/cambio-clave-nueva.html",
+                        controller: 'CambioClaveNuevaCtrl'
+                    }
+                }
+            })
             
             .state('app.menu.tabs.fechas', {
                 url: "/fechas",

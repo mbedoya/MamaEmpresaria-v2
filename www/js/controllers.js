@@ -1,19 +1,19 @@
 var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filters'])
 
-        .controller('AppCtrl', function($scope, $state, $rootScope, $ionicHistory) {
+        .controller('AppCtrl', function($scope, $state, $rootScope, $location, $ionicHistory) {
 
             $scope.cerrarSesion = function() {
-                console.log("cerrando sesión");
-
                 if(localStorage && localStorage.cedula){
                     localStorage.removeItem("cedula");
                 }
-
                 $ionicHistory.nextViewOptions({
                     disableBack: true
                 });
+                $location.path('/app/login');
+            };
 
-                $state.go('app.login');
+            $scope.irACambioClave = function() {
+                $location.path('/app/cambio-clave-nueva');
             };
         })
 
