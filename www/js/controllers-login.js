@@ -22,10 +22,12 @@ moduloControlador.controller('LoginCtrl', function($scope, $location, $rootScope
         $rootScope.datos = { cedula: $scope.datosInicio.cedula };
 
         //Cédula vacía
-        if(!$rootScope.datos.cedula){
+        if(!$rootScope.datos.cedula && String($rootScope.datos.cedula).length == 0){
             $scope.mostrarAyuda("Inicio de sesión","Ingresa tu cédula");
             return;
         }
+
+        console.log(String($rootScope.datos.cedula).length);
 
         //Cantidad de caracteres
         if(String($rootScope.datos.cedula).length < 6 || String($rootScope.datos.cedula).length > 10){

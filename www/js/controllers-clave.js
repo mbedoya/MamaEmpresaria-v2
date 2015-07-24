@@ -72,7 +72,7 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
     $scope.continuar = function() {
 
         //Cédula vacía
-        if(!$scope.modelo.clave){
+        if(!$scope.modelo.clave && String($scope.modelo.clave).length == 0){
             $scope.mostrarAyuda("Inicio de sesión","Ingresa tu clave");
             return;
         }
