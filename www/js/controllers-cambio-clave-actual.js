@@ -1,4 +1,4 @@
-moduloControlador.controller('CambioClaveActualCtrl', function($scope, $location, $rootScope, $ionicLoading, $ionicPopup, $ionicHistory, Mama, Internet, GA, Utilidades) {
+moduloControlador.controller('CambioClaveActualCtrl', function($scope, $location, $rootScope, $ionicLoading, $ionicPopup, $ionicHistory, $http, $filter, Mama, Internet, GA, Utilidades) {
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Cambio Clave - Ingreso Clave Actual");
