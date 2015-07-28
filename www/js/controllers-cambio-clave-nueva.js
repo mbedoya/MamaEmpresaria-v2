@@ -18,7 +18,7 @@ moduloControlador.controller('CambioClaveNuevaCtrl', function($scope, $location,
 
         var myPopup = $ionicPopup.show({
             template: 'Mamá, elegiste ' + $scope.modelo.clave + ' como tu clave, ¿Es correcto?',
-            title: 'Creación de clave',
+            title: '',
             subTitle: '',
             scope: $scope,
             buttons: [

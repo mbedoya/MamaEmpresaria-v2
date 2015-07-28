@@ -39,7 +39,7 @@ moduloControlador.controller('ClavePregunta2Ctrl', function($scope, $location, $
 
         var myPopup = $ionicPopup.show({
             template: 'Mamá, elegiste la opción "' + $scope.respuesta + '" ¿Es correcto?',
-            title: 'Creación de clave',
+            title: '',
             subTitle: '',
             scope: $scope,
             buttons: [
@@ -120,26 +120,30 @@ moduloControlador.controller('ClavePregunta2Ctrl', function($scope, $location, $
 
                 console.log(data);
                 if(data.valido && data.valido == 1){
-                    
                     $scope.respuestas = data.respuestas;
-                console.log($scope.respuestas);
                    
                }else{
                    console.log(data.razonRechazo);
                    if(data.razonRechazo && 
-                       (data.razonRechazo == "Pregunta 2 ya ha sido contestada") ){
+                       (data.razonRechazo == "Pregunta 2 ya ha sido contestada" || data.razonRechazo == "Pregunta 1 ya ha sido contestada") ){
                        $scope.mostrarAyuda("Creación de clave", "No hemos podido validar correctamente tu información, uno de nuestros asesores te estará contactando");
-                       //$location.path('/app/clave-nueva-clave-1');
+                       $location.path('/app/login');
                    }else{
-                       $scope.mostrarAyuda("Creación de clave",data.razonRechazo);
-                       $location.path('/app/login')
-                       //$scope.mostrarAyuda("Creación de clave", "No hemos pedido validar correctamente tu información, uno de nuestros asesores te estará contactando en XXX");
+
+                       if(data.razonRechazo &&
+                           (data.razonRechazo == "Pregunta 2 ya ha sido contestada correctamente" || data.razonRechazo == "Pregunta 1 ya ha sido contestada correctamente") ){
+                           $location.path('/app/clave-nueva-clave-1');
+                       }else{
+                           $scope.mostrarAyuda("Creación de clave",data.razonRechazo);
+                           $location.path('/app/login');
+                       }
                    }
-                      
                }
-                
-                
+            }else{
+                $scope.mostrarAyuda("Creación de clave", "No hemos podido validar tu información, comunícate con la línea de atención");
+                $location.path('/app/login');
             }
+
         });
     }
 

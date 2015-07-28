@@ -37,7 +37,7 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
 
         var myPopup = $ionicPopup.show({
             template: mensaje,
-            title: 'Inicio de sesión',
+            title: '',
             subTitle: '',
             scope: $scope,
             buttons: [

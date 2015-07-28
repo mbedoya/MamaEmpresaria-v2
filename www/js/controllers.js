@@ -13,7 +13,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
             };
 
             $scope.irACambioClave = function() {
-                $location.path('/app/cambio-clave-nueva');
+                $location.path('/app/cambio-clave-actual');
             };
         })
 

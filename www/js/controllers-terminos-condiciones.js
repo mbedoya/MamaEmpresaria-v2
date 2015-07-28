@@ -57,8 +57,4 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
         $scope.inicializar();
     });
 
-    $scope.$on('$ionicView.beforeEnter', function(){
-        $scope.inicializar();
-    });
-
 });

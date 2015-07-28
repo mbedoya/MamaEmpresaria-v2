@@ -36,6 +36,7 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
                    console.log(data.razonRechazo);
                    if(data.razonRechazo && 
                        (data.razonRechazo == "Pregunta 1 ya ha sido contestada") ){
+                       console.log("Llendo a Pregunta 2 porque 1 ha sido contestada");
                        $location.path('/app/clave-pregunta-2');
                    }else{
                        $location.path('/app/clave-pregunta-2');
@@ -63,10 +64,10 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
             console.log("Año actual");
 
             var i=1;
-            if(Number($scope.campanaActual)-9 > 0){
-                i=Number($scope.campanaActual)-9;
+            if(Number($scope.campanaActual)-8 > 0){
+                i=Number($scope.campanaActual)-8;
             }
-            while(i < Number($scope.campanaActual)){
+            while(i <= Number($scope.campanaActual)){
                 $scope.campanasAnoActual.push({"nombre": i});
                 i=i+1;
             }
@@ -76,7 +77,7 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
 
                 console.log("Año anterior");
 
-                var i=9-Number($scope.campanaActual)+1;
+                var i=8-Number($scope.campanaActual)+1;
                 var j=1;
                 while(j <= i){
                     $scope.campanasAnoActual.push({"nombre": $rootScope.numeroCampanasAno-i+j});
@@ -110,7 +111,7 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
 
         var myPopup = $ionicPopup.show({
             template: 'Mamá, elegiste la Campaña ' + $scope.modelo.campana + ' de ' + $scope.modelo.ano + ', ¿Es correcto?',
-            title: 'Creación de clave',
+            title: '',
             subTitle: '',
             scope: $scope,
             buttons: [
