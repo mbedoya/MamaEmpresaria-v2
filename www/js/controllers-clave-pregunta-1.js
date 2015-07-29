@@ -15,19 +15,32 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
         $scope.modelo = { campana:'', ano: ''};
         $scope.campanaActual = "";
         $scope.campanasAnoActual = new Array();
+        
+        $scope.loading =  $ionicLoading.show({
+            template: Utilidades.getPlantillaEspera('Obteniendo respuesta')
+        });
 
         Mama.getPregunta1(function (success, data) {
+            
+            $ionicLoading.hide();
+            
             if (success) {
                
                if(data.valido && data.valido == 1){
-
-                   if(!$rootScope.recuperarClave){
-                       $scope.mostrarAyuda("Creación de clave", "Mamá, nos encanta tenerte con nosotros. Para que puedas disfrutar de esta aplicación te invitamos a responder unas preguntas y crear tu clave");
-                   }
+                   
+                   $scope.loading =  $ionicLoading.show({
+                        template: Utilidades.getPlantillaEspera('Obteniendo respuesta')
+                    });
 
                    Campana.getCampanaOperativa(function (success, data) {
+                       
+                       $ionicLoading.hide();
+                       
                        if (success) {
-                           console.log(data);
+                           
+                           if(!$rootScope.recuperarClave){
+                               $scope.mostrarAyuda("Creación de clave", "Mamá, nos encanta tenerte con nosotros. Para que puedas disfrutar de esta aplicación te invitamos a responder unas preguntas y crear tu clave");
+                           }
                            $scope.campanaActual = data.campana.toString().substr(4,2);
                        }
                    });
@@ -36,7 +49,7 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
                    console.log(data.razonRechazo);
                    if(data.razonRechazo && 
                        (data.razonRechazo == "Pregunta 1 ya ha sido contestada") ){
-                       console.log("Llendo a Pregunta 2 porque 1 ha sido contestada");
+                       
                        $location.path('/app/clave-pregunta-2');
                    }else{
                        $location.path('/app/clave-pregunta-2');
