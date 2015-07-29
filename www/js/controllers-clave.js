@@ -103,6 +103,8 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
 
                     $ionicLoading.hide();
 
+                    alert(success);
+
                     if(success){
 
                         $scope.loading =  $ionicLoading.show({
@@ -145,6 +147,8 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
                         });
 
                     }else{
+
+                        alert(data.mostrarSolicitudAyuda);
 
                         if(data.mostrarSolicitudAyuda){
                             $scope.confirmar(mensajeError);

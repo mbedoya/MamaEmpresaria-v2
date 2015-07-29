@@ -809,13 +809,15 @@ angular.module('novaventa.services', [])
 
                             }else{
 
-                                if(data.intentos == 5){
+                                alert(data.intentos);
+
+                                if(data.intentos == "5"){
 
                                     mensajeError = "Lo sentimos, tu clave no es válida para la cédula ingresada. Deseas ayuda?";
                                     data.mostrarSolicitudAyuda = true;
 
                                 }else{
-                                    if(data.intentos == 10){
+                                    if(data.intentos == "10"){
 
                                         mensajeError = "Lo sentimos, tu clave no es válida para la cédula ingresada. Nuestros asesores de servicios te estarán contactando";
                                         data.enviarSolicitudAsesor = true;
