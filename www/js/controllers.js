@@ -81,24 +81,24 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
         .controller('BienvenidaCtrl', function($scope, $state, $rootScope, $ionicHistory, $location) {
 
             $scope.segmentoFormateado = function(){
-                if(localStorage){
-                    return localStorage.segmento.toLocaleLowerCase().replace("í","i");
+                if($rootScope.datos.segmento){
+                    return $rootScope.datos.segmento.toLocaleLowerCase().replace("í","i");
                 }else{
                     return "";
                 }
             }
 
             $scope.segmento = function(){
-                if(localStorage){
-                    return localStorage.segmento;
+                if($rootScope.datos.segmento){
+                    return $rootScope.datos.segmento;
                 }else{
                     return "";
                 }
             }
 
             $scope.nombre = function(){
-                if(localStorage){
-                    return localStorage.nombre;
+                if($rootScope.datos.nombre){
+                    return $rootScope.datos.nombre;
                 }else{
                     return "Mamá Empresaria";
                 }

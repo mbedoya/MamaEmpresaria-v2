@@ -50,11 +50,13 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
     };
 
     $scope.$on('online', function(event, args){
-        $scope.inicializar(true);
+        $scope.inicializar();
     });
 
     $scope.$on('loggedin', function(event, args){
         $scope.inicializar();
     });
+    
+    $scope.inicializar();
 
 });

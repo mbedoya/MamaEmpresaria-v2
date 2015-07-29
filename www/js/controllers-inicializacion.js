@@ -121,7 +121,7 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
                                         $rootScope.irAHomeLuegoTerminos = true;
                                         $location.path('/app/terminos-condiciones');
                                     }else{
-                                        $location.path('/app/home');
+                                        $location.path('/app/menu/tabs/home');
                                     }
 
                                 }else{
