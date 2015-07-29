@@ -802,13 +802,13 @@ angular.module('novaventa.services', [])
 
                                 if(data.intentos == "5"){
 
-                                    mensajeError = "Lo sentimos, tu clave no es válida para la cédula ingresada. Deseas ayuda?";
+                                    mensajeError = "Mamá, tu clave no es válida para la cédula ingresada. Deseas ser contactada por nuestros asesores de servicio? Recuerda que también puede hacer uso de la opción ¿Olvidaste tu clave?";
                                     data.mostrarSolicitudAyuda = true;
 
                                 }else{
                                     if(data.intentos == "10"){
 
-                                        mensajeError = "Lo sentimos, tu clave no es válida para la cédula ingresada. Nuestros asesores de servicios te estarán contactando";
+                                        mensajeError = "Mamá, tu clave no es válida para la cédula ingresada. Nuestros asesores de servicio te estarán contactando";
                                         data.enviarSolicitudAsesor = true;
 
                                     }

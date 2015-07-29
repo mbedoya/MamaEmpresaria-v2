@@ -92,6 +92,8 @@ moduloControlador.controller('CambioClaveNuevaCtrl', function($scope, $location,
                                             $ionicHistory.nextViewOptions({
                                                 disableBack: true
                                             });
+                                            
+                                            $scope.mostrarAyuda("Creación de clave", "Tu clave ha sido actualizada");
 
                                             //Si la Mamá tiene versión para aceptar entonces ir a terminos y condiciones
                                             if ($rootScope.datos.versionHabeasData){
