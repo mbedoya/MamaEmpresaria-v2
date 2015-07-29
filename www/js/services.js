@@ -809,7 +809,7 @@ angular.module('novaventa.services', [])
 
                             }else{
 
-                                //alert(data.intentos);
+                                alert(data.intentos);
 
                                 if(data.intentos == "5"){
 

@@ -33,23 +33,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="services.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="services.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="12145" max-vertical-offset="16864">
-              <caret line="811" column="34" selection-start-line="811" selection-start-column="34" selection-end-line="811" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.48076922" vertical-offset="12366" max-vertical-offset="16864">
+              <caret line="811" column="32" selection-start-line="811" selection-start-column="32" selection-end-line="811" selection-end-column="32" />
               <folding>
-                <marker date="1438182505247" expanded="false" signature="44110:44142" placeholder="..." />
+                <marker date="1438184209038" expanded="false" signature="44108:44140" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="terminos-condiciones.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="terminos-condiciones.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/templates/terminos-condiciones.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.21794872" vertical-offset="0" max-vertical-offset="702">
-              <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+            <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="629">
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -113,9 +113,9 @@
         <option value="$PROJECT_DIR$/www/js/controllers-cambio-clave-nueva.js" />
         <option value="$PROJECT_DIR$/www/js/controllers-clave-pregunta-1.js" />
         <option value="$PROJECT_DIR$/www/js/controllers-clave-pregunta-2.js" />
-        <option value="$PROJECT_DIR$/www/js/services.js" />
         <option value="$PROJECT_DIR$/www/js/controllers-clave.js" />
         <option value="$PROJECT_DIR$/www/templates/terminos-condiciones.html" />
+        <option value="$PROJECT_DIR$/www/js/services.js" />
       </list>
     </option>
   </component>
@@ -713,21 +713,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/services.js">
+    <entry file="file://$PROJECT_DIR$/www/templates/terminos-condiciones.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="12145" max-vertical-offset="16864">
-          <caret line="811" column="34" selection-start-line="811" selection-start-column="34" selection-end-line="811" selection-end-column="34" />
-          <folding>
-            <marker date="1438182505247" expanded="false" signature="44110:44142" placeholder="..." />
-          </folding>
+        <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="629">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/terminos-condiciones.html">
+    <entry file="file://$PROJECT_DIR$/www/js/services.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21794872" vertical-offset="0" max-vertical-offset="702">
-          <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-          <folding />
+        <state vertical-scroll-proportion="0.48076922" vertical-offset="12366" max-vertical-offset="16864">
+          <caret line="811" column="32" selection-start-line="811" selection-start-column="32" selection-end-line="811" selection-end-column="32" />
+          <folding>
+            <marker date="1438184209038" expanded="false" signature="44108:44140" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
