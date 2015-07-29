@@ -292,6 +292,7 @@ strong{
   height:auto;
   margin:8px 0px 25px;
 }
+/*
 textarea{
   border-radius:8px;
   background:#e4e4e4;
@@ -302,6 +303,7 @@ textarea{
   max-height: 250px;
   width: 100%;
 }
+*/
 
 .login-button input[type=button] {
     background:#eb0c6e;
@@ -956,6 +958,18 @@ a, a:visited{
     height: 200px;
     width: 100%;
     background-color: #f8f8f8;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-family: "Droid Sans", sans-serif;
+    font-weight: normal;
+    padding: 5px;
+}
+
+textarea {
+  -moz-user-select: text;
+  -webkit-user-select: text;
+  -ms-user-select: text;
+  background-color: #f8f8f8;
     border-radius: 8px;
     margin-bottom: 10px;
     font-family: "Droid Sans", sans-serif;

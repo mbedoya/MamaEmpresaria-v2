@@ -47,9 +47,10 @@ moduloControlador.controller('CambioClaveNuevaCtrl', function($scope, $location,
                         template: Utilidades.getPlantillaEspera('Guardando tu clave')
                     });
 
+                    var claveActual = $rootScope.datos.clave;    
                     $rootScope.datos.clave = $scope.modelo.clave;
                     
-                    Mama.asignarClave(function(success, data){
+                    Mama.cambiarClave(claveActual, $rootScope.datos.clave,  function(success, data){
 
                         $ionicLoading.hide();
 

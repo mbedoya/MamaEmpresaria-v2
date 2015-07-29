@@ -36,8 +36,6 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
                     }
 
                 });
-
-                $location.path('/app/bienvenida');
             }else{
 
             }
@@ -46,7 +44,10 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
     };
 
     $scope.inicializar = function(){
-        $("#texto").html($rootScope.datos.mensajeHabeasData);
+        if($rootScope.datos){
+            $("#texto").html($rootScope.datos.mensajeHabeasData);
+            $("#txtTexto").val($rootScope.datos.mensajeHabeasData);
+        }
     };
 
     $scope.$on('online', function(event, args){
