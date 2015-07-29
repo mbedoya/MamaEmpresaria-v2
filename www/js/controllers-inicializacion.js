@@ -35,24 +35,24 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
     }, 2000);
 
     $scope.segmentoFormateado = function(){
-        if(localStorage){
-            return localStorage.segmento.toLocaleLowerCase().replace("í","i");
+        if($rootScope.datos.segmento){
+            return $rootScope.datos.segmento.toLocaleLowerCase().replace("í","i");
         }else{
             return "";
         }
     }
 
     $scope.segmento = function(){
-        if(localStorage){
-            return localStorage.segmento;
+        if($rootScope.datos.segmento){
+            return $rootScope.datos.segmento;
         }else{
             return "";
         }
     }
 
     $scope.nombre = function(){
-        if(localStorage){
-            return localStorage.nombre;
+        if($rootScope.datos.nombre){
+            return $rootScope.datos.nombre;
         }else{
             return "Mamá Empresaria";
         }
@@ -107,7 +107,6 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
                                         localStorage.cedula = $rootScope.datos.cedula;
                                         localStorage.nombre = $rootScope.datos.nombre;
                                         localStorage.segmento = $rootScope.datos.segmento;
-                                        localStorage.clave = $scope.modelo.clave;
                                     }
 
                                     $scope.datosInicio = {clave: '' };
