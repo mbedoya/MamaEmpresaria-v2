@@ -796,20 +796,7 @@ angular.module('novaventa.services', [])
                                 mensajeError = data.razonRechazo;
                             }
 
-                        }else{
-
-                            //Usuario y clave válidos?
-                            if(data.valido == "1"){
-
-                                //Header con la key para todas las solicitudes
-                                $http.defaults.headers.common['Authorization'] = 'apikey ' + data.token;
-
-                                rootScope.datos.versionHabeasData = data.version;
-                                rootScope.datos.mensajeHabeasData = data.mensaje;
-
-                            }else{
-
-                                alert(data.intentos);
+                            if(data.contactoFallido == "1"){
 
                                 if(data.intentos == "5"){
 
@@ -822,14 +809,22 @@ angular.module('novaventa.services', [])
                                         mensajeError = "Lo sentimos, tu clave no es válida para la cédula ingresada. Nuestros asesores de servicios te estarán contactando";
                                         data.enviarSolicitudAsesor = true;
 
-                                    }else{
-
-                                        mensajeError = "Lo sentimos, tu clave no es válida para la cédula ingresada. Recuerda que puedes hacer uso de 'Olvidaste tu contraseña'";
-
                                     }
                                 }
                             }
 
+                        }else{
+
+                            //Usuario y clave válidos?
+                            if(data.valido == "1"){
+
+                                //Header con la key para todas las solicitudes
+                                $http.defaults.headers.common['Authorization'] = 'apikey ' + data.token;
+
+                                rootScope.datos.versionHabeasData = data.version;
+                                rootScope.datos.mensajeHabeasData = data.mensaje;
+
+                            }
                         }
 
                         if(mensajeError && mensajeError.length > 0){

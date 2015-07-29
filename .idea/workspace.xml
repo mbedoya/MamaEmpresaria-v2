@@ -36,10 +36,10 @@
       <file leaf-file-name="services.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.48076922" vertical-offset="12366" max-vertical-offset="16864">
-              <caret line="811" column="32" selection-start-line="811" selection-start-column="32" selection-end-line="811" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.7197802" vertical-offset="12447" max-vertical-offset="16779">
+              <caret line="826" column="29" selection-start-line="826" selection-start-column="29" selection-end-line="826" selection-end-column="29" />
               <folding>
-                <marker date="1438184209038" expanded="false" signature="44108:44140" placeholder="..." />
+                <marker date="1438185283403" expanded="false" signature="43886:43918" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -723,10 +723,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/services.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48076922" vertical-offset="12366" max-vertical-offset="16864">
-          <caret line="811" column="32" selection-start-line="811" selection-start-column="32" selection-end-line="811" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.7197802" vertical-offset="12447" max-vertical-offset="16779">
+          <caret line="826" column="29" selection-start-line="826" selection-start-column="29" selection-end-line="826" selection-end-column="29" />
           <folding>
-            <marker date="1438184209038" expanded="false" signature="44108:44140" placeholder="..." />
+            <marker date="1438185283403" expanded="false" signature="43886:43918" placeholder="..." />
           </folding>
         </state>
       </provider>
