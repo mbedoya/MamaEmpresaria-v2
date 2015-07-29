@@ -459,8 +459,6 @@ angular.module('novaventa.services', [])
 
                 var cedula = $rootScope.datos.cedula;
                 var clave = $rootScope.datos.clave;
-                
-                alert($rootScope.datos.clave);
 
                 var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/autenticacion/creacionClaveME";
 
