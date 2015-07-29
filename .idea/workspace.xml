@@ -23,23 +23,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="controllers-clave.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="controllers-clave.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/controllers-clave.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2057" max-vertical-offset="3162">
-              <caret line="150" column="56" selection-start-line="150" selection-start-column="56" selection-end-line="150" selection-end-column="56" />
+            <state vertical-scroll-proportion="0.21016483" vertical-offset="1632" max-vertical-offset="3162">
+              <caret line="105" column="22" selection-start-line="105" selection-start-column="22" selection-end-line="105" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="services.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="services.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.760989" vertical-offset="12162" max-vertical-offset="16864">
-              <caret line="811" column="53" selection-start-line="811" selection-start-column="53" selection-end-line="811" selection-end-column="53" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="12162" max-vertical-offset="16864">
+              <caret line="811" column="34" selection-start-line="811" selection-start-column="34" selection-end-line="811" selection-end-column="34" />
               <folding>
-                <marker date="1438181264179" expanded="false" signature="44108:44140" placeholder="..." />
+                <marker date="1438182505247" expanded="false" signature="44110:44142" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -104,8 +104,8 @@
         <option value="$PROJECT_DIR$/www/js/controllers-cambio-clave-nueva.js" />
         <option value="$PROJECT_DIR$/www/js/controllers-clave-pregunta-1.js" />
         <option value="$PROJECT_DIR$/www/js/controllers-clave-pregunta-2.js" />
-        <option value="$PROJECT_DIR$/www/js/controllers-clave.js" />
         <option value="$PROJECT_DIR$/www/js/services.js" />
+        <option value="$PROJECT_DIR$/www/js/controllers-clave.js" />
       </list>
     </option>
   </component>
@@ -702,21 +702,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/controllers-clave.js">
+    <entry file="file://$PROJECT_DIR$/www/js/services.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2057" max-vertical-offset="3162">
-          <caret line="150" column="56" selection-start-line="150" selection-start-column="56" selection-end-line="150" selection-end-column="56" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="12162" max-vertical-offset="16864">
+          <caret line="811" column="34" selection-start-line="811" selection-start-column="34" selection-end-line="811" selection-end-column="34" />
+          <folding>
+            <marker date="1438182505247" expanded="false" signature="44110:44142" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/services.js">
+    <entry file="file://$PROJECT_DIR$/www/js/controllers-clave.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.760989" vertical-offset="12162" max-vertical-offset="16864">
-          <caret line="811" column="53" selection-start-line="811" selection-start-column="53" selection-end-line="811" selection-end-column="53" />
-          <folding>
-            <marker date="1438181264179" expanded="false" signature="44108:44140" placeholder="..." />
-          </folding>
+        <state vertical-scroll-proportion="0.21016483" vertical-offset="1632" max-vertical-offset="3162">
+          <caret line="105" column="22" selection-start-line="105" selection-start-column="22" selection-end-line="105" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
