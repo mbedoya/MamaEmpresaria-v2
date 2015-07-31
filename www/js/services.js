@@ -459,8 +459,6 @@ angular.module('novaventa.services', [])
 
                 var cedula = $rootScope.datos.cedula;
                 var clave = $rootScope.datos.clave;
-                
-                alert(clave);
 
                 var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/autenticacion/creacionClaveME";
 
@@ -768,8 +766,6 @@ angular.module('novaventa.services', [])
                         
             },
             autenticar: function(cedula, rootScope, http, filter, factoryMama, fx) {
-
-                alert(rootScope.datos.clave);
 
                 //Cadena en Base 64 usuario:clave
                 var cadenaBase64 = btoa(cedula + ":" + rootScope.datos.clave);
