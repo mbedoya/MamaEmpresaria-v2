@@ -548,7 +548,7 @@ angular.module('novaventa.services', [])
                         if (success) {
                             campanaInicial = data.campagna;
 
-                            $rootScope.campana = {numero: campanaInicial, fechaMontajePedido:'-', fechaEncuentro:'-', fechaCorreteo: '-', fechaMontajePedido: '-', diasEnEjecucion: ''};
+                            $rootScope.campana = {antares:campanaInicial, numero: campanaInicial, fechaEncuentro:'-', fechaCorreteo: '-', fechaMontajePedido: '-', diasEnEjecucion: ''};
 
                             //Obtener el estado del pedido
                             Pedido.getTrazabilidadActual($rootScope.datos.cedula, function (success, data){
@@ -868,6 +868,20 @@ angular.module('novaventa.services', [])
                         fx(false, {});
                     });
             },
+            getPuntosCampanaOperativaAntares: function(cedula, fx) {
+
+                var anoCampana = Utilidades.getAnoCampanaAntares();
+
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/resumenPuntos/ResumenPuntosEmpresaria/" + cedula + "/" + anoCampana;
+
+                $http.get(urlServicio).
+                    success(function(data, status, headers, config) {
+                        fx(true, data);
+                    }).
+                    error(function(data, status, headers, config) {
+                        fx(false, {});
+                    });
+            },
             getAgotadosPedido: function(pedido, fx){
 
                 //var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula;
@@ -1012,6 +1026,13 @@ angular.module('novaventa.services', [])
             getAnoCampana: function(){
                 var fecha = new Date();
                 var anoCampana = fecha.getFullYear() + self.padStr($rootScope.campana.numero);
+
+                return anoCampana;
+            },
+            
+            getAnoCampanaAntares: function(){
+                var fecha = new Date();
+                var anoCampana = fecha.getFullYear() + self.padStr($rootScope.campana.antares);
 
                 return anoCampana;
             },
