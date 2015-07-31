@@ -70,6 +70,10 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
 
     //Autenticar a la Mamá Empresaria
     $scope.continuar = function() {
+        
+        var clave = $("#txtClave").val();
+        
+        alert(clave);
 
         //Cédula vacía
         if(!$scope.modelo.clave && String($scope.modelo.clave).length == 0){

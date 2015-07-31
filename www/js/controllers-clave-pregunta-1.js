@@ -46,13 +46,25 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
                    });
                    
                }else{
-                   console.log(data.razonRechazo);
+                   
                    if(data.razonRechazo && 
                        (data.razonRechazo == "Pregunta 1 ya ha sido contestada") ){
                        
                        $location.path('/app/clave-pregunta-2');
                    }else{
-                       $location.path('/app/clave-pregunta-2');
+                       
+                       if(data.razonRechazo && 
+                       (data.razonRechazo == "Mamá, te ayudaremos a asignar una clave espera nuestra llamada próximamente") ){
+                       
+                            $scope.mostrarAyuda("Creación de clave", data.razonRechazo);
+                            $location.path('/app/login');
+                            
+                           }else{
+                               
+                               $location.path('/app/clave-pregunta-2');
+                               
+                           }
+                       
                    }
                       
                }
