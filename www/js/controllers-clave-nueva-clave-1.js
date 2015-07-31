@@ -12,12 +12,13 @@ moduloControlador.controller('ClaveNuevaClave1Ctrl', function($scope, $location,
 
     $scope.limpiar = function(){
         $scope.modelo = { clave: ''};
+        $scope.clave = '';
     }
 
     $scope.confirmar = function(){
 
         var myPopup = $ionicPopup.show({
-            template: 'Mamá, elegiste ' + $scope.modelo.clave + ' como tu clave, ¿Es correcto?',
+            template: 'Mamá, elegiste ' + $scope.clave + ' como tu clave, ¿Es correcto?',
             title: 'Creación de clave',
             subTitle: '',
             scope: $scope,
@@ -47,15 +48,13 @@ moduloControlador.controller('ClaveNuevaClave1Ctrl', function($scope, $location,
                         template: Utilidades.getPlantillaEspera('Guardando tu clave')
                     });
 
-                    $rootScope.datos.clave = $scope.modelo.clave;
+                    $rootScope.datos.clave = $scope.clave;
                     
                     Mama.asignarClave(function(success, data){
 
                         $ionicLoading.hide();
 
                         if(success){
-
-                            console.log(data);
                             
                             $scope.loading =  $ionicLoading.show({
                                 template: Utilidades.getPlantillaEspera('Iniciando sesión')
@@ -98,29 +97,33 @@ moduloControlador.controller('ClaveNuevaClave1Ctrl', function($scope, $location,
     //Autenticar a la Mamá Empresaria
     $scope.continuar = function() {
 
+        var clave = $("#txtClave").val();
+
         //Cédula vacía
-        if(!$scope.modelo.clave && String($scope.modelo.clave).length == 0){
-            $scope.mostrarAyuda("Creación de clave","Ingresa tu clave");
+        if(!clave || clave.length == 0){
+            $scope.mostrarAyuda("Inicio de sesión","Ingresa tu clave");
             return;
         }
 
         //Cantidad de caracteres
-        if(String($scope.modelo.clave).length < 4){
-            $scope.mostrarAyuda("Creación de clave","Ingresa 4 dígitos");
+        if(clave.length != 4){
+            $scope.mostrarAyuda("Inicio de sesión","Ingresa 4 dígitos");
             return;
         }
-
+        
         //Cantidad de caracteres
-        if(String($scope.modelo.clave).length > 4){
-            $scope.mostrarAyuda("Creación de clave","Ingresa únicamente 4 dígitos");
+        if(clave.length > 4){
+            $scope.mostrarAyuda("Inicio de sesión","Ingresa únicamente 4 dígitos");
             return;
         }
 
         //Caracteres especiales
-        if(String($scope.modelo.clave).indexOf(".") >= 0 || String($scope.modelo.clave).indexOf(",") >= 0){
-            $scope.mostrarAyuda("Creación de clave","Ingresa sólo números");
+        if(clave.indexOf(".") >= 0 || clave.indexOf(",") >= 0){
+            $scope.mostrarAyuda("Inicio de sesión","Ingresa sólo números");
             return;
         }
+        
+        $scope.clave = clave;
 
         $scope.confirmar();
     }

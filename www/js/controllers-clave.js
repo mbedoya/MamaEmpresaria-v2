@@ -84,6 +84,12 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
             $scope.mostrarAyuda("Inicio de sesión","Ingresa 4 dígitos");
             return;
         }
+        
+        //Cantidad de caracteres
+        if(clave.length > 4){
+            $scope.mostrarAyuda("Inicio de sesión","Ingresa únicamente 4 dígitos");
+            return;
+        }
 
         //Caracteres especiales
         if(clave.indexOf(".") >= 0 || clave.indexOf(",") >= 0){

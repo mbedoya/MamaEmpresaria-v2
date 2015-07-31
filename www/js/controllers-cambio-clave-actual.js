@@ -17,20 +17,28 @@ moduloControlador.controller('CambioClaveActualCtrl', function($scope, $location
     //Autenticar a la Mamá Empresaria
     $scope.continuar = function() {
 
-        //Clave vacía
-        if(!$scope.modelo.clave && String($scope.modelo.clave).length == 0){
+        var clave = $("#txtClave").val();
+
+        //Cédula vacía
+        if(!clave || clave.length == 0){
             $scope.mostrarAyuda("Inicio de sesión","Ingresa tu clave");
             return;
         }
 
         //Cantidad de caracteres
-        if(String($scope.modelo.clave).length != 4){
+        if(clave.length != 4){
             $scope.mostrarAyuda("Inicio de sesión","Ingresa 4 dígitos");
+            return;
+        }
+        
+        //Cantidad de caracteres
+        if(clave.length > 4){
+            $scope.mostrarAyuda("Inicio de sesión","Ingresa únicamente 4 dígitos");
             return;
         }
 
         //Caracteres especiales
-        if(String($scope.modelo.clave).indexOf(".") >= 0 || String($scope.modelo.clave).indexOf(",") >= 0){
+        if(clave.indexOf(".") >= 0 || clave.indexOf(",") >= 0){
             $scope.mostrarAyuda("Inicio de sesión","Ingresa sólo números");
             return;
         }
@@ -43,7 +51,7 @@ moduloControlador.controller('CambioClaveActualCtrl', function($scope, $location
                     template: Utilidades.getPlantillaEspera('Validando clave')
                 });
 
-                $rootScope.datos.clave = $scope.modelo.clave;
+                $rootScope.datos.clave = clave;
 
                 Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){
 
