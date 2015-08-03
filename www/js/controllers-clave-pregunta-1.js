@@ -47,6 +47,10 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
                    
                }else{
                    
+                   $ionicHistory.nextViewOptions({
+                        disableBack: true
+                    });
+                   
                    if(data.razonRechazo && 
                        (data.razonRechazo == "Pregunta 1 ya ha sido contestada") ){
                        
@@ -171,7 +175,9 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
 
                         if(success){
 
-                            console.log(data);
+                            $ionicHistory.nextViewOptions({
+                                disableBack: true
+                            });
 
                             if(data.valido && data.valido == 1){
                                 $location.path('/app/clave-nueva-clave-1');
