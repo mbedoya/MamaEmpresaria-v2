@@ -147,10 +147,14 @@ moduloControlador.controller('ClavePregunta2Ctrl', function($scope, $location, $
         });
     }
 
-    $scope.inicializar();
+    //$scope.inicializar();
 
     $scope.continuar = function() {
 
         $scope.confirmar();
     }
+    
+    $scope.$on('$ionicView.beforeEnter', function(){
+        $scope.inicializar();
+    });
 });

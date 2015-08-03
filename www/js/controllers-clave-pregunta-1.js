@@ -76,7 +76,7 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
         });
     }
 
-    $scope.inicializar();
+    //$scope.inicializar();
 
     $scope.cambioAno = function(){
 
@@ -212,5 +212,9 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
         }
         return true;
     }
+    
+    $scope.$on('$ionicView.beforeEnter', function(){
+        $scope.inicializar();
+    });
 
 });
