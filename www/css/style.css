@@ -984,6 +984,12 @@ textarea {
     color: #fff;
 }
 
+.button.button-stable {
+    border-color: #005e81;
+    background-color: #005e81;
+    color: #fff;
+}
+
 /*
 ion-item:hover a {
     background-color: #f0f0f0; !important;
