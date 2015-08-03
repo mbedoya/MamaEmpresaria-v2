@@ -17,7 +17,7 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
         $scope.campanasAnoActual = new Array();
         
         $scope.loading =  $ionicLoading.show({
-            template: Utilidades.getPlantillaEspera('Obteniendo respuesta')
+            template: Utilidades.getPlantillaEspera('Iniciando creación de clave')
         });
 
         Mama.getPregunta1(function (success, data) {
@@ -29,7 +29,7 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
                if(data.valido && data.valido == 1){
                    
                    $scope.loading =  $ionicLoading.show({
-                        template: Utilidades.getPlantillaEspera('Obteniendo respuesta')
+                        template: Utilidades.getPlantillaEspera('Iniciando creación de clave')
                     });
 
                    Campana.getCampanaOperativa(function (success, data) {
