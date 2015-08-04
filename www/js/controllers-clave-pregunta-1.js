@@ -126,8 +126,8 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
     }
 
     $scope.anoAnterior = function(){
-        var ano = $scope.anoActual();
-        return ano-1;
+        var ano =  (Number($scope.anoActual())-1).toString();
+        return ano;
     }
 
     $scope.confirmar = function() {
