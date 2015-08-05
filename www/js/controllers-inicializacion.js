@@ -88,6 +88,8 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
                     $ionicLoading.hide();
 
                     if(success){
+                        
+                        alert("autenticado");
 
                         if(data.valido == "1"){
 
@@ -100,6 +102,8 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
                                 $ionicLoading.hide();
 
                                 if(success){
+                                    
+                                    alert("info básica");
 
                                     //Almacenar datos si hay almacenamiento local
                                     if(localStorage){
