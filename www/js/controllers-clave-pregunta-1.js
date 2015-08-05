@@ -1,4 +1,4 @@
-moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $rootScope, $ionicLoading, $ionicPopup, Mama, Internet, GA, Campana, Utilidades) {
+moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $rootScope, $ionicLoading, $ionicHistory, $ionicPopup, Mama, Internet, GA, Campana, Utilidades) {
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Creacion Clave - Pregunta 1");

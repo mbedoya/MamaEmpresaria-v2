@@ -48,15 +48,9 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
             $("#txtTexto").val($rootScope.datos.mensajeHabeasData);
         }
     };
-
-    $scope.$on('online', function(event, args){
-        $scope.inicializar();
-    });
-
-    $scope.$on('loggedin', function(event, args){
-        $scope.inicializar();
-    });
     
-    $scope.inicializar();
+    $scope.$on('$ionicView.beforeEnter', function(){
+        $scope.inicializar();
+    });
 
 });
