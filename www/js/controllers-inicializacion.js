@@ -82,9 +82,13 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
                 $scope.loading =  $ionicLoading.show({
                     template: Utilidades.getPlantillaEspera('Iniciando sesión')
                 });
+                
+                alert("antes autenticar");
 
                 Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){
 
+                    alert("autenticar done");    
+                                
                     $ionicLoading.hide();
 
                     if(success){
