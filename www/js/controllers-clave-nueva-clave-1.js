@@ -55,6 +55,8 @@ moduloControlador.controller('ClaveNuevaClave1Ctrl', function($scope, $location,
                         $ionicLoading.hide();
 
                         if(success){
+
+                            $scope.modelo = { clave: ''};
                             
                             $scope.loading =  $ionicLoading.show({
                                 template: Utilidades.getPlantillaEspera('Iniciando sesión')
