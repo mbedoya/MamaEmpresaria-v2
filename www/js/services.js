@@ -230,7 +230,8 @@ angular.module('novaventa.services', [])
 
                 if($rootScope.fechas && $rootScope.fechas.length > 0){
                     for (i = 0; i < $rootScope.fechas.length; i++){
-                        if($rootScope.fechas[i].actividad.toLowerCase() == 'encuentro'){
+                        //if($rootScope.fechas[i].actividad.toLowerCase() == 'encuentro'){
+                        if($rootScope.fechas[i].actividad.toLowerCase() == 'toma de pedido'){
                             tiene = true;
                             break;
                         }
@@ -261,7 +262,8 @@ angular.module('novaventa.services', [])
                 if($rootScope.fechas && $rootScope.fechas.length > 0){
 
                     for (i = 0; i < $rootScope.fechas.length; i++){
-                        if($rootScope.fechas[i].actividad.toLowerCase() == 'encuentro'){
+                        //if($rootScope.fechas[i].actividad.toLowerCase() == 'encuentro'){
+                        if($rootScope.fechas[i].actividad.toLowerCase() == 'toma de pedido'){
                             if(Utilidades.formatearFechaActual() == $rootScope.fechas[i].fecha){
                                 realizado = true;
                                 break;
@@ -297,7 +299,8 @@ angular.module('novaventa.services', [])
                 if($rootScope.fechas && $rootScope.fechas.length > 0){
 
                     for (i = 0; i < $rootScope.fechas.length; i++){
-                        if($rootScope.fechas[i].actividad.toLowerCase() == 'encuentro'){
+                        if($rootScope.fechas[i].actividad.toLowerCase() == 'toma de pedido'){
+                        //if($rootScope.fechas[i].actividad.toLowerCase() == 'encuentro'){    
                             if(new Date() >= new Date($rootScope.fechas[i].fecha)){
                                 realizado = true;
                                 break;
@@ -561,15 +564,30 @@ angular.module('novaventa.services', [])
                                         if(success){
 
                                             //Obtener la fecha de montaje de pedido (Encuentro)
+                                            //Agosto 11-2015
+                                            //Con la fecha de toma de pedido se reemplazará al Encuentro
+                                            //de esta manera no se tendrá que cambiar la lógica en toda la App
+                                            
                                             encuentro = '';
+                                            
+                                            encuentroOriginal = '';
 
                                             reparto = '';
 
                                             correteo = '';
                                             for (i = 0; i < data.listaRecordatorios.length; i++){
+                                                
+                                                //El Encuentro original se cambiara de nombre y se usará solo en casos especiales
                                                 if(data.listaRecordatorios[i].actividad.toLowerCase() == 'encuentro'){
+                                                    encuentroOriginal = data.listaRecordatorios[i].fecha;
+                                                }                                               
+                                                
+                                                //Asociar el encuentro y la toma de pedido al encuentro
+                                                if(data.listaRecordatorios[i].actividad.toLowerCase() == 'toma de pedido'){
                                                     encuentro = data.listaRecordatorios[i].fecha;
-                                                }
+                                                    tomaPedido = data.listaRecordatorios[i].fecha;
+                                                }                                                
+                                                
                                                 if(data.listaRecordatorios[i].actividad.toLowerCase() == 'fecha correteo'){
                                                     correteo = data.listaRecordatorios[i].fecha;
                                                 }
@@ -579,16 +597,8 @@ angular.module('novaventa.services', [])
                                                 }
                                             }
 
-                                            if(encuentro == ''){
-                                                for (i = 0; i < data.listaRecordatorios.length; i++){
-                                                    if(data.listaRecordatorios[i].actividad.toLowerCase() == 'toma de pedido'){
-                                                        encuentro = data.listaRecordatorios[i].fecha;
-                                                    }
-                                                }
-                                            }
-
                                             $rootScope.campana = {numero: data.campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
-                                                fechaCorreteo: correteo, fechaReparto: reparto,  diasEnEjecucion: ''};
+                                                fechaEncuentroOriginal: encuentroOriginal, fechaCorreteo: correteo, fechaReparto: reparto,  diasEnEjecucion: ''};
 
                                             $rootScope.fechas = data.listaRecordatorios;
 
@@ -614,39 +624,41 @@ angular.module('novaventa.services', [])
                                                 //Obtener la campaña siguiente
                                                 Campana.getRecordatorios(ano, siguienteCampana, $rootScope.zona, function (success, data){
                                                     if(success){
-
-                                                        console.log(data);
-
+                                                        
                                                         //Obtener la fecha de montaje de pedido (Encuentro)
+                                                        //Agosto 11-2015
+                                                        //Con la fecha de toma de pedido se reemplazará al Encuentro
+                                                        //de esta manera no se tendrá que cambiar la lógica en toda la App
+                                                        
                                                         encuentro = '';
-
-                                                        //Obtener la fecha de Correteo
-                                                        correteo = '';
-
-                                                        //Obtener la fecha de reparto
+                                                        
+                                                        encuentroOriginal = '';
+            
                                                         reparto = '';
-
-                                                        for (i = 0; i < data.listaRecordatorios.length; i++) {
-                                                            if (data.listaRecordatorios[i].actividad.toLowerCase() == 'encuentro') {
+            
+                                                        correteo = '';
+                                                        for (i = 0; i < data.listaRecordatorios.length; i++){
+                                                            
+                                                            //El Encuentro original se cambiara de nombre y se usará solo en casos especiales
+                                                            if(data.listaRecordatorios[i].actividad.toLowerCase() == 'encuentro'){
+                                                                encuentroOriginal = data.listaRecordatorios[i].fecha;
+                                                            }                                               
+                                                            
+                                                            //Asociar el encuentro y la toma de pedido al encuentro
+                                                            if(data.listaRecordatorios[i].actividad.toLowerCase() == 'toma de pedido'){
                                                                 encuentro = data.listaRecordatorios[i].fecha;
-                                                            }
-
-                                                            if (data.listaRecordatorios[i].actividad.toLowerCase() == 'fecha correteo') {
+                                                                tomaPedido = data.listaRecordatorios[i].fecha;
+                                                            }                                                
+                                                            
+                                                            if(data.listaRecordatorios[i].actividad.toLowerCase() == 'fecha correteo'){
                                                                 correteo = data.listaRecordatorios[i].fecha;
                                                             }
-
+            
                                                             if (data.listaRecordatorios[i].actividad.toLowerCase() == 'reparto de pedido 1') {
                                                                 reparto = data.listaRecordatorios[i].fecha;
                                                             }
                                                         }
-
-                                                        if(encuentro == ''){
-                                                            for (i = 0; i < data.listaRecordatorios.length; i++) {
-                                                                if (data.listaRecordatorios[i].actividad.toLowerCase() == 'toma de pedido') {
-                                                                    encuentro = data.listaRecordatorios[i].fecha;
-                                                                }
-                                                            }
-                                                        }
+                                                        
 
                                                         //Correteo Anterior
                                                         correteoAnterior = ''
@@ -660,7 +672,8 @@ angular.module('novaventa.services', [])
 
                                                         $rootScope.campanaAnterior = rootScope.campana;
                                                         $rootScope.campana = {numero: data.campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
-                                                            fechaCorreteo: correteo, fechaReparto: reparto,  diasEnEjecucion: diferenciaDias};
+                                                fechaEncuentroOriginal: encuentroOriginal, fechaCorreteo: correteo, fechaReparto: reparto, diasEnEjecucion: diferenciaDias};
+                                                
                                                         $rootScope.fechasAnteriores = rootScope.fechas;
                                                         $rootScope.fechas = data.listaRecordatorios;
 
@@ -705,31 +718,41 @@ angular.module('novaventa.services', [])
                                                         rootScope.fechasAnteriores = data.listaRecordatorios;
 
                                                         //Obtener la fecha de montaje de pedido (Encuentro)
+                                                        //Agosto 11-2015
+                                                        //Con la fecha de toma de pedido se reemplazará al Encuentro
+                                                        //de esta manera no se tendrá que cambiar la lógica en toda la App
+                                                        
                                                         encuentro = '';
-
-                                                        //Obtener la fecha de Correteo
-                                                        correteo = '';
-
-                                                        //Obtener la fecha de reparto
+                                                        
+                                                        encuentroOriginal = '';
+            
                                                         reparto = '';
-
-                                                        for (i = 0; i < data.listaRecordatorios.length; i++) {
-                                                            if (data.listaRecordatorios[i].actividad.toLowerCase() == 'encuentro') {
+            
+                                                        correteo = '';
+                                                        for (i = 0; i < data.listaRecordatorios.length; i++){
+                                                            
+                                                            //El Encuentro original se cambiara de nombre y se usará solo en casos especiales
+                                                            if(data.listaRecordatorios[i].actividad.toLowerCase() == 'encuentro'){
+                                                                encuentroOriginal = data.listaRecordatorios[i].fecha;
+                                                            }                                               
+                                                            
+                                                            //Asociar el encuentro y la toma de pedido al encuentro
+                                                            if(data.listaRecordatorios[i].actividad.toLowerCase() == 'toma de pedido'){
                                                                 encuentro = data.listaRecordatorios[i].fecha;
-                                                            }
-
-                                                            if (data.listaRecordatorios[i].actividad.toLowerCase() == 'fecha correteo') {
+                                                                tomaPedido = data.listaRecordatorios[i].fecha;
+                                                            }                                                
+                                                            
+                                                            if(data.listaRecordatorios[i].actividad.toLowerCase() == 'fecha correteo'){
                                                                 correteo = data.listaRecordatorios[i].fecha;
                                                             }
-
+            
                                                             if (data.listaRecordatorios[i].actividad.toLowerCase() == 'reparto de pedido 1') {
                                                                 reparto = data.listaRecordatorios[i].fecha;
                                                             }
-
                                                         }
 
                                                         $rootScope.campanaAnterior = {numero: data.campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
-                                                            fechaCorreteo: correteo, fechaReparto: reparto,  diasEnEjecucion: ''};
+                                                fechaEncuentroOriginal: encuentroOriginal, fechaCorreteo: correteo, fechaReparto: reparto,  diasEnEjecucion: ''};
 
                                                     }else{
                                                     }
