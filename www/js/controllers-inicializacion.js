@@ -76,6 +76,8 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
         if(localStorage && localStorage.cedula){
 
             $rootScope.datos = { cedula: localStorage.cedula, clave: localStorage.clave }
+            
+            alert($rootScope.datos.cedula + ' ' + $rootScope.datos.clave);
 
             if(Internet.get()){
 
@@ -83,11 +85,15 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
                     template: Utilidades.getPlantillaEspera('Iniciando sesión')
                 });
 
-                Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){    
+                Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){
+                    
+                    alert('Aut');    
                                 
                     $ionicLoading.hide();
 
                     if(success){
+                        
+                        alert('Aut done');
 
                         if(data.valido == "1"){
 
@@ -96,10 +102,14 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
                             });
 
                             Mama.getInformacionBasica(function(success, mensajeError){
+                                
+                                alert('Basica');
 
                                 $ionicLoading.hide();
 
                                 if(success){
+                                    
+                                    alert('Basica done');
 
                                     //Almacenar datos si hay almacenamiento local
                                     if(localStorage){

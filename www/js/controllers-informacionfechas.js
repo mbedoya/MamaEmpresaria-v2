@@ -419,7 +419,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
                 //El día de correteo luego de las 12 se debe decir que
                 //ya no se puede montar pedido
-                if($scope.hoyEsCorreteo() && !$scope.esAntesMedioDia()){
+                if($scope.hoyEsCorreteo() && !$scope.esAntesMedioDia() && Utilidades.formatearFechaActual == Utilidades.formatearFecha($scope.fechaSeleccionada)){
                     listaEventos.push({ "actividad": "Ya no puedes montar pedido." });
                 }else{
                     listaEventos.push({ "actividad": "Monta tu pedido este día, por la Página web, antes de las 12 del medio día." });
