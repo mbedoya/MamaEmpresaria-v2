@@ -1,8 +1,12 @@
 <ion-view view-title="Clave">
+    <ion-nav-bar class="bar-stable">
+  <ion-nav-back-button class="button-stable">
+  </ion-nav-back-button>
+</ion-nav-bar>
     <ion-content>
     <div class="content-login padding">
         <img src="img/login.png" class="login-img" />
-        <h3>Ingresa tu clave</h3>
+        <h3>Hola {{datos.nombre | pascal}}, Ingresa tu clave</h3>
         <form ng-submit="capturarCedula()">
                 <label class="login-input">
                     <input id="txtClave" class="clave" ng-model="modelo.clave" type="number" >

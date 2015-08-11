@@ -53,6 +53,9 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
     };
 
     $scope.inicializar = function(){
+        
+        $scope.model.seleccion_acepto = false;
+        
         if($rootScope.datos){
             $("#txtTexto").val($rootScope.datos.mensajeHabeasData);
         }
