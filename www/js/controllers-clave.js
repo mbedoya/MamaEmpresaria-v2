@@ -73,7 +73,7 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
         
         var clave = $("#txtClave").val();
         
-        alert($("#txtClave").val());
+        //alert($("#txtClave").val());
 
         //Cédula vacía
         if(!clave || clave.length == 0){
