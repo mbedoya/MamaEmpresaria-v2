@@ -76,8 +76,6 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
         if(localStorage && localStorage.cedula){
 
             $rootScope.datos = { cedula: localStorage.cedula, clave: localStorage.clave }
-            
-            alert($rootScope.datos.cedula + ' ' + $rootScope.datos.clave);
 
             if(Internet.get()){
 
