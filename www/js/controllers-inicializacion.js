@@ -85,15 +85,11 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
                     template: Utilidades.getPlantillaEspera('Iniciando sesión')
                 });
 
-                Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){
-                    
-                    alert('Aut');    
+                Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){    
                                 
                     $ionicLoading.hide();
 
                     if(success){
-                        
-                        alert('Aut done');
 
                         if(data.valido == "1"){
 
@@ -102,14 +98,10 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
                             });
 
                             Mama.getInformacionBasica(function(success, mensajeError){
-                                
-                                alert('Basica');
 
                                 $ionicLoading.hide();
 
                                 if(success){
-                                    
-                                    alert('Basica done');
 
                                     //Almacenar datos si hay almacenamiento local
                                     if(localStorage){

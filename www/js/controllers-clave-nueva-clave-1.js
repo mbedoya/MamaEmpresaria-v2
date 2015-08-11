@@ -67,6 +67,7 @@ moduloControlador.controller('ClaveNuevaClave1Ctrl', function($scope, $location,
                                 $ionicLoading.hide();
         
                                 if(success){
+                                    
                                     $location.path('/app/terminos-condiciones');
         
                                 }else{

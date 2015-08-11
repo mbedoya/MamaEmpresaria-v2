@@ -24,6 +24,15 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
                     $ionicLoading.hide();
 
                     if(success){
+                        
+                        //Almacenar datos si hay almacenamiento local
+                        if(localStorage){
+
+                            localStorage.cedula = $rootScope.datos.cedula;
+                            localStorage.nombre = $rootScope.datos.nombre;
+                            localStorage.segmento = $rootScope.datos.segmento;
+                            localStorage.clave = $rootScope.datos.clave;
+                        }
 
                         if($rootScope.irAHomeLuegoTerminos){
                             $location.path('/app/menu/tabs/home');
