@@ -135,7 +135,7 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
                                     localStorage.cedula = $rootScope.datos.cedula;
                                     localStorage.nombre = $rootScope.datos.nombre;
                                     localStorage.segmento = $rootScope.datos.segmento;
-                                    localStorage.clave = $scope.modelo.clave;
+                                    localStorage.clave = $rootScope.datos.clave;
                                 }
 
                                 $scope.datosInicio = {clave: '' };
