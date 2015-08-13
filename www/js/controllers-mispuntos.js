@@ -85,6 +85,7 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
     }
 
     $scope.campanaVencimientoPuntos = function(){
+        //return String($rootScope.puntos.agnoCampagnaVencimiento).substr(4,2) + " de " + String($rootScope.puntos.agnoCampagnaVencimiento).substr(0,4);
         return String($rootScope.puntos.agnoCampagnaVencimiento).substr(4,2) + " de " + String($rootScope.puntos.agnoCampagnaVencimiento).substr(0,4);
     }
 
@@ -138,7 +139,7 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
     }
 
     $scope.mostrarPuntosPorPerder = function(){
-        return $rootScope.puntos && $rootScope.puntos.puntosPorPerder && Number($rootScope.puntos.puntosPorPerder) > 0;
+        return $rootScope.puntosCampanaOperativaAntares && $rootScope.puntosCampanaOperativaAntares.puntosPorPerder && Number($rootScope.puntosCampanaOperativaAntares.puntosPorPerder) > 0;
     }
     
     $scope.$on('online', function(event, args){

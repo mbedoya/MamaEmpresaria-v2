@@ -896,8 +896,6 @@ angular.module('novaventa.services', [])
             getPuntosCampanaOperativaAntares: function(cedula, fx) {
 
                 var anoCampana = Utilidades.getAnoCampanaAntares();
-                
-                alert("Ano Campana Antares " + anoCampana);
 
                 var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/resumenPuntos/ResumenPuntosEmpresaria/" + cedula + "/" + anoCampana;
 
