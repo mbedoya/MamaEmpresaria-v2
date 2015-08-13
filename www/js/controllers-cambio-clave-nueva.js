@@ -141,7 +141,7 @@ moduloControlador.controller('CambioClaveNuevaCtrl', function($scope, $location,
     //Autenticar a la Mamá Empresaria
     $scope.continuar = function() {
 
-        var clave = $("#txtClave").val();
+        var clave = $("#txtCambioClaveNueva").val();
 
         //Cédula vacía
         if(!clave || clave.length == 0){

@@ -71,7 +71,7 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
     //Autenticar a la Mamá Empresaria
     $scope.continuar = function() {
         
-        var clave = $("#txtClave").val();
+        var clave = $("#txtClaveLogin").val();
         
         //alert($("#txtClave").val());
 
