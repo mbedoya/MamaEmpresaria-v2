@@ -551,7 +551,9 @@ angular.module('novaventa.services', [])
                         if (success) {
                             campanaInicial = data.campagna;
 
-                            $rootScope.campana = {antares:campanaInicial, numero: campanaInicial, fechaEncuentro:'-', fechaCorreteo: '-', fechaMontajePedido: '-', diasEnEjecucion: ''};
+                            $rootScope.campana = {numero: campanaInicial, fechaEncuentro:'-', fechaCorreteo: '-', fechaMontajePedido: '-', diasEnEjecucion: ''};
+                            
+                            $rootScope.campanaAntares = campanaInicial;
 
                             //Obtener el estado del pedido
                             Pedido.getTrazabilidadActual($rootScope.datos.cedula, function (success, data){
@@ -894,6 +896,8 @@ angular.module('novaventa.services', [])
             getPuntosCampanaOperativaAntares: function(cedula, fx) {
 
                 var anoCampana = Utilidades.getAnoCampanaAntares();
+                
+                alert("Ano Campana Antares " + anoCampana);
 
                 var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/resumenPuntos/ResumenPuntosEmpresaria/" + cedula + "/" + anoCampana;
 
@@ -1055,7 +1059,7 @@ angular.module('novaventa.services', [])
             
             getAnoCampanaAntares: function(){
                 var fecha = new Date();
-                var anoCampana = fecha.getFullYear() + self.padStr($rootScope.campana.antares);
+                var anoCampana = fecha.getFullYear() + self.padStr($rootScope.campanaAntares);
 
                 return anoCampana;
             },
