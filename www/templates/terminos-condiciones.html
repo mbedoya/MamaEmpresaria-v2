@@ -12,13 +12,14 @@
                 <ul class="list">
                     <li class="item-checkbox">
                         <label class="checkbox">
-                            <input type="checkbox" ng-model="seleccion_acepto">
+                            <input type="checkbox" ng-model="modelo.seleccionado" ng-true-value="true" ng-false-value="false">
                         </label>
                         Acepto los términos y condiciones y la política de uso de datos personales
                     </li>
                 </ul>
                 <label class="login-button">
-                    <input id="aceptar" type="button" value="Continuar" class="button button-block" ng-disabled="!seleccion_acepto" ng-click="continuar()">
+                    <input id="aceptar" type="button" value="Continuar" class="button button-block" ng-disabled="!modelo.seleccionado" ng-click="continuar()">
+                    
                 </label>
             </form>
         </div>

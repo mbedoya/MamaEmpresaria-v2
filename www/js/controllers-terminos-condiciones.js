@@ -2,6 +2,8 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Terminos y condiciones");
+    
+    $scope.modelo = { seleccionado : false};
 
     $scope.continuar = function(){
 
@@ -53,12 +55,10 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
     };
 
     $scope.inicializar = function(){
-        
-        $scope.model.seleccion_acepto = false;
-        
         if($rootScope.datos){
             $("#txtTexto").val($rootScope.datos.mensajeHabeasData);
         }
+        $scope.modelo.seleccionado = false;
     };
     
     $scope.$on('$ionicView.beforeEnter', function(){
