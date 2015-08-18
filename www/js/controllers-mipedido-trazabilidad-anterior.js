@@ -151,8 +151,6 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
     $scope.padStr = function(i) {
         return (i < 10) ? "0" + i : "" + i;
     }
-    
-    alert(fechaRepartoPedido());
 
     $scope.$on('$ionicView.beforeEnter', function(){
         var valorHiddenEstados = '';

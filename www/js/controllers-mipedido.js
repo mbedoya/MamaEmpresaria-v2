@@ -61,8 +61,8 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
 
     $scope.irATrazabilidadAnterior = function(){
         alert('ir a trazabilidad anterior');
-        $location.path('/app//mipedido-trazabilidad-anterior');
-        //$state.go('app.menu.tabs.mipedido-trazabilidad-anterior');
+        //$location.path('/app//mipedido-trazabilidad-anterior');
+        $state.go('app.menu.tabs.mipedido-trazabilidad-anterior');
     }
 
     $scope.irATrazabilidadActual = function(){
