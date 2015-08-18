@@ -69,7 +69,7 @@ angular.module('novaventa.services', [])
 
         this.ajustarEstadosPedido = function(estados) {
             if(estados && estados.length > 0){
-                alert(estados.length);
+                //alert(estados.length);
                 var indiceIngresado = -1;
                 
                 for	(index = 0; index < estados.length; index++) {
@@ -83,7 +83,7 @@ angular.module('novaventa.services', [])
                 if(indiceIngresado > 0){
                     estados.splice(0,indiceIngresado);
                 }
-                alert(estados.length);
+                //alert(estados.length);
             }
             return estados;
         };

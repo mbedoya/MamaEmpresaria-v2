@@ -106,6 +106,7 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
 
     $scope.fechaRepartoPedido = function(){
         if($rootScope.campanaAnterior && $rootScope.campanaAnterior.fechaReparto ){
+            alert($rootScope.campanaAnterior.fechaReparto);
              return $rootScope.campanaAnterior.fechaReparto;       
         }else{
             return "";
