@@ -97,7 +97,12 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
     }
 
     $scope.fechaRepartoPedido = function(){
-        return $rootScope.campana.fechaReparto;
+        if($rootScope.campana && $rootScope.campana.fechaReparto ){
+            
+             return $rootScope.campana.fechaReparto;       
+        }else{
+            return "";
+        }
     }
 
     $scope.estadoEncontrado = function(estado){
