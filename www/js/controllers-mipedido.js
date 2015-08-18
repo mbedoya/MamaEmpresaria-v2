@@ -1,4 +1,4 @@
-moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state, $ionicLoading, $http, $ionicPopup, Mama, Internet, GA, Pedido, Utilidades, Campana) {
+moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state, $location, $ionicLoading, $http, $ionicPopup, Mama, Internet, GA, Pedido, Utilidades, Campana) {
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Mi Pedido");
@@ -18,6 +18,25 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
                 template: 'Estamos consultando el estado de tu pedido'
             });
         }
+        
+        Pedido.getTrazabilidadAnterior($rootScope.datos.cedula, function (success, data){
+            if(success){
+                $scope.pedidoAnterior = data.historiaEstados;
+
+                console.log("Trazabilidad anterior");
+                console.log($scope.pedidoAnterior);
+            }else{
+
+            }
+        });
+        
+        Pedido.getAgotadosAnterior($rootScope.datos.cedula, function (success, data){
+            if(success){
+                $scope.agotadosAnterior = data;
+            }else{
+
+            }
+        });
 
         Pedido.getTrazabilidadActual($rootScope.datos.cedula, function (success, data){
 
@@ -31,17 +50,6 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
             }
         });
 
-        Pedido.getTrazabilidadAnterior($rootScope.datos.cedula, function (success, data){
-            if(success){
-                $scope.pedidoAnterior = data.historiaEstados;
-
-                console.log("Trazabilidad anterior");
-                console.log($scope.pedidoAnterior);
-            }else{
-
-            }
-        });
-
         Pedido.getAgotadosActual($rootScope.datos.cedula, function (success, data){
             if(success){
                 $scope.agotadosActual = data;
@@ -49,18 +57,12 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
 
             }
         });
-
-        Pedido.getAgotadosAnterior($rootScope.datos.cedula, function (success, data){
-            if(success){
-                $scope.agotadosAnterior = data;
-            }else{
-
-            }
-        });
     }
 
     $scope.irATrazabilidadAnterior = function(){
-        $state.go('app.menu.tabs.mipedido-trazabilidad-anterior');
+        alert('ir a trazabilidad anterior');
+        $location.path('/app//mipedido-trazabilidad-anterior');
+        //$state.go('app.menu.tabs.mipedido-trazabilidad-anterior');
     }
 
     $scope.irATrazabilidadActual = function(){

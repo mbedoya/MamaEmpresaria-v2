@@ -67,6 +67,27 @@
 angular.module('novaventa.services', [])
     .factory('Pedido', function($rootScope, $http, Utilidades){
 
+        this.ajustarEstadosPedido = function(estados) {
+            if(estados && estados.length > 0){
+                alert(estados.length);
+                var indiceIngresado = -1;
+                
+                for	(index = 0; index < estados.length; index++) {
+                    if (estados[index].estado.toLowerCase() == "ingresado"){
+                        indiceIngresado = index;
+                    }
+                }
+                
+                //Si el estado ingresado se ha encontrado entonces se deben eliminar 
+                //los estados que sean anteriores a el. Si el estado está en la posición 0 no se hace nada
+                if(indiceIngresado > 0){
+                    estados.splice(0,indiceIngresado);
+                }
+                alert(estados.length);
+            }
+            return estados;
+        };
+
         var self = this;
 
         return {
@@ -144,17 +165,8 @@ angular.module('novaventa.services', [])
                 var anoCampana = Utilidades.getAnoCampana();
 
                 var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula + "/" + anoCampana;
-                //var urlServicio = "http://200.47.173.66:9081" +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula + "/" + "201503";
 
-                var req = {
-                    method: 'GET',
-                    url: urlServicio,
-                    headers: {
-                        'Header-Token': $rootScope.datos.nombre
-                    }
-                }
-
-                $http(req).
+                $http.get(urlServicio).
                     success(function(data, status, headers, config) {
                         fx(true, data);
                     }).
@@ -170,6 +182,9 @@ angular.module('novaventa.services', [])
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
+                        
+                        data.historiaEstados = self.ajustarEstadosPedido(data.historiaEstados);
+                        
                         fx(true, data);
                     }).
                     error(function(data, status, headers, config) {
