@@ -154,6 +154,9 @@ angular.module('novaventa.services', [])
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
+
+                        data.historiaEstados = self.ajustarEstadosPedido(data.historiaEstados);
+
                         fx(true, data);
                     }).
                     error(function(data, status, headers, config) {
@@ -168,6 +171,9 @@ angular.module('novaventa.services', [])
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
+
+                        data.historiaEstados = self.ajustarEstadosPedido(data.historiaEstados);
+
                         fx(true, data);
                     }).
                     error(function(data, status, headers, config) {
