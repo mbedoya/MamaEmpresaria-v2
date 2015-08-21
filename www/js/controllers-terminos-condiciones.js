@@ -5,9 +5,7 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
     
     $scope.modelo = { seleccionado : false};
 
-    $scope.continuar = function(){
-
-        alert($rootScope.datos.versionHabeasData);    
+    $scope.continuar = function(){    
 
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Aceptando términos y condiciones')

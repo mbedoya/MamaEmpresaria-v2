@@ -860,17 +860,15 @@ angular.module('novaventa.services', [])
                             }
 
                         }else{
+                            
+                            rootScope.datos.versionHabeasData = data.version;
+                            rootScope.datos.mensajeHabeasData = data.mensaje;
 
                             //Usuario y clave válidos?
                             if(data.valido == "1"){
 
                                 //Header con la key para todas las solicitudes
                                 $http.defaults.headers.common['Authorization'] = 'apikey ' + data.token;
-
-                                rootScope.datos.versionHabeasData = data.version;
-                                alert(rootScope.datos.versionHabeasData);
-                                rootScope.datos.mensajeHabeasData = data.mensaje;
-
                             }
                         }
 
