@@ -7,9 +7,12 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
 
     $scope.continuar = function(){
 
+        alert($rootScope.datos.versionHabeasData);    
+
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Aceptando términos y condiciones')
         });
+        
 
         Mama.registrarHabeasData(function (success, data){
 

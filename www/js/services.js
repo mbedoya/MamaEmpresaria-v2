@@ -868,6 +868,7 @@ angular.module('novaventa.services', [])
                                 $http.defaults.headers.common['Authorization'] = 'apikey ' + data.token;
 
                                 rootScope.datos.versionHabeasData = data.version;
+                                alert(rootScope.datos.versionHabeasData);
                                 rootScope.datos.mensajeHabeasData = data.mensaje;
 
                             }
