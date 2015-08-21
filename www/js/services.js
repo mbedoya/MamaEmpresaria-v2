@@ -863,12 +863,14 @@ angular.module('novaventa.services', [])
                             
                             rootScope.datos.versionHabeasData = data.version;
                             rootScope.datos.mensajeHabeasData = data.mensaje;
+                            
+                            //Header con la key para todas las solicitudes
+                            $http.defaults.headers.common['Authorization'] = 'apikey ' + data.token;
 
                             //Usuario y clave válidos?
                             if(data.valido == "1"){
 
-                                //Header con la key para todas las solicitudes
-                                $http.defaults.headers.common['Authorization'] = 'apikey ' + data.token;
+                                
                             }
                         }
 
