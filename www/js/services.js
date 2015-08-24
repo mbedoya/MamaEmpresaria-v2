@@ -653,6 +653,8 @@ angular.module('novaventa.services', [])
                                                 //Obtener la campaña siguiente
                                                 Campana.getRecordatorios(ano, siguienteCampana, $rootScope.zona, function (success, data){
                                                     if(success){
+
+                                                        alert("Ok Campaña Siguiente");
                                                         
                                                         //Obtener la fecha de montaje de pedido (Encuentro)
                                                         //Agosto 11-2015
