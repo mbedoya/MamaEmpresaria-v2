@@ -708,6 +708,8 @@ angular.module('novaventa.services', [])
 
                                                         console.log("Moviendose a nueva camapaña " + rootScope.campana.numero);
 
+                                                        alert("Nueva Campaña " + rootScope.campana.numero);
+
                                                         //NOTIFICAR LOGGEDIN
 
                                                         //Si se notifica inmediatamente no son alcanzados todos los controladores
