@@ -700,7 +700,7 @@ angular.module('novaventa.services', [])
 
                                                         alert("Diferencia Dias");
 
-                                                        $rootScope.campanaAnterior = rootScope.campana;
+                                                        $rootScope.campanaAnterior = $rootScope.campana;
                                                         $rootScope.campana = {numero: data.campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
                                                 fechaEncuentroOriginal: encuentroOriginal, fechaCorreteo: correteo, fechaReparto: reparto, diasEnEjecucion: diferenciaDias};
 
