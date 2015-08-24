@@ -701,6 +701,8 @@ angular.module('novaventa.services', [])
                                                             }
                                                         }
 
+                                                        alert("Fin Ciclo 2");
+
                                                         var diferenciaDias = Utilidades.diferenciaFechaDias(new Date(correteoAnterior), new Date());
 
                                                         alert("Diferencia Dias");
