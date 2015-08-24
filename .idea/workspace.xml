@@ -26,10 +26,10 @@
       <file leaf-file-name="services.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5796703" vertical-offset="10441" max-vertical-offset="18088">
-              <caret line="702" column="95" selection-start-line="702" selection-start-column="95" selection-end-line="702" selection-end-column="95" />
+            <state vertical-scroll-proportion="0.6964286" vertical-offset="10356" max-vertical-offset="17935">
+              <caret line="702" column="128" selection-start-line="702" selection-start-column="128" selection-end-line="702" selection-end-column="128" />
               <folding>
-                <marker date="1440452522284" expanded="false" signature="49144:49176" placeholder="..." />
+                <marker date="1440452809373" expanded="false" signature="48736:48768" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -711,10 +711,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/services.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5796703" vertical-offset="10441" max-vertical-offset="18088">
-          <caret line="702" column="95" selection-start-line="702" selection-start-column="95" selection-end-line="702" selection-end-column="95" />
+        <state vertical-scroll-proportion="0.6964286" vertical-offset="10356" max-vertical-offset="17935">
+          <caret line="702" column="128" selection-start-line="702" selection-start-column="128" selection-end-line="702" selection-end-column="128" />
           <folding>
-            <marker date="1440452522284" expanded="false" signature="49144:49176" placeholder="..." />
+            <marker date="1440452809373" expanded="false" signature="48736:48768" placeholder="..." />
           </folding>
         </state>
       </provider>

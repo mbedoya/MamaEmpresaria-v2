@@ -683,9 +683,6 @@ angular.module('novaventa.services', [])
                                                             }
                                                         }
 
-                                                        alert("Fin Ciclo 1");
-                                                        
-
                                                         //Correteo Anterior
                                                         correteoAnterior = '';
                                                         for (i = 0; i < $rootScope.fechas.length; i++){
@@ -694,11 +691,7 @@ angular.module('novaventa.services', [])
                                                             }
                                                         }
 
-                                                        alert("Fin Ciclo 2");
-
                                                         var diferenciaDias = Utilidades.diferenciaFechaDias(new Date(correteoAnterior), new Date());
-
-                                                        alert("Diferencia Dias");
 
                                                         $rootScope.campanaAnterior = $rootScope.campana;
                                                         $rootScope.campana = {numero: data.campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
@@ -708,8 +701,6 @@ angular.module('novaventa.services', [])
                                                         $rootScope.fechas = data.listaRecordatorios;
 
                                                         console.log("Moviendose a nueva camapaña " + $rootScope.campana.numero);
-
-                                                        alert("Nueva Campaña " + $rootScope.campana.numero);
 
                                                         //NOTIFICAR LOGGEDIN
 
