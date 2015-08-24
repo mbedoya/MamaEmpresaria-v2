@@ -26,10 +26,10 @@
       <file leaf-file-name="services.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.51785713" vertical-offset="9704" max-vertical-offset="18105">
-              <caret line="656" column="86" selection-start-line="656" selection-start-column="86" selection-end-line="656" selection-end-column="86" />
+            <state vertical-scroll-proportion="0.5796703" vertical-offset="10492" max-vertical-offset="18173">
+              <caret line="705" column="56" selection-start-line="705" selection-start-column="56" selection-end-line="705" selection-end-column="56" />
               <folding>
-                <marker date="1440450627027" expanded="false" signature="49460:49492" placeholder="..." />
+                <marker date="1440451041906" expanded="false" signature="49619:49651" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -710,10 +710,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/services.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.51785713" vertical-offset="9704" max-vertical-offset="18105">
-          <caret line="656" column="86" selection-start-line="656" selection-start-column="86" selection-end-line="656" selection-end-column="86" />
+        <state vertical-scroll-proportion="0.5796703" vertical-offset="10492" max-vertical-offset="18173">
+          <caret line="705" column="56" selection-start-line="705" selection-start-column="56" selection-end-line="705" selection-end-column="56" />
           <folding>
-            <marker date="1440450627027" expanded="false" signature="49460:49492" placeholder="..." />
+            <marker date="1440451041906" expanded="false" signature="49619:49651" placeholder="..." />
           </folding>
         </state>
       </provider>

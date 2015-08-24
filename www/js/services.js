@@ -689,10 +689,12 @@ angular.module('novaventa.services', [])
                                                                 reparto = data.listaRecordatorios[i].fecha;
                                                             }
                                                         }
+
+                                                        alert("Fin Ciclo 1");
                                                         
 
                                                         //Correteo Anterior
-                                                        correteoAnterior = ''
+                                                        correteoAnterior = '';
                                                         for (i = 0; i < rootScope.fechas.length; i++){
                                                             if(rootScope.fechas[i].actividad.toLowerCase() == 'fecha correteo'){
                                                                 correteoAnterior = rootScope.fechas[i].fecha;
@@ -701,12 +703,14 @@ angular.module('novaventa.services', [])
 
                                                         var diferenciaDias = Utilidades.diferenciaFechaDias(new Date(correteoAnterior), new Date());
 
-                                                        $rootScope.campanaAnterior = rootScope.campana;
-                                                        $rootScope.campana = {numero: data.campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
+                                                        alert("Diferencia Dias");
+
+                                                        rootScope.campanaAnterior = rootScope.campana;
+                                                        rootScope.campana = {numero: data.campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
                                                 fechaEncuentroOriginal: encuentroOriginal, fechaCorreteo: correteo, fechaReparto: reparto, diasEnEjecucion: diferenciaDias};
                                                 
-                                                        $rootScope.fechasAnteriores = rootScope.fechas;
-                                                        $rootScope.fechas = data.listaRecordatorios;
+                                                        rootScope.fechasAnteriores = rootScope.fechas;
+                                                        rootScope.fechas = data.listaRecordatorios;
 
                                                         console.log("Moviendose a nueva camapaña " + rootScope.campana.numero);
 
