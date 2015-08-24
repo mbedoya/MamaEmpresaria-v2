@@ -700,16 +700,16 @@ angular.module('novaventa.services', [])
 
                                                         alert("Diferencia Dias");
 
-                                                        rootScope.campanaAnterior = rootScope.campana;
-                                                        rootScope.campana = {numero: data.campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
+                                                        $rootScope.campanaAnterior = rootScope.campana;
+                                                        $rootScope.campana = {numero: data.campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
                                                 fechaEncuentroOriginal: encuentroOriginal, fechaCorreteo: correteo, fechaReparto: reparto, diasEnEjecucion: diferenciaDias};
-                                                
-                                                        rootScope.fechasAnteriores = rootScope.fechas;
-                                                        rootScope.fechas = data.listaRecordatorios;
 
-                                                        console.log("Moviendose a nueva camapaña " + rootScope.campana.numero);
+                                                        $rootScope.fechasAnteriores = rootScope.fechas;
+                                                        $rootScope.fechas = data.listaRecordatorios;
 
-                                                        alert("Nueva Campaña " + rootScope.campana.numero);
+                                                        console.log("Moviendose a nueva camapaña " + $rootScope.campana.numero);
+
+                                                        alert("Nueva Campaña " + $rootScope.campana.numero);
 
                                                         //NOTIFICAR LOGGEDIN
 
