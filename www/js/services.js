@@ -627,6 +627,12 @@ angular.module('novaventa.services', [])
 
                                             //Buscar si el encuentro ya se ha realizado, si es así entonces se debe ir a la
                                             //siguiente campaña
+
+                                            alert("Campana Finalizada " + Campana.campanaFinalizada());
+                                            alert("Encuentro realizado " + Campana.encuentroRealizado());
+                                            alert("Pedido Anulado " + Pedido.estadoEncontrado('Anulado'));
+                                            alert("Pedido Facturado " + Pedido.estadoEncontrado('Facturado'));
+
                                             if(Campana.campanaFinalizada() ||
                                                 ( Campana.encuentroRealizado() &&
                                                     ( Pedido.estadoEncontrado('Anulado')
