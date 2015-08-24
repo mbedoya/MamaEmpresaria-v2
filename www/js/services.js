@@ -628,11 +628,6 @@ angular.module('novaventa.services', [])
                                             //Buscar si el encuentro ya se ha realizado, si es así entonces se debe ir a la
                                             //siguiente campaña
 
-                                            alert("Campana Finalizada " + Campana.campanaFinalizada());
-                                            alert("Encuentro realizado " + Campana.encuentroRealizado());
-                                            alert("Pedido Anulado " + Pedido.estadoEncontrado('Anulado'));
-                                            alert("Pedido Facturado " + Pedido.estadoEncontrado('Facturado'));
-
                                             if(Campana.campanaFinalizada() ||
                                                 ( Campana.encuentroRealizado() &&
                                                     ( Pedido.estadoEncontrado('Anulado')
@@ -653,8 +648,6 @@ angular.module('novaventa.services', [])
                                                 //Obtener la campaña siguiente
                                                 Campana.getRecordatorios(ano, siguienteCampana, $rootScope.zona, function (success, data){
                                                     if(success){
-
-                                                        alert("Ok Campaña Siguiente");
                                                         
                                                         //Obtener la fecha de montaje de pedido (Encuentro)
                                                         //Agosto 11-2015
@@ -695,9 +688,9 @@ angular.module('novaventa.services', [])
 
                                                         //Correteo Anterior
                                                         correteoAnterior = '';
-                                                        for (i = 0; i < rootScope.fechas.length; i++){
-                                                            if(rootScope.fechas[i].actividad.toLowerCase() == 'fecha correteo'){
-                                                                correteoAnterior = rootScope.fechas[i].fecha;
+                                                        for (i = 0; i < $rootScope.fechas.length; i++){
+                                                            if($rootScope.fechas[i].actividad.toLowerCase() == 'fecha correteo'){
+                                                                correteoAnterior = $rootScope.fechas[i].fecha;
                                                             }
                                                         }
 
