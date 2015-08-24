@@ -704,7 +704,7 @@ angular.module('novaventa.services', [])
                                                         $rootScope.campana = {numero: data.campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
                                                 fechaEncuentroOriginal: encuentroOriginal, fechaCorreteo: correteo, fechaReparto: reparto, diasEnEjecucion: diferenciaDias};
 
-                                                        $rootScope.fechasAnteriores = rootScope.fechas;
+                                                        $rootScope.fechasAnteriores = $rootScope.fechas;
                                                         $rootScope.fechas = data.listaRecordatorios;
 
                                                         console.log("Moviendose a nueva camapaña " + $rootScope.campana.numero);
