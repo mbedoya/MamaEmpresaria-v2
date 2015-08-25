@@ -141,6 +141,15 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
     $scope.mostrarPuntosPorPerder = function(){
         return $rootScope.puntosCampanaOperativaAntares && $rootScope.puntosCampanaOperativaAntares.puntosPorPerder && Number($rootScope.puntosCampanaOperativaAntares.puntosPorPerder) > 0;
     }
+
+    $scope.campanaAnterior = function(){
+
+        if($rootScope.campanaAnterior && $rootScope.campanaAnterior.numero){
+            return $rootScope.campanaAnterior.numero;
+        }else{
+            return "anterior";
+        }
+    }
     
     $scope.$on('online', function(event, args){
         $scope.inicializar(true);
