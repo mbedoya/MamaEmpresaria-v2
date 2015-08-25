@@ -144,8 +144,10 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
 
     $scope.campanaAnterior = function(){
 
-        if($rootScope.campanaAnterior && $rootScope.campanaAnterior.numero){
-            return $rootScope.campanaAnterior.numero;
+        var campanaAnt = Utilidades.getAnoCampanaAnterior().substr(4,2);
+
+        if(campanaAnt){
+            return campanaAnt;
         }else{
             return "anterior";
         }
