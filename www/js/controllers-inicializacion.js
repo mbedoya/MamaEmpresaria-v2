@@ -68,6 +68,7 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
         $rootScope.numeroCampanasAno = 18;
         $rootScope.lineaAtencion = "01 8000 515 101";
         $rootScope.correo = "servicioalcliente@novaventa.com";
+        $rootScope.urlChat = 'http://twnl.co/novaventas';
 
         jQuery.support.cors = true;
         //$.mobile.allowCrossDomainPages = true;
