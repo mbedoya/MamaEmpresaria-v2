@@ -15,6 +15,9 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
 
         if(window.plugins && window.plugins.gaPlugin){
 
+            //Pruebas: UA-60445801-1
+            //Producción: UA-67054199-1
+
             $rootScope.gaPlugin = window.plugins.gaPlugin;
             $rootScope.gaPlugin.init(
                 function(){
@@ -24,7 +27,7 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
                 function(){
 
                 },
-                "UA-60445801-1",
+                "UA-67054199-1",
                 10);
         }
 
