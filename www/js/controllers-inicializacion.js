@@ -27,7 +27,7 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
                 function(){
 
                 },
-                "UA-67054199-1",
+                "UA-60445801-1",
                 10);
         }
 
@@ -63,10 +63,10 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
 
     $scope.inicializar = function(){
 
-        //$rootScope.configuracion = { ip_servidores: 'http://200.47.173.66:9081' };
+        $rootScope.configuracion = { ip_servidores: 'http://200.47.173.66:9081' };
         //$rootScope.configuracion = { ip_servidores: 'http://200.47.173.67:9080' };
         //$rootScope.configuracion = { ip_servidores: 'http://200.47.173.67:9082' };
-        $rootScope.configuracion = { ip_servidores: 'http://transferenciaelectronica.novaventa.com.co' };
+        //$rootScope.configuracion = { ip_servidores: 'http://transferenciaelectronica.novaventa.com.co' };
         //Número de campañas que se ejecutan al año
         $rootScope.numeroCampanasAno = 18;
         $rootScope.lineaAtencion = "01 8000 515 101";
