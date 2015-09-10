@@ -554,6 +554,8 @@ angular.module('novaventa.services', [])
                 
                 var mensajeError = '';
 
+                alert("Get Info Basica");
+
                 $http.get(urlAutenticacion).
                     success(function(data, status, headers, config) {
 
@@ -570,6 +572,9 @@ angular.module('novaventa.services', [])
                     var campanaInicial = '-';
                     Campana.getRecordatoriosCampanaOperativa(function (success, data) {
                         if (success) {
+                            
+                            alert("Get Recordatorio 1");
+                            
                             campanaInicial = data.campagna;
 
                             $rootScope.campana = {numero: campanaInicial, fechaEncuentro:'-', fechaCorreteo: '-', fechaMontajePedido: '-', diasEnEjecucion: ''};
@@ -585,6 +590,8 @@ angular.module('novaventa.services', [])
                                     //Obtener la campaña operativa
                                     Campana.getRecordatoriosCampanaOperativa(function (success, data){
                                         if(success){
+                                            
+                                            alert("Get Recordatorio Operativa 2");
 
                                             //Obtener la fecha de montaje de pedido (Encuentro)
                                             //Agosto 11-2015
@@ -635,6 +642,8 @@ angular.module('novaventa.services', [])
                                                         )
                                                     )
                                                 ){
+                                                    
+                                                    alert("Moverse");
 
                                                 var ano = new Date().getFullYear();
                                                 var siguienteCampana = $rootScope.campana.numero + 1;
@@ -648,6 +657,8 @@ angular.module('novaventa.services', [])
                                                 //Obtener la campaña siguiente
                                                 Campana.getRecordatorios(ano, siguienteCampana, $rootScope.zona, function (success, data){
                                                     if(success){
+                                                        
+                                                        alert("Get Recordatorio Siguiente");
                                                         
                                                         //Obtener la fecha de montaje de pedido (Encuentro)
                                                         //Agosto 11-2015
@@ -717,6 +728,8 @@ angular.module('novaventa.services', [])
                                                 });
 
                                             }else{
+                                                
+                                                alert("No Moverse");
 
                                                 //NOTIFICAR LOGGEDIN
 
