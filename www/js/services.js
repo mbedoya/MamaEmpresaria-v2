@@ -554,8 +554,6 @@ angular.module('novaventa.services', [])
                 
                 var mensajeError = '';
 
-                alert("Get Info Basica");
-
                 $http.get(urlAutenticacion).
                     success(function(data, status, headers, config) {
 
@@ -573,8 +571,6 @@ angular.module('novaventa.services', [])
                     Campana.getRecordatoriosCampanaOperativa(function (success, data) {
                         if (success) {
                             
-                            alert("Get Recordatorio 1");
-                            
                             campanaInicial = data.campagna;
 
                             $rootScope.campana = {numero: campanaInicial, fechaEncuentro:'-', fechaCorreteo: '-', fechaMontajePedido: '-', diasEnEjecucion: ''};
@@ -591,7 +587,7 @@ angular.module('novaventa.services', [])
                                     Campana.getRecordatoriosCampanaOperativa(function (success, data){
                                         if(success){
                                             
-                                            alert("Get Recordatorio Operativa 2");
+                                           
 
                                             //Obtener la fecha de montaje de pedido (Encuentro)
                                             //Agosto 11-2015
@@ -643,7 +639,7 @@ angular.module('novaventa.services', [])
                                                     )
                                                 ){
                                                     
-                                                    alert("Moverse");
+                                                   
 
                                                 var ano = new Date().getFullYear();
                                                 var siguienteCampana = $rootScope.campana.numero + 1;
@@ -705,7 +701,7 @@ angular.module('novaventa.services', [])
                                                         var diferenciaDias = Utilidades.diferenciaFechaDias(new Date(correteoAnterior), new Date());
 
                                                         $rootScope.campanaAnterior = $rootScope.campana;
-                                                        alert($rootScope.campanaAnterior.fechaReparto);
+                                                        
                                                         $rootScope.campana = {numero: data.campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
                                                 fechaEncuentroOriginal: encuentroOriginal, fechaCorreteo: correteo, fechaReparto: reparto, diasEnEjecucion: diferenciaDias};
 
@@ -729,8 +725,6 @@ angular.module('novaventa.services', [])
 
                                             }else{
                                                 
-                                                alert("No Moverse");
-
                                                 //NOTIFICAR LOGGEDIN
 
                                                 //Si se notifica inmediatamente no son alcanzados todos los controladores
@@ -791,7 +785,7 @@ angular.module('novaventa.services', [])
                                                         $rootScope.campanaAnterior = {numero: data.campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
                                                 fechaEncuentroOriginal: encuentroOriginal, fechaCorreteo: correteo, fechaReparto: reparto,  diasEnEjecucion: ''};
                                                 
-                                                        alert($rootScope.campanaAnterior.fechaReparto);
+                                                        
 
                                                     }else{
                                                     }
