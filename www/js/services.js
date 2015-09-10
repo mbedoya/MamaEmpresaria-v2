@@ -752,7 +752,7 @@ angular.module('novaventa.services', [])
 
                                                 Campana.getRecordatorios(ano, campanaAnterior, $rootScope.zona, function (success, data){
                                                     if(success){
-                                                        rootScope.fechasAnteriores = data.listaRecordatorios;
+                                                        $rootScope.fechasAnteriores = data.listaRecordatorios;
 
                                                         //Obtener la fecha de montaje de pedido (Encuentro)
                                                         //Agosto 11-2015
