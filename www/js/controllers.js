@@ -53,8 +53,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                      */
                     buttons: [
                         { text: 'Mi Negocio' },
-                        { text: 'Productos no disponibles' },
-                        { text: 'Chat' }
+                        { text: 'Productos no disponibles' }
                     ],
                     cancelText: 'Cancelar',
                     cancel: function() {
@@ -69,7 +68,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                                 $state.go('app.menu.tabs.mas.agotados.actual');
                                 //$state.go('app.menu.tabs.mas.informacion.fechas');
                             }else{
-                                navigator.app.loadUrl($rootScope.urlChat, { openExternal: true });
+                                //navigator.app.loadUrl($rootScope.urlChat, { openExternal: true });
                                 //$state.go('app.menu.tabs.mas.contacto');
                             }
                         }
