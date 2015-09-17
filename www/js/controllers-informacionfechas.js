@@ -713,6 +713,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             $scope.padStr($scope.fechaCalendario.getDate()), false);
 
     }
+    
+    $scope.mostrarActividad(){
+        if($scope.detalle.actividad == "TOMA DE PEDIDO") return false;
+    }
 
     $scope.$on('online', function(event, args){
         $scope.inicializar();

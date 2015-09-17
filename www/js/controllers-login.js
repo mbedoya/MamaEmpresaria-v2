@@ -29,7 +29,7 @@ moduloControlador.controller('LoginCtrl', function($scope, $location, $rootScope
 
         //Cantidad de caracteres
         if(String($rootScope.datos.cedula).length < 6 || String($rootScope.datos.cedula).length > 10){
-            $scope.mostrarAyuda("Inicio de sesión","Ingresa entre 6 y 10 dígitos");
+            $scope.mostrarAyuda("Inicio de sesión","Este numero de cédula no es válido");
             return;
         }
 
