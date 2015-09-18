@@ -679,8 +679,9 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.semanas = semanas;
     }
     
-    $scope.mostrarConectorActividad=function(){
-        if($scope.detalle.actividad == "TOMA DE PEDIDO"){
+    $scope.mostrarConectorActividad=function(actividad){
+        
+        if(actividad == "TOMA DE PEDIDO"){
             return false;
         }
     }

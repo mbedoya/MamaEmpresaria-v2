@@ -14,7 +14,7 @@
              <!-- <a href="#" class="item item-avatar" > -->
                     <img style="float:left" src="img/reloj.png" />
                     <span style="display:block;">{{ detalle.hora }}</span>
-                    <p class="col" style="color: #808080">{{ detalle.actividad }} <span ng-show="mostrarConectorActividad()">EN</span> {{ detalle.lugar }} <br />
+                    <p class="col" style="color: #808080">{{ detalle.actividad }} <span ng-show="mostrarConectorActividad(detalle.actividad)">EN</span> {{ detalle.lugar }} <br />
                         {{ detalle.direccion }}
                     </p>
              <!-- </a> -->
