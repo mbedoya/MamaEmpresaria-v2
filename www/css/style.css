@@ -689,7 +689,7 @@ textarea{
 .titulo-calendario .arrowright {
   text-align:right;
 }
-.titulo-calendario a {
+.titulo-calendario a, .titulo-calendario a:visited {
   color:white;
   text-transform:uppercase;
   font-family: 'Droid Sans Bold', sans-serif;

@@ -69,7 +69,7 @@ angular.module('novaventa.services', [])
 
         this.ajustarEstadosPedido = function(estados) {
             if(estados && estados.length > 0){
-                //alert(estados.length);
+                
                 var indiceIngresado = -1;
                 
                 for	(index = 0; index < estados.length; index++) {
@@ -82,8 +82,7 @@ angular.module('novaventa.services', [])
                 //los estados que sean anteriores a el. Si el estado está en la posición 0 no se hace nada
                 if(indiceIngresado > 0){
                     estados.splice(0,indiceIngresado);
-                }
-                //alert(estados.length);
+                }               
             }
             return estados;
         };
@@ -654,8 +653,6 @@ angular.module('novaventa.services', [])
                                                 Campana.getRecordatorios(ano, siguienteCampana, $rootScope.zona, function (success, data){
                                                     if(success){
                                                         
-                                                        alert("Get Recordatorio Siguiente");
-                                                        
                                                         //Obtener la fecha de montaje de pedido (Encuentro)
                                                         //Agosto 11-2015
                                                         //Con la fecha de toma de pedido se reemplazará al Encuentro
@@ -840,7 +837,7 @@ angular.module('novaventa.services', [])
 
                 $http(req).
                     success(function(data, status, headers, config) {
-                        //alert("success");
+                        
                         var mensajeError;
 
                         //Error en la autenticación?
