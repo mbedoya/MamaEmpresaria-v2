@@ -678,6 +678,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         console.log(semanas);
         $scope.semanas = semanas;
     }
+    
+    $scope.mostrarConectorActividad(){
+        if($scope.detalle.actividad == "TOMA DE PEDIDO") return false;
+    }
 
     $scope.inicializar = function(){
 
@@ -712,10 +716,6 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             $scope.padStr(1 + $scope.fechaCalendario.getMonth()) + "-" +
             $scope.padStr($scope.fechaCalendario.getDate()), false);
 
-    }
-    
-    $scope.mostrarActividad(){
-        if($scope.detalle.actividad == "TOMA DE PEDIDO") return false;
     }
 
     $scope.$on('online', function(event, args){
