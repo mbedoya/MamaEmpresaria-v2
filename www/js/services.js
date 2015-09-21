@@ -1029,10 +1029,10 @@ angular.module('novaventa.services', [])
             diferenciaFechaDias: function(fechaInicial, fechaFinal){
 
                 var stringFechaInicial = self.padStr(fechaInicial.getFullYear()) + "-" +
-                    self.padStr(1 + fechaInicial.getMonth()) + "-" + fechaInicial.getDate()
+                    self.padStr(1 + fechaInicial.getMonth()) + "-" + self.padStr(fechaInicial.getDate());
 
                 var stringFechaFinal = self.padStr(fechaFinal.getFullYear()) + "-" +
-                    self.padStr(1 + fechaFinal.getMonth()) + "-" + fechaFinal.getDate()
+                    self.padStr(1 + fechaFinal.getMonth()) + "-" + self.padStr(fechaFinal.getDate());
 
                 var t2 = new Date(stringFechaFinal).getTime();
                 var t1 = new Date(stringFechaInicial).getTime();
@@ -1051,7 +1051,7 @@ angular.module('novaventa.services', [])
             formatearFecha: function(fecha){
                 var dateStr = self.padStr(fecha.getFullYear()) + "-" +
                     self.padStr(1 + fecha.getMonth()) + "-" +
-                    fecha.getDate();
+                    self.padStr(fecha.getDate());
 
                 return dateStr;
             },
