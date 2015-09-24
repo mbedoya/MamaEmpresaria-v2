@@ -973,14 +973,15 @@ angular.module('novaventa.services', [])
 
         return {
             get: function() {
-                var connection = navigator.connection;
+                /*var connection = navigator.connection;
 
                 //Se puede establecer el tipo de conexión a Internet?
                 if(connection && connection.type){
                     return connection.type.toLowerCase() != "none";
                 }else{
                     return true;
-                }
+                }*/
+                return true;
             }
         }
     })
