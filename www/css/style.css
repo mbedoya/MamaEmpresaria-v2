@@ -305,7 +305,7 @@ textarea{
 }
 */
 
-.login-button input[type=button] {
+.login-button input[type=button], .login-button button, .button-footer {
     background:#eb0c6e;
     border-radius:8px;
     border: 2px solid #cc0a52;
@@ -315,18 +315,6 @@ textarea{
     font-family: "Droid Sans Bold";
     font-size:18px;
 }
-
-.login-button button {
-  background:#eb0c6e;
-  border-radius:8px;
-  border: 2px solid #cc0a52;
-  box-shadow: 0px 4px 0px #cc0a52;
-  text-shadow: 0px 2px 0px rgba(0,0,0,0.1);
-  color:white;
-  font-family: "Droid Sans Bold";
-  font-size:18px;
-}
-
 
 .login-button button:hover {
   color:white;
@@ -995,3 +983,11 @@ ion-item:hover a {
     background-color: #f0f0f0; !important;
 }
 */
+
+#maria{
+    margin-left:auto; margin-right:0px 
+}
+
+.footer-no-nutresa{
+  height: 80px;
+}
