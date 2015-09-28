@@ -527,16 +527,11 @@ angular.module('novaventa.services', [])
                 var cedula = $rootScope.datos.cedula;
                 var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/interfaceAntares/validarME/" + cedula;
 
-                alert(urlServicio);
-
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
-
-                        alert("success");
                         fx(true, data);
                     }).
                     error(function(data, status, headers, config) {
-                        alert("error");
                         fx(false, {});
                     });
             },
@@ -978,14 +973,14 @@ angular.module('novaventa.services', [])
 
         return {
             get: function() {
-                /*var connection = navigator.connection;
+                var connection = navigator.connection;
 
                 //Se puede establecer el tipo de conexión a Internet?
                 if(connection && connection.type){
                     return connection.type.toLowerCase() != "none";
                 }else{
                     return true;
-                }*/
+                }
                 return true;
             }
         }

@@ -13,6 +13,8 @@ xmlns:gap = "http://phonegap.com/ns/1.0" >
   
   <access origin="*"/>
   
+  <preference name="phonegap-version" value="cli-5.0.0" />
+  
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
