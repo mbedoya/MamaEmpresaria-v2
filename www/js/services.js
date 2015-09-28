@@ -527,6 +527,8 @@ angular.module('novaventa.services', [])
                 var cedula = $rootScope.datos.cedula;
                 var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/interfaceAntares/validarME/" + cedula;
 
+                alert(urlServicio);
+
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
                         fx(true, data);
