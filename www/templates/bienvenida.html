@@ -1,26 +1,30 @@
 <ion-view view-title="Bienvenida">
     <ion-content >
-       <div class="{{ segmentoFormateado() }}">
-        
-    <div class="content-bienvenida">
-        <h3><span><strong>¡Bienvenida!</strong> {{ nombre() }}</span></h3>
-        <div class="estrella">
-          <span class="estrella-img"></span>
-          <span class="estrella-text">Mamá Empresaria <strong>{{ segmento() }}</strong></span>
+        <div class="{{ segmentoFormateado() }}">
+
+            <div class="content-bienvenida">
+                <h3><span><strong>¡Bienvenida!</strong> {{ nombre() }}</span></h3>
+                <div class="estrella">
+                    <span class="estrella-img"></span>
+                    <span class="estrella-text">Mamá Empresaria <strong>{{ segmento() }}</strong></span>
+                </div>
+                <img src="img/bienvenida.png" class="bienvenida-img" />
+                <!--<form ng-submit="ingresar()">
+                    <label class="bienvenida-button">
+                        <input type="button" value="Ingresar" class="button button-block" ng-click="test()">
+                        <button id="ingresar" class="button button-block" type="submit">Continuar</button> 
+                    </label>
+                </form>-->
+            </div>
         </div>
-        <img src="img/bienvenida.png" class="bienvenida-img" />
-        <form ng-submit="ingresar()">
-            <label class="bienvenida-button">
-                <input type="button" value="Ingresar" class="button button-block" ng-click="test()">
-                <!--- <button id="ingresar" class="button button-block" type="submit">Continuar</button> -->
-            </label>
-        </form>
-    </div>
-    </div>
     </ion-content>
     <ion-footer-bar >
         <div class="footer-nutresa">
-            <img src="img/nutresa.png" />
+            <form ng-submit="ingresar()">
+                <label class="bienvenida-button">
+                    <input id="ingresar" type="button" value="Ingresar" class="button button-block button-footer" ng-click="test()">
+                </label>
+            </form>
         </div>
     </ion-footer-bar>
 </ion-view>

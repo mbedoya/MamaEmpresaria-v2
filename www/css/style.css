@@ -984,10 +984,38 @@ ion-item:hover a {
 }
 */
 
-#maria{
-    margin-left:auto; margin-right:0px 
+.footer-no-nutresa{
+  height: 75px;
 }
 
-.footer-no-nutresa{
-  height: 80px;
+.bar .button {
+    font-size: 18px;
+}
+
+.content-terminos {
+  background: transparent url(../img/Barra.png) no-repeat center top;
+} 
+
+.content-terminos h4 {
+    margin-top: 100px;
+  color:#4d4d4d;
+  text-align:center;
+  font-family: "Droid Sans Bold", sans-serif;
+  font-size:20px;
+  margin-bottom:5px;
+}
+
+.content-terminos h3 {
+    color:#808080;
+    text-align:center;
+    font-family: "Droid Sans Bold", sans-serif;
+    font-size:18px;
+    margin-top:0px;
+    margin-bottom:10px;
+    font-weight: normal;
+}
+
+
+input[disabled]{
+    background-color: #eb0c6e;   
 }

@@ -1,10 +1,10 @@
 <ion-view view-title="Términos y condiciones">
     <ion-content overflow-scroll="true">
-        <div class="content-login padding">
-            <img src="img/login-novaventa.png" class="login-img" style="margin-bottom:22px;" />
+        <div class="content-terminos padding">
+<!--            <img src="img/Barra.png" class="login-img" style="margin-bottom:22px;" />-->
             <h4>Mamá Empresaria</h4>
             <h3>Para ingresar a la aplicación es necesario que aceptes los términos y condiciones.</h3>
-            <form >
+            <form>
                 <label>
                     <textarea id="txtTexto" rows="20" style="overflow-y: visible; height: 160px;" readonly="readonly" >
                     </textarea>
@@ -17,19 +17,18 @@
                         Acepto los términos y condiciones y la política de uso de datos personales
                     </li>
                 </ul>
-<!--
-                <label class="login-button">
-                    <input id="aceptar" type="button" value="Continuar" class="button button-block" ng-disabled="!modelo.seleccionado" ng-click="continuar()">
+                <!--
+<label class="login-button">
+<input id="aceptar" type="button" value="Continuar" class="button button-block" ng-disabled="!modelo.seleccionado" ng-click="continuar()">
 
-                </label>
+</label>
 -->
             </form>
         </div>
     </ion-content>
     <ion-footer-bar>
-        <div class="footer-nutresa">
-            <img src="img/nutresa.png" />
+        <div class="bar bar-footer footer-no-nutresa">
+            <input id="ingresar" type="button" value="Enviar" class="button button-block button-footer" ng-click="continuar()" ng-disabled="!modelo.seleccionado">
         </div>
-        <div class="button icon-right ion-chevron-right" style="margin-left:auto; margin-right:0px" ng-show="modelo.seleccionado">Continuar </div>
     </ion-footer-bar>
 </ion-view>
