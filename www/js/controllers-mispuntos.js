@@ -111,6 +111,11 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
             return "";
         }
     }
+    
+    $scope.haySugeridos = function(){
+        console.log("razon rechazo", $rootScope.sugerenciaPremios.razonRechazo);
+        return $rootScope.sugerenciaPremios.razonRechazo==null;
+    }
 
     $scope.puntosPorPerder = function(){
         if ($rootScope.puntosCampanaOperativaAntares){

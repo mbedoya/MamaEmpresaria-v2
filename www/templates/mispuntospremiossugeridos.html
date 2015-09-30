@@ -1,6 +1,10 @@
 <ion-view view-title="" >
     <ion-content >
-        <div class="list" >
+        <div class="row" style="margin-top: 12px;" ng-show="haySugeridos()">
+            <div class="col">Mamá, en este momento no tenemos premios para sugerirte.</div>
+        </div>
+        
+        <div class="list">
             <a class="item item-thumbnail-left" ng-repeat="sugerencia in " >
                 <img src="img/gift.png">
                 <h2>Secador
