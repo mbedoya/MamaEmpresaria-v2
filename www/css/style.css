@@ -551,7 +551,7 @@ textarea{
   margin:0 auto;
 }
 
-.bienvenida-button input[type=button] {
+.bienvenida-button input[type=button], .bienvenida-button-footer, .bienvenida-button button {
     background:#1594ac;
     border-radius:8px;
     border: 2px solid #077885;
@@ -560,17 +560,6 @@ textarea{
     color:white;
     font-family: "Droid Sans Bold";
     font-size:18px;
-}
-
-.bienvenida-button button {
-  background:#1594ac;
-  border-radius:8px;
-  border: 2px solid #077885;
-  box-shadow: 0px 4px 0px #077885;
-  text-shadow: 0px 2px 0px rgba(0,0,0,0.1);
-  color:white;
-  font-family: "Droid Sans Bold";
-  font-size:18px;
 }
 
 .bienvenida-button button:hover {

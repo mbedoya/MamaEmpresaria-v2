@@ -949,6 +949,20 @@ angular.module('novaventa.services', [])
                         fx(false, {});
                     });
 
+            },
+            getSugerenciaPremios: function (cedula, fx){
+                
+                var anoCampana = Utilidades.getAnoCampana();
+                
+                var urlServicio = $rootScope.configuracion.ip_servidores+"/AntaresWebServices/productoDeCampagna/premiosSugeridos/"+cedula+"/"+anoCampana;
+                    
+                    $http.get(urlServicio).
+                    success(function(data, status, headers, config) {
+                        fx(true, data);
+                    }).
+                    error(function(data, status, headers, config) {
+                        fx(false, {});
+                    });
             }
         }
     })
@@ -973,14 +987,14 @@ angular.module('novaventa.services', [])
 
         return {
             get: function() {
-                var connection = navigator.connection;
+                /*var connection = navigator.connection;
 
                 //Se puede establecer el tipo de conexión a Internet?
                 if(connection && connection.type){
                     return connection.type.toLowerCase() != "none";
                 }else{
                     return true;
-                }
+                }*/
                 return true;
             }
         }

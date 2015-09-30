@@ -266,11 +266,11 @@ angular.module('novaventa', ['ionic', 'novaventa.controllers', 'novaventa.servic
                 }
             })
             
-            .state('app.menu.tabs.mispuntos.premiosredimir', {
-                url: "/premiosredimir",
+            .state('app.menu.tabs.mispuntos.premiossugeridos', {
+                url: "/premiossugeridos",
                 views: {
                     'mis-puntos-premios-content': {
-                        templateUrl: "templates/mispuntospremiosredimir.html"
+                        templateUrl: "templates/mispuntospremiossugeridos.html"
                     }
                 }
             })
