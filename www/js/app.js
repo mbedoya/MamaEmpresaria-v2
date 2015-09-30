@@ -270,7 +270,8 @@ angular.module('novaventa', ['ionic', 'novaventa.controllers', 'novaventa.servic
                 url: "/premiossugeridos",
                 views: {
                     'mis-puntos-premios-content': {
-                        templateUrl: "templates/mispuntospremiossugeridos.html"
+                        templateUrl: "templates/mispuntospremiossugeridos.html",
+                        controller: 'MisPuntosCtrl'
                     }
                 }
             })

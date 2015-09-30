@@ -72,6 +72,20 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
                     $scope.mostrarAyuda("Mis Puntos","En este momento no podemos acceder a tu información");
                 }
             });
+            
+            Mama.getSugerenciaPremios($rootScope.datos.cedula, function(success, data){
+                
+                if(mostrarIndicador){
+                    $ionicLoading.hide();   
+                }
+                
+                if(success){
+                    $rootScope.sugerenciaPremios = data;  
+                    console.log(data);
+                }else{
+                    $scope.mostrarAyuda("Mis Puntos","En este momento no podemos acceder a tu información");  
+                }
+            });
 
 
         }else{
