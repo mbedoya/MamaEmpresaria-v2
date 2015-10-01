@@ -38,7 +38,6 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
                 }
 
                 if(success){
-                    alert("getPuntos");
                     $rootScope.puntos = data;
 
                 }else{
@@ -53,7 +52,6 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
                 }
 
                 if(success){
-                    alert("getPuntosCampanaAnterior");
                     $rootScope.puntosCampanaAnterior = data;
 
                 }else{
@@ -68,7 +66,6 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
                 }
 
                 if(success){
-                    alert("getPuntosCampanaOperativaAntares");
                     $rootScope.puntosCampanaOperativaAntares = data;
 
                 }else{
@@ -83,7 +80,6 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
                 }
 
                 if(success){
-                    alert("getSugerenciaPremios");
                     $scope.sugerenciaPremios = data;
                     console.log(data);
                 }else{
@@ -110,8 +106,10 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
     $scope.puntosDisponibles = function(){
 
         if ($rootScope.puntosCampanaOperativaAntares){
+            alert($rootScope.puntosCampanaOperativaAntares.puntosDisponibles);
             return $rootScope.puntosCampanaOperativaAntares.puntosDisponibles;
         }else{
+            alert("sin puntos operativa");
             return "";
         }
     }
