@@ -57,6 +57,8 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
 
     $scope.inicializar = function(){
 
+        $("#txtTexto").focus();
+
         //Solución a problema de ingreso al TextArea desde iOS
         $("#txtTexto").click(function(){
            $(this).focus();

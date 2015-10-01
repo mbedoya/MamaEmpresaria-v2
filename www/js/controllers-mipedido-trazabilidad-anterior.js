@@ -57,6 +57,53 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
 
         return true;
     }
+    
+    //Si hay agotados reales? es decir que el mismo producto no se haya agotado y luego si esté disponible
+    $scope.hayAgotadosAnteriorReales = function(){
+        
+        var contadorAgotados = 0;
+        var contadorSustituidos = 0;
+        
+        if($scope.agotadosAnterior && $scope.agotadosAnterior.agotadosME){
+            //Recorrer todos los agotados
+            for(i=0; i<$scope.agotadosAnterior.agotadosME.length;i++){
+                
+                if($scope.agotadosAnterior.agotadosME[i].tipoAgotado == "AGOTADO SUSTITUIDO"){
+                    if($scope.agotadoReal($scope.agotadosAnterior.agotadosME[i])){
+                        contadorSustituidos = contadorSustituidos + 1;
+                    }
+                }else{
+                    contadorAgotados = contadorAgotados + 1;
+                }
+            }    
+        }else{
+            return false;
+        }
+
+        return contadorAgotados > 0 || contadorSustituidos > 0;
+    }
+    
+    //Si sustituidos reales? es decir que el mismo producto no se haya agotado y luego si esté disponible
+    $scope.haySustituidos = function(){
+        
+        var contadorSustituidos = 0;
+        
+        if($scope.agotadosAnterior && $scope.agotadosAnterior.agotadosME){
+            //Recorrer todos los agotados
+            for(i=0; i<$scope.agotadosAnterior.agotadosME.length;i++){
+                
+                if($scope.agotadosAnterior.agotadosME[i].tipoAgotado == "AGOTADO SUSTITUIDO"){
+                    if($scope.agotadoReal($scope.agotadosAnterior.agotadosME[i])){
+                        contadorSustituidos = contadorSustituidos + 1;
+                    }
+                }
+            }    
+        }else{
+            return false;
+        }
+
+        return contadorSustituidos > 0;
+    }
 
     $scope.inicializar = function(mostrarIndicador){
 

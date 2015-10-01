@@ -10,7 +10,7 @@
         </div>
 
         <!-- Agotados -->
-        <div class="list list-inset" ng-show="agotados()" >
+        <div class="list list-inset" ng-show="hayAgotadosAnteriorReales && !haySustituidos()" >
             <a class="item assertive" href="#" ng-repeat="agotado in agotados().agotadosME" ng-show="!agotadoSustituido(agotado.tipoAgotado)" >
                 <h2>{{ agotado.nombre }}</h2>
                 <p ng-show="!noSeEnviaAgotado(agotado.cantidadPedida,agotado.cantAgotada)">Pediste {{ agotado.cantidadPedida }} y te enviaremos {{ agotado.cantidadPedida - agotado.cantAgotada }} </p>
@@ -32,8 +32,8 @@
             </p>
         </div>
 
-        <!-- Agotados -->
-        <div class="list list-inset" ng-show="agotados() && agotados().length > 0" >
+        <!-- Sustituidos -->
+        <div class="list list-inset" ng-show="haySustituidos()" >
             <a class="item assertive" href="#" ng-repeat="agotado in agotados().agotadosME" ng-show="agotadoSustituido(agotado.tipoAgotado) && agotadoReal(agotado)" >
                 <h2>{{ agotado.nombre }}</h2>
                 <p>Pediste {{ agotado.cantidadPedida }} y a cambio te enviaremos</p>
