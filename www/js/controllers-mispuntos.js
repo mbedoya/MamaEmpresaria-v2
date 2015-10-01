@@ -34,7 +34,7 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
             Mama.getPuntos($rootScope.datos.cedula, function (success, data){
 
                 if(mostrarIndicador){
-                   $ionicLoading.hide();
+                    $ionicLoading.hide();
                 }
 
                 if(success){
@@ -58,7 +58,7 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
                     $scope.mostrarAyuda("Mis Puntos","En este momento no podemos acceder a tu información");
                 }
             });
-            
+
             Mama.getPuntosCampanaOperativaAntares($rootScope.datos.cedula, function (success, data){
 
                 if(mostrarIndicador){
@@ -72,18 +72,18 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
                     $scope.mostrarAyuda("Mis Puntos","En este momento no podemos acceder a tu información");
                 }
             });
-            
+
             Mama.getSugerenciaPremios($rootScope.datos.cedula, function(success, data){
-                
+
                 if(mostrarIndicador){
-                    $ionicLoading.hide();   
+                    $ionicLoading.hide();
                 }
-                
+
                 if(success){
-                    $scope.sugerenciaPremios = data;  
+                    $scope.sugerenciaPremios = data;
                     console.log(data);
                 }else{
-                    $scope.mostrarAyuda("Mis Puntos","En este momento no podemos acceder a tu información");  
+                    $scope.mostrarAyuda("Mis Puntos","En este momento no podemos acceder a tu información");
                 }
             });
 
@@ -111,7 +111,7 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
             return "";
         }
     }
-    
+
     $scope.haySugeridos = function(){
         return $scope.sugerenciaPremios.razonRechazo==null;
     }
@@ -170,16 +170,16 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
             return "anterior";
         }
     }
-    
+
     $scope.$on('online', function(event, args){
         $scope.inicializar(true);
     });
-    
+
     $scope.$on('loggedin', function(event, args){
         console.log('logging in - puntos');
         $scope.inicializar(false);
     });
-    
+
     $scope.inicializar(true);
 
 });
