@@ -30,6 +30,25 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
         return $scope.agotadosActual;
     }
 
+    $scope.noSeEnviaAgotado = function(cantPedida, cantEnviada){
+        return cantPedida - cantEnviada == 0;
+    }
+
+    $scope.agotadoSustituido = function(tipo){
+        return tipo == 'AGOTADO SUSTITUIDO';
+    }
+
+    $scope.agotadoReal = function(agotado){
+        //Hay sustitutos?
+        if(agotado.listaSustitutos && agotado.listaSustitutos.length > 0){
+            //El sustituto es igual al original?
+            if(agotado.nombre == agotado.listaSustitutos[0].sustituto){
+                return false;
+            }
+        }
+        return true;
+    }
+
     $scope.inicializar = function(mostrarIndicador){
 
         if(Internet.get()) {

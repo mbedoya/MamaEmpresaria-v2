@@ -38,6 +38,17 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
         return tipo == 'AGOTADO SUSTITUIDO';
     }
 
+    $scope.agotadoReal = function(agotado){
+        //Hay sustitutos?
+        if(agotado.listaSustitutos && agotado.listaSustitutos.length > 0){
+            //El sustituto es igual al original?
+            if(agotado.nombre == agotado.listaSustitutos[0].sustituto){
+                return false;
+            }
+        }
+        return true;
+    }
+
     $scope.inicializar = function(mostrarIndicador){
 
         if(Internet.get()) {

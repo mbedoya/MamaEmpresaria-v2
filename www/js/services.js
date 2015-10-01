@@ -889,8 +889,7 @@ angular.module('novaventa.services', [])
 
                     }).
                     error(function(data, status, headers, config) {
-                        
-                        fx(false, "Mamá Empresaria, esta aplicación sólo funciona con internet, verifica tu conexión. En este momento no podemos consultar tu información", {});
+                        fx(false, "Lo sentimos, no es posible iniciar sesión en este momento", {});
                     });
 
             },

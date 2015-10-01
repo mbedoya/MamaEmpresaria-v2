@@ -435,7 +435,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             $scope.detalleFecha = listaEventos;
 
         }catch(err){
-            alert(err.message);
+            console.log(err.message);
         }
 
         try{
@@ -443,7 +443,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 $scope.openModal();
             }
         }catch(err){
-            alert(err.message);
+            console.log(err.message);
         }
     }
 
@@ -505,6 +505,17 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         }
     }
 
+    $scope.corregirNumeroCampana = function(numero){
+        if(numero > $rootScope.numeroCampanasAno){
+            return 1;
+        }else{
+            if(numero == 0){
+                return $rootScope.numeroCampanasAno;
+            }
+        }
+        return numero;
+    }
+
     $scope.actualizarCampanasMes = function(){
 
         $scope.misCampanas.length = 0;
@@ -520,12 +531,12 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             }
 
             if(new Date(correteo).getMonth() == new Date($scope.fechaCalendario).getMonth()){
-                $scope.misCampanas.push({numero: $scope.campana-1, color: $scope.estiloCampana($scope.campana-1)});
+                $scope.misCampanas.push({numero: corregirNumeroCampana($scope.campana-1), color: $scope.estiloCampana($scope.campana-1)});
             }
         }
 
         //Campana actual
-        $scope.misCampanas.push({numero: $scope.campana, color: $scope.estiloCampana($scope.campana)});
+        $scope.misCampanas.push({numero: corregirNumeroCampana($scope.campana), color: $scope.estiloCampana($scope.campana)});
         console.log("camp actual: " + Number($scope.campana));
 
         var campSiguienteAdicionada = false;
@@ -538,7 +549,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             }
 
             if(new Date(correteo).getMonth() == new Date($scope.fechaCalendario).getMonth()){
-                $scope.misCampanas.push({numero: $scope.campana+1, color: $scope.estiloCampana($scope.campana+1)});
+                $scope.misCampanas.push({numero: corregirNumeroCampana($scope.campana+1), color: $scope.estiloCampana($scope.campana+1)});
                 campSiguienteAdicionada = true;
             }
         }
@@ -553,9 +564,9 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             
             if(new Date(correteo).getMonth() == new Date($scope.fechaCalendario).getMonth()){
                 if(!campSiguienteAdicionada){
-                   $scope.misCampanas.push({numero: $scope.campana+1, color: $scope.estiloCampana($scope.campana+1)});
+                   $scope.misCampanas.push({numero: corregirNumeroCampana($scope.campana+1), color: $scope.estiloCampana($scope.campana+1)});
                 }
-                $scope.misCampanas.push({numero: $scope.campana+2, color: $scope.estiloCampana($scope.campana+2)});
+                $scope.misCampanas.push({numero: corregirNumeroCampana($scope.campana+2), color: $scope.estiloCampana($scope.campana+2)});
             }
         }
 
