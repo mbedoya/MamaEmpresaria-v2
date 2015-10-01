@@ -45,11 +45,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controllers-mispuntos.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="controllers-mispuntos.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/controllers-mispuntos.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9532967" vertical-offset="1091" max-vertical-offset="3060">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1091" max-vertical-offset="3060">
               <caret line="105" column="59" selection-start-line="105" selection-start-column="59" selection-end-line="105" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mipedido-trazabilidad-anterior.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/templates/mipedido-trazabilidad-anterior.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-15.076923" vertical-offset="1665" max-vertical-offset="2652">
+              <caret line="121" column="64" selection-start-line="121" selection-start-column="64" selection-end-line="121" selection-end-column="64" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mipedido-trazabilidad.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/www/templates/mipedido-trazabilidad.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.53988606" vertical-offset="2562" max-vertical-offset="3366">
+              <caret line="173" column="69" selection-start-line="173" selection-start-column="69" selection-end-line="173" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -100,7 +120,6 @@
         <option value="$PROJECT_DIR$/www/js/controllers-mipedido.js" />
         <option value="$PROJECT_DIR$/www/templates/informacionagotados.html" />
         <option value="$PROJECT_DIR$/www/templates/home.html" />
-        <option value="$PROJECT_DIR$/www/templates/mipedido-trazabilidad.html" />
         <option value="$PROJECT_DIR$/www/templates/login.html" />
         <option value="$PROJECT_DIR$/www/templates/clave-nueva-clave-2.html" />
         <option value="$PROJECT_DIR$/www/js/controllers-clave-nueva-clave-2.js" />
@@ -129,13 +148,14 @@
         <option value="$PROJECT_DIR$/config.xml" />
         <option value="$PROJECT_DIR$/www/js/controllers-inicializacion.js" />
         <option value="$PROJECT_DIR$/www/js/controllers-terminos-condiciones.js" />
-        <option value="$PROJECT_DIR$/www/templates/mipedido-trazabilidad-anterior.html" />
         <option value="$PROJECT_DIR$/www/templates/mipedido-anterior-agotados-modal.html" />
         <option value="$PROJECT_DIR$/www/js/controllers-mipedido-trazabilidad-anterior.js" />
         <option value="$PROJECT_DIR$/www/js/controllers-mipedido-trazabilidad.js" />
         <option value="$PROJECT_DIR$/www/js/services.js" />
         <option value="$PROJECT_DIR$/www/js/controllers-informacionfechas.js" />
         <option value="$PROJECT_DIR$/www/js/controllers-mispuntos.js" />
+        <option value="$PROJECT_DIR$/www/templates/mipedido-trazabilidad-anterior.html" />
+        <option value="$PROJECT_DIR$/www/templates/mipedido-trazabilidad.html" />
       </list>
     </option>
   </component>
@@ -432,13 +452,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/mipedido-trazabilidad.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="3366">
-          <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/mipedido.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6125356" vertical-offset="981" max-vertical-offset="1683">
@@ -668,14 +681,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/mipedido-trazabilidad-anterior.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.153846" vertical-offset="1665" max-vertical-offset="2652">
-          <caret line="115" column="109" selection-start-line="115" selection-start-column="109" selection-end-line="115" selection-end-column="109" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/mipedido-anterior-agotados-modal.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.769231" vertical-offset="322" max-vertical-offset="1088">
@@ -744,8 +749,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controllers-mispuntos.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9532967" vertical-offset="1091" max-vertical-offset="3060">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1091" max-vertical-offset="3060">
           <caret line="105" column="59" selection-start-line="105" selection-start-column="59" selection-end-line="105" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/mipedido-trazabilidad-anterior.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.076923" vertical-offset="1665" max-vertical-offset="2652">
+          <caret line="121" column="64" selection-start-line="121" selection-start-column="64" selection-end-line="121" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/mipedido-trazabilidad.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.53988606" vertical-offset="2562" max-vertical-offset="3366">
+          <caret line="173" column="69" selection-start-line="173" selection-start-column="69" selection-end-line="173" selection-end-column="69" />
           <folding />
         </state>
       </provider>
