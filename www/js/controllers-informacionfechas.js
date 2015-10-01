@@ -531,12 +531,12 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             }
 
             if(new Date(correteo).getMonth() == new Date($scope.fechaCalendario).getMonth()){
-                $scope.misCampanas.push({numero: corregirNumeroCampana($scope.campana-1), color: $scope.estiloCampana($scope.campana-1)});
+                $scope.misCampanas.push({numero: $scope.corregirNumeroCampana($scope.campana-1), color: $scope.estiloCampana($scope.campana-1)});
             }
         }
 
         //Campana actual
-        $scope.misCampanas.push({numero: corregirNumeroCampana($scope.campana), color: $scope.estiloCampana($scope.campana)});
+        $scope.misCampanas.push({numero: $scope.corregirNumeroCampana($scope.campana), color: $scope.estiloCampana($scope.campana)});
         console.log("camp actual: " + Number($scope.campana));
 
         var campSiguienteAdicionada = false;
@@ -549,7 +549,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             }
 
             if(new Date(correteo).getMonth() == new Date($scope.fechaCalendario).getMonth()){
-                $scope.misCampanas.push({numero: corregirNumeroCampana($scope.campana+1), color: $scope.estiloCampana($scope.campana+1)});
+                $scope.misCampanas.push({numero: $scope.corregirNumeroCampana($scope.campana+1), color: $scope.estiloCampana($scope.campana+1)});
                 campSiguienteAdicionada = true;
             }
         }
@@ -564,9 +564,9 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             
             if(new Date(correteo).getMonth() == new Date($scope.fechaCalendario).getMonth()){
                 if(!campSiguienteAdicionada){
-                   $scope.misCampanas.push({numero: corregirNumeroCampana($scope.campana+1), color: $scope.estiloCampana($scope.campana+1)});
+                   $scope.misCampanas.push({numero: $scope.corregirNumeroCampana($scope.campana+1), color: $scope.estiloCampana($scope.campana+1)});
                 }
-                $scope.misCampanas.push({numero: corregirNumeroCampana($scope.campana+2), color: $scope.estiloCampana($scope.campana+2)});
+                $scope.misCampanas.push({numero: $scope.corregirNumeroCampana($scope.campana+2), color: $scope.estiloCampana($scope.campana+2)});
             }
         }
 
