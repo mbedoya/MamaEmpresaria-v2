@@ -33,58 +33,48 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
 
             Mama.getPuntos($rootScope.datos.cedula, function (success, data){
 
-                if(mostrarIndicador){
-                   $ionicLoading.hide();
-                }
-
                 if(success){
                     $rootScope.puntos = data;
 
+                    Mama.getPuntosCampanaAnterior($rootScope.datos.cedula, function (success, data){
+
+                        if(success){
+                            $rootScope.puntosCampanaAnterior = data;
+
+                            Mama.getPuntosCampanaOperativaAntares($rootScope.datos.cedula, function (success, data){
+
+                                if(success){
+                                    $rootScope.puntosCampanaOperativaAntares = data;
+
+                                    Mama.getSugerenciaPremios($rootScope.datos.cedula, function(success, data){
+
+                                        if(mostrarIndicador){
+                                            $ionicLoading.hide();
+                                        }
+
+                                        if(success){
+                                            $scope.sugerenciaPremios = data;
+                                            console.log(data);
+                                        }else{
+                                            $scope.mostrarAyuda("Mis Puntos","En este momento no podemos acceder a tu información");
+                                        }
+                                    });
+
+                                }else{
+                                    $scope.mostrarAyuda("Mis Puntos","En este momento no podemos acceder a tu información");
+                                }
+                            });
+
+                        }else{
+                            $scope.mostrarAyuda("Mis Puntos","En este momento no podemos acceder a tu información");
+                        }
+
+                    });
+
                 }else{
                     $scope.mostrarAyuda("Mis Puntos","En este momento no podemos acceder a tu información");
                 }
-            });
 
-            Mama.getPuntosCampanaAnterior($rootScope.datos.cedula, function (success, data){
-
-                if(mostrarIndicador){
-                    $ionicLoading.hide();
-                }
-
-                if(success){
-                    $rootScope.puntosCampanaAnterior = data;
-
-                }else{
-                    $scope.mostrarAyuda("Mis Puntos","En este momento no podemos acceder a tu información");
-                }
-            });
-            
-            Mama.getPuntosCampanaOperativaAntares($rootScope.datos.cedula, function (success, data){
-
-                if(mostrarIndicador){
-                    $ionicLoading.hide();
-                }
-
-                if(success){
-                    $rootScope.puntosCampanaOperativaAntares = data;
-
-                }else{
-                    $scope.mostrarAyuda("Mis Puntos","En este momento no podemos acceder a tu información");
-                }
-            });
-            
-            Mama.getSugerenciaPremios($rootScope.datos.cedula, function(success, data){
-                
-                if(mostrarIndicador){
-                    $ionicLoading.hide();   
-                }
-                
-                if(success){
-                    $scope.sugerenciaPremios = data;  
-                    console.log(data);
-                }else{
-                    $scope.mostrarAyuda("Mis Puntos","En este momento no podemos acceder a tu información");  
-                }
             });
 
 
