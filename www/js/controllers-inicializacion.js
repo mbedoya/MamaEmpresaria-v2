@@ -64,7 +64,7 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
     $scope.inicializar = function(){
 
         
-        $rootScope.configuracion = { ip_servidores: 'http://200.47.173.68:9081' };
+        $rootScope.configuracion = { ip_servidores: 'http://200.47.173.68:9083' };
         //$rootScope.configuracion = { ip_servidores: 'http://200.47.173.67:9080' };
         //$rootScope.configuracion = { ip_servidores: 'http://200.47.173.67:9082' };
         //$rootScope.configuracion = { ip_servidores: 'http://transferenciaelectronica.novaventa.com.co' };

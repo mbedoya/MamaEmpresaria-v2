@@ -85,6 +85,26 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
         }
     }
 
+    $scope.agotadoReal = function(agotado){
+        //Hay sustitutos?
+        if(agotado.listaSustitutos && agotado.listaSustitutos.length > 0){
+            //El sustituto es igual al original?
+            if(agotado.nombre == agotado.listaSustitutos[0].sustituto){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //Si hay agotados reales? es decir que el mismo producto no se haya agotado y luego si esté disponible
+    $scope.hayAgotadosAnteriorReales = function(){
+        if($scope.agotadosAnterior.agotadosME && $scope.agotadosAnterior.agotadosME.length == 1){
+            return $scope.agotadoReal($scope.agotadosAnterior.agotadosME[0]);
+        }
+
+        return true;
+    }
+
     $scope.ultimoEstadoPedidoActual = function(){
 
         if($scope.pedidoActual && $scope.pedidoActual.length > 0){

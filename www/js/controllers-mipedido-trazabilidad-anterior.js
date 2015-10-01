@@ -49,6 +49,15 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
         return true;
     }
 
+    //Si hay agotados reales? es decir que el mismo producto no se haya agotado y luego si esté disponible
+    $scope.hayAgotadosReales = function(){
+        if($scope.agotadosAnterior.agotadosME && $scope.agotadosAnterior.agotadosME.length == 1){
+            return $scope.agotadoReal($scope.agotadosAnterior.agotadosME[0]);
+        }
+
+        return true;
+    }
+
     $scope.inicializar = function(mostrarIndicador){
 
         if(Internet.get()) {

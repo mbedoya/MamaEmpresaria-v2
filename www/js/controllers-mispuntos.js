@@ -106,10 +106,8 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
     $scope.puntosDisponibles = function(){
 
         if ($rootScope.puntosCampanaOperativaAntares){
-            alert($rootScope.puntosCampanaOperativaAntares.puntosDisponibles);
             return $rootScope.puntosCampanaOperativaAntares.puntosDisponibles;
         }else{
-            alert("sin puntos operativa");
             return "";
         }
     }

@@ -23,7 +23,7 @@
                 <p>{{ultimoEstadoPedidoAnterior().estado}}<br />
                     {{ultimoEstadoPedidoAnterior().fecha | date: 'dd' }} de  {{ultimoEstadoPedidoAnterior().fecha | date: 'MMMM' }}
                 </p>
-                <span class="assertive" ng-show="agotadosPedidoAnterior()">
+                <span class="assertive" ng-show="agotadosPedidoAnterior() && hayAgotadosAnteriorReales()">
                     Tienes productos agotados en tu pedido
                 </span>
                 <i class="icon ion-chevron-right"></i>
