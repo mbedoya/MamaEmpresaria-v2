@@ -581,113 +581,113 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         Campana.getRecordatorios($scope.fechaCalendario.getFullYear(), $scope.campana+1, $rootScope.zona, function (success, data){
             if(success){
                 $scope.fechasSiguienteCampana = data.listaRecordatorios;
-
-                //Obtener los recordatorios de la campana anterior
-                Campana.getRecordatorios($scope.fechaCalendario.getFullYear(), $scope.campana-1, $rootScope.zona, function (success, data){
-                    if(success){
-                        $scope.fechasCampanaAnterior = data.listaRecordatorios;
-
-                        $scope.actualizarCampanasMes();
-
-                        var fechaActual = $scope.fechaCalendario;
-
-                        var dateStr = $scope.padStr(fechaActual.getFullYear()) + "-" +
-                            $scope.padStr(1 + fechaActual.getMonth()) + "-" + "02";
-
-                        console.log(dateStr);
-
-                        var primerDiaMes = new Date(dateStr).getDay();
-                        console.log("primer dia mes: " + primerDiaMes);
-                        var inicioMes = new Date(dateStr);
-
-                        //Objeto con todas las semanas
-                        var semanas = new Array();
-
-                        var finMes = false;
-                        var diaMes = 0;
-                        var indiceDias = 0;
-                        var mesActual = fechaActual.getMonth();
-                        var reiniciarDia = true;
-
-                        while(!finMes){
-
-                            //Objeto con cada semana
-                            var semana = new Array();
-                            //Si no hay registros entonces adicionar a la primera semana los registros necesarios del mes anterior
-
-                            if(semanas.length == 0){
-                                for(j=primerDiaMes; j>0; j--){
-                                    var fechaAnterior = new Date(dateStr);
-                                    fechaAnterior.setDate(-j+1);
-                                    semana.push({ "dia": fechaAnterior.getDate(),
-                                        "fechaCompleta":  $scope.padStr(fechaAnterior.getFullYear()) + "-" +
-                                            $scope.padStr(1 + fechaAnterior.getMonth()) + "-" +
-                                            $scope.padStr(fechaAnterior.getDate())
-                                    });
-                                }
-                                for(i=0; i<7-primerDiaMes; i++){
-
-                                    var nuevaFecha = new Date();
-                                    nuevaFecha.setTime( inicioMes.getTime() + indiceDias * 86400000 );
-
-                                    if(nuevaFecha.getMonth() != mesActual && reiniciarDia){
-                                        diaMes = 0;
-                                        reiniciarDia = false;
-                                    }
-                                    semana.push({ "dia": diaMes + 1,
-                                        "fechaCompleta":  $scope.padStr(nuevaFecha.getFullYear()) + "-" +
-                                            $scope.padStr(1 + nuevaFecha.getMonth()) + "-" +
-                                            $scope.padStr(nuevaFecha.getDate())
-                                    });
-                                    indiceDias++;
-                                    diaMes++;
-                                }
-                            }else{
-                                for(i=0; i<7; i++){
-
-                                    var nuevaFecha = new Date();
-                                    nuevaFecha.setTime( inicioMes.getTime() + indiceDias * 86400000 );
-
-                                    if(nuevaFecha.getMonth() != mesActual && reiniciarDia){
-                                        diaMes = 0;
-                                        finMes = true;
-                                        reiniciarDia = false;
-                                    }
-                                    semana.push({ "dia": diaMes + 1,
-                                        "fechaCompleta":  $scope.padStr(nuevaFecha.getFullYear()) + "-" +
-                                            $scope.padStr(1 + nuevaFecha.getMonth()) + "-" +
-                                            $scope.padStr(nuevaFecha.getDate())
-                                    });
-                                    indiceDias++;
-                                    diaMes++;
-                                }
-                            }
-
-                            //al terminar la semana verificar nuevamente si el inicio de la semana entrante no corresponde a
-                            //otro mes
-                            var nuevaFecha = new Date();
-                            nuevaFecha.setTime( inicioMes.getTime() + indiceDias * 86400000 );
-
-                            if(nuevaFecha.getMonth() != mesActual){
-                                finMes = true;
-                            }
-
-                            semanas.push(semana);
-                        }
-
-                        console.log("Semanas:" + semanas.length);
-                        console.log(semanas);
-                        $scope.semanas = semanas;
-
-                    }else{
-
-                    }
-                });
-
+                
+                $scope.actualizarCampanasMes();
             }else{
 
             }
         });
+
+        //Obtener los recordatorios de la campana anterior
+        Campana.getRecordatorios($scope.fechaCalendario.getFullYear(), $scope.campana-1, $rootScope.zona, function (success, data){
+            if(success){
+                $scope.fechasCampanaAnterior = data.listaRecordatorios;
+
+                $scope.actualizarCampanasMes();
+            }else{
+
+            }
+        });
+
+        var fechaActual = $scope.fechaCalendario;
+
+        var dateStr = $scope.padStr(fechaActual.getFullYear()) + "-" +
+            $scope.padStr(1 + fechaActual.getMonth()) + "-" + "02";
+
+        console.log(dateStr);
+
+        var primerDiaMes = new Date(dateStr).getDay();
+        console.log("primer dia mes: " + primerDiaMes);
+        var inicioMes = new Date(dateStr);
+
+        //Objeto con todas las semanas
+        var semanas = new Array();
+
+        var finMes = false;
+        var diaMes = 0;
+        var indiceDias = 0;
+        var mesActual = fechaActual.getMonth();
+        var reiniciarDia = true;
+
+        while(!finMes){
+
+            //Objeto con cada semana
+            var semana = new Array();
+            //Si no hay registros entonces adicionar a la primera semana los registros necesarios del mes anterior
+
+            if(semanas.length == 0){
+                for(j=primerDiaMes; j>0; j--){
+                    var fechaAnterior = new Date(dateStr);
+                    fechaAnterior.setDate(-j+1);
+                    semana.push({ "dia": fechaAnterior.getDate(),
+                        "fechaCompleta":  $scope.padStr(fechaAnterior.getFullYear()) + "-" +
+                            $scope.padStr(1 + fechaAnterior.getMonth()) + "-" +
+                            $scope.padStr(fechaAnterior.getDate())
+                    });
+                }
+                for(i=0; i<7-primerDiaMes; i++){
+
+                    var nuevaFecha = new Date();
+                    nuevaFecha.setTime( inicioMes.getTime() + indiceDias * 86400000 );
+
+                    if(nuevaFecha.getMonth() != mesActual && reiniciarDia){
+                        diaMes = 0;
+                        reiniciarDia = false;
+                    }
+                    semana.push({ "dia": diaMes + 1,
+                        "fechaCompleta":  $scope.padStr(nuevaFecha.getFullYear()) + "-" +
+                            $scope.padStr(1 + nuevaFecha.getMonth()) + "-" +
+                            $scope.padStr(nuevaFecha.getDate())
+                    });
+                    indiceDias++;
+                    diaMes++;
+                }
+            }else{
+                for(i=0; i<7; i++){
+
+                    var nuevaFecha = new Date();
+                    nuevaFecha.setTime( inicioMes.getTime() + indiceDias * 86400000 );
+
+                    if(nuevaFecha.getMonth() != mesActual && reiniciarDia){
+                        diaMes = 0;
+                        finMes = true;
+                        reiniciarDia = false;
+                    }
+                    semana.push({ "dia": diaMes + 1,
+                        "fechaCompleta":  $scope.padStr(nuevaFecha.getFullYear()) + "-" +
+                            $scope.padStr(1 + nuevaFecha.getMonth()) + "-" +
+                            $scope.padStr(nuevaFecha.getDate())
+                    });
+                    indiceDias++;
+                    diaMes++;
+                }
+            }
+
+            //al terminar la semana verificar nuevamente si el inicio de la semana entrante no corresponde a
+            //otro mes
+            var nuevaFecha = new Date();
+            nuevaFecha.setTime( inicioMes.getTime() + indiceDias * 86400000 );
+
+            if(nuevaFecha.getMonth() != mesActual){
+                finMes = true;
+            }
+
+            semanas.push(semana);
+        }
+
+        console.log("Semanas:" + semanas.length);
+        console.log(semanas);
+        $scope.semanas = semanas;
     }
     
     $scope.mostrarConectorActividad=function(actividad){
@@ -723,12 +723,13 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
         $scope.semanasCalendario();
 
+        $ionicLoading.hide();
+
         //Seleccionar la fecha actual
         $scope.seleccionarFecha($scope.padStr($scope.fechaCalendario.getFullYear()) + "-" +
             $scope.padStr(1 + $scope.fechaCalendario.getMonth()) + "-" +
             $scope.padStr($scope.fechaCalendario.getDate()), false);
 
-        $ionicLoading.hide();
     }
 
     $scope.$on('online', function(event, args){
@@ -737,6 +738,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
     $scope.$on('loggedin', function(event, args){
         $scope.inicializar();
+        console.log('logging in - calendario');
     });
 
     $scope.inicializar();
