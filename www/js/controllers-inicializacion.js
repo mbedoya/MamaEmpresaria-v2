@@ -116,9 +116,9 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
 
                                     $scope.datosInicio = {clave: '' };
 
-                                    $ionicHistory.nextViewOptions({
+                                    /*$ionicHistory.nextViewOptions({
                                         disableBack: true
-                                    });
+                                    });*/
 
                                     //Si la Mamá tiene versión para aceptar entonces ir a terminos y condiciones
                                     if ($rootScope.datos.versionHabeasData){

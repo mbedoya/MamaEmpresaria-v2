@@ -154,6 +154,11 @@ moduloControlador.controller('ClavePregunta2Ctrl', function($scope, $location, $
         $scope.confirmar();
     }
     
+    $scope.volverMenu = function(){
+        console.log($ionicHistory);
+        $ionicHistory.goBack();
+    }
+    
     $scope.$on('$ionicView.beforeEnter', function(){
         $scope.inicializar();
     });

@@ -47,9 +47,9 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
                    
                }else{
                    
-                   $ionicHistory.nextViewOptions({
+                   /*$ionicHistory.nextViewOptions({
                         disableBack: true
-                    });
+                    });*/
                    
                    if(data.razonRechazo && 
                        (data.razonRechazo == "Pregunta 1 ya ha sido contestada") ){
@@ -175,14 +175,15 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
 
                         if(success){
 
-                            $ionicHistory.nextViewOptions({
+                            /*$ionicHistory.nextViewOptions({
                                 disableBack: true
-                            });
+                            });*/
 
                             if(data.valido && data.valido == 1){
                                 $location.path('/app/clave-nueva-clave-1');
                             }else{
                                 $scope.mostrarAyuda("Creación de clave", "Lo sentimos, has fallado en esta respuesta. Responde una pregunta más");
+                                $ionicHistory.currentView($ionicHistory.backView());
                                 $location.path('/app/clave-pregunta-2');
                             }
 
