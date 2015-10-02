@@ -59,6 +59,7 @@ moduloControlador.controller('CambioClaveActualCtrl', function($scope, $location
 
                     if(success){
 
+                        $ionicHistory.currentView($ionicHistory.backView());
                         $location.path('/app/cambio-clave-nueva');
 
                     }else{
