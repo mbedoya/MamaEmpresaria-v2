@@ -15,7 +15,7 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
 
         if(mostrarIndicador){
             $scope.loading =  $ionicLoading.show({
-                template: 'Estamos consultando el estado de tu pedido'
+                template: Utilidades.getPlantillaEspera('Estamos consultando el estado de tu pedido')
             });
         }
         

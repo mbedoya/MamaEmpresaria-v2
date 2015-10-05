@@ -55,7 +55,7 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
 
             if(mostrarIndicador){
                 $scope.loading =  $ionicLoading.show({
-                    template: 'Estamos consultando el estado de tu pedido'
+                    template: Utilidades.getPlantillaEspera('Estamos consultando el estado de tu pedido')
                 });
             }
 
