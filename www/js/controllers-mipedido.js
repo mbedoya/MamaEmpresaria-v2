@@ -219,8 +219,8 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
 
     $scope.inicializar(true);
 
-    //$scope.$on('$ionicView.beforeEnter', function(){
-    //    $scope.inicializar();
-    //});
+    $scope.$on('$ionicView.beforeEnter', function(){
+        $scope.inicializar();
+    });
 
 });
