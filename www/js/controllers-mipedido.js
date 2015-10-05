@@ -53,7 +53,8 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
             });
 
         }catch(err){
-            alert(err.message);
+            console.log(err.message);
+            alert("Lo sentimos, no podemos consultar tu Pedido en este momento");
         }
 
     }
@@ -120,7 +121,7 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
             return contadorAgotados > 0 || contadorSustituidos > 0;
 
         }catch(err){
-            alert(err.message);
+            console.log(err.message);
         }
 
         return false;
