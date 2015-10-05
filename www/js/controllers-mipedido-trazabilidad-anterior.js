@@ -143,10 +143,14 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
     });
 
     $scope.$on('loggedin', function(event, args){
-        $scope.inicializar();
+        //$scope.inicializar();
     });
 
-    $scope.inicializar(true);
+    //$scope.inicializar(true);
+
+    $scope.$on('$ionicView.beforeEnter', function(){
+        $scope.inicializar(true);
+    });
 
     $scope.saldo = function(){
         return Math.abs(Number($rootScope.datos.saldo));
