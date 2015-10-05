@@ -1,5 +1,8 @@
 moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScope, $ionicLoading, $state, $ionicPopup, $ionicModal, $http, Mama, Campana, Utilidades) {
 
+    //Registro en Analytics
+    GA.trackPage($rootScope.gaPlugin, "Calendario");
+
     $ionicModal.fromTemplateUrl('templates/informacionfechas-modal.html', {
         scope: $scope,
         animation: 'slide-in-up'

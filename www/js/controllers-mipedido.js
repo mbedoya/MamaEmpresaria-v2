@@ -3,65 +3,62 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Mi Pedido");
 
-
-    $scope.agotados = function(){
-        console.log($rootScope.agotados.agotadosME);
-        return $rootScope.agotados.agotadosME;
-    }
-
     $scope.inicializar = function(mostrarIndicador){
 
-        console.log("initialize home pedido");
+        try{
 
-        if(mostrarIndicador){
-            $scope.loading =  $ionicLoading.show({
-                template: Utilidades.getPlantillaEspera('Estamos consultando el estado de tu pedido')
+            if(mostrarIndicador){
+                $scope.loading =  $ionicLoading.show({
+                    template: Utilidades.getPlantillaEspera('Estamos consultando el estado de tu pedido')
+                });
+            }
+
+            Pedido.getTrazabilidadAnterior($rootScope.datos.cedula, function (success, data){
+                if(success){
+                    $scope.pedidoAnterior = data.historiaEstados;
+
+                    console.log("Trazabilidad anterior");
+                    console.log($scope.pedidoAnterior);
+                }else{
+
+                }
             });
+
+            Pedido.getAgotadosAnterior($rootScope.datos.cedula, function (success, data){
+                if(success){
+                    $scope.agotadosAnterior = data;
+                }else{
+
+                }
+            });
+
+            Pedido.getTrazabilidadActual($rootScope.datos.cedula, function (success, data){
+
+                $ionicLoading.hide();
+
+                if(success){
+                    console.log(data);
+                    $scope.pedidoActual = data.historiaEstados;
+                }else{
+
+                }
+            });
+
+            Pedido.getAgotadosActual($rootScope.datos.cedula, function (success, data){
+                if(success){
+                    $scope.agotadosActual = data;
+                }else{
+
+                }
+            });
+
+        }catch(err){
+            alert(err.message);
         }
-        
-        Pedido.getTrazabilidadAnterior($rootScope.datos.cedula, function (success, data){
-            if(success){
-                $scope.pedidoAnterior = data.historiaEstados;
 
-                console.log("Trazabilidad anterior");
-                console.log($scope.pedidoAnterior);
-            }else{
-
-            }
-        });
-        
-        Pedido.getAgotadosAnterior($rootScope.datos.cedula, function (success, data){
-            if(success){
-                $scope.agotadosAnterior = data;
-            }else{
-
-            }
-        });
-
-        Pedido.getTrazabilidadActual($rootScope.datos.cedula, function (success, data){
-
-            $ionicLoading.hide();
-
-            if(success){
-                console.log(data);
-                $scope.pedidoActual = data.historiaEstados;
-            }else{
-
-            }
-        });
-
-        Pedido.getAgotadosActual($rootScope.datos.cedula, function (success, data){
-            if(success){
-                $scope.agotadosActual = data;
-            }else{
-
-            }
-        });
     }
 
     $scope.irATrazabilidadAnterior = function(){
-        console.log("Trazabilidad anterior");
-        //$location.path('/app//mipedido-trazabilidad-anterior');
         $state.go('app.menu.tabs.mipedido-trazabilidad-anterior', null, {reload:true});
     }
 
@@ -98,27 +95,35 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
     
     //Si hay agotados reales? es decir que el mismo producto no se haya agotado y luego si esté disponible
     $scope.hayAgotadosAnteriorReales = function(){
-        
-        var contadorAgotados = 0;
-        var contadorSustituidos = 0;
-        
-        if($scope.agotadosAnterior && $scope.agotadosAnterior.agotadosME){
-            //Recorrer todos los agotados
-            for(i=0; i<$scope.agotadosAnterior.agotadosME.length;i++){
-                
-                if($scope.agotadosAnterior.agotadosME[i].tipoAgotado == "AGOTADO SUSTITUIDO"){
-                    if($scope.agotadoReal($scope.agotadosAnterior.agotadosME[i])){
-                        contadorSustituidos = contadorSustituidos + 1;
+
+        try{
+
+            var contadorAgotados = 0;
+            var contadorSustituidos = 0;
+
+            if($scope.agotadosAnterior && $scope.agotadosAnterior.agotadosME){
+                //Recorrer todos los agotados
+                for(i=0; i<$scope.agotadosAnterior.agotadosME.length;i++){
+
+                    if($scope.agotadosAnterior.agotadosME[i].tipoAgotado == "AGOTADO SUSTITUIDO"){
+                        if($scope.agotadoReal($scope.agotadosAnterior.agotadosME[i])){
+                            contadorSustituidos = contadorSustituidos + 1;
+                        }
+                    }else{
+                        contadorAgotados = contadorAgotados + 1;
                     }
-                }else{
-                    contadorAgotados = contadorAgotados + 1;
                 }
-            }    
-        }else{
-            return false;
+            }else{
+                return false;
+            }
+
+            return contadorAgotados > 0 || contadorSustituidos > 0;
+
+        }catch(err){
+            alert(err.message);
         }
 
-        return contadorAgotados > 0 || contadorSustituidos > 0;
+        return false;
     }
 
     $scope.ultimoEstadoPedidoActual = function(){
