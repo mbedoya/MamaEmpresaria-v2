@@ -1,4 +1,4 @@
-moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScope, $ionicLoading, $state, $ionicPopup, $ionicModal, $http, Mama, Campana, Utilidades) {
+moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScope, $ionicLoading, $state, $ionicPopup, $ionicModal, $http, GA, Mama, Campana, Utilidades) {
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Calendario");
