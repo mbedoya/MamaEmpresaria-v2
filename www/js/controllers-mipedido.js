@@ -216,7 +216,7 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
     }
 
     $scope.$on('online', function(event, args){
-        //$scope.inicializar(true);
+        $scope.inicializar(true);
     });
 
     $scope.$on('loggedin', function(event, args){
