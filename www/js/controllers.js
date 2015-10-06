@@ -9,6 +9,10 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                 $ionicHistory.nextViewOptions({
                     disableBack: true
                 });
+
+                //Eliminar toda las variables de estado de carga de información de pantallas
+                $rootScope.ventanaMiPedidoCargada = null;
+
                 $location.path('/app/login');
             };
 

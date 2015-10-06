@@ -216,17 +216,19 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
     }
 
     $scope.$on('online', function(event, args){
-        $scope.inicializar(true);
+        //$scope.inicializar(true);
     });
 
     $scope.$on('loggedin', function(event, args){
         //$scope.inicializar();
     });
 
-    //$scope.inicializar(true);
-
     $scope.$on('$ionicView.beforeEnter', function(){
-        $scope.inicializar(true);
+        //Si no se ha cargado la información entonces inicializar
+        if(!$rootScope.ventanaMiPedidoCargada){
+            $rootScope.ventanaMiPedidoCargada = true;
+            $scope.inicializar(true);
+        }
     });
 
 });
