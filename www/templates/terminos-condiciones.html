@@ -1,7 +1,7 @@
 <ion-view view-title="Términos y condiciones">
     <ion-content overflow-scroll="true">
         <div class="content-terminos padding">
-<!--            <img src="img/Barra.png" class="login-img" style="margin-bottom:22px;" />-->
+            <!--            <img src="img/Barra.png" class="login-img" style="margin-bottom:22px;" />-->
             <h4>Mamá Empresaria</h4>
             <h3>Para ingresar a la aplicación es necesario que aceptes los términos y condiciones.</h3>
             <form>
@@ -9,14 +9,7 @@
                     <textarea id="txtTexto" rows="20" style="overflow-y: visible; height: 200px; -webkit-user-select:text" readonly="readonly" >
                     </textarea>
                 </label>
-                <ul class="list">
-                    <li class="item-checkbox">
-                        <label class="checkbox">
-                            <input type="checkbox" ng-model="modelo.seleccionado" ng-true-value="true" ng-false-value="false">
-                        </label>
-                        Acepto los términos y condiciones y la política de uso de datos personales
-                    </li>
-                </ul>
+
                 <!--
 <label class="login-button">
 <input id="aceptar" type="button" value="Continuar" class="button button-block" ng-disabled="!modelo.seleccionado" ng-click="continuar()">
@@ -25,6 +18,14 @@
 -->
             </form>
         </div>
+        <ul class="list">
+            <li class="item-checkbox">
+                <label class="checkbox">
+                    <input type="checkbox" ng-model="modelo.seleccionado" ng-true-value="true" ng-false-value="false">
+                </label>
+                Acepto los términos y condiciones y la política de uso de datos personales
+            </li>
+        </ul>
     </ion-content>
     <ion-footer-bar>
         <div class="bar bar-footer footer-no-nutresa">
