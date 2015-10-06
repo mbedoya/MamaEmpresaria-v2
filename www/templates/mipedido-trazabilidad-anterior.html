@@ -3,9 +3,9 @@
         <div class="row bread">
             Mi Pedido
         </div>
-        
 
-       <!-- Agotados -->
+
+        <!-- Agotados -->
         <div class="list list-inset" ng-show="hayAgotadosAnteriorReales()" >
             <a class="item item-icon-right assertive" ng-click="mostrarAgotados()" href="#">
                 <i class="icon ion-plus-circled"></i>
@@ -13,122 +13,124 @@
             </a>
         </div>
 
-		<!-- Anulado -->
+        <!-- Anulado -->
         <div class="list list-inset no-procesado" ng-show="estadoEncontrado('Anulado') && estadoEncontrado('Novedad')">
+
             <div class="item">
                 <span class="highlighted">Tu pedido no será enviado, puedes ver el detalle a continuación:</span>
             </div>
+
             <!-- General -->
-            <div class="item assertive" ng-show="!motivoNovedadEncontrado('morosa') && !motivoNovedadEncontrado('cupo')">
+            <div class="item assertive" ng-show="!motivoNovedadEncontrado('morosa') && !motivoNovedadEncontrado('cupo') && !motivoNovedadEncontrado('tope') ">
                 <span>
                     Mamá tu pedido no será enviado para conocer
                     la razón de esta situación comunícate con tu
                     Mamá Líder o con la Línea de Atención {{ lineaAtencion }}
                 </span>
             </div>
-            
+
             <!-- Morosidad -->
             <div class="item assertive" ng-show="motivoNovedadEncontrado('morosa')">
                 <span>
-                    Mamá Empresaria tu pedido no será enviado 
-                    ya que aún cuentas con un saldo pendiente 
-                    por pagar. Si realizaste el pago, envía el 
+                    Mamá Empresaria tu pedido no será enviado
+                    ya que aún cuentas con un saldo pendiente
+                    por pagar. Si realizaste el pago, envía el
                     comprobante a servicioalcliente@novaventa.com
                    </span>
-                </div>
-                
-                <!-- Cupo -->
-                <div class="item assertive" ng-show="motivoNovedadEncontrado('cupo') || motivoNovedadEncontrado('tope')">
+            </div>
+
+            <!-- Cupo -->
+            <div class="item assertive" ng-show="motivoNovedadEncontrado('cupo') || motivoNovedadEncontrado('tope')">
                     <span>
-                    Mamá Empresaria tu pedido no será enviado 
-                    ya que excediste el valor permitido para 
+                    Mamá Empresaria tu pedido no será enviado
+                    ya que excediste el valor permitido para
                     hacer tu pedido.
                         </span>
-                </div>
+            </div>
         </div>
-        
+
         <!-- Sin información y no es encuentro todavía, primeros 5 días -->
         <div class="list no-procesado" ng-show="pedido().razonRechazo">
-           <div class="item" href="#" >
+            <div class="item" href="#" >
                 <span class="highlighted">No tienes un pedido registrado para la campaña {{ campanaAnterior.numero }}.</span>
             </div>
         </div>
 
         <div class="list pedido">
-            
+
             <div ng-show="!pedido().razonRechazo">
 
-            <a class="item selected" href="#" ng-show="estadoEncontrado('Recibido')" >
-                <img src="img/pedido1-selected.png">
-                <h2 class="balanced">Recibido en la <br />Empresa
-                </h2>
-                <p >{{ buscarEstado('Recibido').fecha | date: 'dd'}} de {{ buscarEstado('Recibido').fecha | date: 'MMMM'}}</p>
-            </a>
+                <a class="item selected" href="#" ng-show="estadoEncontrado('Recibido')" >
+                    <img src="img/pedido1-selected.png">
+                    <h2 class="balanced">Recibido en la <br />Empresa
+                    </h2>
+                    <p >{{ buscarEstado('Recibido').fecha | date: 'dd'}} de {{ buscarEstado('Recibido').fecha | date: 'MMMM'}}</p>
+                </a>
 
-            <a class="item" href="#" ng-show="!estadoEncontrado('Recibido')" >
-                <img src="img/pedido1.png">
-                <h2 class="balanced">Recibido en la <br />Empresa
-                </h2>
-                <p >&nbsp;</p>
-            </a>
-            
-            <a class="item selected" href="#" ng-show="estadoEncontrado('Anulado')" >
-               <img src="img/anulado.png">
-               <h2 class="balanced">Anulado
-               </h2>
-               <p >{{ buscarEstado('Anulado').fecha | date: 'dd'}} de {{ buscarEstado('Anulado').fecha | date: 'MMMM'}}</p>
-            </a>
-            
-            <a class="item selected" href="#" ng-show="estadoEncontrado('Facturado') && !estadoEncontrado('Anulado')" >
-                <img src="img/pedido2-selected.png">
-               <h2 class="balanced">Facturado
-               </h2>
-               <p>{{ buscarEstado('Facturado').fecha | date: 'dd'}} de {{ buscarEstado('Facturado').fecha | date: 'MMMM'}}</p>
-            </a>
-            
-            <a class="item" href="#" ng-show="!estadoEncontrado('Facturado') && !estadoEncontrado('Anulado')" >
-                <img src="img/pedido2.png">
-               <h2 class="balanced">Facturado
-               </h2>
-               <p>&nbsp;</p>
-            </a>
-            
-            <a class="item selected" href="#" ng-show="estadoEncontrado('En proceso de empaque') && !estadoEncontrado('Anulado')" >
-               <img src="img/pedido3-selected.png">
-               <h2 class="balanced">En proceso de <br /> empaque
-               </h2>
-               <p>{{ buscarEstado('En proceso de empaque').fecha | date: 'dd'}} de {{ buscarEstado('En proceso de empaque').fecha | date: 'MMMM'}}</p>
-            </a>
-            
-            <a class="item" href="#" ng-show="!estadoEncontrado('En proceso de empaque') && !estadoEncontrado('Anulado')" >
-               <img src="img/pedido3.png">
-               <h2 class="balanced">En proceso de <br /> empaque
-               </h2>
-               <p>&nbsp;</p>
-            </a>
-            
-            <a class="item selected" href="#" ng-show="estadoEncontrado('Entregado al transportador') && !estadoEncontrado('Anulado')" >
-               <img src="img/pedido4-selected.png">
-               <h2 class="balanced">En camión en <br /> Medellín
-               </h2>
-               <p>{{ buscarEstado('Entregado al transportador').fecha | date: 'dd'}} de {{ buscarEstado('Entregado al transportador').fecha | date: 'MMMM'}}</p>
-                <p class="item-formato-anterior" ng-show="fechaRepartoPedido() != ''">
-                    Posiblemente recibas tu <br /> pedido el {{ fechaRepartoPedido() | date:'dd' }} de <br /> {{ fechaRepartoPedido() | date:'MMMM' }}
-                </p>
-            </a>
-            
-            <a class="item" href="#" ng-show="!estadoEncontrado('Entregado al transportador') && !estadoEncontrado('Anulado')" >
-               <img src="img/pedido4.png">
-               <h2 class="balanced">En camión en <br /> Medellín
-               </h2>
-                <p class="item-formato-anterior" ng-show="fechaRepartoPedido() != ''" >
-                    Posiblemente recibas tu <br /> pedido el {{ fechaRepartoPedido() | date:'dd' }} de <br /> {{ fechaRepartoPedido() | date:'MMMM' }}
-                </p>
-            </a>
-            
+                <a class="item" href="#" ng-show="!estadoEncontrado('Recibido')" >
+                    <img src="img/pedido1.png">
+                    <h2 class="balanced">Recibido en la <br />Empresa
+                    </h2>
+                    <p >&nbsp;</p>
+                </a>
+
+                <a class="item selected" href="#" ng-show="estadoEncontrado('Anulado')" >
+                    <img src="img/anulado.png">
+                    <h2 class="balanced">Anulado
+                    </h2>
+                    <p >{{ buscarEstado('Anulado').fecha | date: 'dd'}} de {{ buscarEstado('Anulado').fecha | date: 'MMMM'}}</p>
+                </a>
+
+                <a class="item selected" href="#" ng-show="estadoEncontrado('Facturado') && !estadoEncontrado('Anulado')" >
+                    <img src="img/pedido2-selected.png">
+                    <h2 class="balanced">Facturado
+                    </h2>
+                    <p>{{ buscarEstado('Facturado').fecha | date: 'dd'}} de {{ buscarEstado('Facturado').fecha | date: 'MMMM'}}</p>
+                </a>
+
+                <a class="item" href="#" ng-show="!estadoEncontrado('Facturado') && !estadoEncontrado('Anulado')" >
+                    <img src="img/pedido2.png">
+                    <h2 class="balanced">Facturado
+                    </h2>
+                    <p>&nbsp;</p>
+                </a>
+
+                <a class="item selected" href="#" ng-show="estadoEncontrado('En proceso de empaque') && !estadoEncontrado('Anulado')" >
+                    <img src="img/pedido3-selected.png">
+                    <h2 class="balanced">En proceso de <br /> empaque
+                    </h2>
+                    <p>{{ buscarEstado('En proceso de empaque').fecha | date: 'dd'}} de {{ buscarEstado('En proceso de empaque').fecha | date: 'MMMM'}}</p>
+                </a>
+
+                <a class="item" href="#" ng-show="!estadoEncontrado('En proceso de empaque') && !estadoEncontrado('Anulado')" >
+                    <img src="img/pedido3.png">
+                    <h2 class="balanced">En proceso de <br /> empaque
+                    </h2>
+                    <p>&nbsp;</p>
+                </a>
+
+                <a class="item selected" href="#" ng-show="estadoEncontrado('Entregado al transportador') && !estadoEncontrado('Anulado')" >
+                    <img src="img/pedido4-selected.png">
+                    <h2 class="balanced">En camión en <br /> Medellín
+                    </h2>
+                    <p>{{ buscarEstado('Entregado al transportador').fecha | date: 'dd'}} de {{ buscarEstado('Entregado al transportador').fecha | date: 'MMMM'}}</p>
+                    <p class="item-formato-anterior" ng-show="fechaRepartoPedido() != ''">
+                        Posiblemente recibas tu <br /> pedido el {{ fechaRepartoPedido() | date:'dd' }} de <br /> {{ fechaRepartoPedido() | date:'MMMM' }}
+                    </p>
+                </a>
+
+                <a class="item" href="#" ng-show="!estadoEncontrado('Entregado al transportador') && !estadoEncontrado('Anulado')" >
+                    <img src="img/pedido4.png">
+                    <h2 class="balanced">En camión en <br /> Medellín
+                    </h2>
+                    <p class="item-formato-anterior" ng-show="fechaRepartoPedido() != ''" >
+                        Posiblemente recibas tu <br /> pedido el {{ fechaRepartoPedido() | date:'dd' }} de <br /> {{ fechaRepartoPedido() | date:'MMMM' }}
+                    </p>
+                </a>
+
             </div>
 
-            <!-- 
+            <!--
             <a class="item item-avatar" href="#" ng-repeat="pedido in pedido().historiaEstados" ng-show="pedido.estado != 'Impresión'" >
                <img src="img/invoice.jpg">
                <h2>{{ cambiarNombreEstado(pedido.estado)}}
