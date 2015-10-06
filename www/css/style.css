@@ -660,7 +660,8 @@ textarea{
 .titulo-calendario .arrowleft {
   text-align:left;
 }
-.titulo-calendario .col-25 {
+.titulo-calendario .col-50 {
+    flex:1 1 auto;
   text-align:center;
 }
 .titulo-calendario .arrowright {
