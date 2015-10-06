@@ -205,6 +205,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     $scope.fechaEsCorreteo = function(fecha){
         encontrado = false;
         for (i = 0; i < $scope.fechas.length; i++){
+            console.log('fechas', $scope.fechas)
             if($scope.fechas[i].actividad.toLowerCase() == 'fecha correteo' &&
                 $scope.fechas[i].fecha == fecha ){
                 encontrado = true;
