@@ -113,6 +113,7 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
     }
 
     $scope.haySugeridos = function(){
+        console.log('Premios sugeridos:',$scope.sugerenciaPremios);
         return $scope.sugerenciaPremios.razonRechazo==null;
     }
 
