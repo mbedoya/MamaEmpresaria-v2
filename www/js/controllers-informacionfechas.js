@@ -705,6 +705,8 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
     $scope.inicializar = function(){
 
+        $rootScope.cargaDatos.ventanaInformacionFechas = true;
+        
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
@@ -752,7 +754,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         //Si no se ha cargado la información entonces inicializar
         if(!$rootScope.cargaDatos.ventanaInformacionFechas){
             $rootScope.cargaDatos.ventanaInformacionFechas = true;
-            
+            $scope.inicializar();
         }
     });
 
