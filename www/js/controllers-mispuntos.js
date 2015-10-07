@@ -179,11 +179,13 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
     $scope.$on('loggedin', function(event, args){
         //$scope.inicializar(false);
     });
-
-    //Si no se ha cargado la información entonces inicializar
-    if(!$rootScope.cargaDatos.ventanaMisPuntos){
-        $rootScope.cargaDatos.ventanaMisPuntos = true;
-        $scope.inicializar(true);
-    }
+    
+    $scope.$on('$ionicView.beforeEnter', function(){
+       //Si no se ha cargado la información entonces inicializar
+        if(!$rootScope.cargaDatos.ventanaMisPuntos){
+            $rootScope.cargaDatos.ventanaMisPuntos = true;
+            $scope.inicializar(true);
+        } 
+    });
 
 });

@@ -743,14 +743,16 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     });
 
     $scope.$on('loggedin', function(event, args){
-        //$scope.inicializar();
+        $scope.inicializar();
     });
+    
+    $scope.inicializar();
 
     $scope.$on('$ionicView.beforeEnter', function(){
         //Si no se ha cargado la información entonces inicializar
         if(!$rootScope.cargaDatos.ventanaInformacionFechas){
             $rootScope.cargaDatos.ventanaInformacionFechas = true;
-            $scope.inicializar();
+            
         }
     });
 
