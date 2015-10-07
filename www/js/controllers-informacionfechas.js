@@ -754,7 +754,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         //Si no se ha cargado la información entonces inicializar
         if(!$rootScope.cargaDatos.ventanaInformacionFechas){
             $rootScope.cargaDatos.ventanaInformacionFechas = true;
-            $scope.inicializar();
+            //$scope.inicializar();
         }
     });
 
