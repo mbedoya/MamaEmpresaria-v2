@@ -2,6 +2,9 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
 
     $scope.mostrarMensajeError = false;
 
+    //Indica si la versión se irá para Producción, esto modifica ip de servicios y google analytics
+    $rootScope.versionProduccion = false;
+
     //Existe un método en el rootscope para esto, sin embargo,
     //por ser la primera página algunas veces no está disponible
     $scope.mostrarAyuda = function(titulo, mensaje) {
@@ -15,8 +18,12 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
 
         if(window.plugins && window.plugins.gaPlugin){
 
-            //Pruebas: UA-60445801-1
-            //Producción: UA-67054199-1
+            var codigoAnalytics = '';
+            if($rootScope.versionProduccion){
+                codigoAnalytics = "UA-67054199-1";
+            }else{
+                codigoAnalytics = "UA-60445801-1";
+            }
 
             $rootScope.gaPlugin = window.plugins.gaPlugin;
             $rootScope.gaPlugin.init(
@@ -27,7 +34,7 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
                 function(){
 
                 },
-                "UA-60445801-1",
+                codigoAnalytics,
                 10);
         }
 
@@ -63,11 +70,12 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
 
     $scope.inicializar = function(){
 
-        
-        $rootScope.configuracion = { ip_servidores: 'http://200.47.173.68:9083' };
-        //$rootScope.configuracion = { ip_servidores: 'http://200.47.173.67:9080' };
-        //$rootScope.configuracion = { ip_servidores: 'http://200.47.173.67:9082' };
-        //$rootScope.configuracion = { ip_servidores: 'http://transferenciaelectronica.novaventa.com.co' };
+        if($rootScope.versionProduccion){
+            $rootScope.configuracion = { ip_servidores: 'http://transferenciaelectronica.novaventa.com.co' };
+        }else{
+            $rootScope.configuracion = { ip_servidores: 'http://200.47.173.68:9083' };
+        }
+
         //Número de campañas que se ejecutan al año
         $rootScope.numeroCampanasAno = 18;
         $rootScope.lineaAtencion = "01 8000 515 101";
@@ -88,8 +96,8 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
                     template: Utilidades.getPlantillaEspera('Iniciando sesión')
                 });
 
-                Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){    
-                                
+                Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){
+
                     $ionicLoading.hide();
 
                     if(success){
@@ -117,8 +125,8 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
                                     $scope.datosInicio = {clave: '' };
 
                                     /*$ionicHistory.nextViewOptions({
-                                        disableBack: true
-                                    });*/
+                                     disableBack: true
+                                     });*/
 
                                     //Si la Mamá tiene versión para aceptar entonces ir a terminos y condiciones
                                     if ($rootScope.datos.versionHabeasData){
