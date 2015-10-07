@@ -81,6 +81,8 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
         $rootScope.lineaAtencion = "01 8000 515 101";
         $rootScope.correo = "servicioalcliente@novaventa.com";
         $rootScope.urlChat = 'http://twnl.co/novaventas';
+        //Eliminar toda las variables de estado de carga de información de pantallas
+        $rootScope.cargaDatos = { ventanaMiPedido: null, ventanaMisPuntos: null, ventanaInformacionFechas: null };
 
         jQuery.support.cors = true;
         //$.mobile.allowCrossDomainPages = true;
