@@ -163,7 +163,7 @@
 
                 <a class="item selected" href="#" ng-show="estadoEncontrado('Entregado al transportador') && !estadoEncontrado('Anulado')" >
                     <img src="img/pedido4-selected.png">
-                    <h2 class="balanced">En camión en <br /> Medellín
+                    <h2 class="balanced">Despachado desde <br /> Novaventa
                     </h2>
                     <p>{{ buscarEstado('Entregado al transportador').fecha | date: 'dd'}} de {{ buscarEstado('Entregado al transportador').fecha | date: 'MMMM'}}</p>
                     <p class="item-formato-anterior" ng-show="fechaRepartoPedido() != ''">Posiblemente recibas tu <br /> pedido el {{ fechaRepartoPedido() | date:'dd' }} de {{ fechaRepartoPedido() | date:'MMMM' }}</p>
@@ -171,7 +171,7 @@
 
                 <a class="item" href="#" ng-show="!estadoEncontrado('Entregado al transportador') && !estadoEncontrado('Anulado')" >
                     <img src="img/pedido4.png">
-                    <h2 class="balanced">En camión en <br /> Medellín
+                    <h2 class="balanced">Despachado desde <br /> Novaventa
                     </h2>
                     <p class="item-formato-anterior" ng-show="fechaRepartoPedido() != ''" >Posiblemente recibas tu <br /> pedido el {{ fechaRepartoPedido() | date:'dd' }} de {{ fechaRepartoPedido() | date:'MMMM' }}</p>
                 </a>
