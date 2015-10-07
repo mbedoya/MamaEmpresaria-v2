@@ -11,7 +11,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                 });
 
                 //Eliminar toda las variables de estado de carga de información de pantallas
-                $rootScope.ventanaMiPedidoCargada = null;
+                $rootScope.cargaDatos = { ventanaMiPedido: null, ventanaMisPuntos: null, ventanaInformacionFechas: null };
 
                 $location.path('/app/login');
             };

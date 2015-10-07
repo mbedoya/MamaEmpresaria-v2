@@ -225,8 +225,8 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
 
     $scope.$on('$ionicView.beforeEnter', function(){
         //Si no se ha cargado la información entonces inicializar
-        if(!$rootScope.ventanaMiPedidoCargada){
-            $rootScope.ventanaMiPedidoCargada = true;
+        if(!$rootScope.cargaDatos.ventanaMiPedido){
+            $rootScope.cargaDatos.ventanaMiPedido = true;
             $scope.inicializar(true);
         }
     });

@@ -177,10 +177,13 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
     });
 
     $scope.$on('loggedin', function(event, args){
-        console.log('logging in - puntos');
-        $scope.inicializar(false);
+        //$scope.inicializar(false);
     });
 
-    $scope.inicializar(true);
+    //Si no se ha cargado la información entonces inicializar
+    if(!$rootScope.cargaDatos.ventanaMisPuntos){
+        $rootScope.cargaDatos.ventanaMisPuntos = true;
+        $scope.inicializar(true);
+    }
 
 });
