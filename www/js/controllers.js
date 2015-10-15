@@ -78,7 +78,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                                     $rootScope.datosChatEnviados = true;
 
                                     hipmob.set_name($rootScope.datos.nombre);
-                                    hipmob.set_context('Segmento:' + $rootScope.datos.segmento + ',' + 'Saldo:' + $filter('currency')($rootScope.datos.saldo, '$', 0) );
+                                    hipmob.set_context('Cedula:' + $rootScope.datos.cedula + ',' + 'Segmento:' + $rootScope.datos.segmento + ',' + 'Saldo:' + $filter('currency')($rootScope.datos.saldo, '$', 0) );
                                     hipmob.open();
                                 }
                                 //navigator.app.loadUrl($rootScope.urlChat, { openExternal: true });
