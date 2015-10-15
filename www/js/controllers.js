@@ -21,7 +21,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
             };
         })
 
-        .controller('TabsCtrl', function($scope, $rootScope, $state, $ionicActionSheet, Pedido) {
+        .controller('TabsCtrl', function($scope, $rootScope, $state, $filter, $ionicActionSheet, Pedido) {
 
             $scope.mostrarMiNegocio = function(){
                 return Number($rootScope.datos.cupo) > 0 || Math.abs(Number($rootScope.datos.saldo)) > 0;
@@ -78,8 +78,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                                     $rootScope.datosChatEnviados = true;
 
                                     hipmob.set_name($rootScope.datos.nombre);
-                                    hipmob.set_context('Segmento:' + $rootScope.datos.nombre);
-                                    hipmob.set_context('Saldo:' + $rootScope.datos.saldo);
+                                    hipmob.set_context('Segmento:' + $rootScope.datos.nombre + ',' + 'Saldo:' + $filter('currency')($rootScope.datos.saldo, '$', 0) );
                                     hipmob.open();
                                 }
                                 //navigator.app.loadUrl($rootScope.urlChat, { openExternal: true });
