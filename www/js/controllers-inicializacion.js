@@ -71,9 +71,9 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
     $scope.inicializar = function(){
 
         if($rootScope.versionProduccion){
-            $rootScope.configuracion = { ip_servidores: 'http://transferenciaelectronica.novaventa.com.co' };
+            $rootScope.configuracion = { ip_servidores: 'http://transferenciaelectronica.novaventa.com.co', instancia: "AntaresWebServices" };
         }else{
-            $rootScope.configuracion = { ip_servidores: 'http://transferenciaelectronicatest.novaventa.com.co:9083' };
+            $rootScope.configuracion = { ip_servidores: 'http://transferenciaelectronicatest.novaventa.com.co:9083', instancia: "AntaresWebServices" };
         }
 
         //Número de campañas que se ejecutan al año

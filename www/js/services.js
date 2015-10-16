@@ -94,7 +94,7 @@ angular.module('novaventa.services', [])
 
                 var anoCampana = Utilidades.getAnoCampana();
 
-                var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/documento/agotadosPedido/" + cedula + "/" + anoCampana;
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/documento/agotadosPedido/" + cedula + "/" + anoCampana;
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -109,7 +109,7 @@ angular.module('novaventa.services', [])
 
                 var anoCampana = Utilidades.getAnoCampanaAnterior();
 
-                var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/documento/agotadosPedido/" + cedula + "/" + anoCampana;
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/documento/agotadosPedido/" + cedula + "/" + anoCampana;
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -149,7 +149,7 @@ angular.module('novaventa.services', [])
                 return novedad;
             },
             getTrazabilidad: function(cedula, fx) {
-                var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula;
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/pedidos/PedidoCampagna/" + cedula;
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -166,7 +166,7 @@ angular.module('novaventa.services', [])
 
                 var anoCampana = Utilidades.getAnoCampana();
 
-                var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula + "/" + anoCampana;
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/pedidos/PedidoCampagna/" + cedula + "/" + anoCampana;
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -183,7 +183,7 @@ angular.module('novaventa.services', [])
 
                 var anoCampana = Utilidades.getAnoCampanaAnterior();
 
-                var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula + "/" + anoCampana;
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/pedidos/PedidoCampagna/" + cedula + "/" + anoCampana;
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -335,7 +335,7 @@ angular.module('novaventa.services', [])
 
                 var zona = $rootScope.zona;
                 var seccion = $rootScope.seccion;
-                var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/getRecordatoriosAntares/" + zona + "/" + seccion;
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/interfaceAntares/getRecordatoriosAntares/" + zona + "/" + seccion;
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -349,7 +349,7 @@ angular.module('novaventa.services', [])
 
                 campana = Utilidades.Pad(campana);
                 var seccion = $rootScope.seccion;
-                var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/getRecordatoriosAntares/"+ ano +"/" + campana + "/" + zona + "/" + seccion;
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/interfaceAntares/getRecordatoriosAntares/"+ ano +"/" + campana + "/" + zona + "/" + seccion;
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -363,7 +363,7 @@ angular.module('novaventa.services', [])
                 var fecha = new Date();
                 var anoCampana = Utilidades.getAnoCampana();
 
-                var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/productoDeCampagna/agotadosCampagna/" + anoCampana;
+                var urlServicio = $rootScope.configuracion.ip_servidores + "/" + $rootScope.configuracion.instancia + "/productoDeCampagna/agotadosCampagna/" + anoCampana;
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -377,7 +377,7 @@ angular.module('novaventa.services', [])
                 var fecha = new Date();
                 var anoCampana = Utilidades.getAnoCampanaSiguiente();
 
-                var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/productoDeCampagna/agotadosCampagna/" + anoCampana;
+                var urlServicio = $rootScope.configuracion.ip_servidores + "/" + $rootScope.configuracion.instancia + "/productoDeCampagna/agotadosCampagna/" + anoCampana;
 
 
                 $http.get(urlServicio).
@@ -390,7 +390,7 @@ angular.module('novaventa.services', [])
             },
             getCampanaOperativa: function(fx){
 
-                var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/interfaceAntares/campagnaOperativa";
+                var urlServicio = $rootScope.configuracion.ip_servidores + "/" + $rootScope.configuracion.instancia + "/interfaceAntares/campagnaOperativa";
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -409,7 +409,7 @@ angular.module('novaventa.services', [])
         return {
             registrarHabeasData: function(fx){
 
-                var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/terminosYCondiciones/autorizarME";
+                var urlServicio = $rootScope.configuracion.ip_servidores + "/" + $rootScope.configuracion.instancia + "/terminosYCondiciones/autorizarME";
 
                 var request = {
                     method: 'POST',
@@ -431,7 +431,7 @@ angular.module('novaventa.services', [])
             getPregunta1: function(fx){
 
                 var cedula = $rootScope.datos.cedula;
-                var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/autenticacion/consultarPreguntasME/" + cedula +  "/1";
+                var urlServicio = $rootScope.configuracion.ip_servidores + "/" + $rootScope.configuracion.instancia + "/autenticacion/consultarPreguntasME/" + cedula +  "/1";
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -444,7 +444,7 @@ angular.module('novaventa.services', [])
             getPregunta2: function(fx){
 
                 var cedula = $rootScope.datos.cedula;
-                var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/autenticacion/consultarPreguntasME/" + cedula +  "/2";
+                var urlServicio = $rootScope.configuracion.ip_servidores + "/" + $rootScope.configuracion.instancia + "/autenticacion/consultarPreguntasME/" + cedula +  "/2";
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -457,7 +457,7 @@ angular.module('novaventa.services', [])
             responderPregunta: function(pregunta, respuesta, fx){
 
                 var cedula = $rootScope.datos.cedula;
-                var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/autenticacion/respuestasPreguntasME";
+                var urlServicio = $rootScope.configuracion.ip_servidores + "/" + $rootScope.configuracion.instancia + "/autenticacion/respuestasPreguntasME";
 
                 console.log(respuesta);
 
@@ -483,7 +483,7 @@ angular.module('novaventa.services', [])
                 var cedula = $rootScope.datos.cedula;
                 var clave = $rootScope.datos.clave;
 
-                var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/autenticacion/creacionClaveME";
+                var urlServicio = $rootScope.configuracion.ip_servidores + "/" + $rootScope.configuracion.instancia + "/autenticacion/creacionClaveME";
 
                 var request = {
                     method: 'POST',
@@ -504,7 +504,7 @@ angular.module('novaventa.services', [])
             },
             cambiarClave: function(claveActual, claveNueva, fx){
 
-                var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/autenticacion/cambioClaveME";
+                var urlServicio = $rootScope.configuracion.ip_servidores + "/" + $rootScope.configuracion.instancia + "/autenticacion/cambioClaveME";
 
                 var request = {
                     method: 'POST',
@@ -525,7 +525,7 @@ angular.module('novaventa.services', [])
             },
             validarCedula: function(fx){
                 var cedula = $rootScope.datos.cedula;
-                var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/interfaceAntares/validarME/" + cedula;
+                var urlServicio = $rootScope.configuracion.ip_servidores + "/" + $rootScope.configuracion.instancia + "/interfaceAntares/validarME/" + cedula;
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -537,7 +537,7 @@ angular.module('novaventa.services', [])
             },
             solicitarContactoAsesor: function(tipoContacto, fx){
                 var cedula = $rootScope.datos.cedula;
-                var urlServicio = $rootScope.configuracion.ip_servidores + "/AntaresWebServices/autenticacion/emailAsesor/" + cedula + "/" + tipoContacto;
+                var urlServicio = $rootScope.configuracion.ip_servidores + "/" + $rootScope.configuracion.instancia + "/autenticacion/emailAsesor/" + cedula + "/" + tipoContacto;
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -549,7 +549,7 @@ angular.module('novaventa.services', [])
             },
             getInformacionBasica: function(fx){
                
-                var urlAutenticacion = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/validacionAntares";
+                var urlAutenticacion = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/interfaceAntares/validacionAntares";
                 
                 var mensajeError = '';
 
@@ -822,8 +822,8 @@ angular.module('novaventa.services', [])
 
                 //Cadena en Base 64 usuario:clave
                 var cadenaBase64 = btoa(cedula + ":" + rootScope.datos.clave);
-                //var urlValidacion = rootScope.configuracion.ip_servidores +  "/AntaresWebServices/interfaceAntares/validacionAntares/" + cedula +"/1";
-                var urlValidacion = rootScope.configuracion.ip_servidores +  "/AntaresWebServices/autenticacion/autenticarME";
+                //var urlValidacion = rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/interfaceAntares/validacionAntares/" + cedula +"/1";
+                var urlValidacion = rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/autenticacion/autenticarME";
 
                 var req = {
                     method: 'GET',
@@ -897,7 +897,7 @@ angular.module('novaventa.services', [])
 
                 var anoCampana = Utilidades.getAnoCampana();
 
-                var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/resumenPuntos/ResumenPuntosEmpresaria/" + cedula + "/" + anoCampana;
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/resumenPuntos/ResumenPuntosEmpresaria/" + cedula + "/" + anoCampana;
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -911,7 +911,7 @@ angular.module('novaventa.services', [])
 
                 var anoCampana = Utilidades.getAnoCampanaAnterior();
 
-                var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/resumenPuntos/ResumenPuntosEmpresaria/" + cedula + "/" + anoCampana;
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/resumenPuntos/ResumenPuntosEmpresaria/" + cedula + "/" + anoCampana;
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -925,7 +925,7 @@ angular.module('novaventa.services', [])
 
                 var anoCampana = Utilidades.getAnoCampanaAntares();
 
-                var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/resumenPuntos/ResumenPuntosEmpresaria/" + cedula + "/" + anoCampana;
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/resumenPuntos/ResumenPuntosEmpresaria/" + cedula + "/" + anoCampana;
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
@@ -937,7 +937,7 @@ angular.module('novaventa.services', [])
             },
             getAgotadosPedido: function(pedido, fx){
 
-                //var urlServicio = $rootScope.configuracion.ip_servidores +  "/AntaresWebServices/pedidos/PedidoCampagna/" + cedula;
+                //var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/pedidos/PedidoCampagna/" + cedula;
                 var urlServicio = "http://www.mocky.io/v2/54ee3b594e65b0e60a4fb38f";
 
                 $http.get(urlServicio).
@@ -953,7 +953,7 @@ angular.module('novaventa.services', [])
                 
                 var anoCampana = Utilidades.getAnoCampana();
                 
-                var urlServicio = $rootScope.configuracion.ip_servidores+"/AntaresWebServices/productoDeCampagna/premiosSugeridos/"+cedula+"/"+anoCampana;
+                var urlServicio = $rootScope.configuracion.ip_servidores+"/" + $rootScope.configuracion.instancia + "/productoDeCampagna/premiosSugeridos/"+cedula+"/"+anoCampana;
                     
                     $http.get(urlServicio).
                     success(function(data, status, headers, config) {
