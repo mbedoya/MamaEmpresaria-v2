@@ -1,4 +1,4 @@
-angular.module('novaventa', ['ionic', 'novaventa.controllers', 'novaventa.services'])
+angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.controllers', 'novaventa.services'])
 
 .run(function($ionicPlatform, $rootScope, $ionicPopup, Campana) {
   $ionicPlatform.ready(function() {

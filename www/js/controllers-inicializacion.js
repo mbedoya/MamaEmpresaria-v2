@@ -45,7 +45,7 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
     }, 2000);
 
     $scope.segmentoFormateado = function(){
-        if($rootScope.datos.segmento){
+        if($rootScope.datos && $rootScope.datos.segmento){
             return $rootScope.datos.segmento.toLocaleLowerCase().replace("í","i");
         }else{
             return "";
@@ -53,7 +53,7 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
     }
 
     $scope.segmento = function(){
-        if($rootScope.datos.segmento){
+        if($rootScope.datos &&  $rootScope.datos.segmento){
             return $rootScope.datos.segmento;
         }else{
             return "";
@@ -61,7 +61,7 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
     }
 
     $scope.nombre = function(){
-        if($rootScope.datos.nombre){
+        if($rootScope.datos &&  $rootScope.datos.nombre){
             return $rootScope.datos.nombre;
         }else{
             return "Mamá Empresaria";
