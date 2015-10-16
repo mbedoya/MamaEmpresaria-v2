@@ -7,7 +7,16 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         scope: $scope,
         animation: 'slide-in-up'
     }).then(function(modal) {
-        $scope.modal = modal
+        $scope.modal = modal;
+        
+        $scope.modalRightButtons = [
+        {
+            type: 'button-clear',
+            content: 'Cancel',
+            tap: function(e) {
+                $scope.modal.hide();
+            }
+        }];
     })
 
     $scope.openModal = function() {
