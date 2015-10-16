@@ -63,6 +63,9 @@ strong{
     .modal{
         margin-top: 20px;
     }
+    .tabs-striped.tabs-positive .tabs .tab-item {
+    font-size: 12px !important;
+}
 }
 
 /* iphone  5 */
