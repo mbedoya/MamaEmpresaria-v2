@@ -24,8 +24,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
 
     $scope.closeModal = function() {
-        alert("Hola Maria I");
-        //$scope.modal.hide();
+        $scope.modal.hide();
     };
 
     $scope.$on('$destroy', function() {
