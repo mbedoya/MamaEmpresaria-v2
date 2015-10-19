@@ -5,10 +5,10 @@
         </div>
         
         <div class="list">
-            <a class="item item-thumbnail-left" ng-repeat="sugerencia in sugerenciaPremios.premiosSugeridos">
+            <a class="item item-thumbnail-left" ng-repeat="sugerencia in premiosSugeridos()">
                 <img src="img/catalogo.png">
                 <h2>{{sugerencia.descripcion}}</h2>
-                <p>{{sugerencia.puntos}} Puntos</p>
+                <p>CL {{sugerencia.cl}} - {{sugerencia.puntos}} Puntos</p>
             </a>
         </div>
     </ion-content>
