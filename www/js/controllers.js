@@ -17,6 +17,8 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
             };
 
             $scope.irACambioClave = function() {
+                
+                $ionicHistory.currentView($ionicHistory.backView());
                 $location.path('/app/cambio-clave-actual');
             };
         })
