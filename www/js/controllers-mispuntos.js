@@ -78,9 +78,7 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
                 if(mostrarIndicador){
                     $ionicLoading.hide();
                 }
-
                 if(success){
-                    alert("Servicio ok");
                     $rootScope.sugerenciaPremios = data;
                 }else{
                     $scope.mostrarAyuda("Mis Puntos","En este momento no podemos acceder a tu información");
@@ -117,8 +115,7 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
     }
 
     $scope.premiosSugeridos = function(){
-        if ($rootScope.sugerenciaPremios){
-            alert("Sugerencia rechazo:" + $rootScope.razonRechazo);
+        if ($rootScope.sugerenciaPremios && $rootScope.sugerenciaPremios.premiosSugeridos){
             return $rootScope.sugerenciaPremios.premiosSugeridos;
         }else{
             return null;

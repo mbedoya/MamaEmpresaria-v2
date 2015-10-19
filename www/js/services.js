@@ -955,8 +955,6 @@ angular.module('novaventa.services', [])
                 
                 var urlServicio = $rootScope.configuracion.ip_servidores+"/" + $rootScope.configuracion.instancia + "/productoDeCampagna/premiosSugeridos/"+cedula+"/"+anoCampana;
 
-                alert(urlServicio);
-                    
                     $http.get(urlServicio).
                     success(function(data, status, headers, config) {
                         fx(true, data);
