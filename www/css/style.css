@@ -401,6 +401,11 @@ textarea{
     color:#077885;
     border-color:#077885;
 }
+
+.div-lista-footer {
+    height: 60px;   
+}
+
 .mas-content .bread {
     color:#f74094;
     border-color:#f74094;
