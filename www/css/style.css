@@ -1021,3 +1021,9 @@ input[disabled]{
         margin-top: 20px;
     }
 }
+
+@media screen and (max-device-height: 480px){
+    .textarea-terminos{
+        height: 110px !important;
+    }
+}

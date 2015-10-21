@@ -4,6 +4,10 @@
             <div class="col">Mamá, en este momento no tenemos premios para sugerirte.</div>
         </div>
         
+        <div class="row" style="margin-top: 12px;" ng-hide="!haySugeridos()">
+            <div class="col">Mamá, con los puntos que tienes disponibles te recomendamos redimir alguno de los siguientes premios.</div>
+        </div>
+        
         <div class="list">
             <a class="item item-thumbnail-left" ng-repeat="sugerencia in premiosSugeridos()">
                 <img src="img/catalogo.png">
