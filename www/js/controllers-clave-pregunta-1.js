@@ -53,7 +53,7 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
                    
                    if(data.razonRechazo && 
                        (data.razonRechazo == "Pregunta 1 ya ha sido contestada") ){
-                       
+                       $ionicHistory.currentView($ionicHistory.backView());
                        $location.path('/app/clave-pregunta-2');
                    }else{
                        
