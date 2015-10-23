@@ -637,7 +637,7 @@ textarea{
 }
 .titulo-calendario .col-50 {
     flex:1 1 auto;
-  text-align:center;
+    text-align:center;
 }
 .titulo-calendario .arrowright {
   text-align:right;
@@ -1004,6 +1004,9 @@ input[disabled]{
     }        
     .textarea-terminos{
         height: 130px !important;
+    }
+    .item{
+        font-size: 13px; !important;    
     }
 }
 

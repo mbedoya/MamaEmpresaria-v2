@@ -6,6 +6,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                 if(localStorage && localStorage.cedula){
                     localStorage.removeItem("cedula");
                 }
+                console.log("Aca si entro");
                 $ionicHistory.nextViewOptions({
                     disableBack: true
                 });
@@ -18,7 +19,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
 
             $scope.irACambioClave = function() {
 
-                $ionicHistory.nextViewOptions({ disableBack: false });
+                //$ionicHistory.nextViewOptions({ disableBack: false });
                 $location.path('/app/cambio-clave-actual');
             };
         })
