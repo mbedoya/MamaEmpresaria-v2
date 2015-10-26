@@ -93,7 +93,11 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
 
             $rootScope.datos = { cedula: localStorage.cedula, clave: localStorage.clave }
 
+            alert("Antes Internet");
+
             if(Internet.get()){
+
+                alert("Internet ok");
 
                 $scope.loading =  $ionicLoading.show({
                     template: Utilidades.getPlantillaEspera('Iniciando sesión')
