@@ -73,7 +73,7 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
         if($rootScope.versionProduccion){
             $rootScope.configuracion = { ip_servidores: 'http://transferenciaelectronica.novaventa.com.co', instancia: "AntaresWebServices" };
         }else{
-            $rootScope.configuracion = { ip_servidores: 'http://transferenciaelectronicatest.novaventa.com.co:9083', instancia: "AntaresWebServices" };
+            $rootScope.configuracion = { ip_servidores: 'http://transferenciaelectronicatest.novaventa.com.co:9085', instancia: "AntaresWebServices" };
             //$rootScope.configuracion = { ip_servidores: 'https://transferenciaelectronica.novaventa.com.co', instancia: "AntaresSecureWebServices" };            
         }
 
@@ -93,11 +93,7 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
 
             $rootScope.datos = { cedula: localStorage.cedula, clave: localStorage.clave }
 
-            alert("Antes Internet");
-
             if(Internet.get()){
-
-                alert("Internet ok");
 
                 $scope.loading =  $ionicLoading.show({
                     template: Utilidades.getPlantillaEspera('Iniciando sesión')
