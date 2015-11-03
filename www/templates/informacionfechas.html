@@ -1,4 +1,4 @@
-<ion-view view-title="" >
+<ion-view view-title="">
     <ion-content >
 
         <div class="titulo-calendario">
@@ -54,14 +54,14 @@
                     </a>
                     -->
 
-                    <a id='{{dia.fechaCompleta}}' class="item item-icon-right" style="background-color:{{fondoDia(dia.fechaCompleta)}}" href="#" ng-click="seleccionarFecha(dia.fechaCompleta, true)" >
+                    <div id='{{dia.fechaCompleta}}' class="item item-icon-right" style="background-color:{{fondoDia(dia.fechaCompleta)}}" href="#" ng-click="seleccionarFecha(dia.fechaCompleta, true)" >
                         <i class="icon ion-edit" ng-show="false"></i>
                         <i class="icon ion-android-desktop" ng-show="fechaEsCorreteo(dia.fechaCompleta)"></i>
                         <i class="icon ion-android-people" ng-show="fechaEsEncuentro(dia.fechaCompleta)"></i>
                         <i class="icon ion-edit" ng-show="fechaEsTomaPedido(dia.fechaCompleta)"></i>
                         <i class="icon ion-cube" ng-show="fechaEsRepartoPedido(dia.fechaCompleta)"></i>
                         {{ dia.dia }}
-                    </a>
+                    </div>
 
                 </div>
             </div>

@@ -633,14 +633,14 @@ textarea{
   padding: 5px 10px;
 }
 .titulo-calendario .arrowleft {
-  text-align:left;
+  text-align:center;
 }
 .titulo-calendario .col-50 {
     flex:1 1 auto;
     text-align:center;
 }
 .titulo-calendario .arrowright {
-  text-align:right;
+  text-align:center;
 }
 .titulo-calendario a, .titulo-calendario a:visited {
   color:white;
