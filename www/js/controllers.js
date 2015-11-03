@@ -6,7 +6,6 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                 if(localStorage && localStorage.cedula){
                     localStorage.removeItem("cedula");
                 }
-                console.log("Aca si entro");
                 $ionicHistory.nextViewOptions({
                     disableBack: true
                 });
