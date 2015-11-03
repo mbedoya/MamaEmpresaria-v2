@@ -1019,6 +1019,9 @@ input[disabled]{
     .modal{
         margin-top: 20px;
     }
+    .item{
+        font-size: 12px; !important;    
+    }
 }
 
 /* iphone  6 */
