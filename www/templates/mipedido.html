@@ -7,16 +7,16 @@
         <div class="list">
 
             <!-- Pedido Anterior - No Encontrado  -->
-            <a class="item item-avatar item-icon-right" href="#" ng-show="!ultimoEstadoPedidoAnterior()" >
+            <div class="item item-avatar item-icon-right" href="#" ng-show="!ultimoEstadoPedidoAnterior()" >
                 <div class="icono-caja-abierta"></div>
                 <h2>Campaña {{campana.numero-1}}
                 </h2>
                 <p>No tienes un pedido registrado para la campaña
                 </p>
-            </a>
+            </div>
 
             <!-- Pedido Anterior - Encontrado  -->
-            <a class="item item-avatar item-icon-right" href="#" ng-click="irATrazabilidadAnterior()" ng-show="ultimoEstadoPedidoAnterior()" >
+            <div class="item item-avatar item-icon-right" href="#" ng-click="irATrazabilidadAnterior()" ng-show="ultimoEstadoPedidoAnterior()" >
                 <div class="icono-caja-abierta"></div>
                 <h2>Campaña {{campana.numero-1}}
                 </h2>
@@ -27,10 +27,10 @@
                     Tienes productos agotados en tu pedido
                 </span>
                 <i class="icon ion-chevron-right"></i>
-            </a>
+            </div>
 
             <!-- Pedido Actual - Encontrado  -->
-            <a class="item item-avatar item-icon-right alternate" href="#" ng-click="irATrazabilidadActual()" ng-show="ultimoEstadoPedidoActual()" >
+            <div class="item item-avatar item-icon-right alternate" href="#" ng-click="irATrazabilidadActual()" ng-show="ultimoEstadoPedidoActual()" >
                 <div class="icono-caja-cerrada"></div>
                 <h2>Campaña {{campana.numero}}
                 </h2>
@@ -44,19 +44,19 @@
                     Tienes productos agotados en tu pedido
                 </span>
                 <i class="icon ion-chevron-right"></i>
-            </a>
+            </div>
 
             <!-- Pedido Actual - No Encontrado y es Encuentro -->
-            <a class="item item-avatar item-icon-right alternate" href="#" ng-show="!ultimoEstadoPedidoActual() && hoyEsEncuentro()" >
+            <div class="item item-avatar item-icon-right alternate" href="#" ng-show="!ultimoEstadoPedidoActual() && hoyEsEncuentro()" >
                 <div class="icono-caja-cerrada"></div>
                 <h2>Campaña {{campana.numero}}
                 </h2>
                 <p>Aún no tenemos información sobre tu pedido. Si lo enviaste hoy por favor verifica mañana.
                 </p>
-            </a>
+            </div>
 
             <!-- Pedido Actual - No Encontrado y es Posteriores a Encuentro -->
-            <a class="item item-avatar item-icon-right alternate" href="#" ng-show="!ultimoEstadoPedidoActual() && encuentroRealizado() && !hoyEsEncuentro()" >
+            <div class="item item-avatar item-icon-right alternate" href="#" ng-show="!ultimoEstadoPedidoActual() && encuentroRealizado() && !hoyEsEncuentro()" >
                 <div class="icono-caja-cerrada"></div>
                 <h2>Campaña {{campana.numero}}
                 </h2>
@@ -66,10 +66,10 @@
                 tu pedido y aún no registra verifica: <br /></span>
                 <p><strong>1</strong> Que no se haya quedado en estado "Guardado" en la página web. </p>
                 <p><strong>2</strong> Que lo hayas llevado al buzón en los horarios y fechas establecidas.</p>
-            </a>
+            </div>
 
             <!-- Pedido Actual - No Encontrado y todavía no es Encuentro -->
-            <a class="item item-avatar item-icon-right alternate" href="#" ng-show="!ultimoEstadoPedidoActual() && !encuentroRealizado()" >
+            <div class="item item-avatar item-icon-right alternate" href="#" ng-show="!ultimoEstadoPedidoActual() && !encuentroRealizado()" >
                 <div class="icono-caja-cerrada"></div>
                 <h2>Campaña {{campana.numero}}
                 </h2>
@@ -77,7 +77,7 @@
                     tu pedido de esta campaña, te invitamos
                     a consultar a partir del {{fechaLuegoEncuentro() | date: 'dd' }} de {{fechaLuegoEncuentro() | date: 'MMMM' }}.
                 </p>
-            </a>
+            </div>
 
         </div>
 

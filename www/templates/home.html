@@ -20,7 +20,7 @@
 
                 <!-- SALDO -->
 
-                <a class="item item-avatar alternate" href="#" ng-show="mostrarSaldoPagar() && saldo()>0" ng-click="mostrarAyudaSaldoPagar()">
+                <div class="item item-avatar alternate" href="#" ng-show="mostrarSaldoPagar() && saldo()>0" ng-click="mostrarAyudaSaldoPagar()">
                     <div class="icono bocina"></div>
                     <!-- <i class="icon ion-plus-circled"></i> -->
                     <h2>Tienes un pago pendiente por {{ saldo() | currency:"$":0 }}.
@@ -37,43 +37,43 @@
                     <p>
                         Si ya pagaste consulta de nuevo en 24 horas
                     </p>
-                </a>
+                </div>
 
-                <a class="item item-avatar alternate" href="#" ng-show="mostrarSaldoPagar() && saldo()==0" >
+                <div class="item item-avatar alternate" href="#" ng-show="mostrarSaldoPagar() && saldo()==0" >
                     <div class="icono bocina"></div>
                     <h2>No tienes pagos pendientes
                     </h2>
-                </a>
+                </div>
 
-                <a class="item item-avatar alternate" href="#" ng-show="mostrarSaldoFavor()">
+                <div class="item item-avatar alternate" href="#" ng-show="mostrarSaldoFavor()">
                     <div class="icono bocina"></div>
                     <h2>Tienes un saldo a favor de {{ saldo() | currency:"$":0 }}
                     </h2>
                     <p>&nbsp;</p>
-                </a>
+                </div>
 
                 <!-- CUPO -->
 
-                <a class="item item-avatar" href="#" ng-show="mostrarCupo()">
+                <div class="item item-avatar" href="#" ng-show="mostrarCupo()">
                     <div class="icono moneda"></div>
                     <h2>Realiza tu próximo pedido máximo por {{ cupo() | currency:"$":0 }}
                     </h2>
                     <p>Si superas este valor debes cancelar el excedente el día que haces tu pedido</p>
-                </a>
+                </div>
 
                 <!-- MONTAJE DE PEDIDO -->
 
                 <!-- (Momentos 1 y 2) -->
-                <a class="item item-avatar {{ estiloAlternateFechaPago() }}" href="#" ng-show="diasParaPago()>0" >
+                <div class="item item-avatar {{ estiloAlternateFechaPago() }}" href="#" ng-show="diasParaPago()>0" >
                     <div class="icono calendario"></div>
                     <h2>Realiza tu próximo pedido el
                         {{campana.fechaMontajePedido | date: 'dd' }} de {{campana.fechaMontajePedido | date: 'MMMM' }}
                     </h2>
                     <p>Te quedan {{ diasParaPago() }} días calendario</p>
-                </a>
+                </div>
 
                 <!-- Encuentro (Momento 3) -->
-                <a class="item item-avatar {{ estiloAlternateFechaPago() }}" href="#" ng-show="hoyEsEncuentro() && pedido().razonRechazo" >
+                <div class="item item-avatar {{ estiloAlternateFechaPago() }}" href="#" ng-show="hoyEsEncuentro() && pedido().razonRechazo" >
                     <div class="icono calendario"></div>
                     <h2>Si aún no has realizado tu pedido,
                         puedes hacerlo máximo
@@ -81,10 +81,10 @@
                         por la Página Web
                         antes de las 12:00 del medio día
                     </h2>
-                </a>
+                </div>
 
                 <!-- Correteo (Momento 5) -->
-                <a class="item item-avatar {{ estiloAlternateFechaPago() }}" href="#" ng-show="diasParaPago()<0 && hoyEsCorreteo() && pedido().razonRechazo" >
+                <div class="item item-avatar {{ estiloAlternateFechaPago() }}" href="#" ng-show="diasParaPago()<0 && hoyEsCorreteo() && pedido().razonRechazo" >
                     <div class="icono calendario"></div>
                     <h2 ng-show="esAntesMedioDia()">Realiza tu pedido hoy por la Página Web antes de las 12:00 del medio día
                     </h2>
@@ -92,17 +92,17 @@
                         El horario para Campaña {{campana.numero}} ya cerró.
                     </h2>
                     <p>&nbsp;</p>
-                </a>
+                </div>
 
                 <!-- Entre Encuentro y Correteo (Momento 4) -->
-                <a class="item item-avatar {{ estiloAlternateFechaPago() }}" href="#" ng-show="diasParaPago()<0 && !hoyEsCorreteo() && pedido().razonRechazo" >
+                <div class="item item-avatar {{ estiloAlternateFechaPago() }}" href="#" ng-show="diasParaPago()<0 && !hoyEsCorreteo() && pedido().razonRechazo" >
                     <div class="icono calendario"></div>
                     <h2 >Realiza tu pedido hasta el
                         {{ campana.fechaCorreteo | date: 'dd' }} de {{campana.fechaCorreteo | date: 'MMMM' }} por la
                         Página Web antes de las 12:00 del medio día
                     </h2>
                     <p>&nbsp;</p>
-                </a>
+                </div>
 
                 <a class="item" href="#" >
                     <h2 >&nbsp;
