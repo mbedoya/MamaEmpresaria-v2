@@ -1079,7 +1079,7 @@ angular.module('novaventa.services', [])
                         return "En proceso de empaque";
                     }else{
 
-                        if(nombre.toLowerCase() == "cargue"){
+                        if(nombre.toLowerCase() == "cargue" || nombre.toLowerCase() == "En tránsito a bodega operador"){
                             return "Entregado al transportador";
                         }
                     }

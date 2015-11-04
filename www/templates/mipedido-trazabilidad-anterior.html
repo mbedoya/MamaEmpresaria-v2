@@ -67,13 +67,6 @@
                     <p >{{ buscarEstado('Recibido').fecha | date: 'dd'}} de {{ buscarEstado('Recibido').fecha | date: 'MMMM'}}</p>
                 </a>
 
-                <a class="item" href="#" ng-show="!estadoEncontrado('Recibido')" >
-                    <img src="img/pedido1.png">
-                    <h2 class="balanced">Recibido en la <br />Empresa
-                    </h2>
-                    <p >&nbsp;</p>
-                </a>
-
                 <a class="item selected" href="#" ng-show="estadoEncontrado('Anulado')" >
                     <img src="img/anulado.png">
                     <h2 class="balanced">Anulado
@@ -88,25 +81,11 @@
                     <p>{{ buscarEstado('Facturado').fecha | date: 'dd'}} de {{ buscarEstado('Facturado').fecha | date: 'MMMM'}}</p>
                 </a>
 
-                <a class="item" href="#" ng-show="!estadoEncontrado('Facturado') && !estadoEncontrado('Anulado')" >
-                    <img src="img/pedido2.png">
-                    <h2 class="balanced">Facturado
-                    </h2>
-                    <p>&nbsp;</p>
-                </a>
-
                 <a class="item selected" href="#" ng-show="estadoEncontrado('En proceso de empaque') && !estadoEncontrado('Anulado')" >
                     <img src="img/pedido3-selected.png">
                     <h2 class="balanced">En proceso de <br /> empaque
                     </h2>
                     <p>{{ buscarEstado('En proceso de empaque').fecha | date: 'dd'}} de {{ buscarEstado('En proceso de empaque').fecha | date: 'MMMM'}}</p>
-                </a>
-
-                <a class="item" href="#" ng-show="!estadoEncontrado('En proceso de empaque') && !estadoEncontrado('Anulado')" >
-                    <img src="img/pedido3.png">
-                    <h2 class="balanced">En proceso de <br /> empaque
-                    </h2>
-                    <p>&nbsp;</p>
                 </a>
 
                 <a class="item selected" href="#" ng-show="estadoEncontrado('Entregado al transportador') && !estadoEncontrado('Anulado')" >
@@ -118,14 +97,47 @@
                         Posiblemente recibas tu <br /> pedido el {{ fechaRepartoPedido() | date:'dd' }} de <br /> {{ fechaRepartoPedido() | date:'MMMM' }}
                     </p>
                 </a>
-
-                <a class="item" href="#" ng-show="!estadoEncontrado('Entregado al transportador') && !estadoEncontrado('Anulado')" >
-                    <img src="img/pedido4.png">
-                    <h2 class="balanced">Despachado desde <br /> Novaventa
+                
+                <a class="item selected" href="#" ng-show="estadoEncontrado('En Bodega Operador Secundario') && !estadoEncontrado('Anulado')" >
+                    <img src="img/icono-garaje.png">
+                    <h2 class="balanced">En bodega del <br />transportador
                     </h2>
-                    <p class="item-formato-anterior" ng-show="fechaRepartoPedido() != ''" >
-                        Posiblemente recibas tu <br /> pedido el {{ fechaRepartoPedido() | date:'dd' }} de <br /> {{ fechaRepartoPedido() | date:'MMMM' }}
-                    </p>
+                    <p>{{ buscarEstado('En Bodega Operador Secundario').fecha | date: 'dd'}} de {{ buscarEstado('En Bodega Operador Secundario').fecha | date: 'MMMM'}}</p>                    
+                </a>
+                
+                <a class="item selected" href="#" ng-show="estadoEncontrado('En ruta') && !estadoEncontrado('Anulado')" >
+                    <img src="img/icono-mapa.png">
+                    <h2 class="balanced">En camino para </br> tu casa
+                    </h2>
+                    <p>{{ buscarEstado('En ruta').fecha | date: 'dd'}} de {{ buscarEstado('En ruta').fecha | date: 'MMMM'}}</p>                    
+                </a>
+                
+                <a class="item selected" href="#" ng-show="estadoEncontrado('En ruta nuevamente') && !estadoEncontrado('Anulado')" >
+                    <img src="img/icono-envio-doble.png">
+                    <h2 class="balanced">Segundo intento de</br> entrega
+                    </h2>
+                    <p>{{ buscarEstado('En ruta nuevamente').fecha | date: 'dd'}} de {{ buscarEstado('En ruta nuevamente').fecha | date: 'MMMM'}}</p>                    
+                </a>
+                
+                <a class="item selected" href="#" ng-show="estadoEncontrado('Entregado totalmente') && !estadoEncontrado('Anulado')" >
+                    <img src="img/pedido4-selected.png">
+                    <h2 class="balanced">Entregado
+                    </h2>
+                    <p>{{ buscarEstado('Entregado totalmente').fecha | date: 'dd'}} de {{ buscarEstado('Entregado totalmente').fecha | date: 'MMMM'}}</p>                    
+                </a>
+                
+                <a class="item selected" href="#" ng-show="estadoEncontrado('Entregado parcialmente') && !estadoEncontrado('Anulado')" >
+                    <img src="img/pedido4-selected.png">
+                    <h2 class="balanced">Entregado con novedad
+                    </h2>
+                    <p>{{ buscarEstado('Entregado parcialmente').fecha | date: 'dd'}} de {{ buscarEstado('Entregado parcialmente').fecha | date: 'MMMM'}}</p>                    
+                </a>
+                
+                <a class="item selected" href="#" ng-show="estadoEncontrado('No entregado') && !estadoEncontrado('Anulado')" >
+                    <img src="img/pedido4-selected.png">
+                    <h2 class="balanced">No entregado
+                    </h2>
+                    <p>{{ buscarEstado('No entregado').fecha | date: 'dd'}} de {{ buscarEstado('No entregado').fecha | date: 'MMMM'}}</p>                    
                 </a>
 
             </div>
