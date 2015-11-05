@@ -24,7 +24,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
 
     $scope.closeModal = function() {
-        $ionicHistory.goBack();
+        $window.history.back();
     };
 
     $scope.$on('$destroy', function() {
