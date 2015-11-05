@@ -1,4 +1,6 @@
-moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScope, $ionicLoading, $state, $ionicPopup, $ionicModal, $http, GA, Mama, Campana, Utilidades) {
+moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScope, $ionicLoading, $state, $ionicPopup, $ionicModal, $http, $document, GA, Mama, Campana, Utilidades) {
+    
+    var document=$document[0];
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Calendario");
@@ -24,7 +26,9 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
 
     $scope.closeModal = function() {
-        $window.history.back();
+        var backButtonEvent = document.createEvent('Events');
+        backButtonEvent.initEvent('backbutton', false, false);
+        document.dispatchEvent(backButtonEvent);
     };
 
     $scope.$on('$destroy', function() {
