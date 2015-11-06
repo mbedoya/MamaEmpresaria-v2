@@ -16,7 +16,7 @@
     <preference name="phonegap-version" value="3.7.0" />
 
     <!-- iOS only -->
-    <preference name="target-device" value="handset" />      <!-- all: possible values handset, tablet, or universal -->
+    <preference name="target-device" value="universal" />      <!-- all: possible values handset, tablet, or universal -->
 
     <preference name="webviewbounce" value="false"/>
     <preference name="UIWebViewBounce" value="false"/>
