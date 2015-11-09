@@ -26,9 +26,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
 
     $scope.closeModal = function() {
-        var backButtonEvent = document.createEvent('Events');
-        backButtonEvent.initEvent('backbutton', false, false);
-        document.dispatchEvent(backButtonEvent);
+        $scope.modal.hide();
     };
 
     $scope.$on('$destroy', function() {
