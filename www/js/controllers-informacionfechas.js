@@ -26,6 +26,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
 
     $scope.closeModal = function() {
+        alert("Click");
         $scope.modal.hide();
     };
 
