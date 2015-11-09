@@ -22,6 +22,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     })
 
     $scope.openModal = function() {
+        alert("Click");
         $scope.modal.show();
     }
 
