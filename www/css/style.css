@@ -809,7 +809,7 @@ width: 100%;
     background-color: #b12136;
 }
 
-.modal-button button {
+.modal-button{
     background:#1594ac;
     border-radius:8px;
     border: 2px solid #077885;
