@@ -1,6 +1,6 @@
 <ion-modal-view>
     <ion-content>
-      <div class="list dia">
+        <div class="list dia">
 
             <div class="item item-divider">
                 {{ fechaSeleccionada | date: 'MMMM' | pascal }} {{ fechaSeleccionada | date: 'dd' }} de {{ fechaSeleccionada | date: 'yyyy' }}
@@ -8,27 +8,32 @@
 
         </div>
 
-       <div class="row detalle" ng-repeat="detalle in detalleFecha" ng-show="detalle.actividad.toLowerCase() != 'fecha de pago'">
+        <div class="row detalle" ng-repeat="detalle in detalleFecha" ng-show="detalle.actividad.toLowerCase() != 'fecha de pago'">
 
             <p style="text-align:left"  >
-             <!-- <a href="#" class="item item-avatar" > -->
-                    <img style="float:left" src="img/reloj.png" />
-                    <span style="display:block;">{{ detalle.hora }}</span>
-                    <p class="col" style="color: #808080">{{ detalle.actividad }} <span ng-show="mostrarConectorActividad(detalle.actividad)">EN</span> {{ detalle.lugar }} <br />
-                        {{ detalle.direccion }}
-                    </p>
-             <!-- </a> -->
-                
+                <!-- <a href="#" class="item item-avatar" > -->
+                <img style="float:left" src="img/reloj.png" />
+                <span style="display:block;">{{ detalle.hora }}</span>
+            <p class="col" style="color: #808080">{{ detalle.actividad }} <span ng-show="mostrarConectorActividad(detalle.actividad)">EN</span> {{ detalle.lugar }} <br />
+                {{ detalle.direccion }}
+            </p>
+            <!-- </a> -->
+
             </p>
 
-         </div>
+        </div>
 
-        <a class="item positive" href="#" ng-show="detalleFecha.length == 0">
-            No tienes eventos para este día.
-        </a>
-        
-        <label class="modal-button">
-                <button class="button button-block" type="submit" ng-click="closeModal()">Cerrar</button>
-            </label>
+    <a class="item positive" href="#" ng-show="detalleFecha.length == 0">
+        No tienes eventos para este día.
+    </a>
+
+    <div class="modal-button">
+        <input type="button" class="button button-block" ng-click="closeModal()">
+        Cerrar
+    </div>
+
+    <!--<label class="modal-button">
+<button class="button button-block" type="submit" ng-click="closeModal()">Cerrar</button>
+</label>-->
     </ion-content>
-  </ion-modal-view>
+</ion-modal-view>
