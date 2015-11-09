@@ -16,7 +16,8 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             type: 'button-clear',
             content: 'Cancel',
             tap: function(e) {
-                $scope.modal.hide();
+                $scope.modal.close();
+                console.log("Boton modal")
             }
         }];
     })
@@ -27,6 +28,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
     $scope.closeModal = function() {
         $scope.modal.hide();
+        console.log("Boton JS");
     };
 
     $scope.$on('$destroy', function() {
