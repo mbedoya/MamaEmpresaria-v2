@@ -957,6 +957,8 @@ angular.module('novaventa.services', [])
 
                     $http.get(urlServicio).
                     success(function(data, status, headers, config) {
+                        console.log("Cedula", cedula);
+                        console.log("Año campaña", anoCampana);
                         console.log("Services", data);
                         fx(true, data);
                     }).
