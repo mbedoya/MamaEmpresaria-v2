@@ -80,6 +80,7 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
                 }
                 if(success){
                     $rootScope.sugerenciaPremios = data;
+                    console.log("getSugerenciaPremios()",$rootScope.sugerenciaPremios);
                 }else{
                     $scope.mostrarAyuda("Mis Puntos","En este momento no podemos acceder a tu información");
                 }
@@ -111,6 +112,7 @@ moduloControlador.controller('MisPuntosCtrl', function($scope, $rootScope, $stat
     }
 
     $scope.haySugeridos = function(){
+        console.log("HaySugeridos()", $rootScope.sugerenciaPremios);
         return  $scope.premiosSugeridos();
     }
 
