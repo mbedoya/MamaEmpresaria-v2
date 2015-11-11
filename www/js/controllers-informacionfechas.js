@@ -22,12 +22,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     })
 
     $scope.openModal = function() {
-        alert("Click");
         $scope.modal.show();
     }
 
     $scope.closeModal = function() {
-        alert("Click");
         $scope.modal.hide();
     };
 
@@ -35,13 +33,13 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.modal.remove();
     });
 
-    $scope.abrirModal = function(){
+    /*$scope.abrirModal = function(){
         $("#modalCalendario").css("visibility","visible");
     }
 
     $scope.cerrarModal = function(){
         $("#modalCalendario").css("visibility","hidden");
-    }
+    }*/
 
     $scope.padStr = function(i) {
         return (i < 10) ? "0" + i : "" + i;
