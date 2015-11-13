@@ -48,7 +48,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                 //Mostrar las opciones
                 var hojaOpciones = $ionicActionSheet.show({
 
-                    /*
+                    
 
                      buttons: [
                         { text: 'Mi Negocio' },
@@ -56,11 +56,11 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                         { text: 'Chat' }
                     ],
 
-                     */
+                     /*
                     buttons: [
                         { text: 'Mi Negocio' },
                         { text: 'Productos no disponibles' }
-                    ],
+                    ],*/
                     cancelText: 'Cancelar',
                     cancel: function() {
                     },
