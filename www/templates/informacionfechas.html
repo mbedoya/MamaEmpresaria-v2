@@ -54,7 +54,7 @@
                     </a>
                     -->
 
-                    <div id='{{dia.fechaCompleta}}' class="item item-icon-right" style="background-color:{{fondoDia(dia.fechaCompleta)}}" href="#" ng-click="seleccionarFecha(dia.fechaCompleta, true)" >
+                    <div id='{{dia.fechaCompleta}}' class="item item-icon-right"  ng-attr-style="background-color:{{fondoDia(dia.fechaCompleta)}}" href="#" ng-click="seleccionarFecha(dia.fechaCompleta, true)" >
                         <i class="icon ion-edit" ng-show="false"></i>
                         <i class="icon ion-android-desktop" ng-show="fechaEsCorreteo(dia.fechaCompleta)"></i>
                         <i class="icon ion-android-people" ng-show="fechaEsEncuentro(dia.fechaCompleta)"></i>
@@ -69,7 +69,7 @@
             <!-- Leyendas de las campañas -->
             <div class="padding campanas" >
                <p style="border-color: #FFF;" ng-repeat="campana in misCampanas">
-               <span style="background-color:{{campana.color}}" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               <span ng-attr-style="background-color:{{campana.color}}" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			  </span>&nbsp;
               Campaña {{ campana.numero }}
               </p>
