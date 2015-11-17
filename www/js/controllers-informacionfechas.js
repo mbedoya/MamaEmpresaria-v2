@@ -75,6 +75,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         return $scope.campana > $rootScope.campana.numero;
     }
 
+    $scope.mostrarAdelante = function(){
+        return $scope.campana < $rootScope.numeroCampanasAno;
+    }
+
     $scope.mesAnterior = function(){
 
         //Establecer la fecha al día 1 del mes actual
