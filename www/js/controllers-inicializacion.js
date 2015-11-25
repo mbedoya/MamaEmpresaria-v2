@@ -3,7 +3,7 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
     $scope.mostrarMensajeError = false;
 
     //Indica si la versión se irá para Producción, esto modifica ip de servicios y google analytics
-    $rootScope.versionProduccion = false;
+    $rootScope.versionProduccion = true;
 
     //Existe un método en el rootscope para esto, sin embargo,
     //por ser la primera página algunas veces no está disponible
