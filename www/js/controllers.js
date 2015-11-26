@@ -60,7 +60,6 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                     buttons: [
                         { text: 'Mi Negocio' },
                         { text: 'Productos no disponibles' },
-                        { text: 'Chat' }
                     ],
                     cancelText: 'Cancelar',
                     cancel: function() {
