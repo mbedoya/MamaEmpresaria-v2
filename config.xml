@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.prueba.perceptio.mamaempresaria" version="1.0.8"
+<widget id="com.novaventa.produccion.mamaempresaria" version="1.0.8"
         xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" 
         xmlns:gap = "http://phonegap.com/ns/1.0" >
-    <name>me prueba</name>
+    <name>Mamá Empresaria</name>
     <description>
         Aplicación de Novaventa para las Mamás Empresarias
     </description>
