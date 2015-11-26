@@ -2,7 +2,7 @@
 <widget id="com.prueba.perceptio.mamaempresaria" version="1.0.8"
         xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" 
         xmlns:gap = "http://phonegap.com/ns/1.0" >
-    <name>Mamá Empresaria</name>
+    <name>me prueba</name>
     <description>
         Aplicación de Novaventa para las Mamás Empresarias
     </description>
