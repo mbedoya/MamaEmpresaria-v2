@@ -107,7 +107,14 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.fechaCalendario = $scope.mesAnterior();
 
         //Disminuir la campana
-        $scope.campana = $scope.campana - 1;
+        var ano = $scope.fechaCalendario.getFullYear();
+
+        if($scope.campana == 1){
+            $scope.campana = $rootScope.numeroCampanasAno;
+            ano = ano - 1;
+        }else{
+            $scope.campana = $scope.campana - 1;
+        }
 
         Campana.getRecordatorios($scope.fechaCalendario.getFullYear(), $scope.campana, $rootScope.zona, function (success, data){
             if(success){
@@ -147,10 +154,17 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
         $scope.fechaCalendario = new Date(cadenaFecha);
 
-        //Aumentar la campana
-        $scope.campana = $scope.campana + 1;
+        var ano = $scope.fechaCalendario.getFullYear();
 
-        Campana.getRecordatorios($scope.fechaCalendario.getFullYear(), $scope.campana, $rootScope.zona, function (success, data){
+        //Aumentar la campana
+        if($scope.campana == $rootScope.numeroCampanasAno){
+            $scope.campana = 1;
+            ano = ano + 1;
+        }else{
+            $scope.campana = $scope.campana + 1;
+        }
+
+        Campana.getRecordatorios(ano, $scope.campana, $rootScope.zona, function (success, data){
             if(success){
                 $scope.fechas = data.listaRecordatorios;
 
@@ -607,7 +621,15 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         console.log("campaña activa: " + $scope.campana);
 
         //Obtener los recordatorios de la siguiente campana
-        Campana.getRecordatorios($scope.fechaCalendario.getFullYear(), $scope.campana+1, $rootScope.zona, function (success, data){
+        var anoSiguiente = $scope.fechaCalendario.getFullYear();
+        var campanaSiguiente;
+        if($scope.campana == $rootScope.numeroCampanasAno){
+            campanaSiguiente = 1;
+            anoSiguiente = anoSiguiente + 1;
+        }else{
+            campanaSiguiente = $scope.campana + 1;
+        }
+        Campana.getRecordatorios(anoSiguiente, campanaSiguiente, $rootScope.zona, function (success, data){
             if(success){
                 $scope.fechasSiguienteCampana = data.listaRecordatorios;
                 
@@ -617,8 +639,16 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             }
         });
 
+        var anoAnterior = $scope.fechaCalendario.getFullYear();
+        var campanaAnterior;
+        if($scope.campana == 1){
+            campanaAnterior = $rootScope.numeroCampanasAno;
+            anoAnterior = anoSiguiente - 1;
+        }else{
+            campanaAnterior = $scope.campana - 1;
+        }
         //Obtener los recordatorios de la campana anterior
-        Campana.getRecordatorios($scope.fechaCalendario.getFullYear(), $scope.campana-1, $rootScope.zona, function (success, data){
+        Campana.getRecordatorios(anoAnterior, campanaAnterior, $rootScope.zona, function (success, data){
             if(success){
                 $scope.fechasCampanaAnterior = data.listaRecordatorios;
 
