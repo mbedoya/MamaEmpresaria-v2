@@ -689,7 +689,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         var dateStr = $scope.padStr(fechaActual.getFullYear()) + "-" +
             $scope.padStr(1 + fechaActual.getMonth()) + "-" + "02";
 
-        console.log(dateStr);
+        if(new Date(dateStr).getDate() == 2) {
+            dateStr = $scope.padStr(fechaActual.getFullYear()) + "-" +
+                $scope.padStr(1 + fechaActual.getMonth()) + "-" + "01";
+        }
 
         var primerDiaMes = new Date(dateStr).getDay();
         console.log("primer dia mes: " + primerDiaMes);
