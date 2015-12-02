@@ -36,25 +36,8 @@
 
             <div class="row" ng-repeat="semana in semanas">
                 <div class="col" ng-repeat="dia in semana">
-                    <!--
-                    <a id='{{dia.fechaCompleta}}' class="item item-icon-right {{estiloTexto(dia.fechaCompleta)}}" href="#" ng-click="seleccionarFecha(dia.fechaCompleta, true)" ng-show="!fechaEsCampanaVisible(dia.fechaCompleta)">
-                        <i class="icon ion-edit" ng-show="false"></i>
-                        <i class="icon ion-android-desktop" ng-show="fechaEsCorreteo(dia.fechaCompleta)"></i>
-                        <i class="icon ion-ios-people-outline" ng-show="fechaEsEncuentro(dia.fechaCompleta)"></i>
-                        <i class="icon ion-cube" ng-show="fechaEsRepartoPedido(dia.fechaCompleta)"></i>
-                        {{ dia.dia }}
-                    </a>
 
-                    <a id='{{dia.fechaCompleta}}' class="item item-icon-right campana-actual {{estiloTexto(dia.fechaCompleta)}}" href="#" ng-click="seleccionarFecha(dia.fechaCompleta, true)" ng-show="fechaEsCampanaVisible(dia.fechaCompleta)">
-                        <i class="icon ion-edit" ng-show="false"></i>
-                        <i class="icon ion-android-desktop" ng-show="fechaEsCorreteo(dia.fechaCompleta)"></i>
-                        <i class="icon ion-ios-people-outline" ng-show="fechaEsEncuentro(dia.fechaCompleta)"></i>
-                        <i class="icon ion-cube" ng-show="fechaEsRepartoPedido(dia.fechaCompleta)"></i>
-                        {{ dia.dia }}
-                    </a>
-                    -->
-
-                    <div id='{{dia.fechaCompleta}}' class="item item-icon-right" style="background-color:{{fondoDia(dia.fechaCompleta)}}" href="#" ng-click="seleccionarFecha(dia.fechaCompleta, true)" >
+                    <div id='{{dia.fechaCompleta}}' class="item item-icon-right" ng-attr-style="background-color:{{fondoDia(dia.fechaCompleta)}}" href="#" ng-click="seleccionarFecha(dia.fechaCompleta, true)" >
                         <i class="icon ion-edit" ng-show="false"></i>
                         <i class="icon ion-android-desktop" ng-show="fechaEsCorreteo(dia.fechaCompleta)"></i>
                         <i class="icon ion-android-people" ng-show="fechaEsEncuentro(dia.fechaCompleta)"></i>

@@ -506,7 +506,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
         //Campaña anterior?
         if(new Date(fecha) <= new Date(correteo)){
-            return $scope.estiloCampana($scope.campana-1);
+            return $scope.estiloCampana($scope.corregirNumeroCampana($scope.campana-1));
         }else{
             //Buscar correteo actual
             for (i = 0; i < $scope.fechas.length; i++){
@@ -527,9 +527,9 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 				}
 				
 				if(new Date(fecha) <= new Date(correteo)){
-					return $scope.estiloCampana($scope.campana+1);
+					return $scope.estiloCampana($scope.corregirNumeroCampana($scope.campana+1));
 				}else{
-				    return $scope.estiloCampana($scope.campana+2);
+				    return $scope.estiloCampana($scope.corregirNumeroCampana($scope.campana+2));
 				}
         
             }
