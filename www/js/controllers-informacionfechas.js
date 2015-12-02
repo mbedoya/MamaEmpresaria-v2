@@ -695,6 +695,9 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         console.log("primer dia mes: " + primerDiaMes);
         var inicioMes = new Date(dateStr);
 
+        alert(inicioMes);
+        alert(primerDiaMes);
+
         //Objeto con todas las semanas
         var semanas = new Array();
 
