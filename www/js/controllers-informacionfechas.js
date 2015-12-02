@@ -95,6 +95,11 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         cadenaFecha = $scope.fechaCalendario.getFullYear() + "-" +
             $scope.padStr(1 + $scope.fechaCalendario.getMonth()) + "-" + '02';
 
+        if(new Date(cadenaFecha).getDate() == 2) {
+            cadenaFecha = $scope.fechaCalendario.getFullYear() + "-" +
+                $scope.padStr(1 + $scope.fechaCalendario.getMonth()) + "-" + '01';
+        }
+
         return new Date(cadenaFecha);
     }
 
@@ -151,6 +156,11 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         //, no se sabe la razón, por esto se pone 02
         cadenaFecha = $scope.fechaCalendario.getFullYear() + "-" +
             $scope.padStr(1 + $scope.fechaCalendario.getMonth()) + "-" + '02';
+
+        if(new Date(cadenaFecha).getDate() == 2) {
+            cadenaFecha = $scope.fechaCalendario.getFullYear() + "-" +
+                $scope.padStr(1 + $scope.fechaCalendario.getMonth()) + "-" + '01';
+        }
 
         $scope.fechaCalendario = new Date(cadenaFecha);
 
@@ -697,9 +707,6 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         var primerDiaMes = new Date(dateStr).getDay();
         console.log("primer dia mes: " + primerDiaMes);
         var inicioMes = new Date(dateStr);
-
-        alert(inicioMes);
-        alert(primerDiaMes);
 
         //Objeto con todas las semanas
         var semanas = new Array();
