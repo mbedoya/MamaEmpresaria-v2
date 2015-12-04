@@ -70,6 +70,7 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
 
     $scope.inicializar = function(){
 
+        //Comparación para configuraciones de Producción y Pruebas
         if($rootScope.versionProduccion){
             $rootScope.configuracion = { ip_servidores: 'https://transferenciaelectronica.novaventa.com.co', instancia: "AntaresSecureWebServices" };
         }else{
