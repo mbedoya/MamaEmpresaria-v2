@@ -84,14 +84,14 @@ moduloControlador.controller('CambioClaveActualCtrl', function($scope, $location
             alert(err.message);
         }
 
+    }    
+    
+    $scope.volverAtras(){
+        $location.path('/app/menu/tabs/home');
     }
 
     $scope.inicializar = function(){
         $scope.limpiar();
-    }
-    
-    $scope.volverAtras(){
-        $location.path('/app/menu/tabs/home');
     }
 
     $scope.inicializar();
