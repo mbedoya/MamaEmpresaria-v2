@@ -6,9 +6,9 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                 if(localStorage && localStorage.cedula){
                     localStorage.removeItem("cedula");
                 }
-                /*$ionicHistory.nextViewOptions({
+                $ionicHistory.nextViewOptions({
                     disableBack: true
-                });*/
+                });
 
                 //Eliminar toda las variables de estado de carga de información de pantallas
                 $rootScope.cargaDatos = { ventanaMiPedido: null, ventanaMisPuntos: null, ventanaInformacionFechas: null };
@@ -120,18 +120,18 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
             }
 
             $scope.ingresar = function() {
-                /*$ionicHistory.nextViewOptions({
+                $ionicHistory.nextViewOptions({
                     disableBack: true
-                });*/
+                });
 
                 $location.path('/app/menu/tabs/home');
                 //$state.go('app.menu.tabs.home');
             };
 
             $scope.test = function() {
-                /*$ionicHistory.nextViewOptions({
+                $ionicHistory.nextViewOptions({
                     disableBack: true
-                });*/
+                });
 
                 $location.path('/app/menu/tabs/home');
                 //$state.go('app.menu.tabs.home');
