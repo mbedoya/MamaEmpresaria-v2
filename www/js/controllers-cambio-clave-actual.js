@@ -12,6 +12,10 @@ moduloControlador.controller('CambioClaveActualCtrl', function($scope, $location
 
     $scope.limpiar = function(){
         $scope.modelo = { clave: ''};
+    }   
+    
+    $scope.volverAtras = function(){
+        $location.path('/app/menu/tabs/home');
     }
 
     //Autenticar a la Mamá Empresaria
@@ -86,10 +90,6 @@ moduloControlador.controller('CambioClaveActualCtrl', function($scope, $location
 
     }    
     
-    $scope.volverAtras(){
-        $location.path('/app/menu/tabs/home');
-    }
-
     $scope.inicializar = function(){
         $scope.limpiar();
     }
