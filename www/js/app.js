@@ -20,6 +20,9 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
             // Show an alert box if a notification comes in when the user is in your app.
             window.plugins.OneSignal.enableInAppAlertNotification(true);
+            
+            window.plugins.OneSignal.sendTag("key", "prueba");
+            
         }, false);
 
         //FIN JS ONE SIGNAL
