@@ -5,22 +5,6 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
 
-        //CODIGO DE INICIALIZACION DE LAS NOTIFICACIONES
-
-            var notificationOpenedCallback = function(jsonData) {
-                console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-            };
-
-            window.plugins.OneSignal.init("adece4f8-1dbd-4713-9351-f8140d916bf4",
-                                          {googleProjectNumber: "275683696350"},
-                                          notificationOpenedCallback);
-
-            // Show an alert box if a notification comes in when the user is in your app.
-            window.plugins.OneSignal.enableInAppAlertNotification(true);
-
-
-        //FIN CODIGO NOTIFICACIONES  
-
 
         if(window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
