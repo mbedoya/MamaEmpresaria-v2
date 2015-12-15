@@ -16,7 +16,6 @@
   },
   "cordovaPlugins": [
     "https://git-wip-us.apache.org/repos/asf/cordova-plugin-network-information.git",
-    "org.apache.cordova.network-information",
-    "onesignal-cordova-plugin"
+    "org.apache.cordova.network-information"
   ]
 }
