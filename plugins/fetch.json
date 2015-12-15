@@ -1,0 +1,12 @@
+{
+    "onesignal-cordova-plugin-pgb-compat": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/one-signal/OneSignal-Cordova-SDK.git",
+            "subdir": ".",
+            "ref": "PGB-Compat"
+        },
+        "is_top_level": true,
+        "variables": {}
+    }
+}

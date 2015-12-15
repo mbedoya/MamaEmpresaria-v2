@@ -16,6 +16,7 @@
   },
   "cordovaPlugins": [
     "https://git-wip-us.apache.org/repos/asf/cordova-plugin-network-information.git",
-    "org.apache.cordova.network-information"
+    "org.apache.cordova.network-information",
+    "https://github.com/one-signal/OneSignal-Cordova-SDK.git#PGB-Compat"
   ]
 }
