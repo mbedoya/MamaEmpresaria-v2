@@ -177,6 +177,8 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         Campana.getRecordatorios(ano, $scope.campana, $rootScope.zona, function (success, data){
             if(success){
                 $scope.fechas = data.listaRecordatorios;
+                
+                console.log("Recordatorios aumentar mes", data);
 
                 //Generar el calendario nuevamente
                 $scope.semanasCalendario();
