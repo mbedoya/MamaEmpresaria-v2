@@ -7,10 +7,6 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
         //CODIGO DE INICIALIZACION DE LAS NOTIFICACIONES
 
-        document.addEventListener('deviceready', function () {
-            // Enable to debug issues.
-            // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
-
             var notificationOpenedCallback = function(jsonData) {
                 console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
             };
@@ -21,9 +17,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
             // Show an alert box if a notification comes in when the user is in your app.
             window.plugins.OneSignal.enableInAppAlertNotification(true);
-            
-            window.plugins.OneSignal.sendTag("key", "prueba");
-        }, false);
+
 
         //FIN CODIGO NOTIFICACIONES  
 
