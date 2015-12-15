@@ -6,27 +6,6 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         // for form inputs)
 
 
-        //SE AGREGA JS DE ONE SIGNAL
-
-        document.addEventListener('deviceready', function () {
-            // Enable to debug issues.
-            // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
-
-            var notificationOpenedCallback = function(jsonData) {
-                console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-            };
-
-            window.plugins.OneSignal.init("b2f7f966-d8cc-11e4-bed1-df8f05be55ba",
-                                          {googleProjectNumber: "703322744261"},
-                                          notificationOpenedCallback);
-
-            // Show an alert box if a notification comes in when the user is in your app.
-            window.plugins.OneSignal.enableInAppAlertNotification(true);
-        }, false);
-
-        //TERMINA JS
-
-
         if(window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }
