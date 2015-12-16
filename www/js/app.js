@@ -9,15 +9,20 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         document.addEventListener('deviceready', function () {
             // Enable to debug issues.
             // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
-            
-            var alertCallback = function(){
-                //TODO    
-            }
 
             var notificationOpenedCallback = function(jsonData) {
                 //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
                 //alert("Notification received:\n" + JSON.stringify(jsonData));
-                navigator.notification.alert(jsonData.message, alertCallback, jsonData.title);
+                navigator.notification.alert(
+                    "This is my Alert text!",
+                    callBackFunctionB, // Specify a function to be called 
+                    'Alert Title',
+                    "OK"
+                );
+                
+                function callBackFunctionB(){
+                    console.log('ok');
+                }
             };
 
             window.plugins.OneSignal.init("adece4f8-1dbd-4713-9351-f8140d916bf4",
