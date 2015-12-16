@@ -23,12 +23,12 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
             window.plugins.OneSignal.sendTag("key", "prueba");
 
-        }, false);
+            didReceiveRemoteNotificationCallBack : function(jsonData) {
+                alert("Notification received:\n" + JSON.stringify(jsonData));
+                console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+            }
 
-        didReceiveRemoteNotificationCallBack : function(jsonData) {
-            alert("Notification received:\n" + JSON.stringify(jsonData));
-            console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-        }
+        }, false);
 
         //FIN JS ONE SIGNAL
 
