@@ -12,7 +12,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
             var notificationOpenedCallback = function(jsonData) {
                 //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-                alert(jsonData.title+"\n"+jsonData.message);                
+                alert(jsonData.additionalData.title+"\n\n"+jsonData.message);                
             };
 
             window.plugins.OneSignal.init("adece4f8-1dbd-4713-9351-f8140d916bf4",
