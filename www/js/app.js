@@ -11,7 +11,8 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
             // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
 
             var notificationOpenedCallback = function(jsonData) {
-                console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+                //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+                alert("Notification received:\n" + JSON.stringify(jsonData));
             };
 
             window.plugins.OneSignal.init("adece4f8-1dbd-4713-9351-f8140d916bf4",
@@ -22,11 +23,6 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
             window.plugins.OneSignal.enableInAppAlertNotification(false);
 
             window.plugins.OneSignal.sendTag("key", "prueba");
-
-            didReceiveRemoteNotificationCallBack : function(jsonData) {
-                alert("Notification received:\n" + JSON.stringify(jsonData));
-                console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-            }
 
         }, false);
 
