@@ -8,7 +8,7 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
         // Enable to debug issues.
         // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
 
-        if($rootScope.versionProduccion){
+        if(!$rootScope.versionProduccion){
 
             var notificationOpenedCallback = function(jsonData) {
                 //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
