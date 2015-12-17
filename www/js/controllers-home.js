@@ -24,7 +24,7 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
         // Show an alert box if a notification comes in when the user is in your app.
         window.plugins.OneSignal.enableInAppAlertNotification(false);
 
-        window.plugins.OneSignal.sendTags({nombre: nombre(), segmento: segmento(), campana: numeroCampana()});
+        window.plugins.OneSignal.sendTag("segmento", segmento());
 
     }, false);
 
