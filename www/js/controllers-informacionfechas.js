@@ -731,7 +731,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             anoAnterior = anoSiguiente - 1;
         }else{
 
-            anoAnterior = $scope.fechaCampanaAnterior();
+            //anoAnterior = $scope.fechaCampanaAnterior();
             campanaAnterior = $scope.campana - 1;
         }
         //Obtener los recordatorios de la campana anterior
