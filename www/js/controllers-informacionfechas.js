@@ -674,6 +674,30 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         }
     }
 
+    $scope.fechaCampanaAnterior = function(){
+
+        var correteo = '';
+
+        //Campana actual
+        if($scope.fechas) {
+            for (i = 0; i < $scope.fechas.length; i++) {
+                if ($scope.fechas[i].actividad.toLowerCase() == "fecha correteo") {
+                    correteo = $scope.fechas[i].fecha;
+                }
+            }
+        }
+
+        if(correteo){
+
+            fecha = new Date(correteo);
+            fecha.setDate(fecha - 21);
+
+            return fecha.getFullYear();
+        }else{
+            $scope.fechaCalendario.getFullYear();
+        }
+    }
+
 
     $scope.semanasCalendario = function(){
 
@@ -704,8 +728,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         var campanaAnterior;
         if($scope.campana == 1){
             campanaAnterior = $rootScope.numeroCampanasAno;
-            anoAnterior = anoSiguiente - 1;
+            anoAnterior = anoAnterior - 1;
         }else{
+
+
             campanaAnterior = $scope.campana - 1;
         }
         //Obtener los recordatorios de la campana anterior
