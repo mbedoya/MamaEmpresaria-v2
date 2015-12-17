@@ -9,7 +9,7 @@
             <!-- Pedido Anterior - No Encontrado  -->
             <div class="item item-avatar item-icon-right" href="#" ng-show="!ultimoEstadoPedidoAnterior()" >
                 <div class="icono-caja-abierta"></div>
-                <h2>Campaña {{campana.numero-1}}
+                <h2>Campaña {{getNumeroCampanaAnterior()}}
                 </h2>
                 <p>No tienes un pedido registrado para la campaña
                 </p>
@@ -18,7 +18,7 @@
             <!-- Pedido Anterior - Encontrado  -->
             <div class="item item-avatar item-icon-right" href="#" ng-click="irATrazabilidadAnterior()" ng-show="ultimoEstadoPedidoAnterior()" >
                 <div class="icono-caja-abierta"></div>
-                <h2>Campaña {{campana.numero-1}}
+                <h2>Campaña {{getNumeroCampanaAnterior()}}
                 </h2>
                 <p>{{ultimoEstadoPedidoAnterior().estado}}<br />
                     {{ultimoEstadoPedidoAnterior().fecha | date: 'dd' }} de  {{ultimoEstadoPedidoAnterior().fecha | date: 'MMMM' }}

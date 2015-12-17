@@ -67,6 +67,16 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
         $state.go('app.menu.tabs.mipedido-trazabilidad');
     }
 
+    $scope.getNumeroCampanaAnterior = function(){
+
+        if($rootScope.campana.numero == 1){
+            return $rootScope.numeroCampanasAno;
+        }else{
+            return $rootScope.campana.numero-1;
+        }
+
+    }
+
     $scope.agotadosPedidoActual = function(){
         if($scope.agotadosActual && !$scope.agotadosActual.razonRechazo){
             return $scope.agotadosActual;
