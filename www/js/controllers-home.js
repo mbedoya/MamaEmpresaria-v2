@@ -8,21 +8,24 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
         // Enable to debug issues.
         // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
 
-        var notificationOpenedCallback = function(jsonData) {
-            //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-            //alert(jsonData.additionalData.title+"\n\n"+jsonData.message);                
-            var alertPopup = $ionicPopup.alert({
-                title: jsonData.additionalData.title,
-                template: jsonData.message
-            });
-        };
+        if($rootScope.versionProduccion){
 
-        window.plugins.OneSignal.init("adece4f8-1dbd-4713-9351-f8140d916bf4",
-                                      {googleProjectNumber: "275683696350"},
-                                      notificationOpenedCallback);
+            var notificationOpenedCallback = function(jsonData) {
+                //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+                //alert(jsonData.additionalData.title+"\n\n"+jsonData.message);                
+                var alertPopup = $ionicPopup.alert({
+                    title: jsonData.additionalData.title,
+                    template: jsonData.message
+                });
+            };
 
-        // Show an alert box if a notification comes in when the user is in your app.
-        window.plugins.OneSignal.enableInAppAlertNotification(false);
+            window.plugins.OneSignal.init("adece4f8-1dbd-4713-9351-f8140d916bf4",
+                                          {googleProjectNumber: "275683696350"},
+                                          notificationOpenedCallback);
+
+            // Show an alert box if a notificaton comes in when the user is in your app.
+            window.plugins.OneSignal.enableInAppAlertNotification(false);
+        }
 
     }, false);
 
