@@ -654,6 +654,27 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         console.log($scope.misCampanas);
     }
 
+    $scope.fechaCorreteoCampanaActual = function(){
+
+        var correteo = '';
+
+        //Campana actual
+        if($scope.fechas) {
+            for (i = 0; i < $scope.fechas.length; i++) {
+                if ($scope.fechas[i].actividad.toLowerCase() == "fecha correteo") {
+                    correteo = $scope.fechas[i].fecha;
+                }
+            }
+        }
+
+        if(correteo){
+            return new Date(correteo).getFullYear();
+        }else{
+            $scope.fechaCalendario.getFullYear();
+        }
+    }
+
+
     $scope.semanasCalendario = function(){
 
         console.log("campaña activa: " + $scope.campana);
@@ -665,12 +686,14 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             campanaSiguiente = 1;
             anoSiguiente = anoSiguiente + 1;
         }else{
+
+            anoSiguiente = $scope.fechaCorreteoCampanaActual();
             campanaSiguiente = $scope.campana + 1;
         }
         Campana.getRecordatorios(anoSiguiente, campanaSiguiente, $rootScope.zona, function (success, data){
             if(success){
                 $scope.fechasSiguienteCampana = data.listaRecordatorios;
-                
+
                 $scope.actualizarCampanasMes();
             }else{
 
