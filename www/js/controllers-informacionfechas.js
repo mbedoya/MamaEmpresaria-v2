@@ -72,7 +72,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
 
     $scope.mostrarAtras = function(){
-        return $scope.campana > $rootScope.campana.numero;
+
+        return false;
+
+        //return $scope.campana > $rootScope.campana.numero;
     }
 
     $scope.mostrarAdelante = function(){
