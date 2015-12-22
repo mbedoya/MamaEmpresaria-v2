@@ -557,6 +557,8 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 for (i = 0; i < $scope.fechasSiguienteCampana.length; i++){
                     if($scope.fechasSiguienteCampana[i].actividad.toLowerCase() == "fecha correteo"){
                         correteo = $scope.fechasSiguienteCampana[i].fecha;
+                    }else{
+                        correteo="";   
                     }
                 }
 
@@ -567,7 +569,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 console.log("fondoDia - Campaña siguiente?")
                 console.log("fondoDia - fecha", fecha)
                 console.log("fondoDia - correteo", correteo)
-                if(new Date(fecha) <= new Date(correteo)){
+                if(new Date(fecha) <= new Date(correteo) || correteo==""){
                     /*
                     if($scope.campana == 1)
                     alert("Menor igual " + $scope.corregirNumeroCampana($scope.campana+1));
