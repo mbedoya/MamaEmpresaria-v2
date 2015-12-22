@@ -516,8 +516,6 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         for (i = 0; i < $scope.fechasCampanaAnterior.length; i++){
             if($scope.fechasCampanaAnterior[i].actividad.toLowerCase() == "fecha correteo"){
                 correteo = $scope.fechasCampanaAnterior[i].fecha;
-            }else{
-                correteo="";
             }
         }
 
@@ -527,10 +525,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         */
 
         //Campaña anterior?
-        console.log("fondoDia - Campaña anterior?")
-        console.log("fondoDia - fecha", fecha)
-        console.log("fondoDia - correteo", correteo)
-        if(correteo="" || new Date(fecha) <= new Date(correteo)){
+                console.log("fondoDia - Campaña anterior?")
+                console.log("fondoDia - fecha", fecha)
+                console.log("fondoDia - correteo", correteo)
+        if(new Date(fecha) <= new Date(correteo)){
             /*
             if($scope.campana == 1)
             alert("Anterior " + $scope.corregirNumeroCampana($scope.campana-1));
@@ -541,16 +539,14 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             for (i = 0; i < $scope.fechas.length; i++){
                 if($scope.fechas[i].actividad.toLowerCase() == "fecha correteo"){
                     correteo = $scope.fechas[i].fecha;
-                }else{
-                    correteo="";
                 }
             }
 
             //Campaña actual?
             console.log("fondoDia - Campaña actual?")
-            console.log("fondoDia - fecha", fecha)
-            console.log("fondoDia - correteo", correteo)
-            if(correteo="" || new Date(fecha) <= new Date(correteo) ){
+                console.log("fondoDia - fecha", fecha)
+                console.log("fondoDia - correteo", correteo)
+            if(new Date(fecha) <= new Date(correteo)){
                 /*
                 if($scope.campana == 1)
                 alert("Actual " + $scope.campana);
@@ -573,7 +569,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 console.log("fondoDia - Campaña siguiente?")
                 console.log("fondoDia - fecha", fecha)
                 console.log("fondoDia - correteo", correteo)
-                if(correteo="" || new Date(fecha) <= new Date(correteo)){
+                if(new Date(fecha) <= new Date(correteo) || correteo==""){
                     /*
                     if($scope.campana == 1)
                     alert("Menor igual " + $scope.corregirNumeroCampana($scope.campana+1));
@@ -629,7 +625,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                     correteo = null;
                 }
             }
-
+            
             console.log("InformacionFechas - CAMPANA ANTERIOR");
             console.log("InformacionFechas - correteo", new Date(correteo));
             console.log("InformacionFechas - fechaCalendario", new Date($scope.fechaCalendario));
@@ -652,7 +648,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                     correteo = null;
                 }
             }
-
+            
             console.log("InformacionFechas - CAMPANA SIGUIENTE");
             console.log("InformacionFechas - correteo", new Date(correteo));
             console.log("InformacionFechas - fechaCalendario", new Date($scope.fechaCalendario));
@@ -676,7 +672,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             console.log("InformacionFechas - CAMPANA SIGUIENTE SIGUIENTE");
             console.log("InformacionFechas - correteo", new Date(correteo));
             console.log("InformacionFechas - fechaCalendario", new Date($scope.fechaCalendario));
-
+            
             if(correteo!=null && new Date(correteo).getMonth() == new Date($scope.fechaCalendario).getMonth()){
                 if(!campSiguienteAdicionada){
                     $scope.misCampanas.push({numero: $scope.corregirNumeroCampana($scope.campana+1), color: $scope.estiloCampana($scope.campana+1)});
