@@ -353,6 +353,8 @@ angular.module('novaventa.services', [])
 
                 $http.get(urlServicio).
                     success(function(data, status, headers, config) {
+                    console.log("Services - URL", urlServicio);
+                    console.log("Services - DATA", urlServicio);
                         fx(true, data);
                     }).
                     error(function(data, status, headers, config) {
@@ -738,7 +740,9 @@ angular.module('novaventa.services', [])
                                                 //ano entonces moverse a la campana 1 del siguiente ano
                                                 if(campanaAnterior == 0){
                                                     campanaAnterior = $rootScope.numeroCampanasAno;
-                                                    ano = ano - 1;
+                                                    if(new Date().getMonth() == 1){
+                                                        ano = ano - 1;
+                                                    }
                                                 }
 
                                                 Campana.getRecordatorios(ano, campanaAnterior, $rootScope.zona, function (success, data){

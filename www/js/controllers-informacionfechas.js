@@ -710,7 +710,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         var anoSiguiente = $scope.fechaCalendario.getFullYear();
         var campanaSiguiente;
         if($scope.campana == $rootScope.numeroCampanasAno){
-            campanaSiguiente = 1;
+            campanaSiguiente = 1;            
             anoSiguiente = anoSiguiente + 1;
         }else{
 
@@ -731,7 +731,9 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         var campanaAnterior;
         if($scope.campana == 1){
             campanaAnterior = $rootScope.numeroCampanasAno;
-            anoAnterior = anoSiguiente - 1;
+            if(new Date().getMonth() == 1){
+                anoAnterior = anoSiguiente - 1;
+            }
         }else{
 
             //anoAnterior = $scope.fechaCampanaAnterior();
