@@ -525,6 +525,9 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         */
 
         //Campaña anterior?
+                console.log("fondoDia - Campaña anterior?")
+                console.log("fondoDia - fecha", fecha)
+                console.log("fondoDia - correteo", correteo)
         if(new Date(fecha) <= new Date(correteo)){
             /*
             if($scope.campana == 1)
@@ -540,6 +543,9 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             }
 
             //Campaña actual?
+            console.log("fondoDia - Campaña actual?")
+                console.log("fondoDia - fecha", fecha)
+                console.log("fondoDia - correteo", correteo)
             if(new Date(fecha) <= new Date(correteo)){
                 /*
                 if($scope.campana == 1)
@@ -558,7 +564,9 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 if($scope.campana == 1)
                 alert("Otro Correteo " + correteo);
                 */
-
+                console.log("fondoDia - Campaña siguiente?")
+                console.log("fondoDia - fecha", fecha)
+                console.log("fondoDia - correteo", correteo)
                 if(new Date(fecha) <= new Date(correteo)){
                     /*
                     if($scope.campana == 1)
@@ -579,7 +587,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
     $scope.estiloCampana = function(campana){
         if((campana)%3 == 0){
-            return "#33CCCC";
+            return "#33CCCC";   
         }else{
             if((campana)%3 == 1){
                 return "#FFAD33";
