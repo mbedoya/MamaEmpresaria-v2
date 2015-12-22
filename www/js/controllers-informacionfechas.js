@@ -731,7 +731,8 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         Campana.getRecordatorios(anoSiguiente, campanaSiguiente, $rootScope.zona, function (success, data){
             if(success){
                 $scope.fechasSiguienteCampana = data.listaRecordatorios;
-
+                console.log("informacionFechas - datos enviados", anoSiguiente, campanaSiguiente)
+                console.log("informacionFechas - fechasSiguienteCampana", data.listaRecordatorios)
                 $scope.actualizarCampanasMes();
             }else{
 
@@ -754,7 +755,8 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         Campana.getRecordatorios(anoAnterior, campanaAnterior, $rootScope.zona, function (success, data){
             if(success){
                 $scope.fechasCampanaAnterior = data.listaRecordatorios;
-
+                console.log("informacionFechas - datos enviados", anoAnterior, campanaAnterior)
+                console.log("informacionFechas - fechasCampanaAnterior", data.listaRecordatorios)
                 $scope.actualizarCampanasMes();
             }else{
 
