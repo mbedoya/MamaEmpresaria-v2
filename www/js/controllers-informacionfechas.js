@@ -1,5 +1,5 @@
 moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScope, $ionicLoading, $state, $ionicPopup, $ionicModal, $http, $document, GA, Mama, Campana, Utilidades) {
-    
+
     var document=$document[0];
 
     //Registro en Analytics
@@ -10,15 +10,15 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         animation: 'slide-in-up'
     }).then(function(modal) {
         $scope.modal = modal;
-        
+
         $scope.modalRightButtons = [
-        {
-            type: 'button-clear',
-            content: 'Cancel',
-            tap: function(e) {
-                $scope.modal.hide();
-            }
-        }];
+            {
+                type: 'button-clear',
+                content: 'Cancel',
+                tap: function(e) {
+                    $scope.modal.hide();
+                }
+            }];
     })
 
     $scope.openModal = function() {
@@ -180,7 +180,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         Campana.getRecordatorios(ano, $scope.campana, $rootScope.zona, function (success, data){
             if(success){
                 $scope.fechas = data.listaRecordatorios;
-                
+
                 console.log("Recordatorios aumentar mes", data);
 
                 //Generar el calendario nuevamente
@@ -245,7 +245,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
         for (i = 0; i < $scope.fechas.length; i++){
             if(fechaCalendario <= fechaCorreteo &&
-                fechaCalendario >= fechaMinimaCampana){
+               fechaCalendario >= fechaMinimaCampana){
                 encontrado = true;
                 break;
             }
@@ -259,7 +259,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         if($scope.fechas==null || $scope.fechasSiguienteCampana==null || $scope.fechasCampanaAnterior==null)return false;
         for (i = 0; i < $scope.fechas.length; i++){
             if($scope.fechas[i].actividad.toLowerCase() == 'fecha correteo' &&
-                $scope.fechas[i].fecha == fecha ){
+               $scope.fechas[i].fecha == fecha ){
                 encontrado = true;
                 break;
             }
@@ -269,7 +269,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         if(!encontrado && $scope.fechasSiguienteCampana){
             for (i = 0; i < $scope.fechasSiguienteCampana.length; i++){
                 if($scope.fechasSiguienteCampana[i].actividad.toLowerCase() == 'fecha correteo' &&
-                    $scope.fechasSiguienteCampana[i].fecha == fecha ){
+                   $scope.fechasSiguienteCampana[i].fecha == fecha ){
                     encontrado = true;
                     break;
                 }
@@ -280,13 +280,13 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         if(!encontrado && $scope.fechasCampanaAnterior){
             for (i = 0; i < $scope.fechasCampanaAnterior.length; i++){
                 if($scope.fechasCampanaAnterior[i].actividad.toLowerCase() == 'fecha correteo' &&
-                    $scope.fechasCampanaAnterior[i].fecha == fecha ){
+                   $scope.fechasCampanaAnterior[i].fecha == fecha ){
                     encontrado = true;
                     break;
                 }
             }
         }
-        
+
         return encontrado;
     }
 
@@ -295,7 +295,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         if($scope.fechas==null || $scope.fechasSiguienteCampana==null || $scope.fechasCampanaAnterior==null)return false;
         for (i = 0; i < $scope.fechas.length; i++){
             if($scope.fechas[i].actividad.toLowerCase() == 'encuentro' &&
-                $scope.fechas[i].fecha == fecha ){
+               $scope.fechas[i].fecha == fecha ){
                 encontrado = true;
                 break;
             }
@@ -305,7 +305,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         if(!encontrado && $scope.fechasSiguienteCampana){
             for (i = 0; i < $scope.fechasSiguienteCampana.length; i++){
                 if($scope.fechasSiguienteCampana[i].actividad.toLowerCase() == 'encuentro' &&
-                    $scope.fechasSiguienteCampana[i].fecha == fecha ){
+                   $scope.fechasSiguienteCampana[i].fecha == fecha ){
                     encontrado = true;
                     break;
                 }
@@ -316,7 +316,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         if(!encontrado && $scope.fechasCampanaAnterior){
             for (i = 0; i < $scope.fechasCampanaAnterior.length; i++){
                 if($scope.fechasCampanaAnterior[i].actividad.toLowerCase() == 'encuentro' &&
-                    $scope.fechasCampanaAnterior[i].fecha == fecha ){
+                   $scope.fechasCampanaAnterior[i].fecha == fecha ){
                     encontrado = true;
                     break;
                 }
@@ -325,9 +325,9 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
         return encontrado;
     }
-    
+
     $scope.fechaEsTomaPedido = function(fecha){
-        
+
         if($scope.fechaEsEncuentro(fecha)){
             return false;
         }
@@ -335,7 +335,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         encontrado = false;
         for (i = 0; i < $scope.fechas.length; i++){
             if($scope.fechas[i].actividad.toLowerCase() == 'toma de pedido' &&
-                $scope.fechas[i].fecha == fecha ){
+               $scope.fechas[i].fecha == fecha ){
                 encontrado = true;
                 break;
             }
@@ -345,7 +345,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         if(!encontrado && $scope.fechasSiguienteCampana){
             for (i = 0; i < $scope.fechasSiguienteCampana.length; i++){
                 if($scope.fechasSiguienteCampana[i].actividad.toLowerCase() == 'toma de pedido' &&
-                    $scope.fechasSiguienteCampana[i].fecha == fecha ){
+                   $scope.fechasSiguienteCampana[i].fecha == fecha ){
                     encontrado = true;
                     break;
                 }
@@ -356,7 +356,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         if(!encontrado && $scope.fechasCampanaAnterior){
             for (i = 0; i < $scope.fechasCampanaAnterior.length; i++){
                 if($scope.fechasCampanaAnterior[i].actividad.toLowerCase() == 'toma de pedido' &&
-                    $scope.fechasCampanaAnterior[i].fecha == fecha ){
+                   $scope.fechasCampanaAnterior[i].fecha == fecha ){
                     encontrado = true;
                     break;
                 }
@@ -371,7 +371,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         if($scope.fechas==null || $scope.fechasSiguienteCampana==null || $scope.fechasCampanaAnterior==null)return false;
         for (i = 0; i < $scope.fechas.length; i++){
             if($scope.fechas[i].actividad.toLowerCase() == 'reparto de pedido 1' &&
-                $scope.fechas[i].fecha == fecha ){
+               $scope.fechas[i].fecha == fecha ){
                 encontrado = true;
                 break;
             }
@@ -381,7 +381,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         if(!encontrado && $scope.fechasSiguienteCampana){
             for (i = 0; i < $scope.fechasSiguienteCampana.length; i++){
                 if($scope.fechasSiguienteCampana[i].actividad.toLowerCase() == 'reparto de pedido 1' &&
-                    $scope.fechasSiguienteCampana[i].fecha == fecha ){
+                   $scope.fechasSiguienteCampana[i].fecha == fecha ){
                     encontrado = true;
                     break;
                 }
@@ -392,7 +392,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         if(!encontrado && $scope.fechasCampanaAnterior){
             for (i = 0; i < $scope.fechasCampanaAnterior.length; i++){
                 if($scope.fechasCampanaAnterior[i].actividad.toLowerCase() == 'reparto de pedido 1' &&
-                    $scope.fechasCampanaAnterior[i].fecha == fecha ){
+                   $scope.fechasCampanaAnterior[i].fecha == fecha ){
                     encontrado = true;
                     break;
                 }
@@ -526,7 +526,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
         //Campaña anterior?
         if(new Date(fecha) <= new Date(correteo)){
-/*
+            /*
             if($scope.campana == 1)
             alert("Anterior " + $scope.corregirNumeroCampana($scope.campana-1));
             */
@@ -541,38 +541,38 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
             //Campaña actual?
             if(new Date(fecha) <= new Date(correteo)){
-/*
+                /*
                 if($scope.campana == 1)
                 alert("Actual " + $scope.campana);
                 */
                 return $scope.estiloCampana($scope.campana);
             }else{
-            	//Buscar correteo siguiente
-				for (i = 0; i < $scope.fechasSiguienteCampana.length; i++){
-					if($scope.fechasSiguienteCampana[i].actividad.toLowerCase() == "fecha correteo"){
-						correteo = $scope.fechasSiguienteCampana[i].fecha;
-					}
-				}
+                //Buscar correteo siguiente
+                for (i = 0; i < $scope.fechasSiguienteCampana.length; i++){
+                    if($scope.fechasSiguienteCampana[i].actividad.toLowerCase() == "fecha correteo"){
+                        correteo = $scope.fechasSiguienteCampana[i].fecha;
+                    }
+                }
 
                 /*
                 if($scope.campana == 1)
                 alert("Otro Correteo " + correteo);
                 */
-				
-				if(new Date(fecha) <= new Date(correteo)){
+
+                if(new Date(fecha) <= new Date(correteo)){
                     /*
                     if($scope.campana == 1)
                     alert("Menor igual " + $scope.corregirNumeroCampana($scope.campana+1));
                     */
-					return $scope.estiloCampana($scope.corregirNumeroCampana($scope.campana+1));
-				}else{
+                    return $scope.estiloCampana($scope.corregirNumeroCampana($scope.campana+1));
+                }else{
                     /*
                     if($scope.campana == 1)
                     alert("Mayor " + $scope.corregirNumeroCampana($scope.campana+2));
                     */
-				    return $scope.estiloCampana($scope.corregirNumeroCampana($scope.campana+2));
-				}
-        
+                    return $scope.estiloCampana($scope.corregirNumeroCampana($scope.campana+2));
+                }
+
             }
         }
     }
@@ -613,7 +613,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                     correteo = $scope.fechasCampanaAnterior[i].fecha;
                 }
             }
-
+            
+            console.log("InformacionFechas - CAMPANA ANTERIOR");
+            console.log("InformacionFechas - correteo", new Date(correteo));
+            console.log("InformacionFechas - fechaCalendario", new Date($scope.fechaCalendario));
             if(new Date(correteo).getMonth() == new Date($scope.fechaCalendario).getMonth()){
                 $scope.misCampanas.push({numero: $scope.corregirNumeroCampana($scope.campana-1), color: $scope.estiloCampana($scope.campana-1)});
             }
@@ -631,13 +634,17 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                     correteo = $scope.fechas[i].fecha;
                 }
             }
+            
+            console.log("InformacionFechas - CAMPANA SIGUIENTE");
+            console.log("InformacionFechas - correteo", new Date(correteo));
+            console.log("InformacionFechas - fechaCalendario", new Date($scope.fechaCalendario));
 
             if(new Date(correteo).getMonth() == new Date($scope.fechaCalendario).getMonth()){
                 $scope.misCampanas.push({numero: $scope.corregirNumeroCampana($scope.campana+1), color: $scope.estiloCampana($scope.campana+1)});
                 campSiguienteAdicionada = true;
             }
         }
-        
+
         //Campana siguiente a la siguiente
         if($scope.fechasSiguienteCampana){
             for (i = 0; i < $scope.fechasSiguienteCampana.length; i++){
@@ -645,10 +652,14 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                     correteo = $scope.fechasSiguienteCampana[i].fecha;
                 }
             }
+
+            console.log("InformacionFechas - CAMPANA SIGUIENTE SIGUIENTE");
+            console.log("InformacionFechas - correteo", new Date(correteo));
+            console.log("InformacionFechas - fechaCalendario", new Date($scope.fechaCalendario));
             
             if(new Date(correteo).getMonth() == new Date($scope.fechaCalendario).getMonth()){
                 if(!campSiguienteAdicionada){
-                   $scope.misCampanas.push({numero: $scope.corregirNumeroCampana($scope.campana+1), color: $scope.estiloCampana($scope.campana+1)});
+                    $scope.misCampanas.push({numero: $scope.corregirNumeroCampana($scope.campana+1), color: $scope.estiloCampana($scope.campana+1)});
                 }
                 $scope.misCampanas.push({numero: $scope.corregirNumeroCampana($scope.campana+2), color: $scope.estiloCampana($scope.campana+2)});
             }
@@ -784,10 +795,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                     var fechaAnterior = new Date(dateStr);
                     fechaAnterior.setDate(-j+1);
                     semana.push({ "dia": fechaAnterior.getDate(),
-                        "fechaCompleta":  $scope.padStr(fechaAnterior.getFullYear()) + "-" +
-                            $scope.padStr(1 + fechaAnterior.getMonth()) + "-" +
-                            $scope.padStr(fechaAnterior.getDate())
-                    });
+                                 "fechaCompleta":  $scope.padStr(fechaAnterior.getFullYear()) + "-" +
+                                 $scope.padStr(1 + fechaAnterior.getMonth()) + "-" +
+                                 $scope.padStr(fechaAnterior.getDate())
+                                });
                 }
                 for(i=0; i<7-primerDiaMes; i++){
 
@@ -799,10 +810,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                         reiniciarDia = false;
                     }
                     semana.push({ "dia": diaMes + 1,
-                        "fechaCompleta":  $scope.padStr(nuevaFecha.getFullYear()) + "-" +
-                            $scope.padStr(1 + nuevaFecha.getMonth()) + "-" +
-                            $scope.padStr(nuevaFecha.getDate())
-                    });
+                                 "fechaCompleta":  $scope.padStr(nuevaFecha.getFullYear()) + "-" +
+                                 $scope.padStr(1 + nuevaFecha.getMonth()) + "-" +
+                                 $scope.padStr(nuevaFecha.getDate())
+                                });
                     indiceDias++;
                     diaMes++;
                 }
@@ -818,10 +829,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                         reiniciarDia = false;
                     }
                     semana.push({ "dia": diaMes + 1,
-                        "fechaCompleta":  $scope.padStr(nuevaFecha.getFullYear()) + "-" +
-                            $scope.padStr(1 + nuevaFecha.getMonth()) + "-" +
-                            $scope.padStr(nuevaFecha.getDate())
-                    });
+                                 "fechaCompleta":  $scope.padStr(nuevaFecha.getFullYear()) + "-" +
+                                 $scope.padStr(1 + nuevaFecha.getMonth()) + "-" +
+                                 $scope.padStr(nuevaFecha.getDate())
+                                });
                     indiceDias++;
                     diaMes++;
                 }
@@ -843,9 +854,9 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         console.log(semanas);
         $scope.semanas = semanas;
     }
-    
+
     $scope.mostrarConectorActividad=function(actividad){
-        
+
         if(actividad == "TOMA DE PEDIDO"){
             return false;
         }
@@ -854,7 +865,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     $scope.inicializar = function(){
 
         $rootScope.cargaDatos.ventanaInformacionFechas = true;
-        
+
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
@@ -883,8 +894,8 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
         //Seleccionar la fecha actual
         $scope.seleccionarFecha($scope.padStr($scope.fechaCalendario.getFullYear()) + "-" +
-            $scope.padStr(1 + $scope.fechaCalendario.getMonth()) + "-" +
-            $scope.padStr($scope.fechaCalendario.getDate()), false);
+                                $scope.padStr(1 + $scope.fechaCalendario.getMonth()) + "-" +
+                                $scope.padStr($scope.fechaCalendario.getDate()), false);
 
     }
 
@@ -895,7 +906,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     $scope.$on('loggedin', function(event, args){
         //$scope.inicializar();
     });
-    
+
     //$scope.inicializar();
 
     $scope.$on('$ionicView.beforeEnter', function(){
