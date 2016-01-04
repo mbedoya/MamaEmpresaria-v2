@@ -756,13 +756,15 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         });
 
         var anoAnterior = $scope.fechaCalendario.getFullYear();
+        console.log("informacionFechas - anoAnterior1", anoAnterior);
         var campanaAnterior;
+        console.log("informacionFechas - campana", $scope.campana);
         if($scope.campana == 1){
             campanaAnterior = $rootScope.numeroCampanasAno;
             if(new Date().getMonth() == 1){
                 
                 anoAnterior = anoAnterior - 1;
-                console.log("informacionFechas - anoAnterior", anoAnterior);
+                console.log("informacionFechas - anoAnterior2", anoAnterior);
             }
         }else{
 
