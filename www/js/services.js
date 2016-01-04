@@ -740,7 +740,7 @@ angular.module('novaventa.services', [])
                                                 //ano entonces moverse a la campana 1 del siguiente ano
                                                 if(campanaAnterior == 0){
                                                     campanaAnterior = $rootScope.numeroCampanasAno;
-                                                    if(new Date().getMonth() == 1){
+                                                    if(new Date().getMonth() == 0){
                                                         ano = ano - 1;
                                                     }
                                                 }
