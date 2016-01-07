@@ -197,7 +197,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         }
     })
 
-        .state('app.menu.tabs.fechas', {
+        /*.state('app.menu.tabs.fechas', {
         url: "/fechas",
         views: {
             'informacion-fechas-content': {
@@ -205,7 +205,36 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                 controller: 'InformacionFechasCtrl'
             }
         }
-    })            
+    }) */
+    
+        .state('app.menu.tabs.fechas', {
+        url: "/fechas",
+        abstract: true,
+        views: {
+            'informacion-fechas-content': {
+                templateUrl: "templates/informacionfechas.html"
+            }
+        }
+    })
+        .state('app.menu.tabs.fechas.campanas', {
+        url: "/campanas",
+        views: {
+            'fechas-campanas-content': {
+                templateUrl: "templates/fechasCampanas.html",
+                controller: 'InformacionFechasCtrl'
+            }
+        }
+    })
+
+        .state('app.menu.tabs.fechas.encuentros', {
+        url: "/encuentros",
+        views: {
+            'fechas-encuentros-content': {
+                templateUrl: "templates/fechasEncuentros.html",
+                controller: 'InformacionFechasCtrl'
+            }
+        }
+    })
 
         .state('app.menu.tabs.mipedido', {
         url: "/mipedido",
