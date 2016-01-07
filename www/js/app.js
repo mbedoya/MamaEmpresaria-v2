@@ -212,7 +212,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         abstract: true,
         views: {
             'informacion-fechas-content': {
-                templateUrl: "templates/informacionfechas.html"
+                templateUrl: "templates/tabsfechas.html"
             }
         }
     })
