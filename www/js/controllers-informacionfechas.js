@@ -21,7 +21,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             }];
     })
 
-    /*$scope.openModal = function() {
+    $scope.openModal = function() {
         $scope.modal.show();
     }
 
@@ -31,15 +31,20 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
     $scope.$on('$destroy', function() {
         $scope.modal.remove();
-    });*/
+    });
 
-    /*$scope.abrirModal = function(){
+    $scope.abrirModal = function(){
         $("#modalCalendario").css("visibility","visible");
     }
 
     $scope.cerrarModal = function(){
         $("#modalCalendario").css("visibility","hidden");
-    }*/
+    }
+     
+    $scope.recordatoriosCampanaActual=function(){
+        
+    }
+    
     /*
     $scope.padStr = function(i) {
         return (i < 10) ? "0" + i : "" + i;
@@ -903,6 +908,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.campana = $rootScope.campana.numero;
 
         //$scope.semanasCalendario();
+        $scope.recordatoriosCampanaActual();
 
         $ionicLoading.hide();
 
