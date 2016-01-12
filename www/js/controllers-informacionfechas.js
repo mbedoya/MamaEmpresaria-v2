@@ -69,14 +69,6 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         return fecha.lugar!="..";
     }
     
-    $scope.aumentarMes=function(){
-        $scope.loading =  $ionicLoading.show({
-            template: Utilidades.getPlantillaEspera('Cargando información de campaña')
-        });
-        
-        var ano=$scope.fechaCalendario.getFullYear();
-    }
-    
     /*
     $scope.padStr = function(i) {
         return (i < 10) ? "0" + i : "" + i;
