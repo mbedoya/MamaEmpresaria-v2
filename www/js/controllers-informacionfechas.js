@@ -107,7 +107,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             ano = ano - 1;
         }else{
             $scope.campana = $scope.campana - 1;
-        }|
+        }
 
         Campana.getRecordatorios(ano, $scope.campana, $rootScope.zona, function (success, data){
             if(success){
