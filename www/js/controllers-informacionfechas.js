@@ -111,12 +111,16 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         Campana.getRecordatorios(ano, $scope.campana, $rootScope.zona, function (success, data){
             if(success){
                 $scope.fechasCampana = data.listaRecordatorios;
-                console.log("informacionFechas.disminuirMes - datos enviados", ano, $scope.campana);
+                console.log("informacionFechas.aumentarMes - datos enviados", ano, $scope.campana);
                 $ionicLoading.hide();
             }else{
                 console.log("Fallo");
             }
         });
+    }
+    
+    $scope.mostrarAtras = function(){
+        return $scope.campana > $rootScope.campana.numero;
     }
 
     /*
@@ -149,13 +153,14 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     $scope.fechaVisibleCalendario = function(){
         return $scope.fechaCalendario;
     }
-    */
+
     $scope.mostrarAtras = function(){
 
-        return $scope.campana > $rootScope.campana.numero;
+        return false;
+
+        //return $scope.campana > $rootScope.campana.numero;
     }
-    
-    /*
+
     $scope.mostrarAdelante = function(){
         return $scope.campana < $rootScope.numeroCampanasAno;
     }
