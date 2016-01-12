@@ -95,6 +95,31 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         
     }
     
+    $scope.disminuirMes=function(){
+        $scope.loading =  $ionicLoading.show({
+            template: Utilidades.getPlantillaEspera('Cargando información de campaña')
+        });
+
+        var ano=$scope.fechaCalendario.getFullYear();
+
+        if($scope.campana == 1){
+            $scope.campana = $rootScope.numeroCampanasAno;
+            ano = ano - 1;
+        }else{
+            $scope.campana = $scope.campana - 1;
+        }|
+
+        Campana.getRecordatorios(ano, $scope.campana, $rootScope.zona, function (success, data){
+            if(success){
+                $scope.fechasCampana = data.listaRecordatorios;
+                console.log("informacionFechas.disminuirMes - datos enviados", ano, $scope.campana);
+                $ionicLoading.hide();
+            }else{
+                console.log("Fallo");
+            }
+        });
+    }
+    
     /*
     $scope.padStr = function(i) {
         return (i < 10) ? "0" + i : "" + i;
