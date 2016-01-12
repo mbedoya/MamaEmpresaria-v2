@@ -58,12 +58,12 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             if(success){
                 $scope.fechasCampana = data.listaRecordatorios;
                 console.log("informacionFechas - datos enviados", ano, $scope.campana);
+                alert(data.listaRecordatorios);
                 $ionicLoading.hide();
             }else{
 
             }
         });
-        $ionicLoading.hide();
     }
     
     $scope.hayLugar=function(fecha){
