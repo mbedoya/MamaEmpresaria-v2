@@ -42,6 +42,11 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
      
     $scope.recordatoriosCampanaActual=function(){
+        
+        $scope.loading =  $ionicLoading.show({
+            template: Utilidades.getPlantillaEspera('Cargando información de campaña')
+        });
+        
         var anoActual=$scope.fechaCalendario.getFullYear();
         var campanaActual=$scope.campana;
         
@@ -53,10 +58,12 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             if(success){
                 $scope.fechasCampana = data.listaRecordatorios;
                 console.log("informacionFechas - datos enviados", ano, $scope.campana);
+                $ionicLoading.hide();
             }else{
 
             }
         });
+        $ionicLoading.hide();
     }
     
     $scope.hayLugar=function(fecha){
@@ -910,10 +917,6 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     $scope.inicializar = function(){
 
         $rootScope.cargaDatos.ventanaInformacionFechas = true;
-
-        $scope.loading =  $ionicLoading.show({
-            template: Utilidades.getPlantillaEspera('Cargando información de campaña')
-        });
 
         //El calendario inicia en el mes actual
         $scope.fechaCalendario = new Date();
