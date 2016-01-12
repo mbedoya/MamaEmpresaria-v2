@@ -120,6 +120,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         });
     }
     
+    $scope.mostrarAtras = function(){
+        return $scope.campana > $rootScope.campana.numero;
+    }
+    
     /*
     $scope.padStr = function(i) {
         return (i < 10) ? "0" + i : "" + i;
