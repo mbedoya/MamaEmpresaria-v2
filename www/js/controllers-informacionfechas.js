@@ -33,6 +33,14 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.modal.remove();
     });
 
+    $scope.abrirModal = function(){
+        $("#modalCalendario").css("visibility","visible");
+    }
+
+    $scope.cerrarModal = function(){
+        $("#modalCalendario").css("visibility","hidden");
+    }
+
     $scope.recordatoriosCampanaActual=function(){
 
         $scope.loading =  $ionicLoading.show({
