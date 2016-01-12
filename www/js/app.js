@@ -1,6 +1,6 @@
 angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.controllers', 'novaventa.services'])
 
-    .run(function($ionicPlatform, $rootScope, $ionicPopup, Campana) {
+    .run(function($ionicPlatform, $rootScope, $ionicPopup, Campana) { 
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
