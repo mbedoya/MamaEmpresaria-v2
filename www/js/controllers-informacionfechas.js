@@ -40,85 +40,43 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     $scope.cerrarModal = function(){
         $("#modalCalendario").css("visibility","hidden");
     }
-
+     
     $scope.recordatoriosCampanaActual=function(){
-
+        
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
-
+        
         var ano=$scope.fechaCalendario.getFullYear();
         var campanaActual=$scope.campana;
-
+        
         if($scope.campana == 1 && $scope.fechaCalendario.getMonth() == 11){           
             ano = ano+1;
         }
-
+        
         Campana.getRecordatorios(ano, $scope.campana, $rootScope.zona, function (success, data){
             if(success){
                 $scope.fechasCampana = data.listaRecordatorios;
-                console.log("informacionFechas.recordatoriosCampanaActual - datos enviados", ano, $scope.campana);
+                console.log("informacionFechas - datos enviados", ano, $scope.campana);
                 $ionicLoading.hide();
             }else{
                 console.log("Fallo");
             }
         });
     }
-
+    
     $scope.hayLugar=function(fecha){
         return fecha.lugar!="..";
     }
-
+    
     $scope.aumentarMes=function(){
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
-
+        
         var ano=$scope.fechaCalendario.getFullYear();
-
-        if($scope.campana == $rootScope.numeroCampanasAno){
-            $scope.campana = 1;
-            ano = ano + 1;           
-        }else{
-            $scope.campana = $scope.campana + 1;
-        }
-
-        Campana.getRecordatorios(ano, $scope.campana, $rootScope.zona, function (success, data){
-            if(success){
-                $scope.fechasCampana = data.listaRecordatorios;
-                console.log("informacionFechas.aumentarMes - datos enviados", ano, $scope.campana);
-                $ionicLoading.hide();
-            }else{
-                console.log("Fallo");
-            }
-        });
     }
-
-    $scope.disminuirMes=function(){
-        $scope.loading =  $ionicLoading.show({
-            template: Utilidades.getPlantillaEspera('Cargando información de campaña')
-        });
-
-        var ano=$scope.fechaCalendario.getFullYear();
-
-        if($scope.campana == 1){
-            $scope.campana = $rootScope.numeroCampanasAno;
-            ano = ano - 1;
-        }else{
-            $scope.campana = $scope.campana - 1;
-        }|
-
-        Campana.getRecordatorios(ano, $scope.campana, $rootScope.zona, function (success, data){
-            if(success){
-                $scope.fechasCampana = data.listaRecordatorios;
-                console.log("informacionFechas.disminuirMes - datos enviados", ano, $scope.campana);
-                $ionicLoading.hide();
-            }else{
-                console.log("Fallo");
-            }
-        });
-    }
-
+    
     /*
     $scope.padStr = function(i) {
         return (i < 10) ? "0" + i : "" + i;
@@ -149,13 +107,14 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     $scope.fechaVisibleCalendario = function(){
         return $scope.fechaCalendario;
     }
-    */
+
     $scope.mostrarAtras = function(){
 
-        return $scope.campana > $rootScope.campana.numero;
+        return false;
+
+        //return $scope.campana > $rootScope.campana.numero;
     }
-    
-    /*
+
     $scope.mostrarAdelante = function(){
         return $scope.campana < $rootScope.numeroCampanasAno;
     }
@@ -596,17 +555,17 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             }
         }*/
 
-    /*
+        /*
         if($scope.campana == 1)
         alert(correteo);
         */
-    /*
+        /*
         //Campaña anterior?
                 console.log("fondoDia - Campaña anterior?")
                 console.log("fondoDia - fecha", fecha)
                 console.log("fondoDia - correteo", correteo)
         if(new Date(fecha) <= new Date(correteo)){*/
-    /*
+            /*
             if($scope.campana == 1)
             alert("Anterior " + $scope.corregirNumeroCampana($scope.campana-1));
             *//*
@@ -624,7 +583,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 console.log("fondoDia - fecha", fecha)
                 console.log("fondoDia - correteo", correteo)
             if(new Date(fecha) <= new Date(correteo)){*/
-    /*
+                /*
                 if($scope.campana == 1)
                 alert("Actual " + $scope.campana);
                 *//*
@@ -639,7 +598,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                     }
                 }
                 */
-    /*
+                /*
                 if($scope.campana == 1)
                 alert("Otro Correteo " + correteo);
                 *//*
@@ -702,7 +661,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                     correteo = null;
                 }
             }
-
+            
             console.log("InformacionFechas - CAMPANA ANTERIOR");
             console.log("InformacionFechas - correteo", new Date(correteo));
             console.log("InformacionFechas - fechaCalendario", new Date($scope.fechaCalendario));
@@ -725,7 +684,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                     correteo = null;
                 }
             }
-
+            
             console.log("InformacionFechas - CAMPANA SIGUIENTE");
             console.log("InformacionFechas - correteo", new Date(correteo));
             console.log("InformacionFechas - fechaCalendario", new Date($scope.fechaCalendario));
@@ -749,7 +708,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             console.log("InformacionFechas - CAMPANA SIGUIENTE SIGUIENTE");
             console.log("InformacionFechas - correteo", new Date(correteo));
             console.log("InformacionFechas - fechaCalendario", new Date($scope.fechaCalendario));
-
+            
             if(correteo!=null && new Date(correteo).getMonth() == new Date($scope.fechaCalendario).getMonth()){
                 if(!campSiguienteAdicionada){
                     $scope.misCampanas.push({numero: $scope.corregirNumeroCampana($scope.campana+1), color: $scope.estiloCampana($scope.campana+1)});
@@ -840,7 +799,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             campanaAnterior = $rootScope.numeroCampanasAno;
             console.log("informacionFechas - getMonth", new Date().getMonth());
             if(new Date().getMonth() == 0){
-
+                
                 anoAnterior = anoAnterior - 1;
                 console.log("informacionFechas - anoAnterior2", anoAnterior);
             }
