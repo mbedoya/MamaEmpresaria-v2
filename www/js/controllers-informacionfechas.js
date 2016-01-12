@@ -47,7 +47,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
         
-        var anoActual=$scope.fechaCalendario.getFullYear();
+        var ano=$scope.fechaCalendario.getFullYear();
         var campanaActual=$scope.campana;
         
         if($scope.campana == 1 && $scope.fechaCalendario.getMonth() == 11){           
