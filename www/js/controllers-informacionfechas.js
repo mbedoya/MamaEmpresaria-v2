@@ -75,6 +75,24 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         });
         
         var ano=$scope.fechaCalendario.getFullYear();
+        
+        if($scope.campana == $rootScope.numeroCampanasAno){
+            $scope.campana = 1;
+            ano = ano + 1;           
+        }else{
+            $scope.campana = $scope.campana + 1;
+        }
+
+        Campana.getRecordatorios(ano, $scope.campana, $rootScope.zona, function (success, data){
+            if(success){
+                $scope.fechasCampana = data.listaRecordatorios;
+                console.log("informacionFechas.aumentarMes - datos enviados", ano, $scope.campana);
+                $ionicLoading.hide();
+            }else{
+                console.log("Fallo");
+            }
+        });
+        
     }
     
     /*
