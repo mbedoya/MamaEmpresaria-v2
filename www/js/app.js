@@ -220,7 +220,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         url: "/campanas",
         views: {
             'fechas-campanas-content': {
-                templateUrl: "templates/fechascampanas.html",
+                templateUrl: "templates/fechasCampanas.html",
                 controller: 'InformacionFechasCtrl'
             }
         }
@@ -230,7 +230,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         url: "/encuentros",
         views: {
             'fechas-encuentros-content': {
-                templateUrl: "templates/fechasencuentros.html",
+                templateUrl: "templates/fechasEncuentros.html",
                 controller: 'InformacionFechasCtrl'
             }
         }
