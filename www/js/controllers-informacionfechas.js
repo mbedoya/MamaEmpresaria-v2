@@ -21,7 +21,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             }];
     })
 
-    $scope.openModal = function() {
+    /*$scope.openModal = function() {
         $scope.modal.show();
     }
 
@@ -31,7 +31,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
     $scope.$on('$destroy', function() {
         $scope.modal.remove();
-    });
+    });*/
 
     /*$scope.abrirModal = function(){
         $("#modalCalendario").css("visibility","visible");
@@ -40,7 +40,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     $scope.cerrarModal = function(){
         $("#modalCalendario").css("visibility","hidden");
     }*/
-
+    /*
     $scope.padStr = function(i) {
         return (i < 10) ? "0" + i : "" + i;
     }
@@ -401,7 +401,6 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
         return encontrado;
     }
-
     $scope.seleccionarFecha = function(fecha, mostrarDetalle){
 
         try{
@@ -517,22 +516,22 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             if($scope.fechasCampanaAnterior[i].actividad.toLowerCase() == "fecha correteo"){
                 correteo = $scope.fechasCampanaAnterior[i].fecha;
             }
-        }
+        }*/
 
         /*
         if($scope.campana == 1)
         alert(correteo);
         */
-
+        /*
         //Campaña anterior?
                 console.log("fondoDia - Campaña anterior?")
                 console.log("fondoDia - fecha", fecha)
                 console.log("fondoDia - correteo", correteo)
-        if(new Date(fecha) <= new Date(correteo)){
+        if(new Date(fecha) <= new Date(correteo)){*/
             /*
             if($scope.campana == 1)
             alert("Anterior " + $scope.corregirNumeroCampana($scope.campana-1));
-            */
+            *//*
             return $scope.estiloCampana($scope.corregirNumeroCampana($scope.campana-1));
         }else{
             //Buscar correteo actual
@@ -546,11 +545,11 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             console.log("fondoDia - Campaña actual?")
                 console.log("fondoDia - fecha", fecha)
                 console.log("fondoDia - correteo", correteo)
-            if(new Date(fecha) <= new Date(correteo)){
+            if(new Date(fecha) <= new Date(correteo)){*/
                 /*
                 if($scope.campana == 1)
                 alert("Actual " + $scope.campana);
-                */
+                *//*
                 return $scope.estiloCampana($scope.campana);
             }else{
                 //Buscar correteo siguiente
@@ -561,11 +560,11 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                         correteo="";   
                     }
                 }
-
+                */
                 /*
                 if($scope.campana == 1)
                 alert("Otro Correteo " + correteo);
-                */
+                *//*
                 console.log("fondoDia - Campaña siguiente?")
                 console.log("fondoDia - fecha", fecha)
                 console.log("fondoDia - correteo", correteo)
@@ -573,13 +572,13 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                     /*
                     if($scope.campana == 1)
                     alert("Menor igual " + $scope.corregirNumeroCampana($scope.campana+1));
-                    */
+                    *//*
                     return $scope.estiloCampana($scope.corregirNumeroCampana($scope.campana+1));
                 }else{
                     /*
                     if($scope.campana == 1)
                     alert("Mayor " + $scope.corregirNumeroCampana($scope.campana+2));
-                    */
+                    *//*
                     return $scope.estiloCampana($scope.corregirNumeroCampana($scope.campana+2));
                 }
 
@@ -883,7 +882,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         if(actividad == "TOMA DE PEDIDO"){
             return false;
         }
-    }
+    }*/
 
     $scope.inicializar = function(){
 
@@ -892,14 +891,6 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
-
-        $scope.cadenaFechaSeleccionada = '';
-
-        $scope.detalleFecha = null;
-
-        $scope.semanas = null;
-
-        $scope.misCampanas = new Array();
 
         //El calendario inicia en el mes actual
         $scope.fechaCalendario = new Date();
@@ -911,14 +902,9 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
         $scope.campana = $rootScope.campana.numero;
 
-        $scope.semanasCalendario();
+        //$scope.semanasCalendario();
 
         $ionicLoading.hide();
-
-        //Seleccionar la fecha actual
-        $scope.seleccionarFecha($scope.padStr($scope.fechaCalendario.getFullYear()) + "-" +
-                                $scope.padStr(1 + $scope.fechaCalendario.getMonth()) + "-" +
-                                $scope.padStr($scope.fechaCalendario.getDate()), false);
 
     }
 
@@ -935,7 +921,6 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     $scope.$on('$ionicView.beforeEnter', function(){
         //Si no se ha cargado la información entonces inicializar
         if(!$rootScope.cargaDatos.ventanaInformacionFechas){
-            $rootScope.cargaDatos.ventanaInformacionFechas = true;
             $scope.inicializar();
         }
     });
