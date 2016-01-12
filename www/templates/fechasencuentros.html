@@ -1,5 +1,38 @@
 <ion-view view-title="" >
     <ion-content >
-        <p>ENCUENTROS</p>
+        <div class="titulo-calendario">
+            <div class="row">
+                <div class="col sin-borde" >
+                    <div class="item sin-borde" href="#" ng-click="disminuirMes()" ng-show="mostrarAtras()" >
+                        <i class="ion-chevron-left light"></i>
+                    </div>
+                </div>
+                <div class="col col-50">
+                    <a class="item" href="#" >
+                        {{campana}}
+                    </a>
+                </div>
+                <div class="col col" >
+                    <div class="item" href="#" ng-click="aumentarMes()" >
+                        <i class="ion-chevron-right light"></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="list">
+
+            <!-- Pedido Anterior - No Encontrado  -->
+            <div class="item item-avatar item-icon-right" href="#" >
+                <div class="icono-caja-abierta"></div>
+                <h2>Campaña
+                </h2>
+                <p>No tienes un pedido registrado para la campaña
+                </p>
+            </div>
+
+        </div>
+        
     </ion-content>
 </ion-view>
