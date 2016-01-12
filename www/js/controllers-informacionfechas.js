@@ -42,25 +42,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
      
     $scope.recordatoriosCampanaActual=function(){
-        var anoActual=$scope.fechaCalendario.getFullYear();
-        var campanaActual=$scope.campana;
         
-        if($scope.campana == 1 && $scope.fechaCalendario.getMonth() == 11){           
-            ano = ano+1;
-        }
-        
-        Campana.getRecordatorios(ano, $scope.campana, $rootScope.zona, function (success, data){
-            if(success){
-                $scope.fechasCampana = data.listaRecordatorios;
-                console.log("informacionFechas - datos enviados", ano, $scope.campana);
-            }else{
-
-            }
-        });
-    }
-    
-    $scope.hayLugar=function(fecha){
-        return fecha.lugar!="..";
     }
     
     /*
@@ -918,7 +900,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         //El calendario inicia en el mes actual
         $scope.fechaCalendario = new Date();
 
-        //$scope.fechaSeleccionada = $scope.fechaCalendario;
+        $scope.fechaSeleccionada = $scope.fechaCalendario;
 
         //Fechas de la campana que se está visualizando
         $scope.fechas = $rootScope.fechas;
