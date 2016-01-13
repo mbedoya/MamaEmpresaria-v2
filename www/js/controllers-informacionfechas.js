@@ -129,7 +129,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             case "ENCUENTRO":
                 return "icono bocina";
             case "TOMA DE PEDIDO":
-                return "icono-compose";
+                return "icono-caja-abierta";
             case "FECHA CORRETEO":
                 return "icono-monitor";
             case "REPARTO DE PEDIDO 1":
