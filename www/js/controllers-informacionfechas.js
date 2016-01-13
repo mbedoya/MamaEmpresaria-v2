@@ -69,6 +69,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         return fecha.lugar!="..";
     }
     
+    $scope.esPedido=function(fecha){
+        return fecha.actividad!="TOMA DE PEDIDO";
+    }
+    
     $scope.aumentarMes=function(){
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
@@ -129,11 +133,11 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             case "ENCUENTRO":
                 return "icono bocina";
             case "TOMA DE PEDIDO":
-                return "icono-compose";
+                return "icon ion-edit";
             case "FECHA CORRETEO":
-                return "icono-monitor";
+                return "icon ion-monitor";
             case "REPARTO DE PEDIDO 1":
-                return "icono-cube";
+                return "icon ion-cube";
             default:
                 return "icono-caja-abierta";
         }
