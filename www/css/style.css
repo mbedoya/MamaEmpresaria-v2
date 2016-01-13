@@ -866,7 +866,7 @@ width: 100%;
     white-space: normal;
 }
 
-.ion-ios-people-outline:before, .ion-android-desktop:before, .ion-cube:before, .ion-android-people:before, .ion-edit:before{
+.ion-ios-people-outline:before, .ion-android-desktop:before, .ion-cube:before, .ion-android-people:before, .ion-edit:before, .ion-monitor:before, .ion-flag:before{
     font-weight: bold;
     color: #f74094;
 }

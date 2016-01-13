@@ -131,7 +131,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     $scope.iconoRecordatorio = function(texto){
         switch(texto){
             case "ENCUENTRO":
-                return "icono bocina";
+                return "ion-speakerphone";
             case "TOMA DE PEDIDO":
                 return "icon ion-edit";
             case "FECHA CORRETEO":
