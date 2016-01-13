@@ -442,6 +442,39 @@ width: 100%;
     background-position: -219px -112px;
 }
 
+.icono-monitor {
+    width: 54px;
+    background-repeat:no-repeat;
+    background-color: crimson;
+    background-image: url(../img/monitor.png);
+    vertical-align: top;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+}
+
+.icono-cube {
+    width: 54px;
+    background-repeat:no-repeat;
+    background-color: crimson;
+    background-image: url(../img/cube.png);
+    vertical-align: top;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+}
+
+.icono-compose {
+    width: 54px;
+    background-repeat:no-repeat;
+    background-color: crimson;
+    background-image: url(../img/compose.png);
+    vertical-align: top;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+}
+
 .icono-caja-abierta {
     width:54px;
     height:54px;
