@@ -442,11 +442,12 @@ width: 100%;
     background-position: -219px -112px;
 }
 
-.icono-monitor {
-    background-size: 54px 54px;
+.icono-compose {
+    width:54px;
+    height:54px;
     background-repeat:no-repeat;
     background-color: transparent;
-    background-image: url(../img/caja-abierta.png);
+    background-image: url(../img/rsz_compose.png);
     vertical-align: top;
     position: absolute;
     top: 16px;
@@ -454,23 +455,23 @@ width: 100%;
 }
 
 .icono-cube {
-    width: 54px;
+    width:54px;
     height:54px;
     background-repeat:no-repeat;
     background-color: transparent;
-    background-image: url(../img/caja-abierta.png);
+    background-image: url(../img/rsz_cube.png);
     vertical-align: top;
     position: absolute;
     top: 16px;
     left: 16px;
 }
 
-.icono-compose {
-    width: 54px;
+.icono-monitor {
+    width:54px;
     height:54px;
     background-repeat:no-repeat;
     background-color: transparent;
-    background-image: url(../img/compose.png);
+    background-image: url(../img/rsz_monitor.png);
     vertical-align: top;
     position: absolute;
     top: 16px;
