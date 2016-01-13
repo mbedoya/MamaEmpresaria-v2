@@ -20,8 +20,26 @@
             </div>
 
         </div>
+        
+        <div class="row item" href="#">
+            <div class="col-10"><i class="icon ion-edit assertive" style="font-size: 40px"></i></div>
+            <div class="col-80">
+                <div class="row"><h2>Actividad: pruebaasdasdasdas</h2></div> 
+                <div class="row"><p>Fecha:</p></div>
+            </div>
+            <div class="col-20" style="font-size: 40px;"><i class="icon ion-edit assertive"></i></div>
+        </div>
 
         <div class="list">
+            
+            <div class="row item" href="#">
+            <div class="col-10"><i class="icon ion-edit assertive" style="font-size: 40px"></i></div>
+            <div class="col-80">
+                <div class="row"><h2>Actividad: pruebaasdasdasdas</h2></div> 
+                <div class="row"><p>Fecha:</p></div>
+            </div>
+            <div class="col-20" style="font-size: 40px;"><i class="icon ion-edit assertive"></i></div>
+        </div>
 
             <!-- Pedido Anterior - No Encontrado  -->
             <div class="item item-avatar item-icon-right" href="#" ng-repeat="fecha in fechasCampana">
@@ -31,7 +49,7 @@
                     <div class="row"><p>Fecha: {{fecha.fecha}}</p></div>
                     <div class="row"><p ng-show="hayLugar(fecha)">Lugar: {{fecha.lugar}}</p></div>
                 </div>
-                <div class="col-10" style="font-size: 40px;"><i class="icon ion-chevron-right"></i></div>
+                <div class="col-10" style="font-size: 40px;" ng-show=esPedido(fecha)><i class="icon ion-chevron-right"></i></div>
             </div>
 
         </div>
