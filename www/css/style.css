@@ -444,6 +444,7 @@ width: 100%;
 
 .icono-monitor {
     width: 54px;
+    height:54px;
     background-repeat:no-repeat;
     background-color: crimson;
     background-image: url(../img/monitor.png);
@@ -455,6 +456,7 @@ width: 100%;
 
 .icono-cube {
     width: 54px;
+    height:54px;
     background-repeat:no-repeat;
     background-color: crimson;
     background-image: url(../img/cube.png);
@@ -466,6 +468,7 @@ width: 100%;
 
 .icono-compose {
     width: 54px;
+    height:54px;
     background-repeat:no-repeat;
     background-color: crimson;
     background-image: url(../img/compose.png);
