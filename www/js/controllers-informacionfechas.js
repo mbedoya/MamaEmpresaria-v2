@@ -124,6 +124,15 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         return $scope.campana > $rootScope.campana.numero;
     }
     
+    $scope.iconoRecordatorio = function(texto){
+        switch(texto){
+            case "ENCUENTRO":
+                return "icono bocina";
+            default:
+                return "icono-caja-abierta";
+        }
+    }
+    
     /*
     $scope.padStr = function(i) {
         return (i < 10) ? "0" + i : "" + i;

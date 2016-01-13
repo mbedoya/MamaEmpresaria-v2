@@ -25,7 +25,7 @@
 
             <!-- Pedido Anterior - No Encontrado  -->
             <div class="item item-avatar item-icon-right" href="#" ng-repeat="fecha in fechasCampana">
-                <div class="icono-caja-abierta"></div>
+                <div ng-class="iconoRecordatorio(fecha.actividad)"></div>
                 <h2>Actividad: {{fecha.actividad}}
                 </h2>
                 <p>Fecha: {{fecha.fecha}}
