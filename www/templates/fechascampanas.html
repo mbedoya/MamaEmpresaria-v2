@@ -25,13 +25,13 @@
 
             <!-- Pedido Anterior - No Encontrado  -->
             <div class="row item" href="#" ng-repeat="fecha in fechasCampana">
-                <div class="col-10"><i ng-class="iconoRecordatorio(fecha.actividad)" style="font-size: 40px"></i></div>
+                <div class="col-10"><i ng-class="iconoRecordatorio(fecha.actividad)" style="font-size: 50px"></i></div>
                 <div class="col-80">
                     <div class="row"><h2>Actividad: {{fecha.actividad}}</h2></div> 
                     <div class="row"><p>Fecha: {{fecha.fecha}}</p></div>
                     <div class="row"><p ng-show="hayLugar(fecha)">Lugar: {{fecha.lugar}}</p></div>
                 </div>
-                <div class="col-10" style="font-size: 40px;" ng-show=esPedido(fecha)><i class="icon ion-chevron-right"></i></div>
+                <div class="col-10" style="font-size: 50px;" ng-show="esPedido(fecha)" href="#"><i class="icon ion-chevron-right"></i></div>
             </div>
 
         </div>

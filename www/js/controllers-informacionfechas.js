@@ -70,7 +70,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
     
     $scope.esPedido=function(fecha){
-        return fecha.actividad!="TOMA DE PEDIDO";
+        return fecha.actividad=="TOMA DE PEDIDO";
     }
     
     $scope.aumentarMes=function(){
@@ -139,7 +139,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             case "REPARTO DE PEDIDO 1":
                 return "icon ion-cube";
             default:
-                return "icono-caja-abierta";
+                return "icon ion-flag";
         }
     }
     
