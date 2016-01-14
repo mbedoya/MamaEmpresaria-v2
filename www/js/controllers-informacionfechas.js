@@ -158,17 +158,25 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
 
     $scope.seleccionarFecha = function(fecha){
-        alert(fecha.fecha)
         if(!$scope.esPedido(fecha)){
             return;
         }
         $scope.fechaSeleccionada = new Date(fecha.fecha);
-        alert($scope.fechaSeleccionada);
+        $scope.recordatorio = fecha;
         $scope.openModal();
     }
+    
+    $scope.formatoFecha = function(fecha){
+        alert(fecha.getDate()+"/"+$scope.fechaSeleccionada.getDate());
+        if(fecha.getDate()!=$scope.fechaSeleccionada.getDate()){
+            $scope.fechaSeleccionada=new Date(fecha.getFullYear+"-"+fecha.getMonth+"-"+fecha.getDate+1);
+            alert($scope.fechaSeleccionada);
+        }        
+    }
 
-    $scope.textoMostrar=function(fecha){
+    $scope.textoMostrar=function(fecha){        
         $scope.fechaSeleccionada = new Date(fecha.fecha);
+        $scope.formatoFecha(fecha.fecha);
         switch(fecha.tipoActividad){
             case /*"ENCUENTRO"*/1:
                 return "Tienes encuentro:";
@@ -191,7 +199,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     };
     
     $scope.hoy = function(fecha){
-        if(fecha.fecha == "2016-01-25"){
+        if(fecha.fecha == Utilidades.formatearFechaActual()){
             return "row item item-energized";    
         }else{
             return "row item";
@@ -1055,6 +1063,8 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.fechas = $rootScope.fechas;
 
         $scope.campana = $rootScope.campana.numero;
+        
+        $scope.recordatorio;
 
         //$scope.semanasCalendario();
         $scope.recordatoriosCampanaActual();
