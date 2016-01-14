@@ -126,7 +126,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         switch(/*fecha.actividad*/fecha.tipoActividad){
             case /*"FECHA DE PAGO"*/3:
                 return false;
-            case /*"FECHA FACTURACIÓN"*/4:
+            case /*"FECHA FACTURACIÓN"*/6:
                 return false;
             default:
                 return true;
@@ -143,7 +143,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 return "ion-speakerphone";
             case /*"TOMA DE PEDIDO"*/5:
                 return "icon ion-edit";
-            case /*"FECHA CORRETEO"*/6:
+            case /*"FECHA CORRETEO"*/7:
                 return "icon ion-monitor";
             case /*"REPARTO DE PEDIDO 1"*/2:
                 return "icon ion-cube";
