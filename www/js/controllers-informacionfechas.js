@@ -189,10 +189,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     };
     
     $scope.hoy = function(fecha){
-        alert(fecha.fecha+"/"+Utilidades.formatearFechaActual());
-        if(fecha.fecha == Utilidades.formatearFechaActual()){
-            alert("HOY");
-            return "row item balanced";    
+        if(fecha.fecha == "2016-01-25"){
+            return "row item item-royal";    
+        }else{
+            return "row item";
         }
     }
 
