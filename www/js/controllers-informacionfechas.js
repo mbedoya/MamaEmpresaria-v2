@@ -129,8 +129,16 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
     
     $scope.noMostrar = function(fecha){
-        alert("Si entro"+fecha.actividad);
-        return fecha.actividad!="FECHA DE PAGO" || fecha.actividad!="FECHA FACTURACION";
+        switch(fecha.actividad){
+            case "FECHA DE PAGO":
+                alert("Fecha de pago");
+                return false;
+            case "FECHA FACTURACIÓN":
+                alert("Fecha facturacion");
+                return false;
+            default:
+                return true;
+        }
     }
     
     $scope.iconoRecordatorio = function(texto){
