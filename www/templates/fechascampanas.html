@@ -25,8 +25,8 @@
 
             <!-- Pedido Anterior - No Encontrado  -->
             <div ng-click="seleccionarFecha(fecha)" ng-repeat="fecha in fechasCampana | filter: noMostrar" ng-class-odd="hoyPar(fecha)" ng-class-even="hoyImpar(fecha)">  
-                <div class="col-10"><i ng-class="iconoRecordatorio(fecha)" style="font-size: 40px"></i></div>
-                <div class="col-80">
+                <div class="col-20"><i ng-class="iconoRecordatorio(fecha)" style="font-size: 40px; padding-left: 15px;"></i></div>
+                <div class="col-75">
                     <div class="row"><h2 ng-bind="textoMostrar(fecha)"></h2></div> 
                     <div class="row"><p>{{formatoDia(fecha)}} de {{ fechaSeleccionada | date: 'MMMM' | pascal }}  del {{ fechaSeleccionada | date: 'yyyy' }}</p></p></div>
                     <div class="row"><p ng-show="hayLugar(fecha)">Lugar: {{fecha.lugar}}</p></div>
