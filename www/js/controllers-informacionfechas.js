@@ -49,7 +49,8 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         Campana.getRecordatorios(ano, $scope.campana, $rootScope.zona, function (success, data){
             if(success){
                 $scope.fechasCampana = data.listaRecordatorios;
-                console.log("informacionFechas - datos enviados", ano, $scope.campana);
+                console.log("informacionFechas.recordatorioCampanaActual - datos enviados", ano, $scope.campana);
+                console.log("informacionFechas.recordatorioCampanaActual - datos recibidos", $scope.fechasCampana);
                 $ionicLoading.hide();
             }else{
                 console.log("Fallo");
@@ -164,15 +165,15 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.fechaSeleccionada = new Date(fecha.fecha);
         switch(fecha.tipoActividad){
             case /*"ENCUENTRO"*/1:
-                return "Tienes encuentro el:";
+                return "Tienes encuentro:";
             case /*"TOMA DE PEDIDO"*/5:
-                return "Realiza tu pedido el";
+                return "Realiza tu pedido:";
             case /*"FECHA CORRETEO"*/6:
-                return "Realiza tu pedido por la web maximo el";
+                return "Realiza tu pedido por la web maximo:";
             case /*"REPARTO DE PEDIDO 1"*/2:
-                return "Posible entrega del pedido";
+                return "Posible entrega de pedido:";
             default:
-                return "icon ion-flag";
+                return fecha.actividad;
         }
     }
     
