@@ -129,6 +129,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
     
     $scope.noMostrar = function(fecha){
+        alert("Si entro"+fecha.actividad);
         return fecha.actividad!="FECHA DE PAGO" || fecha.actividad!="FECHA FACTURACION";
     }
     
