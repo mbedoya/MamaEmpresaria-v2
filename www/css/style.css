@@ -869,6 +869,7 @@ width: 100%;
 .ion-ios-people-outline:before, .ion-android-desktop:before, .ion-cube:before, .ion-android-people:before, .ion-edit:before, .ion-monitor:before, .ion-flag:before, .ion-speakerphone:before{
     font-weight: bold;
     color: #f74094;
+    text-align: center;
 }
 
 /* Hacer que el texto tome todo el ancho disponible */

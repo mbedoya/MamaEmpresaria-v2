@@ -131,10 +131,8 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     $scope.noMostrar = function(fecha){
         switch(fecha.actividad){
             case "FECHA DE PAGO":
-                alert("Fecha de pago");
                 return false;
             case "FECHA FACTURACIÓN":
-                alert("Fecha facturacion");
                 return false;
             default:
                 return true;
