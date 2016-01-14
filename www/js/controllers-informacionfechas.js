@@ -50,7 +50,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             if(success){
                 $scope.fechasCampana = data.listaRecordatorios;
                 console.log("informacionFechas.recordatorioCampanaActual - datos enviados", ano, $scope.campana);
-                console.log("informacionFechas.recordatorioCampanaActual - datos recibidos", $scope.fechasCampana);
+                console.log("informacionFechas.recordatorioCampanaActual - datos recibidos", data);
                 $ionicLoading.hide();
             }else{
                 console.log("Fallo");
@@ -85,6 +85,8 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             if(success){
                 $scope.fechasCampana = data.listaRecordatorios;
                 console.log("informacionFechas.aumentarMes - datos enviados", ano, $scope.campana);
+                console.log("informacionFechas.aumentarMes - datos recibidos", data);
+                alert(data.razonRechazo);
                 $ionicLoading.hide();
             }else{
                 console.log("Fallo");
@@ -157,7 +159,6 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             return;
         }
         $scope.fechaSeleccionada = new Date(fecha.fecha);
-        alert($scope.fechaCalendario);
         $scope.openModal();
     }
     
@@ -168,7 +169,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 return "Tienes encuentro:";
             case /*"TOMA DE PEDIDO"*/5:
                 return "Realiza tu pedido:";
-            case /*"FECHA CORRETEO"*/6:
+            case /*"FECHA CORRETEO"*/7:
                 return "Realiza tu pedido por la web maximo:";
             case /*"REPARTO DE PEDIDO 1"*/2:
                 return "Posible entrega de pedido:";
