@@ -32,14 +32,6 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     $scope.$on('$destroy', function() {
         $scope.modal.remove();
     });
-
-    $scope.abrirModal = function(){
-        $("#modalCalendario").css("visibility","visible");
-    }
-
-    $scope.cerrarModal = function(){
-        $("#modalCalendario").css("visibility","hidden");
-    }
      
     $scope.recordatoriosCampanaActual=function(){
         
@@ -152,6 +144,14 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             default:
                 return "icon ion-flag";
         }
+    }
+    
+    $scope.seleccionarFecha = function(fecha){
+        if(!$scope.esPedido(fecha)){
+            return;
+        }
+        $scope.fechaCalendario = new Date(fecha.fecha);
+        $scope.openModal();
     }
     
     /*
@@ -1005,7 +1005,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         //El calendario inicia en el mes actual
         $scope.fechaCalendario = new Date();
 
-        //$scope.fechaSeleccionada = $scope.fechaCalendario;
+        $scope.fechaSeleccionada = $scope.fechaCalendario;
 
         //Fechas de la campana que se está visualizando
         $scope.fechas = $rootScope.fechas;

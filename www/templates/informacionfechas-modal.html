@@ -8,24 +8,16 @@
 
         </div>
 
-        <div class="row detalle" ng-repeat="detalle in detalleFecha" ng-show="detalle.actividad.toLowerCase() != 'fecha de pago'">
+        <div class="row detalle" ng-repeat="fecha in fechasCampana | filter:!noMostrar">
 
             <p style="text-align:left"  >
                 <!-- <a href="#" class="item item-avatar" > -->
                 <img style="float:left" src="img/reloj.png" />
-                <span style="display:block;">{{ detalle.hora }}</span>
-            <p class="col" style="color: #808080">{{ detalle.actividad }} <span ng-show="mostrarConectorActividad(detalle.actividad)">EN</span> {{ detalle.lugar }} <br />
-                {{ detalle.direccion }}
-            </p>
-            <!-- </a> -->
+            <p class="col" style="color: #808080">{{ fecha.actividad }}</p>
 
             </p>
 
         </div>
-
-    <a class="item positive" href="#" ng-show="detalleFecha.length == 0">
-        No tienes eventos para este día.
-    </a>
 
     <input type="button" value="Cerrar" class="modal-button button button-block" ng-click="closeModal()">
 
