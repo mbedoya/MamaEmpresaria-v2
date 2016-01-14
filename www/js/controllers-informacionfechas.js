@@ -151,10 +151,12 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
     
     $scope.seleccionarFecha = function(fecha){
+        alert(fecha.fecha);
         if(!$scope.esPedido(fecha)){
             return;
         }
         $scope.fechaCalendario = new Date(fecha.fecha);
+        alert($scope.fechaCalendario);
         $scope.openModal();
     }
     
