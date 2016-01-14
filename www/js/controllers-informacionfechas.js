@@ -197,7 +197,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         if(fecha.fecha == Utilidades.formatearFechaActual()){
             return "row item item-energized";    
         }else{
-            return "row item";
+            return "row item alternate";
         }
     }
     
@@ -205,7 +205,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         if(fecha.fecha == Utilidades.formatearFechaActual()){
             return "row item item-energized";    
         }else{
-            return "row item alternate";
+            return "row item";
         }
     }
 
