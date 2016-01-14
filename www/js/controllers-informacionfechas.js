@@ -190,7 +190,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     
     $scope.hoy = function(fecha){
         if(fecha.fecha == "2016-01-25"){
-            return "row item item-royal";    
+            return "row item item-stable";    
         }else{
             return "row item";
         }
