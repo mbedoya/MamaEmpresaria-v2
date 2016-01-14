@@ -158,10 +158,12 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
 
     $scope.seleccionarFecha = function(fecha){
+        alert(fecha.fecha)
         if(!$scope.esPedido(fecha)){
             return;
         }
         $scope.fechaSeleccionada = new Date(fecha.fecha);
+        alert($scope.fechaSeleccionada);
         $scope.openModal();
     }
 
@@ -190,7 +192,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     
     $scope.hoy = function(fecha){
         if(fecha.fecha == "2016-01-25"){
-            return "row item item-stable";    
+            return "row item item-energized";    
         }else{
             return "row item";
         }
