@@ -131,6 +131,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         }
     }
     
+    $scope.fechasModal = function(fecha){
+        return !$scope.noMostrar(fecha);
+    }
+    
     $scope.iconoRecordatorio = function(texto){
         switch(texto){
             case "ENCUENTRO":
