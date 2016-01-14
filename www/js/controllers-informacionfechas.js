@@ -128,8 +128,8 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         return $scope.campana > $rootScope.campana.numero;
     }
     
-    $scope.noMostrar = function(texto){
-        return texto=="FECHA DE PAGO" || texto=="FECHA FACTURACION";
+    $scope.noMostrar = function(fecha){
+        return fecha.actividad!="FECHA DE PAGO" || fecha.actividad!="FECHA FACTURACION";
     }
     
     $scope.iconoRecordatorio = function(texto){
