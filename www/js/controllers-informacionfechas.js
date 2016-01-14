@@ -167,8 +167,8 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
     
     $scope.formatoFecha = function(fecha){
-        alert(fecha.substring(8, 9)+"/"+$scope.fechaSeleccionada.getDate());
-        if(fecha.substring(8, 9)!=$scope.fechaSeleccionada.getDate()){
+        alert(fecha.substring(8, 10)+"/"+$scope.fechaSeleccionada.getDate());
+        if(fecha.substring(8, 10)!=$scope.fechaSeleccionada.getDate()){
             $scope.fechaSeleccionada=new Date($scope.fechaSeleccionada.getFullYear()+"-"+$scope.fechaSeleccionada.getMonth()+"-"+fecha.getDate()+1);
             alert($scope.fechaSeleccionada);
         }        
