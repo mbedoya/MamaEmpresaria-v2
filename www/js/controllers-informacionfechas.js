@@ -167,7 +167,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
     
     $scope.formatoDia = function(fecha){
-        return fecha.substring(8, 10);
+        return fecha.fecha.substring(8, 10);
     }
 
     $scope.textoMostrar=function(fecha){        
