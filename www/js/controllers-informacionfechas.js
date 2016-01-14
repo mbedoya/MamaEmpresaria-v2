@@ -32,20 +32,20 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     $scope.$on('$destroy', function() {
         $scope.modal.remove();
     });
-     
+
     $scope.recordatoriosCampanaActual=function(){
-        
+
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
-        
+
         var ano=$scope.fechaCalendario.getFullYear();
         var campanaActual=$scope.campana;
-        
+
         if($scope.campana == 1 && $scope.fechaCalendario.getMonth() == 11){           
             ano = ano+1;
         }
-        
+
         Campana.getRecordatorios(ano, $scope.campana, $rootScope.zona, function (success, data){
             if(success){
                 $scope.fechasCampana = data.listaRecordatorios;
@@ -57,23 +57,23 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             }
         });
     }
-    
+
     $scope.hayLugar=function(fecha){
         return fecha.lugar!="..";
     }
-    
+
     $scope.esPedido=function(fecha){
         //return fecha.actividad=="TOMA DE PEDIDO";
         return fecha.tipoActividad==5;
     }
-    
+
     $scope.aumentarMes=function(){
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
-        
+
         var ano=$scope.fechaCalendario.getFullYear();
-        
+
         if($scope.campana == $rootScope.numeroCampanasAno){
             $scope.campana = 1;
             ano = ano + 1;           
@@ -83,18 +83,21 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
         Campana.getRecordatorios(ano, $scope.campana, $rootScope.zona, function (success, data){
             if(success){
-                $scope.fechasCampana = data.listaRecordatorios;
+                if(data.razonRechazo!=null){
+                    $scope.fechasCampana = data.listaRecordatorios;
+                }else{
+                    $scope.mostrarAyuda("Falta campaña","En este momento no puede consultarse informacion para la campaña "+$scope.campana);  
+                }
                 console.log("informacionFechas.aumentarMes - datos enviados", ano, $scope.campana);
                 console.log("informacionFechas.aumentarMes - datos recibidos", data);
-                alert(data.razonRechazo);
                 $ionicLoading.hide();
             }else{
                 console.log("Fallo");
             }
         });
-        
+
     }
-    
+
     $scope.disminuirMes=function(){
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
@@ -119,11 +122,11 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             }
         });
     }
-    
+
     $scope.mostrarAtras = function(){
         return $scope.campana > $rootScope.campana.numero;
     }
-    
+
     $scope.noMostrar = function(fecha){
         switch(/*fecha.actividad*/fecha.tipoActividad){
             case /*"FECHA DE PAGO"*/3:
@@ -134,11 +137,11 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 return true;
         }
     }
-    
+
     $scope.fechasModal = function(fecha){
         return !$scope.noMostrar(fecha);
     }
-    
+
     $scope.iconoRecordatorio = function(fecha){
         switch(fecha.tipoActividad){
             case /*"ENCUENTRO"*/1:
@@ -153,7 +156,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 return "icon ion-flag";
         }
     }
-    
+
     $scope.seleccionarFecha = function(fecha){
         if(!$scope.esPedido(fecha)){
             return;
@@ -161,7 +164,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.fechaSeleccionada = new Date(fecha.fecha);
         $scope.openModal();
     }
-    
+
     $scope.textoMostrar=function(fecha){
         $scope.fechaSeleccionada = new Date(fecha.fecha);
         switch(fecha.tipoActividad){
@@ -178,6 +181,21 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         }
     }
     
+    $scope.mostrarAyuda = function(titulo, mensaje) {
+        var alertPopup = $ionicPopup.alert({
+            title: "",
+            template: mensaje
+        });
+    };
+    
+    $scope.hoy = function(fecha){
+        alert(fecha.fecha+"/"+Utilidades.formatearFechaActual());
+        if(fecha.fecha == Utilidades.formatearFechaActual()){
+            alert("HOY");
+            return "row item balanced";    
+        }
+    }
+
     /*
     $scope.padStr = function(i) {
         return (i < 10) ? "0" + i : "" + i;
@@ -656,17 +674,17 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             }
         }*/
 
-        /*
+    /*
         if($scope.campana == 1)
         alert(correteo);
         */
-        /*
+    /*
         //Campaña anterior?
                 console.log("fondoDia - Campaña anterior?")
                 console.log("fondoDia - fecha", fecha)
                 console.log("fondoDia - correteo", correteo)
         if(new Date(fecha) <= new Date(correteo)){*/
-            /*
+    /*
             if($scope.campana == 1)
             alert("Anterior " + $scope.corregirNumeroCampana($scope.campana-1));
             *//*
@@ -684,7 +702,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 console.log("fondoDia - fecha", fecha)
                 console.log("fondoDia - correteo", correteo)
             if(new Date(fecha) <= new Date(correteo)){*/
-                /*
+    /*
                 if($scope.campana == 1)
                 alert("Actual " + $scope.campana);
                 *//*
@@ -699,7 +717,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                     }
                 }
                 */
-                /*
+    /*
                 if($scope.campana == 1)
                 alert("Otro Correteo " + correteo);
                 *//*
@@ -762,7 +780,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                     correteo = null;
                 }
             }
-            
+
             console.log("InformacionFechas - CAMPANA ANTERIOR");
             console.log("InformacionFechas - correteo", new Date(correteo));
             console.log("InformacionFechas - fechaCalendario", new Date($scope.fechaCalendario));
@@ -785,7 +803,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                     correteo = null;
                 }
             }
-            
+
             console.log("InformacionFechas - CAMPANA SIGUIENTE");
             console.log("InformacionFechas - correteo", new Date(correteo));
             console.log("InformacionFechas - fechaCalendario", new Date($scope.fechaCalendario));
@@ -809,7 +827,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             console.log("InformacionFechas - CAMPANA SIGUIENTE SIGUIENTE");
             console.log("InformacionFechas - correteo", new Date(correteo));
             console.log("InformacionFechas - fechaCalendario", new Date($scope.fechaCalendario));
-            
+
             if(correteo!=null && new Date(correteo).getMonth() == new Date($scope.fechaCalendario).getMonth()){
                 if(!campSiguienteAdicionada){
                     $scope.misCampanas.push({numero: $scope.corregirNumeroCampana($scope.campana+1), color: $scope.estiloCampana($scope.campana+1)});
@@ -900,7 +918,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             campanaAnterior = $rootScope.numeroCampanasAno;
             console.log("informacionFechas - getMonth", new Date().getMonth());
             if(new Date().getMonth() == 0){
-                
+
                 anoAnterior = anoAnterior - 1;
                 console.log("informacionFechas - anoAnterior2", anoAnterior);
             }

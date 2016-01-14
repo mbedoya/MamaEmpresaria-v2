@@ -587,7 +587,6 @@ width: 100%;
     position:static;
 }
 
-
 /* Inicio */
 .home-content .list {
     text-align: center;
@@ -870,6 +869,11 @@ width: 100%;
     font-weight: bold;
     color: #f74094;
     padding-top: 5px;
+}
+
+.ion-chevron-right:before{
+    padding-top:5px;  
+    color: #808080;
 }
 
 /* Hacer que el texto tome todo el ancho disponible */

@@ -24,7 +24,7 @@
         <div class="list">
 
             <!-- Pedido Anterior - No Encontrado  -->
-            <div class="row item" ng-click="seleccionarFecha(fecha)" ng-repeat="fecha in fechasCampana | filter: noMostrar">  
+            <div ng-click="seleccionarFecha(fecha)" ng-repeat="fecha in fechasCampana | filter: noMostrar" ng-class="hoy(fecha)" >  
                 <div class="col-10"><i ng-class="iconoRecordatorio(fecha)" style="font-size: 40px"></i></div>
                 <div class="col-80">
                     <div class="row"><h2 ng-bind="textoMostrar(fecha)"></h2></div> 
