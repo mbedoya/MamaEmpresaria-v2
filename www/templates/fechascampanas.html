@@ -28,7 +28,7 @@
                 <div class="col-10"><i ng-class="iconoRecordatorio(fecha)" style="font-size: 40px"></i></div>
                 <div class="col-80">
                     <div class="row"><h2 ng-bind="textoMostrar(fecha)"></h2></div> 
-                    <div class="row"><p>{{ fechaSeleccionada | date: 'DD' }} de {{ fechaSeleccionada | date: 'MMMM' | pascal }}  del {{ fechaSeleccionada | date: 'yyyy' }}</p><p>{{fecha.fecha}}</p></p></div>
+                    <div class="row"><p>{{formatoDia(fecha)}} de {{ fechaSeleccionada | date: 'MMMM' | pascal }}  del {{ fechaSeleccionada | date: 'yyyy' }}</p><p>{{fecha.fecha}}</p></p></div>
                     <div class="row"><p ng-show="hayLugar(fecha)">Lugar: {{fecha.lugar}}</p></div>
                 </div>
                 <div class="col-10 item-chevron" style="font-size: 30px;" ng-show="esPedido(fecha)"><i class="icon ion-chevron-right" style="padding-top: 5px;"></i></div>

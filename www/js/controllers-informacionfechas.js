@@ -166,17 +166,12 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.openModal();
     }
     
-    $scope.formatoFecha = function(fecha){
-        alert(parseInt(fecha.substring(8, 10))+"/"+$scope.fechaSeleccionada.getDate());
-        if(parseInt(fecha.substring(8, 10))>$scope.fechaSeleccionada.getDate()){
-            $scope.fechaSeleccionada=new Date($scope.fechaSeleccionada.getFullYear()+"-"+$scope.fechaSeleccionada.getMonth()+"-"+fecha.getDate()+1);
-            alert($scope.fechaSeleccionada);
-        }        
+    $scope.formatoDia = function(fecha){
+        return fecha.substring(8, 10);
     }
 
     $scope.textoMostrar=function(fecha){        
         $scope.fechaSeleccionada = new Date(fecha.fecha);
-        $scope.formatoFecha(fecha.fecha);
         switch(fecha.tipoActividad){
             case /*"ENCUENTRO"*/1:
                 return "Tienes encuentro:";
