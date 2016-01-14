@@ -62,7 +62,8 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
     
     $scope.esPedido=function(fecha){
-        return fecha.actividad=="TOMA DE PEDIDO";
+        //return fecha.actividad=="TOMA DE PEDIDO";
+        return fecha.tipoActividad==5;
     }
     
     $scope.aumentarMes=function(){
@@ -121,10 +122,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
     
     $scope.noMostrar = function(fecha){
-        switch(fecha.actividad){
-            case "FECHA DE PAGO":
+        switch(/*fecha.actividad*/fecha.tipoActividad){
+            case /*"FECHA DE PAGO"*/3:
                 return false;
-            case "FECHA FACTURACIÓN":
+            case /*"FECHA FACTURACIÓN"*/4:
                 return false;
             default:
                 return true;
@@ -135,15 +136,15 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         return !$scope.noMostrar(fecha);
     }
     
-    $scope.iconoRecordatorio = function(texto){
-        switch(texto){
-            case "ENCUENTRO":
+    $scope.iconoRecordatorio = function(fecha){
+        switch(fecha.tipoActividad){
+            case /*"ENCUENTRO"*/1:
                 return "ion-speakerphone";
-            case "TOMA DE PEDIDO":
+            case /*"TOMA DE PEDIDO"*/5:
                 return "icon ion-edit";
-            case "FECHA CORRETEO":
+            case /*"FECHA CORRETEO"*/6:
                 return "icon ion-monitor";
-            case "REPARTO DE PEDIDO 1":
+            case /*"REPARTO DE PEDIDO 1"*/2:
                 return "icon ion-cube";
             default:
                 return "icon ion-flag";
@@ -151,13 +152,28 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
     
     $scope.seleccionarFecha = function(fecha){
-        alert(fecha.fecha);
         if(!$scope.esPedido(fecha)){
             return;
         }
-        $scope.fechaCalendario = new Date(fecha.fecha);
+        $scope.fechaSeleccionada = new Date(fecha.fecha);
         alert($scope.fechaCalendario);
         $scope.openModal();
+    }
+    
+    $scope.textoMostrar=function(fecha){
+        $scope.fechaSeleccionada = new Date(fecha.fecha);
+        switch(fecha.tipoActividad){
+            case /*"ENCUENTRO"*/1:
+                return "Tienes encuentro el:";
+            case /*"TOMA DE PEDIDO"*/5:
+                return "Realiza tu pedido el";
+            case /*"FECHA CORRETEO"*/6:
+                return "Realiza tu pedido por la web maximo el";
+            case /*"REPARTO DE PEDIDO 1"*/2:
+                return "Posible entrega del pedido";
+            default:
+                return "icon ion-flag";
+        }
     }
     
     /*
