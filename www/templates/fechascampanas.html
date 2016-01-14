@@ -24,14 +24,14 @@
         <div class="list">
 
             <!-- Pedido Anterior - No Encontrado  -->
-            <div class="row item" ng-click="#" ng-repeat="fecha in fechasCampana | filter: noMostrar">  
+            <div class="row item" ng-click="seleccionarFecha(fecha)" ng-repeat="fecha in fechasCampana | filter: noMostrar">  
                 <div class="col-10"><i ng-class="iconoRecordatorio(fecha.actividad)" style="font-size: 40px"></i></div>
                 <div class="col-80">
                     <div class="row"><h2>Actividad: {{fecha.actividad}}</h2></div> 
                     <div class="row"><p>Fecha: {{fecha.fecha}}</p></div>
                     <div class="row"><p ng-show="hayLugar(fecha)">Lugar: {{fecha.lugar}}</p></div>
                 </div>
-                <div class="col-10" style="font-size: 40px;" ng-show="esPedido(fecha)"><i class="icon ion-chevron-right dark"></i></div>
+                <div class="col-10" style="font-size: 40px;" ng-show="esPedido(fecha)"><i class="icon ion-chevron-right dark" style="padding-top: 5px;"></i></div>
             </div>
 
         </div>
