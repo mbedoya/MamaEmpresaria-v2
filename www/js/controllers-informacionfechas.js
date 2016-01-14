@@ -193,7 +193,15 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         });
     };
     
-    $scope.hoy = function(fecha){
+    $scope.hoyPar = function(fecha){
+        if(fecha.fecha == Utilidades.formatearFechaActual()){
+            return "row item item-energized";    
+        }else{
+            return "row item";
+        }
+    }
+    
+    $scope.hoyImpar = function(fecha){
         if(fecha.fecha == Utilidades.formatearFechaActual()){
             return "row item item-energized";    
         }else{
