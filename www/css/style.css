@@ -11,9 +11,9 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 strong{
     font-family: 'Droid Sans Bold', sans-serif;
-    display: block;
+    /*display: block;
     margin-top: -25px;
-    margin-left: 9px;
+    margin-left: 9px;*/
 }
 
 /* Fuentes */
