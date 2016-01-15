@@ -242,10 +242,6 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
         $scope.fechas = $rootScope.fechas;
 
         $scope.campana = $rootScope.campana.numero;        
-                
-        alert($scope.campana);
-        
-        console.log($scope.campana);
 
         $scope.recordatorio;
 

@@ -1,43 +1,44 @@
 <ion-view view-title="" >
-    
+
     <ion-content >
-        <div class="titulo-calendario">
-            <div class="row">
-                <div class="col sin-borde" >
-                    <div class="item sin-borde" href="#" ng-click="disminuirCampana()" >
-                        <i class="ion-chevron-left light"></i>
-                    </div>
-                </div>
-                <div class="col col-50">
-                    <a class="item" href="#" >
-                        Campaña {{campana}}
-                    </a>
-                </div>
-                <div class="col col" >
-                    <div class="item" href="#" ng-click="aumentarCampana()" >
-                        <i class="ion-chevron-right light"></i>
-                    </div>
+        </br>
+    <div class="titulo-calendario">
+        <div class="row">
+            <div class="col sin-borde" >
+                <div class="item sin-borde" href="#" ng-click="disminuirCampana()" >
+                    <i class="ion-chevron-left light"></i>
                 </div>
             </div>
-
-        </div>
-
-        <div class="list">
-
-            <!-- Pedido Anterior - No Encontrado  -->
-            <div ng-click="seleccionarFecha(fecha)" ng-repeat="fecha in fechasCampana | filter: mostrarEncuentros" ng-class-odd="hoyPar(fecha)" ng-class-even="hoyImpar(fecha)">  
-                <div class="col-20"><i ng-class="iconoRecordatorio(fecha)" style="font-size: 40px; padding-left: 15px;"></i></div>
-                <div class="col-75">
-                    <div class="row"><h2 ng-bind="textoMostrar(fecha)"></h2></div> 
-                    <div class="row"><p>{{formatoDia(fecha)}} de {{ fechaSeleccionada | date: 'MMMM' | pascal }}  del {{ fechaSeleccionada | date: 'yyyy' }}</p></div>
-                        <div class="row"><p ng-show="hayLugar(fecha)">Lugar: {{fecha.lugar}}</p></div>
-                        <div class="row"><p ng-show="hayHora(fecha)">Hora: {{fecha.hora}}</p></div>
+            <div class="col col-50">
+                <a class="item" href="#" >
+                    Campaña {{campana}}
+                </a>
+            </div>
+            <div class="col col" >
+                <div class="item" href="#" ng-click="aumentarCampana()" >
+                    <i class="ion-chevron-right light"></i>
                 </div>
             </div>
-
         </div>
 
-        <div class="div-lista-footer"></div>
+    </div>
+
+    <div class="list">
+
+        <!-- Pedido Anterior - No Encontrado  -->
+        <div ng-click="seleccionarFecha(fecha)" ng-repeat="fecha in fechasCampana | filter: mostrarEncuentros" ng-class-odd="hoyPar(fecha)" ng-class-even="hoyImpar(fecha)">  
+            <div class="col-20"><i ng-class="iconoRecordatorio(fecha)" style="font-size: 40px; padding-left: 15px;"></i></div>
+            <div class="col-75">
+                <div class="row"><h2 ng-bind="textoMostrar(fecha)"></h2></div> 
+                <div class="row"><p>{{formatoDia(fecha)}} de {{ fechaSeleccionada | date: 'MMMM' | pascal }}  del {{ fechaSeleccionada | date: 'yyyy' }}</p></div>
+                <div class="row"><p ng-show="hayLugar(fecha)">Lugar: {{fecha.lugar}}</p></div>
+                <div class="row"><p ng-show="hayHora(fecha)">Hora: {{fecha.hora}}</p></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="div-lista-footer"></div>
 
     </ion-content>
 </ion-view>

@@ -1086,10 +1086,6 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.fechas = $rootScope.fechas;
 
         $scope.campana = $rootScope.campana.numero;
-        
-        alert($scope.campana);
-        
-        console.log($scope.campana);
 
         $scope.recordatorio;
 

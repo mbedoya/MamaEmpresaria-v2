@@ -3,21 +3,42 @@
         <div class="list dia">
 
             <div class="item item-divider">
-                <p>{{recordatorio.actividad}}</p>
+                <p>{{recordatorio.actividad}} - {{formatoDia(fecha)}} de {{ fechaSeleccionada | date: 'MMMM' | pascal }}  del {{ fechaSeleccionada | date: 'yyyy' }}</p>
             </div>
 
         </div>
 
-        <div class="row detalle" ng-repeat="fecha in fechasCampana | filter: fechasModal">
+        <!--<div class="row detalle" ng-repeat="fecha in fechasCampana | filter: fechasModal">
 
             <p style="text-align:left"  >
-                <!-- <a href="#" class="item item-avatar" > -->
                 <img style="float:left" src="img/reloj.png" />
             <p class="col" style="color: #808080">{{ fecha.actividad }} {{fecha.fecha}}</p>
 
             </p>
 
+        </div>-->
+        
+        <div class="row detalle">
+
+            <p style="text-align:left"  >
+                <img style="float:left" src="img/reloj.png" />
+            <p class="col" style="color: #808080">Monta tu pedido este día por la pagina web, antes de las 12 del medio dia</p>
+
+            </p>
+
         </div>
+    
+    <div class="row detalle alternate">
+
+            <p style="text-align:left" >
+                <img style="float:left" src="img/reloj.png" />
+            <p class="col" style="color: #808080">Cancela tu pedido anterior máximo este dia antes de las 4 de la tarde</p>
+
+            </p>
+
+        </div>
+        
+        
 
     <input type="button" value="Cerrar" class="modal-button button button-block" ng-click="closeModal()">
 
