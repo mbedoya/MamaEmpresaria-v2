@@ -231,7 +231,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
 
     $scope.inicializar = function(){
 
-        $rootScope.cargaDatos.ventanaInformacionFechas = true;
+        $rootScope.cargaDatos.ventanaInformacionEncuentros = true;
 
         //El calendario inicia en el mes actual
         $scope.fechaCalendario = new Date();
@@ -268,7 +268,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
 
     $scope.$on('$ionicView.beforeEnter', function(){
         //Si no se ha cargado la información entonces inicializar
-        if(!$rootScope.cargaDatos.ventanaInformacionFechas){
+        if(!$rootScope.cargaDatos.ventanaInformacionEncuentros){
             $scope.inicializar();
         }
     });

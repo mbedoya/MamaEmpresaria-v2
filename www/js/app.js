@@ -231,7 +231,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         views: {
             'fechas-encuentros-content': {
                 templateUrl: "templates/fechasencuentros.html",
-                controller: 'InformacionFechasCtrl'
+                controller: 'InformacionEncuentrosCtrl'
             }
         }
     })
