@@ -241,14 +241,16 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
         //Fechas de la campana que se está visualizando
         $scope.fechas = $rootScope.fechas;
 
-        $scope.campana = $rootScope.campana.numero;
+        $scope.campana = $rootScope.campana.numero;        
+                
+        alert($scope.campana);
+        
+        console.log($scope.campana);
 
         $scope.recordatorio;
 
         //$scope.semanasCalendario();
         $scope.recordatoriosCampanaActual();
-
-        $scope.cargarCampanas();
 
         $ionicLoading.hide();
 
