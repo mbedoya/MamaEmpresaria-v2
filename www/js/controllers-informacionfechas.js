@@ -93,15 +93,12 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 }else{
                     $scope.mostrarAyuda("Falta campaña","Lo sentimos, aún no tenemos información disponible para las próximas campañas");  
                     $scope.disminuirCampana();
-                    return false;
                 }
                 console.log("informacionFechas.aumentarMes - datos enviados", $scope.ano, $scope.campana);
                 console.log("informacionFechas.aumentarMes - datos recibidos", data);
                 $ionicLoading.hide();
-                return true;
             }else{
                 console.log("Fallo");
-                return false;
             }
         });
 
