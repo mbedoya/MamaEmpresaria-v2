@@ -77,8 +77,6 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
 
-        //var ano=$scope.fechaCalendario.getFullYear();
-
         if($scope.campana == $rootScope.numeroCampanasAno){
             $scope.campana = 1;
             $scope.ano = $scope.ano + 1;           
@@ -162,9 +160,9 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     $scope.iconoRecordatorio = function(fecha){
         switch(fecha.tipoActividad){
             case /*"ENCUENTRO"*/1:
-                return "ion-speakerphone";
+                return "ion-android-people";
             case /*"TOMA DE PEDIDO"*/5:
-                return "icon ion-edit";
+                return "icon ion-speakerphone";
             case /*"FECHA CORRETEO"*/7:
                 return "icon ion-monitor";
             case /*"REPARTO DE PEDIDO 1"*/2:
@@ -191,13 +189,13 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.fechaSeleccionada = new Date(fecha.fecha);
         switch(fecha.tipoActividad){
             case /*"ENCUENTRO"*/1:
-                return "Tienes encuentro:";
+                return "Tienes encuentro el:";
             case /*"TOMA DE PEDIDO"*/5:
-                return "Realiza tu pedido:";
+                return "Realiza tu pedido el:";
             case /*"FECHA CORRETEO"*/7:
-                return "Realiza tu pedido por la web máximo:";
+                return "Realiza tu pedido por la web máximo el:";
             case /*"REPARTO DE PEDIDO 1"*/2:
-                return "Posible entrega de pedido:";
+                return "Posible entrega de pedido el:";
             default:
                 return fecha.actividad;
         }
