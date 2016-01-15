@@ -85,7 +85,7 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
         $rootScope.correo = "servicioalcliente@novaventa.com";
         $rootScope.urlChat = 'http://twnl.co/novaventas';
         //Eliminar toda las variables de estado de carga de información de pantallas
-        $rootScope.cargaDatos = { ventanaMiPedido: null, ventanaMisPuntos: null, ventanaInformacionFechas: null };
+        $rootScope.cargaDatos = { ventanaMiPedido: null, ventanaMisPuntos: null, ventanaInformacionFechas: null, ventanaInformacionEncuentros: null };
 
         jQuery.support.cors = true;
         //$.mobile.allowCrossDomainPages = true;
