@@ -76,7 +76,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
 
-        var ano=$scope.fechaCalendario.getFullYear();
+        //var ano=$scope.fechaCalendario.getFullYear();
 
         if($scope.campana == $rootScope.numeroCampanasAno){
             $scope.campana = 1;
@@ -111,7 +111,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
 
-        var ano=$scope.fechaCalendario.getFullYear();
+        //var ano=$scope.fechaCalendario.getFullYear();
 
         if($scope.campana == 1){
             $scope.campana = $rootScope.numeroCampanasAno;
