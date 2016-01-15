@@ -38,18 +38,19 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
-
-        var ano=$scope.fechaCalendario.getFullYear();
+        
+        
+        $scope.ano=$scope.fechaCalendario.getFullYear();
         var campanaActual=$scope.campana;
 
         if($scope.campana == 1 && $scope.fechaCalendario.getMonth() == 11){           
-            ano = ano+1;
+            $scope.ano = $scope.ano+1;
         }
 
-        Campana.getRecordatorios(ano, $scope.campana, $rootScope.zona, function (success, data){
+        Campana.getRecordatorios($scope.ano, $scope.campana, $rootScope.zona, function (success, data){
             if(success){
                 $scope.fechasCampana = data.listaRecordatorios;
-                console.log("informacionFechas.recordatorioCampanaActual - datos enviados", ano, $scope.campana);
+                console.log("informacionFechas.recordatorioCampanaActual - datos enviados", $scope.ano, $scope.campana);
                 console.log("informacionFechas.recordatorioCampanaActual - datos recibidos", data);
                 $ionicLoading.hide();
             }else{
@@ -80,12 +81,12 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
         if($scope.campana == $rootScope.numeroCampanasAno){
             $scope.campana = 1;
-            ano = ano + 1;           
+            $scope.ano = $scope.ano + 1;           
         }else{
             $scope.campana = $scope.campana + 1;
         }
 
-        Campana.getRecordatorios(ano, $scope.campana, $rootScope.zona, function (success, data){
+        Campana.getRecordatorios($scope.ano, $scope.campana, $rootScope.zona, function (success, data){
             if(success){
                 if(data.listaRecordatorios!=null){
                     $scope.fechasCampana = data.listaRecordatorios;
@@ -94,7 +95,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                     $scope.disminuirCampana();
                     return false;
                 }
-                console.log("informacionFechas.aumentarMes - datos enviados", ano, $scope.campana);
+                console.log("informacionFechas.aumentarMes - datos enviados", $scope.ano, $scope.campana);
                 console.log("informacionFechas.aumentarMes - datos recibidos", data);
                 $ionicLoading.hide();
                 return true;
@@ -115,15 +116,15 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
         if($scope.campana == 1){
             $scope.campana = $rootScope.numeroCampanasAno;
-            ano = ano - 1;
+            $scope.ano = $scope.ano - 1;
         }else{
             $scope.campana = $scope.campana - 1;
         }
 
-        Campana.getRecordatorios(ano, $scope.campana, $rootScope.zona, function (success, data){
+        Campana.getRecordatorios($scope.ano, $scope.campana, $rootScope.zona, function (success, data){
             if(success){
                 $scope.fechasCampana = data.listaRecordatorios;
-                console.log("informacionFechas.disminuirMes - datos enviados", ano, $scope.campana);
+                console.log("informacionFechas.disminuirMes - datos enviados", $scope.ano, $scope.campana);
                 $ionicLoading.hide();
             }else{
                 console.log("Fallo");
