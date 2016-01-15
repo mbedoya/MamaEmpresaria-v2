@@ -61,13 +61,17 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     $scope.hayLugar=function(fecha){
         return fecha.lugar!="..";
     }
+    
+    $scope.hayLugar=function(fecha){
+        return fecha.hora!=null;
+    }
 
     $scope.esPedido=function(fecha){
         //return fecha.actividad=="TOMA DE PEDIDO";
         return fecha.tipoActividad==5;
     }
 
-    $scope.aumentarMes=function(){
+    $scope.aumentarCampana=function(){
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
@@ -83,22 +87,26 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
         Campana.getRecordatorios(ano, $scope.campana, $rootScope.zona, function (success, data){
             if(success){
-                if(data.razonRechazo!=null){
+                if(data.listaRecordatorios!=null){
                     $scope.fechasCampana = data.listaRecordatorios;
                 }else{
                     $scope.mostrarAyuda("Falta campaña","En este momento no puede consultarse informacion para la campaña "+$scope.campana);  
+                    $scope.disminuirCampana();
+                    return false;
                 }
                 console.log("informacionFechas.aumentarMes - datos enviados", ano, $scope.campana);
                 console.log("informacionFechas.aumentarMes - datos recibidos", data);
                 $ionicLoading.hide();
+                return true;
             }else{
                 console.log("Fallo");
+                return false;
             }
         });
 
     }
 
-    $scope.disminuirMes=function(){
+    $scope.disminuirCampana=function(){
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
@@ -207,6 +215,12 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         }else{
             return "row item";
         }
+    }
+    
+    $scope.cargarCampanas=function(){
+         $scope.encuentros = new Array();
+        
+        
     }
 
     /*
@@ -1071,6 +1085,8 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
         //$scope.semanasCalendario();
         $scope.recordatoriosCampanaActual();
+        
+        $scope.cargarCampanas();
 
         $ionicLoading.hide();
 
