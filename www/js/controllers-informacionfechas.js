@@ -1092,8 +1092,6 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         //$scope.semanasCalendario();
         $scope.recordatoriosCampanaActual();
 
-        $scope.cargarCampanas();
-
         $ionicLoading.hide();
 
     }
