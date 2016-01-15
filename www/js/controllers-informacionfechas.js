@@ -38,8 +38,8 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
-        
-        
+
+
         $scope.ano=$scope.fechaCalendario.getFullYear();
         var campanaActual=$scope.campana;
 
@@ -62,7 +62,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     $scope.hayLugar=function(fecha){
         return fecha.lugar!="..";
     }
-    
+
     $scope.hayLugar=function(fecha){
         return fecha.hora!=null;
     }
@@ -91,7 +91,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 if(data.listaRecordatorios!=null){
                     $scope.fechasCampana = data.listaRecordatorios;
                 }else{
-                    $scope.mostrarAyuda("Falta campaña","En este momento no puede consultarse informacion para la campaña "+$scope.campana);  
+                    $scope.mostrarAyuda("Falta campaña","Lo sentimos, aún no tenemos información disponible para las próximas campañas");  
                     $scope.disminuirCampana();
                     return false;
                 }
@@ -135,12 +135,23 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     $scope.mostrarAtras = function(){
         return $scope.campana > $rootScope.campana.numero;
     }
+    
+    $scope.mostrarEncuentros = function(fecha){
+        switch(/*fecha.actividad*/fecha.tipoActividad){
+            case 1:
+                return true;
+            default:
+                return false;
+        }
+    }
 
     $scope.noMostrar = function(fecha){
         switch(/*fecha.actividad*/fecha.tipoActividad){
             case /*"FECHA DE PAGO"*/3:
                 return false;
             case /*"FECHA FACTURACIÓN"*/6:
+                return false;
+            case 1:
                 return false;
             default:
                 return true;
@@ -174,7 +185,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.recordatorio = fecha;
         $scope.openModal();
     }
-    
+
     $scope.formatoDia = function(fecha){
         return fecha.fecha.substring(8, 10);
     }
@@ -187,21 +198,21 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             case /*"TOMA DE PEDIDO"*/5:
                 return "Realiza tu pedido:";
             case /*"FECHA CORRETEO"*/7:
-                return "Realiza tu pedido por la web maximo:";
+                return "Realiza tu pedido por la web máximo:";
             case /*"REPARTO DE PEDIDO 1"*/2:
                 return "Posible entrega de pedido:";
             default:
                 return fecha.actividad;
         }
     }
-    
+
     $scope.mostrarAyuda = function(titulo, mensaje) {
         var alertPopup = $ionicPopup.alert({
             title: "",
             template: mensaje
         });
     };
-    
+
     $scope.hoyPar = function(fecha){
         if(fecha.fecha == Utilidades.formatearFechaActual()){
             return "row item item-energized";    
@@ -209,19 +220,13 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             return "row item alternate";
         }
     }
-    
+
     $scope.hoyImpar = function(fecha){
         if(fecha.fecha == Utilidades.formatearFechaActual()){
             return "row item item-energized";    
         }else{
             return "row item";
         }
-    }
-    
-    $scope.cargarCampanas=function(){
-         $scope.encuentros = new Array();
-        
-        
     }
 
     /*
@@ -1081,12 +1086,12 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.fechas = $rootScope.fechas;
 
         $scope.campana = $rootScope.campana.numero;
-        
+
         $scope.recordatorio;
 
         //$scope.semanasCalendario();
         $scope.recordatoriosCampanaActual();
-        
+
         $scope.cargarCampanas();
 
         $ionicLoading.hide();
