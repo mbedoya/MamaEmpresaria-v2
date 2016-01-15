@@ -165,7 +165,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
     $scope.iconoRecordatorio = function(fecha){
         switch(fecha.tipoActividad){
             case /*"ENCUENTRO"*/1:
-                return "ion-speakerphone";
+                return "ion-android-people";
             case /*"TOMA DE PEDIDO"*/5:
                 return "icon ion-edit";
             case /*"FECHA CORRETEO"*/7:
@@ -194,7 +194,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
         $scope.fechaSeleccionada = new Date(fecha.fecha);
         switch(fecha.tipoActividad){
             case /*"ENCUENTRO"*/1:
-                return "Tienes encuentro:";
+                return "Tienes encuentro el:";
             case /*"TOMA DE PEDIDO"*/5:
                 return "Realiza tu pedido:";
             case /*"FECHA CORRETEO"*/7:
