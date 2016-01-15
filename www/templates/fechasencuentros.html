@@ -1,6 +1,6 @@
 <ion-view view-title="" >
     <ion-content >
-         <div class="titulo-calendario">
+        <div class="titulo-calendario">
             <div class="row">
                 <div class="col sin-borde" >
                     <div class="item sin-borde" href="#" ng-click="disminuirCampana()" >
@@ -28,15 +28,16 @@
                 <div class="col-20"><i ng-class="iconoRecordatorio(fecha)" style="font-size: 40px; padding-left: 15px;"></i></div>
                 <div class="col-75">
                     <div class="row"><h2 ng-bind="textoMostrar(fecha)"></h2></div> 
-                    <div class="row"><p>{{formatoDia(fecha)}} de {{ fechaSeleccionada | date: 'MMMM' | pascal }}  del {{ fechaSeleccionada | date: 'yyyy' }}</p></p></div>
-                <div class="row"><p ng-show="hayLugar(fecha)">Lugar: {{fecha.lugar}}</p></div>
-                <div class="row"><p ng-show="hayHora(fecha)">Hora: {{fecha.hora}}</p></div>
+                    <div class="row"><p>{{formatoDia(fecha)}} de {{ fechaSeleccionada | date: 'MMMM' | pascal }}  del {{ fechaSeleccionada | date: 'yyyy' }}</p>
+                        <div class="row"><p ng-show="hayLugar(fecha)">Lugar: {{fecha.lugar}}</p></div>
+                        <div class="row"><p ng-show="hayHora(fecha)">Hora: {{fecha.hora}}</p></div></div>
+                </div>
+                <div class="col-10 item-chevron" style="font-size: 30px;" ng-show="esPedido(fecha)"><i class="icon ion-chevron-right"></i></div>
             </div>
-            <div class="col-10 item-chevron" style="font-size: 30px;" ng-show="esPedido(fecha)"><i class="icon ion-chevron-right"></i></div>
-        </div>
 
         </div>
 
-    <div class="div-lista-footer"></div>
+        <div class="div-lista-footer"></div>
+
     </ion-content>
 </ion-view>
