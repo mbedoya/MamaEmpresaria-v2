@@ -86,7 +86,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
         Campana.getRecordatorios($scope.ano, $scope.campana, $rootScope.zona, function (success, data){
             if(success){
-                if(data.listaRecordatorios!=null || data.listaRecordatorios.length == 0){
+                if(data.listaRecordatorios!=null || data.listaRecordatorios.length != 0){
                     $scope.fechasCampana = data.listaRecordatorios;
                 }else{
                     $scope.mostrarAyuda("Falta campaña","Lo sentimos, aún no tenemos información disponible para las próximas campañas");  
