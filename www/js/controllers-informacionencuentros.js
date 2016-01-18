@@ -63,13 +63,8 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
         return fecha.lugar!="..";
     }
 
-    $scope.hayLugar=function(fecha){
+    $scope.hayHora=function(fecha){
         return fecha.hora!=null;
-    }
-
-    $scope.esPedido=function(fecha){
-        //return fecha.actividad=="TOMA DE PEDIDO";
-        return fecha.tipoActividad==5;
     }
 
     $scope.aumentarCampana=function(){
@@ -166,24 +161,9 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
         switch(fecha.tipoActividad){
             case /*"ENCUENTRO"*/1:
                 return "ion-android-people";
-            case /*"TOMA DE PEDIDO"*/5:
-                return "icon ion-edit";
-            case /*"FECHA CORRETEO"*/7:
-                return "icon ion-monitor";
-            case /*"REPARTO DE PEDIDO 1"*/2:
-                return "icon ion-cube";
             default:
                 return "icon ion-flag";
         }
-    }
-
-    $scope.seleccionarFecha = function(fecha){
-        if(!$scope.esPedido(fecha)){
-            return;
-        }
-        $scope.fechaSeleccionada = new Date(fecha.fecha);
-        $scope.recordatorio = fecha;
-        $scope.openModal();
     }
 
     $scope.formatoDia = function(fecha){
@@ -195,12 +175,6 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
         switch(fecha.tipoActividad){
             case /*"ENCUENTRO"*/1:
                 return "Tienes encuentro el:";
-            case /*"TOMA DE PEDIDO"*/5:
-                return "Realiza tu pedido:";
-            case /*"FECHA CORRETEO"*/7:
-                return "Realiza tu pedido por la web máximo:";
-            case /*"REPARTO DE PEDIDO 1"*/2:
-                return "Posible entrega de pedido:";
             default:
                 return fecha.actividad;
         }

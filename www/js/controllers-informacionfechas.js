@@ -86,7 +86,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
         Campana.getRecordatorios($scope.ano, $scope.campana, $rootScope.zona, function (success, data){
             if(success){
-                if(data.listaRecordatorios!=null){
+                if(data.listaRecordatorios!=null || data.listaRecordatorios.length == 0){
                     $scope.fechasCampana = data.listaRecordatorios;
                 }else{
                     $scope.mostrarAyuda("Falta campaña","Lo sentimos, aún no tenemos información disponible para las próximas campañas");  
@@ -193,7 +193,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             case /*"TOMA DE PEDIDO"*/5:
                 return "Realiza tu pedido el:";
             case /*"FECHA CORRETEO"*/7:
-                return "Realiza tu pedido por la web máximo el:";
+                return "Haz tu pedido por la web máximo el:";
             case /*"REPARTO DE PEDIDO 1"*/2:
                 return "Posible entrega de pedido el:";
             default:
