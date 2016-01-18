@@ -86,6 +86,8 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
         Campana.getRecordatorios($scope.ano, $scope.campana, $rootScope.zona, function (success, data){
             if(success){
+                console.log(data.listaRecordatorios.length, "length");
+                console.log(data.listaRecordatorios.length!=0);
                 if(data.listaRecordatorios!=null || data.listaRecordatorios.length != 0){
                     $scope.fechasCampana = data.listaRecordatorios;
                 }else{
