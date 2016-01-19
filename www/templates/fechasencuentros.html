@@ -33,6 +33,7 @@
                 <div class="row"><p>{{formatoDia(fecha)}} de {{ fechaSeleccionada | date: 'MMMM' | pascal }}  del {{ fechaSeleccionada | date: 'yyyy' }}</p></div>
                 <div class="row"><p ng-show="hayLugar(fecha)">Lugar: {{fecha.lugar}}</p></div>
                 <div class="row"><p ng-show="hayHora(fecha)">Hora: {{fecha.hora}}</p></div>
+                <div class="row"><h3 ng-show="diasFaltantes(fecha)>0">Faltan {{diasFaltantes(fecha)}} dias</h3></div>
             </div>
         </div>
         

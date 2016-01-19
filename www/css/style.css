@@ -868,10 +868,22 @@ width: 100%;
     white-space: normal;
 }
 
-.ion-ios-people-outline:before, .ion-android-desktop:before, .ion-cube:before, .ion-android-people:before, .ion-edit:before, .ion-monitor:before, .ion-flag:before, .ion-speakerphone:before{
+.ion-ios-people-outline:before, .ion-android-desktop:before, .ion-android-people:before, .ion-edit:before, .ion-flag:before, .ion-speakerphone:before{
     font-weight: bold;
     color: #f74094;
-    padding-top: 5px;
+    padding-top: 10px;
+}
+
+.ion-cube:before{
+    font-weight: bold;
+    color: #077885;
+    padding-top: 10px;
+}
+
+.ion-monitor:before{
+    font-weight: bold;
+    color: #F5921E;
+    padding-top: 10px; 
 }
 
 /* Hacer que el texto tome todo el ancho disponible */

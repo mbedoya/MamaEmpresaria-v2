@@ -203,18 +203,11 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     
     $scope.diasFaltantes=function(fecha){
         var diaCalendario=new Date(fecha.fecha);
-        if(diaCalendario.getFullYear()<$scope.fechaCalendario.getFullYear()){
-            return 0;
-        }
-        if(diaCalendario.getMonth()<$scope.fechaCalendario.getMonth()){
-            return 0;   
-        }
-        var diaFecha=parseInt($scope.formatoDia(fecha));
-        if(diaFecha<$scope.fechaCalendario.getDate()){
-            return 0;   
-        }else{
-            return diaFecha-$scope.fechaCalendario.getDate();
-        }
+        if(diaCalendario<$scope.fechaCalendario)return 0;
+        var diferenciaTiempo=Math.abs($scope.fechaCalendario - diaCalendario);
+        var diferenciaDias = Math.ceil(diferenciaTiempo / (1000 * 3600 * 24));
+        
+        return diferenciaDias;
     }
 
     $scope.mostrarAyuda = function(titulo, mensaje) {
