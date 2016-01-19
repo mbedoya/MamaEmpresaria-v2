@@ -167,11 +167,18 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
     }
 
     $scope.formatoDia = function(fecha){
-        return fecha.fecha.substring(8, 10);
+        var fechaEntrada = new Date(fecha.fecha);
+        var diaGenerado=parseInt(fecha.fecha.substring(8, 10));
+        var diaEntrada=fechaEntrada.getDate();
+        if(diaGenerado>diaEntrada){
+            var fechaGenerada=fechaEntrada.getFullYear()+"-"+0+(fechaEntrada.getMonth()+1)+"-"+(diaGenerado+1);
+            $scope.fechaSeleccionada=new Date(fechaGenerada);    
+        }
+        return $scope.fechaSeleccionada.getDate();
     }
 
     $scope.textoMostrar=function(fecha){        
-        $scope.fechaSeleccionada = new Date(fecha.fecha);
+        $scope.formatoDia(fecha);
         switch(fecha.tipoActividad){
             case /*"ENCUENTRO"*/1:
                 return "Tienes encuentro el:";

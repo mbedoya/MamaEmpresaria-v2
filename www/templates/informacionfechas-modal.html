@@ -3,7 +3,7 @@
         <div class="list dia">
 
             <div class="item item-divider">
-                <p>{{recordatorio.actividad}} - {{formatoDia(recordatorio)}} de {{ fechaSeleccionada | date: 'MMMM' | pascal }}  del {{ fechaSeleccionada | date: 'yyyy' }}</p>
+                <p>{{fechaClick | date: 'EEE'}} {{fechaClick | date:'dd' }} de {{ fechaClick | date: 'MMMM' | pascal }}  del {{ fechaClick | date: 'yyyy' }}</p>
             </div>
 
         </div>

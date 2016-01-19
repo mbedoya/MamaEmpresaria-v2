@@ -120,6 +120,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             if(success){
                 $scope.fechasCampana = data.listaRecordatorios;
                 console.log("informacionFechas.disminuirMes - datos enviados", $scope.ano, $scope.campana);
+                console.log("informacionFechas.disminuirMes - datos recibidos", data);
                 $ionicLoading.hide();
             }else{
                 console.log("Fallo");
@@ -130,7 +131,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     $scope.mostrarAtras = function(){
         return $scope.campana > $rootScope.campana.numero;
     }
-    
+
     $scope.mostrarEncuentros = function(fecha){
         switch(/*fecha.actividad*/fecha.tipoActividad){
             case 1:
@@ -176,17 +177,27 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         if(!$scope.esPedido(fecha)){
             return;
         }
-        $scope.fechaSeleccionada = new Date(fecha.fecha);
+        $scope.formatoDia(fecha);
+        if(fecha.tipoActividad == 7){                
+            $scope.fechaClick=$scope.fechaSeleccionada;
+        }
         $scope.recordatorio = fecha;
         $scope.openModal();
     }
 
     $scope.formatoDia = function(fecha){
-        return fecha.fecha.substring(8, 10);
-    }
+        var fechaEntrada = new Date(fecha.fecha);
+        var diaGenerado=parseInt(fecha.fecha.substring(8, 10));
+        var diaEntrada=fechaEntrada.getDate();
+        if(diaGenerado>diaEntrada){
+            var fechaGenerada=fechaEntrada.getFullYear()+"-"+0+(fechaEntrada.getMonth()+1)+"-"+(diaGenerado+1);
+            $scope.fechaSeleccionada=new Date(fechaGenerada);
+        }
+        return $scope.fechaSeleccionada.getDate();
+    } 
 
     $scope.textoMostrar=function(fecha){        
-        $scope.fechaSeleccionada = new Date(fecha.fecha);
+        $scope.formatoDia(fecha);
         switch(fecha.tipoActividad){
             case /*"ENCUENTRO"*/1:
                 return "Tienes encuentro el:";
@@ -200,13 +211,13 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 return fecha.actividad;
         }
     }
-    
+
     $scope.diasFaltantes=function(fecha){
         var diaCalendario=new Date(fecha.fecha);
         if(diaCalendario<$scope.fechaCalendario)return 0;
         var diferenciaTiempo=Math.abs($scope.fechaCalendario - diaCalendario);
         var diferenciaDias = Math.ceil(diferenciaTiempo / (1000 * 3600 * 24));
-        
+
         return diferenciaDias;
     }
 
