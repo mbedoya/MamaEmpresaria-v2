@@ -86,8 +86,6 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
         Campana.getRecordatorios($scope.ano, $scope.campana, $rootScope.zona, function (success, data){
             if(success){
-                console.log(data.listaRecordatorios.length, "length");
-                console.log(data.listaRecordatorios.length!=0);
                 if(data.listaRecordatorios && data.listaRecordatorios.length>0){
                     $scope.fechasCampana = data.listaRecordatorios;
                 }else{
@@ -200,6 +198,22 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 return "Posible entrega de pedido el:";
             default:
                 return fecha.actividad;
+        }
+    }
+    
+    $scope.diasFaltantes=function(fecha){
+        var diaCalendario=new Date(fecha.fecha);
+        if(diaCalendario.getFullYear()<$scope.fechaCalendario.getFullYear()){
+            return 0;
+        }
+        if(diaCalendario.getMonth()<$scope.fechaCalendario.getMonth()){
+            return 0;   
+        }
+        var diaFecha=parseInt($scope.formatoDia(fecha));
+        if(diaFecha<$scope.fechaCalendario.getDate()){
+            return 0;   
+        }else{
+            return diaFecha-$scope.fechaCalendario.getDate();
         }
     }
 
