@@ -69,7 +69,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
     $scope.esPedido=function(fecha){
         //return fecha.actividad=="TOMA DE PEDIDO";
-        return fecha.tipoActividad==5;
+        return fecha.tipoActividad==7;
     }
 
     $scope.aumentarCampana=function(){
