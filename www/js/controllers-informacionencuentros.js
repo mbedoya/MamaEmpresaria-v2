@@ -167,7 +167,13 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
     }
 
     $scope.formatoFecha = function(fecha){
-        return Utilidades.reemplazarTodos(fecha, '-', '/');
+        var fechaFormateada=Utilidades.reemplazarTodos(fecha, '-', '/');
+        var pruebaFecha=new Date(fechaFormateada);
+        var diaOriginal=parseInt(fecha.substring(8, 10));
+        if(diaOriginal!=pruebaFecha.getDate()){
+            return fecha.fecha;    
+        }
+        return fechaFormateada;
     } 
 
     $scope.textoMostrar=function(fecha){        
