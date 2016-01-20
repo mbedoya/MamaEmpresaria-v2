@@ -186,8 +186,11 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
 
     $scope.formatoDia = function(fecha){
-        var fechaEntrada = new Date(fecha.fecha);
+        
         var diaGenerado=parseInt(fecha.fecha.substring(8, 10));
+        var mesGenerado=parseInt(fecha.fecha.substring(5, 7));
+        var anoGenerado=parseInt(fecha.fecha.substring(0, 4));
+        var fechaEntrada = new Date(anoGenerado+"/"+mesGenerado+"/"+diaGenerado);
         var diaEntrada=fechaEntrada.getDate();
         if(diaGenerado>diaEntrada){
             var mes=(fechaEntrada.getMonth()+1).toString();
