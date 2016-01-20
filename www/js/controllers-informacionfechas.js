@@ -190,9 +190,13 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         var diaGenerado=parseInt(fecha.fecha.substring(8, 10));
         var diaEntrada=fechaEntrada.getDate();
         if(diaGenerado>diaEntrada){
-            var fechaGenerada=fechaEntrada.getFullYear()+"-"+0+(fechaEntrada.getMonth()+1)+"-"+(diaGenerado+1);
+            var mes=(fechaEntrada.getMonth()+1).toString();
+            mes=mes.length==2?mes:0+mes;
+            var fechaGenerada=fechaEntrada.getFullYear()+"-"+mes+"-"+(diaGenerado+1);
             $scope.fechaSeleccionada=new Date(fechaGenerada);
-        }
+        }else{
+            $scope.fechaSeleccionada=fechaEntrada;   
+        }        
         return $scope.fechaSeleccionada.getDate();
     } 
 
