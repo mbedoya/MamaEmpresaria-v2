@@ -1077,6 +1077,10 @@ angular.module('novaventa.services', [])
 
                 return dateStr;
             },
+            reemplazarTodos: function(str, find, replace){
+                return str.replace(new RegExp(find, 'g'), replace);
+                return dateStr;
+            },
             cambiarNombreEstadoPedido: function(nombre){
 
                 if(nombre.toLowerCase() == "ingresado" || nombre.toLowerCase() == "ingresada"){

@@ -177,7 +177,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         if(!$scope.esPedido(fecha)){
             return;
         }
-        $scope.formatoDia(fecha);
+        $scope.fechaSeleccionada=new Date($scope.formatoFecha(fecha.fecha));
         if(fecha.tipoActividad == 7){                
             $scope.fechaClick=$scope.fechaSeleccionada;
         }
@@ -185,7 +185,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.openModal();
     }
 
-    $scope.formatoDia = function(fecha){
+    /*$scope.formatoDia = function(fecha){
         
         var diaGenerado=parseInt(fecha.fecha.substring(8, 10));
         var mesGenerado=parseInt(fecha.fecha.substring(5, 7));
@@ -201,10 +201,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             $scope.fechaSeleccionada=fechaEntrada;   
         }        
         return $scope.fechaSeleccionada.getDate();
-    } 
+    }*/
 
     $scope.textoMostrar=function(fecha){        
-        $scope.formatoDia(fecha);
+        $scope.fechaSeleccionada=new Date($scope.formatoFecha(fecha.fecha));
         switch(fecha.tipoActividad){
             case /*"ENCUENTRO"*/1:
                 return "Tienes encuentro el:";
@@ -218,6 +218,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 return fecha.actividad;
         }
     }
+    
+    $scope.formatoFecha = function(fecha){
+        return Utilidades.reemplazarTodos(fecha, '-', '/');
+    }    
 
     $scope.diasFaltantes=function(fecha){
         var diaCalendario=new Date(fecha.fecha);
