@@ -211,7 +211,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             case /*"TOMA DE PEDIDO"*/5:
                 return "Realiza tu pedido el:";
             case /*"FECHA CORRETEO"*/7:
-                return "Haz tu pedido por la web máximo<br> el:";
+                return "Haz tu pedido por la web<br> máximo el:";
             case /*"REPARTO DE PEDIDO 1"*/2:
                 return "Posible entrega de pedido el:";
             default:

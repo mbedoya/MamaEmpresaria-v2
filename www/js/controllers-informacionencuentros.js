@@ -201,7 +201,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
         var lugarFormateado="";
         for(var i=0; i<arrayLugar.length; i++){
             lugarFormateado+=arrayLugar[i]+" ";
-            if(i==2){
+            if(i==1){
                 lugarFormateado+="<br>";    
             }
         }
