@@ -195,6 +195,18 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
         
         return diferenciaDias*multiplicador;
     }
+    
+    $scope.formatoLugar=function(fecha){
+        var arrayLugar=fecha.lugar.split(" ");
+        var lugarFormateado="";
+        for(var i=0; i<arrayLugar.length; i++){
+            lugarFormateado+=arrayLugar[i]+" ";
+            if(i==2){
+                lugarFormateado+="<br>";    
+            }
+        }
+        return lugarFormateado;
+    }
 
     $scope.mostrarAyuda = function(titulo, mensaje) {
         var alertPopup = $ionicPopup.alert({

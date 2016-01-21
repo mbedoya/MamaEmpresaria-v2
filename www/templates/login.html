@@ -17,28 +17,6 @@
             </form>
         </div>
 
-        <div class="item alternate" href="#" style="padding:0px, auto;">
-            <div class="icon ion-speakerphone" style="float:left; padding-right: 20px; display:inline-block"></div>
-                <!-- <i class="icon ion-plus-circled"></i> -->
-            <div style="display:inline-block">
-                <h2>Tienes un pago pendiente por {{ saldo() | currency:"$":0 }}.
-                    <span ng-show="tieneEncuentro()">
-                        Realízalo
-                        <span ng-show="diasParaPago()>=1">el
-                            {{campana.fechaMontajePedido | date: 'dd' }} de  {{campana.fechaMontajePedido | date: 'MMMM' }}</span>
-                        <span ng-show="diasParaPago()<0 && !hoyEsEncuentro() && !hoyEsCorreteo()">el
-                            {{campana.fechaCorreteo | date: 'dd' }} de  {{campana.fechaCorreteo | date: 'MMMM' }}</span>
-                        <span ng-show="diasParaPago()<=0 && (hoyEsEncuentro() || hoyEsCorreteo())">hoy</span> antes de las 4 de la tarde
-                    </span>
-
-                </h2>
-                <p>
-                    Si ya pagaste consulta de nuevo en 24 horas no se que mas poner asi que pongo cualquier cosa
-                </p>
-                </div>
-            <div class="icon ion-chevron-right" style="float:right; display:inline-block"></div>
-        </div>
-
         <!--<div class="row item" href="#">
 <div class="col-20"><span><i class="icon ion-calendar assertive" style="font-size: 50px"></i><strong>27</strong></span><p>prueba</p></div>
 <div class="col-75">

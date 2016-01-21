@@ -31,7 +31,7 @@
             <div class="col-75">
                 <div class="row"><h2 ng-bind="textoMostrar(fecha)"></h2></div> 
                 <div class="row"><p>{{fechaSeleccionada | date: 'EEE'}} {{fechaSeleccionada | date:'dd' }} de {{ fechaSeleccionada | date: 'MMMM' | pascal }}  del {{ fechaSeleccionada | date: 'yyyy' }}</p></div>
-                <div class="row"><p ng-show="hayLugar(fecha)">Lugar: {{fecha.lugar}}</p></div>
+                <div class="row"><p ng-show="hayLugar(fecha)" ng-bind-html="'Lugar: '+formatoLugar(fecha)"></p></div>
                 <div class="row"><p ng-show="hayHora(fecha)">Hora: {{fecha.hora}}</p></div>
                 <div class="row"><h3 ng-show="diasFaltantes(fecha)>0">Faltan {{diasFaltantes(fecha)}} días calendario</h3></div>
             </div>
