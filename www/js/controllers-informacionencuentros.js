@@ -160,7 +160,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
     $scope.iconoRecordatorio = function(fecha){
         switch(fecha.tipoActividad){
             case /*"ENCUENTRO"*/1:
-                return "ion-android-people";
+                return "icon ion-android-people";
             default:
                 return "icon ion-flag";
         }
@@ -196,7 +196,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
         return diferenciaDias*multiplicador;
     }
     
-    $scope.formatoLugar=function(fecha){
+    /*$scope.formatoLugar=function(fecha){
         var arrayLugar=fecha.lugar.split(" ");
         var lugarFormateado="";
         for(var i=0; i<arrayLugar.length; i++){
@@ -206,7 +206,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
             }
         }
         return lugarFormateado;
-    }
+    }*/
 
     $scope.mostrarAyuda = function(titulo, mensaje) {
         var alertPopup = $ionicPopup.alert({
@@ -217,17 +217,17 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
 
     $scope.hoyPar = function(fecha){
         if(fecha.fecha == Utilidades.formatearFechaActual()){
-            return "row item item-energized";    
+            return "item item-icon-left item-energized";    
         }else{
-            return "row item alternate";
+            return "item item-icon-left alternate";
         }
     }
 
     $scope.hoyImpar = function(fecha){
         if(fecha.fecha == Utilidades.formatearFechaActual()){
-            return "row item item-energized";    
+            return "item item-icon-left item-energized";    
         }else{
-            return "row item";
+            return "item item-icon-left";
         }
     }
 

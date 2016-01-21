@@ -25,7 +25,7 @@
 <div class="list">
 
     <!-- Pedido Anterior - No Encontrado  -->
-    <div ng-click="seleccionarFecha(fecha)" ng-repeat="fecha in fechasCampana | filter: noMostrar | orderBy: diasFaltantes" ng-class-odd="hoyPar(fecha)" ng-class-even="hoyImpar(fecha)" style="overflow: inherit ; text-overflow: inherit ;  white-space: wrap ;">  
+    <div ng-click="seleccionarFecha(fecha)" ng-repeat="fecha in fechasCampana | filter: noMostrar | orderBy: diasFaltantes" ng-class-odd="hoyPar(fecha)" ng-class-even="hoyImpar(fecha)">  
         <div class="col col-20"><i ng-class="iconoRecordatorio(fecha)" style="font-size: 40px; padding-left: 5px;"></i></div>
         <div class="col col-75">
             <div class="row"><h2 ng-bind-html="textoMostrar(fecha)"></h2></div> 
