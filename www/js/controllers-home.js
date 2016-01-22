@@ -26,6 +26,11 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
         // Show an alert box if a notificaton comes in when the user is in your app.
         window.plugins.OneSignal.enableInAppAlertNotification(false);
         //}
+        
+        document.addEventListener("pause", function () {
+
+            alert("The app has paused");
+        }, false);
 
         document.addEventListener("resume", function () {
 
@@ -36,7 +41,7 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
 
     //FIN JS ONE SIGNAL
 
-
+    
 
     $scope.tieneEncuentro = function(){
         return Campana.tieneEncuentro();
