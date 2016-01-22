@@ -12,7 +12,7 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
 
         var notificationOpenedCallback = function(jsonData) {
             //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-            //alert(jsonData.additionalData.title+"\n\n"+jsonData.message);                
+            //alert(jsonData.additionalData.title+"\n\n"+jsonData.message);   
             var alertPopup = $ionicPopup.alert({
                 title: jsonData.additionalData.title,
                 template: jsonData.message
@@ -26,22 +26,14 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
         // Show an alert box if a notificaton comes in when the user is in your app.
         window.plugins.OneSignal.enableInAppAlertNotification(false);
         //}
-        
+
         document.addEventListener("pause", function () {
-
-            alert("The app has paused");
-        }, false);
-
-        document.addEventListener("resume", function () {
-
-            alert("The app has returned from the background");
+            navigator.app.exitApp()
         }, false);
 
     }, false);
 
-    //FIN JS ONE SIGNAL
-
-    
+    //FIN JS ONE SIGNAL    
 
     $scope.tieneEncuentro = function(){
         return Campana.tieneEncuentro();
