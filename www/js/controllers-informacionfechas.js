@@ -248,7 +248,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
     $scope.hoyPar = function(fecha){
         if(fecha.fecha == Utilidades.formatearFechaActual()){
-            return "row item item-energized";    
+            return "row item item-hoy-dia";    
         }else{
             return "row item alternate";
         }
@@ -256,7 +256,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
     $scope.hoyImpar = function(fecha){
         if(fecha.fecha == Utilidades.formatearFechaActual()){
-            return "row item item-energized";    
+            return "row item item-hoy-dia";    
         }else{
             return "row item";
         }

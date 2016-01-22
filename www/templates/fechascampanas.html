@@ -27,8 +27,7 @@
     <!-- Pedido Anterior - No Encontrado  -->
     <div ng-click="seleccionarFecha(fecha)" ng-repeat="fecha in fechasCampana | filter: noMostrar | orderBy: diasFaltantes" ng-class-odd="hoyPar(fecha)" ng-class-even="hoyImpar(fecha)">  
         <div class="col col-20"><i ng-class="iconoRecordatorio(fecha)" style="font-size: 40px; padding-left: 5px;"></i></div>
-        <div class="col col-75">
-            <div class="row"><h2 ng-bind-html="textoMostrar(fecha)"></h2></div> 
+        <div class="col col-75"><div class="row"><h2 ng-bind-html="textoMostrar(fecha)"></h2></div> 
             <div class="row"><p>{{fechaSeleccionada | date: 'EEE'}} {{fechaSeleccionada | date:'dd' }} de {{ fechaSeleccionada | date: 'MMMM' | pascal }}  del {{ fechaSeleccionada | date: 'yyyy' }}</p></div>
             <div class="row"><h3 ng-show="diasFaltantes(fecha)>0">Faltan {{diasFaltantes(fecha)}} días calendario</h3></div>
         </div>

@@ -217,7 +217,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
 
     $scope.hoyPar = function(fecha){
         if(fecha.fecha == Utilidades.formatearFechaActual()){
-            return "item item-icon-left item-energized";    
+            return "item item-icon-left item-hoy-dia";    
         }else{
             return "item item-icon-left alternate";
         }
@@ -225,7 +225,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
 
     $scope.hoyImpar = function(fecha){
         if(fecha.fecha == Utilidades.formatearFechaActual()){
-            return "item item-icon-left item-energized";    
+            return "item item-icon-left item-hoy-dia";    
         }else{
             return "item item-icon-left";
         }
