@@ -27,179 +27,179 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
         window.plugins.OneSignal.enableInAppAlertNotification(false);
         //}
 
-        document.addEventListener("resume", function {
-                                  
+        document.addEventListener("resume", function () {
+
             alert("The app has returned from the background");
         }, false);
 
     }, false);
 
-//FIN JS ONE SIGNAL
+    //FIN JS ONE SIGNAL
 
 
 
-$scope.tieneEncuentro = function(){
-    return Campana.tieneEncuentro();
-}
-
-$scope.mostrarCupo = function(){
-    return Number($rootScope.datos.cupo) > 0;
-}
-
-$scope.buscarEstado = function(estado){
-    return Pedido.buscarEstado(estado);
-}
-
-$scope.mamaEnMora = function(){
-    var estadoNovedad = Pedido.buscarEstado('Novedad');
-    if(estadoNovedad){
-        if (estadoNovedad.motivo.toLowerCase().indexOf('morosa')>=0){
-            return true;
-        }
+    $scope.tieneEncuentro = function(){
+        return Campana.tieneEncuentro();
     }
 
-    return false;
-}
+    $scope.mostrarCupo = function(){
+        return Number($rootScope.datos.cupo) > 0;
+    }
 
-// El Saldo es de la próxima campaña si
-// ya se ha efectuado el encuentro y tengo información de pedido
-// y no tengo novedad de morosidad
-$scope.saldoEsDeProximaCampana = function(){
-    return false;
-    //return $scope.encuentroRealizado() && !$scope.pedido().razonRechazo && !$scope.mamaEnMora();
-}
+    $scope.buscarEstado = function(estado){
+        return Pedido.buscarEstado(estado);
+    }
 
-$scope.pedido = function(){
-    return $rootScope.pedido;
-}
+    $scope.mamaEnMora = function(){
+        var estadoNovedad = Pedido.buscarEstado('Novedad');
+        if(estadoNovedad){
+            if (estadoNovedad.motivo.toLowerCase().indexOf('morosa')>=0){
+                return true;
+            }
+        }
 
-//Indica si ya se hizo el Encuentro para la campaña actual
-$scope.encuentroRealizado = function(){
-    return Campana.encuentroRealizado();
-}
+        return false;
+    }
 
-//Indica si hoy es encuentro
-$scope.hoyEsEncuentro = function(){
-    return Campana.hoyEsEncuentro();
-}
+    // El Saldo es de la próxima campaña si
+    // ya se ha efectuado el encuentro y tengo información de pedido
+    // y no tengo novedad de morosidad
+    $scope.saldoEsDeProximaCampana = function(){
+        return false;
+        //return $scope.encuentroRealizado() && !$scope.pedido().razonRechazo && !$scope.mamaEnMora();
+    }
 
-//Indica si hoy es correteo
-$scope.hoyEsCorreteo = function(){
-    return Campana.hoyEsCorreteo();
-}
+    $scope.pedido = function(){
+        return $rootScope.pedido;
+    }
 
-$scope.etiquetaSaldo = function(){
+    //Indica si ya se hizo el Encuentro para la campaña actual
+    $scope.encuentroRealizado = function(){
+        return Campana.encuentroRealizado();
+    }
 
-    var etiqueta = "Saldo a pagar";
+    //Indica si hoy es encuentro
+    $scope.hoyEsEncuentro = function(){
+        return Campana.hoyEsEncuentro();
+    }
 
-    if($rootScope.datos && $rootScope.datos.saldo){
+    //Indica si hoy es correteo
+    $scope.hoyEsCorreteo = function(){
+        return Campana.hoyEsCorreteo();
+    }
 
-        if(Number($rootScope.datos.saldo) < 0) {
-            etiqueta = "Saldo a favor";
+    $scope.etiquetaSaldo = function(){
+
+        var etiqueta = "Saldo a pagar";
+
+        if($rootScope.datos && $rootScope.datos.saldo){
+
+            if(Number($rootScope.datos.saldo) < 0) {
+                etiqueta = "Saldo a favor";
+            }else{
+                etiqueta = "Debes pagar " + $scope.saldo() + " de la Campaña XXX";
+            }
+        }
+
+        return etiqueta;
+    }
+
+    $scope.estiloAlternateFechaPago = function(){
+        if($scope.mostrarCupo){
+            return "alternate";
         }else{
-            etiqueta = "Debes pagar " + $scope.saldo() + " de la Campaña XXX";
+            return "";
         }
     }
 
-    return etiqueta;
-}
-
-$scope.estiloAlternateFechaPago = function(){
-    if($scope.mostrarCupo){
-        return "alternate";
-    }else{
-        return "";
-    }
-}
-
-$scope.mostrarSaldoFavor = function(){
-    return ($rootScope.datos && $rootScope.datos.saldo && Number($rootScope.datos.saldo) < 0);
-}
-
-$scope.mostrarSaldoPagar = function(){
-    return !$scope.mostrarSaldoFavor();
-}
-
-$scope.nombre = function(){
-    var nombrePascal = $rootScope.datos.nombre.split(' ');
-    for	(index = 0; index < nombrePascal.length; index++) {
-        nombrePascal[index] = nombrePascal[index].substring(0,1).toUpperCase() + nombrePascal[index].substring(1, nombrePascal[index].length).toLowerCase();
+    $scope.mostrarSaldoFavor = function(){
+        return ($rootScope.datos && $rootScope.datos.saldo && Number($rootScope.datos.saldo) < 0);
     }
 
-    return nombrePascal.join(' ');
-}
-
-$scope.segmento = function(){
-    return $rootScope.datos.segmento;
-}
-
-$scope.segmentoFormateado = function(){
-    return $rootScope.datos.segmento.toLocaleLowerCase().replace("í","i");
-}
-
-$scope.saldo = function(){
-    return Math.abs(Number($rootScope.datos.saldo));
-}
-
-$scope.cupo = function(){
-    return $rootScope.datos.cupo;
-}
-
-$scope.numeroCampana = function(){
-    return $rootScope.campana.numero;
-}
-
-$scope.fechaMontajePedidoCampana = function(){
-    return $rootScope.campana.fechaMontajePedido;
-}
-
-$scope.fechaCorreteo = function(){
-    return $rootScope.campana.fechaCorreteo;
-}
-
-$scope.flexibilizacion = function(){
-    return $rootScope.datos.valorFlexibilizacion;
-}
-
-$scope.flexibilizacionPago = function(){
-    //La flexibilización es mayor que el valor a Pagar?
-    if(Number($rootScope.datos.valorFlexibilizacion)>Number($rootScope.datos.saldo)){
-        return 0;
-    }else{
-        return Number($rootScope.datos.saldo)-Number($rootScope.datos.valorFlexibilizacion);
+    $scope.mostrarSaldoPagar = function(){
+        return !$scope.mostrarSaldoFavor();
     }
-}
 
-$scope.flexibilizacionDeuda = function(){
-    //La flexibilización es mayor que el valor a Pagar?
-    if(Number($rootScope.datos.valorFlexibilizacion)>Number($rootScope.datos.saldo)){
-        return Number($rootScope.datos.saldo);
-    }else{
-        return Number($rootScope.datos.valorFlexibilizacion);
+    $scope.nombre = function(){
+        var nombrePascal = $rootScope.datos.nombre.split(' ');
+        for	(index = 0; index < nombrePascal.length; index++) {
+            nombrePascal[index] = nombrePascal[index].substring(0,1).toUpperCase() + nombrePascal[index].substring(1, nombrePascal[index].length).toLowerCase();
+        }
+
+        return nombrePascal.join(' ');
     }
-}
 
-$scope.diasParaPago = function(){
-
-    var stringFecha =  Utilidades.formatearFechaActual();
-
-    if($rootScope.campana && $rootScope.campana.fechaMontajePedido){
-        return Utilidades.diferenciaFechaDias(new Date(stringFecha), new Date($rootScope.campana.fechaMontajePedido));
-    }else{
-        return "";
+    $scope.segmento = function(){
+        return $rootScope.datos.segmento;
     }
-}
 
-$scope.esAntesMedioDia = function(){
-    return new Date().getHours() < 12;
-}
+    $scope.segmentoFormateado = function(){
+        return $rootScope.datos.segmento.toLocaleLowerCase().replace("í","i");
+    }
 
-$scope.mostrarAyudaSaldoPagar = function(){
-    //$scope.mostrarAyuda('Pagos','El pago que dejas de hacer es debido al beneficio que tienes llamado "Flexibilización", los $' + $scope.flexibilizacionDeuda() + ' que quedas debiendo, los debes cancelar antes de tu próximo pedido.');
-}
+    $scope.saldo = function(){
+        return Math.abs(Number($rootScope.datos.saldo));
+    }
 
-$scope.hoyEsCorreteo = function(){
-    return Campana.hoyEsCorreteo();
-}
+    $scope.cupo = function(){
+        return $rootScope.datos.cupo;
+    }
+
+    $scope.numeroCampana = function(){
+        return $rootScope.campana.numero;
+    }
+
+    $scope.fechaMontajePedidoCampana = function(){
+        return $rootScope.campana.fechaMontajePedido;
+    }
+
+    $scope.fechaCorreteo = function(){
+        return $rootScope.campana.fechaCorreteo;
+    }
+
+    $scope.flexibilizacion = function(){
+        return $rootScope.datos.valorFlexibilizacion;
+    }
+
+    $scope.flexibilizacionPago = function(){
+        //La flexibilización es mayor que el valor a Pagar?
+        if(Number($rootScope.datos.valorFlexibilizacion)>Number($rootScope.datos.saldo)){
+            return 0;
+        }else{
+            return Number($rootScope.datos.saldo)-Number($rootScope.datos.valorFlexibilizacion);
+        }
+    }
+
+    $scope.flexibilizacionDeuda = function(){
+        //La flexibilización es mayor que el valor a Pagar?
+        if(Number($rootScope.datos.valorFlexibilizacion)>Number($rootScope.datos.saldo)){
+            return Number($rootScope.datos.saldo);
+        }else{
+            return Number($rootScope.datos.valorFlexibilizacion);
+        }
+    }
+
+    $scope.diasParaPago = function(){
+
+        var stringFecha =  Utilidades.formatearFechaActual();
+
+        if($rootScope.campana && $rootScope.campana.fechaMontajePedido){
+            return Utilidades.diferenciaFechaDias(new Date(stringFecha), new Date($rootScope.campana.fechaMontajePedido));
+        }else{
+            return "";
+        }
+    }
+
+    $scope.esAntesMedioDia = function(){
+        return new Date().getHours() < 12;
+    }
+
+    $scope.mostrarAyudaSaldoPagar = function(){
+        //$scope.mostrarAyuda('Pagos','El pago que dejas de hacer es debido al beneficio que tienes llamado "Flexibilización", los $' + $scope.flexibilizacionDeuda() + ' que quedas debiendo, los debes cancelar antes de tu próximo pedido.');
+    }
+
+    $scope.hoyEsCorreteo = function(){
+        return Campana.hoyEsCorreteo();
+    }
 
 });
