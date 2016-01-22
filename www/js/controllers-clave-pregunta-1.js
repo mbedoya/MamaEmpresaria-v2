@@ -9,70 +9,79 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
             template: mensaje
         });
     };
+    
+    $scope.respuestaSeleccionada = function(respuesta, indice){
+        $scope.respuesta = respuesta;
+        $scope.indiceRespuesta = indice;
+        console.log("Respuesta", respuesta);
+        console.log("Indice", indice);
+    }
 
     $scope.inicializar = function() {
 
         $scope.modelo = { campana:'', ano: ''};
         $scope.campanaActual = "";
         $scope.campanasAnoActual = new Array();
-        
+
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Iniciando creación de clave')
         });
 
         Mama.getPregunta1(function (success, data) {
-            
+
             $ionicLoading.hide();
-            
+
             if (success) {
-               
-               if(data.valido && data.valido == 1){
-                   
-                   $scope.loading =  $ionicLoading.show({
+
+                if(data.valido && data.valido == 1){
+
+                    $scope.respuestas=data.respuestas;
+
+                    $scope.loading =  $ionicLoading.show({
                         template: Utilidades.getPlantillaEspera('Iniciando creación de clave')
                     });
 
-                   Campana.getCampanaOperativa(function (success, data) {
-                       
-                       $ionicLoading.hide();
-                       
-                       if (success) {
-                           
-                           if(!$rootScope.recuperarClave){
-                               $scope.mostrarAyuda("Creación de clave", "Mamá, nos encanta tenerte con nosotros. Para que puedas disfrutar de esta aplicación te invitamos a responder unas preguntas y crear tu clave");
-                           }
-                           $scope.campanaActual = data.campana.toString().substr(4,2);
-                       }
-                   });
-                   
-               }else{
-                   
-                   /*$ionicHistory.nextViewOptions({
+                    Campana.getCampanaOperativa(function (success, data) {
+
+                        $ionicLoading.hide();
+
+                        if (success) {
+
+                            if(!$rootScope.recuperarClave){
+                                $scope.mostrarAyuda("Creación de clave", "Mamá, nos encanta tenerte con nosotros. Para que puedas disfrutar de esta aplicación te invitamos a responder unas preguntas y crear tu clave");
+                            }
+                            $scope.campanaActual = data.campana.toString().substr(4,2);
+                        }
+                    });
+
+                }else{
+
+                    /*$ionicHistory.nextViewOptions({
                         disableBack: true
                     });*/
-                   
-                   if(data.razonRechazo && 
+
+                    if(data.razonRechazo && 
                        (data.razonRechazo == "Pregunta 1 ya ha sido contestada") ){
-                       $ionicHistory.currentView($ionicHistory.backView());
-                       $location.path('/app/clave-pregunta-2');
-                   }else{
-                       
-                       if(data.razonRechazo && 
-                       (data.razonRechazo == "Mamá, te ayudaremos a asignar una clave espera nuestra llamada próximamente") ){
-                       
+                        $ionicHistory.currentView($ionicHistory.backView());
+                        $location.path('/app/clave-pregunta-2');
+                    }else{
+
+                        if(data.razonRechazo && 
+                           (data.razonRechazo == "Mamá, te ayudaremos a asignar una clave espera nuestra llamada próximamente") ){
+
                             $scope.mostrarAyuda("Creación de clave", data.razonRechazo);
                             $location.path('/app/login');
-                            
-                           }else{
-                               
-                               $location.path('/app/clave-pregunta-2');
-                               
-                           }
-                       
-                   }
-                      
-               }
-               
+
+                        }else{
+
+                            $location.path('/app/clave-pregunta-2');
+
+                        }
+
+                    }
+
+                }
+
             }else{
                 $scope.mostrarAyuda("Creación de clave", "Lo sentimos, no es posible mostrarte esta pregunta. Responde una pregunta más");
                 $location.path('/app/clave-pregunta-2');
@@ -133,22 +142,22 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
     $scope.confirmar = function() {
 
         //Validar que se haya seleccionado año y campaña
-        if($scope.modelo.campana == "" || $scope.modelo.ano == ""){
-            $scope.mostrarAyuda("Creación de clave","Mamá, por favor selecciona el año y la campaña");
+        if($scope.respuesta == ""){
+            $scope.mostrarAyuda("Creación de clave","Mamá, por favor selecciona una opción");
             return;
-        }
+        }   
 
         var myPopup = $ionicPopup.show({
-            template: 'Mamá, elegiste la Campaña ' + $scope.modelo.campana + ' de ' + $scope.modelo.ano + ', ¿Es correcto?',
+            template: 'Mamá, elegiste la opción "' + $scope.respuesta + '" ¿Es correcto?',
             title: '',
             subTitle: '',
             scope: $scope,
             buttons: [
                 { text: 'No',
-                    onTap: function (e) {
-                        console.log(e);
-                        return false;
-                    }
+                 onTap: function (e) {
+                     console.log(e);
+                     return false;
+                 }
                 },
                 {
                     text: '<b>Si</b>',
@@ -169,7 +178,7 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
                         template: Utilidades.getPlantillaEspera('Validando respuesta')
                     });
 
-                    Mama.responderPregunta("1", $scope.modelo.ano + Utilidades.Pad($scope.modelo.campana), function(success, data){
+                    Mama.responderPregunta("1", $scope.indiceRespuesta, function(success, data){
 
                         $ionicLoading.hide();
 
@@ -198,7 +207,7 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
                     $scope.mostrarAyuda("Creación de clave","Por favor verifica tu conexión a internet");
                 }
             }else{
-                $scope.mostrarAyuda("Creación de clave","Por favor selecciona nuevamente la campaña");
+                $scope.mostrarAyuda("Creación de clave","Por favor selecciona nuevamente tu respuesta");
             }
 
         });
@@ -219,7 +228,7 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
         }
         return true;
     }
-    
+
     $scope.$on('$ionicView.beforeEnter', function(){
         $scope.inicializar();
     });

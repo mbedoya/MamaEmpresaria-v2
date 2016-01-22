@@ -14,7 +14,7 @@ moduloControlador.controller('ClavePregunta2Ctrl', function($scope, $location, $
         $scope.respuesta = respuesta;
         $scope.indiceRespuesta = indice;
     }
-    
+
     $scope.enviarSolicitudContacto = function(){
         //Enviar solicitus de contacto
 
@@ -44,10 +44,10 @@ moduloControlador.controller('ClavePregunta2Ctrl', function($scope, $location, $
             scope: $scope,
             buttons: [
                 { text: 'No',
-                    onTap: function (e) {
-                        console.log(e);
-                        return false;
-                    }
+                 onTap: function (e) {
+                     console.log(e);
+                     return false;
+                 }
                 },
                 {
                     text: '<b>Si</b>',
@@ -107,38 +107,38 @@ moduloControlador.controller('ClavePregunta2Ctrl', function($scope, $location, $
 
         $scope.respuesta = "";
         $scope.respuestas = new Array()
-        
+
         $scope.loading =  $ionicLoading.show({
-                    template: Utilidades.getPlantillaEspera('Cargando información')
-                });
+            template: Utilidades.getPlantillaEspera('Cargando información')
+        });
 
         Mama.getPregunta2(function (success, data) {
-            
+
             $ionicLoading.hide();
-            
+
             if (success) {
 
                 console.log(data);
                 if(data.valido && data.valido == 1){
                     $scope.respuestas = data.respuestas;
-                   
-               }else{
-                   console.log(data.razonRechazo);
-                   if(data.razonRechazo && 
-                       (data.razonRechazo == "Pregunta 2 ya ha sido contestada" || data.razonRechazo == "Pregunta 1 ya ha sido contestada") ){
-                       $scope.mostrarAyuda("Creación de clave", "No hemos podido validar correctamente tu información, uno de nuestros asesores te estará contactando");
-                       $location.path('/app/login');
-                   }else{
 
-                       if(data.razonRechazo &&
+                }else{
+                    console.log(data.razonRechazo);
+                    if(data.razonRechazo && 
+                       (data.razonRechazo == "Pregunta 2 ya ha sido contestada" || data.razonRechazo == "Pregunta 1 ya ha sido contestada") ){
+                        $scope.mostrarAyuda("Creación de clave", "No hemos podido validar correctamente tu información, uno de nuestros asesores te estará contactando");
+                        $location.path('/app/login');
+                    }else{
+
+                        if(data.razonRechazo &&
                            (data.razonRechazo == "Pregunta 2 ya ha sido contestada correctamente" || data.razonRechazo == "Pregunta 1 ya ha sido contestada correctamente") ){
-                           $location.path('/app/clave-nueva-clave-1');
-                       }else{
-                           $scope.mostrarAyuda("Creación de clave",data.razonRechazo);
-                           $location.path('/app/login');
-                       }
-                   }
-               }
+                            $location.path('/app/clave-nueva-clave-1');
+                        }else{
+                            $scope.mostrarAyuda("Creación de clave",data.razonRechazo);
+                            $location.path('/app/login');
+                        }
+                    }
+                }
             }else{
                 $scope.mostrarAyuda("Creación de clave", "No hemos podido validar tu información, comunícate con la línea de atención");
                 $location.path('/app/login');
@@ -153,12 +153,12 @@ moduloControlador.controller('ClavePregunta2Ctrl', function($scope, $location, $
 
         $scope.confirmar();
     }
-    
+
     $scope.volverMenu = function(){
         console.log($ionicHistory);
         $ionicHistory.goBack();
     }
-    
+
     $scope.$on('$ionicView.beforeEnter', function(){
         $scope.inicializar();
     });
