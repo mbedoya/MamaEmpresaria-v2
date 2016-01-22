@@ -10,7 +10,7 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
 
         //if(!$rootScope.versionProduccion){
 
-        var notificationOpenedCallback = function(jsonData) {
+        /*var notificationOpenedCallback = function(jsonData) {
             //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
             //alert(jsonData.additionalData.title+"\n\n"+jsonData.message);   
             var alertPopup = $ionicPopup.alert({
@@ -29,7 +29,7 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
 
         document.addEventListener("pause", function () {
             navigator.app.exitApp()
-        }, false);
+        }, false);*/
 
     }, false);
 
