@@ -19,8 +19,8 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
                 });
             };
 
-            window.plugins.OneSignal.init("a3839c5f-b4d9-49a1-9e6a-aebac01abba7",
-                                          {googleProjectNumber: "531375899368"},
+            window.plugins.OneSignal.init($rootScope.notificacionesPush.apikey,
+                                          {googleProjectNumber: $rootScope.notificacionesPush.project},
                                           notificationOpenedCallback);
 
             // Show an alert box if a notificaton comes in when the user is in your app.
