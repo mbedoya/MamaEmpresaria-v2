@@ -8,7 +8,7 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
         // Enable to debug issues.
         // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
 
-        if(!$rootScope.versionProduccion){
+        //if(!$rootScope.versionProduccion){
 
             var notificationOpenedCallback = function(jsonData) {
                 //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
@@ -19,13 +19,13 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
                 });
             };
 
-            window.plugins.OneSignal.init("adece4f8-1dbd-4713-9351-f8140d916bf4",
-                                          {googleProjectNumber: "275683696350"},
+            window.plugins.OneSignal.init("a3839c5f-b4d9-49a1-9e6a-aebac01abba7",
+                                          {googleProjectNumber: "531375899368"},
                                           notificationOpenedCallback);
 
             // Show an alert box if a notificaton comes in when the user is in your app.
             window.plugins.OneSignal.enableInAppAlertNotification(false);
-        }
+        //}
 
     }, false);
 
