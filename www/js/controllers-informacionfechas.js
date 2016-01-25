@@ -76,6 +76,8 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
+        
+        $scope.alerts=true;
 
         if($scope.campana == $rootScope.numeroCampanasAno){
             $scope.campana = 1;
@@ -107,6 +109,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
 
+        $scope.alerts=true;
         //var ano=$scope.fechaCalendario.getFullYear();
 
         if($scope.campana == 1){
@@ -220,12 +223,16 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
     
     $scope.formatoFecha = function(fecha){
-        var fechaFormateada=Utilidades.reemplazarTodos(fecha, '-', '/');        
-        alert(fechaFormateada+" fecha formateada")
-        var pruebaFecha=new Date(fechaFormateada);
-        alert(pruebaFecha+" prueba fecha");
+        var fechaFormateada=Utilidades.reemplazarTodos(fecha, '-', '/');       
+        var pruebaFecha=new Date(fechaFormateada);        
         var diaOriginal=parseInt(fecha.substring(8, 10));
-        alert(diaOriginal+" dia original");
+        if($scope.alerts==true){
+            alert(fecha.fecha+" fecha original")
+            alert(fechaFormateada+" fecha formateada");
+            alert(pruebaFecha+" prueba fecha");
+            alert(diaOriginal+" dia original");            
+            $scope.alerts=false;
+        }        
         if(!pruebaFecha || diaOriginal!=pruebaFecha.getDate()){
             return fecha.fecha;    
         }
@@ -1117,6 +1124,8 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.fechaCalendario = new Date();
 
         $scope.fechaSeleccionada = $scope.fechaCalendario;
+        
+        $scope.alerts = true;
 
         //Fechas de la campana que se está visualizando
         $scope.fechas = $rootScope.fechas;
