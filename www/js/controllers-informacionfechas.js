@@ -77,7 +77,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
         
-        $scope.alerts=true;
+        $scope.contAl=0;
 
         if($scope.campana == $rootScope.numeroCampanasAno){
             $scope.campana = 1;
@@ -109,7 +109,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
 
-        $scope.alerts=true;
+        $scope.contAl=0;
         //var ano=$scope.fechaCalendario.getFullYear();
 
         if($scope.campana == 1){
@@ -226,12 +226,12 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         var fechaFormateada=Utilidades.reemplazarTodos(fecha, '-', '/');       
         var pruebaFecha=new Date(fechaFormateada);        
         var diaOriginal=parseInt(fecha.substring(8, 10));
-        if($scope.alerts==true){
-            alert(fecha.fecha+" fecha original")
+        if($scope.contAl<6){
+            alert(fecha+" fecha original")
             alert(fechaFormateada+" fecha formateada");
             alert(pruebaFecha+" prueba fecha");
             alert(diaOriginal+" dia original");            
-            $scope.alerts=false;
+            $scope.contAl++;
         }        
         if(!pruebaFecha || diaOriginal!=pruebaFecha.getDate()){
             return fecha.fecha;    
@@ -1126,6 +1126,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.fechaSeleccionada = $scope.fechaCalendario;
         
         $scope.alerts = true;
+        $scope.contAl=0;
 
         //Fechas de la campana que se está visualizando
         $scope.fechas = $rootScope.fechas;
