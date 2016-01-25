@@ -220,9 +220,12 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
     
     $scope.formatoFecha = function(fecha){
-        var fechaFormateada=Utilidades.reemplazarTodos(fecha, '-', '/');
+        var fechaFormateada=Utilidades.reemplazarTodos(fecha, '-', '/');        
+        alert(fechaFormateada+" fecha formateada")
         var pruebaFecha=new Date(fechaFormateada);
+        alert(pruebaFecha+" prueba fecha");
         var diaOriginal=parseInt(fecha.substring(8, 10));
+        alert(diaOriginal+" dia original");
         if(!pruebaFecha || diaOriginal!=pruebaFecha.getDate()){
             return fecha.fecha;    
         }
