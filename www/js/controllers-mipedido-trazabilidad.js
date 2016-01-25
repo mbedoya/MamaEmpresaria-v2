@@ -1,4 +1,4 @@
-moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootScope, $state, $ionicLoading, $http, $ionicPopup, Mama, Internet, GA, Pedido, Utilidades, Campana) {
+moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootScope, $state, $ionicLoading, $http, $ionicPopup, $ionicModal, Mama, Internet, GA, Pedido, Utilidades, Campana) {
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Mi Pedido Detalle");

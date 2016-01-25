@@ -26,11 +26,11 @@
                     <h2>Tienes un pago pendiente por {{ saldo() | currency:"$":0 }}.
                         <span ng-show="tieneEncuentro()">
                             Realízalo
-                <span ng-show="diasParaPago()>=1">el
-                {{campana.fechaMontajePedido | date: 'dd' }} de  {{campana.fechaMontajePedido | date: 'MMMM' }}</span>
-                <span ng-show="diasParaPago()<0 && !hoyEsEncuentro() && !hoyEsCorreteo()">el
-                {{campana.fechaCorreteo | date: 'dd' }} de  {{campana.fechaCorreteo | date: 'MMMM' }}</span>
-                        <span ng-show="diasParaPago()<=0 && (hoyEsEncuentro() || hoyEsCorreteo())">hoy</span> antes de las 4 de la tarde
+                            <span ng-show="diasParaPago()>=1">el
+                                {{campana.fechaMontajePedido | date: 'dd' }} de  {{campana.fechaMontajePedido | date: 'MMMM' }}</span>
+                            <span ng-show="diasParaPago()<0 && !hoyEsEncuentro() && !hoyEsCorreteo()">el
+                                {{campana.fechaCorreteo | date: 'dd' }} de  {{campana.fechaCorreteo | date: 'MMMM' }}</span>
+                            <span ng-show="diasParaPago()<=0 && (hoyEsEncuentro() || hoyEsCorreteo())">hoy</span> antes de las 4 de la tarde
                         </span>
 
                     </h2>
@@ -104,11 +104,9 @@
                     <p>&nbsp;</p>
                 </div>
 
-                <a class="item" href="#" >
-                    <h2 >&nbsp;
-                    </h2>
-                    <p>&nbsp;</p>
-                </a>
+                <div class="padding campanas" style="height: 100px;" >
+                    &nbsp;
+                </div>
 
             </div>
         </div>
