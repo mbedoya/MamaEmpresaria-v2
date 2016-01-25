@@ -76,8 +76,6 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
-        
-        $scope.contAl=0;
 
         if($scope.campana == $rootScope.numeroCampanasAno){
             $scope.campana = 1;
@@ -108,9 +106,6 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
-
-        $scope.contAl=0;
-        //var ano=$scope.fechaCalendario.getFullYear();
 
         if($scope.campana == 1){
             $scope.campana = $rootScope.numeroCampanasAno;
@@ -1117,9 +1112,6 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.fechaCalendario = new Date();
 
         $scope.fechaSeleccionada = $scope.fechaCalendario;
-        
-        $scope.alerts = true;
-        $scope.contAl=0;
 
         //Fechas de la campana que se está visualizando
         $scope.fechas = $rootScope.fechas;
