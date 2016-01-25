@@ -225,7 +225,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     $scope.formatoFecha = function(fecha){
         var fechaFormateada=Utilidades.reemplazarTodos(fecha, '-', '/');       
         var pruebaFecha=new Date(fechaFormateada);        
-        var diaOriginal=parseInt(fecha.substring(8, 10));
+        var diaOriginal=parseInt((fecha.split("-"))[2]);
         if($scope.contAl<6){
             alert(fecha+" fecha original")
             alert(fechaFormateada+" fecha formateada");
