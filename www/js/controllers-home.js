@@ -26,6 +26,8 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
         // Show an alert box if a notificaton comes in when the user is in your app.
         window.plugins.OneSignal.enableInAppAlertNotification(false);
         //}
+        
+        window.plugins.OneSignal.sendTags({seccion: $rootScope.seccion, zona: $rootScope.zona});
 
         document.addEventListener("pause", function () {
             navigator.app.exitApp()
