@@ -15,7 +15,7 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
         
         var notificationOpenedCallback = function(jsonData) {
             //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-            //alert(jsonData.additionalData.title+"\n\n"+jsonData.message);   
+            alert(jsonData.additionalData.title+"\n\n"+jsonData.message);   
             var alertPopup = $ionicPopup.alert({
                 title: jsonData.additionalData.title,
                 template: jsonData.message
