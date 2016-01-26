@@ -129,6 +129,7 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
 
     $scope.segmento = function(){
         window.plugins.OneSignal.sendTag("segmento", $rootScope.datos.segmento);
+        window.plugins.OneSignal.enableNotificationsWhenActive(true);
         return $rootScope.datos.segmento;
     }
 
