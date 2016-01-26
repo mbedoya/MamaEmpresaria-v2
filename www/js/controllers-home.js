@@ -3,13 +3,16 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Home");
 
+    $scope.$on('$ionicView.beforeEnter', function(){
+        //Si no se ha cargado la información entonces inicializar
+        if(!$rootScope.cargaDatos.oneSignal){
+            $scope.cargarOneSignal();
+        }
+    });
+
     //INICIA JS DE ONE SIGNAL
-    document.addEventListener('deviceready', function () {
-        // Enable to debug issues.
-        // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
-
-        //if(!$rootScope.versionProduccion){
-
+    document.addEventListener('deviceready', function () {  
+        
         var notificationOpenedCallback = function(jsonData) {
             //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
             //alert(jsonData.additionalData.title+"\n\n"+jsonData.message);   
@@ -23,11 +26,7 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
                                       {googleProjectNumber: $rootScope.notificacionesPush.project},
                                       notificationOpenedCallback);
 
-        // Show an alert box if a notificaton comes in when the user is in your app.
         window.plugins.OneSignal.enableInAppAlertNotification(false);
-        //}
-        
-        window.plugins.OneSignal.sendTags({key: $rootScope.seccion, zona: "prueba"});    
 
         document.addEventListener("pause", function () {
             navigator.app.exitApp()
@@ -35,7 +34,7 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
 
     }, false);
 
-    //FIN JS ONE SIGNAL    
+    //FIN JS ONE SIGNAL      
 
     $scope.tieneEncuentro = function(){
         return Campana.tieneEncuentro();

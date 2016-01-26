@@ -709,6 +709,8 @@ angular.module('novaventa.services', [])
                                                         $rootScope.fechas = data.listaRecordatorios;
 
                                                         console.log("Moviendose a nueva camapaña " + $rootScope.campana.numero);
+                                                        
+                                                         window.plugins.OneSignal.sendTags({seccion: $rootScope.seccion, zona: $rootScope.zona});
 
                                                         //NOTIFICAR LOGGEDIN
 
