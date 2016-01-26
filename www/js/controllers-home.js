@@ -128,6 +128,7 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
     }
 
     $scope.segmento = function(){
+        window.plugins.OneSignal.sendTag("segmento", $rootScope.datos.segmento);
         return $rootScope.datos.segmento;
     }
 
