@@ -126,14 +126,14 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
     }
 
     $scope.segmento = function(){
-        var deviceOSVersion = window.device.version;
+        /*var deviceOSVersion = window.device.version;
         window.plugins.OneSignal.sendTag("segmento", $rootScope.datos.segmento);
         alert(parseInt( deviceOSVersion, 10 ));
         if( parseInt( deviceOSVersion, 10 ) <= 4.1 )
         {
-            alert("Entro a la version");
+            alert("Entro a la version");*/
             window.plugins.OneSignal.enableInAppAlertNotification(true);
-        }
+        //}
         window.plugins.OneSignal.enableNotificationsWhenActive(true);
         return $rootScope.datos.segmento;
     }
