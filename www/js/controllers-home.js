@@ -27,7 +27,7 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
         window.plugins.OneSignal.enableInAppAlertNotification(false);
         //}
         
-        window.plugins.OneSignal.sendTags({seccion: $rootScope.seccion, zona: $rootScope.zona});
+        window.plugins.OneSignal.sendTags({key: "prueba", zona: $rootScope.zona});    
 
         document.addEventListener("pause", function () {
             navigator.app.exitApp()
