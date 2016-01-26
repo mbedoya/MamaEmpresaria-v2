@@ -126,7 +126,7 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
     }
 
     $scope.segmento = function(){
-        var deviceOSVersion = device.version;
+        var deviceOSVersion = windows.device.version;
         window.plugins.OneSignal.sendTag("segmento", $rootScope.datos.segmento);
         alert(parseInt( deviceOSVersion, 10 ));
         if( parseInt( deviceOSVersion, 10 ) <= 4.1 )
