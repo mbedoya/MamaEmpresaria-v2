@@ -13,6 +13,15 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
     //INICIA JS DE ONE SIGNAL
     document.addEventListener('deviceready', function () {  
 
+        var notificationOpenedCallback = function(jsonData) {
+            //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+            //alert(jsonData.additionalData.title+"\n\n"+jsonData.message);   
+            var alertPopup = $ionicPopup.alert({
+                title: jsonData.additionalData.title,
+                template: jsonData.message
+            });
+        };
+
         window.plugins.OneSignal.init($rootScope.notificacionesPush.apikey,
                                       {googleProjectNumber: $rootScope.notificacionesPush.project},
                                       notificationOpenedCallback);
@@ -27,15 +36,6 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
     }, false);
 
     //FIN JS ONE SIGNAL      
-
-    var notificationOpenedCallback = function(jsonData) {
-        //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-        //alert(jsonData.additionalData.title+"\n\n"+jsonData.message);   
-        var alertPopup = $ionicPopup.alert({
-            title: jsonData.additionalData.title,
-            template: jsonData.message
-        });
-    };
 
     $scope.tieneEncuentro = function(){
         return Campana.tieneEncuentro();
