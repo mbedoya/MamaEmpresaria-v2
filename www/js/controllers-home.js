@@ -1,41 +1,7 @@
 moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $ionicPopup, GA, Campana, Utilidades, Pedido) {
 
     //Registro en Analytics
-    GA.trackPage($rootScope.gaPlugin, "Home");
-
-    $scope.$on('$ionicView.beforeEnter', function(){
-        //Si no se ha cargado la información entonces inicializar
-        if(!$rootScope.cargaDatos.oneSignal){
-            $scope.cargarOneSignal();
-        }
-    });
-
-    //INICIA JS DE ONE SIGNAL
-    document.addEventListener('deviceready', function () {  
-
-        var notificationOpenedCallback = function(jsonData) {
-            //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-            //alert(jsonData.additionalData.title+"\n\n"+jsonData.message);   
-            var alertPopup = $ionicPopup.alert({
-                title: jsonData.additionalData.title,
-                template: jsonData.message
-            });
-        };
-
-        window.plugins.OneSignal.init($rootScope.notificacionesPush.apikey,
-                                      {googleProjectNumber: $rootScope.notificacionesPush.project},
-                                      notificationOpenedCallback);
-
-
-        window.plugins.OneSignal.enableInAppAlertNotification(true);
-
-        /*document.addEventListener("pause", function () {
-            navigator.app.exitApp()
-        }, false);*/
-
-    }, false);
-
-    //FIN JS ONE SIGNAL      
+    GA.trackPage($rootScope.gaPlugin, "Home");   
 
     $scope.tieneEncuentro = function(){
         return Campana.tieneEncuentro();

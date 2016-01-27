@@ -5,6 +5,33 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
 
+        //INICIA JS DE ONE SIGNAL
+        document.addEventListener('deviceready', function () {  
+
+            var notificationOpenedCallback = function(jsonData) {
+                //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+                //alert(jsonData.additionalData.title+"\n\n"+jsonData.message);   
+                var alertPopup = $ionicPopup.alert({
+                    title: jsonData.additionalData.title,
+                    template: jsonData.message
+                });
+            };
+
+            window.plugins.OneSignal.init($rootScope.notificacionesPush.apikey,
+                                          {googleProjectNumber: $rootScope.notificacionesPush.project},
+                                          notificationOpenedCallback);
+
+
+            //window.plugins.OneSignal.enableInAppAlertNotification(true);
+
+            /*document.addEventListener("pause", function () {
+            navigator.app.exitApp()
+        }, false);*/
+
+        }, false);
+
+        //FIN JS ONE SIGNAL 
+
         if(window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }
@@ -197,7 +224,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         }
     })
 
-        /*.state('app.menu.tabs.fechas', {
+    /*.state('app.menu.tabs.fechas', {
         url: "/fechas",
         views: {
             'informacion-fechas-content': {
@@ -206,7 +233,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
             }
         }
     }) */
-    
+
         .state('app.menu.tabs.fechas', {
         url: "/fechas",
         abstract: true,
