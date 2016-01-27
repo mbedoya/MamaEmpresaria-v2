@@ -13,26 +13,29 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
     //INICIA JS DE ONE SIGNAL
     document.addEventListener('deviceready', function () {  
 
-        var notificationOpenedCallback = function(jsonData) {
-            //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-            //alert(jsonData.additionalData.title+"\n\n"+jsonData.message);   
-            var alertPopup = $ionicPopup.alert({
-                title: jsonData.additionalData.title,
-                template: jsonData.message
-            });
-        };
-
         window.plugins.OneSignal.init($rootScope.notificacionesPush.apikey,
                                       {googleProjectNumber: $rootScope.notificacionesPush.project},
                                       notificationOpenedCallback);
 
-        document.addEventListener("pause", function () {
+
+        window.plugins.OneSignal.enableInAppAlertNotification(true);
+
+        /*document.addEventListener("pause", function () {
             navigator.app.exitApp()
-        }, false);
+        }, false);*/
 
     }, false);
 
     //FIN JS ONE SIGNAL      
+
+    var notificationOpenedCallback = function(jsonData) {
+        //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+        //alert(jsonData.additionalData.title+"\n\n"+jsonData.message);   
+        var alertPopup = $ionicPopup.alert({
+            title: jsonData.additionalData.title,
+            template: jsonData.message
+        });
+    };
 
     $scope.tieneEncuentro = function(){
         return Campana.tieneEncuentro();
@@ -132,7 +135,6 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
         if( parseInt( deviceOSVersion, 10 ) <= 4.1 )
         {
             alert("Entro a la version");*/
-            window.plugins.OneSignal.enableInAppAlertNotification(true);
         //}
         window.plugins.OneSignal.enableNotificationsWhenActive(true);
         return $rootScope.datos.segmento;
