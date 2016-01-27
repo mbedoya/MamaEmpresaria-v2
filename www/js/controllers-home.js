@@ -25,6 +25,8 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
         window.plugins.OneSignal.init($rootScope.notificacionesPush.apikey,
                                       {googleProjectNumber: $rootScope.notificacionesPush.project},
                                       notificationOpenedCallback);
+        
+        window.plugins.OneSignal.enableInAppAlertNotification(true);
 
         document.addEventListener("pause", function () {
             navigator.app.exitApp()
@@ -132,7 +134,6 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
         if( parseInt( deviceOSVersion, 10 ) <= 4.1 )
         {
             alert("Entro a la version");*/
-            window.plugins.OneSignal.enableInAppAlertNotification(true);
         //}
         window.plugins.OneSignal.enableNotificationsWhenActive(true);
         return $rootScope.datos.segmento;
