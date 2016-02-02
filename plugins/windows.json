@@ -1,0 +1,30 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "com.adobe.plugins.GAPlugin": {
+            "PACKAGE_NAME": "Mamá Empresaria"
+        },
+        "com.ionic.keyboard": {
+            "PACKAGE_NAME": "Mamá Empresaria"
+        },
+        "org.apache.cordova.console": {
+            "PACKAGE_NAME": "Mamá Empresaria"
+        },
+        "org.apache.cordova.device": {
+            "PACKAGE_NAME": "Mamá Empresaria"
+        },
+        "org.apache.cordova.geolocation": {
+            "PACKAGE_NAME": "Mamá Empresaria"
+        },
+        "org.apache.cordova.network-information": {
+            "PACKAGE_NAME": "Mamá Empresaria"
+        }
+    },
+    "dependent_plugins": {}
+}
