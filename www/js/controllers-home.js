@@ -18,6 +18,8 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
         window.plugins.OneSignal.init($rootScope.notificacionesPush.apikey,
                                       {googleProjectNumber: $rootScope.notificacionesPush.project},
                                       notificationOpenedCallback);
+        
+        alert("device ready");
 
 
         //window.plugins.OneSignal.enableInAppAlertNotification(true);
