@@ -711,13 +711,12 @@ angular.module('novaventa.services', [])
 
                                                     console.log("Moviendose a nueva camapaña " + $rootScope.campana.numero);
 
-                                                    window.plugins.OneSignal.sendTags({seccion: $rootScope.seccion, zona: $rootScope.zona});
-
                                                     //NOTIFICAR LOGGEDIN
 
                                                     //Si se notifica inmediatamente no son alcanzados todos los controladores
                                                     setTimeout( function(){
                                                         //Notificar que el usuario se ha logueado
+                                                        window.plugins.OneSignal.sendTags({seccion: $rootScope.seccion, zona: $rootScope.zona});
                                                         $rootScope.$broadcast('loggedin');
                                                         console.log('loggedin');
                                                     }, 1500);
