@@ -142,7 +142,7 @@ moduloControlador.controller('ClavePregunta1Ctrl', function($scope, $location, $
     $scope.confirmar = function() {
 
         //Validar que se haya seleccionado año y campaña
-        if($scope.respuesta == ""){
+        if(!$scope.respuesta || $scope.respuesta == ""){
             $scope.mostrarAyuda("Creación de clave","Mamá, por favor selecciona una opción");
             return;
         }   
