@@ -8,36 +8,20 @@
     <ion-content>
         <div class="content-login padding">
             <img src="img/pregunta1.png" class="login-img" />
-            <h3>Hola {{datos.nombre | pascal}}, ¿Cuál fue la última Campaña en la que montaste pedido?</h3>
-            <h5>Si montaste tu pedido hoy no tengas en cuenta esta campaña para tu respuesta</h5>
-            <h5>Esta información la puedes encontrar en la parte superior de la primera página de tu factura.</h5>
+            <h3>Hola {{datos.nombre | pascal}}, ¿Cuál de estos premios redimiste en tu campaña anterior?</h3>
+<!--            <h5>Esta información la puedes encontrar en la parte superior de la primera página de tu factura.</h5>-->
             <form ng-submit="capturarCedula()">
-                <div class="list">
-
-                    <label class="item item-input item-select">
-                        <div class="input-label">
-                            Año
+                
+                <ul class="list" >
+                    <label class="item item-radio" ng-repeat="respuesta in respuestas" ng-click="respuestaSeleccionada(respuesta, $index)">
+                        <input type="radio" name="group">
+                        <div class="item-content" >
+                            {{respuesta}}
                         </div>
-                        <select ng-model="modelo.ano" ng-change="cambioAno()">
-                            <option selected>Selecciona</option>
-                            <option value="{{anoAnterior()}}" ng-show="mostrarAnoAnterior()">{{anoAnterior()}}</option>
-                            <option value="{{anoActual()}}">{{anoActual()}}</option>
-                        </select>
+                        <i class="radio-icon ion-checkmark"></i>
                     </label>
 
-                    <label class="item item-input item-select">
-                        <div class="input-label">
-                            Campaña
-                        </div>
-                        <select ng-model="modelo.campana" >
-                            <option value="" selected>Selecciona</option>
-                            <option value="{{campana.nombre}}" ng-repeat="campana in campanasAnoActual" >
-                                Campaña {{campana.nombre}}
-                            </option>
-                        </select>
-                    </label>
-
-                </div>
+                </ul>
 
                 <label class="login-button">
                     <input id="ingresar" type="button" value="Enviar" class="button button-block" ng-click="continuar()">
