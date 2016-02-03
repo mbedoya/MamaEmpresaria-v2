@@ -3,37 +3,6 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Home");   
 
-    //INICIA JS DE ONE SIGNAL
-    document.addEventListener('deviceready', function () {  
-
-        var notificationOpenedCallback = function(jsonData) {
-            //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-            //alert(jsonData.additionalData.title+"\n\n"+jsonData.message);   
-            var alertPopup = $ionicPopup.alert({
-                title: jsonData.additionalData.title,
-                template: jsonData.message
-            });
-        };
-
-        window.plugins.OneSignal.init($rootScope.notificacionesPush.apikey,
-                                      {googleProjectNumber: $rootScope.notificacionesPush.project},
-                                      notificationOpenedCallback);
-
-        //window.plugins.OneSignal.enableInAppAlertNotification(true);
-
-        window.plugins.OneSignal.enableNotificationsWhenActive(true);
-                                                               
-                                                               
-        window.plugins.OneSignal.sendTag("segmento", $rootScope.datos.segmento);
-
-        /*document.addEventListener("pause", function () {
-            navigator.app.exitApp()
-        }, false);*/
-
-    }, false);
-
-    //FIN JS ONE SIGNAL 
-
     $scope.tieneEncuentro = function(){
         return Campana.tieneEncuentro();
     }
@@ -126,6 +95,7 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
     }
 
     $scope.segmento = function(){
+        window.plugins.OneSignal.sendTag("segmento", $rootScope.datos.segmento);
         return $rootScope.datos.segmento;
     }
 
