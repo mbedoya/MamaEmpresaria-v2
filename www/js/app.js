@@ -470,6 +470,15 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
             }
         }
     })
+    
+    .state('app.menu.tabs.mas.chat', {
+        url: "/chat",
+        views: {
+            'mas-interna-content': {
+                templateUrl: "templates/chat.html"
+            }
+        }
+    })
 
         .state('app.menu.tabs.mas.informacion.notificaciones', {
         url: "/notificaciones",

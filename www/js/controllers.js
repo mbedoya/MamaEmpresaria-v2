@@ -50,22 +50,34 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
 
                     
 
-                    /* buttons: [
+                    buttons: [
                         { text: 'Mi Negocio' },
                         { text: 'Productos no disponibles' },
                         { text: 'Chat' }
-                    ],*/
+                    ],
 
-                    buttons: [
+                    /*buttons: [
                         { text: 'Mi Negocio' },
                         { text: 'Productos no disponibles' }
-                    ],
+                    ],*/
                     cancelText: 'Cancelar',
                     cancel: function() {
                     },
                     buttonClicked: function(index) {
+                        
+                        switch(index){
+                            case 0:
+                                $state.go('app.menu.tabs.mas.minegocio');
+                                break;
+                            case 1:
+                                $state.go('app.menu.tabs.mas.agotados.actual');
+                                break;
+                            case 2:
+                                $state.go('app.menu.tabs.mas.chat');
+                                break;
+                        }
 
-                        if(index == 0){
+                        /*if(index == 0){
                             $state.go('app.menu.tabs.mas.minegocio');
                             //$state.go('app.menu.tabs.mas.club.piedrapreciosa');
                         }else{
@@ -84,7 +96,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                                 //navigator.app.loadUrl($rootScope.urlChat, { openExternal: true });
                                 //$state.go('app.menu.tabs.mas.contacto');
                             }
-                        }
+                        }*/
 
                     }
                 });
