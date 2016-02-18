@@ -395,46 +395,8 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
 
         })
 
-        .controller('MiNegocioCtrl', function($scope, $rootScope, $ionicPopup, $filter, Pedido) {
-            
-            /** MODIF ANA */
-            $scope.$on('$ionicView.beforeEnter', function(){
-                $scope.inicializar();
-            });
-            
-            $scope.inicializar = function(){
-        	
-        	   /* $scope.loading =  $ionicLoading.show({
-                        template: Utilidades.getPlantillaEspera('CARGANDO')
-                    }); */
-        	
-                if(!$rootScope.numeroPedido){                       
-                    
-                    Pedido.getTrazabilidadAnterior($rootScope.datos.cedula, function (success, data){
-                        if(success){
-                            $rootScope.numeroPedido = data.numeroPedido;
-                            $scope.funcTrial();
-                        }else{
-                            $scope.mostrarAyuda("Mi Pedido","En este momento no podemos consultar tu información");
-                        }
-                    });             
-                } else {
-                    $scope.funcTrial();
-                }            
-        	}	
-        	
-            $scope.funcTrial = function(){
-                Pedido.getEstadoPedido($rootScope.numeroPedido, function (success, data){
-                    if(success){
-                        $scope.estadoPedidoData = data;
-                        console.log(data.flexibUso);
-                        console.log($rootScope.pedido);
-                    }else{
-                        console.log("ERROR ANA");
-                    }
-                });
-            }
-            
+        .controller('MiNegocioCtrl', function($scope, $rootScope, $ionicPopup, $filter) {
+
             $scope.mostrarAyuda = function(titulo, mensaje) {
                 var alertPopup = $ionicPopup.alert({
                     title: titulo,
@@ -511,17 +473,6 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                     }
                 }
             }
-            
-            $scope.inicializar();
-            
-            $scope.flexibUso = function() {
-                if($scope.estadoPedidoData.flexibUso === 0){
-                    return 0;
-                }else{
-                    return Number($scope.estadoPedidoData.flexibUso);
-                }
-            }
-                        
 
         })
 
@@ -560,83 +511,6 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
         	}	
         	
         	$scope.inicializar();
-
-            $scope.mostrarAyuda = function(titulo, mensaje) {
-                var alertPopup = $ionicPopup.alert({
-                    title: titulo,
-                    template: mensaje
-                });
-            };
-
-            $scope.mostrarSaldoFavor = function(){
-                return ($rootScope.datos && $rootScope.datos.saldo && Number($rootScope.datos.saldo) < 0);
-            }
-
-            $scope.mostrarSaldoPagar = function(){
-                return !$scope.mostrarSaldoFavor();
-            }
-
-            $scope.cupo = function(){
-                return $rootScope.datos.cupo;
-            }
-
-            $scope.saldo = function(){
-                return Math.abs(Number($rootScope.datos.saldo)) ;
-            }
-
-            $scope.flexibilizacion = function(){
-                return $rootScope.datos.valorFlexibilizacion;
-            }
-
-            $scope.flexibilizacionPago = function(){
-                //La flexibilización es mayor que el valor a Pagar?
-                if(Number($rootScope.datos.valorFlexibilizacion)>Number($rootScope.datos.saldo)){
-                    return 0;
-                }else{
-                    return Number($rootScope.datos.saldo)-Number($rootScope.datos.valorFlexibilizacion);
-                }
-            }
-
-            $scope.flexibilizacionDeuda = function(){
-                //La flexibilización es mayor que el valor a Pagar?
-                if(Number($rootScope.datos.valorFlexibilizacion)>Number($rootScope.datos.saldo)){
-                    return Number($rootScope.datos.saldo);
-                }else{
-                    return Number($rootScope.datos.valorFlexibilizacion);
-                }
-            }
-
-            $scope.flexibilizacionEjemploPago = function(){
-                //La flexibilización es mayor que el valor a Pagar?
-                if(Number($rootScope.datos.valorFlexibilizacion)>Number($rootScope.datos.saldo)){
-                    return 0;
-                }else{
-                    return Number($rootScope.datos.saldo)-Number($rootScope.datos.valorFlexibilizacion)/2;
-                }
-            }
-
-            $scope.flexibilizacionEjemploDeuda = function(){
-                //La flexibilización es mayor que el valor a Pagar?
-                if(Number($rootScope.datos.valorFlexibilizacion)>Number($rootScope.datos.saldo)){
-                    return Number($rootScope.datos.saldo);
-                }else{
-                    return Number($rootScope.datos.valorFlexibilizacion)/2;
-                }
-            }
-
-
-            $scope.mostrarAyudaFlexibilizacion = function() {
-
-                if($scope.flexibilizacionPago() > 0){
-                    $scope.mostrarAyuda('Mi Negocio','Este beneficio te permite cubrir parte de tu pago en caso de tener inconvenientes con tus clientes.  De ser necesario usa los ' + $filter('currency')($scope.flexibilizacionDeuda(), '$', 0) + ' o parte de estos. Ejemplo: Paga ' +
-                        $filter('currency')($scope.flexibilizacionEjemploPago(), '$', 0) + ' y queda debiendo ' +
-                        $filter('currency')($scope.flexibilizacionEjemploDeuda(), '$', 0) + ', debes cancelar este valor antes de tu próximo pedido.');
-                }else{
-                    if($scope.flexibilizacionPago() == 0){
-                        $scope.mostrarAyuda('Mi Negocio','Este beneficio te permite cubrir parte de tu pago en caso de tener inconvenientes con tus clientes.');
-                    }
-                }
-            }
         })
         
         .controller('AgotadosCampanaSiguienteCtrl', function($scope, $rootScope, $ionicLoading, Campana, Utilidades) {
