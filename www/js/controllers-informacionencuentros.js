@@ -33,7 +33,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
         $scope.modal.remove();
     });
 
-    $scope.recordatoriosCampanaActual=function(){
+    $scope.encuentrosMesActual=function(){
 
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
@@ -41,17 +41,13 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
 
 
         $scope.ano=$scope.fechaCalendario.getFullYear();
-        var campanaActual=$scope.campana;
+        $scope.mes=$scope.fechaCalendario.getMonth()+1;
 
-        if($scope.campana == 1 && $scope.fechaCalendario.getMonth() == 11){           
-            $scope.ano = $scope.ano+1;
-        }
-
-        Campana.getRecordatorios($scope.ano, $scope.campana, $rootScope.zona, function (success, data){
+        Campana.getEncuentros($scope.ano, mes, $rootScope.zona, function (success, data){
             if(success){
-                $scope.fechasCampana = data.listaRecordatorios;
-                console.log("informacionFechas.recordatorioCampanaActual - datos enviados", $scope.ano, $scope.campana);
-                console.log("informacionFechas.recordatorioCampanaActual - datos recibidos", data);
+                $scope.fechasMes = data;
+                console.log("informacionFechas.encuentrosMesActual - datos enviados", $scope.ano, $scope.campana);
+                console.log("informacionFechas.encuentrosMesActual - datos recibidos", data);
                 $ionicLoading.hide();
             }else{
                 console.log("Fallo");
@@ -67,27 +63,27 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
         return fecha.hora!=null;
     }
 
-    $scope.aumentarCampana=function(){
+    $scope.aumentarMes=function(){
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
 
         //var ano=$scope.fechaCalendario.getFullYear();
+        $scope.mes++;
 
-        if($scope.campana == $rootScope.numeroCampanasAno){
-            $scope.campana = 1;
-            $scope.ano = $scope.ano + 1;           
-        }else{
-            $scope.campana = $scope.campana + 1;
+        if(mes==13){
+            $scope.mes = 1;
+            $scope.ano++;           
         }
 
-        Campana.getRecordatorios($scope.ano, $scope.campana, $rootScope.zona, function (success, data){
+
+        Campana.getEncuentros($scope.ano, $scope.mes, $rootScope.zona, function (success, data){
             if(success){
-                if(data.listaRecordatorios && data.listaRecordatorios.length>0){
-                    $scope.fechasCampana = data.listaRecordatorios;
+                if(!data.razonRehazo){
+                    $scope.fechasMes = data;
                 }else{
-                    $scope.mostrarAyuda("Falta campaña","Lo sentimos, aún no tenemos información disponible para las próximas campañas");  
-                    $scope.disminuirCampana();
+                    $scope.mostrarAyuda("Falta campaña","Lo sentimos, aún no tenemos información disponible para los próximos meses");  
+                    $scope.disminuirMes();
                     return false;
                 }
                 console.log("informacionFechas.aumentarMes - datos enviados", $scope.ano, $scope.campana);
@@ -102,23 +98,23 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
 
     }
 
-    $scope.disminuirCampana=function(){
+    $scope.disminuirMes=function(){
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
 
         //var ano=$scope.fechaCalendario.getFullYear();
-
-        if($scope.campana == 1){
-            $scope.campana = $rootScope.numeroCampanasAno;
-            $scope.ano = $scope.ano - 1;
-        }else{
-            $scope.campana = $scope.campana - 1;
+        
+        $scope.mes--;
+        
+        if($scope.mes==0){
+            $scope.mes=12;
+            $scope.ano--;
         }
 
-        Campana.getRecordatorios($scope.ano, $scope.campana, $rootScope.zona, function (success, data){
+        Campana.getRecordatorios($scope.ano, $scope.mes, $rootScope.zona, function (success, data){
             if(success){
-                $scope.fechasCampana = data.listaRecordatorios;
+                $scope.fechasMes = data.listaRecordatorios;
                 console.log("informacionFechas.disminuirMes - datos enviados", $scope.ano, $scope.campana);
                 $ionicLoading.hide();
             }else{
@@ -129,28 +125,6 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
 
     $scope.mostrarAtras = function(){
         return $scope.campana > $rootScope.campana.numero;
-    }
-    
-    $scope.mostrarEncuentros = function(fecha){
-        switch(/*fecha.actividad*/fecha.tipoActividad){
-            case 1:
-                return true;
-            default:
-                return false;
-        }
-    }
-
-    $scope.noMostrar = function(fecha){
-        switch(/*fecha.actividad*/fecha.tipoActividad){
-            case /*"FECHA DE PAGO"*/3:
-                return false;
-            case /*"FECHA FACTURACIÓN"*/6:
-                return false;
-            case 1:
-                return false;
-            default:
-                return true;
-        }
     }
 
     $scope.fechasModal = function(fecha){
@@ -185,17 +159,17 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
                 return fecha.actividad;
         }
     }
-    
+
     $scope.diasFaltantes=function(fecha){
         var multiplicador=0;
         var diaCalendario=new Date($scope.formatoFecha(fecha.fecha));
         multiplicador=diaCalendario<$scope.fechaCalendario?-1:1;
         var diferenciaTiempo=Math.abs($scope.fechaCalendario - diaCalendario);
         var diferenciaDias = Math.ceil(diferenciaTiempo / (1000 * 3600 * 24));
-        
+
         return diferenciaDias*multiplicador;
     }
-    
+
     /*$scope.formatoLugar=function(fecha){
         var arrayLugar=fecha.lugar.split(" ");
         var lugarFormateado="";

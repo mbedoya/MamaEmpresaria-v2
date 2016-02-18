@@ -22,17 +22,17 @@
 
             <p style="text-align:left"  >
                 <img style="float:left" src="img/reloj.png" />
-            <p class="col" style="color: #808080" ng-model=detalleTexto()></p>
+            <p class="col" style="color: #808080">{{detalleTexto()}}</p>
 
             </p>
 
         </div>
 
-    <div class="row detalle alternate">
+    <div class="row detalle alternate" ng-hide="esEntrega(recordatorioClick.codigoActividad)">
 
         <p style="text-align:left" >
             <img style="float:left" src="img/reloj.png" />
-        <p class="col" style="color: #808080">Cancela tu pedido anterior máximo este día antes de las 4 de la tarde</p>
+        <p class="col" style="color: #808080">Paga tu pedido anterior máximo este día antes de las 4 de la tarde si quieres recibirlo en la fecha de {{textoMostrarCodigo(relacionFechas(recordatorioClick.codigoActividad))}}</p>
 
         </p>
 

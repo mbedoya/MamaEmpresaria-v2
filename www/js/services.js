@@ -251,7 +251,7 @@ angular.module('novaventa.services', [])
             if($rootScope.fechas && $rootScope.fechas.length > 0){
                 for (i = 0; i < $rootScope.fechas.length; i++){
                     //if($rootScope.fechas[i].actividad.toLowerCase() == 'encuentro'){
-                    if($rootScope.fechas[i].actividad.toLowerCase() == 'toma de pedido'){
+                    if($rootScope.fechas[i].codigoActividad == "05"){
                         tiene = true;
                         break;
                     }
@@ -266,7 +266,7 @@ angular.module('novaventa.services', [])
             if($rootScope.fechas && $rootScope.fechas.length > 0){
 
                 for (i = 0; i < $rootScope.fechas.length; i++){
-                    if($rootScope.fechas[i].actividad.toLowerCase() == 'fecha correteo'){
+                    if($rootScope.fechas[i].codigoActividad == "07"){
                         if(Utilidades.formatearFechaActual() == $rootScope.fechas[i].fecha){
                             realizado = true;
                             break;
@@ -283,7 +283,7 @@ angular.module('novaventa.services', [])
 
                 for (i = 0; i < $rootScope.fechas.length; i++){
                     //if($rootScope.fechas[i].actividad.toLowerCase() == 'encuentro'){
-                    if($rootScope.fechas[i].actividad.toLowerCase() == 'toma de pedido'){
+                    if($rootScope.fechas[i].codigoActividad == "05"){
                         if(Utilidades.formatearFechaActual() == $rootScope.fechas[i].fecha){
                             realizado = true;
                             break;
@@ -302,7 +302,7 @@ angular.module('novaventa.services', [])
             if($rootScope.fechas && $rootScope.fechas.length > 0){
 
                 for (i = 0; i < $rootScope.fechas.length; i++){
-                    if($rootScope.fechas[i].actividad.toLowerCase() == 'fecha correteo'){
+                    if($rootScope.fechas[i].codigoActividad == "07"){
                         if(fechaActual > new Date($rootScope.fechas[i].fecha)){
                             realizado = true;
                             break;
@@ -319,7 +319,7 @@ angular.module('novaventa.services', [])
             if($rootScope.fechas && $rootScope.fechas.length > 0){
 
                 for (i = 0; i < $rootScope.fechas.length; i++){
-                    if($rootScope.fechas[i].actividad.toLowerCase() == 'toma de pedido'){
+                    if($rootScope.fechas[i].codigoActividad == "05"){
                         //if($rootScope.fechas[i].actividad.toLowerCase() == 'encuentro'){    
                         if(new Date() >= new Date($rootScope.fechas[i].fecha)){
                             realizado = true;
@@ -350,6 +350,22 @@ angular.module('novaventa.services', [])
             campana = Utilidades.Pad(campana);
             var seccion = $rootScope.seccion;
             var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/interfaceAntares/getRecordatoriosAntares/"+ ano +"/" + campana + "/" + zona + "/" + seccion;
+
+            $http.get(urlServicio).
+            success(function(data, status, headers, config) {
+                console.log("Services - URL", urlServicio);
+                console.log("Services - DATA", urlServicio);
+                fx(true, data);
+            }).
+            error(function(data, status, headers, config) {
+                fx(false, {});
+            });
+        },
+        getEncuentros: function(ano, mes, zona, fx){
+
+            campana = Utilidades.Pad(campana);
+            var seccion = $rootScope.seccion;
+            var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/mailplan/getEncuentrosAntares/"+ ano +"/" + mes + "/" + zona;
 
             $http.get(urlServicio).
             success(function(data, status, headers, config) {

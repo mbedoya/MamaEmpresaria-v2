@@ -70,15 +70,15 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     $scope.informacionAdicional=function(fecha){
         switch(fecha.codigoActividad){
             case /*"TOMA DE PEDIDO 1"*/"05":
-                break;
+                return true;
             case /*"TOMA DE PEDIDO 2"*/"07":
-                break;
+                return true;
             case /*"REPARTO DE PEDIDO 1"*/"02":
-                break;
+                return true;
             case /*"REPARTO DE PEDIDO 2"*/"04":
-                break;
+                return true;
             case /*"REPARTO DE PEDIDO BUZON"*/"08":
-                break;
+                return true;
             default:
                 break;
         }
@@ -195,33 +195,55 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
     
     $scope.detalleTexto = function(){
+        detalleModal="";
         switch($scope.recordatorioClick.codigoActividad){
             case "02":
-                return "Recibirás tu pedido en esta fecha si montaste tu pedido en la Toma de pedido 1 y pagasta este mismo día antes de las 4 de la tarde.";
+                detalleModal = "Recibirás tu pedido en esta fecha si montaste tu pedido en la Toma de pedido 1 y pagasta este mismo día antes de las 4 de la tarde.";
+                break;
             case "05":
-                return "Monta tu pedido este día por la página web, tienes plazo hasta las 12 de la noche.";
+                detalleModal = "Monta tu pedido este día por la página web, tienes plazo hasta las 12 de la noche.";
+                break;
             case "07":
-                return "Monta tu pedido este día por la página web, tienes plazo hasta las 12 de la noche.";
+                detalleModal = "Monta tu pedido este día por la página web, tienes plazo hasta las 12 de la noche.";
+                break;
             case "04":
-                return "Recibirás tu pedido en esta fecha si montaste tu pedido en la Toma de pedido 2 y pagasta este mismo día antes de las 4 de la tarde.";
+                detalleModal = "Recibirás tu pedido en esta fecha si montaste tu pedido en la Toma de pedido 2 y pagasta este mismo día antes de las 4 de la tarde.";
+                break;
             case "08":
-                return "Recibirás tu pedido en esta fecha si lo realizaste por este medio en la fecha establecida.";                
+                detalleModal = "Recibirás tu pedido en esta fecha si lo realizaste por este medio en la fecha establecida.";   
+                break;
             default:
-                return fecha.actividad;
+                detalleModal = fecha.actividad;
+                break;
         }
+        return detalleModal;
     }
 
     $scope.seleccionarFecha = function(fecha){
-        if(!$scope.esPedido(fecha)){
-            return;
-        }
         $scope.fechaSeleccionada=new Date($scope.formatoFecha(fecha.fecha));
-        if(fecha.tipoActividad == 7){                
+        if($scope.informacionAdicional){                
             $scope.fechaClick=$scope.fechaSeleccionada;
             $scope.recordatorioClick=fecha;
         }
         $scope.recordatorio = fecha;
         $scope.openModal();
+    }
+    
+    $scope.textoMostrarCodigo = function(codigo){
+        switch(codigo){
+            case "02":
+                return "Entrega de pedido 1";
+            case "05":
+                return "Toma de pedido 1";
+            case "07":
+                return "Toma de pedido 2";
+            case "04":
+                return "Entrega de pedido 2";
+            case "08":
+                return "Fecha de entrega pedidos por buzón";                
+            default:
+                return fecha.actividad;
+        }
     }
 
     /*$scope.formatoDia = function(fecha){
@@ -244,20 +266,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
     $scope.textoMostrar=function(fecha){        
         $scope.fechaSeleccionada=new Date($scope.formatoFecha(fecha.fecha));
-        switch(fecha.codigoActividad){
-            case "02":
-                return "Entrega de pedido 1:";
-            case "05":
-                return "Toma de pedido 1:";
-            case "07":
-                return "Toma de pedido 2:";
-            case "04":
-                return "Entrega de pedido 2:";
-            case "08":
-                return "Fecha de entrega pedidos por buzón:";                
-            default:
-                return fecha.actividad;
-        }
+        return $scope.textoMostrarCodigo(fecha.codigoActividad);
     }
 
     $scope.formatoFecha = function(fecha){
@@ -295,6 +304,33 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             default:
                 return fecha.actividad;
         }
+    }
+    
+    $scope.relacionFechas = function(codigo){
+        switch(codigo){
+            case "05":
+                return "02";
+            case "02":
+                return "05";
+            case "07":
+                return "04";
+            case "04":
+                return "07";
+            default:
+                return "";
+        }
+    }
+    
+    $scope.esEntrega = function(codigo){
+        switch(codigo){
+            case "02":
+                return true;
+            case "04":
+                return true;
+            case "08":
+                return true;    
+        }
+        return false;
     }
 
     $scope.mostrarAyuda = function(titulo, mensaje) {
