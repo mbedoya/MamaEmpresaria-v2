@@ -78,16 +78,16 @@
                         puedes hacerlo máximo
                         hasta el {{campana.fechaCorreteo | date: 'dd' }} de  {{campana.fechaCorreteo | date: 'MMMM' }}
                         por la Página Web
-                        antes de las 12:00 del medio día
+                        antes de las 12:00 de la noche
                     </h2>
                 </div>
 
                 <!-- Correteo (Momento 5) -->
                 <div class="item item-avatar {{ estiloAlternateFechaPago() }}" href="#" ng-show="diasParaPago()<0 && hoyEsCorreteo() && pedido().razonRechazo" >
                     <div class="icono calendario"></div>
-                    <h2 ng-show="esAntesMedioDia()">Realiza tu pedido hoy por la Página Web antes de las 12:00 del medio día
+                    <h2 ng-show="esAntesMediaNoche()">Realiza tu pedido hoy por la Página Web antes de las 12:00 de la noche
                     </h2>
-                    <h2 ng-show="!esAntesMedioDia()">Mamá ya no puedes montar pedido. <br />
+                    <h2 ng-show="!esAntesMediaNoche()">Mamá ya no puedes montar pedido. <br />
                         El horario para Campaña {{campana.numero}} ya cerró.
                     </h2>
                     <p>&nbsp;</p>
@@ -98,7 +98,7 @@
                     <div class="icono calendario"></div>
                     <h2 >Realiza tu pedido hasta el
                         {{ campana.fechaCorreteo | date: 'dd' }} de {{campana.fechaCorreteo | date: 'MMMM' }} por la
-                        Página Web antes de las 12:00 del medio día
+                        Página Web antes de las 12:00 de la noche
                     </h2>
                     <p>&nbsp;</p>
                 </div>

@@ -251,7 +251,7 @@ angular.module('novaventa.services', [])
             if($rootScope.fechas && $rootScope.fechas.length > 0){
                 for (i = 0; i < $rootScope.fechas.length; i++){
                     //if($rootScope.fechas[i].actividad.toLowerCase() == 'encuentro'){
-                    if($rootScope.fechas[i].codigoActividad == "05"){
+                    if($rootScope.fechas[i].codigoActividad == "05"/*toma de pedido*/){
                         tiene = true;
                         break;
                     }
@@ -628,16 +628,16 @@ angular.module('novaventa.services', [])
                                             }                                               
 
                                             //Asociar el encuentro y la toma de pedido al encuentro
-                                            if(data.listaRecordatorios[i].actividad.toLowerCase() == 'toma de pedido'){
+                                            if(data.listaRecordatorios[i].codigoActividad == "05"){
                                                 encuentro = data.listaRecordatorios[i].fecha;
                                                 tomaPedido = data.listaRecordatorios[i].fecha;
                                             }                                                
-
-                                            if(data.listaRecordatorios[i].actividad.toLowerCase() == 'fecha correteo'){
+                                            //correteo
+                                            if(data.listaRecordatorios[i].codigoActividad == "07"){
                                                 correteo = data.listaRecordatorios[i].fecha;
                                             }
-
-                                            if (data.listaRecordatorios[i].actividad.toLowerCase() == 'reparto de pedido 1') {
+                                            //reparto de pedido
+                                            if (data.listaRecordatorios[i].codigoActividad == "02") {
                                                 reparto = data.listaRecordatorios[i].fecha;
                                             }
                                         }
@@ -693,16 +693,16 @@ angular.module('novaventa.services', [])
                                                         }                                               
 
                                                         //Asociar el encuentro y la toma de pedido al encuentro
-                                                        if(data.listaRecordatorios[i].actividad.toLowerCase() == 'toma de pedido'){
+                                                        if(data.listaRecordatorios[i].codigoActividad == "05"){
                                                             encuentro = data.listaRecordatorios[i].fecha;
                                                             tomaPedido = data.listaRecordatorios[i].fecha;
                                                         }                                                
-
-                                                        if(data.listaRecordatorios[i].actividad.toLowerCase() == 'fecha correteo'){
+                                                        //correteo
+                                                        if(data.listaRecordatorios[i].codigoActividad == "07"){
                                                             correteo = data.listaRecordatorios[i].fecha;
                                                         }
-
-                                                        if (data.listaRecordatorios[i].actividad.toLowerCase() == 'reparto de pedido 1') {
+                                                        //reparto de pedido
+                                                        if (data.listaRecordatorios[i].codigoActividad == "02") {
                                                             reparto = data.listaRecordatorios[i].fecha;
                                                         }
                                                     }
@@ -710,7 +710,7 @@ angular.module('novaventa.services', [])
                                                     //Correteo Anterior
                                                     correteoAnterior = '';
                                                     for (i = 0; i < $rootScope.fechas.length; i++){
-                                                        if($rootScope.fechas[i].actividad.toLowerCase() == 'fecha correteo'){
+                                                        if($rootScope.fechas[i].codigoActividad == "07"){
                                                             correteoAnterior = $rootScope.fechas[i].fecha;
                                                         }
                                                     }
@@ -789,16 +789,16 @@ angular.module('novaventa.services', [])
                                                         }                                               
 
                                                         //Asociar el encuentro y la toma de pedido al encuentro
-                                                        if(data.listaRecordatorios[i].actividad.toLowerCase() == 'toma de pedido'){
+                                                        if(data.listaRecordatorios[i].codigoActividad == "05"){
                                                             encuentro = data.listaRecordatorios[i].fecha;
                                                             tomaPedido = data.listaRecordatorios[i].fecha;
                                                         }                                                
-
-                                                        if(data.listaRecordatorios[i].actividad.toLowerCase() == 'fecha correteo'){
+                                                        //correteo
+                                                        if(data.listaRecordatorios[i].codigoActividad == "07"){
                                                             correteo = data.listaRecordatorios[i].fecha;
                                                         }
-
-                                                        if (data.listaRecordatorios[i].actividad.toLowerCase() == 'reparto de pedido 1') {
+                                                        //reparto de pedido
+                                                        if (data.listaRecordatorios[i].codigoActividad == "02") {
                                                             reparto = data.listaRecordatorios[i].fecha;
                                                         }
                                                     }

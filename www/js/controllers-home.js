@@ -156,8 +156,8 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
         }
     }
 
-    $scope.esAntesMedioDia = function(){
-        return new Date().getHours() < 12;
+    $scope.esAntesMediaNoche = function(){
+        return new Date().getHours() <= 23;
     }
 
     $scope.mostrarAyudaSaldoPagar = function(){
