@@ -874,13 +874,25 @@ width: 100%;
     padding-top: 5px;
 }
 
-.ion-cube:before{
+.fecha-icono-rosa:before{
+    font-weight: bold;
+    color: #f74094;
+    padding-top: 5px;
+}
+
+.fecha-icono-verde:before{
     font-weight: bold;
     color: #077885;
     padding-top: 5px;
 }
 
-.ion-monitor:before{
+/*.ion-monitor:before{
+    font-weight: bold;
+    color: #F5921E;    
+    padding-top: 5px; 
+}*/
+
+.fecha-icono-amarillo:before{
     font-weight: bold;
     color: #F5921E;    
     padding-top: 5px; 
@@ -894,10 +906,28 @@ width: 100%;
     text-align: justify;
 }
 
+.fecha-row-relacion-aqua{
+    border-width: 5px;
+    border-color: darkolivegreen !important;
+    margin-bottom: 7px;
+}
+
+.fecha-row-relacion-aquamarine{
+    border-width: 5px;
+    border-color: deeppink !important;
+    margin-bottom: 7px;
+}
+
 .item-hoy-dia{
     border-color: #F9D383;
     background-color: #F9D383;
     color: #fff;
+}
+
+.icono-fecha-hoy:before{
+    font-weight: bold;
+    color: #FFFFFF !important;    
+    padding-top: 5px;
 }
 
 .item-formato-anterior{

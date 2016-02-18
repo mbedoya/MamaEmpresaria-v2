@@ -67,9 +67,21 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         return fecha.hora!=null;
     }
 
-    $scope.esPedido=function(fecha){
-        //return fecha.actividad=="TOMA DE PEDIDO";
-        return fecha.tipoActividad==7;
+    $scope.informacionAdicional=function(fecha){
+        switch(fecha.codigoActividad){
+            case /*"TOMA DE PEDIDO 1"*/"05":
+                break;
+            case /*"TOMA DE PEDIDO 2"*/"07":
+                break;
+            case /*"REPARTO DE PEDIDO 1"*/"02":
+                break;
+            case /*"REPARTO DE PEDIDO 2"*/"04":
+                break;
+            case /*"REPARTO DE PEDIDO BUZON"*/"08":
+                break;
+            default:
+                break;
+        }
     }
 
     $scope.aumentarCampana=function(){
@@ -140,12 +152,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
 
     $scope.noMostrar = function(fecha){
-        switch(/*fecha.actividad*/fecha.tipoActividad){
-            case /*"FECHA DE PAGO"*/3:
+        switch(/*fecha.actividad*/fecha.codigoActividad){
+            case /*"FECHA DE PAGO"*/"03":
                 return false;
-            case /*"FECHA FACTURACIÓN"*/6:
-                return false;
-            case 1:
+            case /*"FECHA FACTURACIÓN"*/"06":
                 return false;
             default:
                 return true;
@@ -157,17 +167,47 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
 
     $scope.iconoRecordatorio = function(fecha){
-        switch(fecha.tipoActividad){
-            case /*"ENCUENTRO"*/1:
-                return "ion-android-people";
-            case /*"TOMA DE PEDIDO"*/5:
-                return "icon ion-speakerphone";
-            case /*"FECHA CORRETEO"*/7:
-                return "icon ion-monitor";
-            case /*"REPARTO DE PEDIDO 1"*/2:
-                return "icon ion-cube";
+        var clase="";
+        switch(fecha.codigoActividad){
+            case /*"TOMA DE PEDIDO 1"*/"05":
+                clase = "icon ion-compose fecha-icono-rosa";
+                break;
+            case /*"TOMA DE PEDIDO 2"*/"07":
+                clase = "icon ion-monitor fecha-icono-amarillo";
+                break;
+            case /*"REPARTO DE PEDIDO 1"*/"02":
+                clase = "icon ion-cube fecha-icono-rosa";
+                break;
+            case /*"REPARTO DE PEDIDO 2"*/"04":
+                clase = "icon ion-cube fecha-icono-amarillo";
+                break;
+            case /*"REPARTO DE PEDIDO BUZON"*/"08":
+                clase = "icon ion-bag fecha-icono-verde";
+                break;
             default:
-                return "icon ion-flag";
+                clase = "icon ion-flag";
+                break;
+        }
+        /*if($scope.esHoy(fecha.fecha)){
+            clase=clase+" icono-fecha-hoy"
+        }*/
+        return clase;
+    }
+    
+    $scope.detalleTexto = function(){
+        switch($scope.recordatorioClick.codigoActividad){
+            case "02":
+                return "Recibirás tu pedido en esta fecha si montaste tu pedido en la Toma de pedido 1 y pagasta este mismo día antes de las 4 de la tarde.";
+            case "05":
+                return "Monta tu pedido este día por la página web, tienes plazo hasta las 12 de la noche.";
+            case "07":
+                return "Monta tu pedido este día por la página web, tienes plazo hasta las 12 de la noche.";
+            case "04":
+                return "Recibirás tu pedido en esta fecha si montaste tu pedido en la Toma de pedido 2 y pagasta este mismo día antes de las 4 de la tarde.";
+            case "08":
+                return "Recibirás tu pedido en esta fecha si lo realizaste por este medio en la fecha establecida.";                
+            default:
+                return fecha.actividad;
         }
     }
 
@@ -178,13 +218,14 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.fechaSeleccionada=new Date($scope.formatoFecha(fecha.fecha));
         if(fecha.tipoActividad == 7){                
             $scope.fechaClick=$scope.fechaSeleccionada;
+            $scope.recordatorioClick=fecha;
         }
         $scope.recordatorio = fecha;
         $scope.openModal();
     }
 
     /*$scope.formatoDia = function(fecha){
-        
+
         var diaGenerado=parseInt(fecha.fecha.substring(8, 10));
         var mesGenerado=parseInt(fecha.fecha.substring(5, 7));
         var anoGenerado=parseInt(fecha.fecha.substring(0, 4));
@@ -203,20 +244,22 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
     $scope.textoMostrar=function(fecha){        
         $scope.fechaSeleccionada=new Date($scope.formatoFecha(fecha.fecha));
-        switch(fecha.tipoActividad){
-            case /*"ENCUENTRO"*/1:
-                return "Tienes encuentro el:";
-            case /*"TOMA DE PEDIDO"*/5:
-                return "Realiza tu pedido el:";
-            case /*"FECHA CORRETEO"*/7:
-                return "Haz tu pedido por la web<br> máximo el:";
-            case /*"REPARTO DE PEDIDO 1"*/2:
-                return "Posible entrega de pedido el:";
+        switch(fecha.codigoActividad){
+            case "02":
+                return "Entrega de pedido 1:";
+            case "05":
+                return "Toma de pedido 1:";
+            case "07":
+                return "Toma de pedido 2:";
+            case "04":
+                return "Entrega de pedido 2:";
+            case "08":
+                return "Fecha de entrega pedidos por buzón:";                
             default:
                 return fecha.actividad;
         }
     }
-    
+
     $scope.formatoFecha = function(fecha){
         var fechaFormateada=Utilidades.reemplazarTodos(fecha, '-', '/');       
         var pruebaFecha=new Date(fechaFormateada);        
@@ -233,8 +276,25 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         multiplicador=diaCalendario<$scope.fechaCalendario?-1:1;
         var diferenciaTiempo=Math.abs($scope.fechaCalendario - diaCalendario);
         var diferenciaDias = Math.ceil(diferenciaTiempo / (1000 * 3600 * 24));
-        
+
         return diferenciaDias*multiplicador;
+    }
+    
+    $scope.ordenamiento = function(fecha){
+        switch(fecha.codigoActividad){
+            case "02":
+                return 2;
+            case "05":
+                return 1;
+            case "07":
+                return 3;
+            case "04":
+                return 4;
+            case "08":
+                return 5;                
+            default:
+                return fecha.actividad;
+        }
     }
 
     $scope.mostrarAyuda = function(titulo, mensaje) {
@@ -244,20 +304,49 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         });
     };
 
+    $scope.esHoy=function(fecha){
+        if(fecha == Utilidades.formatearFechaActual())return true;
+        else return false;
+    }
+
     $scope.hoyPar = function(fecha){
-        if(fecha.fecha == Utilidades.formatearFechaActual()){
-            return "row item item-hoy-dia";    
+        var clase="";
+        if($scope.esHoy(fecha.fecha)){
+            clase = "row item item-hoy-dia";    
         }else{
-            return "row item alternate";
+            clase = "row item alternate";
         }
+        /*switch(fecha.codigoActividad){
+            case "05":
+            case "02":
+                clase=clase+" fecha-row-relacion-aqua"
+                break;
+            case "07":
+            case "04":
+                clase=clase+" fecha-row-relacion-aquamarine"
+                break;
+        }*/
+        return clase;
     }
 
     $scope.hoyImpar = function(fecha){
+        var clase="";
         if(fecha.fecha == Utilidades.formatearFechaActual()){
-            return "row item item-hoy-dia";    
+            clase = "row item item-hoy-dia";    
         }else{
-            return "row item";
+            clase = "row item";
         }
+        /*switch(fecha.codigoActividad){
+            case "05":
+            case "02":
+                clase=clase+" fecha-row-relacion-aqua"
+                break;
+            case "07":
+            case "04":
+                clase=clase+" fecha-row-relacion-aquamarine"
+                break;
+        }*/
+        return clase;
     }
 
     /*
