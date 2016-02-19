@@ -11,7 +11,7 @@
             </div>
             <div class="col col-50">
                 <a class="item" href="#" >
-                    Campaña {{campana}}
+                    Mes {{mes}}
                 </a>
             </div>
             <div class="col col" >
@@ -25,13 +25,24 @@
     </br>
 <div class="list">
     
-    
-    
-    <div class="item item-divider"></div>
-
-    <div ng-click="seleccionarFecha(fecha)" ng-repeat="fecha in fechasMes | orderBy: diasFaltantes" ng-class-odd="hoyPar(fecha)" ng-class-even="hoyImpar(fecha)">
+    <div ng-click="seleccionarFecha(fechasMes)" ng-class="hoyImpar(fechasMes)">
         <div style="padding-left:20px">
-            <i ng-class="iconoRecordatorio(fecha)" style="font-size: 40px;"></i>
+            <i class="icon ion-android-people" style="font-size: 40px;"></i>
+            <h2 ng-bind-html="textoMostrar(fechasMes)"></h2>
+            <p>{{ fechaSeleccionada | date: 'EEE'}} {{fechaSeleccionada | date:'dd' }} de {{ fechaSeleccionada.fecha | date: 'MMMM' | pascal }}  del {{ fechaSeleccionada | date: 'yyyy' }}</p>
+            <p ng-show="hayLugar(fechasMes)">Lugar: {{fechasMes.lugar}}</p>
+            <p ng-show="hayHora(fechasMes)">Hora: {{fechasMes.hora}}</p>
+            <h3 ng-show="diasFaltantes(fechasMes)>0">Faltan {{diasFaltantes(fechasMes)}} días calendario</h3>
+        </div>
+    </div>
+    
+    
+    
+    <div class="item item-divider"><h3>Ademas puedes asistir a</h3></div>
+
+    <div ng-click="seleccionarFecha(fecha)" ng-repeat="fecha in fechasMes.listaOpcionales | orderBy: diasFaltantes" ng-class-odd="hoyPar(fecha)" ng-class-even="hoyImpar(fecha)">
+        <div style="padding-left:20px">
+            <i class="icon ion-android-people" style="font-size: 40px;"></i>
             <h2 ng-bind-html="textoMostrar(fecha)"></h2>
             <p>{{fechaSeleccionada | date: 'EEE'}} {{fechaSeleccionada | date:'dd' }} de {{ fechaSeleccionada | date: 'MMMM' | pascal }}  del {{ fechaSeleccionada | date: 'yyyy' }}</p>
             <p ng-show="hayLugar(fecha)">Lugar: {{fecha.lugar}}</p>
@@ -40,14 +51,7 @@
         </div>
     </div>
 
-    <div class="row detalle">
-
-        <p style="text-align:left" >
-        <h2 class="col" style="color: #808080">Este año comienzan nuestros encuentros mensuales. Revisa en tu factura el mes de inicio para tu zona</h2>
-
-        </p>
-
-</div>
+    <div class="row detalle"></div>
 
 </div>
 

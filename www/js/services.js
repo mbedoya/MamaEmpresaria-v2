@@ -364,8 +364,11 @@ angular.module('novaventa.services', [])
         getEncuentros: function(ano, mes, zona, fx){
 
             campana = Utilidades.Pad(campana);
-            var seccion = $rootScope.seccion;
-            var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/mailplan/getEncuentrosAntares/"+ ano +"/" + mes + "/" + zona;
+            var seccion = $rootScope.seccion;            
+            
+            var urlServicio = "http://www.mocky.io/v2/56c772a8110000883882b6ef"
+            
+            //var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/mailplan/getEncuentrosAntares/"+ ano +"/" + mes + "/" + zona;
 
             $http.get(urlServicio).
             success(function(data, status, headers, config) {
@@ -380,7 +383,7 @@ angular.module('novaventa.services', [])
         getAgotados: function(fx){
             var fecha = new Date();
             var anoCampana = Utilidades.getAnoCampana();
-
+            
             var urlServicio = $rootScope.configuracion.ip_servidores + "/" + $rootScope.configuracion.instancia + "/productoDeCampagna/agotadosCampagna/" + anoCampana;
 
             $http.get(urlServicio).

@@ -43,7 +43,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
         $scope.ano=$scope.fechaCalendario.getFullYear();
         $scope.mes=$scope.fechaCalendario.getMonth()+1;
 
-        Campana.getEncuentros($scope.ano, mes, $rootScope.zona, function (success, data){
+        Campana.getEncuentros($scope.ano, $scope.mes, $rootScope.zona, function (success, data){
             if(success){
                 $scope.fechasMes = data;
                 console.log("informacionFechas.encuentrosMesActual - datos enviados", $scope.ano, $scope.campana);
@@ -71,7 +71,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
         //var ano=$scope.fechaCalendario.getFullYear();
         $scope.mes++;
 
-        if(mes==13){
+        if($scope.mes==13){
             $scope.mes = 1;
             $scope.ano++;           
         }
@@ -112,9 +112,9 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
             $scope.ano--;
         }
 
-        Campana.getRecordatorios($scope.ano, $scope.mes, $rootScope.zona, function (success, data){
+        Campana.getEncuentros($scope.ano, $scope.mes, $rootScope.zona, function (success, data){
             if(success){
-                $scope.fechasMes = data.listaRecordatorios;
+                $scope.fechasMes = data;
                 console.log("informacionFechas.disminuirMes - datos enviados", $scope.ano, $scope.campana);
                 $ionicLoading.hide();
             }else{
@@ -131,32 +131,15 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
         return !$scope.noMostrar(fecha);
     }
 
-    $scope.iconoRecordatorio = function(fecha){
-        switch(fecha.tipoActividad){
-            case /*"ENCUENTRO"*/1:
-                return "icon ion-android-people";
-            default:
-                return "icon ion-flag";
-        }
-    }
-
     $scope.formatoFecha = function(fecha){
-        var fechaFormateada=Utilidades.reemplazarTodos(fecha, '-', '/');
-        var pruebaFecha=new Date(fechaFormateada);
-        var diaOriginal=parseInt(fecha.substring(8, 10));
-        if(diaOriginal!=pruebaFecha.getDate()){
-            return fecha.fecha;    
-        }
-        return fechaFormateada;
+        return Utilidades.validarFormatoFecha(fecha);
     } 
 
     $scope.textoMostrar=function(fecha){        
         $scope.fechaSeleccionada=new Date($scope.formatoFecha(fecha.fecha));
         switch(fecha.tipoActividad){
-            case /*"ENCUENTRO"*/1:
-                return "Tienes encuentro el:";
             default:
-                return fecha.actividad;
+                return "Tienes encuentro";
         }
     }
 
@@ -213,6 +196,8 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
         $scope.fechaCalendario = new Date();
 
         $scope.fechaSeleccionada = $scope.fechaCalendario;
+        
+        $scope.fechaPrincipal;
 
         //Fechas de la campana que se está visualizando
         $scope.fechas = $rootScope.fechas;
@@ -222,7 +207,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
         $scope.recordatorio;
 
         //$scope.semanasCalendario();
-        $scope.recordatoriosCampanaActual();
+        $scope.encuentrosMesActual();
 
         $ionicLoading.hide();
 
