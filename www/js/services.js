@@ -1081,21 +1081,31 @@ angular.module('novaventa.services', [])
 
             return parseInt((t2-t1)/(24*3600*1000));
         },
+        validarFormatoFecha: function(fecha){
+            var fechaFormateada=this.reemplazarTodos(fecha, '-', '/');       
+            var pruebaFecha=new Date(fechaFormateada);        
+            var diaOriginal=parseInt((fecha.split("-"))[2], 10);       
+            if(diaOriginal!=pruebaFecha.getDate()){
+                return fecha.fecha;    
+            }
+            return fechaFormateada;
+        },
         formatearFechaActual: function(){
             var fecha = new Date();
 
             var dateStr = self.padStr(fecha.getFullYear()) + "-" +
                 self.padStr(1 + fecha.getMonth()) + "-" +
                 self.padStr(fecha.getDate());
+            
 
-            return dateStr;
+            return this.validarFormatoFecha(dateStr);
         },
         formatearFecha: function(fecha){
             var dateStr = self.padStr(fecha.getFullYear()) + "-" +
                 self.padStr(1 + fecha.getMonth()) + "-" +
                 self.padStr(fecha.getDate());
 
-            return dateStr;
+            return this.validarFormatoFecha(dateStr);
         },
         reemplazarTodos: function(str, find, replace){
             return str.replace(new RegExp(find, 'g'), replace);

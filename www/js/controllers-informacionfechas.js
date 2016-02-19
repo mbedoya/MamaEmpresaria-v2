@@ -270,13 +270,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
 
     $scope.formatoFecha = function(fecha){
-        var fechaFormateada=Utilidades.reemplazarTodos(fecha, '-', '/');       
-        var pruebaFecha=new Date(fechaFormateada);        
-        var diaOriginal=parseInt((fecha.split("-"))[2], 10);       
-        if(diaOriginal!=pruebaFecha.getDate()){
-            return fecha.fecha;    
-        }
-        return fechaFormateada;
+        return Utilidades.validarFormatoFecha(fecha);
     }    
 
     $scope.diasFaltantes=function(fecha){
@@ -383,6 +377,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 break;
         }*/
         return clase;
+    }
+    
+    $scope.mensajeModal=function(){
+        switch($scope.recordatorioClick.codActividad)    
     }
 
     /*
