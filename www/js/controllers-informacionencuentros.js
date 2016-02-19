@@ -1,6 +1,13 @@
 moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $rootScope, $ionicLoading, $state, $ionicPopup, $ionicModal, $http, $document, GA, Mama, Campana, Utilidades) {
 
     var document=$document[0];
+    
+    $scope.openMyPopUp = function() {
+        var alertPopup = $ionicPopup.alert({
+            title: "prueba",
+            template: "msj prueba"
+        });
+    };
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Calendario");
