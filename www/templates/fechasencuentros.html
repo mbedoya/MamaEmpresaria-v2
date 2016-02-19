@@ -11,7 +11,7 @@
             </div>
             <div class="col col-50">
                 <a class="item" href="#" >
-                    Mes {{mes}}
+                    {{ fechaMes | date: 'MMMM' | pascal }}
                 </a>
             </div>
             <div class="col col" >
@@ -25,12 +25,12 @@
     </br>
 <div class="list">
     
-    <div ng-click="seleccionarFecha(fechasMes)" ng-class="hoyImpar(fechasMes)">
+    <div ng-class="hoyImpar(fechasMes)" style="border-color: #1594AC; margin: 1px; border-width: 2px;">
         <div style="padding-left:20px">
             <i class="icon ion-android-people" style="font-size: 40px;"></i>
-            <h2 ng-bind-html="textoMostrar(fechasMes)"></h2>
+            <h2 ng-bind-html="textoMostrar(fechasMes, true)"></h2>
             <p>{{ fechaSeleccionada | date: 'EEE'}} {{fechaSeleccionada | date:'dd' }} de {{ fechaSeleccionada.fecha | date: 'MMMM' | pascal }}  del {{ fechaSeleccionada | date: 'yyyy' }}</p>
-            <p ng-show="hayLugar(fechasMes)">Lugar: {{fechasMes.lugar}}</p>
+            <p ng-show="hayLugar(fechasMes)">Lugar: <strong ng-show="hayLugar(fecha)">{{fechasMes.lugar}}</strong></p>
             <p ng-show="hayHora(fechasMes)">Hora: {{fechasMes.hora}}</p>
             <h3 ng-show="diasFaltantes(fechasMes)>0">Faltan {{diasFaltantes(fechasMes)}} días calendario</h3>
         </div>
@@ -38,14 +38,14 @@
     
     
     
-    <div class="item item-divider"><h3>Ademas puedes asistir a</h3></div>
+    <div class="item item-divider"><h3>Ademas puedes asistir a estos eventos:</h3></div>
 
-    <div ng-click="seleccionarFecha(fecha)" ng-repeat="fecha in fechasMes.listaOpcionales | orderBy: diasFaltantes" ng-class-odd="hoyPar(fecha)" ng-class-even="hoyImpar(fecha)">
+    <div ng-repeat="fecha in fechasMes.listaOpcionales | orderBy: diasFaltantes" ng-class-odd="hoyPar(fecha)" ng-class-even="hoyImpar(fecha)">
         <div style="padding-left:20px">
             <i class="icon ion-android-people" style="font-size: 40px;"></i>
-            <h2 ng-bind-html="textoMostrar(fecha)"></h2>
+            <h2 ng-bind-html="textoMostrar(fecha, false)"></h2>
             <p>{{fechaSeleccionada | date: 'EEE'}} {{fechaSeleccionada | date:'dd' }} de {{ fechaSeleccionada | date: 'MMMM' | pascal }}  del {{ fechaSeleccionada | date: 'yyyy' }}</p>
-            <p ng-show="hayLugar(fecha)">Lugar: {{fecha.lugar}}</p>
+            <p ng-show="hayLugar(fecha)">Lugar: <strong ng-show="hayLugar(fecha)">{{fecha.lugar}}</strong></p>
             <p ng-show="hayHora(fecha)">Hora: {{fecha.hora}}</p>
             <h3 ng-show="diasFaltantes(fecha)>0">Faltan {{diasFaltantes(fecha)}} días calendario</h3>
         </div>

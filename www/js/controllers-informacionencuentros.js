@@ -49,6 +49,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
 
         $scope.ano=$scope.fechaCalendario.getFullYear();
         $scope.mes=$scope.fechaCalendario.getMonth()+1;
+        $scope.fechaMes=new Date($scope.ano+"-"+$scope.mes+"-03");
 
         Campana.getEncuentros($scope.ano, $scope.mes, $rootScope.zona, function (success, data){
             if(success){
@@ -77,12 +78,14 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
 
         //var ano=$scope.fechaCalendario.getFullYear();
         $scope.mes++;
+        
 
         if($scope.mes==13){
             $scope.mes = 1;
             $scope.ano++;           
-        }
-
+        }        
+        
+        $scope.fechaMes=new Date($scope.ano+"-"+$scope.mes+"-03");
 
         Campana.getEncuentros($scope.ano, $scope.mes, $rootScope.zona, function (success, data){
             if(success){
@@ -117,11 +120,19 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
         if($scope.mes==0){
             $scope.mes=12;
             $scope.ano--;
-        }
+        }       
+        
+        $scope.fechaMes=new Date($scope.ano+"-"+$scope.mes+"-03");
 
         Campana.getEncuentros($scope.ano, $scope.mes, $rootScope.zona, function (success, data){
             if(success){
-                $scope.fechasMes = data;
+                if(!data.razonRehazo){
+                    $scope.fechasMes = data;
+                }else{
+                    $scope.mostrarAyuda("Falta campaña","Lo sentimos, aún no tenemos información disponible para los próximos meses");  
+                    $scope.aumentarMes();
+                    return false;
+                }
                 console.log("informacionFechas.disminuirMes - datos enviados", $scope.ano, $scope.campana);
                 $ionicLoading.hide();
             }else{
@@ -142,11 +153,13 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
         return Utilidades.validarFormatoFecha(fecha);
     } 
 
-    $scope.textoMostrar=function(fecha){        
+    $scope.textoMostrar=function(fecha, principal){        
         $scope.fechaSeleccionada=new Date($scope.formatoFecha(fecha.fecha));
-        switch(fecha.tipoActividad){
-            default:
-                return "Tienes encuentro";
+        switch(principal){
+            case true:
+                return "Tienes un encuentro el";
+            case false:
+                return "";
         }
     }
 
