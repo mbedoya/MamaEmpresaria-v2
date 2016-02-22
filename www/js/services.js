@@ -366,9 +366,9 @@ angular.module('novaventa.services', [])
             campana = Utilidades.Pad(campana);
             var seccion = $rootScope.seccion;            
             
-            var urlServicio = "http://www.mocky.io/v2/56c772a8110000883882b6ef"
+            //var urlServicio = "http://www.mocky.io/v2/56c772a8110000883882b6ef"
             
-            //var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/mailplan/getEncuentrosAntares/"+ ano +"/" + mes + "/" + zona;
+            var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/mailplan/getEncuentrosAntares/"+ ano +"/" + mes + "/" /*+ zona*/+"662";
 
             $http.get(urlServicio).
             success(function(data, status, headers, config) {

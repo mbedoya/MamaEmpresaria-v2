@@ -229,7 +229,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         var detalleModal="";
         switch($scope.recordatorioClick.codigoActividad){
             case "02":
-                detalleModal = "Recibirás tu pedido en esta fecha si montaste tu pedido en la Toma de pedido 1 y pagasta este mismo día antes de las 4 de la tarde.";
+                detalleModal = "Recibirás tu pedido en esta fecha si montaste tu pedido en la Toma de pedido 1 y pagaste este mismo día antes de las 4 de la tarde.";
                 break;
             case "05":
                 detalleModal = "Monta tu pedido este día por la página web, tienes plazo hasta las 12 de la noche.";
@@ -274,9 +274,9 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             case "04":
                 return "Entrega de pedido 2";
             case "08":
-                return "Fecha de toma de pedidos por buzón";
+                return "Fecha de toma de pedidos<br> por buzón";
             case "09":
-                return "Fecha de entrega pedidos por buzón"; 
+                return "Fecha de entrega pedidos<br> por buzón"; 
             default:
                 return "";
         }
