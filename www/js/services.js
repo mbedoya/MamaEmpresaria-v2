@@ -368,7 +368,7 @@ angular.module('novaventa.services', [])
             
             //var urlServicio = "http://www.mocky.io/v2/56c772a8110000883882b6ef"
             
-            var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/mailplan/getEncuentrosAntares/"+ ano +"/" + mes + "/" /*+ zona*/+"662";
+            var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/mailplan/getEncuentrosAntares/"+ ano +"/" + mes + "/"+ zona;
 
             $http.get(urlServicio).
             success(function(data, status, headers, config) {

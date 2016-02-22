@@ -359,7 +359,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     };
 
     $scope.esHoy=function(fecha){
-        if(fecha == Utilidades.formatearFechaActual())return true;
+        if(Utilidades.validarFormatoFecha(fecha) === Utilidades.formatearFechaActual())return true;
         else return false;
     }
 
@@ -385,7 +385,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
     $scope.hoyImpar = function(fecha){
         var clase="";
-        if(fecha.fecha == Utilidades.formatearFechaActual()){
+        if($scope.esHoy(fecha.fecha)){
             clase = "row item item-hoy-dia";    
         }else{
             clase = "row item";

@@ -25,7 +25,7 @@
     </br>
 <div class="list">
     
-    <div ng-class="hoyImpar(fechasMes)" style="border-color: #1594AC; margin: 1px; border-width: 2px;" ng-hide="fechasMes.razonRechazo">
+    <div ng-class="hoyImpar(fechasMes)" style="border-color: #1594AC; margin: 1px; border-width: 2px;" ng-show="fechasMes.fecha">
         <div style="padding-left:20px">
             <i class="icon ion-android-people" style="font-size: 40px;"></i>
             <h2 ng-bind-html="textoMostrar(fechasMes, true)"></h2>
@@ -38,7 +38,7 @@
     
     
     
-    <div class="item item-divider" ng-show="fechasMes.listaOpcionales"><h3>Ademas puedes asistir a estos eventos:</h3></div>
+    <div class="item item-divider" ng-show="fechasMes.listaOpcionales && fechasMes.listaOpcionales.length>0"><h3>Ademas puedes asistir a estos eventos:</h3></div>
 
     <div ng-repeat="fecha in fechasMes.listaOpcionales | orderBy: diasFaltantes" ng-class-odd="hoyPar(fecha)" ng-class-even="hoyImpar(fecha)">
         <div style="padding-left:20px">

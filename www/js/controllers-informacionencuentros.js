@@ -54,7 +54,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
         Campana.getEncuentros($scope.ano, $scope.mes, $rootScope.zona, function (success, data){
             if(success){
                 $scope.fechasMes = data;
-                console.log("informacionFechas.encuentrosMesActual - datos enviados", $scope.ano, $scope.campana);
+                console.log("informacionFechas.encuentrosMesActual - datos enviados", $scope.ano, $scope.mes);
                 console.log("informacionFechas.encuentrosMesActual - datos recibidos", data);
                 $ionicLoading.hide();
             }else{
@@ -96,7 +96,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
                     $scope.disminuirMes();
                     return false;
                 }
-                console.log("informacionFechas.aumentarMes - datos enviados", $scope.ano, $scope.campana);
+                console.log("informacionFechas.aumentarMes - datos enviados", $scope.ano, $scope.mes);
                 console.log("informacionFechas.aumentarMes - datos recibidos", data);
                 $ionicLoading.hide();
                 return true;
@@ -133,7 +133,8 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
                     $scope.aumentarMes();
                     return false;
                 }
-                console.log("informacionFechas.disminuirMes - datos enviados", $scope.ano, $scope.campana);
+                console.log("informacionFechas.disminuirMes - datos enviados", $scope.ano, $scope.mes);
+                console.log("informacionFechas.disminuirMes - datos recibidos", data);
                 $ionicLoading.hide();
             }else{
                 console.log("Fallo");
@@ -193,7 +194,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
     };
 
     $scope.hoyPar = function(fecha){
-        if(fecha.fecha == Utilidades.formatearFechaActual()){
+        if(Utilidades.validarFormatoFecha(fecha.fecha) == Utilidades.formatearFechaActual()){
             return "item item-icon-left item-hoy-dia";    
         }else{
             return "item item-icon-left alternate";
@@ -201,7 +202,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
     }
 
     $scope.hoyImpar = function(fecha){
-        if(fecha.fecha == Utilidades.formatearFechaActual()){
+        if(Utilidades.validarFormatoFecha(fecha.fecha) == Utilidades.formatearFechaActual()){
             return "item item-icon-left item-hoy-dia";    
         }else{
             return "item item-icon-left";
