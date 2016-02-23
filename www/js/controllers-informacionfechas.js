@@ -229,19 +229,19 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         var detalleModal="";
         switch($scope.recordatorioClick.codigoActividad){
             case "02":
-                detalleModal = "Recibirás tu pedido en esta fecha si montaste tu pedido en la Toma de pedido 1 y pagaste este mismo día antes de las 4 de la tarde.";
+                detalleModal = "Recibirás tu pedido en esta fecha, si lo montaste en la toma de pedido 1 y pagaste este mismo día antes de las 12 de la noche.";
                 break;
             case "05":
-                detalleModal = "Monta tu pedido este día por la página web, tienes plazo hasta las 12 de la noche.";
+                detalleModal = "Monta tu pedido este día unicamente por la página web, tienes plazo hasta las 12 de la noche.";
                 break;
             case "07":
-                detalleModal = "Monta tu pedido este día por la página web, tienes plazo hasta las 12 de la noche.";
+                detalleModal = "Monta tu pedido este día unicamente por la página web, tienes plazo hasta las 12 de la noche.";
                 break;
             case "04":
-                detalleModal = "Recibirás tu pedido en esta fecha si montaste tu pedido en la Toma de pedido 2 y pagasta este mismo día antes de las 4 de la tarde.";
+                detalleModal = "Recibirás tu pedido en esta fecha, si lo montaste en la toma de pedido 2 y pagasta este mismo día antes de las 12 de la noche.";
                 break;
             case "08":
-                detalleModal = "Lleva tu pedido al buzón hasta la 1 de la tarde de este día.";   
+                detalleModal = "Lleva tu pedido al buzón antes de la 1 de la tarde de este día.";   
                 break;
             case "09":
                 detalleModal = "Recibirás tu pedido en esta fecha si lo realizaste por este medio en la fecha establecida.";   
@@ -266,17 +266,36 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     $scope.textoMostrarCodigo = function(codigo){
         switch(codigo){
             case "02":
-                return "Entrega de pedido 1";
+                return "Entrega de pedido 1:";
             case "05":
-                return "Toma de pedido 1";
+                return "Toma de pedido 1:";
             case "07":
-                return "Toma de pedido 2";
+                return "Toma de pedido 2:";
             case "04":
-                return "Entrega de pedido 2";
+                return "Entrega de pedido 2:";
             case "08":
-                return "Fecha de toma de pedidos<br> por buzón";
+                return "Fecha de toma de pedidos<br> por buzón:";
             case "09":
-                return "Fecha de entrega pedidos<br> por buzón"; 
+                return "Fecha de entrega pedidos<br> por buzón:";
+            default:
+                return "";
+        }
+    }
+    
+    $scope.textoRecordatorio = function(codigo){
+        switch(codigo){
+            case "02":
+                return "entrega de pedido 1";
+            case "05":
+                return "toma de pedido 1";
+            case "07":
+                return "toma de pedido 2";
+            case "04":
+                return "entrega de pedido 2";
+            case "08":
+                return "fecha de toma de pedidos por buzón";
+            case "09":
+                return "fecha de entrega pedidos por buzón";
             default:
                 return "";
         }

@@ -218,6 +218,8 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
 
         $scope.fechaSeleccionada = $scope.fechaCalendario;
         
+        $scope.fechaMes=new Date();
+        
         $scope.fechaPrincipal;
 
         //Fechas de la campana que se está visualizando
