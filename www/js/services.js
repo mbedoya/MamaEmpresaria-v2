@@ -620,7 +620,9 @@ angular.module('novaventa.services', [])
 
                                         encuentroOriginal = '';
 
-                                        reparto = '';
+                                        reparto1 = '';
+                                        
+                                        reparto2='';
 
                                         correteo = '';
                                         for (i = 0; i < data.listaRecordatorios.length; i++){
@@ -639,14 +641,18 @@ angular.module('novaventa.services', [])
                                             if(data.listaRecordatorios[i].codigoActividad == "07"){
                                                 correteo = data.listaRecordatorios[i].fecha;
                                             }
-                                            //reparto de pedido
+                                            //reparto de pedido1
                                             if (data.listaRecordatorios[i].codigoActividad == "02") {
-                                                reparto = data.listaRecordatorios[i].fecha;
+                                                reparto1 = data.listaRecordatorios[i].fecha;
+                                            }
+                                            //reparto de pedido2
+                                            if (data.listaRecordatorios[i].codigoActividad == "04") {
+                                                reparto2 = data.listaRecordatorios[i].fecha;
                                             }
                                         }
 
                                         $rootScope.campana = {numero: data.campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
-                                                              fechaEncuentroOriginal: encuentroOriginal, fechaCorreteo: correteo, fechaReparto: reparto,  diasEnEjecucion: ''};
+                                                              fechaEncuentroOriginal: encuentroOriginal, fechaCorreteo: correteo, fechaReparto1: reparto1, fechaReparto2: reparto2, diasEnEjecucion: ''};
 
                                         $rootScope.fechas = data.listaRecordatorios;
 
@@ -685,7 +691,9 @@ angular.module('novaventa.services', [])
 
                                                     encuentroOriginal = '';
 
-                                                    reparto = '';
+                                                    reparto1 = '';
+                                                    
+                                                    reparto2 = '';
 
                                                     correteo = '';
                                                     for (i = 0; i < data.listaRecordatorios.length; i++){
@@ -704,9 +712,13 @@ angular.module('novaventa.services', [])
                                                         if(data.listaRecordatorios[i].codigoActividad == "07"){
                                                             correteo = data.listaRecordatorios[i].fecha;
                                                         }
-                                                        //reparto de pedido
+                                                        //reparto de pedido 1
                                                         if (data.listaRecordatorios[i].codigoActividad == "02") {
-                                                            reparto = data.listaRecordatorios[i].fecha;
+                                                            reparto1 = data.listaRecordatorios[i].fecha;
+                                                        }
+                                                        //reparto de pedido 2
+                                                        if (data.listaRecordatorios[i].codigoActividad == "04") {
+                                                            reparto2 = data.listaRecordatorios[i].fecha;
                                                         }
                                                     }
 
@@ -723,7 +735,7 @@ angular.module('novaventa.services', [])
                                                     $rootScope.campanaAnterior = $rootScope.campana;
 
                                                     $rootScope.campana = {numero: data.campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
-                                                                          fechaEncuentroOriginal: encuentroOriginal, fechaCorreteo: correteo, fechaReparto: reparto, diasEnEjecucion: diferenciaDias};
+                                                                          fechaEncuentroOriginal: encuentroOriginal, fechaCorreteo: correteo, fechaReparto1: reparto1, fechaReparto2: reparto2, diasEnEjecucion: diferenciaDias};
 
                                                     $rootScope.fechasAnteriores = $rootScope.fechas;
                                                     $rootScope.fechas = data.listaRecordatorios;
@@ -781,7 +793,9 @@ angular.module('novaventa.services', [])
 
                                                     encuentroOriginal = '';
 
-                                                    reparto = '';
+                                                    reparto1 = '';
+                                                    
+                                                    reparto2 = '';
 
                                                     correteo = '';
                                                     for (i = 0; i < data.listaRecordatorios.length; i++){
@@ -800,14 +814,19 @@ angular.module('novaventa.services', [])
                                                         if(data.listaRecordatorios[i].codigoActividad == "07"){
                                                             correteo = data.listaRecordatorios[i].fecha;
                                                         }
-                                                        //reparto de pedido
+                                                        //reparto de pedido 1
                                                         if (data.listaRecordatorios[i].codigoActividad == "02") {
-                                                            reparto = data.listaRecordatorios[i].fecha;
+                                                            reparto1 = data.listaRecordatorios[i].fecha;
+                                                        }
+                                                        
+                                                        //reparto de pedido 2
+                                                        if (data.listaRecordatorios[i].codigoActividad == "04") {
+                                                            reparto2 = data.listaRecordatorios[i].fecha;
                                                         }
                                                     }
 
                                                     $rootScope.campanaAnterior = {numero: data.campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
-                                                                                  fechaEncuentroOriginal: encuentroOriginal, fechaCorreteo: correteo, fechaReparto: reparto,  diasEnEjecucion: ''};
+                                                                                  fechaEncuentroOriginal: encuentroOriginal, fechaCorreteo: correteo, fechaReparto1: reparto1, fechaReparto2: reparto2,  diasEnEjecucion: ''};
 
 
 

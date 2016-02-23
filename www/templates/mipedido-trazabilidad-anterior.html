@@ -94,7 +94,7 @@
                     </h2>
                     <p>{{ buscarEstado('Entregado al transportador').fecha | date: 'dd'}} de {{ buscarEstado('Entregado al transportador').fecha | date: 'MMMM'}}</p>
                     <p class="item-formato-anterior" ng-show="fechaRepartoPedido() != ''">
-                        Posiblemente recibas tu <br /> pedido el {{ fechaRepartoPedido() | date:'dd' }} de <br /> {{ fechaRepartoPedido() | date:'MMMM' }}
+                        Posiblemente recibas tu <br /> pedido el {{ fechaRepartoPedido(buscarEstado('Facturado').fecha) | date:'dd' }} de <br /> {{ fechaRepartoPedido(buscarEstado('Facturado').fecha) | date:'MMMM' }}
                     </p>
                 </div>
                 

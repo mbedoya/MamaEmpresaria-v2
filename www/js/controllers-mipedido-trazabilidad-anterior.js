@@ -57,17 +57,17 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
 
         return true;
     }
-    
+
     //Si hay agotados reales? es decir que el mismo producto no se haya agotado y luego si esté disponible
     $scope.hayAgotadosAnteriorReales = function(){
-        
+
         var contadorAgotados = 0;
         var contadorSustituidos = 0;
-        
+
         if($scope.agotadosAnterior && $scope.agotadosAnterior.agotadosME){
             //Recorrer todos los agotados
             for(i=0; i<$scope.agotadosAnterior.agotadosME.length;i++){
-                
+
                 if($scope.agotadosAnterior.agotadosME[i].tipoAgotado == "AGOTADO SUSTITUIDO"){
                     if($scope.agotadoReal($scope.agotadosAnterior.agotadosME[i])){
                         contadorSustituidos = contadorSustituidos + 1;
@@ -82,16 +82,16 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
 
         return contadorAgotados > 0 || contadorSustituidos > 0;
     }
-    
+
     //Si sustituidos reales? es decir que el mismo producto no se haya agotado y luego si esté disponible
     $scope.haySustituidos = function(){
-        
+
         var contadorSustituidos = 0;
-        
+
         if($scope.agotadosAnterior && $scope.agotadosAnterior.agotadosME){
             //Recorrer todos los agotados
             for(i=0; i<$scope.agotadosAnterior.agotadosME.length;i++){
-                
+
                 if($scope.agotadosAnterior.agotadosME[i].tipoAgotado == "AGOTADO SUSTITUIDO"){
                     if($scope.agotadoReal($scope.agotadosAnterior.agotadosME[i])){
                         contadorSustituidos = contadorSustituidos + 1;
@@ -175,10 +175,11 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
         return false;
     }
 
-    $scope.fechaRepartoPedido = function(){
-        if($rootScope.campanaAnterior && $rootScope.campanaAnterior.fechaReparto ){
-            
-             return $rootScope.campanaAnterior.fechaReparto;       
+    $scope.fechaRepartoPedido = function(fecha){
+        if($rootScope.campanaAnterior && $rootScope.campanaAnterior.fechaReparto1 &&  $rootScope.campanaAnterior.fechaReparto2){   
+            if(new Date(Utilidades.validarFormatoFecha(fecha)) < new Date(Utilidades.validarFormatoFecha($rootScope.campanaAnterior.fechaCorreteo)))
+                return $rootScope.campanaAnterior.fechaReparto1;  
+            else return $rootScope.campanaAnterior.fechaReparto2;
         }else{
             return "";
         }
@@ -213,8 +214,8 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
     $scope.mostrarNovedad = function(novedad){
         var mostrar = false;
         if(novedad.toLowerCase().indexOf('morosa')>=0 ||
-            novedad.toLowerCase().indexOf('cupo')>=0 ||
-            novedad.toLowerCase().indexOf('tope')>=0){
+           novedad.toLowerCase().indexOf('cupo')>=0 ||
+           novedad.toLowerCase().indexOf('tope')>=0){
             mostrar = true;
         }
         return mostrar;

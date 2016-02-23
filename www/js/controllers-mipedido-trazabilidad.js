@@ -118,10 +118,11 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
         return false;
     }
 
-    $scope.fechaRepartoPedido = function(){
-        if($rootScope.campana && $rootScope.campana.fechaReparto ){
-            
-             return $rootScope.campana.fechaReparto;       
+    $scope.fechaRepartoPedido = function(fecha){
+        if($rootScope.campana && $rootScope.campana.fechaReparto1 &&  $rootScope.campana.fechaReparto2){   
+            if(new Date(Utilidades.validarFormatoFecha(fecha)) < new Date(Utilidades.validarFormatoFecha($rootScope.campana.fechaCorreteo)))
+                return $rootScope.campana.fechaReparto1;  
+            else return $rootScope.campana.fechaReparto2;
         }else{
             return "";
         }
@@ -156,8 +157,8 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
     $scope.mostrarNovedad = function(novedad){
         var mostrar = false;
         if(novedad.toLowerCase().indexOf('morosa')>=0 ||
-            novedad.toLowerCase().indexOf('cupo')>=0 ||
-            novedad.toLowerCase().indexOf('tope')>=0){
+           novedad.toLowerCase().indexOf('cupo')>=0 ||
+           novedad.toLowerCase().indexOf('tope')>=0){
             mostrar = true;
         }
         return mostrar;
