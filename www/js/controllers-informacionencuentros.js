@@ -49,7 +49,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
 
         $scope.ano=$scope.fechaCalendario.getFullYear();
         $scope.mes=$scope.fechaCalendario.getMonth()+1;
-        $scope.fechasMes=new Date($scope.ano+"-"+$scope.mes+"-03");
+        $scope.mesActual=new Date(Utilidades.validarFormatoFecha($scope.ano+"-"+$scope.mes+"-03"));
 
         Campana.getEncuentros($scope.ano, $scope.mes, $rootScope.zona, function (success, data){
             if(success){
@@ -85,7 +85,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
             $scope.ano++;           
         }        
         
-        $scope.fechasMes=new Date($scope.ano+"-"+$scope.mes+"-03");
+        $scope.mesActual=new Date(Utilidades.validarFormatoFecha($scope.ano+"-"+$scope.mes+"-03"));
 
         Campana.getEncuentros($scope.ano, $scope.mes, $rootScope.zona, function (success, data){
             if(success){
@@ -122,7 +122,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
             $scope.ano--;
         }       
         
-        $scope.fechasMes=new Date($scope.ano+"-"+$scope.mes+"-03");
+        $scope.mesActual=new Date(Utilidades.validarFormatoFecha($scope.ano+"-"+$scope.mes+"-03"));
 
         Campana.getEncuentros($scope.ano, $scope.mes, $rootScope.zona, function (success, data){
             if(success){
@@ -217,8 +217,6 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
         $scope.fechaCalendario = new Date();
 
         $scope.fechaSeleccionada = $scope.fechaCalendario;
-        
-        $scope.fechasMes=new Date();
         
         $scope.fechaPrincipal;
 
