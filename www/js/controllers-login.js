@@ -11,7 +11,8 @@ moduloControlador.controller('LoginCtrl', function($scope, $location, $rootScope
     };
 
     $scope.test = function(){
-        $scope.capturarCedula();
+        $scope.mostrarAyuda("Importante", "Mamá en estos momentos nos encontramos realizando algunos ajustes, proximamente podras seguir accediendo la aplicacion");
+        //$scope.capturarCedula();
     }
 
     $scope.datosInicio = {cedula: '' };
