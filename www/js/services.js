@@ -747,7 +747,7 @@ angular.module('novaventa.services', [])
                                                     //Si se notifica inmediatamente no son alcanzados todos los controladores
                                                     setTimeout( function(){
                                                         //Notificar que el usuario se ha logueado
-                                                        window.plugins.OneSignal.sendTags({seccion: $rootScope.seccion, zona: $rootScope.zona});
+                                                        window.plugins.OneSignal.sendTags({seccion: $rootScope.seccion, zona: $rootScope.zona, cedula: $rootScope.datos.cedula});
                                                         $rootScope.$broadcast('loggedin');
                                                         console.log('loggedin');
                                                     }, 1500);
@@ -763,7 +763,7 @@ angular.module('novaventa.services', [])
                                             //Si se notifica inmediatamente no son alcanzados todos los controladores
                                             setTimeout( function(){
                                                 //Notificar que el usuario se ha logueado
-                                                window.plugins.OneSignal.sendTags({seccion: $rootScope.seccion, zona: $rootScope.zona});
+                                                window.plugins.OneSignal.sendTags({seccion: $rootScope.seccion, zona: $rootScope.zona, cedula: $rootScope.datos.cedula});
                                                 $rootScope.$broadcast('loggedin');
                                                 console.log('loggedin');
                                             }, 1500);

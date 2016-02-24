@@ -59,8 +59,8 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
                     $scope.mostrarAyuda("No hay datos para el mes","Lo sentimos, aún no tenemos información disponible para el mes"); 
                     $state.go('app.menu.tabs.fechas.campanas');
                 }
-                console.log("informacionFechas.encuentrosMesActual - datos enviados", $scope.ano, $scope.mes);
-                console.log("informacionFechas.encuentrosMesActual - datos recibidos", data);
+                console.log("informacionEncuentros.encuentrosMesActual - datos enviados", $scope.ano, $scope.mes);
+                console.log("informacionEncuentros.encuentrosMesActual - datos recibidos", data);
                 $ionicLoading.hide();
             }else{
                 console.log("Fallo");
@@ -69,11 +69,15 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
     }
 
     $scope.hayLugar=function(fecha){
-        return fecha.lugar!="..";
+        return(fecha.lugar && fecha.lugar!="..");
     }
 
     $scope.hayHora=function(fecha){
-        return fecha.hora!=null;
+        return fecha.hora;
+    }
+    
+    $scope.hayTema=function(fecha){
+        return fecha.tema;
     }
 
     $scope.aumentarMes=function(){
@@ -100,8 +104,8 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
                     $scope.mostrarAyuda("No hay datos para el mes","Lo sentimos, aún no tenemos información disponible para el mes");  
                     $scope.disminuirMes();
                 }
-                console.log("informacionFechas.aumentarMes - datos enviados", $scope.ano, $scope.mes);
-                console.log("informacionFechas.aumentarMes - datos recibidos", data);
+                console.log("informacionEncuentros.aumentarMes - datos enviados", $scope.ano, $scope.mes);
+                console.log("informacionEncuentros.aumentarMes - datos recibidos", data);
                 $ionicLoading.hide();
             }else{
                 console.log("Fallo");
@@ -134,8 +138,8 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
                     $scope.mostrarAyuda("No hay datos para el mes","Lo sentimos, aún no tenemos información disponible para el mes");  
                     $scope.aumentarMes();
                 }
-                console.log("informacionFechas.disminuirMes - datos enviados", $scope.ano, $scope.mes);
-                console.log("informacionFechas.disminuirMes - datos recibidos", data);
+                console.log("informacionEncuentros.disminuirMes - datos enviados", $scope.ano, $scope.mes);
+                console.log("informacionEncuentros.disminuirMes - datos recibidos", data);
                 $ionicLoading.hide();
             }else{
                 console.log("Fallo");
@@ -195,7 +199,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
     };
 
     $scope.hoyPar = function(fecha){
-        if(Utilidades.validarFormatoFecha(fecha.fecha) == Utilidades.formatearFechaActual()){
+        if(Utilidades.validarFormatoFecha(fecha.fecha) == Utilidades.validarFormatoFecha(Utilidades.formatearFechaActual())){
             return "item item-icon-left item-hoy-dia";    
         }else{
             return "item item-icon-left alternate";
@@ -203,7 +207,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
     }
 
     $scope.hoyImpar = function(fecha){
-        if(Utilidades.validarFormatoFecha(fecha.fecha) == Utilidades.formatearFechaActual()){
+        if(Utilidades.validarFormatoFecha(fecha.fecha) == Utilidades.validarFormatoFecha(Utilidades.formatearFechaActual())){
             return "item item-icon-left item-hoy-dia";    
         }else{
             return "item item-icon-left";

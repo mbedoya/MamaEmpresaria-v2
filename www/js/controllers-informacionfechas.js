@@ -383,7 +383,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     };
 
     $scope.esHoy=function(fecha){
-        if(Utilidades.validarFormatoFecha(fecha) === Utilidades.formatearFechaActual())return true;
+        if(Utilidades.validarFormatoFecha(fecha) === Utilidades.validarFormatoFecha(Utilidades.formatearFechaActual()))return true;
         else return false;
     }
 
