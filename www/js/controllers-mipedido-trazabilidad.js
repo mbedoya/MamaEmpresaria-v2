@@ -120,7 +120,7 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
 
     $scope.fechaRepartoPedido = function(fecha){
         if($rootScope.campana && $rootScope.campana.fechaReparto1 &&  $rootScope.campana.fechaReparto2){   
-            if(new Date(Utilidades.validarFormatoFecha(fecha)) < new Date(Utilidades.validarFormatoFecha($rootScope.campana.fechaCorreteo)))
+            if(new Date(Utilidades.validarFormatoFecha(fecha)) <= new Date(Utilidades.validarFormatoFecha($rootScope.campana.fechaMontajePedido)))
                 return $rootScope.campana.fechaReparto1;  
             else return $rootScope.campana.fechaReparto2;
         }else{

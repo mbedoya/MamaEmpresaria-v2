@@ -49,7 +49,12 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
         Campana.getRecordatorios($scope.ano, $scope.campana, $rootScope.zona, function (success, data){
             if(success){
-                $scope.fechasCampana = data.listaRecordatorios;
+                if(data.listaRecordatorios && data.listaRecordatorios.length>0){
+                    $scope.fechasCampana = data.listaRecordatorios;
+                }else{
+                    $scope.mostrarAyuda("Falta campaña","Lo sentimos, aún no tenemos información disponible para la campaña");  
+                    $state.go('app.menu.tabs.home');
+                }
                 console.log("informacionFechas.recordatorioCampanaActual - datos enviados", $scope.ano, $scope.campana);
                 console.log("informacionFechas.recordatorioCampanaActual - datos recibidos", data);
                 $ionicLoading.hide();
@@ -101,7 +106,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 if(data.listaRecordatorios && data.listaRecordatorios.length>0){
                     $scope.fechasCampana = data.listaRecordatorios;
                 }else{
-                    $scope.mostrarAyuda("Falta campaña","Lo sentimos, aún no tenemos información disponible para las próximas campañas");  
+                    $scope.mostrarAyuda("Falta campaña","Lo sentimos, aún no tenemos información disponible para la campaña");  
                     $scope.disminuirCampana();
                 }
                 console.log("informacionFechas.aumentarMes - datos enviados", $scope.ano, $scope.campana);
@@ -131,7 +136,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 if(data.listaRecordatorios && data.listaRecordatorios.length>0){
                     $scope.fechasCampana = data.listaRecordatorios;
                 }else{
-                    $scope.mostrarAyuda("Falta campaña","Lo sentimos, aún no tenemos información disponible para las próximas campañas");  
+                    $scope.mostrarAyuda("Falta campaña","Lo sentimos, aún no tenemos información disponible para la campaña");  
                     $scope.aumentarCampana();
                 }
                 $scope.fechasCampana = data.listaRecordatorios;
@@ -232,10 +237,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 detalleModal = "Recibirás tu pedido en esta fecha, si lo montaste en la toma de pedido 1 y pagaste este mismo día antes de las 12 de la noche.";
                 break;
             case "05":
-                detalleModal = "Monta tu pedido este día unicamente por la página web, tienes plazo hasta las 12 de la noche.";
+                detalleModal = "Monta tu pedido este día únicamente por la página web, tienes plazo hasta las 12 de la noche.";
                 break;
             case "07":
-                detalleModal = "Monta tu pedido este día unicamente por la página web, tienes plazo hasta las 12 de la noche.";
+                detalleModal = "Monta tu pedido este día únicamente por la página web, tienes plazo hasta las 12 de la noche.";
                 break;
             case "04":
                 detalleModal = "Recibirás tu pedido en esta fecha, si lo montaste en la toma de pedido 2 y pagasta este mismo día antes de las 12 de la noche.";
@@ -424,7 +429,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
     $scope.inicializar = function(){
 
-        $rootScope.cargaDatos.ventanaInformacionFechas = true;
+        //$rootScope.cargaDatos.ventanaInformacionFechas = true;
 
         //El calendario inicia en el mes actual
         $scope.fechaCalendario = new Date();

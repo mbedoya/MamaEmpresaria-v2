@@ -53,7 +53,12 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
 
         Campana.getEncuentros($scope.ano, $scope.mes, $rootScope.zona, function (success, data){
             if(success){
-                $scope.fechasMes = data;
+                if(!data.razonRechazo){
+                    $scope.fechasMes = data;
+                }else{
+                    $scope.mostrarAyuda("No hay datos para el mes","Lo sentimos, aún no tenemos información disponible para el mes"); 
+                    $state.go('app.menu.tabs.fechas.campanas');
+                }
                 console.log("informacionFechas.encuentrosMesActual - datos enviados", $scope.ano, $scope.mes);
                 console.log("informacionFechas.encuentrosMesActual - datos recibidos", data);
                 $ionicLoading.hide();
@@ -89,20 +94,17 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
 
         Campana.getEncuentros($scope.ano, $scope.mes, $rootScope.zona, function (success, data){
             if(success){
-                if(!data.razonRehazo){
+                if(!data.razonRechazo){
                     $scope.fechasMes = data;
                 }else{
-                    $scope.mostrarAyuda("Falta campaña","Lo sentimos, aún no tenemos información disponible para los próximos meses");  
+                    $scope.mostrarAyuda("No hay datos para el mes","Lo sentimos, aún no tenemos información disponible para el mes");  
                     $scope.disminuirMes();
-                    return false;
                 }
                 console.log("informacionFechas.aumentarMes - datos enviados", $scope.ano, $scope.mes);
                 console.log("informacionFechas.aumentarMes - datos recibidos", data);
                 $ionicLoading.hide();
-                return true;
             }else{
                 console.log("Fallo");
-                return false;
             }
         });
 
@@ -126,12 +128,11 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
 
         Campana.getEncuentros($scope.ano, $scope.mes, $rootScope.zona, function (success, data){
             if(success){
-                if(!data.razonRehazo){
+                if(!data.razonRechazo){
                     $scope.fechasMes = data;
                 }else{
-                    $scope.mostrarAyuda("Falta campaña","Lo sentimos, aún no tenemos información disponible para los próximos meses");  
+                    $scope.mostrarAyuda("No hay datos para el mes","Lo sentimos, aún no tenemos información disponible para el mes");  
                     $scope.aumentarMes();
-                    return false;
                 }
                 console.log("informacionFechas.disminuirMes - datos enviados", $scope.ano, $scope.mes);
                 console.log("informacionFechas.disminuirMes - datos recibidos", data);
@@ -211,7 +212,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
 
     $scope.inicializar = function(){
 
-        $rootScope.cargaDatos.ventanaInformacionEncuentros = true;
+        //$rootScope.cargaDatos.ventanaInformacionEncuentros = true;
 
         //El calendario inicia en el mes actual
         $scope.fechaCalendario = new Date();
