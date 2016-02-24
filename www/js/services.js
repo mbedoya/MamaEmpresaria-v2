@@ -267,7 +267,7 @@ angular.module('novaventa.services', [])
 
                 for (i = 0; i < $rootScope.fechas.length; i++){
                     if($rootScope.fechas[i].codigoActividad == "07"){
-                        if(Utilidades.formatearFechaActual() == $rootScope.fechas[i].fecha){
+                        if(Utilidades.formatearFechaActual() == Utilidades.validarFormatoFecha($rootScope.fechas[i].fecha)){
                             realizado = true;
                             break;
                         }
@@ -284,7 +284,7 @@ angular.module('novaventa.services', [])
                 for (i = 0; i < $rootScope.fechas.length; i++){
                     //if($rootScope.fechas[i].actividad.toLowerCase() == 'encuentro'){
                     if($rootScope.fechas[i].codigoActividad == "05"){
-                        if(Utilidades.formatearFechaActual() == $rootScope.fechas[i].fecha){
+                        if(Utilidades.formatearFechaActual() == Utilidades.validarFormatoFecha($rootScope.fechas[i].fecha)){
                             realizado = true;
                             break;
                         }
@@ -303,7 +303,7 @@ angular.module('novaventa.services', [])
 
                 for (i = 0; i < $rootScope.fechas.length; i++){
                     if($rootScope.fechas[i].codigoActividad == "07"){
-                        if(fechaActual > new Date($rootScope.fechas[i].fecha)){
+                        if(fechaActual > new Date(Utilidades.validarFormatoFecha($rootScope.fechas[i].fecha))){
                             realizado = true;
                             break;
                         }
@@ -321,7 +321,7 @@ angular.module('novaventa.services', [])
                 for (i = 0; i < $rootScope.fechas.length; i++){
                     if($rootScope.fechas[i].codigoActividad == "05"){
                         //if($rootScope.fechas[i].actividad.toLowerCase() == 'encuentro'){    
-                        if(new Date() >= new Date($rootScope.fechas[i].fecha)){
+                        if(new Date() >= new Date(Utilidades.validarFormatoFecha($rootScope.fechas[i].fecha))){
                             realizado = true;
                             break;
                         }
@@ -1092,16 +1092,20 @@ angular.module('novaventa.services', [])
         },
         diferenciaFechaDias: function(fechaInicial, fechaFinal){
 
-            var stringFechaInicial = self.padStr(fechaInicial.getFullYear()) + "-" +
-                self.padStr(1 + fechaInicial.getMonth()) + "-" + self.padStr(fechaInicial.getDate());
+            /*var stringFechaInicial = self.padStr(fechaInicial.getFullYear()) + "-" +
+                self.padStr(fechaInicial.getMonth()) + "-" + self.padStr(fechaInicial.getDate());
 
             var stringFechaFinal = self.padStr(fechaFinal.getFullYear()) + "-" +
-                self.padStr(1 + fechaFinal.getMonth()) + "-" + self.padStr(fechaFinal.getDate());
+                self.padStr(fechaFinal.getMonth()) + "-" + self.padStr(fechaFinal.getDate());*/
 
-            var t2 = new Date(stringFechaFinal).getTime();
-            var t1 = new Date(stringFechaInicial).getTime();
+            //var t2 = new Date(this.validarFormatoFecha(stringFechaFinal)).getTime();
+            //var t1 = new Date(this.validarFormatoFecha(stringFechaInicial)).getTime();
+            
+            
+            var diferenciaTiempo=Math.abs(fechaFinal-fechaInicial);
+            var diferenciaDias = Math.ceil(diferenciaTiempo / (1000 * 3600 * 24));
 
-            return parseInt((t2-t1)/(24*3600*1000));
+            return diferenciaDias;
         },
         validarFormatoFecha: function(fecha){
             var fechaFormateada=this.reemplazarTodos(fecha, '-', '/');       
@@ -1120,14 +1124,14 @@ angular.module('novaventa.services', [])
                 self.padStr(fecha.getDate());
             
 
-            return this.validarFormatoFecha(dateStr);
+            return dateStr;
         },
         formatearFecha: function(fecha){
             var dateStr = self.padStr(fecha.getFullYear()) + "-" +
                 self.padStr(1 + fecha.getMonth()) + "-" +
                 self.padStr(fecha.getDate());
 
-            return this.validarFormatoFecha(dateStr);
+            return dateStr;
         },
         reemplazarTodos: function(str, find, replace){
             return str.replace(new RegExp(find, 'g'), replace);

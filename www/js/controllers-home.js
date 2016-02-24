@@ -150,7 +150,7 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
         var stringFecha =  Utilidades.formatearFechaActual();
 
         if($rootScope.campana && $rootScope.campana.fechaMontajePedido){
-            return Utilidades.diferenciaFechaDias(new Date(stringFecha), new Date($rootScope.campana.fechaMontajePedido));
+            return Utilidades.diferenciaFechaDias(new Date(Utilidades.validarFormatoFecha(stringFecha)), new Date(Utilidades.validarFormatoFecha($rootScope.campana.fechaMontajePedido)));
         }else{
             return "";
         }
