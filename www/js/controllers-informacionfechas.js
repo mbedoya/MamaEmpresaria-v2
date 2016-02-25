@@ -84,6 +84,8 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 return true;
             case /*"TOMA DE PEDIDO BUZON"*/"08":
                 return true;
+            case /*"REPARTO DE PEDIDO BUZON"*/"09":
+                return true;
             default:
                 break;
         }
@@ -286,7 +288,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 return "";
         }
     }
-    
+
     $scope.textoRecordatorio = function(codigo){
         switch(codigo){
             case "02":
@@ -370,7 +372,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             case "04":
                 return true;
             case "09":
-                return true;    
+                return true; 
         }
         return false;
     }
