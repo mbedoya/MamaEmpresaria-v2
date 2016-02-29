@@ -251,7 +251,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 detalleModal = "Lleva tu pedido al buzón antes de la 1 de la tarde de este día.";   
                 break;
             case "09":
-                detalleModal = "Recibirás tu pedido en esta fecha si lo realizaste por este medio en la fecha establecida.";   
+                detalleModal = "Recibirás tu pedido en esta fecha, si lo realizaste por este medio en la fecha establecida.";   
                 break;
             default:
                 detalleModal = fecha.actividad;
