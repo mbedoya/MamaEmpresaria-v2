@@ -98,7 +98,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
 
         Campana.getEncuentros($scope.ano, $scope.mes, $rootScope.zona, function (success, data){
             if(success){
-                if(!data.razonRechazo){
+                if(!data.razonRechazo && (data.lugar || data.tema)){
                     $scope.fechasMes = data;
                 }else{
                     $scope.mostrarAyuda("No hay datos para el mes","Lo sentimos, aún no tenemos información disponible para el mes");  
@@ -132,7 +132,7 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
 
         Campana.getEncuentros($scope.ano, $scope.mes, $rootScope.zona, function (success, data){
             if(success){
-                if(!data.razonRechazo){
+                if(!data.razonRechazo && (data.lugar || data.tema)){
                     $scope.fechasMes = data;
                 }else{
                     $scope.mostrarAyuda("No hay datos para el mes","Lo sentimos, aún no tenemos información disponible para el mes");  
@@ -163,13 +163,16 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
         $scope.fechaSeleccionada=new Date($scope.formatoFecha(fecha.fecha));
         switch(principal){
             case true:
-                return "Tienes un encuentro el";
+                return "Tienes un encuentro el:";
             case false:
                 return "";
         }
     }
 
     $scope.diasFaltantes=function(fecha){
+        if(!fecha.fecha){
+            return -100;
+        }
         var multiplicador=0;
         var diaCalendario=new Date($scope.formatoFecha(fecha.fecha));
         multiplicador=diaCalendario<$scope.fechaCalendario?-1:1;

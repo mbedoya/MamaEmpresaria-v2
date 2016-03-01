@@ -25,11 +25,12 @@
     </br>
 <div class="list">
     
-    <div ng-class="hoyImpar(fechasMes)" style="border-color: #1594AC; margin: 1px; border-width: 2px;" ng-show="fechasMes.fecha">
+    <div ng-class="hoyImpar(fechasMes)" style="border-color: #1594AC; margin: 1px; border-width: 2px;" ng-show="fechasMes.lugar || fechasMes.tema">
         <div style="padding-left:20px">
             <i class="icon ion-android-people" style="font-size: 40px;"></i>
             <h2 ng-bind-html="textoMostrar(fechasMes, true)"></h2>
-            <p>{{ fechaSeleccionada | date: 'EEE'}} {{fechaSeleccionada | date:'dd' }} de {{ fechaSeleccionada | date: 'MMMM' | pascal }} del {{ fechaSeleccionada | date: 'yyyy' }}</p>
+            <p ng-show="fechasMes.fecha">{{ fechaSeleccionada | date: 'EEE'}} {{fechaSeleccionada | date:'dd' }} de {{ fechaSeleccionada | date: 'MMMM' | pascal }} del {{ fechaSeleccionada | date: 'yyyy' }}</p>
+            <p ng-hide="fechasMes.fecha">Fecha pendiente por definir</p>
             <p ng-show="hayLugar(fechasMes)">Lugar: <strong ng-show="hayLugar(fecha)">{{fechasMes.lugar}}</strong></p>         
             <p ng-show="hayTema(fecha)">Tema: {{fechasMes.tema}}</p>
             <p ng-show="hayHora(fechasMes)">Hora: {{fechasMes.hora}}</p>
@@ -41,11 +42,12 @@
     
     <div class="item item-divider" ng-show="fechasMes.listaOpcionales && fechasMes.listaOpcionales.length>0"><h3>Ademas puedes asistir a estos eventos:</h3></div>
 
-    <div ng-repeat="fecha in fechasMes.listaOpcionales | orderBy: diasFaltantes" ng-class-odd="hoyPar(fecha)" ng-class-even="hoyImpar(fecha)">
+    <div ng-repeat="fecha in fechasMes.listaOpcionales | orderBy: diasFaltantes" ng-class-odd="hoyPar(fecha)" ng-class-even="hoyImpar(fecha)" ng-show="fecha.lugar || fecha.tema">
         <div style="padding-left:20px">
             <i class="icon ion-android-people" style="font-size: 40px;"></i>
             <h2 ng-bind-html="textoMostrar(fecha, false)"></h2>
-            <p>{{fechaSeleccionada | date: 'EEE'}} {{fechaSeleccionada | date:'dd' }} de {{ fechaSeleccionada | date: 'MMMM' | pascal }} del {{ fechaSeleccionada | date: 'yyyy' }}</p>                        
+            <p ng-show="fecha.fecha">{{fechaSeleccionada | date: 'EEE'}} {{fechaSeleccionada | date:'dd' }} de {{ fechaSeleccionada | date: 'MMMM' | pascal }} del {{ fechaSeleccionada | date: 'yyyy' }}</p>  
+            <p ng-hide="fechasMes.fecha">Fecha pendiente por definir</p>
             <p ng-show="hayLugar(fecha)">Lugar: <strong ng-show="hayLugar(fecha)">{{fecha.lugar}}</strong></p>
             <p ng-show="hayTema(fecha)">Tema: {{fecha.tema}}</p>
             <p ng-show="hayHora(fecha)">Hora: {{fecha.hora}}</p>

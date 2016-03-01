@@ -1101,11 +1101,11 @@ angular.module('novaventa.services', [])
             //var t2 = new Date(this.validarFormatoFecha(stringFechaFinal)).getTime();
             //var t1 = new Date(this.validarFormatoFecha(stringFechaInicial)).getTime();
             
-            
+            multiplicador=fechaInicial<fechaFinal?1:-1;
             var diferenciaTiempo=Math.abs(fechaFinal-fechaInicial);
             var diferenciaDias = Math.ceil(diferenciaTiempo / (1000 * 3600 * 24));
 
-            return diferenciaDias;
+            return diferenciaDias*multiplicador;
         },
         validarFormatoFecha: function(fecha){
             var fechaFormateada=this.reemplazarTodos(fecha, '-', '/');       
