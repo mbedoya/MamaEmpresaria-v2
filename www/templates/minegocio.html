@@ -29,22 +29,30 @@
             </a>
             <a class="item item-avatar item-icon-right" href="#" ng-click="mostrarAyudaFlexibilizacion()" ng-show="flexibUso()===0" >
                 <div class="icono moneda"></div>
-                <i class="icon ion-plus-circled"></i>
+                <i class="icon ion-help-circled"></i>
                 <h2>Cuentas con un beneficio <br /> de flexibilización de <br /> máximo:
                 </h2>
                 <span class="item-note">
                   <strong> {{ flexibilizacion() | currency:"$":0 }} </strong>
                 </span>
             </a>
-            <a class="item item-avatar item-icon-right" href="#" ng-show="!(flexibUso()===0)" >
+            <a class="item item-avatar item-icon-right" href="#" ng-click="mostrarAyudaFlexUso()" ng-show="!(flexibUso()===0)" >
                 <div class="icono moneda"></div>
-                <i class="icon ion-plus-circled"></i>
-                <h2>Estas usando tu flexibilización por un valor de: 
+                <i class="icon ion-help-circled"></i>
+                <h2>Estas usando tu flexibilización<br /> por un valor de: 
                 </h2>
                 <span class="item-note">
                   <strong> {{ flexibUso() | currency:"$":0 }} </strong>
                 </span>
-            </a>
+            </a>            
+            <div class="item item-avatar item-icon-right" ng-show="!(ganancia()===0)" >
+                <div class="icono moneda"></div>
+                <h2>En esta campaña tuviste <br /> una ganancia de:
+                </h2>
+                <span class="item-note">
+                  <strong> {{ ganancia() | currency:"$":0 }} </strong>
+                </span>
+            </div>
         </div>
 
         <!-- Zona de Automatización de Pruebas -->

@@ -497,6 +497,10 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                     return Number($rootScope.datos.valorFlexibilizacion)/2;
                 }
             }
+            
+            $scope.mostrarAyudaFlexUso = function(){
+                $scope.mostrarAyuda('-Estas usando tu flexibilización por un valor de ' + $filter('currency')($scope.flexibUso(), '$', 0)+'.<br>-Recuerda que puedes volver a usar este beneficio una vez canceles la totalidad de su proximo pedido. Si ya pagaste consulta de nuevo e 24 horas.');
+            }
 
 
             $scope.mostrarAyudaFlexibilizacion = function() {
@@ -512,13 +516,19 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                 }
             }
             
-            $scope.inicializar();
-            
             $scope.flexibUso = function() {
                 if($scope.estadoPedidoData.flexibUso === 0){
                     return 0;
                 }else{
                     return Number($scope.estadoPedidoData.flexibUso);
+                }
+            }
+            
+            $scope.ganancia = function() {
+                if($scope.estadoPedidoData.ganancia === 0){
+                    return 0;
+                }else{
+                    return Number($scope.estadoPedidoData.ganancia);
                 }
             }
                         
