@@ -196,6 +196,20 @@ angular.module('novaventa.services', [])
                 fx(false, {});
             });
         },
+        getEstadoPedido: function(numeroPedido, fx) {
+            
+            var numeroPedido = $rootScope.numeroPedido;
+
+            var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/documento/cuentasME/" + numeroPedido;
+
+            $http.get(urlServicio).
+            success(function(data, status, headers, config) {
+                fx(true, data);
+            }).
+            error(function(data, status, headers, config) {
+                fx(false, {});
+            });
+        },
         buscarEstado: function(estado, pedido){
             var miestado = null;
 
@@ -602,7 +616,12 @@ angular.module('novaventa.services', [])
                         //Obtener el estado del pedido
                         Pedido.getTrazabilidadActual($rootScope.datos.cedula, function (success, data){
                             if(success){
-
+                                
+                                // $rootScope.numeroPedido utilizado para validar el pedido en Mi Negocio
+                                if(!data.razonRechazo){
+                                    $rootScope.numeroPedido = data.numeroPedido;
+                                }
+                                
                                 $rootScope.pedido = data;
 
                                 //Obtener la campaña operativa
