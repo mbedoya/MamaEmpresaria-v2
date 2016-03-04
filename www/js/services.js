@@ -212,7 +212,10 @@ angular.module('novaventa.services', [])
         },
         getNotasCredito: function(fx){
 
-            var urlServicio = $rootScope.configuracion.ip_servidores + "/" + $rootScope.configuracion.instancia + "/terminosYCondiciones/autorizarME";
+            var cedula = $rootScope.datos.cedula;
+            var anoCampana = Utilidades.getAnoCampana();
+            
+            var urlServicio = $rootScope.configuracion.ip_servidores + "/" + $rootScope.configuracion.instancia + "/documento/NC";
 
             var request = {
                 method: 'POST',
@@ -220,7 +223,7 @@ angular.module('novaventa.services', [])
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                data: "version=" + $rootScope.datos.versionHabeasData
+                data: "agnoCampagna=" + anoCampana + "&identificacion="+ cedula
             };
 
             $http(request).
