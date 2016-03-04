@@ -795,6 +795,13 @@ width: 100%;
     color: #444;
 }
 
+.item-detalle{
+    padding: 20px !important;
+    border-width: 0px !important;
+    font-size: 30px;
+    color: #eb0c6e;
+}
+
 /*  Titulos y textos  */
 
 .no-procesado .item {

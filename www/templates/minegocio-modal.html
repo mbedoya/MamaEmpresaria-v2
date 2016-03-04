@@ -1,0 +1,25 @@
+<ion-modal-view>
+    <ion-content>
+        <div class="list">    
+
+            <div class="item item-divider">
+                <p>Notas Credito</p>
+            </div>
+            
+            <div ng-repeat="nc in notasCredito.listaNC" class="row">
+                <a ng-repeat="cl in nc.listaCl" ng-class-odd="alternar(true)" ng-class-even="alternar(false)">
+                    <i class="ion-cash" style="padding-right: 20px; color: #"></i>
+                    <p style="text-align:left">CL: {{cl.cl}}</p>
+                    <p style="text-align:left">Nombre: {{cl.nombre}}</p>
+                    <p style="text-align:left">Valor: {{cl.valor}}</p>
+                </a>
+            </div>
+
+        </div>
+
+
+
+        <input type="button" value="Cerrar" class="modal-button button button-block" ng-click="closeModal()">
+
+    </ion-content>
+</ion-modal-view>

@@ -53,6 +53,15 @@
                   <strong> {{ ganancia() | currency:"$":0 }} </strong>
                 </span>
             </div>
+            <a class="item item-avatar item-icon-right" href="#" ng-click="openModal()" ng-show="!notasCredito.razonRechazo" >
+                <div class="icono moneda"></div>
+                <i class="icon ion-help-circled"></i>
+                <h2>Tienes notas credito aprovadas<br /> por un valor de: 
+                </h2>
+                <span class="item-note">
+                  <strong> {{ flexibUso() | currency:"$":0 }} </strong>
+                </span>
+            </a>  
         </div>
 
         <!-- Zona de Automatización de Pruebas -->

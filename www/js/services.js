@@ -210,30 +210,6 @@ angular.module('novaventa.services', [])
                 fx(false, {});
             });
         },
-        getNotasCredito: function(fx){
-
-            var cedula = $rootScope.datos.cedula;
-            var anoCampana = Utilidades.getAnoCampana();
-            
-            var urlServicio = $rootScope.configuracion.ip_servidores + "/" + $rootScope.configuracion.instancia + "/documento/NC";
-
-            var request = {
-                method: 'POST',
-                url: urlServicio,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                data: "agnoCampagna=" + anoCampana + "&identificacion="+ cedula
-            };
-
-            $http(request).
-            success(function(data, status, headers, config) {
-                fx(true, data);
-            }).
-            error(function(data, status, headers, config) {
-                fx(false, {});
-            });
-        },
         buscarEstado: function(estado, pedido){
             var miestado = null;
 
@@ -486,6 +462,42 @@ angular.module('novaventa.services', [])
             error(function(data, status, headers, config) {
                 fx(false, {});
             });
+        },
+        getNotasCredito: function(fx){
+
+            var cedula = $rootScope.datos.cedula;
+            var anoCampana = Utilidades.getAnoCampana();
+            
+            var urlServicio = $rootScope.configuracion.ip_servidores + "/" + $rootScope.configuracion.instancia + "/documento/NC/" + 201603+"/"+cedula;
+            
+            $http.get(urlServicio).
+            success(function(data, status, headers, config) {
+                console.log("getNotasCredito- url", urlServicio);
+                console.log("getNotasCredito - data", data);
+                fx(true, data);
+            }).
+            error(function(data, status, headers, config) {
+                fx(false, {});
+            });
+            
+            /*var urlServicio = $rootScope.configuracion.ip_servidores + "/" + $rootScope.configuracion.instancia + "/documento/NC";
+
+            var request = {
+                method: 'POST',
+                url: urlServicio,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: "agnoCampagna=" + anoCampana + "&identificacion="+ cedula
+            };
+
+            $http(request).
+            success(function(data, status, headers, config) {
+                fx(true, data);
+            }).
+            error(function(data, status, headers, config) {
+                fx(false, {});
+            });*/
         },
         getPregunta1: function(fx){
 
