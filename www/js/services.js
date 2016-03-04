@@ -210,6 +210,27 @@ angular.module('novaventa.services', [])
                 fx(false, {});
             });
         },
+        getNotasCredito: function(fx){
+
+            var urlServicio = $rootScope.configuracion.ip_servidores + "/" + $rootScope.configuracion.instancia + "/terminosYCondiciones/autorizarME";
+
+            var request = {
+                method: 'POST',
+                url: urlServicio,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: "version=" + $rootScope.datos.versionHabeasData
+            };
+
+            $http(request).
+            success(function(data, status, headers, config) {
+                fx(true, data);
+            }).
+            error(function(data, status, headers, config) {
+                fx(false, {});
+            });
+        },
         buscarEstado: function(estado, pedido){
             var miestado = null;
 
