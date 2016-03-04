@@ -499,7 +499,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
             }
             
             $scope.mostrarAyudaFlexUso = function(){
-                $scope.mostrarAyuda('-Estas usando tu flexibilización por un valor de ' + $filter('currency')($scope.flexibUso(), '$', 0)+'.<br>-Recuerda que puedes volver a usar este beneficio una vez canceles la totalidad de su proximo pedido. Si ya pagaste consulta de nuevo e 24 horas.');
+                $scope.mostrarAyuda('-Recuerda que puedes volver a usar este beneficio una vez canceles la totalidad de su proximo pedido. Si ya pagaste consulta de nuevo e 24 horas.');
             }
 
 
