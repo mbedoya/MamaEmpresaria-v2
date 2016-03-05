@@ -1,25 +1,29 @@
 <ion-modal-view>
     <ion-content>
-        <div class="list">    
+
+        <div class="item item-divider">
+            <p>Notas Credito</p>
+        </div>
+        <br />
+        <div class="list" ng-repeat="nc in notasCredito.listaNC">    
 
             <div class="item item-divider">
-                <p>Notas Credito</p>
-            </div>
-            
-            <div ng-repeat="nc in notasCredito.listaNC" class="row">
-                <a ng-repeat="cl in nc.listaCl" ng-class-odd="alternar(true)" ng-class-even="alternar(false)">
-                    <i class="ion-cash" style="padding-right: 20px; color: #"></i>
-                    <p style="text-align:left">CL: {{cl.cl}}</p>
-                    <p style="text-align:left">Nombre: {{cl.nombre}}</p>
-                    <p style="text-align:left">Valor: {{cl.valor}}</p>
-                </a>
+                <p><strong>Año campaña {{nc.agnocampagna}}</strong></p>
             </div>
 
+            <div ng-repeat="cl in nc.listaCl" ng-class-odd="alternar(true)" ng-class-even="alternar(false)">
+                <div style="padding-left:40px">
+                    <i class="icon ion-cash"></i>
+                    <p><strong>CL:</strong> {{cl.cl}}</p></span>
+                <p><strong>Nombre:</strong> {{cl.nombre}}</p></span>
+            <p><strong>Valor:</strong> {{cl.valor | currency:"$":0}}</p></span>
         </div>
+    </div>
+</div>
 
 
 
-        <input type="button" value="Cerrar" class="modal-button button button-block" ng-click="closeModal()">
+<input type="button" value="Cerrar" class="modal-button button button-block" ng-click="closeModal()">
 
-    </ion-content>
+</ion-content>
 </ion-modal-view>

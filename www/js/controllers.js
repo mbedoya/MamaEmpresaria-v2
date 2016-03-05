@@ -460,9 +460,9 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
 
     $scope.alternar = function(alternar){
         if(alternar)
-            return "row item item-icon-left item-detalle alternate"; 
+            return "item item-icon-left detalle-item alternate"; 
         else
-            return "row item item-icon-left item-detalle";
+            return "item item-icon-left detalle-item";
     }
 
     $scope.funcTrial = function(){
