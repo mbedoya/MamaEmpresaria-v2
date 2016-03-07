@@ -5,13 +5,9 @@
             <p>Notas Crédito</p>
         </div>
         <br />
-        <div class="list" ng-repeat="nc in notasCredito.listaNC">    
+        <div class="list">    
 
-            <div class="item item-divider">
-                <p><strong>Año campaña {{nc.agnocampagna}}</strong></p>
-            </div>
-
-            <div ng-repeat="cl in nc.listaCl" ng-class-odd="alternar(true)" ng-class-even="alternar(false)">
+            <div ng-repeat="cl in listaCL" ng-class-odd="alternar(true)" ng-class-even="alternar(false)">
                 <div style="padding-left:40px">
                     <i class="icon ion-cash"></i>
                     <p><strong>CL:</strong> {{cl.cl}}</p></span>

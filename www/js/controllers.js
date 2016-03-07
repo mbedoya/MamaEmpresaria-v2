@@ -430,7 +430,9 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     });    
 
     $scope.inicializar = function(){
-
+        
+        $scope.listaCL = new Array();
+        $scope.valorCL = 0;
         /* $scope.loading =  $ionicLoading.show({
                         template: Utilidades.getPlantillaEspera('CARGANDO')
                     }); */
@@ -452,11 +454,22 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
         Mama.getNotasCredito(function (success, data){
             if(success){
                 $scope.notasCredito = data;
+                $scope.formatoNC();
             }else{
                 $scope.mostrarAyuda("Mi Pedido","En este momento no podemos consultar tu información");
             }                
         });
-    }	
+    }
+
+    $scope.formatoNC = function(){  
+        for(var i=0; i<$scope.notasCredito.listaNC.length; i++){
+            for(var j=0; j<$scope.notasCredito.listaNC[i].listaCl.length;j++){
+                $scope.listaCL.push($scope.notasCredito.listaNC[i].listaCl[j]);
+                $scope.valorCL = $scope.valorCL + parseInt($scope.notasCredito.listaNC[i].listaCl[j].valor);
+            }
+        }
+        console.log("Mi Negocio - ListaCL", $scope.listaCL);
+    }
 
     $scope.alternar = function(alternar){
         if(alternar)
@@ -469,10 +482,9 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
         Pedido.getEstadoPedido($rootScope.numeroPedido, function (success, data){
             if(success){
                 $scope.estadoPedidoData = data;
-                console.log(data.flexibUso);
-                console.log($rootScope.pedido);
+                console.log("Mi Negocio - Estado pedido", data);
             }else{
-                console.log("ERROR ANA");
+                $scope.mostrarAyuda("Mi Pedido","En este momento no podemos consultar tu información");
             }
         });
     }
@@ -505,6 +517,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     }
 
     $scope.flexibilizacionPago = function(){
+        if(isNaN($rootScope.datos.valorFlexibilizacion)) return 0;
         //La flexibilización es mayor que el valor a Pagar?
         if(Number($rootScope.datos.valorFlexibilizacion)>Number($rootScope.datos.saldo)){
             return 0;
@@ -541,19 +554,19 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     }
 
     $scope.mostrarAyudaFlexUso = function(){
-        $scope.mostrarAyuda('-Recuerda que puedes volver a usar este beneficio una vez canceles la totalidad de su proximo pedido. Si ya pagaste consulta de nuevo e 24 horas.');
+        $scope.mostrarAyuda('Recuerda que puedes volver a usar este beneficio una vez canceles la totalidad de su proximo pedido. Si ya pagaste consulta de nuevo en 24 horas.');
     }
 
 
     $scope.mostrarAyudaFlexibilizacion = function() {
 
         if($scope.flexibilizacionPago() > 0){
-            $scope.mostrarAyuda('Mi Negocio','Este beneficio te permite cubrir parte de tu pago en caso de tener inconvenientes con tus clientes.  De ser necesario usa los ' + $filter('currency')($scope.flexibilizacionDeuda(), '$', 0) + ' o parte de estos. Ejemplo: Paga ' +
+            $scope.mostrarAyuda('Mi Negocio','-Estás usando tu flexibilización por un valor de: '+$filter('currency')($scope.flexibUso(), '$', 0)+'<br /><br />-Este beneficio te permite cubrir parte de tu pago en caso de tener inconvenientes con tus clientes.  De ser necesario usa los ' + $filter('currency')($scope.flexibilizacionDeuda(), '$', 0) + ' o parte de estos. Ejemplo: Paga ' +
                                 $filter('currency')($scope.flexibilizacionEjemploPago(), '$', 0) + ' y queda debiendo ' +
                                 $filter('currency')($scope.flexibilizacionEjemploDeuda(), '$', 0) + ', debes cancelar este valor antes de tu próximo pedido.');
         }else{
             if($scope.flexibilizacionPago() == 0){
-                $scope.mostrarAyuda('Mi Negocio','Este beneficio te permite cubrir parte de tu pago en caso de tener inconvenientes con tus clientes.');
+                $scope.mostrarAyuda('Mi Negocio','-Estás usando tu flexibilización por un valor de: '+$filter('currency')($scope.flexibUso(), '$', 0)+'<br /><br />-Este beneficio te permite cubrir parte de tu pago en caso de tener inconvenientes con tus clientes.');
             }
         }
     }
