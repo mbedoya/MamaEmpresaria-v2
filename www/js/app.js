@@ -40,8 +40,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
             //window.plugins.OneSignal.enableNotificationsWhenActive(true);
 
             document.addEventListener("pause", function () {
-            navigator.app.exitApp()
-            alert("on pause");
+            navigator.app.exitApp();
         }, false);
 
         }, false);
