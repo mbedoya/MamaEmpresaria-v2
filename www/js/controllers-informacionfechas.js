@@ -281,9 +281,9 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             case "04":
                 return "Entrega de pedido 2:";
             case "08":
-                return "Fecha de toma de pedidos<br> por buzón:";
+                return "Toma de pedidos<br> por buzón:";
             case "09":
-                return "Fecha de entrega pedidos<br> por buzón:";
+                return "Entrega de pedidos<br> por buzón:";
             default:
                 return "";
         }
@@ -300,9 +300,9 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             case "04":
                 return "entrega de pedido 2";
             case "08":
-                return "fecha de toma de pedidos por buzón";
+                return "toma de pedidos por buzón";
             case "09":
-                return "fecha de entrega pedidos por buzón";
+                return "entrega de pedidos por buzón";
             default:
                 return "";
         }

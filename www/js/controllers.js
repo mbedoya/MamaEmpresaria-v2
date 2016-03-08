@@ -433,6 +433,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
         
         $scope.listaCL = new Array();
         $scope.valorCL = 0;
+        $scope.campana = $rootScope.campana.numero;
         /* $scope.loading =  $ionicLoading.show({
                         template: Utilidades.getPlantillaEspera('CARGANDO')
                     }); */
