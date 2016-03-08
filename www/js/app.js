@@ -7,12 +7,28 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
         //INICIA JS DE ONE SIGNAL
         document.addEventListener('deviceready', function () {  
+            
+            var notificacionLeida=false; 
 
             var notificationOpenedCallback = function(jsonData) {
                 //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
                 //alert(jsonData.additionalData.title+"\n\n"+jsonData.message); 
+
+                var alertPopup = $ionicPopup.alert({
+                    title: jsonData.additionalData.title,
+                    template: jsonData.message
+                });
+
+                alertPopup.then(function(res) {
+                    notificacionLeida=true;
+                });
                 
-                var notificacion='{"id":0, "titulo":"'+jsonData.additionalData.title+'", "mensaje":"'+jsonData.message+'"}';
+                almacenarNotificaciones(jsonData);
+            };
+
+
+            var almacenarNotificaciones = function(jsonData){
+                var notificacion='{"id":0, "titulo":"'+jsonData.additionalData.title+'", "mensaje":"'+jsonData.message+'", "leido":"'+notificacionLeida+'"}';
                 var notificacionesAlmacenadas = JSON.parse(localStorage.getItem("notificaciones"));
                 if(notificacionesAlmacenadas){
                     var json=JSON.parse(notificacion);
@@ -23,13 +39,8 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                     notificacionesAlmacenadas = new Array();
                     notificacionesAlmacenadas.push(JSON.parse(notificacion));
                     localStorage.setItem("notificaciones", JSON.stringify(notificacionesAlmacenadas));
-                }   
-
-                var alertPopup = $ionicPopup.alert({
-                    title: jsonData.additionalData.title,
-                    template: jsonData.message
-                });
-            };
+                }  
+            }
 
             window.plugins.OneSignal.init($rootScope.notificacionesPush.apikey,
                                           {googleProjectNumber: $rootScope.notificacionesPush.project},
@@ -39,9 +50,9 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
             //window.plugins.OneSignal.enableNotificationsWhenActive(true);
 
-            document.addEventListener("pause", function () {
+            /*document.addEventListener("pause", function () {
             navigator.app.exitApp();
-        }, false);
+        }, false);*/
 
         }, false);
 
@@ -73,7 +84,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         $rootScope.hoyEsEncuentro = function(){
             return Campana.hoyEsEncuentro();
         }
-        
+
     });
 })
     .config(['$ionicConfigProvider', function($ionicConfigProvider) {
