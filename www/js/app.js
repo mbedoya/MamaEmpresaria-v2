@@ -10,7 +10,10 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
             var notificationOpenedCallback = function(jsonData) {
                 //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-                //alert(jsonData.additionalData.title+"\n\n"+jsonData.message);   
+                //alert(jsonData.additionalData.title+"\n\n"+jsonData.message); 
+                
+                $rootScope.almacenarNotificacion(jsonData);
+                
                 var alertPopup = $ionicPopup.alert({
                     title: jsonData.additionalData.title,
                     template: jsonData.message
@@ -58,6 +61,18 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
         $rootScope.hoyEsEncuentro = function(){
             return Campana.hoyEsEncuentro();
+        }
+        
+        $rootScope.almacenarNotificacion = function(jsonData){
+            var notificacionesAlmacenadas = JSON.parse(localStorage.getItem("notificaciones"));
+            if(notificacionesAlmacenadas){
+                notificacionesAlmacenadas.push(JSON.parse(jsonData));
+                localStorage.setItem("notificaciones", JSON.stringify(notificacionesAlmacenadas));
+            }else{
+                notificacionesAlmacenadas = new Array();
+                notificacionesAlmacenadas.push(JSON.parse(jsonData));
+                localStorage.setItem("notificaciones", JSON.stringify(notificacionesAlmacenadas));
+            }
         }
 
     });
