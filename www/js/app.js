@@ -11,14 +11,15 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
             var notificationOpenedCallback = function(jsonData) {
                 //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
                 //alert(jsonData.additionalData.title+"\n\n"+jsonData.message); 
-
+                
+                var notificacion="{'titulo:"+jsonData.additionalData.title+"', 'mensaje':"+sonData.message+"}";
                 var notificacionesAlmacenadas = JSON.parse(localStorage.getItem("notificaciones"));
                 if(notificacionesAlmacenadas){
-                    notificacionesAlmacenadas.push(JSON.parse(jsonData));
+                    notificacionesAlmacenadas.push(JSON.parse(notificacion));
                     localStorage.setItem("notificaciones", JSON.stringify(notificacionesAlmacenadas));
                 }else{
                     notificacionesAlmacenadas = new Array();
-                    notificacionesAlmacenadas.push(JSON.parse(jsonData));
+                    notificacionesAlmacenadas.push(JSON.parse(notificacion));
                     localStorage.setItem("notificaciones", JSON.stringify(notificacionesAlmacenadas));
                 }
 
