@@ -34,7 +34,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
 
             var almacenarNotificacion = function(jsonData){
-                var notificacion='{"id":0, "titulo":"'+jsonData.additionalData.title+'", "mensaje":"false", "leido":"'+notificacionLeida+'"}';
+                var notificacion='{"id":0, "titulo":"'+jsonData.additionalData.title+'", "mensaje":"'+jsonData.message+'", "leido":"false"}';
                 var notificacionesAlmacenadas = JSON.parse(localStorage.getItem("notificaciones"));
                 if(notificacionesAlmacenadas){
                     var json=JSON.parse(notificacion);
