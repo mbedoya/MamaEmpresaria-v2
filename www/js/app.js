@@ -12,16 +12,18 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                 //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
                 //alert(jsonData.additionalData.title+"\n\n"+jsonData.message); 
                 
-                var notificacion="{'titulo:"+jsonData.additionalData.title+"', 'mensaje':"+sonData.message+"}";
+                var notificacion='{"id":0, "titulo":"'+jsonData.additionalData.title+'", "mensaje":"'+jsonData.message+'"}';
                 var notificacionesAlmacenadas = JSON.parse(localStorage.getItem("notificaciones"));
                 if(notificacionesAlmacenadas){
-                    notificacionesAlmacenadas.push(JSON.parse(notificacion));
+                    var json=JSON.parse(notificacion);
+                    json.id=notificacionesAlmacenadas.length;
+                    notificacionesAlmacenadas.push(json);
                     localStorage.setItem("notificaciones", JSON.stringify(notificacionesAlmacenadas));
                 }else{
                     notificacionesAlmacenadas = new Array();
                     notificacionesAlmacenadas.push(JSON.parse(notificacion));
                     localStorage.setItem("notificaciones", JSON.stringify(notificacionesAlmacenadas));
-                }
+                }   
 
                 var alertPopup = $ionicPopup.alert({
                     title: jsonData.additionalData.title,
@@ -71,7 +73,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         $rootScope.hoyEsEncuentro = function(){
             return Campana.hoyEsEncuentro();
         }
-
+        
     });
 })
     .config(['$ionicConfigProvider', function($ionicConfigProvider) {
