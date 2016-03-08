@@ -7,28 +7,34 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
         //INICIA JS DE ONE SIGNAL
         document.addEventListener('deviceready', function () {  
-            
-            var notificacionLeida=false; 
 
             var notificationOpenedCallback = function(jsonData) {
                 //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-                //alert(jsonData.additionalData.title+"\n\n"+jsonData.message); 
-
+                //alert(jsonData.additionalData.title+"\n\n"+jsonData.message);                 
+            
+                var notificacionLeida=false; 
+                
+                almacenarNotificacion(jsonData);
+                
                 var alertPopup = $ionicPopup.alert({
                     title: jsonData.additionalData.title,
                     template: jsonData.message
                 });
 
                 alertPopup.then(function(res) {
-                    notificacionLeida=true;
+                    fueLeido();
                 });
-                
-                almacenarNotificaciones(jsonData);
             };
+            
+            var fueLeido = function(){
+                var notificacionesAlmacenadas = JSON.parse(localStorage.getItem("notificaciones"));
+                notificacionesAlmacenadas[notificacionesAlmacenadas.length-1].leido=true;
+                localStorage.setItem("notificaciones", JSON.stringify(notificacionesAlmacenadas));
+            }
 
 
-            var almacenarNotificaciones = function(jsonData){
-                var notificacion='{"id":0, "titulo":"'+jsonData.additionalData.title+'", "mensaje":"'+jsonData.message+'", "leido":"'+notificacionLeida+'"}';
+            var almacenarNotificacion = function(jsonData){
+                var notificacion='{"id":0, "titulo":"'+jsonData.additionalData.title+'", "mensaje":"false", "leido":"'+notificacionLeida+'"}';
                 var notificacionesAlmacenadas = JSON.parse(localStorage.getItem("notificaciones"));
                 if(notificacionesAlmacenadas){
                     var json=JSON.parse(notificacion);
