@@ -24,6 +24,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
 
     $scope.openModal = function() {
         $scope.modal.show();
+        $scope.buscarNotificacionPendiente();
     };
 
     $scope.closeModal = function() {
