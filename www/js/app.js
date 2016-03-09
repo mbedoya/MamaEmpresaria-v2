@@ -14,7 +14,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
                 var notificacionLeida=false; 
 
-                alert(jsonData);
+                alert(JSON.stringify(jsonData));
 
                 almacenarNotificacion(jsonData);
 
@@ -36,6 +36,8 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
             var almacenarNotificacion = function(jsonData){
                 alert("entro a almacenar");
+                alert(jsonData.additionalData);
+                alert(jsonData.additionalData.title);
                 try{
                     var notificacion='{"id":0, "titulo":"'+jsonData.additionalData.title+'", "mensaje":"'+jsonData.message+'", "leido":false, "fecha":"'+Utilidades.formatearFechaActual()+'"}';
                 }catch(err){
