@@ -11,13 +11,13 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
             var notificationOpenedCallback = function(jsonData) {
                 //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
                 //alert(jsonData.additionalData.title+"\n\n"+jsonData.message);                 
-            
+
                 var notificacionLeida=false; 
-                
+
                 alert(jsonData);
-                
+
                 almacenarNotificacion(jsonData);
-                
+
                 var alertPopup = $ionicPopup.alert({
                     title: jsonData.additionalData.title,
                     template: jsonData.message
@@ -27,7 +27,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                     fueLeido();
                 });
             };
-            
+
             var fueLeido = function(){
                 var notificacionesAlmacenadas = JSON.parse(localStorage.getItem("notificaciones"));
                 notificacionesAlmacenadas[notificacionesAlmacenadas.length-1].leido=true;
@@ -36,7 +36,11 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
             var almacenarNotificacion = function(jsonData){
                 alert("entro a almacenar");
-                var notificacion='{"id":0, "titulo":"'+jsonData.additionalData.title+'", "mensaje":"'+jsonData.message+'", "leido":false, "fecha":"'+Utilidades.formatearFechaActual()+'"}';
+                try{
+                    var notificacion='{"id":0, "titulo":"'+jsonData.additionalData.title+'", "mensaje":"'+jsonData.message+'", "leido":false, "fecha":"'+Utilidades.formatearFechaActual()+'"}';
+                }catch(err){
+                    alert(err.message);
+                }
                 alert("paso 1");
                 var notificacionesAlmacenadas = JSON.parse(localStorage.getItem("notificaciones"));
                 alert("paso 2");
@@ -104,7 +108,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         $rootScope.hoyEsEncuentro = function(){
             return Campana.hoyEsEncuentro();
         }
-        
+
     });
 })
     .config(['$ionicConfigProvider', function($ionicConfigProvider) {
