@@ -1,0 +1,26 @@
+<ion-modal-view>
+    <ion-content>
+
+        <div class="item item-divider">
+            <p ng-show="contNotificaciones>0">Tienes {{contNotificaciones}} notificaciones sin leer</p>
+            <p ng-hide="contNotificaciones>0">No tienes notificaciones nuevas</p>
+        </div>
+        <br />
+        <div class="list">    
+
+            <div ng-click="mostrarNotificacion(notificacion)" ng-repeat="notificacion in notificacionesAlmacenadas" ng-class-odd="alternar(true)" ng-class-even="alternar(false)">
+                <div style="padding-left:40px">
+                    <i class="icon ion-android-mail" ng-hide="notificacion.leido"></i>
+                    <i class="icon ion-android-drafts" ng-show="notificacion.leido"></i>
+                    <p><strong>Titulo:</strong> {{notificacion.titulo}}</p></span>
+                <p><strong>Fecha:</strong> {{ validarFecha(notificacion.fecha) | date: 'EEE'}} {{fechaNotificacion | date:'dd' }} de {{ fechaNotificacion | date: 'MMMM' | pascal }} del {{ fechaNotificacion | date: 'yyyy' }}</p></span>
+        </div>
+        </div>
+    </div>
+
+
+
+<input type="button" value="Cerrar" class="modal-button button button-block" ng-click="closeModal()">
+
+</ion-content>
+</ion-modal-view>

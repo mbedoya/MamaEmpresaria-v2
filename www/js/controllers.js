@@ -1,6 +1,40 @@
 var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filters'])
 
-.controller('AppCtrl', function($scope, $state, $rootScope, $location, $ionicHistory) {
+.controller('AppCtrl', function($scope, $state, $rootScope, $location, $ionicHistory, $ionicModal, $ionicPopup, Utilidades) {
+    
+    $scope.$on('$ionicView.beforeEnter', function(){        
+        $scope.buscarNotificacionPendiente();
+    });
+    
+    $ionicModal.fromTemplateUrl('templates/notificaciones-modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function(modal) {
+        $scope.modal = modal;
+
+        $scope.modalRightButtons = [
+            {
+                type: 'button-clear',
+                content: 'Cancel',
+                tap: function(e) {
+                    $scope.modal.hide();
+                }
+            }];
+    });
+
+    $scope.openModal = function() {
+        $scope.modal.show();
+    };
+
+    $scope.closeModal = function() {
+        $scope.modal.hide();
+        localStorage.setItem("notificaciones", JSON.stringify($scope.notificacionesAlmacenadas));
+        $scope.buscarNotificacionPendiente();
+    };
+
+    $scope.$on('$destroy', function() {
+        $scope.modal.remove();
+    });
 
     $scope.cerrarSesion = function() {
         if(localStorage && localStorage.cedula){
@@ -15,9 +49,46 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
 
         $location.path('/app/login');
     };
+    
+    $scope.validarFecha = function(fecha){
+        $scope.fechaNotificacion=new Date(Utilidades.validarFormatoFecha(fecha));
+        return $scope.fechaNotificacion;
+    }
+    
+    $scope.mostrarNotificacion = function(notificacion){
+        var alertPopup = $ionicPopup.alert({
+                    title: notificacion.titulo,
+                    template: notificacion.mensaje
+                });
+
+                alertPopup.then(function(res) {
+                    notificacion.leido=true;
+                });
+    }
+    
+    $scope.alternar = function(alternar){
+        if(alternar)
+            return "item item-icon-left detalle-item alternate"; 
+        else
+            return "item item-icon-left detalle-item";
+    }
+
+    $scope.hayNotificaciones = function(){
+        if($scope.contNotificaciones>0)return "button button-icon ion-email notificacion-icon circle";
+        else return "button button-icon button-clear ion-email notificacion-icon";
+    }
+
+    $scope.buscarNotificacionPendiente = function(){        
+        $scope.contNotificaciones=0;
+        $scope.notificacionesAlmacenadas = JSON.parse(localStorage.getItem("notificaciones"));
+        if($scope.notificacionesAlmacenadas){
+            for(var i=0; i<$scope.notificacionesAlmacenadas.length; i++){
+                if(!$scope.notificacionesAlmacenadas[i].leido)$scope.contNotificaciones++;
+            }
+        } 
+    }
 
     $scope.irACambioClave = function() {
-
         //$ionicHistory.nextViewOptions({ disableBack: false });
         $location.path('/app/cambio-clave-actual');
     };
@@ -430,7 +501,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     });    
 
     $scope.inicializar = function(){
-        
+
         $scope.listaCL = new Array();
         $scope.valorCL = 0;
         $scope.campana = $rootScope.campana.numero;

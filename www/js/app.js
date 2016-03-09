@@ -1,6 +1,6 @@
 angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.controllers', 'novaventa.services'])
 
-    .run(function($ionicPlatform, $rootScope, $ionicPopup, Campana) { 
+    .run(function($ionicPlatform, $rootScope, $ionicPopup, Campana, Utilidades) { 
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -32,9 +32,8 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                 localStorage.setItem("notificaciones", JSON.stringify(notificacionesAlmacenadas));
             }
 
-
             var almacenarNotificacion = function(jsonData){
-                var notificacion='{"id":0, "titulo":"'+jsonData.additionalData.title+'", "mensaje":"'+jsonData.message+'", "leido":"false"}';
+                var notificacion='{"id":0, "titulo":"'+jsonData.additionalData.title+'", "mensaje":"'+jsonData.message+'", "leido":false, "fecha":"'+Utilidades.formatearFechaActual()+'"}';
                 var notificacionesAlmacenadas = JSON.parse(localStorage.getItem("notificaciones"));
                 if(notificacionesAlmacenadas){
                     var json=JSON.parse(notificacion);
@@ -90,7 +89,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         $rootScope.hoyEsEncuentro = function(){
             return Campana.hoyEsEncuentro();
         }
-
+        
     });
 })
     .config(['$ionicConfigProvider', function($ionicConfigProvider) {

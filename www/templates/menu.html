@@ -10,13 +10,14 @@
                 </button>
             </ion-nav-buttons>     
             <ion-nav-buttons side="primary">
-                <button class="button button-clear">
+                <button class="button button-clear" menu-toggle="left">
                     <img src="img/novaventa.png" />
                 </button>
             </ion-nav-buttons>
-            <ion-nav-buttons side="secondary">
-                <button class="button button-icon button-clear ion-plus">
+            <ion-nav-buttons side="secondary">                
+                <button ng-class="hayNotificaciones()" ng-click="openModal()">
                 </button>
+                <div ng-show="contNotificaciones>0" class="fuente">{{contNotificaciones}}</div>
             </ion-nav-buttons>
         </ion-nav-bar>
         <ion-nav-view name="menu-content"></ion-nav-view>

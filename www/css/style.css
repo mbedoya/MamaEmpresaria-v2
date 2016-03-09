@@ -887,6 +887,27 @@ width: 100%;
     padding-top: 5px;
 }
 
+.notificacion-icon:before{
+    color: white;
+}
+
+.circle:after{
+    content: ' \25CF';
+    font-size: 45px;
+    padding-left: 25px;
+    padding-top: -5px;
+    color: red;
+}
+
+.fuente{
+    position: absolute;
+    font:bold 14px "times"; 
+    top: 6px;
+    left: 324px;
+    color: white;
+    z-index: 1;
+}
+
 .fecha-icono-verde:before{
     font-weight: bold;
     color: #077885;
