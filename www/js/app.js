@@ -14,6 +14,8 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
             
                 var notificacionLeida=false; 
                 
+                alert(jsonData);
+                
                 almacenarNotificacion(jsonData);
                 
                 var alertPopup = $ionicPopup.alert({
@@ -33,6 +35,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
             }
 
             var almacenarNotificacion = function(jsonData){
+                alert("entro a almacenar");
                 var notificacion='{"id":0, "titulo":"'+jsonData.additionalData.title+'", "mensaje":"'+jsonData.message+'", "leido":false, "fecha":"'+Utilidades.formatearFechaActual()+'"}';
                 var notificacionesAlmacenadas = JSON.parse(localStorage.getItem("notificaciones"));
                 if(notificacionesAlmacenadas){
@@ -45,6 +48,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                     notificacionesAlmacenadas.push(JSON.parse(notificacion));
                     localStorage.setItem("notificaciones", JSON.stringify(notificacionesAlmacenadas));
                 }  
+                alert("Si almaceno");
             }
 
             window.plugins.OneSignal.init($rootScope.notificacionesPush.apikey,
