@@ -29,7 +29,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
 
     $scope.closeModal = function() {
         $scope.modal.hide();
-        localStorage.setItem("notificaciones", JSON.stringify($scope.notificacionesAlmacenadas));
+        localStorage.setItem("notificaciones", angular.toJson($scope.notificacionesAlmacenadas));
         $scope.buscarNotificacionPendiente();
     };
 
