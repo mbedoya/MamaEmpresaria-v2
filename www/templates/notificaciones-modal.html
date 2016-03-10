@@ -12,8 +12,9 @@
                 <div style="padding-left:40px">
                     <i class="icon ion-android-mail" ng-hide="notificacion.leido"></i>
                     <i class="icon ion-android-drafts" ng-show="notificacion.leido"></i>
-                    <p><strong>Titulo:</strong> {{notificacion.titulo}}</p></span>
-                <p><strong>Fecha:</strong> {{ validarFecha(notificacion.fecha) | date: 'EEE'}} {{fechaNotificacion | date:'dd' }} de {{ fechaNotificacion | date: 'MMMM' | pascal }} del {{ fechaNotificacion | date: 'yyyy' }}</p></span>
+                    <p ng-show="notificacion.titulo"><strong>Titulo:</strong> {{notificacion.titulo}}</p>
+                    <p><strong>Mensaje:</strong> {{vistaPrevia(notificacion, 5)}}</p>
+                <p><strong>Fecha:</strong> {{fechaNotificacion  | date: 'EEE'}} {{fechaNotificacion | date:'dd' }} de {{ fechaNotificacion | date: 'MMMM' | pascal }} del {{ fechaNotificacion | date: 'yyyy' }}</p></span>
         </div>
         </div>
     </div>

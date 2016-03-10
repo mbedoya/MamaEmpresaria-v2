@@ -8,18 +8,26 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         //INICIA JS DE ONE SIGNAL
         document.addEventListener('deviceready', function () {  
 
+            var titulo;
+            
             var notificationOpenedCallback = function(jsonData) {
                 //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
                 //alert(jsonData.additionalData.title+"\n\n"+jsonData.message);                 
 
                 var notificacionLeida=false; 
 
-                alert(JSON.stringify(jsonData));
+                console.log(jsonData);
+                
+                if(jsonData.additionalData && jsonData.additionalData.title){
+                    titulo=jsonData.additionalData.title;    
+                }else{
+                    titulo="";   
+                }
 
                 almacenarNotificacion(jsonData);
 
                 var alertPopup = $ionicPopup.alert({
-                    title: jsonData.additionalData.title,
+                    title: titulo,
                     template: jsonData.message
                 });
 
@@ -35,37 +43,22 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
             }
 
             var almacenarNotificacion = function(jsonData){
-                alert("entro a almacenar");
-                alert(jsonData.additionalData);
-                alert(jsonData.additionalData.title);
                 try{
-                    var notificacion='{"id":0, "titulo":"'+jsonData.additionalData.title+'", "mensaje":"'+jsonData.message+'", "leido":false, "fecha":"'+Utilidades.formatearFechaActual()+'"}';
+                    var notificacion='{"id":0, "titulo":"'+titulo+'", "mensaje":"'+jsonData.message+'", "leido":false, "fecha":"'+Utilidades.formatearFechaActual()+'"}';
                 }catch(err){
                     alert(err.message);
                 }
-                alert("paso 1");
                 var notificacionesAlmacenadas = JSON.parse(localStorage.getItem("notificaciones"));
-                alert("paso 2");
                 if(notificacionesAlmacenadas){
-                    alert("paso 3");
                     var json=JSON.parse(notificacion);
-                    alert("paso 4");
                     json.id=notificacionesAlmacenadas.length;
-                    alert("paso 5");
                     notificacionesAlmacenadas.push(json);
-                    alert("paso 6");
                     localStorage.setItem("notificaciones", JSON.stringify(notificacionesAlmacenadas));
-                    alert("paso 7");
                 }else{
-                    alert("paso 8");
                     notificacionesAlmacenadas = new Array();
-                    alert("paso 9");
                     notificacionesAlmacenadas.push(JSON.parse(notificacion));
-                    alert("paso 10");
                     localStorage.setItem("notificaciones", JSON.stringify(notificacionesAlmacenadas));
-                    alert("paso 11");
                 }  
-                alert("Si almaceno");
             }
 
             window.plugins.OneSignal.init($rootScope.notificacionesPush.apikey,

@@ -57,8 +57,11 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     }
     
     $scope.mostrarNotificacion = function(notificacion){
+        var titulo;
+        if(notificacion.titulo)titulo=notificacion.titulo;
+        else titulo="Notificación Mamá Empresaria"
         var alertPopup = $ionicPopup.alert({
-                    title: notificacion.titulo,
+                    title: titulo,
                     template: notificacion.mensaje
                 });
 
@@ -72,6 +75,20 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
             return "item item-icon-left detalle-item alternate"; 
         else
             return "item item-icon-left detalle-item";
+    }
+    
+    $scope.vistaPrevia = function(notificacion, tamañoDefecto){
+        $scope.validarFecha(notificacion.fecha);
+        var arregloSplit=notificacion.mensaje.split(" ");
+        var tamaño=arregloSplit.length>=tamañoDefecto?tamañoDefecto:arregloSplit.length;
+        var previa="";
+        for(var i=0; i<tamaño; i++){
+            var separador;
+            if(i<tamañoDefecto-1)separador=" ";
+            else separador="...";
+            previa=previa+arregloSplit[i]+separador;    
+        }
+        return previa;
     }
 
     $scope.hayNotificaciones = function(){
