@@ -25,6 +25,8 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                 }
 
                 almacenarNotificacion(jsonData);
+                
+                if(titulo=="")titulo="Notificación Mamá Empresaria";
 
                 var alertPopup = $ionicPopup.alert({
                     title: titulo,
