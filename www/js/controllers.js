@@ -644,7 +644,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     }
 
     $scope.mostrarAyudaFlexUso = function(){
-        $scope.mostrarAyuda('Recuerda que puedes volver a usar este beneficio una vez canceles la totalidad de su proximo pedido. Si ya pagaste consulta de nuevo en 24 horas.');
+        $scope.mostrarAyuda('Recuerda que puedes volver a usar este beneficio una vez canceles la totalidad de tu próximo pedido. Si ya pagaste consulta de nuevo en 24 horas.');
     }
 
 
