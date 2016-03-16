@@ -468,7 +468,7 @@ angular.module('novaventa.services', [])
             var cedula = $rootScope.datos.cedula;
             var anoCampana = Utilidades.getAnoCampana();
             
-            var urlServicio = $rootScope.configuracion.ip_servidores + "/" + $rootScope.configuracion.instancia + "/documento/NC/" + 201603+"/"+cedula;
+            var urlServicio = $rootScope.configuracion.ip_servidores + "/" + $rootScope.configuracion.instancia + "/documento/NC/" +anoCampana+"/"+cedula;
             
             $http.get(urlServicio).
             success(function(data, status, headers, config) {

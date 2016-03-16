@@ -1,11 +1,11 @@
 var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filters'])
 
 .controller('AppCtrl', function($scope, $state, $rootScope, $location, $ionicHistory, $ionicModal, $ionicPopup, Utilidades) {
-    
+
     $scope.$on('$ionicView.beforeEnter', function(){        
         $scope.buscarNotificacionPendiente();
     });
-    
+
     $ionicModal.fromTemplateUrl('templates/notificaciones-modal.html', {
         scope: $scope,
         animation: 'slide-in-up'
@@ -50,33 +50,33 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
 
         $location.path('/app/login');
     };
-    
+
     $scope.validarFecha = function(fecha){
         $scope.fechaNotificacion=new Date(Utilidades.validarFormatoFecha(fecha));
         return $scope.fechaNotificacion;
     }
-    
+
     $scope.mostrarNotificacion = function(notificacion){
         var titulo;
         if(notificacion.titulo)titulo=notificacion.titulo;
         else titulo="Notificación Mamá Empresaria"
         var alertPopup = $ionicPopup.alert({
-                    title: titulo,
-                    template: notificacion.mensaje
-                });
+            title: titulo,
+            template: notificacion.mensaje
+        });
 
-                alertPopup.then(function(res) {
-                    notificacion.leido=true;
-                });
+        alertPopup.then(function(res) {
+            notificacion.leido=true;
+        });
     }
-    
+
     $scope.alternar = function(alternar){
         if(alternar)
             return "item item-icon-left detalle-item alternate"; 
         else
             return "item item-icon-left detalle-item";
     }
-    
+
     $scope.vistaPrevia = function(notificacion, tamañoDefecto){
         $scope.validarFecha(notificacion.fecha);
         var arregloSplit=notificacion.mensaje.split(" ");
@@ -527,26 +527,26 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                         template: Utilidades.getPlantillaEspera('CARGANDO')
                     }); */
 
-        if(!$rootScope.numeroPedido){                       
+        /*if(!$rootScope.numeroPedido){                       
 
             Pedido.getTrazabilidadAnterior($rootScope.datos.cedula, function (success, data){
                 if(success){
                     $rootScope.numeroPedido = data.numeroPedido;
-                    $scope.funcTrial();
+                    $scope.consultarEstadoPedido();
                 }else{
-                    $scope.mostrarAyuda("Mi Pedido","En este momento no podemos consultar tu información");
+                    console.log("En este momento no podemos consultar tu información");
                 }
             });             
-        } else {
-            $scope.funcTrial();
-        } 
+        } else {*/
+            $scope.consultarEstadoPedido();
+        //} 
 
         Mama.getNotasCredito(function (success, data){
             if(success){
                 $scope.notasCredito = data;
                 $scope.formatoNC();
             }else{
-                $scope.mostrarAyuda("Mi Pedido","En este momento no podemos consultar tu información");
+                console.log("En este momento no podemos consultar tu información");
             }                
         });
     }
@@ -568,13 +568,13 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
             return "item item-icon-left detalle-item";
     }
 
-    $scope.funcTrial = function(){
+    $scope.consultarEstadoPedido = function(){
         Pedido.getEstadoPedido($rootScope.numeroPedido, function (success, data){
             if(success){
                 $scope.estadoPedidoData = data;
                 console.log("Mi Negocio - Estado pedido", data);
             }else{
-                $scope.mostrarAyuda("Mi Pedido","En este momento no podemos consultar tu información");
+                console.log("En este momento no podemos consultar tu información");
             }
         });
     }
@@ -662,6 +662,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     }
 
     $scope.flexibUso = function() {
+        if(!$scope.estadoPedidoData) return 0;
         if($scope.estadoPedidoData.flexibUso === 0){
             return 0;
         }else{
@@ -670,6 +671,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     }
 
     $scope.ganancia = function() {
+        if(!$scope.estadoPedidoData) return 0;
         if($scope.estadoPedidoData.ganancia === 0){
             return 0;
         }else{
