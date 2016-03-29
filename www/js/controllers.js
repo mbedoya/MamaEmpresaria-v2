@@ -1,9 +1,34 @@
 var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filters'])
 
-.controller('AppCtrl', function($scope, $state, $rootScope, $location, $ionicHistory, $ionicModal, $ionicPopup, Utilidades) {
+.controller('AppCtrl', function($scope, $state, $rootScope, $location, $ionicHistory, $ionicModal, $ionicPopup, Utilidades, $ionicPopover) {
 
     $scope.$on('$ionicView.beforeEnter', function(){        
         $scope.buscarNotificacionPendiente();
+    });
+
+     $ionicPopover.fromTemplateUrl('templates/social-popover.html', {
+        scope: $scope
+    }).then(function(popover) {
+        $scope.popover = popover;
+    });
+
+    $scope.openPopover = function($event) {
+        $scope.popover.show($event);
+    };
+    $scope.closePopover = function() {
+        $scope.popover.hide();
+    };
+    //Cleanup the popover when we're done with it!
+    $scope.$on('$destroy', function() {
+        $scope.popover.remove();
+    });
+    // Execute action on hide popover
+    $scope.$on('popover.hidden', function() {
+        // Execute action
+    });
+    // Execute action on remove popover
+    $scope.$on('popover.removed', function() {
+        // Execute action
     });
 
     $ionicModal.fromTemplateUrl('templates/notificaciones-modal.html', {
@@ -29,7 +54,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
 
     $scope.closeModal = function() {
         $scope.modal.hide();
-        localStorage.setItem("notificaciones", angular.toJson($scope.notificacionesAlmacenadas));
+        localStorage.setItem("push-"+$rootScope.datos.cedula, angular.toJson($scope.notificacionesAlmacenadas));
         $scope.buscarNotificacionPendiente();
     };
 
@@ -98,7 +123,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
 
     $scope.buscarNotificacionPendiente = function(){        
         $scope.contNotificaciones=0;
-        $scope.notificacionesAlmacenadas = JSON.parse(localStorage.getItem("notificaciones"));
+        $scope.notificacionesAlmacenadas = JSON.parse(localStorage.getItem("push-"+$rootScope.datos.cedula));
         if($scope.notificacionesAlmacenadas){
             for(var i=0; i<$scope.notificacionesAlmacenadas.length; i++){
                 if(!$scope.notificacionesAlmacenadas[i].leido)$scope.contNotificaciones++;
@@ -538,7 +563,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                 }
             });             
         } else {*/
-            $scope.consultarEstadoPedido();
+        $scope.consultarEstadoPedido();
         //} 
 
         Mama.getNotasCredito(function (success, data){

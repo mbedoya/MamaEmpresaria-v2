@@ -39,9 +39,9 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
             };
 
             var fueLeido = function(){
-                var notificacionesAlmacenadas = JSON.parse(localStorage.getItem("notificaciones"));
+                var notificacionesAlmacenadas = JSON.parse(localStorage.getItem("push-"+$rootScope.datos.cedula));
                 notificacionesAlmacenadas[notificacionesAlmacenadas.length-1].leido=true;
-                localStorage.setItem("notificaciones", JSON.stringify(notificacionesAlmacenadas));
+                localStorage.setItem("push-"+$rootScope.datos.cedula, JSON.stringify(notificacionesAlmacenadas));
             }
 
             var almacenarNotificacion = function(jsonData){
@@ -50,16 +50,16 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                 }catch(err){
                     alert(err.message);
                 }
-                var notificacionesAlmacenadas = JSON.parse(localStorage.getItem("notificaciones"));
+                var notificacionesAlmacenadas = JSON.parse(localStorage.getItem("push-"+$rootScope.datos.cedula));
                 if(notificacionesAlmacenadas){
                     var json=JSON.parse(notificacion);
                     json.id=notificacionesAlmacenadas.length;
                     notificacionesAlmacenadas.push(json);
-                    localStorage.setItem("notificaciones", JSON.stringify(notificacionesAlmacenadas));
+                    localStorage.setItem("push-"+$rootScope.datos.cedula, JSON.stringify(notificacionesAlmacenadas));
                 }else{
                     notificacionesAlmacenadas = new Array();
                     notificacionesAlmacenadas.push(JSON.parse(notificacion));
-                    localStorage.setItem("notificaciones", JSON.stringify(notificacionesAlmacenadas));
+                    localStorage.setItem("push-"+$rootScope.datos.cedula, JSON.stringify(notificacionesAlmacenadas));
                 }  
             }
 
