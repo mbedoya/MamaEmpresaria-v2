@@ -1107,6 +1107,16 @@ angular.module('novaventa.services', [])
     .factory('GA', function($rootScope) {
 
     return {
+        trackEvent: function(gaPlugin, evento, red, index) {
+            if(gaPlugin){
+                gaPlugin.trackEvent(function(){
+                    
+                }, function(){
+                                    
+                }, evento, "Click", red, index);
+            }
+        }
+        
         trackPage: function(gaPlugin, page) {
 
             if(gaPlugin){

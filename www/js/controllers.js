@@ -62,7 +62,26 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
         $scope.modal.remove();
     });
     
-    $scope.abrirLink = function(url){
+    $scope.abrirLink = function(indice){
+        var url="";
+        switch(indice){
+            case 0:
+                url='https://twitter.com/Novaventa_Catg/';
+                GA.trackEvent($rootScope.gaPlugin, "Social", "Twitter", indice);
+                break;
+            case 1:
+                url='https://www.facebook.com/Novaventa/';
+                GA.trackEvent($rootScope.gaPlugin, "Social", "Facebook", indice);
+                break;
+            case 2:
+                url='https://www.youtube.com/user/novaventaoficial/';
+                GA.trackEvent($rootScope.gaPlugin, "Social", "Youtube", indice);
+                break;
+            case 3:
+                url='https://es.pinterest.com/novaventa/';
+                GA.trackEvent($rootScope.gaPlugin, "Social", "Pinterest", indice);
+                break;
+        }
         window.open(url, '_system', 'location=yes');
     };
 
