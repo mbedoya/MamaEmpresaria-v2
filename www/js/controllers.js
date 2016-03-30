@@ -61,6 +61,10 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     $scope.$on('$destroy', function() {
         $scope.modal.remove();
     });
+    
+    $scope.abrirLink = function(url){
+        window.open(url, '_system', 'location=yes');
+    };
 
     $scope.cerrarSesion = function() {
         if(localStorage && localStorage.cedula){
