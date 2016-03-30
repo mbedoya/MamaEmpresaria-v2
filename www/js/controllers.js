@@ -117,8 +117,8 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     }
 
     $scope.hayNotificaciones = function(){
-        if($scope.contNotificaciones>0)return "button button-icon ion-email notificacion-icon circle";
-        else return "button button-icon button-clear ion-email notificacion-icon";
+        if($scope.contNotificaciones>0)return "button button-icon ion-email icono-header-menu circle";
+        else return "button button-icon button-clear ion-email icono-header-menu";
     }
 
     $scope.buscarNotificacionPendiente = function(){        

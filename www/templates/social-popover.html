@@ -1,9 +1,33 @@
-<ion-popover-view>
+<ion-popover-view style="width=80px; height: 120px">
 
-    <ion-header-bar>Siguenos</ion-header-bar> 
-    
+
+    <ion-header-bar>
+        <div class="row">
+            <div class="col-90">
+                <h4><strong>Síguenos</strong></h4>
+            </div>
+            <div class="col-10" ng-click="closePopover()">
+                <i class="icon icono-social-close ion-close"></i>
+            </div>
+        </div>
+    </ion-header-bar>
+
     <ion-content>        
-        <div class="addthis_vertical_follow_toolbox"></div>
+        <div class="row">
+            <div class="col div-social" ng-click="window.open('https://twitter.com/Novaventa_Catg', '_system', 'location=yes');">
+                <i class="icon icono-social-twitter ion-social-twitter"></i>
+            </div>
+            <div class="col div-social" ng-click="window.open('https://facebook.com/Novaventa', '_system', 'location=yes');">
+                <i class="icon icono-social-facebook ion-social-facebook"></i>
+            </div>
+            <div class="col div-social" ng-click="window.open('https://youtube.com/user/novaventaoficial', '_system', 'location=yes');">
+                <i class="icon icono-social-youtube ion-social-youtube"></i>
+            </div>
+            <div class="col div-social" ng-click="window.open('https://pinterest.com/novaventa', '_system', 'location=yes');">
+                <i class="icon icono-social-pinterest ion-social-pinterest"></i>
+            </div>
+
+        </div>
     </ion-content>
 
 

@@ -481,6 +481,38 @@ width: 100%;
     left: 16px;
 }
 
+.icono-social-close{
+    font-size: 20px !important;
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    color: darkgray;
+}
+
+.icono-social-twitter {
+    font-size: 40px;
+    color: #00aced;
+}
+
+.icono-social-facebook {
+    font-size: 40px;
+    color: #3b5998;
+}
+
+.icono-social-youtube {
+    font-size: 40px;
+    color: #bb0000;
+}
+
+.icono-social-pinterest {
+    font-size: 40px;
+    color: #cb2027;
+}
+
+.div-social {
+    text-align: center;
+}
+
 .icono-caja-abierta {
     width:54px;
     height:54px;
@@ -887,7 +919,7 @@ width: 100%;
     padding-top: 5px;
 }
 
-.notificacion-icon:before{
+.icono-header-menu:before{
     color: white;
 }
 
