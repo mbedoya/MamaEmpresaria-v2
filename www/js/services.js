@@ -1115,7 +1115,7 @@ angular.module('novaventa.services', [])
                                     
                 }, evento, "Click", red, index);
             }
-        }
+        },
         
         trackPage: function(gaPlugin, page) {
 
