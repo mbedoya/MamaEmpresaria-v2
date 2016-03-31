@@ -1,6 +1,6 @@
 var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filters'])
 
-.controller('AppCtrl', function($scope, $state, $rootScope, $location, $ionicHistory, $ionicModal, $ionicPopup, Utilidades, $ionicPopover) {
+.controller('AppCtrl', function($scope, $state, $rootScope, $location, $ionicHistory, $ionicModal, $ionicPopup, Utilidades, $ionicPopover, GA) {
 
     $scope.$on('$ionicView.beforeEnter', function(){        
         $scope.buscarNotificacionPendiente();
