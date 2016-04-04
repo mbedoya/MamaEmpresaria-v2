@@ -70,7 +70,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                 GA.trackEvent($rootScope.gaPlugin, "Social", "Twitter", indice);
                 break;
             case 1:
-                url='https://www.facebook.com/375212832559306/';
+                url='https://www.facebook.com/Novaventa/';
                 GA.trackEvent($rootScope.gaPlugin, "Social", "Facebook", indice);
                 break;
             case 2:
