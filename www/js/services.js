@@ -196,9 +196,19 @@ angular.module('novaventa.services', [])
                 fx(false, {});
             });
         },
+        getPedidoPorCampana: function(anoCampana, cedula, fx) {
+            var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/pedidos/PedidoCampagna/" + cedula + "/" + anoCampana;
+
+            $http.get(urlServicio).
+            success(function(data, status, headers, config) {
+                fx(true, data);
+            }).
+            error(function(data, status, headers, config) {
+                fx(false, {});
+            });
+        },
         getEstadoPedido: function(numeroPedido, fx) {
-            
-            var numeroPedido = $rootScope.numeroPedido;
+            //var numeroPedido = $rootScope.numeroPedido;
 
             var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/documento/cuentasME/" + numeroPedido;
 
@@ -463,10 +473,10 @@ angular.module('novaventa.services', [])
                 fx(false, {});
             });
         },
-        getNotasCredito: function(fx){
+        getNotasCredito: function(anoCampana, fx){
 
             var cedula = $rootScope.datos.cedula;
-            var anoCampana = Utilidades.getAnoCampana();
+            //var anoCampana = Utilidades.getAnoCampana();
             
             var urlServicio = $rootScope.configuracion.ip_servidores + "/" + $rootScope.configuracion.instancia + "/documento/NC/" +anoCampana+"/"+cedula;
             

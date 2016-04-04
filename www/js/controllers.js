@@ -532,7 +532,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
 
 })
 
-.controller('MiNegocioCtrl', function($scope, $rootScope, $ionicPopup, $filter, $ionicModal,Pedido, Mama) {
+.controller('MiNegocioCtrl', function($scope, $rootScope, $ionicPopup, $filter, $ionicModal, Pedido, Mama, $ionicLoading, Utilidades) {
 
     $scope.$on('$ionicView.beforeEnter', function(){
         $scope.inicializar();
@@ -571,25 +571,11 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
         $scope.listaCL = new Array();
         $scope.valorCL = 0;
         $scope.campana = $rootScope.campana.numero;
-        /* $scope.loading =  $ionicLoading.show({
-                        template: Utilidades.getPlantillaEspera('CARGANDO')
-                    }); */
+        $scope.fechaCalendario = new Date();
+        $scope.ano = $scope.fechaCalendario.getFullYear();
+        $scope.consultarEstadoPedido($rootScope.numeroPedido);
 
-        /*if(!$rootScope.numeroPedido){                       
-
-            Pedido.getTrazabilidadAnterior($rootScope.datos.cedula, function (success, data){
-                if(success){
-                    $rootScope.numeroPedido = data.numeroPedido;
-                    $scope.consultarEstadoPedido();
-                }else{
-                    console.log("En este momento no podemos consultar tu información");
-                }
-            });             
-        } else {*/
-        $scope.consultarEstadoPedido();
-        //} 
-
-        Mama.getNotasCredito(function (success, data){
+        Mama.getNotasCredito(Utilidades.getAnoCampana(), function (success, data){
             if(success){
                 $scope.notasCredito = data;
                 $scope.formatoNC();
@@ -616,8 +602,8 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
             return "item item-icon-left detalle-item";
     }
 
-    $scope.consultarEstadoPedido = function(){
-        Pedido.getEstadoPedido($rootScope.numeroPedido, function (success, data){
+    $scope.consultarEstadoPedido = function(numeroPedido){
+        Pedido.getEstadoPedido(numeroPedido, function (success, data){
             if(success){
                 $scope.estadoPedidoData = data;
                 console.log("Mi Negocio - Estado pedido", data);
@@ -726,7 +712,63 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
             return Number($scope.estadoPedidoData.ganancia);
         }
     }
+    
+    $scope.aumentarCampanaNegocio = function(){
+        $scope.loading =  $ionicLoading.show({
+            template: Utilidades.getPlantillaEspera('Cargando información de campaña')
+        });
 
+        if($scope.campana == $rootScope.numeroCampanasAno){
+            $scope.campana = 1;
+            $scope.ano = $scope.ano + 1;           
+        }else{
+            $scope.campana = $scope.campana + 1;
+        }    
+        $scope.buscarPedido();
+    }
+
+    $scope.disminuirCampanaNegocio = function(){
+        $scope.loading =  $ionicLoading.show({
+            template: Utilidades.getPlantillaEspera('Cargando información de campaña')
+        });
+
+        if($scope.campana == 1){
+            $scope.campana = $rootScope.numeroCampanasAno;
+            $scope.ano = $scope.ano - 1;
+        }else{
+            $scope.campana = $scope.campana - 1;
+        }
+        $scope.buscarPedido();
+    }
+
+    $scope.buscarPedido = function(){
+        var anoCampana = $scope.ano + "" + $scope.campana;
+        Pedido.getPedidoPorCampana(anoCampana, $rootScope.datos.cedula, function (success, data){
+            if(success){
+                //  Pedido obtenido según la campaña
+                $scope.pedidoPorCampana = data.numeroPedido
+                if($scope.pedidoPorCampana){
+                    $scope.consultarEstadoPedido($scope.pedidoPorCampana);
+                } else {
+                    $scope.estadoPedidoData = null;
+                }
+                console.log("Pedido por campaña");
+                console.log(data);
+                $ionicLoading.hide();
+            }else{
+                console.log("ERROR");
+            }
+        });
+        
+        Mama.getNotasCredito(anoCampana, function (success, data){
+            if(success){
+                $scope.notasCredito = data;
+                $scope.formatoNC();
+            }else{
+                console.log("En este momento no podemos consultar tu información");
+            }                
+        });
+    }
 
 })
 
