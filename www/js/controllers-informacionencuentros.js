@@ -81,6 +81,11 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
     }
 
     $scope.aumentarMes=function(){
+
+        if(!Internet.get()){
+            $scope.mostrarAyuda("Aumentar mes","Por favor verifica tu conexión a internet");  
+        }
+        
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
@@ -119,6 +124,11 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
     }
 
     $scope.disminuirMes=function(){
+        
+        if(!Internet.get()){
+            $scope.mostrarAyuda("Disminuir mes","Por favor verifica tu conexión a internet");  
+        }
+        
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });

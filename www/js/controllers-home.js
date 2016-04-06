@@ -1,7 +1,7 @@
 moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $ionicPopup, GA, Campana, Utilidades, Pedido) {
 
     //Registro en Analytics
-    GA.trackPage($rootScope.gaPlugin, "Home");   
+    GA.trackPage($rootScope.gaPlugin, "Home");  
 
     $scope.tieneEncuentro = function(){
         return Campana.tieneEncuentro();

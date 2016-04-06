@@ -5,11 +5,26 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
 
+        document.addEventListener("backbutton", function(e){
+            
+            if($.mobile.activePage.is('#homepage')){
+                /* 
+         Event preventDefault/stopPropagation not required as adding backbutton
+          listener itself override the default behaviour. Refer below PhoneGap link.
+        */
+                //e.preventDefault();
+                navigator.app.exitApp();
+            }
+            else {
+                navigator.app.backHistory()
+            }
+        }, false);
+
         //INICIA JS DE ONE SIGNAL
         document.addEventListener('deviceready', function () {  
 
             var titulo;
-            
+
             var notificationOpenedCallback = function(jsonData) {
                 //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
                 //alert(jsonData.additionalData.title+"\n\n"+jsonData.message);                 
@@ -17,7 +32,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                 var notificacionLeida=false; 
 
                 console.log(jsonData);
-                
+
                 if(jsonData.additionalData && jsonData.additionalData.title){
                     titulo=jsonData.additionalData.title;    
                 }else{
@@ -25,7 +40,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                 }
 
                 almacenarNotificacion(jsonData);
-                
+
                 if(titulo=="")titulo="Notificación Mamá Empresaria";
 
                 var alertPopup = $ionicPopup.alert({

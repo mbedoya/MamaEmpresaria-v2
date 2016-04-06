@@ -92,13 +92,13 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
 
     $scope.aumentarCampana=function(){
-        $scope.loading =  $ionicLoading.show({
-            template: Utilidades.getPlantillaEspera('Cargando información de campaña')
-        });
-        
         if(!Internet.get()){
             $scope.mostrarAyuda("Amentar campaña","Por favor verifica tu conexión a internet");  
         }
+        
+        $scope.loading =  $ionicLoading.show({
+            template: Utilidades.getPlantillaEspera('Cargando información de campaña')
+        });
 
         if($scope.campana == $rootScope.numeroCampanasAno){
             $scope.campana = 1;
@@ -126,14 +126,15 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
 
     $scope.disminuirCampana=function(){
-        $scope.loading =  $ionicLoading.show({
-            template: Utilidades.getPlantillaEspera('Cargando información de campaña')
-        });
         
         if(!Internet.get()){
             $scope.mostrarAyuda("Disminuir campaña","Por favor verifica tu conexión a internet");  
         }
 
+        $scope.loading =  $ionicLoading.show({
+            template: Utilidades.getPlantillaEspera('Cargando información de campaña')
+        });        
+        
         if($scope.campana == 1){
             $scope.campana = $rootScope.numeroCampanasAno;
             $scope.ano = $scope.ano - 1;
