@@ -85,6 +85,10 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
 
+        if(!Internet.get()){
+            $scope.mostrarAyuda("Aumentar mes","Por favor verifica tu conexión a internet");  
+        }
+        
         //var ano=$scope.fechaCalendario.getFullYear();
         $scope.mes++;
         
@@ -119,6 +123,10 @@ moduloControlador.controller('InformacionEncuentrosCtrl', function($scope, $root
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
 
+        if(!Internet.get()){
+            $scope.mostrarAyuda("Disminuir mes","Por favor verifica tu conexión a internet");  
+        }
+        
         //var ano=$scope.fechaCalendario.getFullYear();
         
         $scope.mes--;

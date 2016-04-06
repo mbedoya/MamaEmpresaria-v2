@@ -24,10 +24,10 @@ moduloControlador.controller('CambioClaveNuevaCtrl', function($scope, $location,
             scope: $scope,
             buttons: [
                 { text: 'No' ,
-                    onTap: function(e) {
-                        console.log(e);
-                        return false;
-                    }
+                 onTap: function(e) {
+                     console.log(e);
+                     return false;
+                 }
                 },
                 {
                     text: '<b>Si</b>',
@@ -50,7 +50,7 @@ moduloControlador.controller('CambioClaveNuevaCtrl', function($scope, $location,
 
                     var claveActual = $rootScope.datos.clave;    
                     $rootScope.datos.clave = $scope.clave;
-                    
+
                     Mama.cambiarClave(claveActual, $rootScope.datos.clave,  function(success, data){
 
                         $ionicLoading.hide();
@@ -58,15 +58,15 @@ moduloControlador.controller('CambioClaveNuevaCtrl', function($scope, $location,
                         if(success){
 
                             console.log(data);
-                            
+
                             $scope.loading =  $ionicLoading.show({
                                 template: Utilidades.getPlantillaEspera('Iniciando sesión')
                             });    
-        
+
                             Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){
-        
+
                                 $ionicLoading.hide();
-        
+
                                 if(success){
 
                                     $scope.loading =  $ionicLoading.show({
@@ -93,7 +93,7 @@ moduloControlador.controller('CambioClaveNuevaCtrl', function($scope, $location,
                                             $ionicHistory.nextViewOptions({
                                                 disableBack: true
                                             });
-                                            
+
                                             $scope.mostrarAyuda("Creación de clave", "Tu clave ha sido actualizada");
 
                                             //Si la Mamá tiene versión para aceptar entonces ir a terminos y condiciones
@@ -101,6 +101,9 @@ moduloControlador.controller('CambioClaveNuevaCtrl', function($scope, $location,
                                                 $rootScope.irAHomeLuegoTerminos = true;
                                                 $location.path('/app/terminos-condiciones');
                                             }else{
+                                                $ionicHistory.nextViewOptions({
+                                                    historyRoot: true
+                                                });
                                                 $location.path('/app/menu/tabs/home');
                                             }
 
@@ -110,13 +113,13 @@ moduloControlador.controller('CambioClaveNuevaCtrl', function($scope, $location,
 
                                     });
 
-        
+
                                 }else{
                                     $scope.mostrarAyuda("Creación de clave", mensajeError);
                                 }
-        
+
                             });
-                            
+
 
                         }else{
                             $scope.mostrarAyuda("Creación de clave", "Mamá, no ha sido posible cambiar tu clave, comunícate con la línea de atención");
@@ -124,7 +127,7 @@ moduloControlador.controller('CambioClaveNuevaCtrl', function($scope, $location,
 
                     });
 
-                    
+
 
                 }else{
                     $scope.mostrarAyuda("Creación de clave","Por favor verifica tu conexión a internet");
@@ -134,7 +137,7 @@ moduloControlador.controller('CambioClaveNuevaCtrl', function($scope, $location,
                 $scope.mostrarAyuda("Creación de clave","Por favor ingresa tu clave nuevamente");
                 $scope.limpiar();
             }
-            
+
         });
     };
 
@@ -154,7 +157,7 @@ moduloControlador.controller('CambioClaveNuevaCtrl', function($scope, $location,
             $scope.mostrarAyuda("Inicio de sesión","Ingresa 4 dígitos");
             return;
         }
-        
+
         //Cantidad de caracteres
         if(clave.length > 4){
             $scope.mostrarAyuda("Inicio de sesión","Ingresa únicamente 4 dígitos");
@@ -166,7 +169,7 @@ moduloControlador.controller('CambioClaveNuevaCtrl', function($scope, $location,
             $scope.mostrarAyuda("Inicio de sesión","Ingresa sólo números");
             return;
         }
-        
+
         $scope.clave = clave;
 
         $scope.confirmar();

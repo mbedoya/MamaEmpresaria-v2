@@ -2,7 +2,7 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Terminos y condiciones");
-    
+
     $scope.modelo = { seleccionado : false};
 
     $scope.continuar = function(){    
@@ -10,7 +10,7 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Aceptando términos y condiciones')
         });
-        
+
 
         Mama.registrarHabeasData(function (success, data){
 
@@ -27,7 +27,7 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
                     $ionicLoading.hide();
 
                     if(success){
-                        
+
                         //Almacenar datos si hay almacenamiento local
                         if(localStorage){
 
@@ -38,6 +38,9 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
                         }
 
                         if($rootScope.irAHomeLuegoTerminos){
+                            $ionicHistory.nextViewOptions({
+                                historyRoot: true
+                            });
                             $location.path('/app/menu/tabs/home');
                         }else{
                             $location.path('/app/bienvenida');
@@ -61,7 +64,7 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
 
         //Solución a problema de ingreso al TextArea desde iOS
         $("#txtTexto").click(function(){
-           $(this).focus();
+            $(this).focus();
         });
 
         if($rootScope.datos){
@@ -69,7 +72,7 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
         }
         $scope.modelo.seleccionado = false;
     };
-    
+
     $scope.$on('$ionicView.beforeEnter', function(){
         $scope.inicializar();
     });

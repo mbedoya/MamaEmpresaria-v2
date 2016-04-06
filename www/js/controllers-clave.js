@@ -42,10 +42,10 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
             scope: $scope,
             buttons: [
                 { text: 'No',
-                    onTap: function (e) {
-                        console.log(e);
-                        return false;
-                    }
+                 onTap: function (e) {
+                     console.log(e);
+                     return false;
+                 }
                 },
                 {
                     text: '<b>Si</b>',
@@ -70,9 +70,9 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
 
     //Autenticar a la Mamá Empresaria
     $scope.continuar = function() {
-        
+
         var clave = $("#txtClaveLogin").val();
-        
+
         //alert($("#txtClave").val());
 
         //Cédula vacía
@@ -86,7 +86,7 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
             $scope.mostrarAyuda("Inicio de sesión","Ingresa 4 dígitos");
             return;
         }
-        
+
         //Cantidad de caracteres
         if(clave.length > 4){
             $scope.mostrarAyuda("Inicio de sesión","Ingresa únicamente 4 dígitos");
@@ -126,7 +126,7 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
                             $ionicLoading.hide();
 
                             if(success){
-                                
+
                                 $scope.modelo.clave = '';
 
                                 //Almacenar datos si hay almacenamiento local
@@ -149,6 +149,9 @@ moduloControlador.controller('ClaveCtrl', function($scope, $location, $rootScope
                                     $rootScope.irAHomeLuegoTerminos = true;
                                     $location.path('/app/terminos-condiciones');
                                 }else{
+                                    $ionicHistory.nextViewOptions({
+                                        historyRoot: true
+                                    });
                                     $location.path('/app/menu/tabs/home');
                                 }
 

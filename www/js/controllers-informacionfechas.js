@@ -1,4 +1,4 @@
-moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScope, $ionicLoading, $state, $ionicPopup, $ionicModal, $http, $document, GA, Mama, Campana, Utilidades) {
+moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScope, $ionicLoading, $state, $ionicPopup, $ionicModal, $http, $document, GA, Mama, Campana, Utilidades, Internet) {
 
     var document=$document[0];
 
@@ -95,6 +95,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
+        
+        if(!Internet.get()){
+            $scope.mostrarAyuda("Amentar campaña","Por favor verifica tu conexión a internet");  
+        }
 
         if($scope.campana == $rootScope.numeroCampanasAno){
             $scope.campana = 1;
@@ -125,6 +129,10 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
+        
+        if(!Internet.get()){
+            $scope.mostrarAyuda("Disminuir campaña","Por favor verifica tu conexión a internet");  
+        }
 
         if($scope.campana == 1){
             $scope.campana = $rootScope.numeroCampanasAno;

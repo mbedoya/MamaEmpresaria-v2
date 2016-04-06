@@ -269,7 +269,8 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
 
     $scope.ingresar = function() {
         $ionicHistory.nextViewOptions({
-            disableBack: true
+            disableBack: true,
+            historyRoot: true
         });
 
         $location.path('/app/menu/tabs/home');
@@ -278,7 +279,8 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
 
     $scope.test = function() {
         $ionicHistory.nextViewOptions({
-            disableBack: true
+            disableBack: true,
+            historyRoot: true
         });
 
         $location.path('/app/menu/tabs/home');
