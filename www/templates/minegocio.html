@@ -59,16 +59,7 @@
                 <span class="item-note">
                   <strong> {{ flexibilizacion() | currency:"$":0 }} </strong>
                 </span>
-            </a>
-            <!--<a class="item item-avatar item-icon-right" href="#" ng-click="mostrarAyudaFlexUso()" ng-show="!(flexibUso()===0)" >
-                <div class="icono moneda"></div>
-                <i class="icon ion-help-circled"></i>
-                <h2>Estás usando tu flexibilización<br /> por un valor de: 
-                </h2>
-                <span class="item-note">
-                  <strong> {{ flexibUso() | currency:"$":0 }} </strong>
-                </span>
-            </a>  -->          
+            </a>        
             <div class="item item-avatar item-icon-right alternate" ng-show="!(ganancia()===0)" >
                 <div class="icono moneda"></div>
                 <h2>En esta campaña tuviste <br /> una ganancia de:
@@ -80,7 +71,9 @@
             <a class="item item-avatar item-icon-right" href="#" ng-click="openModal()" ng-show="!notasCredito.razonRechazo" >
                 <div class="icono moneda"></div>
                 <i class="icon ion-help-circled"></i>
-                <h2>Esta campaña tienes notas credito<br /> aprobadas por un valor de: 
+                <h2 ng-show="esCampagnaActual()">Esta campaña tienes notas crédito<br /> aprobadas por un valor de: 
+                </h2>
+                <h2 ng-show="!esCampagnaActual()">Esta campaña tuviste notas crédito<br /> aprobadas por un valor de: 
                 </h2>
                 <span class="item-note">
                   <strong> {{ valorCL | currency:"$":0 }} </strong>
