@@ -771,6 +771,13 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
             }                
         });
     }
+    
+    $scope.esCampagnaActual = function(){
+        if($scope.campana == $rootScope.campana.numero){
+            return true;
+        }
+        return false;
+    }
 
 })
 
