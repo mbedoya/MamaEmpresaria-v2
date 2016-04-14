@@ -536,7 +536,8 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         url: "/chat",
         views: {
             'mas-interna-content': {
-                templateUrl: "templates/chat.html"
+                templateUrl: "templates/chat.html",
+                controller: 'ChatCtrl'
             }
         }
     })
