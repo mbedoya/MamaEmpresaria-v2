@@ -5,7 +5,7 @@ moduloControlador.controller('ChatCtrl', function($scope, $rootScope) {
 
     $scope.getRutaIframe = function(){
         return "http://laboru.co/zopim?cedula=" + $rootScope.datos.cedula +
-            "&nombre=" + $rootScope.datos.nombre + "&segmento=" $rootScope.datos.segmento;
+            "&nombre=" + $rootScope.datos.nombre + "&segmento=" + $rootScope.datos.segmento;
     }
 
 });
