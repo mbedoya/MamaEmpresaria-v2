@@ -4,29 +4,6 @@
             Mi Negocio
         </div>
         
-        </br>
-        <div class="titulo-calendario">
-            <div class="row">
-                <div class="col sin-borde" >
-                    <div class="item sin-borde" href="#" ng-click="disminuirCampanaNegocio()">
-                        <i class="ion-chevron-left light"></i>
-                    </div>
-                </div>
-                <div class="col col-50">
-                    <a class="item" href="#" >
-                        Campaña {{campana}}
-                    </a>
-                </div>
-                <div class="col col" >
-                    <div class="item" href="#" ng-click="aumentarCampanaNegocio()" >
-                        <i class="ion-chevron-right light"></i>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        </br>
-        
         <div class="list">
             <!--
             <a class="item" href="#">
@@ -59,7 +36,29 @@
                 <span class="item-note">
                   <strong> {{ flexibilizacion() | currency:"$":0 }} </strong>
                 </span>
-            </a>        
+            </a>
+            
+        <div class="titulo-calendario">
+            <div class="row">
+                <div class="col sin-borde" >
+                    <div class="item sin-borde" href="#" ng-click="disminuirCampanaNegocio()">
+                        <i class="ion-chevron-left light"></i>
+                    </div>
+                </div>
+                <div class="col col-50">
+                    <a class="item" href="#" >
+                        Campaña {{campana}}
+                    </a>
+                </div>
+                <div class="col col" >
+                    <div class="item" href="#" ng-click="aumentarCampanaNegocio()" >
+                        <i class="ion-chevron-right light"></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+            
             <div class="item item-avatar item-icon-right alternate" ng-show="!(ganancia()===0)" >
                 <div class="icono moneda"></div>
                 <h2>En esta campaña tuviste <br /> una ganancia de:
