@@ -8,7 +8,7 @@
         <br />
         <div class="list">    
 
-            <div ng-click="mostrarNotificacion(notificacion)" ng-repeat="notificacion in notificacionesAlmacenadas" ng-class-odd="alternar(true)" ng-class-even="alternar(false)">
+            <div ng-click="mostrarNotificacion(notificacion)" ng-repeat="notificacion in notificacionesAlmacenadas | orderBy: '-id'" ng-class-odd="alternar(true)" ng-class-even="alternar(false)">
                 <div style="padding-left:40px">
                     <i class="icon ion-android-mail" ng-hide="notificacion.leido"></i>
                     <i class="icon ion-android-drafts" ng-show="notificacion.leido"></i>

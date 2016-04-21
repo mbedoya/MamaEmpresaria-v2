@@ -6,7 +6,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
         $scope.buscarNotificacionPendiente();
     });
 
-     $ionicPopover.fromTemplateUrl('templates/social-popover.html', {
+    $ionicPopover.fromTemplateUrl('templates/social-popover.html', {
         scope: $scope
     }).then(function(popover) {
         $scope.popover = popover;
@@ -61,7 +61,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     $scope.$on('$destroy', function() {
         $scope.modal.remove();
     });
-    
+
     $scope.abrirLink = function(indice){
         var url="";
         switch(indice){
@@ -73,7 +73,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                 url='https://www.facebook.com/novaventa/';
                 GA.trackEvent($rootScope.gaPlugin, "Social", "Facebook", indice);
                 break;
-                case 4:
+            case 4:
                 url='https://www.facebook.com/Novaventa/timeline';
                 GA.trackEvent($rootScope.gaPlugin, "Social", "Facebook", indice);
                 break;
@@ -718,7 +718,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
             return Number($scope.estadoPedidoData.ganancia);
         }
     }
-    
+
     $scope.aumentarCampanaNegocio = function(){
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
@@ -765,7 +765,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                 console.log("ERROR");
             }
         });
-        
+
         Mama.getNotasCredito(anoCampana, function (success, data){
             if(success){
                 $scope.notasCredito = data;
@@ -775,7 +775,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
             }                
         });
     }
-    
+
     $scope.esCampagnaActual = function(){
         if($scope.campana == $rootScope.campana.numero){
             return true;
