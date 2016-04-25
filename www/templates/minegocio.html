@@ -78,8 +78,13 @@
                   <strong> {{ valorCL | currency:"$":0 }} </strong>
                 </span>
             </a>  
+            
+            <div class="padding campanas" style="height: 20px;" >
+                &nbsp;
+            </div>
+            
         </div>
-
+        
         <!-- Zona de Automatización de Pruebas -->
         <input id="saldo" type="hidden" value='{{ saldo() | currency:"$":0 }}' />
         <input id="flexibiilizacion" type="hidden" value='{{ flexibilizacion() | currency:"$":0 }}' />
