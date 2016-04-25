@@ -4947,7 +4947,7 @@ a.item-content {
   margin-bottom: 20px; }
 
 .list:last-child {
-  margin-bottom: 0px; }
+  margin-bottom: 20px; }
   .list:last-child.card {
     margin-bottom: 40px; }
 
