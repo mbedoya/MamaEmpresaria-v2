@@ -707,11 +707,15 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     }
 
     $scope.ganancia = function() {
-        if(!$scope.estadoPedidoData) return 0;
-        alert("Ganancia " + $scope.estadoPedidoData.ganancia);
+        if(!$scope.estadoPedidoData){
+            console.log("1er if ");
+            return 0;  
+        } 
         if($scope.estadoPedidoData.ganancia == 0){
+            console.log("2do if " + $scope.estadoPedidoData.ganancia);
             return 0;
         }else{
+            console.log("3er if " + $scope.estadoPedidoData.ganancia);
             return Number($scope.estadoPedidoData.ganancia);
         }
     }
@@ -755,10 +759,9 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                 } else {
                     $scope.estadoPedidoData = null;
                 }
-                console.log("Pedido por campaña");
                 console.log(data);
+                console.log("before hide " + $scope.estadoPedidoData);
                 $ionicLoading.hide();
-                $scope.$apply();
             }else{
                 console.log("ERROR");
             }
@@ -768,7 +771,6 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
             if(success){
                 $scope.notasCredito = data;
                 $scope.formatoNC();
-                $scope.$apply();
             }else{
                 console.log("En este momento no podemos consultar tu información");
             }                
