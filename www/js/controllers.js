@@ -762,6 +762,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                 console.log(data);
                 console.log("before hide " + $scope.estadoPedidoData);
                 $ionicLoading.hide();
+                $scope.$apply();
             }else{
                 console.log("ERROR");
             }
@@ -771,6 +772,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
             if(success){
                 $scope.notasCredito = data;
                 $scope.formatoNC();
+                $scope.$apply();
             }else{
                 console.log("En este momento no podemos consultar tu información");
             }                
