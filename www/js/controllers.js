@@ -707,6 +707,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     }
 
     $scope.ganancia = function() {
+        alert("estadoPedidoData " + $scope.estadoPedidoData + " Y ganancia " + $scope.estadoPedidoData.ganancia);
         if(!$scope.estadoPedidoData) return 0;
         if($scope.estadoPedidoData.ganancia === 0){
             return 0;
