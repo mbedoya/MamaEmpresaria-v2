@@ -575,7 +575,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
         $scope.campana = $rootScope.campana.numero;
         $scope.fechaCalendario = new Date();
         $scope.ano = $scope.fechaCalendario.getFullYear();
-        $scope.consultarEstadoPedido($rootScope.numeroPedido);
+        $scope.consultarEstadoPedido($rootScope.numeroPedido, true);
 
         Mama.getNotasCredito(Utilidades.getAnoCampana(), function (success, data){
             if(success){
@@ -604,13 +604,21 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
             return "item item-icon-left detalle-item";
     }
 
-    $scope.consultarEstadoPedido = function(numeroPedido){
+    $scope.consultarEstadoPedido = function(numeroPedido, deInicializar){
         Pedido.getEstadoPedido(numeroPedido, function (success, data){
+            
+            // Se valida si el llamado al método viene desde Inicializar o desde el evento
+            // on-click de la barra de campañas
+            if(deInicializar){
+                // Obliga a los servicios a llamar todo con la campaña actual
+                $scope.estadoPedidoData = null;
+            }
+            
             if(success){
                 $scope.estadoPedidoData = data;
                 console.log("Mi Negocio - Estado pedido", data);
             }else{
-                console.log("En este momento no podemos consultar tu información");
+                console.log("En este momento no podemos consultar tu información " + $scope.estadoPedidoData);
             }
         });
     }
@@ -708,14 +716,12 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
 
     $scope.ganancia = function() {
         if(!$scope.estadoPedidoData){
-            console.log("1er if ");
             return 0;  
         } 
+        
         if($scope.estadoPedidoData.ganancia == 0){
-            console.log("2do if " + $scope.estadoPedidoData.ganancia);
             return 0;
         }else{
-            console.log("3er if " + $scope.estadoPedidoData.ganancia);
             return Number($scope.estadoPedidoData.ganancia);
         }
     }
@@ -755,16 +761,15 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                 //  Pedido obtenido según la campaña
                 $scope.pedidoPorCampana = data.numeroPedido
                 if($scope.pedidoPorCampana){
-                    $scope.consultarEstadoPedido($scope.pedidoPorCampana);
+                    $scope.consultarEstadoPedido($scope.pedidoPorCampana, false);
                 } else {
                     $scope.estadoPedidoData = null;
                 }
-                console.log(data);
                 console.log("before hide " + $scope.estadoPedidoData);
                 $ionicLoading.hide();
                 $scope.$apply();
             }else{
-                console.log("ERROR");
+                console.log("No se pudo obtener el pedido por campaña");
             }
         });
 
