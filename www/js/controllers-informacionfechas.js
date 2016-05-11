@@ -93,7 +93,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
 
     $scope.aumentarCampana=function(){
         if(!Internet.get()){
-            $scope.mostrarAyuda("Amentar campaña","Por favor verifica tu conexión a internet");  
+            $scope.mostrarAyuda("Aumentar campaña","Por favor verifica tu conexión a internet");  
             return;
         }
         

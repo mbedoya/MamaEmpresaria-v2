@@ -77,7 +77,7 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
 
             //$rootScope.configuracion = { ip_servidores: 'http://transferenciaelectronicatest.novaventa.com.co:9083', instancia: "AntaresWebServices" };
 
-            $rootScope.configuracion = { ip_servidores: 'https://transferenciaelectronicatest.novaventa.com.co', instancia: "AntaresSecureWebServices3" };
+            $rootScope.configuracion = { ip_servidores: 'https://transferenciaelectronicatest.novaventa.com.co', instancia: "AntaresSecureWebServices4" };
             $rootScope.notificacionesPush = {apikey: 'adece4f8-1dbd-4713-9351-f8140d916bf4', project: '275683696350'}
             //$rootScope.configuracion = { ip_servidores: 'https://200.47.173.68:9442', instancia: "AntaresSecureWebServices" };
             //$rootScope.configuracion = { ip_servidores: 'http://transferenciaelectronicatest.novaventa.com.co:9083', instancia: "AntaresWebServices" };

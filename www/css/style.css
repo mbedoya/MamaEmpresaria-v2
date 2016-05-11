@@ -1158,6 +1158,16 @@ background-color: #f0f0f0; !important;
     font-size: 30px;
 }
 
+.item-negocio:before{
+    color: darkgray;
+    font-size: 30px;
+}
+
+.item-negocio{
+    color: darkgray;
+    font-size: 30px;
+}
+
 
 input[disabled]{
     background-color: #eb0c6e;   

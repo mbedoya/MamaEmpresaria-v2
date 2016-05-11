@@ -534,7 +534,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
 
 })
 
-.controller('MiNegocioCtrl', function($scope, $rootScope, $ionicPopup, $filter, $ionicModal, Pedido, Mama, $ionicLoading, Utilidades) {
+.controller('MiNegocioCtrl', function($scope, $rootScope, $ionicPopup, $filter, $ionicModal, Pedido, Mama, $ionicLoading, Utilidades, Internet) {
 
     $scope.$on('$ionicView.beforeEnter', function(){
         $scope.inicializar();
@@ -727,6 +727,11 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     }
 
     $scope.aumentarCampanaNegocio = function(){
+        if(!Internet.get()){
+            $scope.mostrarAyuda("Aumentar campaña","Por favor verifica tu conexión a internet");  
+            return;
+        }
+        
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
@@ -741,6 +746,11 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     }
 
     $scope.disminuirCampanaNegocio = function(){
+        if(!Internet.get()){
+            $scope.mostrarAyuda("Disminuir campaña","Por favor verifica tu conexión a internet");  
+            return;
+        }
+        
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
