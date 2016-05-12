@@ -181,24 +181,26 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
         }
     }
 
+    $scope.condicionChat = function(){
+        if(!$rootScope.versionProduccion && $rootScope.datos.segmento=="ZAFIRO"){
+            return true;
+        }
+    }
+
     $scope.mostrarOpcionesMas = function() {
-        //Mostrar las opciones
-        var hojaOpciones = $ionicActionSheet.show({
-
-
-
-            buttons: [
+        var buttons = [
                 { text: 'Mi Negocio' },
                 { text: 'Productos no disponibles' },                
-                { text: 'Buzones'},
-                { text: 'Chat' }
-            ],
+                { text: 'Buzones'}
+            ];
 
-            /*buttons: [
-                        { text: 'Mi Negocio' },
-                        { text: 'Productos no disponibles' },
-                        { text: 'Buzones'}
-                    ],*/
+        if($scope.condicionChat()){
+            buttons.push({ text: 'Chat'});
+        }
+
+        var hojaOpciones = $ionicActionSheet.show({
+
+            buttons,
             cancelText: 'Cancelar',
             cancel: function() {
             },
@@ -611,14 +613,14 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
 
     $scope.consultarEstadoPedido = function(numeroPedido, deInicializar){
         Pedido.getEstadoPedido(numeroPedido, function (success, data){
-            
+
             // Se valida si el llamado al método viene desde Inicializar o desde el evento
             // on-click de la barra de campañas
             if(deInicializar){
                 // Obliga a los servicios a llamar todo con la campaña actual
                 $scope.estadoPedidoData = null;
             }
-            
+
             if(success){
                 $scope.estadoPedidoData = data;
                 console.log("Mi Negocio - Estado pedido", data);
@@ -723,7 +725,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
         if(!$scope.estadoPedidoData){
             return 0;  
         } 
-        
+
         if($scope.estadoPedidoData.ganancia == 0){
             return 0;
         }else{
@@ -736,7 +738,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
             $scope.mostrarAyuda("Aumentar campaña","Por favor verifica tu conexión a internet");  
             return;
         }
-        
+
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
@@ -755,7 +757,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
             $scope.mostrarAyuda("Disminuir campaña","Por favor verifica tu conexión a internet");  
             return;
         }
-        
+
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando información de campaña')
         });
