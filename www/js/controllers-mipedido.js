@@ -17,8 +17,7 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
                 if(success){
                     $scope.pedidoAnterior = data.historiaEstados;
 
-                    console.log("Trazabilidad anterior");
-                    console.log($scope.pedidoAnterior);
+                    console.log("Trazabilidad anterior - pedidoAnterior: " + $scope.pedidoAnterior);
                 }else{
 
                 }
@@ -35,6 +34,7 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
             Pedido.getTrazabilidadActual($rootScope.datos.cedula, function (success, data){
 
                 $ionicLoading.hide();
+                console.log("Esconde la ruedita ");
 
                 if(success){
                     console.log(data);
