@@ -1076,7 +1076,23 @@ angular.module('novaventa.services', [])
             error(function(data, status, headers, config) {
                 fx(false, {});
             });
-        }
+        },
+        getBuzones: function (fx){
+
+            var zona = $rootScope.zona;
+            var seccion = $rootScope.seccion;
+
+            var urlServicio = $rootScope.configuracion.ip_servidores+"/" + $rootScope.configuracion.instancia+ "/" +"buzon/getBuzones";
+
+            $http.get(urlServicio).
+            success(function(data, status, headers, config) {
+                console.log("Services - getBuzones", data);
+                fx(true, data);
+            }).
+            error(function(data, status, headers, config) {
+                fx(false, {});
+            });
+        }        
     }
 })
 

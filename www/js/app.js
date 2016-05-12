@@ -541,6 +541,16 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
             }
         }
     })
+    
+    .state('app.menu.tabs.mas.buzones', {
+        url: "/buzones",
+        views: {
+            'mas-interna-content': {
+                templateUrl: "templates/buzones.html",
+                controller: 'BuzonesCtrl'
+            }
+        }
+    })
 
         .state('app.menu.tabs.mas.informacion.notificaciones', {
         url: "/notificaciones",

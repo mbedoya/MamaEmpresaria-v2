@@ -94,7 +94,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
         });
 
         //Eliminar toda las variables de estado de carga de información de pantallas
-        $rootScope.cargaDatos = { ventanaMiPedido: null, ventanaMisPuntos: null, ventanaInformacionFechas: null };
+        $rootScope.cargaDatos = { ventanaMiPedido: null, ventanaMisPuntos: null, ventanaInformacionFechas: null, ventanaBuzones: null };
 
         $location.path('/app/login');
     };
@@ -189,13 +189,15 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
 
             buttons: [
                 { text: 'Mi Negocio' },
-                { text: 'Productos no disponibles' },
+                { text: 'Productos no disponibles' },                
+                { text: 'Buzones'},
                 { text: 'Chat' }
             ],
 
             /*buttons: [
                         { text: 'Mi Negocio' },
-                        { text: 'Productos no disponibles' }
+                        { text: 'Productos no disponibles' },
+                        { text: 'Buzones'}
                     ],*/
             cancelText: 'Cancelar',
             cancel: function() {
@@ -210,8 +212,11 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                         $state.go('app.menu.tabs.mas.agotados.actual');
                         break;
                     case 2:
-                        $state.go('app.menu.tabs.mas.chat');
+                        $state.go('app.menu.tabs.mas.buzones');                        
                         break;
+                    case 3:
+                        $state.go('app.menu.tabs.mas.chat');
+                        break
                 }
 
                 /*if(index == 0){
