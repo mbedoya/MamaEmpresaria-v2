@@ -12,31 +12,31 @@
                   $52.000
                 </span>
             </a> -->
-            <a class="item item-avatar alternate" href="#" ng-show="mostrarSaldoPagar()" >
+            <div class="item item-avatar alternate" href="#" ng-show="mostrarSaldoPagar()" >
                 <div class="icono bocina"></div>
                 <h2>Debes pagar: <strong> {{ saldo() | currency:"$":0 }} </strong>
                 </h2>
                 <p>
                    Este valor ya incluye los saldos a favor o en contra que puedas tener
                 </p>
-            </a>
-            <a class="item item-avatar alternate" href="#" ng-show="mostrarSaldoFavor()" >
+            </div>
+            <div class="item item-avatar alternate" href="#" ng-show="mostrarSaldoFavor()" >
                 <div class="icono bocina"></div>
                 <h2>Tienes un saldo a favor de:
                 </h2>
                 <span class="item-note">
                   <strong> {{ saldo() | currency:"$":0 }} </strong>
                 </span>
-            </a>
-            <a class="item item-avatar item-icon-right" href="#" ng-click="mostrarAyudaFlexibilizacion()" ng-show="flexibilizacion()>0">
+            </div>
+            <div class="item item-avatar item-icon-right" href="#" ng-click="mostrarAyudaFlexibilizacion()" ng-show="flexibilizacion()>0">
                 <div class="icono moneda"></div>
-                <i class="icon ion-help-circled"></i>
+                <i class="icon ion-help-circled item-negocio"></i>
                 <h2>Cuentas con un beneficio <br /> de flexibilización de <br /> máximo:
                 </h2>
                 <span class="item-note">
                   <strong> {{ flexibilizacion() | currency:"$":0 }} </strong>
                 </span>
-            </a>
+            </div>
             
             <div class="titulo-calendario">
                 <div class="row">
@@ -67,9 +67,9 @@
                 </span>
             </div>
             
-            <a class="item item-avatar item-icon-right" href="#" ng-click="openModal()" ng-show="!notasCredito.razonRechazo" >
+            <div class="item item-avatar item-icon-right" href="#" ng-click="openModal()" ng-show="!notasCredito.razonRechazo" >
                 <div class="icono moneda"></div>
-                <i class="icon ion-help-circled"></i>
+                <i class="icon ion-help-circled item-negocio"></i>
                 <h2 ng-show="esCampagnaActual()">Esta campaña tienes notas crédito<br /> aprobadas por un valor de: 
                 </h2>
                 <h2 ng-show="!esCampagnaActual()">Esta campaña tuviste notas crédito<br /> aprobadas por un valor de: 
@@ -77,7 +77,7 @@
                 <span class="item-note">
                   <strong> {{ valorCL | currency:"$":0 }} </strong>
                 </span>
-            </a>  
+            </div>  
             
             <div class="padding campanas" style="height: 10%;" >
                 &nbsp;
