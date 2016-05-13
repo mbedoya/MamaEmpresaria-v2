@@ -114,9 +114,17 @@
                 </div>
 
                 <div class="item selected" href="#" ng-show="estadoEncontrado('Entregado totalmente') && !estadoEncontrado('Anulado')" >
-                    <img src="img/entregado.png">
-                    <h2 class="balanced">Entregado</h2>
-                    <p>{{buscarEstado('Entregado totalmente').fecha | date: 'dd'}} de {{buscarEstado('Entregado totalmente').fecha | date: 'MMMM'}}</p>                    
+                    
+                    <div class="row">
+                    <div class="col col-70">
+                        <img src="img/entregado.png">
+                        <h2 class="balanced">Entregado</h2> 
+                        <p>{{buscarEstado('Entregado totalmente').fecha | date: 'dd'}} de {{buscarEstado('Entregado totalmente').fecha | date: 'MMMM'}}</p>
+                    </div>
+                    <div class="col col-20">
+                        <i class="icon ion-plus-circled item-chevron" ></i>
+                    </div>
+                        </div>
                 </div>
 
                 <div class="item selected" href="#" ng-show="estadoEncontrado('Entregado parcialmente') && !estadoEncontrado('Anulado')" >
