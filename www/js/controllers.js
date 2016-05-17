@@ -1,10 +1,16 @@
 var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filters'])
 
-.controller('AppCtrl', function($scope, $state, $rootScope, $location, $ionicHistory, $ionicModal, $ionicPopup, Utilidades, $ionicPopover, GA) {
+.controller('AppCtrl', function($scope, $state, $rootScope, $location, $ionicHistory, $ionicModal, $ionicPopup, Utilidades, $ionicPopover, GA, $firebaseObject) {
 
     $scope.$on('$ionicView.beforeEnter', function(){        
         $scope.buscarNotificacionPendiente();
-    });
+    });    
+        
+    var fb = new Firebase("https://criteriochat.firebaseio.com");
+
+    var fbObject = $firebaseObject(fb);
+
+    fbObject.$bindTo($scope, "dato");
 
     $ionicPopover.fromTemplateUrl('templates/social-popover.html', {
         scope: $scope
@@ -182,7 +188,9 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     }
 
     $scope.condicionChat = function(){
-        if(!$rootScope.versionProduccion && $rootScope.datos.segmento=="ZAFIRO"){
+        console.log("FIREBASE SEGMENTO", $scope.dato.segmento);
+        console.log("FIREBASE SEGMENTO", $scope.dato.zona);
+        if(!$rootScope.versionProduccion && $rootScope.datos.segmento==$scope.dato.segmento && $rootScope.zona==$scope.dato.zona){
             return true;
         }
     }

@@ -1,4 +1,4 @@
-angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.controllers', 'novaventa.services'])
+angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.controllers', 'novaventa.services', 'firebase'])
 
     .run(function($ionicPlatform, $rootScope, $ionicPopup, Campana, Utilidades) { 
     $ionicPlatform.ready(function() {
