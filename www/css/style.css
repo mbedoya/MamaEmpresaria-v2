@@ -684,8 +684,8 @@ width: 100%;
     background: transparent url(../img/linea.png) repeat-y 63px top;
 }
 .list.pedido img {
-    width: 100px;
-    height: 102px;
+    width: 80px;
+    height: 82px;
     border-radius: 0px;
     position: static;
     float: left;
@@ -699,6 +699,9 @@ width: 100%;
 }
 .list.pedido .item.selected h2, .list.pedido .item.selected p {
     color:#eb0c6e;
+}
+.novedad {
+    padding-top: 24px;
 }
 
 
