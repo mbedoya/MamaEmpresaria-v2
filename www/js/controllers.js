@@ -5,7 +5,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     $scope.$on('$ionicView.beforeEnter', function(){        
         $scope.buscarNotificacionPendiente();
     });    
-        
+
     var fb = new Firebase("https://criteriochat.firebaseio.com");
 
     var fbObject = $firebaseObject(fb);
@@ -188,19 +188,21 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     }
 
     $scope.condicionChat = function(){
-        console.log("FIREBASE SEGMENTO", $scope.dato.segmento);
-        console.log("FIREBASE SEGMENTO", $scope.dato.zona);
-        if(!$rootScope.versionProduccion && $rootScope.datos.segmento==$scope.dato.segmento && $rootScope.zona==$scope.dato.zona){
-            return true;
+        console.log("FIREBASE SEGMENTO", $scope.dato.segmentos);
+        console.log("FIREBASE SEGMENTO", $scope.dato.zonas);
+        if(!$rootScope.versionProduccion){
+            if((!$scope.dato.segmentos || $scope.dato.segmentos.indexOf($rootScope.datos.segmento)!=-1) && (!$scope.dato.zonas  || $scope.dato.zonas.indexOf($rootScope.zona)!=-1)){
+                return true;
+            }
         }
     }
 
     $scope.mostrarOpcionesMas = function() {
         var buttons = [
-                { text: 'Mi Negocio' },
-                { text: 'Productos no disponibles' },                
-                { text: 'Buzones'}
-            ];
+            { text: 'Mi Negocio' },
+            { text: 'Productos no disponibles' },                
+            { text: 'Buzones'}
+        ];
 
         if($scope.condicionChat()){
             buttons.push({ text: 'Chat'});
