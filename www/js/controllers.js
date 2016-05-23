@@ -6,11 +6,11 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
         $scope.buscarNotificacionPendiente();
     });    
 
-    /*var fb = new Firebase("https://criteriochat.firebaseio.com");
+    var fb = new Firebase("https://criteriochat.firebaseio.com");
 
     var fbObject = $firebaseObject(fb);
 
-    fbObject.$bindTo($scope, "dato");*/
+    fbObject.$bindTo($scope, "dato");
 
     $ionicPopover.fromTemplateUrl('templates/social-popover.html', {
         scope: $scope
