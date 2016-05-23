@@ -198,19 +198,23 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     }
 
     $scope.mostrarOpcionesMas = function() {
-        var buttons = [
+        /*var buttons = [
             { text: 'Mi Negocio' },
             { text: 'Productos no disponibles' },                
             { text: 'Buzones'}
-        ];
+        ];*/
 
-        if($scope.condicionChat()){
+        /*if($scope.condicionChat()){
             buttons.push({ text: 'Chat'});
-        }
+        }*/
 
         var hojaOpciones = $ionicActionSheet.show({
 
-            buttons,
+            buttons: [
+                { text: 'Mi Negocio' },
+                { text: 'Productos no disponibles' },                
+                { text: 'Buzones'}
+            ],
             cancelText: 'Cancelar',
             cancel: function() {
             },
