@@ -187,7 +187,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
         }
     }
 
-    /*$scope.condicionChat = function(){
+    $scope.condicionChat = function(){
         console.log("FIREBASE SEGMENTO", $scope.dato.segmentos);
         console.log("FIREBASE SEGMENTO", $scope.dato.zonas);
         if(!$rootScope.versionProduccion){
@@ -195,7 +195,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                 return true;
             }
         }
-    }*/
+    }
 
     $scope.mostrarOpcionesMas = function() {
         var buttons = [
@@ -204,9 +204,9 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
             { text: 'Buzones'}
         ];
 
-        /*if($scope.condicionChat()){
+        if($scope.condicionChat()){
             buttons.push({ text: 'Chat'});
-        }*/
+        }
 
         var hojaOpciones = $ionicActionSheet.show({
 
