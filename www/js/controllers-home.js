@@ -5,9 +5,9 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
     
     // SÓLO PARA PRUEBAS
     // Se cambia el color del ícono de red social a rojo, para indicar que la app está apuntando a PRUEBAS
-    /*if(!$rootScope.versionProduccion){
+    if(!$rootScope.versionProduccion){
         $("button.button-icon.icono-header-menu.button-clear.ion-social-rss").css("background-color", "red");
-    }*/
+    }
 
     $scope.tieneEncuentro = function(){
         return Campana.tieneEncuentro();
