@@ -69,9 +69,6 @@
                             <h2 class="balanced">Recibido en la <br />Empresa</h2>
                             <p >{{ buscarEstado('Recibido').fecha | date: 'dd'}} de {{ buscarEstado('Recibido').fecha | date: 'MMMM'}}</p>
                         </div>
-                        <div class="novedad col-16" >
-                            <i class="icon ion-plus-circled item-chevron" ></i>
-                        </div>
                     </div>
                 </div>
 
@@ -83,9 +80,6 @@
                         <div class="col">
                             <h2 class="balanced">Anulado</h2>
                             <p >{{ buscarEstado('Anulado').fecha | date: 'dd'}} de {{ buscarEstado('Anulado').fecha | date: 'MMMM'}}</p>
-                        </div>
-                        <div class="novedad col-16">
-                            <i class="icon ion-plus-circled item-chevron" ></i>
                         </div>
                     </div>
                 </div>
@@ -99,9 +93,6 @@
                             <h2 class="balanced">Facturado</h2>
                             <p>{{buscarEstado('Facturado').fecha | date: 'dd'}} de {{buscarEstado('Facturado').fecha | date: 'MMMM'}}</p>
                         </div>
-                        <div class="novedad col-16">
-                            <i class="icon ion-plus-circled item-chevron" ></i>
-                        </div>
                     </div>
                 </div>
 
@@ -113,9 +104,6 @@
                         <div class="col">
                             <h2 class="balanced">En proceso de <br /> empaque</h2>
                             <p>{{ buscarEstado('En proceso de empaque').fecha | date: 'dd'}} de {{ buscarEstado('En proceso de empaque').fecha | date: 'MMMM'}}</p>
-                        </div>
-                        <div class="novedad col-16" >
-                            <i class="icon ion-plus-circled item-chevron" ></i>
                         </div>
                     </div>   
                 </div>
@@ -130,9 +118,6 @@
                             <p>{{ buscarEstado('Entregado al transportador').fecha | date: 'dd'}} de {{ buscarEstado('Entregado al transportador').fecha | date: 'MMMM'}}</p>
                             <p class="item-formato-anterior" ng-show="fechaRepartoPedido() != ''">
                                 Posiblemente recibas <br />tu pedido el {{ fechaRepartoPedido(buscarEstado('Facturado').fecha) | date:'dd' }} de <br /> {{ fechaRepartoPedido(buscarEstado('Facturado').fecha) | date:'MMMM' }}</p>
-                        </div>
-                        <div class="novedad col-16" >
-                            <i class="icon ion-plus-circled item-chevron" ></i>
                         </div>
                     </div>   
                     
@@ -151,9 +136,6 @@
                             <h2 class="balanced">En bodega del<br /> transportador</h2>
                             <p>{{buscarEstado('En bodega operador secundario').fecha | date: 'dd'}} de {{buscarEstado('En bodega operador secundario').fecha | date: 'MMMM'}}</p>
                         </div>
-                        <div class="novedad col-16" >
-                            <i class="icon ion-plus-circled item-chevron" ></i>
-                        </div>
                     </div>
                 </div>
     
@@ -165,9 +147,6 @@
                         <div class="col">
                             <h2 class="balanced">En camino</h2>
                             <p>{{buscarEstado('En ruta').fecha | date: 'dd'}} de {{buscarEstado('En ruta').fecha | date: 'MMMM'}}</p>
-                        </div>
-                        <div class="novedad col-16" >
-                            <i class="icon ion-plus-circled item-chevron" ></i>
                         </div>
                     </div>
                 </div>
@@ -181,9 +160,6 @@
                             <h2 class="balanced">Nuevo intento de<br /> entrega</h2>
                             <p>{{buscarEstado('En ruta nuevamente').fecha | date: 'dd'}} de {{buscarEstado('En ruta nuevamente').fecha | date: 'MMMM'}}</p>
                         </div>
-                        <div class="novedad col-16" >
-                            <i class="icon ion-plus-circled item-chevron" ></i>
-                        </div>
                     </div>
                 </div>
 
@@ -196,7 +172,7 @@
                             <h2 class="balanced">Entregado</h2> 
                             <p>{{buscarEstado('Entregado totalmente').fecha | date: 'dd'}} de {{buscarEstado('Entregado totalmente').fecha | date: 'MMMM'}}</p>
                         </div>
-                        <div class="novedad col-16" >
+                        <div class="novedad col-16" ng-show="novedadEncontrada('Entregado totalmente')" ng-click="buscarTextoNovedad('Entregado totalmente')">
                             <i class="icon ion-plus-circled item-chevron" ></i>
                         </div>
                     </div>
@@ -211,7 +187,7 @@
                             <h2 class="balanced">Entregado con<br /> novedad</h2>
                             <p>{{buscarEstado('Entregado parcialmente').fecha | date: 'dd'}} de {{buscarEstado('Entregado parcialmente').fecha | date: 'MMMM'}}</p>
                         </div>
-                        <div class="novedad col-16" >
+                        <div class="novedad col-16" ng-show="novedadEncontrada('Entregado parcialmente')" ng-click="buscarTextoNovedad('Entregado parcialmente')">
                             <i class="icon ion-plus-circled item-chevron" ></i>
                         </div>
                     </div>
@@ -226,7 +202,7 @@
                             <h2 class="balanced">No entregado</h2>
                             <p>{{buscarEstado('No entregado').fecha | date: 'dd'}} de {{buscarEstado('No entregado').fecha | date: 'MMMM'}}</p>
                         </div>
-                        <div class="novedad col-16" >
+                        <div class="novedad col-16" ng-show="novedadEncontrada('No entregado')" ng-click="buscarTextoNovedad('No entregado')">
                             <i class="icon ion-plus-circled item-chevron" ></i>
                         </div>
                     </div>

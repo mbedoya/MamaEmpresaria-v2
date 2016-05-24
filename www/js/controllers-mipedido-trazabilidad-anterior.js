@@ -188,6 +188,55 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
     $scope.estadoEncontrado = function(estado){
         return Pedido.estadoEncontrado(estado, $rootScope.pedidoAnterior);
     }
+    
+    $scope.novedadEncontrada = function(estado){
+        $scope.nombreMotivo = Pedido.buscarEstadoConNovedad(estado, $rootScope.pedidoAnterior);
+        if($scope.nombreMotivo == "Tercero en domicilio" || $scope.nombreMotivo == "Faltante" 
+           || $scope.nombreMotivo == "Porteria" || $scope.nombreMotivo == "Datos errados" 
+           || $scope.nombreMotivo == "No lo quiere recibir" || $scope.nombreMotivo == "Nadie en casa" 
+           || $scope.nombreMotivo == "Inseguridad en zona" || $scope.nombreMotivo == "Entrega sin novedad" ){
+            return true;
+        }
+        return false;
+    }
+    
+    $scope.buscarTextoNovedad = function(estadoSeleccionado){
+        $scope.textoNovedad = Pedido.buscarEstadoConNovedad(estadoSeleccionado, $rootScope.pedidoAnterior);
+        if($scope.textoNovedad){
+            switch($scope.textoNovedad){
+                case "Tercero en domicilio":
+                    console.log("pop up texto Tercero en domicilio");
+                    break;
+                case "Faltante":
+                    console.log("pop up texto Faltante");
+                    break;
+                case "Porteria":
+                case "Datos errados":
+                    console.log("pop up texto Porteria y Datos errados");
+                    break;
+                case "No lo quiere recibir":
+                    console.log("pop up texto No lo quiere recibir");
+                    break;
+                case "Nadie en casa":
+                    console.log("pop up texto Nadie en casa");
+                    break;
+                case "Inseguridad en zona":
+                    console.log("pop up texto Inseguridad en zona");
+                    break;
+                case "Entrega sin novedad":
+                    $scope.mostrarRazonNovedad("Nati es boba", "acá va el mensajito largo");
+                    console.log("*****-----*****/PRUEBA 1/*****-----*****");
+                    break;
+            }
+        }
+    }
+    
+    $scope.mostrarRazonNovedad = function(titulo, mensaje){
+        var alertPopup = $ionicPopup.alert({
+            title: titulo,
+            template: mensaje
+        });
+    };
 
     $scope.buscarEstado = function(estado){
         return Pedido.buscarEstado(estado, $rootScope.pedidoAnterior);

@@ -259,8 +259,27 @@ angular.module('novaventa.services', [])
             }
 
             return encontrado;
-        }
+        },
+        buscarEstadoConNovedad: function(estado, pedido){
+            var encontrado = false;
 
+            var mipedido = $rootScope.pedido;
+
+            if(pedido){
+                mipedido = pedido;
+            }
+
+            if(mipedido && mipedido.historiaEstados){
+                for (i = 0; i < mipedido.historiaEstados.length; i++) {
+                    if(Utilidades.cambiarNombreEstadoPedido(mipedido.historiaEstados[i].estado) == estado
+                      && mipedido.historiaEstados[i].motivo){
+                        return mipedido.historiaEstados[i].motivo;
+                    }
+                }
+            }
+
+            return null;
+        }
     }
 })
 
