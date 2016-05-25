@@ -205,35 +205,36 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
         if($scope.textoNovedad){
             switch($scope.textoNovedad){
                 case "Tercero en domicilio":
-                    console.log("pop up texto Tercero en domicilio");
+                    $scope.mostrarRazonNovedad("- Mamá fuimos a entregarte tu pedido y no estabas. Este lo recibió una persona diferente a ti.");
                     break;
                 case "Faltante":
-                    console.log("pop up texto Faltante");
+                    $scope.mostrarRazonNovedad("- Mamá no pudimos entregarte tu pedido completo. Por favor comunicate con servicio al cliente para que te podamos ayudar.");
                     break;
                 case "Porteria":
+                    $scope.mostrarRazonNovedad("- Mamá no pudimos entregarte tu pedido completo. Por favor comunicate con servicio al cliente para que te podamos ayudar.");
+                    break;
                 case "Datos errados":
-                    console.log("pop up texto Porteria y Datos errados");
+                    $scope.mostrarRazonNovedad("- Mamá no pudimos entregarte tu pedido pues los datos estaban errados. Te pedimos actualizar pronto la información para enviártelo de nuevo.");
                     break;
                 case "No lo quiere recibir":
-                    console.log("pop up texto No lo quiere recibir");
+                   $scope.mostrarRazonNovedad("- Mamá nos expresaste no querer recibir tu pedido, por esta razón lo devolvimos a la Compañía.");
                     break;
                 case "Nadie en casa":
-                    console.log("pop up texto Nadie en casa");
+                    $scope.mostrarRazonNovedad("- Mamá no pudimos entregar tu pedido porque no había nadie en casa.");
                     break;
                 case "Inseguridad en zona":
-                    console.log("pop up texto Inseguridad en zona");
+                    $scope.mostrarRazonNovedad("- Mamá tu pedido no fue entregado ya que por motivos de seguridad no pudimos ingresar a la zona. Pronto te lo enviaremos de nuevo.");
                     break;
                 case "Entrega sin novedad":
-                    $scope.mostrarRazonNovedad("Nati es boba", "acá va el mensajito largo");
-                    console.log("*****-----*****/PRUEBA 1/*****-----*****");
+                    $scope.mostrarRazonNovedad("- Eli, esta novedad no va ya que es Entrega sin novedad, pero es para pruebas nada mas que se puso el filtro :D");
                     break;
             }
         }
     }
     
-    $scope.mostrarRazonNovedad = function(titulo, mensaje){
+    $scope.mostrarRazonNovedad = function(mensaje){
         var alertPopup = $ionicPopup.alert({
-            title: titulo,
+            title: "Mi Pedido",
             template: mensaje
         });
     };
