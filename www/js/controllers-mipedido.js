@@ -6,10 +6,15 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
     $scope.consultaPedidoAnteriorFinalizada = function(){
         return $scope.pedidoAnteriorFinalizado;
     }
+    
+    $scope.consultaPedidoActualFinalizada = function(){
+        return $scope.pedidoActualFinalizado;
+    }
 
     $scope.inicializar = function(mostrarIndicador){
         
         $scope.pedidoAnteriorFinalizado = false;
+        $scope.pedidoActualFinalizado = false; 
 
         try{
 
@@ -44,6 +49,7 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
 
                 $ionicLoading.hide();
                 console.log("Esconde la ruedita ");
+                $scope.pedidoActualFinalizado = true;
 
                 if(success){
                     console.log(data);
