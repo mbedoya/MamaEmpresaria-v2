@@ -11,7 +11,11 @@
                 <div class="icono-caja-abierta"></div>
                 <h2>Campaña {{getNumeroCampanaAnterior()}}
                 </h2>
-                <p>No tienes un pedido registrado para la campaña
+                <p ng-show="consultaPedidoAnteriorFinalizada()">
+                    No tienes un pedido registrado para la campaña
+                </p>
+                <p ng-show="!consultaPedidoAnteriorFinalizada()">
+                    Estamos consultando el estado de tu Pedido...
                 </p>
             </div>
 

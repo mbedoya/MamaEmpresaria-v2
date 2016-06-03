@@ -2,8 +2,14 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Mi Pedido");
+    
+    $scope.consultaPedidoAnteriorFinalizada = function(){
+        return $scope.pedidoAnteriorFinalizado;
+    }
 
     $scope.inicializar = function(mostrarIndicador){
+        
+        $scope.pedidoAnteriorFinalizado = false;
 
         try{
 
@@ -14,6 +20,9 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
             }
 
             Pedido.getTrazabilidadAnterior($rootScope.datos.cedula, function (success, data){
+                
+                $scope.pedidoAnteriorFinalizado = true;
+                
                 if(success){
                     $scope.pedidoAnterior = data.historiaEstados;
 
