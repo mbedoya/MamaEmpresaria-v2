@@ -131,7 +131,60 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
     $scope.estadoEncontrado = function(estado){
         return Pedido.estadoEncontrado(estado);
     }
-
+    
+    /* Inicio - Funciones para Novedades en Tracking Secundario */
+    $scope.novedadEncontrada = function(estado){
+        $scope.nombreMotivo = Pedido.buscarEstadoConNovedad(estado);
+        if($scope.nombreMotivo == "Tercero en domicilio" || $scope.nombreMotivo == "Faltante" 
+           || $scope.nombreMotivo == "Porteria" || $scope.nombreMotivo == "Datos errados" 
+           || $scope.nombreMotivo == "No lo quiere recibir" || $scope.nombreMotivo == "Nadie en casa" 
+           || $scope.nombreMotivo == "Inseguridad en zona" || $scope.nombreMotivo == "Entrega sin novedad" ){
+            return true;
+        }
+        return false;
+    }
+    
+    $scope.buscarTextoNovedad = function(estadoSeleccionado){
+        $scope.textoNovedad = Pedido.buscarEstadoConNovedad(estadoSeleccionado);
+        if($scope.textoNovedad){
+            switch($scope.textoNovedad){
+                case "Tercero en domicilio":
+                    $scope.mostrarRazonNovedad("- Mamá fuimos a entregarte tu pedido y no estabas. Este lo recibió una persona diferente a ti.");
+                    break;
+                case "Faltante":
+                    $scope.mostrarRazonNovedad("- Mamá no pudimos entregarte tu pedido completo. Por favor comunicate con servicio al cliente para que te podamos ayudar.");
+                    break;
+                case "Porteria":
+                    $scope.mostrarRazonNovedad("- Mamá no pudimos entregarte tu pedido completo. Por favor comunicate con servicio al cliente para que te podamos ayudar.");
+                    break;
+                case "Datos errados":
+                    $scope.mostrarRazonNovedad("- Mamá no pudimos entregarte tu pedido pues los datos estaban errados. Te pedimos actualizar pronto la información para enviártelo de nuevo.");
+                    break;
+                case "No lo quiere recibir":
+                   $scope.mostrarRazonNovedad("- Mamá nos expresaste no querer recibir tu pedido, por esta razón lo devolvimos a la Compañía.");
+                    break;
+                case "Nadie en casa":
+                    $scope.mostrarRazonNovedad("- Mamá no pudimos entregar tu pedido porque no había nadie en casa.");
+                    break;
+                case "Inseguridad en zona":
+                    $scope.mostrarRazonNovedad("- Mamá tu pedido no fue entregado ya que por motivos de seguridad no pudimos ingresar a la zona. Pronto te lo enviaremos de nuevo.");
+                    break;
+                case "Entrega sin novedad":
+                    $scope.mostrarRazonNovedad("- Eli, esta novedad no va ya que es Entrega sin novedad, pero es para pruebas nada mas que se puso el filtro :D");
+                    break;
+            }
+        }
+    }
+    
+    $scope.mostrarRazonNovedad = function(mensaje){
+        var alertPopup = $ionicPopup.alert({
+            title: "Mi Pedido",
+            template: mensaje
+        });
+    };
+    
+    /* Fin - Funciones para Novedades en Tracking Secundario */
+    
     $scope.buscarEstado = function(estado){
         return Pedido.buscarEstado(estado);
     }

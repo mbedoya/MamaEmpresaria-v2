@@ -200,6 +200,8 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
         return false;
     }
     
+    /* Inicio - Funciones para Novedades en Tracking Secundario */
+    
     $scope.buscarTextoNovedad = function(estadoSeleccionado){
         $scope.textoNovedad = Pedido.buscarEstadoConNovedad(estadoSeleccionado, $rootScope.pedidoAnterior);
         if($scope.textoNovedad){
@@ -238,6 +240,8 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
             template: mensaje
         });
     };
+    
+    /* Fin - Funciones para Novedades en Tracking Secundario */
 
     $scope.buscarEstado = function(estado){
         return Pedido.buscarEstado(estado, $rootScope.pedidoAnterior);
