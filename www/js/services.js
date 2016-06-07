@@ -1245,7 +1245,6 @@ angular.module('novaventa.services', [])
         },
         reemplazarTodos: function(str, find, replace){
             return str.replace(new RegExp(find, 'g'), replace);
-            return dateStr;
         },
         cambiarNombreEstadoPedido: function(nombre){
 
@@ -1256,8 +1255,32 @@ angular.module('novaventa.services', [])
                     return "En proceso de empaque";
                 }else{
 
-                    if(nombre.toLowerCase() == "cargue" || nombre.toLowerCase() == "En tránsito a bodega operador"){
+                    if(nombre.toLowerCase() == "cargue" || nombre.toLowerCase() == "en tránsito a bodega operador"){
                         return "Entregado al transportador";
+                    }else{
+                        if(nombre.toLowerCase() == "en bodega operador secundario"){
+                            return "En bodega del transportador";
+                        }else{
+                            if(nombre.toLowerCase() == "en ruta"){
+                                return "En camino";
+                            }else{
+                                if(nombre.toLowerCase() == "en ruta nuevamente"){
+                                    return "Nuevo intento de entrega";
+                                }else{
+                                    if(nombre.toLowerCase() == "entregado totalmente"){
+                                        return "Entregado";
+                                    }else{
+                                        if(nombre.toLowerCase() == "entregado parcialmente"){
+                                            return "Entregado con novedad";
+                                        }else{
+                                            if(nombre.toLowerCase() == "no entregado"){
+                                                return "No entregado";
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
