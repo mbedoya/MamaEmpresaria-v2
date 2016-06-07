@@ -7,7 +7,7 @@
         <div class="list">
 
             <!-- Pedido Anterior - No Encontrado  -->
-            <div class="item item-avatar item-icon-right" href="#" ng-show="!ultimoEstadoPedidoAnterior()" >
+            <div class="item item-avatar item-icon-right" ng-show="!ultimoEstadoPedidoAnterior()" >
                 <div class="icono-caja-abierta"></div>
                 <h2>Campaña {{getNumeroCampanaAnterior()}}
                 </h2>
@@ -20,7 +20,7 @@
             </div>
 
             <!-- Pedido Anterior - Encontrado  -->
-            <div class="item item-avatar item-icon-right" href="#" ng-click="irATrazabilidadAnterior()" ng-show="ultimoEstadoPedidoAnterior()" >
+            <div class="item item-avatar item-icon-right" ng-click="irATrazabilidadAnterior()" ng-show="ultimoEstadoPedidoAnterior()" >
                 <div class="icono-caja-abierta"></div>
                 <h2>Campaña {{getNumeroCampanaAnterior()}}
                 </h2>
@@ -34,7 +34,7 @@
             </div>
             
             <!-- Pedido Actual - Consultando -->
-            <div class="item item-avatar item-icon-right alternate" href="#" ng-show="!consultaPedidoActualFinalizada()" >
+            <div class="item item-avatar item-icon-right alternate" ng-show="!consultaPedidoActualFinalizada()" >
                 <div class="icono-caja-cerrada"></div>
                 <h2>Campaña {{campana.numero}}
                 </h2>
@@ -44,7 +44,7 @@
             </div>
 
             <!-- Pedido Actual - Encontrado  -->
-            <div class="item item-avatar item-icon-right alternate" href="#" ng-click="irATrazabilidadActual()" ng-show="ultimoEstadoPedidoActual() && consultaPedidoActualFinalizada()" >
+            <div class="item item-avatar item-icon-right alternate" ng-click="irATrazabilidadActual()" ng-show="ultimoEstadoPedidoActual() && consultaPedidoActualFinalizada()" >
                 <div class="icono-caja-cerrada"></div>
                 <h2>Campaña {{campana.numero}}
                 </h2>
@@ -61,7 +61,7 @@
             </div>
 
             <!-- Pedido Actual - No Encontrado y es Encuentro -->
-            <div class="item item-avatar item-icon-right alternate" href="#" ng-show="!ultimoEstadoPedidoActual() && hoyEsEncuentro() && consultaPedidoActualFinalizada()" >
+            <div class="item item-avatar item-icon-right alternate" ng-show="!ultimoEstadoPedidoActual() && hoyEsEncuentro() && consultaPedidoActualFinalizada()" >
                 <div class="icono-caja-cerrada"></div>
                 <h2>Campaña {{campana.numero}}
                 </h2>
@@ -70,7 +70,7 @@
             </div>
 
             <!-- Pedido Actual - No Encontrado y es Posteriores a Encuentro -->
-            <div class="item item-avatar item-icon-right alternate" href="#" ng-show="!ultimoEstadoPedidoActual() && encuentroRealizado() && !hoyEsEncuentro() && consultaPedidoActualFinalizada()" >
+            <div class="item item-avatar item-icon-right alternate" ng-show="!ultimoEstadoPedidoActual() && encuentroRealizado() && !hoyEsEncuentro() && consultaPedidoActualFinalizada()" >
                 <div class="icono-caja-cerrada"></div>
                 <h2>Campaña {{campana.numero}}
                 </h2>
@@ -83,7 +83,7 @@
             </div>
 
             <!-- Pedido Actual - No Encontrado y todavía no es Encuentro -->
-            <div class="item item-avatar item-icon-right alternate" href="#" ng-show="!ultimoEstadoPedidoActual() && !encuentroRealizado() && consultaPedidoActualFinalizada()" >
+            <div class="item item-avatar item-icon-right alternate" ng-show="!ultimoEstadoPedidoActual() && !encuentroRealizado() && consultaPedidoActualFinalizada()" >
                 <div class="icono-caja-cerrada"></div>
                 <h2>Campaña {{campana.numero}}
                 </h2>
