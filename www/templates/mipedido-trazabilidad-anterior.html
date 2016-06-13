@@ -36,16 +36,16 @@
                     ya que aún cuentas con un saldo pendiente
                     por pagar. Si realizaste el pago, envía el
                     comprobante a servicioalcliente@novaventa.com
-                   </span>
+                </span>
             </div>
 
             <!-- Cupo -->
             <div class="item assertive" ng-show="motivoNovedadEncontrado('cupo') || motivoNovedadEncontrado('tope')">
-                    <span>
+                <span>
                     Mamá Empresaria tu pedido no será enviado
                     ya que excediste el valor permitido para
                     hacer tu pedido.
-                        </span>
+                </span>
             </div>
         </div>
 
@@ -57,8 +57,29 @@
         </div>
 
         <div class="list pedido">
-
+            
+<!--            <div ng-show="!pedido().razonRechazo">-->
+            
             <div ng-show="!pedido().razonRechazo">
+
+                <div class="item selected" ng-repeat="estado in pedidoAnterior.historiaEstados | filter: noMostrar">
+                    <div class="row">
+                        <div class="col-30" style="padding-top: 20px">
+                            <img ng-src="{{imagenPedido(estado)}}">
+                        </div>
+                        <div class="col">
+                            <h2 class="balanced">{{estado.estado}}</h2>
+                            <p >{{formatoFecha(estado.fecha) | date: 'EEE'}} {{formatoFecha(estado.fecha) | date:'dd' }} de {{ formatoFecha(estado.fecha) | date: 'MMMM' | pascal }}  del {{ formatoFecha(estado.fecha) | date: 'yyyy' }}</p>
+                        </div>
+                        <div class="novedad col-16" ng-show="novedadEncontrada(estado)" ng-click="buscarTextoNovedad(estado)">
+                            <i class="icon ion-plus-circled item-chevron" ></i>
+                        </div>
+                    </div>
+                </div>                 
+
+            </div>
+
+            <div ng-show="false">
 
                 <div class="item selected" href="#" ng-show="estadoEncontrado('Recibido')" >
                     <div class="row">
@@ -120,14 +141,14 @@
                                 Posiblemente recibas <br />tu pedido el {{ fechaRepartoPedido(buscarEstado('Facturado').fecha) | date:'dd' }} de <br /> {{ fechaRepartoPedido(buscarEstado('Facturado').fecha) | date:'MMMM' }}</p>
                         </div>
                     </div>   
-                    
-                    
+
+
                 </div>
-        
+
                 <!-- Se agregan los estados de Tracking Externo -->
-        
+
                 <div class="item selected" href="#" ng-show="estadoEncontrado('En bodega operador secundario') && !estadoEncontrado('Anulado')" >
-                    
+
                     <div class="row">
                         <div class="col-30" style="padding-top: 20px">
                             <img src="img/bodega_transp.png">
@@ -138,7 +159,7 @@
                         </div>
                     </div>
                 </div>
-    
+
                 <div class="item selected" href="#" ng-show="estadoEncontrado('En ruta') && !estadoEncontrado('Anulado')" >
                     <div class="row">
                         <div class="col-30" style="padding-top: 20px">
@@ -150,7 +171,7 @@
                         </div>
                     </div>
                 </div>
-    
+
                 <div class="item selected" href="#" ng-show="estadoEncontrado('En ruta nuevamente') && !estadoEncontrado('Anulado')" >
                     <div class="row">
                         <div class="col-30" style="padding-top: 20px">
@@ -210,10 +231,6 @@
 
             </div>
         </div>
-
-        <a class="item">
-            <h2>&nbsp;</h2>
-        </a>
 
         <!-- Zona de Automatización de Pruebas -->
         <!-- Los valores de este campo se llenan desde el Controller -->

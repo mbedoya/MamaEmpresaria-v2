@@ -189,7 +189,7 @@ angular.module('novaventa.services', [])
             success(function(data, status, headers, config) {
 
                 data.historiaEstados = self.ajustarEstadosPedido(data.historiaEstados);
-
+                console.log(data);
                 fx(true, data);
             }).
             error(function(data, status, headers, config) {

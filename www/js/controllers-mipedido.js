@@ -2,17 +2,17 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Mi Pedido");
-    
+
     $scope.consultaPedidoAnteriorFinalizada = function(){
         return $scope.pedidoAnteriorFinalizado;
     }
-    
+
     $scope.consultaPedidoActualFinalizada = function(){
         return $scope.pedidoActualFinalizado;
     }
 
     $scope.inicializar = function(mostrarIndicador){
-        
+
         $scope.pedidoAnteriorFinalizado = false;
         $scope.pedidoActualFinalizado = false; 
 
@@ -25,9 +25,9 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
             }
 
             Pedido.getTrazabilidadAnterior($rootScope.datos.cedula, function (success, data){
-                
+
                 $scope.pedidoAnteriorFinalizado = true;
-                
+
                 if(success){
                     $scope.pedidoAnterior = data.historiaEstados;
 
@@ -118,7 +118,7 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
         }
         return true;
     }
-    
+
     //Si hay agotados reales? es decir que el mismo producto no se haya agotado y luego si esté disponible
     $scope.hayAgotadosAnteriorReales = function(){
 
@@ -221,8 +221,8 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
     $scope.mostrarNovedad = function(novedad){
         var mostrar = false;
         if(novedad.toLowerCase().indexOf('morosa')>=0 ||
-            novedad.toLowerCase().indexOf('cupo')>=0 ||
-            novedad.toLowerCase().indexOf('tope')>=0){
+           novedad.toLowerCase().indexOf('cupo')>=0 ||
+           novedad.toLowerCase().indexOf('tope')>=0){
             mostrar = true;
         }
         return mostrar;
