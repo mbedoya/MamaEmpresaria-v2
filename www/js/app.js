@@ -552,6 +552,16 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         }
     })
 
+        .state('app.menu.tabs.mas.encuestapedido', {
+            url: "/encuestapedido",
+            views: {
+                'mas-interna-content': {
+                    templateUrl: "templates/encuesta-pedido.html",
+                    controller: 'EncuestaPedidoCtrl'
+                }
+            }
+        })
+
         .state('app.menu.tabs.mas.informacion.notificaciones', {
         url: "/notificaciones",
         views: {

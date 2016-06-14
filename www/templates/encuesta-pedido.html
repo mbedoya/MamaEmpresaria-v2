@@ -1,0 +1,25 @@
+<ion-view view-title="" >
+    <ion-content >
+        <div class="row bread">
+            Encuesta Pedido
+        </div>
+
+        <div class="padding" ng-show="obtenerPregunta()">
+            <div style="width: 100%">
+                <h5 style="text-align: center">{{indice + 1}} de 5</h5>
+            </div>
+            <h5>{{ obtenerPregunta().pregunta }}</h5>
+
+            <ion-list>
+                <ion-radio ng-repeat="respuesta in obtenerPregunta().respuestas" ng-model="choice" ng-value="'A'">
+                    {{respuesta.nombre}}
+                </ion-radio>
+            </ion-list>
+
+            <input type="button" value="Continuar" class="button button-block button-footer" ng-click="continuar()" >
+        </div>
+
+        <div class="div-lista-footer"></div>
+
+    </ion-content>
+</ion-view>
