@@ -134,18 +134,18 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
     
     /* Inicio - Funciones para Novedades en Tracking Secundario */
     $scope.novedadEncontrada = function(estado){
-        $scope.nombreMotivo = Pedido.buscarEstadoConNovedad(estado);
+        $scope.nombreMotivo = estado.motivo;
         if($scope.nombreMotivo == "Tercero en domicilio" || $scope.nombreMotivo == "Faltante" 
            || $scope.nombreMotivo == "Porteria" || $scope.nombreMotivo == "Datos errados" 
            || $scope.nombreMotivo == "No lo quiere recibir" || $scope.nombreMotivo == "Nadie en casa" 
-           || $scope.nombreMotivo == "Inseguridad en zona" || $scope.nombreMotivo == "Entrega sin novedad" ){
+           || $scope.nombreMotivo == "Inseguridad en zona"){
             return true;
         }
         return false;
     }
-    
+
     $scope.buscarTextoNovedad = function(estadoSeleccionado){
-        $scope.textoNovedad = Pedido.buscarEstadoConNovedad(estadoSeleccionado);
+        $scope.textoNovedad = estadoSeleccionado.motivo;
         if($scope.textoNovedad){
             switch($scope.textoNovedad){
                 case "Tercero en domicilio":
@@ -161,7 +161,7 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
                     $scope.mostrarRazonNovedad("- Mamá no pudimos entregarte tu pedido pues los datos estaban errados. Te pedimos actualizar pronto la información para enviártelo de nuevo.");
                     break;
                 case "No lo quiere recibir":
-                   $scope.mostrarRazonNovedad("- Mamá nos expresaste no querer recibir tu pedido, por esta razón lo devolvimos a la Compañía.");
+                    $scope.mostrarRazonNovedad("- Mamá nos expresaste no querer recibir tu pedido, por esta razón lo devolvimos a la Compañía.");
                     break;
                 case "Nadie en casa":
                     $scope.mostrarRazonNovedad("- Mamá no pudimos entregar tu pedido porque no había nadie en casa.");
@@ -169,19 +169,107 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
                 case "Inseguridad en zona":
                     $scope.mostrarRazonNovedad("- Mamá tu pedido no fue entregado ya que por motivos de seguridad no pudimos ingresar a la zona. Pronto te lo enviaremos de nuevo.");
                     break;
-                case "Entrega sin novedad":
-                    $scope.mostrarRazonNovedad("- Eli, esta novedad no va ya que es Entrega sin novedad, pero es para pruebas nada mas que se puso el filtro :D");
-                    break;
             }
         }
     }
-    
+
     $scope.mostrarRazonNovedad = function(mensaje){
         var alertPopup = $ionicPopup.alert({
             title: "Mi Pedido",
             template: mensaje
         });
     };
+
+    $scope.formatoFecha = function(fecha){
+        var dia = fecha.substring(0, 2);
+        var mes = fecha.substring(3, 5);
+        var ano = fecha.substring(6, 10);
+        var fecha = ano+"-"+mes+"-"+dia;
+        return new Date(Utilidades.validarFormatoFecha(fecha));
+    }    
+
+    $scope.noMostrar = function(estado){
+
+        if($scope.estadoActual){
+            if($scope.estadoActual.codigoEstado == "05") return false;
+        }
+
+        $scope.estadoActual = estado;
+
+        switch(estado.codigoEstado){
+            case "02":                
+            case "05":               
+            case "04":
+            /*case "En proceso de empaque":*/
+            /*case "Entregado al transportador":*/
+            case "11":
+            case "13":
+            case "14":
+            case "16":
+            case "17":
+            case "15":
+                return true;
+            default:
+                return false
+        }
+    }
+
+    $scope.imagenPedido = function(estado){
+
+        var src = "";
+
+        switch(estado.codigoEstado){
+            case "02"/*"Recibido"*/:
+                src = "img/pedido1-selected.png";
+                break;
+
+            case "05"/*"Anulado"*/:
+                src = "img/anulado.png";
+                break;
+
+            case "04"/*"Facturado"*/:
+                src = "img/pedido2-selected.png";
+                break;
+
+            /*case "En proceso de empaque":
+                src = "img/pedido3-selected.png";
+                break;*/
+
+            /*case "Entregado al transportador":
+                src = "img/pedido4-selected.png";
+                break;*/
+
+            case "11"/*"En bodega operador secundario"*/:
+                src = "img/bodega_transp.png";
+                break;
+
+            case "13"/*"En ruta"*/:
+                src="img/en_camino.png";
+                break;
+
+            case "14"/*"En ruta nuevamente"*/:
+                src="img/nuevo_intento_entrega.png";
+                break;
+
+            case "16"/*"Entregado totalmente"*/:
+                src="img/entregado.png";
+                break;
+
+            case "17"/*"Entregado parcialmente"*/:
+                src="img/entregado_novedad.png";
+                break;
+
+            case "15"/*"No entregado"*/:
+                src="img/no_entregado.png";
+                break;
+
+            default:
+                src="img/pedido1.png";  
+                break;
+        }
+
+        return src;
+    }
     
     /* Fin - Funciones para Novedades en Tracking Secundario */
     

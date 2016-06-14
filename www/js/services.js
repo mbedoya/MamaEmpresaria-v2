@@ -189,7 +189,7 @@ angular.module('novaventa.services', [])
             success(function(data, status, headers, config) {
 
                 data.historiaEstados = self.ajustarEstadosPedido(data.historiaEstados);
-
+                console.log(data);
                 fx(true, data);
             }).
             error(function(data, status, headers, config) {
@@ -272,7 +272,7 @@ angular.module('novaventa.services', [])
             if(mipedido && mipedido.historiaEstados){
                 for (i = 0; i < mipedido.historiaEstados.length; i++) {
                     if(Utilidades.cambiarNombreEstadoPedido(mipedido.historiaEstados[i].estado) == estado
-                      && mipedido.historiaEstados[i].motivo){
+                       && mipedido.historiaEstados[i].motivo){
                         return mipedido.historiaEstados[i].motivo;
                     }
                 }
@@ -421,9 +421,9 @@ angular.module('novaventa.services', [])
 
             campana = Utilidades.Pad(campana);
             var seccion = $rootScope.seccion;            
-            
+
             //var urlServicio = "http://www.mocky.io/v2/56c772a8110000883882b6ef"
-            
+
             var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/mailplan/getEncuentrosAntares/"+ ano +"/" + mes + "/"+ zona;
 
             $http.get(urlServicio).
@@ -439,7 +439,7 @@ angular.module('novaventa.services', [])
         getAgotados: function(fx){
             var fecha = new Date();
             var anoCampana = Utilidades.getAnoCampana();
-            
+
             var urlServicio = $rootScope.configuracion.ip_servidores + "/" + $rootScope.configuracion.instancia + "/productoDeCampagna/agotadosCampagna/" + anoCampana;
 
             $http.get(urlServicio).
@@ -509,9 +509,9 @@ angular.module('novaventa.services', [])
 
             var cedula = $rootScope.datos.cedula;
             //var anoCampana = Utilidades.getAnoCampana();
-            
+
             var urlServicio = $rootScope.configuracion.ip_servidores + "/" + $rootScope.configuracion.instancia + "/documento/NC/" +anoCampana+"/"+cedula;
-            
+
             $http.get(urlServicio).
             success(function(data, status, headers, config) {
                 console.log("getNotasCredito- url", urlServicio);
@@ -521,7 +521,7 @@ angular.module('novaventa.services', [])
             error(function(data, status, headers, config) {
                 fx(false, {});
             });
-            
+
             /*var urlServicio = $rootScope.configuracion.ip_servidores + "/" + $rootScope.configuracion.instancia + "/documento/NC";
 
             var request = {
@@ -694,12 +694,12 @@ angular.module('novaventa.services', [])
                         //Obtener el estado del pedido
                         Pedido.getTrazabilidadActual($rootScope.datos.cedula, function (success, data){
                             if(success){
-                                
+
                                 // $rootScope.numeroPedido utilizado para validar el pedido en Mi Negocio
                                 if(!data.razonRechazo){
                                     $rootScope.numeroPedido = data.numeroPedido;
                                 }
-                                
+
                                 $rootScope.pedido = data;
 
                                 //Obtener la campaña operativa
@@ -718,7 +718,7 @@ angular.module('novaventa.services', [])
                                         encuentroOriginal = '';
 
                                         reparto1 = '';
-                                        
+
                                         reparto2='';
 
                                         correteo = '';
@@ -789,7 +789,7 @@ angular.module('novaventa.services', [])
                                                     encuentroOriginal = '';
 
                                                     reparto1 = '';
-                                                    
+
                                                     reparto2 = '';
 
                                                     correteo = '';
@@ -891,7 +891,7 @@ angular.module('novaventa.services', [])
                                                     encuentroOriginal = '';
 
                                                     reparto1 = '';
-                                                    
+
                                                     reparto2 = '';
 
                                                     correteo = '';
@@ -915,7 +915,7 @@ angular.module('novaventa.services', [])
                                                         if (data.listaRecordatorios[i].codigoActividad == "02") {
                                                             reparto1 = data.listaRecordatorios[i].fecha;
                                                         }
-                                                        
+
                                                         //reparto de pedido 2
                                                         if (data.listaRecordatorios[i].codigoActividad == "04") {
                                                             reparto2 = data.listaRecordatorios[i].fecha;
@@ -1168,13 +1168,13 @@ angular.module('novaventa.services', [])
         trackEvent: function(gaPlugin, evento, red, index) {
             if(gaPlugin){
                 gaPlugin.trackEvent(function(){
-                    
+
                 }, function(){
-                                    
+
                 }, evento, "Click", red, index);
             }
         },
-        
+
         trackPage: function(gaPlugin, page) {
 
             if(gaPlugin){
@@ -1223,7 +1223,7 @@ angular.module('novaventa.services', [])
 
             //var t2 = new Date(this.validarFormatoFecha(stringFechaFinal)).getTime();
             //var t1 = new Date(this.validarFormatoFecha(stringFechaInicial)).getTime();
-            
+
             multiplicador=fechaInicial<fechaFinal?1:-1;
             var diferenciaTiempo=Math.abs(fechaFinal-fechaInicial);
             var diferenciaDias = Math.ceil(diferenciaTiempo / (1000 * 3600 * 24));
@@ -1245,7 +1245,7 @@ angular.module('novaventa.services', [])
             var dateStr = self.padStr(fecha.getFullYear()) + "-" +
                 self.padStr(1 + fecha.getMonth()) + "-" +
                 self.padStr(fecha.getDate());
-            
+
 
             return dateStr;
         },
@@ -1259,46 +1259,32 @@ angular.module('novaventa.services', [])
         reemplazarTodos: function(str, find, replace){
             return str.replace(new RegExp(find, 'g'), replace);
         },
-        cambiarNombreEstadoPedido: function(nombre){
+        cambiarNombreEstadoPedido: function(codigo){
 
-            if(nombre.toLowerCase() == "ingresado" || nombre.toLowerCase() == "ingresada"){
-                return "Recibido";
-            }else{
-                if(nombre.toLowerCase() == "en línea"){
+            switch(codigo == "00"){
+
+                case "00":
+                    return "Recibido";
+                case "07":
                     return "En proceso de empaque";
-                }else{
-
-                    if(nombre.toLowerCase() == "cargue" || nombre.toLowerCase() == "en tránsito a bodega operador"){
-                        return "Entregado al transportador";
-                    }else{
-                        if(nombre.toLowerCase() == "en bodega operador secundario"){
-                            return "En bodega del transportador";
-                        }else{
-                            if(nombre.toLowerCase() == "en ruta"){
-                                return "En camino";
-                            }else{
-                                if(nombre.toLowerCase() == "en ruta nuevamente"){
-                                    return "Nuevo intento de entrega";
-                                }else{
-                                    if(nombre.toLowerCase() == "entregado totalmente"){
-                                        return "Entregado";
-                                    }else{
-                                        if(nombre.toLowerCase() == "entregado parcialmente"){
-                                            return "Entregado con novedad";
-                                        }else{
-                                            if(nombre.toLowerCase() == "no entregado"){
-                                                return "No entregado";
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                case "08": 
+                case "10":
+                    return "Entregado al transportador";
+                case "11":
+                    return "En bodega del transportador";
+                case "13":
+                    return "En camino";
+                case "14":
+                    return "Nuevo intento de entrega";
+                case "16":
+                    return "Entregado";
+                case "17":
+                    return "Entregado con novedad";
+                case "15":
+                    return "No entregado";
+                default:
+                    return "";
             }
-
-            return nombre;
         },
 
         getPlantillaEspera: function(mensaje) {

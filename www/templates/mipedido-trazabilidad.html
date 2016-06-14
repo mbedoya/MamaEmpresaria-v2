@@ -109,8 +109,27 @@
         </div>
 
         <div class="list pedido">
-
+            
             <div ng-show="!pedido().razonRechazo">
+
+                <div class="item selected" ng-repeat="estado in pedidoAnterior.historiaEstados | filter: noMostrar">
+                    <div class="row">
+                        <div class="col-30" style="padding-top: 20px">
+                            <img ng-src="{{imagenPedido(estado)}}">
+                        </div>
+                        <div class="col">
+                            <h2 class="balanced">{{estado.estado}}</h2>
+                            <p >{{formatoFecha(estado.fecha) | date: 'EEE'}} {{formatoFecha(estado.fecha) | date:'dd' }} de {{ formatoFecha(estado.fecha) | date: 'MMMM' | pascal }}  del {{ formatoFecha(estado.fecha) | date: 'yyyy' }}</p>
+                        </div>
+                        <div class="novedad col-16" ng-show="novedadEncontrada(estado)" ng-click="buscarTextoNovedad(estado)">
+                            <i class="icon ion-plus-circled item-chevron" ></i>
+                        </div>
+                    </div>
+                </div>                 
+
+            </div>
+
+            <div ng-show="false">
 
                 <div class="item selected" href="#" ng-show="estadoEncontrado('Recibido')" >
                     <div class="row">

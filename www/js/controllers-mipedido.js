@@ -2,17 +2,17 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Mi Pedido");
-    
+
     $scope.consultaPedidoAnteriorFinalizada = function(){
         return $scope.pedidoAnteriorFinalizado;
     }
-    
+
     $scope.consultaPedidoActualFinalizada = function(){
         return $scope.pedidoActualFinalizado;
     }
 
     $scope.inicializar = function(mostrarIndicador){
-        
+
         $scope.pedidoAnteriorFinalizado = false;
         $scope.pedidoActualFinalizado = false; 
 
@@ -25,9 +25,9 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
             }
 
             Pedido.getTrazabilidadAnterior($rootScope.datos.cedula, function (success, data){
-                
+
                 $scope.pedidoAnteriorFinalizado = true;
-                
+
                 if(success){
                     $scope.pedidoAnterior = data.historiaEstados;
 
@@ -118,7 +118,7 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
         }
         return true;
     }
-    
+
     //Si hay agotados reales? es decir que el mismo producto no se haya agotado y luego si esté disponible
     $scope.hayAgotadosAnteriorReales = function(){
 
@@ -163,7 +163,7 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
             while(cantidad >0 && !estadoEncontrado){
                 if($scope.pedidoActual[cantidad-1].estado.toLowerCase() != "novedad"){
                     estadoPedido = $scope.pedidoActual[cantidad-1];
-                    estadoPedido.estado = Utilidades.cambiarNombreEstadoPedido(estadoPedido.estado);
+                    estadoPedido.estado = Utilidades.cambiarNombreEstadoPedido(estadoPedido.codigoEstado);
                     estadoEncontrado = true;
                 }
                 cantidad = cantidad-1;
@@ -171,11 +171,20 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
 
             if(estadoEncontrado){
                 $("#estadoPedidoActual").val(estadoPedido.estado);
+                $scope.estadoPedidoAct = estadoPedido;
                 return estadoPedido;
             }
         }
-
+        $scope.estadoPedidoAct = null;
         return null;
+    }
+    
+    $scope.formatoFecha = function(fecha){
+        var dia = fecha.substring(0, 2);
+        var mes = fecha.substring(3, 5);
+        var ano = fecha.substring(6, 10);
+        var fecha = ano+"-"+mes+"-"+dia;
+        return new Date(Utilidades.validarFormatoFecha(fecha));
     }
 
     $scope.ultimoEstadoPedidoAnterior = function(){
@@ -189,7 +198,7 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
             while(cantidad >0 && !estadoEncontrado){
                 if($scope.pedidoAnterior[cantidad-1].estado.toLowerCase() != "novedad"){
                     estadoPedido = $scope.pedidoAnterior[cantidad-1];
-                    estadoPedido.estado = Utilidades.cambiarNombreEstadoPedido(estadoPedido.estado);
+                    estadoPedido.estado = Utilidades.cambiarNombreEstadoPedido(estadoPedido.codigoEstado);
                     estadoEncontrado = true;
                 }
                 cantidad = cantidad-1;
@@ -197,10 +206,11 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
 
             if(estadoEncontrado){
                 $("#estadoPedidoAnterior").val(estadoPedido.estado);
+                $scope.estadoPedidoAnt = estadoPedido;
                 return estadoPedido;
             }
         }
-
+        $scope.estadoPedidoAnt = null;
         return null;
     }
 
@@ -221,8 +231,8 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
     $scope.mostrarNovedad = function(novedad){
         var mostrar = false;
         if(novedad.toLowerCase().indexOf('morosa')>=0 ||
-            novedad.toLowerCase().indexOf('cupo')>=0 ||
-            novedad.toLowerCase().indexOf('tope')>=0){
+           novedad.toLowerCase().indexOf('cupo')>=0 ||
+           novedad.toLowerCase().indexOf('tope')>=0){
             mostrar = true;
         }
         return mostrar;
