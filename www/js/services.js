@@ -1261,10 +1261,14 @@ angular.module('novaventa.services', [])
         },
         cambiarNombreEstadoPedido: function(codigo){
 
-            switch(codigo == "00"){
+            switch(codigo){
 
                 case "00":
                     return "Recibido";
+                case "05":
+                    return "Anulado";
+                case "04":
+                    return "facturado";
                 case "07":
                     return "En proceso de empaque";
                 case "08": 

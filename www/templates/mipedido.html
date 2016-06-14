@@ -12,19 +12,18 @@
                 <h2>Campaña {{getNumeroCampanaAnterior()}}
                 </h2>
                 <p ng-show="consultaPedidoAnteriorFinalizada()">
-                    No tienes un pedido registrado para la campaña
-                </p>
-                <p ng-show="!consultaPedidoAnteriorFinalizada()">
-                    Estamos consultando el estado de tu Pedido...
-                </p>
+                    No tienes un pedido registrado para la campaña</p>
+                <div ng-show="!consultaPedidoAnteriorFinalizada()">                    
+                    <p>Estamos consultando el estado de tu pedido...</p>
+                </div>
             </div>
-
+            
             <!-- Pedido Anterior - Encontrado  -->
             <div class="item item-avatar item-icon-right" ng-click="irATrazabilidadAnterior()" ng-show="ultimoEstadoPedidoAnterior()" >
                 <div class="icono-caja-abierta"></div>
                 <h2>Campaña {{getNumeroCampanaAnterior()}}
                 </h2>
-                <p>{{estadoPedidoAnt.estado}}<br />
+                <p>{{nombreMostrar(estadoPedidoAnt.codigoEstado)}}<br />
                     {{formatoFecha(estadoPedidoAnt.fecha) | date: 'EEE'}} {{formatoFecha(estadoPedidoAnt.fecha) | date:'dd' }} de {{ formatoFecha(estadoPedidoAnt.fecha) | date: 'MMMM' | pascal }}  del {{ formatoFecha(estadoPedidoAnt.fecha) | date: 'yyyy' }}
                 </p>
                 <span class="assertive" ng-show="hayAgotadosAnteriorReales()">
@@ -32,14 +31,14 @@
                 </span>
                 <i class="icon ion-chevron-right"></i>
             </div>
-            
+
             <!-- Pedido Actual - Consultando -->
             <div class="item item-avatar item-icon-right alternate" ng-show="!consultaPedidoActualFinalizada()" >
                 <div class="icono-caja-cerrada"></div>
                 <h2>Campaña {{campana.numero}}
                 </h2>
                 <p>
-                    Estamos consultando el estado de tu Pedido...
+                    Estamos consultando el estado de tu pedido...
                 </p>
             </div>
 
@@ -48,7 +47,7 @@
                 <div class="icono-caja-cerrada"></div>
                 <h2>Campaña {{campana.numero}}
                 </h2>
-                <p>{{estadoPedidoAct.estado}}<br />
+                <p>{{nombreMostrar(estadoPedidoAct.codigoEstado)}}<br />
                     {{formatoFecha(estadoPedidoAct.fecha) | date: 'EEE'}} {{formatoFecha(estadoPedidoAct.fecha) | date:'dd' }} de {{ formatoFecha(estadoPedidoAct.fecha) | date: 'MMMM' | pascal }}  del {{ formatoFecha(estadoPedidoAct.fecha) | date: 'yyyy' }}
                 </p>
                 <span class="assertive" ng-show="!estadoEncontrado('Facturado') && estadoEncontrado('Novedad') && !estadoEncontrado('Anulado') && mostrarNovedad(buscarEstado('Novedad').motivo)">
@@ -75,9 +74,9 @@
                 <h2>Campaña {{campana.numero}}
                 </h2>
                 <span>Aún no tenemos información sobre
-                tu pedido. Si lo enviaste hoy por favor
-                verifica mañana. Si ya hiciste el envío de
-                tu pedido y aún no registra verifica: <br /></span>
+                    tu pedido. Si lo enviaste hoy por favor
+                    verifica mañana. Si ya hiciste el envío de
+                    tu pedido y aún no registra verifica: <br /></span>
                 <p><strong>1</strong> Que no se haya quedado en estado "Guardado" en la página web. </p>
                 <p><strong>2</strong> Que lo hayas llevado al buzón en el horario y fecha establecida.</p>
             </div>
@@ -94,10 +93,6 @@
             </div>
 
         </div>
-
-        <a class="item no-border">
-            <h2>&nbsp;</h2>
-        </a>
 
         <!-- Zona de Automatización de Pruebas -->
         <!-- Los valores de este campo se llenan desde el Controller -->

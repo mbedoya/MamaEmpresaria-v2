@@ -155,30 +155,22 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
     $scope.ultimoEstadoPedidoActual = function(){
 
         if($scope.pedidoActual && $scope.pedidoActual.length > 0){
-            cantidad = $scope.pedidoActual.length;
-            estadoEncontrado = false;
+            var estadoEncontrado = "";
 
-            var estadoPedido = null;
-
-            while(cantidad >0 && !estadoEncontrado){
-                if($scope.pedidoActual[cantidad-1].estado.toLowerCase() != "novedad"){
-                    estadoPedido = $scope.pedidoActual[cantidad-1];
-                    estadoPedido.estado = Utilidades.cambiarNombreEstadoPedido(estadoPedido.codigoEstado);
-                    estadoEncontrado = true;
-                }
-                cantidad = cantidad-1;
+            while(estadoEncontrado == ""){    
+                cantidad = cantidad - 1;
+                estadoEncontrado = Utilidades.cambiarNombreEstadoPedido($scope.pedidoActual[cantidad].codigoEstado);                    
             }
 
-            if(estadoEncontrado){
-                $("#estadoPedidoActual").val(estadoPedido.estado);
-                $scope.estadoPedidoAct = estadoPedido;
-                return estadoPedido;
+            if(estadoEncontrado == ""){
+                return null;   
+            }else{
+                $scope.estadoPedidoAct = $scope.pedidoActual[cantidad];
+                return $scope.estadoPedidoAct;
             }
         }
-        $scope.estadoPedidoAct = null;
-        return null;
     }
-    
+
     $scope.formatoFecha = function(fecha){
         var dia = fecha.substring(0, 2);
         var mes = fecha.substring(3, 5);
@@ -186,32 +178,30 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
         var fecha = ano+"-"+mes+"-"+dia;
         return new Date(Utilidades.validarFormatoFecha(fecha));
     }
+    
+    $scope.nombreMostrar = function(codigo){
+        return Utilidades.cambiarNombreEstadoPedido(codigo);
+    }
 
     $scope.ultimoEstadoPedidoAnterior = function(){
 
         if($scope.pedidoAnterior && $scope.pedidoAnterior.length > 0){
             cantidad = $scope.pedidoAnterior.length;
-            estadoEncontrado = false;
 
-            var estadoPedido = null;
+            var estadoEncontrado = "";
 
-            while(cantidad >0 && !estadoEncontrado){
-                if($scope.pedidoAnterior[cantidad-1].estado.toLowerCase() != "novedad"){
-                    estadoPedido = $scope.pedidoAnterior[cantidad-1];
-                    estadoPedido.estado = Utilidades.cambiarNombreEstadoPedido(estadoPedido.codigoEstado);
-                    estadoEncontrado = true;
-                }
-                cantidad = cantidad-1;
+            while(estadoEncontrado == ""){    
+                cantidad = cantidad - 1;
+                estadoEncontrado = Utilidades.cambiarNombreEstadoPedido($scope.pedidoAnterior[cantidad].codigoEstado);                    
             }
 
-            if(estadoEncontrado){
-                $("#estadoPedidoAnterior").val(estadoPedido.estado);
-                $scope.estadoPedidoAnt = estadoPedido;
-                return estadoPedido;
+            if(estadoEncontrado == ""){
+                return null;   
+            }else{
+                $scope.estadoPedidoAnt = $scope.pedidoAnterior[cantidad];
+                return $scope.estadoPedidoAnt;
             }
         }
-        $scope.estadoPedidoAnt = null;
-        return null;
     }
 
     $scope.fechaLuegoEncuentro = function(){

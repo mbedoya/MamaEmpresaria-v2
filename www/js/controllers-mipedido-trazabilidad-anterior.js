@@ -256,11 +256,12 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
         $scope.estadoActual = estado;
 
         switch(estado.codigoEstado){
-            case "02":                
+            case "00":                
             case "05":               
             case "04":
             case "07":
             case "08":
+            case "10":
             case "11":
             case "13":
             case "14":
@@ -269,8 +270,12 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
             case "15":
                 return true;
             default:
-                return false
+                return false;
         }
+    }
+    
+    $scope.nombreMostrar = function(codigo){
+      return Utilidades.cambiarNombreEstadoPedido(codigo);   
     }
 
     $scope.imagenPedido = function(estado){

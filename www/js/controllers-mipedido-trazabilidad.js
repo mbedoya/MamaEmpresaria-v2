@@ -186,7 +186,11 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
         var ano = fecha.substring(6, 10);
         var fecha = ano+"-"+mes+"-"+dia;
         return new Date(Utilidades.validarFormatoFecha(fecha));
-    }    
+    }       
+        
+    $scope.nombreMostrar = function(codigo){
+      return Utilidades.cambiarNombreEstadoPedido(codigo);   
+    }
 
     $scope.noMostrar = function(estado){
 
@@ -196,12 +200,13 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
 
         $scope.estadoActual = estado;
 
-        switch(estado.codigoEstado){
-            case "02":                
+       switch(estado.codigoEstado){
+            case "00":                
             case "05":               
             case "04":
-            /*case "En proceso de empaque":*/
-            /*case "Entregado al transportador":*/
+            case "07":
+            case "08":
+            case "10":
             case "11":
             case "13":
             case "14":
@@ -210,7 +215,7 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
             case "15":
                 return true;
             default:
-                return false
+                return false;
         }
     }
 
@@ -219,7 +224,7 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
         var src = "";
 
         switch(estado.codigoEstado){
-            case "02"/*"Recibido"*/:
+            case "00"/*"Ingresado"*/:
                 src = "img/pedido1-selected.png";
                 break;
 
@@ -231,13 +236,17 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
                 src = "img/pedido2-selected.png";
                 break;
 
-            /*case "En proceso de empaque":
+            case "07"/*"En linea"*/:
                 src = "img/pedido3-selected.png";
-                break;*/
+                break;
 
-            /*case "Entregado al transportador":
+            case "08"/*"Cargue"*/:
                 src = "img/pedido4-selected.png";
-                break;*/
+                break;
+                
+            case "10":/*en transito bodega operador*/
+                src = "img/pedido4-selected.png";
+                break;                
 
             case "11"/*"En bodega operador secundario"*/:
                 src = "img/bodega_transp.png";
