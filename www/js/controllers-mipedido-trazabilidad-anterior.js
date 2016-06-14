@@ -250,23 +250,23 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
     $scope.noMostrar = function(estado){
 
         if($scope.estadoActual){
-            if($scope.estadoActual.estado == "Anulado") return false;
+            if($scope.estadoActual.codigoEstado == "05") return false;
         }
 
         $scope.estadoActual = estado;
 
-        switch(estado.estado){
-            case "Recibido":                
-            case "Anulado":               
-            case "Facturado":
-            case "En proceso de empaque":
-            case "Entregado al transportador":
-            case "En bodega operador secundario":
-            case "En ruta":
-            case "En ruta nuevamente":
-            case "Entregado totalmente":
-            case "Entregado parcialmente":
-            case "No entregado":
+        switch(estado.codigoEstado){
+            case "02":                
+            case "05":               
+            case "04":
+            case "07":
+            case "08":
+            case "11":
+            case "13":
+            case "14":
+            case "16":
+            case "17":
+            case "15":
                 return true;
             default:
                 return false
@@ -277,48 +277,52 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
 
         var src = "";
 
-        switch(estado.estado){
-            case "Recibido":
+        switch(estado.codigoEstado){
+            case "00"/*"Ingresado"*/:
                 src = "img/pedido1-selected.png";
                 break;
 
-            case "Anulado":
+            case "05"/*"Anulado"*/:
                 src = "img/anulado.png";
                 break;
 
-            case "Facturado":
+            case "04"/*"Facturado"*/:
                 src = "img/pedido2-selected.png";
                 break;
 
-            case "En proceso de empaque":
+            case "07"/*"En linea"*/:
                 src = "img/pedido3-selected.png";
                 break;
 
-            case "Entregado al transportador":
+            case "08"/*"Cargue"*/:
                 src = "img/pedido4-selected.png";
                 break;
+                
+            case "10":/*en transito bodega operador*/
+                src = "img/pedido4-selected.png";
+                break;                
 
-            case "En bodega operador secundario":
+            case "11"/*"En bodega operador secundario"*/:
                 src = "img/bodega_transp.png";
                 break;
 
-            case "En ruta":
+            case "13"/*"En ruta"*/:
                 src="img/en_camino.png";
                 break;
 
-            case "En ruta nuevamente":
+            case "14"/*"En ruta nuevamente"*/:
                 src="img/nuevo_intento_entrega.png";
                 break;
 
-            case "Entregado totalmente":
+            case "16"/*"Entregado totalmente"*/:
                 src="img/entregado.png";
                 break;
 
-            case "Entregado parcialmente":
+            case "17"/*"Entregado parcialmente"*/:
                 src="img/entregado_novedad.png";
                 break;
 
-            case "No entregado":
+            case "15"/*"No entregado"*/:
                 src="img/no_entregado.png";
                 break;
 
