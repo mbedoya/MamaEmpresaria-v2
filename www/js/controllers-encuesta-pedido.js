@@ -1,4 +1,4 @@
-moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $rootScope, $ionicLoading, $ionicPopup, $state, $http, $filter, $ionicHistory, Mama, Internet, GA, Pedido) {
+moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $rootScope, $ionicLoading, $ionicPopup, $state, $http, $filter, $ionicHistory, Mama, Internet, GA, Pedido, Utilidades) {
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Encuesta Pedido");
@@ -14,6 +14,13 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
         if($scope.indice + 1 < $scope.preguntas.length){
             $scope.indice++;
         }else{
+
+            $scope.loading =  $ionicLoading.show({
+                template: Utilidades.getPlantillaEspera('Enviando la Encuesta')
+            });
+
+            $ionicLoading.hide();
+
             $scope.mostrarAyuda("Inicio de sesión","Encuesta finalizada! Muchas gracias por tu participación");
             $location.path('/app/menu/tabs/home');
         }
@@ -49,7 +56,15 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
         $scope.indice = -1;
 
         if(Internet.get()){
+
+            $scope.loading =  $ionicLoading.show({
+                template: Utilidades.getPlantillaEspera('Consultando la Encuesta')
+            });
+
             Pedido.obtenerPreguntasEncuesta(function(success, data) {
+
+                $ionicLoading.hide();
+
                 if (success) {
                     $scope.preguntas = data;
                     $scope.indice = 0;
