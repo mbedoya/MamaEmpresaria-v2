@@ -283,7 +283,7 @@ angular.module('novaventa.services', [])
         obtenerPreguntasEncuesta: function(fx){
 
             //var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/interfaceAntares/getRecordatoriosAntares/" + zona + "/" + seccion;
-            var urlServicio = "http://www.mocky.io/v2/576025930f00007815a6b172";
+            var urlServicio = "http://www.mocky.io/v2/5761768e2500004d0f8460e6";
 
             $http.get(urlServicio).
                 success(function(data, status, headers, config) {

@@ -27,6 +27,23 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
         return $scope.preguntas[$scope.indice];
     }
 
+    $scope.EsPreguntaCerradaMultiple = function(){
+        return $scope.preguntas && $scope.preguntas.length > 0 &&
+            $scope.preguntas[$scope.indice].tipo.toLowerCase() == "cerrada" &&
+            $scope.preguntas[$scope.indice].multiple.toLowerCase() == "si";
+    }
+
+    $scope.EsPreguntaCerradaSimple = function(){
+        return $scope.preguntas && $scope.preguntas.length > 0 &&
+            $scope.preguntas[$scope.indice].tipo.toLowerCase() == "cerrada" &&
+            $scope.preguntas[$scope.indice].multiple.toLowerCase() == "no";
+    }
+
+    $scope.EsPreguntaAbierta = function(){
+        return $scope.preguntas && $scope.preguntas.length > 0 &&
+            $scope.preguntas[$scope.indice].tipo.toLowerCase() == "abierta";
+    }
+
     $scope.inicializar = function() {
 
         $scope.indice = -1;
