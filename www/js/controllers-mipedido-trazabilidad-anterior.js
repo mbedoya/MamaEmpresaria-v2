@@ -250,7 +250,8 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
     $scope.noMostrar = function(estado){
 
         if($scope.estadoActual){
-            if($scope.estadoActual.codigoEstado == "05") return false;
+            if((estado.codigoEstado == "08" && $scope.estadoActual.codigoEstado == "10")
+              || estado.codigoEstado == "10" && $scope.estadoActual.codigoEstado == "08") return false;
         }
 
         $scope.estadoActual = estado;
