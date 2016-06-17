@@ -4,7 +4,7 @@
             Encuesta Pedido
         </div>
 
-        <div class="padding" ng-show="obtenerPregunta()">
+        <div class="padding" ng-show="obtenerPregunta()" style="min-height:250px;">
             <div style="width: 100%">
                 <h5 style="text-align: center">Pregunta {{indice + 1}} de {{preguntas.length}}</h5>
             </div>
@@ -25,9 +25,10 @@
             <label class="login-input" ng-show="EsPreguntaAbierta()" >
                 <input id="txtTexto" type="text" >
             </label>
-
-            <input type="button" value="Continuar" class="button button-block button-footer" ng-click="continuar()" >
         </div>
+        <div class="padding" ng-show="obtenerPregunta()">
+            <input type="button" value="Continuar" class="button button-block button-footer"  ng-click="continuar()" >
+        </div>        
 
         <div class="div-lista-footer"></div>
 

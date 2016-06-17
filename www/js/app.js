@@ -1,6 +1,6 @@
 angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.controllers', 'novaventa.services', 'firebase'])
 
-    .run(function($ionicPlatform, $rootScope, $ionicPopup, Campana, Utilidades) { 
+    .run(function($ionicPlatform, $rootScope, $ionicPopup, $location, Campana, Utilidades) { 
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -41,16 +41,39 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
                 almacenarNotificacion(jsonData);
 
-                if(titulo=="")titulo="Notificación Mamá Empresaria";
+                if(titulo==""){
+                    titulo="Notificación Mamá Empresaria";
+                }
 
-                var alertPopup = $ionicPopup.alert({
-                    title: titulo,
-                    template: jsonData.message
-                });
+                var alertPopup;
 
-                alertPopup.then(function(res) {
-                    fueLeido();
-                });
+                if(jsonData.message.toLowerCase().contains("pedido")){
+
+                    var confirmPopup = $ionicPopup.confirm({
+                        title: titulo,
+                        template: jsonData.message + ".<br /> ¿Deseas participar en una Encuesta de Satisfacción sobre tu Pedido?"
+                    });
+
+                    confirmPopup.then(function(res) {
+                        fueLeido();
+                        if(res) {
+                            $location.path('/app/menu/tabs/mas/encuestapedido');
+                        }
+                    });
+
+                }else{
+
+                    var alertPopup = $ionicPopup.alert({
+                        title: titulo,
+                        template: jsonData.message
+                    });
+
+                    alertPopup.then(function(res) {
+                        fueLeido();
+                    });
+                }
+
+                
             };
 
             var fueLeido = function(){
