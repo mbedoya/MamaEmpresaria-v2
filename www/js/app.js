@@ -47,7 +47,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
                 var alertPopup;
 
-                if(jsonData.message.toLowerCase().contains("pedido")){
+                if(jsonData.message.toLowerCase().indexOf("pedido") > -1){
 
                     var confirmPopup = $ionicPopup.confirm({
                         title: titulo,

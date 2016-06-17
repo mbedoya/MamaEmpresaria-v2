@@ -16,13 +16,24 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
         }else{
 
             $scope.loading =  $ionicLoading.show({
-                template: Utilidades.getPlantillaEspera('Enviando la Encuesta')
+                template: Utilidades.getPlantillaEspera('Enviando las respuestas de la Encuesta')
             });
 
-            $ionicLoading.hide();
+            Pedido.enviarRespuestasEncuesta("p1=1&p2=4&p3=5&p4=me gusta" ,function(success, data) {
 
-            $scope.mostrarAyuda("Inicio de sesión","Encuesta finalizada! Muchas gracias por tu participación");
-            $location.path('/app/menu/tabs/home');
+                $ionicLoading.hide();
+
+                if (success) {
+                    console.log("Encuesta enviada");
+                }else{
+                    console.log("Error al enviar encuesta");
+                }
+
+                $scope.mostrarAyuda("Inicio de sesión","Encuesta finalizada! Muchas gracias por tu participación");
+                $location.path('/app/menu/tabs/home');
+
+            });
+
         }
     };
 
