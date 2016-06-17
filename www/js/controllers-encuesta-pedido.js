@@ -27,6 +27,12 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
             return;
         }
 
+        //Validación de ingreso de respuesta cerrada múltiple
+        if($scope.respuestaTexto.valor.trim().length == 0){
+            $scope.mostrarAyuda("","Por favor contesta la pregunta");
+            return;
+        }
+
         $scope.respuestas.push("P" + $scope.indice + 1 + "=" + $scope.indiceRespuesta);
         $scope.indiceRespuesta = "";
 
@@ -61,6 +67,10 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
         $scope.indiceRespuesta = indice;
     }
 
+    $scope.contestarPreguntaTexto = function () {
+        console.log("respuesta texto: " + $scope.respuestaTexto.valor);
+    }
+
     $scope.obtenerPregunta = function(){
         if($scope.indice == -1){
             return null;
@@ -90,6 +100,7 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
 
         $scope.respuestas = new Array();
         $scope.indiceRespuesta = "";
+        $scope.respuestaTexto = { valor: ''};
         $scope.indice = -1;
 
         if(Internet.get()){

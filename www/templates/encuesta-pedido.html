@@ -23,7 +23,7 @@
             </ion-list>
 
             <label class="login-input" ng-show="EsPreguntaAbierta()" >
-                <input id="txtTexto" type="text" >
+                <input id="txtTexto" type="text" ng-model="respuestaTexto.valor" ng-change="contestarPreguntaTexto()" >
             </label>
         </div>
         <div class="padding" ng-show="obtenerPregunta()">
