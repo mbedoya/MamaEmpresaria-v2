@@ -11,6 +11,25 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
     };
 
     $scope.continuar = function() {
+
+        console.log($scope.indiceRespuesta);
+        console.log($scope.EsPreguntaCerradaSimple());
+
+        //Validación de ingreso de respuesta cerrada única
+        if($scope.indiceRespuesta.length == 0 && $scope.EsPreguntaCerradaSimple()){
+            $scope.mostrarAyuda("","Debes seleccionar una opción");
+            return;
+        }
+
+        //Validación de ingreso de respuesta cerrada múltiple
+        if($scope.indiceRespuesta.length == 0 && $scope.EsPreguntaCerradaMultiple()){
+            $scope.mostrarAyuda("","Debes seleccionar mínimo una opción");
+            return;
+        }
+
+        $scope.respuestas.push("P" + $scope.indice + 1 + "=" + $scope.indiceRespuesta);
+        $scope.indiceRespuesta = "";
+
         if($scope.indice + 1 < $scope.preguntas.length){
             $scope.indice++;
         }else{
@@ -19,7 +38,7 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
                 template: Utilidades.getPlantillaEspera('Enviando las respuestas de la Encuesta')
             });
 
-            Pedido.enviarRespuestasEncuesta("p1=1&p2=4&p3=5&p4=me gusta" ,function(success, data) {
+            Pedido.enviarRespuestasEncuesta($scope.respuestas.join("&") ,function(success, data) {
 
                 $ionicLoading.hide();
 
@@ -36,6 +55,11 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
 
         }
     };
+
+    $scope.contestarPregunta = function (indice) {
+        console.log("Indice respuesta: " + indice);
+        $scope.indiceRespuesta = indice;
+    }
 
     $scope.obtenerPregunta = function(){
         if($scope.indice == -1){
@@ -64,6 +88,8 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
 
     $scope.inicializar = function() {
 
+        $scope.respuestas = new Array();
+        $scope.indiceRespuesta = "";
         $scope.indice = -1;
 
         if(Internet.get()){

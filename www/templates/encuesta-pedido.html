@@ -11,13 +11,13 @@
             <h5>{{ obtenerPregunta().pregunta }}</h5>
 
             <ion-list ng-show="EsPreguntaCerradaSimple()">
-                <ion-radio ng-repeat="respuesta in obtenerPregunta().respuestas">
+                <ion-radio ng-repeat="respuesta in obtenerPregunta().respuestas" ng-click="contestarPregunta($index)">
                     {{respuesta.nombre}}
                 </ion-radio>
             </ion-list>
 
             <ion-list ng-show="EsPreguntaCerradaMultiple()">
-                <ion-checkbox ng-repeat="respuesta in obtenerPregunta().respuestas">
+                <ion-checkbox ng-repeat="respuesta in obtenerPregunta().respuestas" ng-click="contestarPregunta($index)">
                     {{respuesta.nombre}}
                 </ion-checkbox>
             </ion-list>
