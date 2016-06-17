@@ -121,17 +121,26 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
     $scope.fechaRepartoPedido = function(fecha){
         if($rootScope.campana && $rootScope.campana.fechaReparto1 &&  $rootScope.campana.fechaReparto2){   
             if(new Date(Utilidades.validarFormatoFecha(fecha)) <= new Date(Utilidades.validarFormatoFecha($rootScope.campana.fechaMontajePedido)))
-                return $rootScope.campana.fechaReparto1;  
-            else return $rootScope.campana.fechaReparto2;
+                $scope.fechaReparto = $rootScope.campana.fechaReparto1; 
+            else $scope.fechaReparto = $rootScope.campana.fechaReparto2;
         }else{
-            return "";
+            $scope.fechaReparto = null;
         }
+    }
+
+    $scope.separarFecha = function(fecha){
+        if(!fecha || fecha.length <= 10) return;
+        var dia = fecha.substring(0, 2);
+        var mes = fecha.substring(3, 5);
+        var ano = fecha.substring(6, 10);
+        var fechaN = ano+"-"+mes+"-"+dia;
+        return fechaN;
     }
 
     $scope.estadoEncontrado = function(estado){
         return Pedido.estadoEncontrado(estado);
     }
-    
+
     /* Inicio - Funciones para Novedades en Tracking Secundario */
     $scope.novedadEncontrada = function(estado){
         $scope.nombreMotivo = estado.motivo;
@@ -179,20 +188,29 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
             template: mensaje
         });
     };
+    
+        
+    $scope.esEntregado = function(estado){
+        $scope.fechaRepartoPedido(estado.fecha);
+        if($scope.fechaReparto){
+            return estado.codigoEstado == "08" || estado.codigoEstado == "10";
+        }
+        return false;
+    }
 
-    $scope.formatoFecha = function(fecha){
-        var dia = fecha.substring(0, 2);
-        var mes = fecha.substring(3, 5);
-        var ano = fecha.substring(6, 10);
-        var fecha = ano+"-"+mes+"-"+dia;
+    $scope.formatoFecha = function(fecha){        
         return new Date(Utilidades.validarFormatoFecha(fecha));
     }       
-        
+
     $scope.nombreMostrar = function(codigo){
-      return Utilidades.cambiarNombreEstadoPedido(codigo);   
+        return Utilidades.cambiarNombreEstadoPedido(codigo);   
     }
 
     $scope.noMostrar = function(estado){
+        
+        if(estado){
+            estado.fecha = $scope.separarFecha(estado.fecha);   
+        }
 
         if($scope.estadoActual){
             if($scope.estadoActual.codigoEstado == "05") return false;
@@ -200,7 +218,7 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
 
         $scope.estadoActual = estado;
 
-       switch(estado.codigoEstado){
+        switch(estado.codigoEstado){
             case "00":                
             case "05":               
             case "04":
@@ -243,7 +261,7 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
             case "08"/*"Cargue"*/:
                 src = "img/pedido4-selected.png";
                 break;
-                
+
             case "10":/*en transito bodega operador*/
                 src = "img/pedido4-selected.png";
                 break;                
@@ -279,9 +297,9 @@ moduloControlador.controller('MiPedidoTrazabilidadCtrl', function($scope, $rootS
 
         return src;
     }
-    
+
     /* Fin - Funciones para Novedades en Tracking Secundario */
-    
+
     $scope.buscarEstado = function(estado){
         return Pedido.buscarEstado(estado);
     }

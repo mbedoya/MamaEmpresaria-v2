@@ -177,19 +177,28 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
     }
 
     $scope.fechaRepartoPedido = function(fecha){
-        if($rootScope.campanaAnterior && $rootScope.campanaAnterior.fechaReparto1 &&  $rootScope.campanaAnterior.fechaReparto2){   
-            if(new Date(Utilidades.validarFormatoFecha(fecha)) <= new Date(Utilidades.validarFormatoFecha($rootScope.campanaAnterior.fechaMontajePedido)))
-                return $rootScope.campanaAnterior.fechaReparto1;  
-            else return $rootScope.campanaAnterior.fechaReparto2;
+        if($rootScope.campana && $rootScope.campana.fechaReparto1 &&  $rootScope.campana.fechaReparto2){   
+            if(new Date(Utilidades.validarFormatoFecha(fecha)) <= new Date(Utilidades.validarFormatoFecha($rootScope.campana.fechaMontajePedido)))
+                $scope.fechaReparto = $rootScope.campana.fechaReparto1; 
+            else $scope.fechaReparto = $rootScope.campana.fechaReparto2;
         }else{
-            return "";
+            $scope.fechaReparto = null;
         }
+    }
+
+    $scope.separarFecha = function(fecha){
+        if(!fecha || fecha.length <= 10) return;
+        var dia = fecha.substring(0, 2);
+        var mes = fecha.substring(3, 5);
+        var ano = fecha.substring(6, 10);
+        var fechaN = ano+"-"+mes+"-"+dia;
+        return fechaN;
     }
 
     $scope.estadoEncontrado = function(estado){
         return Pedido.estadoEncontrado(estado, $rootScope.pedidoAnterior);
     }
-    
+
     /* Inicio - Funciones para Novedades en Tracking Secundario */
 
     $scope.novedadEncontrada = function(estado){
@@ -238,20 +247,28 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
             template: mensaje
         });
     };
+    
+    $scope.esEntregado = function(estado){
+        $scope.fechaRepartoPedido(estado.fecha);
+        if($scope.fechaReparto){
+            return estado.codigoEstado == "08" || estado.codigoEstado == "10";
+        }
+        return false;
+    }
 
-    $scope.formatoFecha = function(fecha){
-        var dia = fecha.substring(0, 2);
-        var mes = fecha.substring(3, 5);
-        var ano = fecha.substring(6, 10);
-        var fecha = ano+"-"+mes+"-"+dia;
+    $scope.formatoFecha = function(fecha){        
         return new Date(Utilidades.validarFormatoFecha(fecha));
     }    
 
     $scope.noMostrar = function(estado){
 
+        if(estado){
+            estado.fecha = $scope.separarFecha(estado.fecha);   
+        }
+
         if($scope.estadoActual){
             if((estado.codigoEstado == "08" && $scope.estadoActual.codigoEstado == "10")
-              || estado.codigoEstado == "10" && $scope.estadoActual.codigoEstado == "08") return false;
+               || estado.codigoEstado == "10" && $scope.estadoActual.codigoEstado == "08") return false;
         }
 
         $scope.estadoActual = estado;
@@ -274,9 +291,9 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
                 return false;
         }
     }
-    
+
     $scope.nombreMostrar = function(codigo){
-      return Utilidades.cambiarNombreEstadoPedido(codigo);   
+        return Utilidades.cambiarNombreEstadoPedido(codigo);   
     }
 
     $scope.imagenPedido = function(estado){
@@ -303,7 +320,7 @@ moduloControlador.controller('MiPedidoTrazabilidadAnteriorCtrl', function($scope
             case "08"/*"Cargue"*/:
                 src = "img/pedido4-selected.png";
                 break;
-                
+
             case "10":/*en transito bodega operador*/
                 src = "img/pedido4-selected.png";
                 break;                

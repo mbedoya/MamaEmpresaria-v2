@@ -39,8 +39,8 @@
                         máximo el {{campana.fechaCorreteo | date: 'dd' }} de  {{campana.fechaCorreteo | date: 'MMMM' }}</span>
                     antes a las 4 de la tarde
                     </span>
-                </div>
             </div>
+        </div>
         </div>
 
     <!-- Anulado -->
@@ -120,6 +120,8 @@
                     <div class="col">
                         <h2 class="balanced">{{nombreMostrar(estado.codigoEstado)}}</h2>
                         <p >{{formatoFecha(estado.fecha) | date: 'EEE'}} {{formatoFecha(estado.fecha) | date:'dd' }} de {{ formatoFecha(estado.fecha) | date: 'MMMM' | pascal }}  del {{ formatoFecha(estado.fecha) | date: 'yyyy' }}</p>
+                        <p class="item-formato-anterior" ng-show="fechaRepartoPedido() != '' && esEntregado(estado.codigoEstado)">
+                            Posiblemente recibas <br />tu pedido el {{formatoFecha(fechaRepartoPedido(estado.fecha)) | date: 'EEE'}} {{formatoFecha(fechaRepartoPedido(estado.fecha)) | date:'dd' }} de {{ formatoFecha(fechaRepartoPedido(estado.fecha))) | date: 'MMMM' | pascal }}  del {{ formatoFecha(fechaRepartoPedido(estado.fecha)) | date: 'yyyy' }}</p>
                     </div>
                     <div class="novedad col-16" ng-show="novedadEncontrada(estado)" ng-click="buscarTextoNovedad(estado)">
                         <i class="icon ion-plus-circled item-chevron" ></i>
@@ -134,7 +136,7 @@
     <!-- Zona de Automatización de Pruebas -->
     <!-- Los valores de este campo se llenan desde el Controller -->
     <input id="estados" type="hidden" value='' />
-    
+
     <div class="div-lista-footer"></div>
 
     </ion-content>
