@@ -295,7 +295,7 @@ angular.module('novaventa.services', [])
         },
         enviarRespuestasEncuesta: function(respuestas, fx){
 
-            alert(respuestas);
+            //alert(respuestas);
 
             //var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/interfaceAntares/getRecordatoriosAntares/" + zona + "/" + seccion;
             var urlServicio = "http://www.mocky.io/v2/5761768e2500004d0f8460e6";
