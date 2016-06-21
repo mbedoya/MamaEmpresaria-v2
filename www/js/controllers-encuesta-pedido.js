@@ -28,7 +28,7 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
         }
 
         //Validación de ingreso de respuesta cerrada múltiple
-        if($scope.respuestaTexto.valor.trim().length == 0){
+        if($scope.respuestaTexto.valor.trim().length == 0 && $scope.EsPreguntaAbierta()){
             $scope.mostrarAyuda("","Por favor contesta la pregunta");
             return;
         }
