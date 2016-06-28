@@ -197,6 +197,10 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
         }
     }
 
+    $scope.irAPedido = function() {
+        $state.go('app.menu.tabs.mipedido');
+    }
+
     $scope.mostrarOpcionesMas = function() {
         var botones = [
             { text: 'Mi Negocio' },

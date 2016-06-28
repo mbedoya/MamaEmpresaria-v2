@@ -1292,7 +1292,7 @@ angular.module('novaventa.services', [])
                 case "05":
                     return "Anulado";
                 case "04":
-                    return "facturado";
+                    return "Facturado";
                 case "07":
                     return "En proceso de empaque";
                 case "08": 
