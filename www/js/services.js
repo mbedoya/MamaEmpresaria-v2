@@ -1304,12 +1304,12 @@ angular.module('novaventa.services', [])
                     return "En camino";
                 case "14":
                     return "Nuevo intento de entrega";
+                case "15":
+                    return "No entregado";
                 case "16":
                     return "Entregado";
                 case "17":
                     return "Entregado con novedad";
-                case "15":
-                    return "No entregado";
                 default:
                     return "";
             }
