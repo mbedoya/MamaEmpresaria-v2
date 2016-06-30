@@ -30,6 +30,7 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
 
                 if(success){
                     $scope.pedidoAnterior = data.historiaEstados;
+                    $rootScope.miPedidoAnterior = data;
 
                     console.log("Trazabilidad anterior - pedidoAnterior: " + $scope.pedidoAnterior);
                 }else{
@@ -54,6 +55,7 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
                 if(success){
                     console.log(data);
                     $scope.pedidoActual = data.historiaEstados;
+                    $rootScope.miPedidoActual = data;
                 }else{
 
                 }

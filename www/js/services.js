@@ -725,6 +725,8 @@ angular.module('novaventa.services', [])
                                 }
 
                                 $rootScope.pedido = data;
+                                //console.log("Historia Estados");
+                                //console.log($rootScope.pedido.historiaEstados);
 
                                 //Obtener la campaña operativa
                                 Campana.getRecordatoriosCampanaOperativa(function (success, data){

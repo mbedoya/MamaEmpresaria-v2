@@ -123,6 +123,50 @@
                     <p>
                         Campaña Anterior (Calculada): {{campanaAnterior.numero}}
                     </p>
+                    <p>
+                        <b>Fechas Campaña Actual</b>
+                    </p>
+                    <p ng-repeat="fecha in fechas">
+                        Actividad: {{fecha.actividad}}
+                        <br />Fecha: {{fecha.fecha}}
+                    </p>
+                    <p>
+                        <b>Fechas Campaña Anterior</b>
+                    </p>
+                    <p ng-repeat="fecha in fechasAnteriores">
+                        Actividad: {{fecha.actividad}}
+                        <br />Fecha: {{fecha.fecha}}
+                    </p>
+                    <!-- Trazabilidad Actual Antares -->
+                    <p>
+                        <b>Trazabilidad Actual Antares</b>
+                    </p>
+                    <p ng-repeat="traza in pedido.historiaEstados">
+                        Estado: {{traza.estado}}
+                        <br /> Motivo: {{traza.motivo}}
+                        <br />Fecha: {{traza.fecha}}
+                        <br />Código: {{traza.codigoEstado}}
+                    </p>
+                    <!-- Trazabilidad Actual -->
+                    <p>
+                        <b>Trazabilidad Actual</b>
+                    </p>
+                    <p ng-repeat="traza in miPedidoActual.historiaEstados">
+                        Estado: {{traza.estado}}
+                        <br /> Motivo: {{traza.motivo}}
+                        <br />Fecha: {{traza.fecha}}
+                        <br />Código: {{traza.codigoEstado}}
+                    </p>
+                    <!-- Trazabilidad Anterior -->
+                    <p>
+                        <b>Trazabilidad Anterior</b>
+                    </p>
+                    <p ng-repeat="traza in miPedidoAnterior.historiaEstados">
+                        Estado: {{traza.estado}}
+                        <br /> Motivo: {{traza.motivo}}
+                        <br />Fecha: {{traza.fecha}}
+                        <br />Código: {{traza.codigoEstado}}
+                    </p>
                 </div>
 
                 <div class="padding campanas" style="height: 100px;" >

@@ -6,7 +6,7 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
     //Estas variables permiten ir a ver del log del App
     $scope.numeroClicksCampana = 0;
     $scope.mostrarLog = false;
-    
+
     // SÓLO PARA PRUEBAS
     // Se cambia el color del ícono de red social a rojo, para indicar que la app está apuntando a PRUEBAS
     if(!$rootScope.versionProduccion){
@@ -83,6 +83,8 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
         $scope.numeroClicksCampana++;
 
         if($scope.numeroClicksCampana == 5){
+            console.log($rootScope.fechas);
+            console.log($rootScope.fechasAnteriores);
             $scope.mostrarLog = true;
         }
     }
