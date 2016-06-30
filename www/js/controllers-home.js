@@ -1,7 +1,11 @@
 moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $ionicPopup, GA, Campana, Utilidades, Pedido) {
 
     //Registro en Analytics
-    GA.trackPage($rootScope.gaPlugin, "Home");  
+    GA.trackPage($rootScope.gaPlugin, "Home");
+
+    //Estas variables permiten ir a ver del log del App
+    $scope.numeroClicksCampana = 0;
+    $scope.mostrarLog = false;
     
     // SÓLO PARA PRUEBAS
     // Se cambia el color del ícono de red social a rojo, para indicar que la app está apuntando a PRUEBAS
@@ -73,6 +77,18 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
         }
 
         return etiqueta;
+    }
+
+    $scope.clickCampana = function(){
+        $scope.numeroClicksCampana++;
+
+        if($scope.numeroClicksCampana == 5){
+            $scope.mostrarLog = true;
+        }
+    }
+
+    $scope.mostrarLogApp = function(){
+        return $scope.mostrarLog;
     }
 
     $scope.estiloAlternateFechaPago = function(){

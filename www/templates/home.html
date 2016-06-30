@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="campana">
-                    <div class="campana-title">
+                    <div class="campana-title" ng-click="clickCampana()">
                         Estás en <strong>Campaña {{campana.numero}}</strong>
                     </div>
                 </div>
@@ -101,6 +101,28 @@
                         Página Web antes de las 12:00 de la noche
                     </h2>
                     <p>&nbsp;</p>
+                </div>
+
+                <div class="padding campanas" style="height: 100px;" >
+                    &nbsp;
+                </div>
+
+
+
+            </div>
+
+            <div class="list" ng-show="mostrarLogApp()">
+
+                <div class="item">
+                    <p>
+                        Campaña Antares: {{campanaAntares}}
+                    </p>
+                    <p>
+                        Campaña Actual (Calculada): {{campana.numero}}
+                    </p>
+                    <p>
+                        Campaña Anterior (Calculada): {{campanaAnterior.numero}}
+                    </p>
                 </div>
 
                 <div class="padding campanas" style="height: 100px;" >
