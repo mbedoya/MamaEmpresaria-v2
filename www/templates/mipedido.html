@@ -24,7 +24,7 @@
                 <h2>Campaña {{getNumeroCampanaAnterior()}}
                 </h2>
                 <p>{{nombreMostrar(estadoPedidoAnt.codigoEstado)}}<br />
-                    {{formatoFecha(estadoPedidoAnt.fecha) | date: 'EEE'}} {{formatoFecha(estadoPedidoAnt.fecha) | date:'dd' }} de {{ formatoFecha(estadoPedidoAnt.fecha) | date: 'MMMM' | pascal }}  del {{ formatoFecha(estadoPedidoAnt.fecha) | date: 'yyyy' }}
+                    {{formatoFecha(estadoPedidoAnt.fecha) | date: 'EEEE' | pascal}} {{formatoFecha(estadoPedidoAnt.fecha) | date:'dd' }} de {{ formatoFecha(estadoPedidoAnt.fecha) | date: 'MMMM' | pascal }}  del {{ formatoFecha(estadoPedidoAnt.fecha) | date: 'yyyy' }}
                 </p>
                 <span class="assertive" ng-show="hayAgotadosAnteriorReales()">
                     Tienes productos agotados en tu pedido
@@ -48,7 +48,7 @@
                 <h2>Campaña {{campana.numero}}
                 </h2>
                 <p>{{nombreMostrar(estadoPedidoAct.codigoEstado)}}<br />
-                    {{formatoFecha(estadoPedidoAct.fecha) | date: 'EEE'}} {{formatoFecha(estadoPedidoAct.fecha) | date:'dd' }} de {{ formatoFecha(estadoPedidoAct.fecha) | date: 'MMMM' | pascal }}  del {{ formatoFecha(estadoPedidoAct.fecha) | date: 'yyyy' }}
+                    {{formatoFecha(estadoPedidoAct.fecha) | date: 'EEEE' | pascal}} {{formatoFecha(estadoPedidoAct.fecha) | date:'dd' }} de {{ formatoFecha(estadoPedidoAct.fecha) | date: 'MMMM' | pascal }}  del {{ formatoFecha(estadoPedidoAct.fecha) | date: 'yyyy' }}
                 </p>
                 <span class="assertive" ng-show="!estadoEncontrado('Facturado') && estadoEncontrado('Novedad') && !estadoEncontrado('Anulado') && mostrarNovedad(buscarEstado('Novedad').motivo)">
                     Tu pedido presenta novedad. Te invitamos a resolverla

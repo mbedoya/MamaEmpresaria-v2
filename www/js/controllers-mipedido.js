@@ -4,6 +4,8 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
     GA.trackPage($rootScope.gaPlugin, "Mi Pedido");
 
     $scope.consultaPedidoAnteriorFinalizada = function(){
+
+        console.log("Pedido anterior finalizado: " + $scope.pedidoAnteriorFinalizado);
         return $scope.pedidoAnteriorFinalizado;
     }
 
@@ -31,6 +33,8 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
                 if(success){
                     $scope.pedidoAnterior = data.historiaEstados;
                     $rootScope.miPedidoAnterior = data;
+
+                    $scope.$apply();
 
                     console.log("Trazabilidad anterior - pedidoAnterior: " + $scope.pedidoAnterior);
                 }else{
