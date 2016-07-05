@@ -5,15 +5,15 @@
             Buzones
         </div>
         
-        <h5>Lugares a donde puedes llevar tu pedido:</h5>
+        <h5 class="padding-left">Lugares a donde puedes llevar tu pedido:</h5>
         
 <div class="list">   
 
     <div ng-repeat="buzon in buzones" ng-class-odd="'item item-icon-left alternate'" ng-class-even="'item item-icon-left'">
         <div style="padding-left:20px">
-            <i class="icon ion-map fecha-icono-verde" style="font-size: 40px;"></i>
-            <p>Lugar: <strong>{{buzon.descripcion}}</strong></p>
-            <p>Direccion: {{buzon.direccion}}</p>
+            <i class="icono caja fecha-icono-verde" style="font-size: 40px;"></i>
+            <p><strong>{{buzon.descripcion}}</strong></p>
+            <p>{{buzon.direccion}}</p>
         </div>
     </div>
 
