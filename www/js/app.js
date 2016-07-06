@@ -23,7 +23,9 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         }, false);
 
         //INICIA JS DE ONE SIGNAL
-        document.addEventListener('deviceready', function () {  
+        document.addEventListener('deviceready', function () {
+
+            alert("Device Ready");
 
             var titulo;
 
