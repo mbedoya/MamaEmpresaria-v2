@@ -29,7 +29,7 @@
         <div style="padding-left:20px">
             <i class="icon ion-android-people" style="font-size: 40px;"></i>
             <h2 ng-bind-html="textoMostrar(fechasMes, true)"></h2>
-            <p ng-show="fechasMes.fecha">{{ fechaSeleccionada | date: 'EEE'}} {{fechaSeleccionada | date:'dd' }} de {{ fechaSeleccionada | date: 'MMMM' | pascal }} del {{ fechaSeleccionada | date: 'yyyy' }}</p>
+            <p ng-show="fechasMes.fecha">{{ fechaSeleccionada | date: 'EEEE'}} {{fechaSeleccionada | date:'dd' }} de {{ fechaSeleccionada | date: 'MMMM' | pascal }} del {{ fechaSeleccionada | date: 'yyyy' }}</p>
             <p ng-hide="fechasMes.fecha">Fecha pendiente por definir</p>
             <p ng-show="hayLugar(fechasMes)">Lugar: <strong ng-show="hayLugar(fecha)">{{fechasMes.lugar}}</strong></p>         
             <p ng-show="hayTema(fecha)">Tema: {{fechasMes.tema}}</p>
@@ -46,7 +46,7 @@
         <div style="padding-left:20px">
             <i class="icon ion-android-people" style="font-size: 40px;"></i>
             <h2 ng-bind-html="textoMostrar(fecha, false)"></h2>
-            <p ng-show="fecha.fecha">{{fechaSeleccionada | date: 'EEE'}} {{fechaSeleccionada | date:'dd' }} de {{ fechaSeleccionada | date: 'MMMM' | pascal }} del {{ fechaSeleccionada | date: 'yyyy' }}</p>  
+            <p ng-show="fecha.fecha">{{fechaSeleccionada | date: 'EEEE'}} {{fechaSeleccionada | date:'dd' }} de {{ fechaSeleccionada | date: 'MMMM' | pascal }} del {{ fechaSeleccionada | date: 'yyyy' }}</p>
             <p ng-hide="fechasMes.fecha">Fecha pendiente por definir</p>
             <p ng-show="hayLugar(fecha)">Lugar: <strong ng-show="hayLugar(fecha)">{{fecha.lugar}}</strong></p>
             <p ng-show="hayTema(fecha)">Tema: {{fecha.tema}}</p>
