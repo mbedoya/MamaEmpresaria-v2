@@ -5,6 +5,8 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
 
+        alert("Ready");
+
         document.addEventListener("backbutton", function(e){
             
             if($.mobile.activePage.is('#homepage')){
@@ -47,7 +49,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
                 var alertPopup;
 
-                if(jsonData.message.toLowerCase().indexOf("pedido") > -1){
+                if(jsonData.message.toLowerCase().indexOf("pedido") > -1 && !$rootScope.versionProduccion){
 
                     var confirmPopup = $ionicPopup.confirm({
                         title: titulo,

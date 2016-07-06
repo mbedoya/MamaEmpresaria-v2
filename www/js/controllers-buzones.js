@@ -6,15 +6,19 @@ moduloControlador.controller('BuzonesCtrl', function($scope, $rootScope, $ionicL
     GA.trackPage($rootScope.gaPlugin, "Buzones");
     
     $scope.traerBuzones = function(){
+
         $scope.loading =  $ionicLoading.show({
             template: Utilidades.getPlantillaEspera('Cargando informacion de buzones')
         });
         
         Mama.getBuzones(function (success, data){
+
+            $ionicLoading.hide();
+
             if(success){
                 $scope.buzones = data.buzones;
                 console.log("buzones - datos recibidos", data);
-                $ionicLoading.hide();
+
             }else{
                 console.log("Fallo");
             }
@@ -25,10 +29,7 @@ moduloControlador.controller('BuzonesCtrl', function($scope, $rootScope, $ionicL
 
         $scope.traerBuzones();
         
-        $rootScope.cargaDatos.ventanaBuzones = true;
-
-        $ionicLoading.hide();
-
+        //$rootScope.cargaDatos.ventanaBuzones = true;
     }
 
     $scope.$on('online', function(event, args){
@@ -39,12 +40,12 @@ moduloControlador.controller('BuzonesCtrl', function($scope, $rootScope, $ionicL
         //$scope.inicializar();
     });
 
-    //$scope.inicializar();
+    $scope.inicializar();
 
     $scope.$on('$ionicView.beforeEnter', function(){
         //Si no se ha cargado la información entonces inicializar
         if(!$rootScope.cargaDatos.ventanaBuzones){
-            $scope.inicializar();
+            //$scope.inicializar();
         }
     });
 
