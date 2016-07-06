@@ -256,7 +256,7 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 detalleModal = "Monta tu pedido este día únicamente por la página web, tienes plazo hasta las 12 de la noche.";
                 break;
             case "04":
-                detalleModal = "Recibirás tu pedido en esta fecha, si lo montaste en la toma de pedido 2 y pagasta este mismo día antes de las 12 de la noche.";
+                detalleModal = "Recibirás tu pedido en esta fecha, si lo montaste en la toma de pedido 2 y pagaste este mismo día antes de las 12 de la noche.";
                 break;
             case "08":
                 detalleModal = "Lleva tu pedido al buzón antes de la 1 de la tarde de este día.";   
