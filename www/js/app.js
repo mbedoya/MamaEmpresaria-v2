@@ -5,8 +5,6 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
 
-        alert("Ready");
-
         document.addEventListener("backbutton", function(e){
             
             if($.mobile.activePage.is('#homepage')){
@@ -24,8 +22,6 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
         //INICIA JS DE ONE SIGNAL
         document.addEventListener('deviceready', function () {
-
-            alert("Device Ready");
 
             var titulo;
 
