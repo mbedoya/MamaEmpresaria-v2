@@ -24,7 +24,6 @@
     <preference name="BackupWebStorage" value="none"/>
     <preference name="Orientation" value="portrait" />
     <preference name="SplashScreen" value="splash" />
-    <preference name="android-build-tool" value="gradle" />
 
     <feature name="StatusBar">
         <param name="ios-package" value="CDVStatusBar" onload="true"/>
@@ -38,7 +37,7 @@
     <gap:plugin name="com.adobe.plugins.gaplugin" />
     <gap:plugin name="org.apache.cordova.network-information" />
 
-    <gap:plugin name="onesignal-cordova-plugin" source="npm" />
+    <gap:plugin name="onesignal-cordova-plugin-pgb-compat" source="npm" />
     <gap:plugin name="cordova-plugin-googleplayservices" source="npm" />
     <gap:plugin name="cordova-plugin-android-support-v4" source="npm" />
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
