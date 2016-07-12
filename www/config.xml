@@ -24,6 +24,7 @@
     <preference name="BackupWebStorage" value="none"/>
     <preference name="Orientation" value="portrait" />
     <preference name="SplashScreen" value="splash" />
+    <preference name="android-build-tool" value="gradle" />
 
     <feature name="StatusBar">
         <param name="ios-package" value="CDVStatusBar" onload="true"/>
