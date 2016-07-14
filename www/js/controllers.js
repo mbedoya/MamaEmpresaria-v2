@@ -91,6 +91,10 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
                 window.open(url, '_system', 'location=yes');
             };
 
+            $scope.versionPruebas = function() {
+                return !$rootScope.versionProduccion;
+            }
+
             $scope.cambiarServidor = function() {
                 var servidor = prompt("Ingresa el número del servidor")
                 $rootScope.configuracion = { instancia: "AntaresSecureWebServices" + servidor };
