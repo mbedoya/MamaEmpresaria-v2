@@ -40,6 +40,9 @@
                 <ion-item class="alternate" nav-clear menu-close ng-click="cerrarSesion()">
                     Cerrar Sesión
                 </ion-item>
+                <ion-item class="alternate" nav-clear menu-close ng-show="versionPruebas()" ng-click="cambiarServidor()">
+                    Cambiar Servidor
+                </ion-item>
             </ion-list>
         </ion-content>
     </ion-side-menu>
