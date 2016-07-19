@@ -25,11 +25,6 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
             var titulo;
 
-            $cordovaAppVersion.getVersionNumber().then(function (version) {
-                var appVersion = version;
-            });
-        }, false);
-
             var notificationOpenedCallback = function(jsonData) {
                 //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
                 //alert(jsonData.additionalData.title+"\n\n"+jsonData.message);                 
