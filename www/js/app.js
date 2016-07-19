@@ -1,6 +1,6 @@
 angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.controllers', 'novaventa.services', 'firebase'])
 
-    .run(function($ionicPlatform, $rootScope, $ionicPopup, $location, Campana, Utilidades, $cordovaAppVersion) {
+    .run(function($ionicPlatform, $rootScope, $ionicPopup, $location, $cordovaAppVersion, Campana, Utilidades) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -26,9 +26,8 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
             var titulo;
 
             $cordovaAppVersion.getVersionNumber().then(function (version) {
-                console.log("Version app: ", version);
+                var appVersion = version;
             });
-        }, false);
 
             var notificationOpenedCallback = function(jsonData) {
                 //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
@@ -77,6 +76,8 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                         fueLeido();
                     });
                 }
+
+
             };
 
             var fueLeido = function(){
