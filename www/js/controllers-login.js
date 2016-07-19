@@ -1,7 +1,14 @@
-moduloControlador.controller('LoginCtrl', function($scope, $location, $rootScope, $ionicLoading, $ionicPopup, $state, $http, $filter, $ionicHistory, Mama, Internet, GA, Utilidades) {
+moduloControlador.controller('LoginCtrl', function($scope, $location, $rootScope, $ionicLoading, $ionicPopup, $state, $http, $filter, $ionicHistory, Mama, Internet, GA, Utilidades, $cordovaAppVersion) {
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Inicio de sesión");
+
+    document.addEventListener('deviceready', function () {
+
+        $cordovaAppVersion.getVersionNumber().then(function (version) {
+            console.log("Version app: ", version)
+        });
+    }, false);
 
     $scope.mostrarAyuda = function(titulo, mensaje) {
         var alertPopup = $ionicPopup.alert({
