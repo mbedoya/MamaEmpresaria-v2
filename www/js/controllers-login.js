@@ -3,14 +3,6 @@ moduloControlador.controller('LoginCtrl', function($scope, $location, $rootScope
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Inicio de sesión");
 
-    document.addEventListener('deviceready', function () {
-
-        cordova.getAppVersion(function(version) {
-            var appVersion = version;
-            console.log(version);
-        });
-    }, false);
-
     $scope.mostrarAyuda = function(titulo, mensaje) {
         var alertPopup = $ionicPopup.alert({
             title: titulo,
