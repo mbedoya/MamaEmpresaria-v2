@@ -25,6 +25,10 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
             var titulo;
 
+            cordova.getAppVersion.getVersionNumber(function (version) {
+                alert(version);
+            });
+
             var notificationOpenedCallback = function(jsonData) {
                 //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
                 //alert(jsonData.additionalData.title+"\n\n"+jsonData.message);                 
@@ -72,12 +76,6 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                         fueLeido();
                     });
                 }
-
-                cordova.getAppVersion.getVersionNumber(function (version) {
-                    alert(version);
-                });
-
-                
             };
 
             var fueLeido = function(){
