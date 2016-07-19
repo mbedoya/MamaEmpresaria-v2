@@ -5,11 +5,6 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
 
-        cordova.getAppVersion(function(version) {
-            var appVersion = version;
-            console.log(version);
-        });
-
         document.addEventListener("backbutton", function(e){
             
             if($.mobile.activePage.is('#homepage')){
@@ -29,6 +24,8 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         document.addEventListener('deviceready', function () {
 
             var titulo;
+
+            $rootScope.versionApp = AppVersion.version;
 
             var notificationOpenedCallback = function(jsonData) {
                 //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
