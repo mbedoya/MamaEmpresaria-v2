@@ -25,7 +25,7 @@
         <div class="list">
 
 
-            <div ng-click="seleccionarFecha(fecha)" ng-repeat="fecha in fechasCampana | filter: noMostrar | orderBy: ordenamiento" ng-class-odd="hoyPar(fecha)" ng-class-even="hoyImpar(fecha)">
+            <div ng-click="seleccionarFecha(fecha)" ng-if="false" ng-repeat="fecha in fechasCampana | filter: noMostrar | orderBy: ordenamiento" ng-class-odd="hoyPar(fecha)" ng-class-even="hoyImpar(fecha)">
                 <div class="col col-20"><i ng-class="iconoRecordatorio(fecha)" style="font-size: 40px; padding-left: 5px;"></i></div>
                 <div class="col col-66"><div class="row"><h2 ng-bind-html="textoMostrar(fecha)"></h2></div>
                     <div class="row"><p>{{fechaSeleccionada | date: 'EEE'}} {{fechaSeleccionada | date:'dd' }} de {{ fechaSeleccionada | date: 'MMMM' | pascal }}  del {{ fechaSeleccionada | date: 'yyyy' }}</p></div>
@@ -35,19 +35,19 @@
 
 
 
-            <div class="row item">
+            <div class="row item" ng-if="obtenerFechaCodigo('05')">
                 <div class="col col-20">
                     <i class="icon ion-monitor fecha-icono-rosa" style="font-size: 40px; padding-left: 5px;"></i>
                 </div>
 
                 <div class="col col-66">
                     <div class="row"><p>Si envías tu Pedido hasta el</p></div>
-                    <div class="row"><h2>Martes 5 de Julio</h2></div>
+                    <div class="row"><h2> {{obtenerFechaCodigo('05')}} </h2></div>
                     <p></p>
                     <div class="row"><p>Te lo entregaremos el</p></div>
-                    <div class="row"><h2>Miércoles 13 de Julio</h2></div>
+                    <div class="row"><h2>{{obtenerFechaCodigo('02')}}</h2></div>
                     <p></p>
-                    <div class="row"><p style="color:red; font-size: 13px">Ya has superado esta fecha</p></div>
+                    <div class="row" ng-if="false"><p style="color:red; font-size: 13px">Ya has superado esta fecha</p></div>
                 </div>
 
             </div>
@@ -55,7 +55,7 @@
             <div class="row item">&nbsp;
             </div>
 
-            <div class="row item">
+            <div class="row item" ng-if="obtenerFechaCodigo('07')">
 
                 <div class="col col-20">
                     <i class="icon ion-monitor fecha-icono-amarillo" style="font-size: 40px; padding-left: 5px;"></i>
@@ -64,12 +64,12 @@
 
                 <div class="col col-66">
                     <div class="row"><p>Si envías tu Pedido hasta el</p></div>
-                    <div class="row"><h2>Jueves 7 de Julio</h2></div>
+                    <div class="row"><h2>{{obtenerFechaCodigo('07')}}</h2></div>
                     <p></p>
                     <div class="row"><p>Te lo entregaremos el</p></div>
-                    <div class="row"><h2>Viernes 15 de Julio</h2></div>
+                    <div class="row"><h2>{{obtenerFechaCodigo('04')}}</h2></div>
                     <p></p>
-                    <div class="row"><p style="color:green; font-size: 13px">Te quedan 3 días calendario para enviarlo</p></div>
+                    <div class="row" ng-if="false"><p style="color:green; font-size: 13px">Te quedan 3 días calendario para enviarlo</p></div>
                 </div>
 
             </div>
@@ -77,7 +77,7 @@
             <div class="row item">&nbsp;
             </div>
 
-            <div class="row item">
+            <div class="row item" ng-if="obtenerFechaCodigo('08')">
 
                 <div class="col col-20">
                     <i class="icon ion-cube fecha-icono-verde" style="font-size: 40px; padding-left: 5px;"></i>
@@ -86,12 +86,12 @@
 
                 <div class="col col-66">
                     <div class="row"><p>Si llevas tu Pedido a un buzón hasta el</p></div>
-                    <div class="row"><h2>Jueves 8 de Julio</h2></div>
+                    <div class="row"><h2>{{obtenerFechaCodigo('08')}}</h2></div>
                     <p></p>
                     <div class="row"><p>Te lo entregaremos el</p></div>
-                    <div class="row"><h2>Lunes 18 de Julio</h2></div>
+                    <div class="row"><h2>{{obtenerFechaCodigo('09')}}</h2></div>
                     <p></p>
-                    <div class="row"><p style="color:green; font-size: 13px">Te quedan 4 días calendario para enviarlo</p></div>
+                    <div class="row" ng-if="false"><p style="color:green; font-size: 13px">Te quedan 4 días calendario para enviarlo</p></div>
                 </div>
 
             </div>

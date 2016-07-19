@@ -1,4 +1,4 @@
-moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScope, $ionicLoading, $state, $ionicPopup, $ionicModal, $http, $document, GA, Mama, Campana, Utilidades, Internet) {
+moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScope, $ionicLoading, $state, $ionicPopup, $ionicModal, $http, $document, $filter, GA, Mama, Campana, Utilidades, Internet) {
 
     var document=$document[0];
 
@@ -148,6 +148,8 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
             if(success){
                 if(data.listaRecordatorios && data.listaRecordatorios.length>0){
                     $scope.fechasCampana = data.listaRecordatorios;
+
+                    console.log($scope.fechasCampana);
                 }else{
                     $scope.mostrarAyuda("Falta campaña","Lo sentimos, aún no tenemos información disponible para la campaña");  
                     $scope.aumentarCampana();
@@ -297,6 +299,23 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 return "Entrega de pedidos<br> por buzón:";
             default:
                 return "";
+        }
+    }
+
+    $scope.obtenerFechaCodigo = function(codigo){
+        var i;
+        var fecha;
+
+        if($scope.fechasCampana && $scope.fechasCampana.length > 0){
+            for(i=0; i<$scope.fechasCampana.length; i++){
+                if($scope.fechasCampana[i].codigoActividad == codigo) {
+                    fecha = $scope.fechasCampana[i].fecha;
+                    break;
+                }
+            }
+            return $filter('pascal')($filter('date')(fecha, 'EEEE')) + ' ' + $filter('date')(fecha, 'dd') + ' de ' + $filter('date')(fecha, 'MMMM');
+        }else{
+            return null;
         }
     }
 
