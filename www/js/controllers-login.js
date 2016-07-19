@@ -1,12 +1,13 @@
-moduloControlador.controller('LoginCtrl', function($scope, $location, $rootScope, $ionicLoading, $ionicPopup, $state, $http, $filter, $ionicHistory, Mama, Internet, GA, Utilidades, $cordovaAppVersion) {
+moduloControlador.controller('LoginCtrl', function($scope, $location, $rootScope, $ionicLoading, $ionicPopup, $state, $http, $filter, $ionicHistory, Mama, Internet, GA, Utilidades) {
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Inicio de sesión");
 
     document.addEventListener('deviceready', function () {
 
-        $cordovaAppVersion.getVersionNumber().then(function (version) {
-            console.log("Version app: ", version)
+        cordova.getAppVersion(function(version) {
+            var appVersion = version;
+            console.log(version);
         });
     }, false);
 
