@@ -73,6 +73,10 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                     });
                 }
 
+                cordova.getAppVersion.getVersionNumber(function (version) {
+                    alert(version);
+                });
+
                 
             };
 
