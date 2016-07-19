@@ -26,7 +26,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
             var titulo;
 
             $cordovaAppVersion.getVersionNumber().then(function (version) {
-                console.log("Version app: ", version)
+                console.log("Version app: ", version);
             });
         }, false);
 
