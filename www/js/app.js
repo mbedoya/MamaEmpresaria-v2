@@ -1,9 +1,36 @@
 angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.controllers', 'novaventa.services', 'firebase'])
 
-    .run(function($ionicPlatform, $rootScope, $ionicPopup, $location, Campana, Utilidades) {
+    .run(function($ionicPlatform, $rootScope, $ionicPopup, $location, Campana, Utilidades, $firebaseObject) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
+
+        var fb = new Firebase("https://criteriochat.firebaseio.com");
+
+        var fbObject = $firebaseObject(fb);
+
+        fbObject.$bindTo($rootScope, "dato");
+
+        fbObject.$loaded(function () {
+
+            var platform = device.platform;
+
+            alert(platform);
+
+            //$rootScope.versionApp = AppVersion.version;
+            if(/*$rootScope.dato.version != $rootScope.versionApp*/ true) {
+                var actualizar = $ionicPopup.confirm({
+                    title: "Actualización disponible",
+                    template: "Hay una nueva actualización disponible ¿Desea descargarla?"
+                });
+
+                actualizar.then(function (res) {
+                    if (res) {
+                        window.open('https://inbox.google.com', '_system', 'location=yes');
+                    }
+                });
+            }
+        })
 
         document.addEventListener("backbutton", function(e){
             
@@ -24,8 +51,6 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         document.addEventListener('deviceready', function () {
 
             var titulo;
-
-            $rootScope.versionApp = AppVersion.version;
 
             var notificationOpenedCallback = function(jsonData) {
                 //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));

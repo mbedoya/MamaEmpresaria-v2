@@ -1,16 +1,16 @@
 var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filters'])
 
-        .controller('AppCtrl', function($scope, $state, $rootScope, $location, $ionicHistory, $ionicModal, $ionicPopup, Utilidades, $ionicPopover, GA, $firebaseObject) {
+        .controller('AppCtrl', function($scope, $state, $rootScope, $location, $ionicHistory, $ionicModal, $ionicPopup, Utilidades, $ionicPopover, GA/*, $firebaseObject*/) {
 
             $scope.$on('$ionicView.beforeEnter', function(){
                 $scope.buscarNotificacionPendiente();
             });
 
-            var fb = new Firebase("https://criteriochat.firebaseio.com");
+            /*var fb = new Firebase("https://criteriochat.firebaseio.com");
 
             var fbObject = $firebaseObject(fb);
 
-            fbObject.$bindTo($scope, "dato");
+            fbObject.$bindTo($scope, "dato");*/
 
             $ionicPopover.fromTemplateUrl('templates/social-popover.html', {
                 scope: $scope
@@ -199,6 +199,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
             }
 
             $scope.condicionChat = function(){
+                $scope.dato = $rootScope.dato;
                 console.log("FIREBASE SEGMENTO", $scope.dato.segmentos);
                 console.log("FIREBASE SEGMENTO", $scope.dato.zonas);
                 if(!$rootScope.versionProduccion){
