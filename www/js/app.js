@@ -15,7 +15,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
                 var platform = device.platform;
 
-                //$rootScope.versionApp = AppVersion.version;
+                $rootScope.versionApp = AppVersion.version;
                 if ($rootScope.dato.version != $rootScope.versionApp) {
                     var actualizar = $ionicPopup.confirm({
                         title: "Actualización disponible",
