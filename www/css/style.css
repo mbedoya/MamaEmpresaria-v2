@@ -499,6 +499,18 @@ width: 100%;
     left: 16px;
 }
 
+.icono-buzon {
+    width:51px;
+    height:51px;
+    background-repeat:no-repeat;
+    background-color: transparent;
+    background-image: url(../img/icono-buzon.png);
+    vertical-align: top;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
 .icono-social-close{
     font-size: 20px !important;
     position: absolute;
