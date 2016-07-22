@@ -24,7 +24,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
                     actualizar.then(function (res) {
                         if (res) {
-                            switch (plataform.toLowerCase()) {
+                            switch (platform.toLowerCase()) {
                                 case "android":
                                     window.open('market://details?id=com.novaventa.produccion.mamaempresaria', '_system', 'location=yes');
                                     break;
