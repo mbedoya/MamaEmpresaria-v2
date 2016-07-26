@@ -1,4 +1,4 @@
-moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $ionicPopup, GA, Campana, Utilidades, Pedido) {
+moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $location, $state, $ionicPopup, GA, Campana, Utilidades, Pedido) {
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Home");
@@ -11,6 +11,12 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $state, $i
     // Se cambia el color del ícono de red social a rojo, para indicar que la app está apuntando a PRUEBAS
     if(!$rootScope.versionProduccion){
         $("button.button-icon.icono-header-menu.button-clear.ion-social-rss").css("background-color", "red");
+    }
+
+    $scope.irAEncuesta = function(){
+        if(!$rootScope.versionProduccion){
+            $location.path('/app/menu/tabs/mas/encuestapedido');
+        }
     }
 
     $scope.tieneEncuentro = function(){

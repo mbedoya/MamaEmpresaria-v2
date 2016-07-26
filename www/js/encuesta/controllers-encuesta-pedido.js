@@ -1,4 +1,4 @@
-moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $rootScope, $ionicLoading, $ionicPopup, $state, $http, $filter, $ionicHistory, Mama, Internet, GA, Pedido, Utilidades) {
+moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $rootScope, $ionicLoading, $ionicPopup, $state, $http, $filter, $ionicHistory, Mama, Internet, GA, Encuesta, Utilidades) {
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Encuesta Pedido");
@@ -44,7 +44,7 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
                 template: Utilidades.getPlantillaEspera('Enviando las respuestas de la Encuesta')
             });
 
-            Pedido.enviarRespuestasEncuesta($scope.respuestas.join("&") ,function(success, data) {
+            Encuesta.enviarRespuestasEncuesta($scope.respuestas.join("&") ,function(success, data) {
 
                 $ionicLoading.hide();
 
@@ -80,20 +80,37 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
     }
 
     $scope.EsPreguntaCerradaMultiple = function(){
+
+        return $scope.preguntas && $scope.preguntas.length > 0 &&
+            $scope.preguntas[$scope.indice].respuestaMultiple;
+        
+        /*
         return $scope.preguntas && $scope.preguntas.length > 0 &&
             $scope.preguntas[$scope.indice].tipo.toLowerCase() == "cerrada" &&
             $scope.preguntas[$scope.indice].multiple.toLowerCase() == "si";
+            */
     }
 
     $scope.EsPreguntaCerradaSimple = function(){
+
+        return $scope.preguntas && $scope.preguntas.length > 0 &&
+            !$scope.preguntas[$scope.indice].respuestaMultiple;
+
+        /*
         return $scope.preguntas && $scope.preguntas.length > 0 &&
             $scope.preguntas[$scope.indice].tipo.toLowerCase() == "cerrada" &&
             $scope.preguntas[$scope.indice].multiple.toLowerCase() == "no";
+            */
     }
 
     $scope.EsPreguntaAbierta = function(){
+
+        return false;
+
+        /*
         return $scope.preguntas && $scope.preguntas.length > 0 &&
             $scope.preguntas[$scope.indice].tipo.toLowerCase() == "abierta";
+            */
     }
 
     $scope.inicializar = function() {
@@ -109,12 +126,12 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
                 template: Utilidades.getPlantillaEspera('Consultando la Encuesta')
             });
 
-            Pedido.obtenerPreguntasEncuesta(function(success, data) {
+            Encuesta.obtenerPreguntasEncuesta(function(success, data) {
 
                 $ionicLoading.hide();
 
                 if (success) {
-                    $scope.preguntas = data;
+                    $scope.preguntas = data.preguntas;
                     $scope.indice = 0;
                     console.log($scope.preguntas);
                 }else{
