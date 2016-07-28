@@ -1,20 +1,20 @@
-<ion-view view-title="" >
-    <ion-content >
+<ion-view view-title="">
+    <ion-content>
         </br>
         <div class="titulo-calendario">
             <div class="row">
-                <div class="col sin-borde" >
+                <div class="col sin-borde">
                     <div class="item sin-borde" href="#" ng-click="disminuirCampana()">
                         <i class="ion-chevron-left light"></i>
                     </div>
                 </div>
                 <div class="col col-50">
-                    <a class="item" href="#" >
+                    <a class="item" href="#">
                         Campaña {{campana}}
                     </a>
                 </div>
-                <div class="col col" >
-                    <div class="item" href="#" ng-click="aumentarCampana()" >
+                <div class="col col">
+                    <div class="item" href="#" ng-click="aumentarCampana()">
                         <i class="ion-chevron-right light"></i>
                     </div>
                 </div>
@@ -23,39 +23,38 @@
         </div>
         </br>
         <div class="list">
-
-
-            <div ng-click="seleccionarFecha(fecha)" ng-if="false" ng-repeat="fecha in fechasCampana | filter: noMostrar | orderBy: ordenamiento" ng-class-odd="hoyPar(fecha)" ng-class-even="hoyImpar(fecha)">
-                <div class="col col-20"><i ng-class="iconoRecordatorio(fecha)" style="font-size: 40px; padding-left: 5px;"></i></div>
-                <div class="col col-66"><div class="row"><h2 ng-bind-html="textoMostrar(fecha)"></h2></div>
-                    <div class="row"><p>{{fechaSeleccionada | date: 'EEE'}} {{fechaSeleccionada | date:'dd' }} de {{ fechaSeleccionada | date: 'MMMM' | pascal }}  del {{ fechaSeleccionada | date: 'yyyy' }}</p></div>
-                    <div class="row"><h3 ng-show="diasFaltantes(fecha)>0">Faltan {{diasFaltantes(fecha)}} días calendario</h3></div>
-                </div>
-                <i ng-class="iconoDetalle(fecha)" ng-show="informacionAdicional(fecha)"></i></div>
-
-
-
-            <div class="row item" ng-if="obtenerFechaCodigo('05')">
+            
+            <div class="row item" ng-if="obtenerFechaCodigo('05')" ng-click="seleccionarFecha('05')" >
                 <div class="col col-20">
                     <i class="icon ion-monitor fecha-icono-rosa" style="font-size: 40px; padding-left: 5px;"></i>
                 </div>
 
                 <div class="col col-66">
-                    <div class="row"><p>Si envías tu Pedido hasta el</p></div>
-                    <div class="row"><h2> {{obtenerFechaCodigo('05')}} </h2></div>
+                    <div class="row">
+                        <p>Si envías tu Pedido hasta el</p>
+                    </div>
+                    <div class="row">
+                        <h2> {{obtenerFechaCodigo('05')}} </h2>
+                    </div>
                     <p></p>
-                    <div class="row"><p>Te lo entregaremos el</p></div>
-                    <div class="row"><h2>{{obtenerFechaCodigo('02')}}</h2></div>
+                    <div class="row">
+                        <p>Te lo entregaremos el</p>
+                    </div>
+                    <div class="row">
+                        <h2>{{obtenerFechaCodigo('02')}}</h2>
+                    </div>
                     <p></p>
-                    <div class="row" ng-if="false"><p style="color:red; font-size: 13px">Ya has superado esta fecha</p></div>
+                    <div class="row" ng-if="false">
+                        <p style="color:red; font-size: 13px">Ya has superado esta fecha</p>
+                    </div>
                 </div>
-
+                <i class="icon ion-plus-circled item-chevron" ></i>
             </div>
 
             <div class="row item">&nbsp;
             </div>
 
-            <div class="row item" ng-if="obtenerFechaCodigo('07')">
+            <div class="row item" ng-if="obtenerFechaCodigo('07')" ng-click="seleccionarFecha('07')">
 
                 <div class="col col-20">
                     <i class="icon ion-monitor fecha-icono-amarillo" style="font-size: 40px; padding-left: 5px;"></i>
@@ -63,21 +62,33 @@
 
 
                 <div class="col col-66">
-                    <div class="row"><p>Si envías tu Pedido hasta el</p></div>
-                    <div class="row"><h2>{{obtenerFechaCodigo('07')}}</h2></div>
+                    <div class="row">
+                        <p>Si envías tu Pedido hasta el</p>
+                    </div>
+                    <div class="row">
+                        <h2>{{obtenerFechaCodigo('07')}}</h2>
+                    </div>
                     <p></p>
-                    <div class="row"><p>Te lo entregaremos el</p></div>
-                    <div class="row"><h2>{{obtenerFechaCodigo('04')}}</h2></div>
+                    <div class="row">
+                        <p>Te lo entregaremos el</p>
+                    </div>
+                    <div class="row">
+                        <h2>{{obtenerFechaCodigo('04')}}</h2>
+                    </div>
                     <p></p>
-                    <div class="row" ng-if="false"><p style="color:green; font-size: 13px">Te quedan 3 días calendario para enviarlo</p></div>
+                    <div class="row" ng-if="false">
+                        <p style="color:green; font-size: 13px">Te quedan 3 días calendario para enviarlo</p>
+                    </div>
                 </div>
+
+                <i class="icon ion-plus-circled item-chevron" ></i>
 
             </div>
 
             <div class="row item">&nbsp;
             </div>
 
-            <div class="row item" ng-if="obtenerFechaCodigo('08')">
+            <div class="row item" ng-if="obtenerFechaCodigo('08')" ng-click="seleccionarFecha('08')">
 
                 <div class="col col-20">
                     <i class="icon ion-cube fecha-icono-verde" style="font-size: 40px; padding-left: 5px;"></i>
@@ -85,14 +96,26 @@
 
 
                 <div class="col col-66">
-                    <div class="row"><p>Si llevas tu Pedido a un buzón hasta el</p></div>
-                    <div class="row"><h2>{{obtenerFechaCodigo('08')}}</h2></div>
+                    <div class="row">
+                        <p>Si llevas tu Pedido a un buzón hasta el</p>
+                    </div>
+                    <div class="row">
+                        <h2>{{obtenerFechaCodigo('08')}}</h2>
+                    </div>
                     <p></p>
-                    <div class="row"><p>Te lo entregaremos el</p></div>
-                    <div class="row"><h2>{{obtenerFechaCodigo('09')}}</h2></div>
+                    <div class="row">
+                        <p>Te lo entregaremos el</p>
+                    </div>
+                    <div class="row">
+                        <h2>{{obtenerFechaCodigo('09')}}</h2>
+                    </div>
                     <p></p>
-                    <div class="row" ng-if="false"><p style="color:green; font-size: 13px">Te quedan 4 días calendario para enviarlo</p></div>
+                    <div class="row" ng-if="false">
+                        <p style="color:green; font-size: 13px">Te quedan 4 días calendario para enviarlo</p>
+                    </div>
                 </div>
+
+                <i class="icon ion-plus-circled item-chevron" ></i>
 
             </div>
 

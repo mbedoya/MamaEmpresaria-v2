@@ -14,6 +14,7 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $location,
     }
 
     $scope.irAEncuesta = function(){
+        console.log("encuesta");
         if(!$rootScope.versionProduccion){
             $location.path('/app/menu/tabs/mas/encuestapedido');
         }
@@ -125,7 +126,6 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $location,
     }
 
     $scope.segmento = function(){
-        window.plugins.OneSignal.sendTag("segmento", $rootScope.datos.segmento);
         return $rootScope.datos.segmento;
     }
 
@@ -197,5 +197,13 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $location,
     $scope.hoyEsCorreteo = function(){
         return Campana.hoyEsCorreteo();
     }
+
+    $scope.inicializar = function(){
+        if(window.plugins && window.plugins.OneSignal){
+            window.plugins.OneSignal.sendTag("segmento", $rootScope.datos.segmento);
+        }
+    }
+
+    $scope.inicializar();
 
 });

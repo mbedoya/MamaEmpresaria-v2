@@ -246,6 +246,11 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
     }
 
     $scope.detalleTexto = function(){
+
+        if(!$scope.recordatorioClick || !$scope.recordatorioClick.codigoActividad){
+            return "";
+        }
+
         var detalleModal="";
         switch($scope.recordatorioClick.codigoActividad){
             case "02":
@@ -273,13 +278,34 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
         return detalleModal;
     }
 
-    $scope.seleccionarFecha = function(fecha){
+    $scope.seleccionarFecha = function(codigoActividad){
+        var fecha = $scope.obtenerFechaCodigoSinFormato(codigoActividad);
+        console.log(fecha);
+        $scope.fechaSeleccionada=new Date($scope.formatoFecha(fecha));
+        if($scope.informacionAdicional){                
+            $scope.fechaClick=$scope.fechaSeleccionada;
+            $scope.recordatorioClick= { codigoActividad: codigoActividad};
+        }
+        $scope.recordatorio = fecha;
+        $scope.openModal();
+    }
+
+    $scope.yupi = function(codigo){
+        var fecha = '2016-07-28';
         $scope.fechaSeleccionada=new Date($scope.formatoFecha(fecha.fecha));
         if($scope.informacionAdicional){                
             $scope.fechaClick=$scope.fechaSeleccionada;
             $scope.recordatorioClick=fecha;
         }
         $scope.recordatorio = fecha;
+        $scope.openModal();
+        $scope.fechaClick='2016-07-28';
+        $scope.recordatorio = '2016-07-28';
+        //$scope.recordatorioClick=fecha;
+        //alert(codigo);
+        console.log(codigo);
+        $scope.recordatorioClick =  {codigoActividad: codigo };
+        //console.log($scope.recordatorioClick);
         $scope.openModal();
     }
 
@@ -299,6 +325,23 @@ moduloControlador.controller('InformacionFechasCtrl', function($scope, $rootScop
                 return "Entrega de pedidos<br> por buzón:";
             default:
                 return "";
+        }
+    }
+
+    $scope.obtenerFechaCodigoSinFormato = function(codigo){
+        var i;
+        var fecha;
+
+        if($scope.fechasCampana && $scope.fechasCampana.length > 0){
+            for(i=0; i<$scope.fechasCampana.length; i++){
+                if($scope.fechasCampana[i].codigoActividad == codigo) {
+                    fecha = $scope.fechasCampana[i].fecha;
+                    break;
+                }
+            }
+            return fecha;
+        }else{
+            return null;
         }
     }
 

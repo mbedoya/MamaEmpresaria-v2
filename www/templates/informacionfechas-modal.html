@@ -1,49 +1,28 @@
 <ion-modal-view>
     <ion-content>
         <div class="list dia">
-
             <div class="item item-divider">
-                <p>{{fechaClick | date: 'EEE'}} {{fechaClick | date:'dd' }} de {{ fechaClick | date: 'MMMM' | pascal }}  del {{ fechaClick | date: 'yyyy' }}</p>
+                <p>{{fechaClick | date: 'EEE'}} {{fechaClick | date:'dd' }} de {{ fechaClick | date: 'MMMM' | pascal }} del
+                    {{ fechaClick | date: 'yyyy' }}</p>
             </div>
-
         </div>
-
-        <!--<div class="row detalle" ng-repeat="fecha in fechasCampana | filter: fechasModal">
-
-<p style="text-align:left"  >
-<img style="float:left" src="img/reloj.png" />
-<p class="col" style="color: #808080">{{ fecha.actividad }} {{fecha.fecha}}</p>
-
-</p>
-
-</div>-->
 
         <div class="row detalle">
-
-            <p style="text-align:left"  >
+            <p style="text-align:left">
                 <img style="float:left" src="img/reloj.png" />
-            <p class="col" style="color: #808080">{{detalleTexto()}}</p>
-
+                <p class="col" style="color: #808080">{{detalleTexto()}}</p>
             </p>
-
         </div>
 
-    <div class="row detalle alternate" ng-hide="esEntrega(recordatorioClick.codigoActividad)">
+        <div class="row detalle alternate" ng-hide="esEntrega(recordatorioClick.codigoActividad)">
+            <p style="text-align:left">
+                <img style="float:left" src="img/reloj.png" />
+                <p class="col" style="color: #808080">Paga tu pedido anterior máximo este día antes de las 12 de la noche si quieres recibirlo en la fecha de {{textoRecordatorio(relacionFechas(recordatorioClick.codigoActividad))}}.
 
-        <p style="text-align:left" >
-            <img style="float:left" src="img/reloj.png" />
-        <p class="col" style="color: #808080">Paga tu pedido anterior máximo este día antes de las 12 de la noche si quieres recibirlo en la fecha de {{textoRecordatorio(relacionFechas(recordatorioClick.codigoActividad))}}.
+                </p>
+        </div>
 
-        </p>
+        <input type="button" value="Cerrar" class="modal-button button button-block" ng-click="closeModal()">
 
-    </div>
-
-
-
-<input type="button" value="Cerrar" class="modal-button button button-block" ng-click="closeModal()">
-
-<!--<label class="modal-button">
-<button class="button button-block" type="submit" ng-click="closeModal()">Cerrar</button>
-</label>-->
-</ion-content>
+    </ion-content>
 </ion-modal-view>
