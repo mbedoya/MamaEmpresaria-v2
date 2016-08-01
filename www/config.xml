@@ -24,6 +24,7 @@
     <preference name="BackupWebStorage" value="none"/>
     <preference name="Orientation" value="portrait" />
     <preference name="SplashScreen" value="splash" />
+    <preference name="android-build-tool" value="gradle" />
 
     <feature name="StatusBar">
         <param name="ios-package" value="CDVStatusBar" onload="true"/>
@@ -45,8 +46,10 @@
     <gap:plugin name="cordova-plugin-queries-schemes" source="npm" />
     <gap:plugin name="cordova-plugin-appversion" source="npm" />
     <gap:plugin name="cordova-plugin-device" source="npm" />
-    <gap:plugin name="phonegap-plugin-push" source="npm" />
-    
+    <plugin name="phonegap-plugin-push" source="npm">
+        <param name="SENDER_ID" value="275683696350" />
+    </plugin>
+
 
     <icon src="icon.png" />
     <icon src="icon.png" gap:platform="ios" width="57" height="57"/>
