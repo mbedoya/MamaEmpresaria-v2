@@ -46,9 +46,9 @@
     <gap:plugin name="cordova-plugin-queries-schemes" source="npm" />
     <gap:plugin name="cordova-plugin-appversion" source="npm" />
     <gap:plugin name="cordova-plugin-device" source="npm" />
-    <plugin name="phonegap-plugin-push" source="npm">
+    <gap:plugin name="phonegap-plugin-push" source="npm">
         <param name="SENDER_ID" value="275683696350" />
-    </plugin>
+    </gap:plugin>
 
 
     <icon src="icon.png" />
