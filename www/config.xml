@@ -45,6 +45,7 @@
     <gap:plugin name="cordova-plugin-queries-schemes" source="npm" />
     <gap:plugin name="cordova-plugin-appversion" source="npm" />
     <gap:plugin name="cordova-plugin-device" source="npm" />
+    <gap:plugin name="phonegap-plugin-push" source="npm" />
     
 
     <icon src="icon.png" />
