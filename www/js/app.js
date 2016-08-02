@@ -150,13 +150,12 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
             }
 
             window.plugins.OneSignal.init($rootScope.notificacionesPush.apikey,
-                                          {googleProjectNumber: $rootScope.notificacionesPush.project},
-                                          notificationOpenedCallback);
+                                          {googleProjectNumber: $rootScope.notificacionesPush.project}/*,
+                                          notificationOpenedCallback*/);
 
             //window.plugins.OneSignal.enableInAppAlertNotification(true);
 
             //window.plugins.OneSignal.enableNotificationsWhenActive(true);
-            window.plugins.OneSignal.setSubscription(false);
 
             /*document.addEventListener("pause", function () {
                  navigator.app.exitApp();
