@@ -57,6 +57,12 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         var push = PushNotification.init({ "android": {"senderID": $rootScope.notificacionesPush.project},
                                           "ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
 
+        push.unregister(function() {
+            console.log('success');
+        }, function() {
+            console.log('error');
+        });
+
         push.on('notification', function(data) {
             console.log(data.message);
             console.log(data.title);
@@ -150,8 +156,8 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
             }
 
             window.plugins.OneSignal.init($rootScope.notificacionesPush.apikey,
-                                          {googleProjectNumber: $rootScope.notificacionesPush.project}/*,
-                                          notificationOpenedCallback*/);
+                                          {googleProjectNumber: $rootScope.notificacionesPush.project},
+                                          notificationOpenedCallback);
 
             //window.plugins.OneSignal.enableInAppAlertNotification(true);
 
