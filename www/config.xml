@@ -13,7 +13,7 @@
 
     <access origin="*"/>
 
-    <preference name="phonegap-version" value="cli-5.4.1" />
+    <preference name="phonegap-version" value="cli-6.0.0" />
 
     <!-- iOS only -->
     <preference name="target-device" value="handset" />      <!-- all: possible values handset, tablet, or universal -->
