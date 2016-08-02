@@ -1,4 +1,4 @@
-moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootScope, $state, $location, $ionicLoading, $http, $filter, GA, Mama, Utilidades) {
+moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootScope, $state, $location, $ionicHistory, $ionicLoading, $http, $filter, GA, Mama, Utilidades) {
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Terminos y condiciones");
@@ -18,6 +18,8 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
         Mama.registrarHabeasData(function (success, data){
 
             $ionicLoading.hide();
+
+            console.log(data);
 
             if(success){
 
@@ -79,6 +81,8 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
             $("#txtTexto").val($rootScope.datos.mensajeHabeasData);
         }
         $scope.modelo.seleccionado = false;
+
+        console.log('Habeas data ' + $rootScope.datos.versionHabeasData);
     };
 
     $scope.$on('$ionicView.beforeEnter', function(){
