@@ -7,10 +7,13 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
 
     $scope.continuar = function(){    
 
+        var mensaje = 'Aceptando términos y condiciones';
+        if(!$rootScope.versionProduccion){
+            mensaje = mensaje + " " + $rootScope.datos.versionHabeasData; 
+        }
         $scope.loading =  $ionicLoading.show({
-            template: Utilidades.getPlantillaEspera('Aceptando términos y condiciones')
+            template: Utilidades.getPlantillaEspera(mensaje)
         });
-
 
         Mama.registrarHabeasData(function (success, data){
 
@@ -52,6 +55,11 @@ moduloControlador.controller('TerminosCondicionesCtrl', function($scope, $rootSc
 
                 });
             }else{
+
+                $scope.mostrarAyuda("", "Se ha presentado un error registrando términos y condiciones");
+                if(!$rootScope.versionProduccion){
+                    $scope.mostrarAyuda("", data.razonRechazo);
+                }
 
             }
         });
