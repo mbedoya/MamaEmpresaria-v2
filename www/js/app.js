@@ -54,17 +54,23 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
         //INICIA JS PLUGIN PUSH
 
-        var push = PushNotification.init({ "android": {"senderID": $rootScope.notificacionesPush.project},
+        /*var push = PushNotification.init({ "android": {"senderID": $rootScope.notificacionesPush.project},
                                           "ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
 
+        push.setApplicationIconBadgeNumber(function() {
+            console.log('success');
+        }, function() {
+            console.log('error');
+        }, 2);
 
         push.on('notification', function(data) {
-            push.clearAllNotifications(function() {
-                console.log('success');
-            }, function() {
-                console.log('error');
-            });
-        });
+            console.log(data.message);
+            console.log(data.title);
+            console.log(data.count);
+            console.log(data.sound);
+            console.log(data.image);
+            console.log(data.additionalData);
+        });*/
 
         //FIN JS PLUGIN PUSH
 
