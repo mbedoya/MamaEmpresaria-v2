@@ -3,8 +3,15 @@
         <div class="row bread">
             Mi Pedido
         </div>
+        <div class="list" ng-show="mamaNueva">
+            <div class="item item-avatar item-icon-right">
+                <div class="icono-caja-abierta"></div>
+                <h2>Una vez montes tu primer pedido podrás hacerle seguimiento desde esta opción
+                </h2>
+            </div>
+        </div>
 
-        <div class="list">
+        <div class="list" ng-show="!mamaNueva">
 
             <!-- Pedido Anterior - No Encontrado  -->
             <div class="item item-avatar item-icon-right" ng-show="!ultimoEstadoPedidoAnterior()" >
@@ -17,7 +24,7 @@
                     <p>Estamos consultando el estado de tu pedido...</p>
                 </div>
             </div>
-            
+
             <!-- Pedido Anterior - Encontrado  -->
             <div class="item item-avatar item-icon-right" ng-click="irATrazabilidadAnterior()" ng-show="ultimoEstadoPedidoAnterior()" >
                 <div class="icono-caja-abierta"></div>

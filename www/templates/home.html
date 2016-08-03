@@ -19,7 +19,7 @@
 
                 <!-- SALDO -->
 
-                <div class="item item-avatar alternate" href="#" ng-show="mostrarSaldoPagar() && saldo()>0" ng-click="mostrarAyudaSaldoPagar()">
+                <div class="item item-avatar alternate" href="#" ng-show="mostrarSaldoPagar() && saldo()>0 && !mamaNueva" ng-click="mostrarAyudaSaldoPagar()">
                     <div class="icono bocina"></div>
                     <!-- <i class="icon ion-plus-circled"></i> -->
                     <h2>Tienes un pago pendiente por {{ saldo() | currency:"$":0 }}.
@@ -38,13 +38,13 @@
                     </p>
                 </div>
 
-                <div class="item item-avatar alternate" href="#" ng-show="mostrarSaldoPagar() && saldo()==0" >
+                <div class="item item-avatar alternate" href="#" ng-show="mostrarSaldoPagar() && saldo()==0 && !mamaNueva" >
                     <div class="icono bocina"></div>
                     <h2>No tienes pagos pendientes
                     </h2>
                 </div>
 
-                <div class="item item-avatar alternate" href="#" ng-show="mostrarSaldoFavor()">
+                <div class="item item-avatar alternate" href="#" ng-show="mostrarSaldoFavor() && !mamaNueva">
                     <div class="icono bocina"></div>
                     <h2>Tienes un saldo a favor de {{ saldo() | currency:"$":0 }}
                     </h2>
