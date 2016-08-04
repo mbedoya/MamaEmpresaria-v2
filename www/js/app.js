@@ -11,46 +11,6 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
         fbObject.$bindTo($rootScope, "dato");
 
-        fbObject.$loaded(function () {
-
-            if(!$rootScope.versionProduccion){
-                $rootScope.mamaNueva = $rootScope.dato.maNu;
-            }else{
-                $rootScope.mamaNueva = false;
-            }
-
-            if(!$rootScope.cargaDatos.popupMamaNueva && $rootScope.mamaNueva){
-
-                var alertPopup = $ionicPopup.alert({
-                    title: "Información",
-                    template: "Mamá toda la información de la campaña estará disponible cuando montes tu primer pedido"
-                });
-            }
-
-            var platform = device.platform;
-
-            $rootScope.versionApp = AppVersion.version;
-            if ($rootScope.dato.version != $rootScope.versionApp) {
-                var actualizar = $ionicPopup.confirm({
-                    title: "Actualización disponible",
-                    template: "Hay una nueva actualización disponible ¿Desea descargarla?"
-                });
-
-                actualizar.then(function (res) {
-                    if (res) {
-                        switch (platform.toLowerCase()) {
-                            case "android":
-                                window.open('market://details?id=com.novaventa.produccion.mamaempresaria', '_system', 'location=yes');
-                                break;
-                            case "ios":
-                                window.open('itms-apps://itunes.apple.com/app/id1046598120', '_system', 'location=yes');
-                                break;
-                        }
-                    }
-                });
-            }
-        })
-
         document.addEventListener("backbutton", function (e) {
 
             if ($.mobile.activePage.is('#homepage')) {
@@ -81,13 +41,54 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         });*/
 
         //FIN JS PLUGIN PUSH
-        
+
         var eliminarNotificaciones = function(){
             var notificacionesAlmacenadas = JSON.parse(localStorage.getItem("push-" + $rootScope.datos.cedula));
-            notificacionesAlmacenadas.splice(5, notificacionesAlmacenadas.length-5);
+            notificacionesAlmacenadas.splice(5, notificacionesAlmacenadas.length-5);            
+            localStorage.setItem("push-" + $rootScope.datos.cedula, JSON.stringify(notificacionesAlmacenadas));
         }
 
         document.addEventListener('deviceready', function () {
+
+            fbObject.$loaded(function () {
+
+                if(!$rootScope.versionProduccion){
+                    $rootScope.mamaNueva = $rootScope.dato.maNu;
+                }else{
+                    $rootScope.mamaNueva = false;
+                }
+
+                if(!$rootScope.cargaDatos.popupMamaNueva && $rootScope.mamaNueva){
+
+                    var alertPopup = $ionicPopup.alert({
+                        title: "Información",
+                        template: "Mamá toda la información de la campaña estará disponible cuando montes tu primer pedido"
+                    });
+                }
+
+                var platform = device.platform;
+
+                $rootScope.versionApp = AppVersion.version;
+                if ($rootScope.dato.version != $rootScope.versionApp) {
+                    var actualizar = $ionicPopup.confirm({
+                        title: "Actualización disponible",
+                        template: "Hay una nueva actualización disponible ¿Desea descargarla?"
+                    });
+
+                    actualizar.then(function (res) {
+                        if (res) {
+                            switch (platform.toLowerCase()) {
+                                case "android":
+                                    window.open('market://details?id=com.novaventa.produccion.mamaempresaria', '_system', 'location=yes');
+                                    break;
+                                case "ios":
+                                    window.open('itms-apps://itunes.apple.com/app/id1046598120', '_system', 'location=yes');
+                                    break;
+                            }
+                        }
+                    });
+                }
+            })
 
             var titulo;
 
@@ -138,7 +139,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                         fueLeido();
                     });
                 }
-                
+
                 eliminarNotificaciones();
 
             };
