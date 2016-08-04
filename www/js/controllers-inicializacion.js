@@ -83,6 +83,7 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
         $rootScope.lineaAtencion = "01 8000 515 101";
         $rootScope.correo = "servicioalcliente@novaventa.com";
         $rootScope.urlChat = 'http://twnl.co/novaventas';
+        $rootScope.numeroEncuesta = '01';
         //Eliminar toda las variables de estado de carga de información de pantallas
         $rootScope.cargaDatos = { ventanaMiPedido: null, ventanaMisPuntos: null, ventanaInformacionFechas: null, ventanaInformacionEncuentros: null, ventanaBuzones: null};
 

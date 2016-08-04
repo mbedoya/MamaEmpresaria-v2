@@ -4,8 +4,7 @@ moduloServicios
         return {
             obtenerPreguntasEncuesta: function (fx) {
 
-                var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/crm/encuestas/getEncuesta/01";
-                //var urlServicio = "http://www.mocky.io/v2/5761768e2500004d0f8460e6";
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/crm/encuestas/getEncuesta/" + $rootScope.numeroEncuesta;
 
                 $http.get(urlServicio).
                     success(function (data, status, headers, config) {
@@ -17,10 +16,17 @@ moduloServicios
             },
             enviarRespuestasEncuesta: function (respuestas, fx) {
 
-                //alert(respuestas);
+                if(!$rootScope.campanaEncuesta){
+                    $rootScope.campanaEncuesta = "2016" + $rootScope.campana.numero;
+                }
 
-                //var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/interfaceAntares/getRecordatoriosAntares/" + zona + "/" + seccion;
-                var urlServicio = "http://www.mocky.io/v2/5761768e2500004d0f8460e6";
+                //Adicionar información general a las respuestas
+                console.log(respuestas);
+                respuestas["codigo"] = $rootScope.numeroEncuesta;
+                respuestas["anoCampagna"] = $rootScope.campanaEncuesta;
+                console.log(respuestas);
+
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "crm/encuestas/guardarEncuesta";
 
                 var request = {
                     method: 'POST',

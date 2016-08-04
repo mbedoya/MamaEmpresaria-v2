@@ -33,7 +33,13 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
             return;
         }
 
-        $scope.respuestas.push("P" + $scope.indice + 1 + "=" + $scope.indiceRespuesta);
+        //Obtener las respuestas dadas por la Mamá
+        var respuestas = new Array();
+        respuestas.push($scope.indiceRespuesta);
+
+        //Crear el objeto de respuesta completo
+        $scope.respuestas.push({ pregunta: obtenerPregunta().pregunta, respuestas: respuestas });
+
         $scope.indiceRespuesta = "";
 
         if($scope.indice + 1 < $scope.preguntas.length){
@@ -44,7 +50,11 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
                 template: Utilidades.getPlantillaEspera('Enviando las respuestas de la Encuesta')
             });
 
-            Encuesta.enviarRespuestasEncuesta($scope.respuestas.join("&") ,function(success, data) {
+            var objetoRespuesta = { 
+                preguntas: $scope.respuestas
+             };
+
+            Encuesta.enviarRespuestasEncuesta(objetoRespuesta ,function(success, data) {
 
                 $ionicLoading.hide();
 
