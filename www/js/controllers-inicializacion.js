@@ -85,7 +85,7 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
         $rootScope.urlChat = 'http://twnl.co/novaventas';
         $rootScope.numeroEncuesta = '01';
         //Eliminar toda las variables de estado de carga de información de pantallas
-        $rootScope.cargaDatos = { ventanaMiPedido: null, ventanaMisPuntos: null, ventanaInformacionFechas: null, ventanaInformacionEncuentros: null, ventanaBuzones: null};
+        $rootScope.cargaDatos = { ventanaMiPedido: null, ventanaMisPuntos: null, ventanaInformacionFechas: null, ventanaInformacionEncuentros: null, ventanaBuzones: null, popupMamaNueva: null};
 
         jQuery.support.cors = true;
         //$.mobile.allowCrossDomainPages = true;

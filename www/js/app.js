@@ -19,6 +19,14 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                 $rootScope.mamaNueva = false;
             }
 
+            if(!$rootScope.cargaDatos.popupMamaNueva && $rootScope.mamaNueva){
+
+                var alertPopup = $ionicPopup.alert({
+                    title: "Información",
+                    template: "Mamá toda la información de la campaña estará disponible cuando montes tu primer pedido"
+                });
+            }
+
             var platform = device.platform;
 
             $rootScope.versionApp = AppVersion.version;
@@ -60,7 +68,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
         //INICIA JS PLUGIN PUSH
 
-        var push = PushNotification.init({ "android": {"senderID": $rootScope.notificacionesPush.project},
+        /*var push = PushNotification.init({ "android": {"senderID": $rootScope.notificacionesPush.project},
                                           "ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
 
 
@@ -70,12 +78,18 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
             }, function() {
                 console.log('error');
             });
-        });
+        });*/
 
         //FIN JS PLUGIN PUSH
+        
+        var eliminarNotificaciones = function(){
+            var notificacionesAlmacenadas = JSON.parse(localStorage.getItem("push-" + $rootScope.datos.cedula));
+            notificacionesAlmacenadas.splice(5, notificacionesAlmacenadas.length-5);
+        }
 
-        //INICIA JS DE ONE SIGNAL
         document.addEventListener('deviceready', function () {
+            
+            eliminarNotificaciones();
 
             var titulo;
 
@@ -155,6 +169,8 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                 }
             }
 
+            //INICIA JS DE ONE SIGNAL
+
             window.plugins.OneSignal.init($rootScope.notificacionesPush.apikey,
                                           {googleProjectNumber: $rootScope.notificacionesPush.project},
                                           notificationOpenedCallback);
@@ -167,9 +183,10 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                  navigator.app.exitApp();
                  }, false);*/
 
-        }, false);
 
-        //FIN JS ONE SIGNAL
+            //FIN JS ONE SIGNAL
+
+        }, false);
 
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
