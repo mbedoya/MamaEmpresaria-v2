@@ -1207,6 +1207,11 @@ input[disabled]{
     }
 }
 
+.atras{
+    font-size: 14px;
+    color: #000;
+}
+
 /* iphone  5 */
 @media screen and (device-aspect-ratio: 40/71) {
     .bar-stable .left-buttons .button-clear {

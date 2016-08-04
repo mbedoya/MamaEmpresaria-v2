@@ -10,6 +10,16 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
         });
     };
 
+    $scope.irAtras = function() {
+        if ($scope.indice > 0) {
+            $scope.indice = $scope.indice - 1;
+        }
+    }
+
+    $scope.mostrarAtras = function() {
+        return $scope.indice > 0;
+    }
+
     $scope.continuar = function() {
 
         console.log($scope.indiceRespuesta);
@@ -28,7 +38,7 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
         }
 
         //Validación de ingreso de respuesta cerrada múltiple
-        if($scope.respuestaTexto.valor.trim().length == 0 && $scope.EsPreguntaAbierta()){
+        if(String($scope.respuestaTexto.valor).trim().length == 0 && $scope.EsPreguntaAbierta()){
             $scope.mostrarAyuda("","Por favor contesta la pregunta");
             return;
         }
@@ -38,7 +48,7 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
         respuestas.push($scope.indiceRespuesta);
 
         //Crear el objeto de respuesta completo
-        $scope.respuestas.push({ pregunta: obtenerPregunta().pregunta, respuestas: respuestas });
+        $scope.respuestas.push({ pregunta: $scope.obtenerPregunta().pregunta, respuestas: respuestas });
 
         $scope.indiceRespuesta = "";
 
@@ -92,35 +102,23 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
     $scope.EsPreguntaCerradaMultiple = function(){
 
         return $scope.preguntas && $scope.preguntas.length > 0 &&
-            $scope.preguntas[$scope.indice].respuestaMultiple;
-        
-        /*
-        return $scope.preguntas && $scope.preguntas.length > 0 &&
-            $scope.preguntas[$scope.indice].tipo.toLowerCase() == "cerrada" &&
-            $scope.preguntas[$scope.indice].multiple.toLowerCase() == "si";
-            */
+            $scope.preguntas[$scope.indice].respuestaMultiple && 
+            $scope.preguntas[$scope.indice].posiblesRespuestas && $scope.preguntas[$scope.indice].posiblesRespuestas.length > 0;
+
     }
 
     $scope.EsPreguntaCerradaSimple = function(){
 
         return $scope.preguntas && $scope.preguntas.length > 0 &&
-            !$scope.preguntas[$scope.indice].respuestaMultiple;
-
-        /*
-        return $scope.preguntas && $scope.preguntas.length > 0 &&
-            $scope.preguntas[$scope.indice].tipo.toLowerCase() == "cerrada" &&
-            $scope.preguntas[$scope.indice].multiple.toLowerCase() == "no";
-            */
+            !$scope.preguntas[$scope.indice].respuestaMultiple && 
+            $scope.preguntas[$scope.indice].posiblesRespuestas && $scope.preguntas[$scope.indice].posiblesRespuestas.length > 0;
     }
 
     $scope.EsPreguntaAbierta = function(){
 
-        return false;
-
-        /*
         return $scope.preguntas && $scope.preguntas.length > 0 &&
-            $scope.preguntas[$scope.indice].tipo.toLowerCase() == "abierta";
-            */
+            !$scope.preguntas[$scope.indice].respuestaMultiple &&
+            (!$scope.preguntas[$scope.indice].posiblesRespuestas || $scope.preguntas[$scope.indice].posiblesRespuestas.length == 0);
     }
 
     $scope.inicializar = function() {
