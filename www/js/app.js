@@ -58,14 +58,6 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                     $rootScope.mamaNueva = false;
                 }
 
-                if(!$rootScope.cargaDatos.popupMamaNueva && $rootScope.mamaNueva){
-
-                    var alertPopup = $ionicPopup.alert({
-                        title: "Información",
-                        template: "Mamá toda la información de la campaña estará disponible cuando montes tu primer pedido"
-                    });
-                }
-
                 var platform = device.platform;
 
                 $rootScope.versionApp = AppVersion.version;
