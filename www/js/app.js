@@ -147,9 +147,9 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                 try {
                     var notificacion;
                     if(jsonData.additionalData && jsonData.additionalData.launchURL){
-                        notificacion = '{"id":0, "titulo":"' + titulo + '", "mensaje":"' + jsonData.message + '", "leido":false, "fecha":"' + Utilidades.formatearFechaActual() + '", "url":"'jsonData.additionalData.launchURL+'"}';
-                    }else{
                         notificacion = '{"id":0, "titulo":"' + titulo + '", "mensaje":"' + jsonData.message + '", "leido":false, "fecha":"' + Utilidades.formatearFechaActual() + '"}';
+                    }else{
+                        notificacion = '{"id":0, "titulo":"' + titulo + '", "mensaje":"' + jsonData.message + '", "leido":false, "fecha":"' + Utilidades.formatearFechaActual() + '", "url":"' + jsonData.additionalData.launchURL + '"}';
                     }
                 } catch (err) {
                     alert(err.message);
