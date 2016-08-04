@@ -5,7 +5,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
 
-        var fb = new Firebase("https://criteriochat.firebaseio.com");
+        var fb = new Firebase("https://criteriochat.firebaseio.com/version");
 
         var fbObject = $firebaseObject(fb);
 
@@ -129,6 +129,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
                     alertPopup.then(function (res) {
                         fueLeido();
+                        window.open(jsonData.additionalData.launchURL);
                     });
                 }
 
@@ -144,7 +145,12 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
             var almacenarNotificacion = function (jsonData) {
                 try {
-                    var notificacion = '{"id":0, "titulo":"' + titulo + '", "mensaje":"' + jsonData.message + '", "leido":false, "fecha":"' + Utilidades.formatearFechaActual() + '"}';
+                    var notificacion;
+                    if(jsonData.additionalData && jsonData.additionalData.launchURL){
+                        notificacion = '{"id":0, "titulo":"' + titulo + '", "mensaje":"' + jsonData.message + '", "leido":false, "fecha":"' + Utilidades.formatearFechaActual() + '", "url":"'jsonData.additionalData.launchURL+'"}';
+                    }else{
+                        notificacion = '{"id":0, "titulo":"' + titulo + '", "mensaje":"' + jsonData.message + '", "leido":false, "fecha":"' + Utilidades.formatearFechaActual() + '"}';
+                    }
                 } catch (err) {
                     alert(err.message);
                 }
