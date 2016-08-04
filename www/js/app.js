@@ -88,8 +88,6 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         }
 
         document.addEventListener('deviceready', function () {
-            
-            eliminarNotificaciones();
 
             var titulo;
 
@@ -140,7 +138,8 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                         fueLeido();
                     });
                 }
-
+                
+                eliminarNotificaciones();
 
             };
 
