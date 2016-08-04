@@ -7,16 +7,6 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $location,
     $scope.numeroClicksCampana = 0;
     $scope.mostrarLog = false;
 
-    document.addEventListener('deviceready', function () {
-
-        if(!$rootScope.cargaDatos.popupMamaNueva && $rootScope.mamaNueva){
-
-            var alertPopup = $ionicPopup.alert({
-                title: "Información",
-                template: "Mamá toda la información de la campaña estará disponible cuando montes tu primer pedido"
-            });
-        }
-    })
 
     // SÓLO PARA PRUEBAS
     // Se cambia el color del ícono de red social a rojo, para indicar que la app está apuntando a PRUEBAS
@@ -212,6 +202,14 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $location,
     $scope.inicializar = function(){
         if(window.plugins && window.plugins.OneSignal){
             window.plugins.OneSignal.sendTag("segmento", $rootScope.datos.segmento);
+        }
+        
+        if(!$rootScope.cargaDatos.popupMamaNueva && $rootScope.mamaNueva){
+
+            var alertPopup = $ionicPopup.alert({
+                title: "Información",
+                template: "Mamá toda la información de la campaña estará disponible cuando montes tu primer pedido"
+            });
         }
     }
 
