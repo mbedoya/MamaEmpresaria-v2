@@ -130,7 +130,9 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
                     alertPopup.then(function (res) {
                         fueLeido();
-                        window.open(jsonData.additionalData.launchURL);
+                        if(jsonData.additionalData && jsonData.additionalData.launchURL){
+                            window.open(jsonData.additionalData.launchURL);
+                        }
                     });
                 }
 
