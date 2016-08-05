@@ -43,8 +43,9 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
         //FIN JS PLUGIN PUSH
 
         var eliminarNotificaciones = function(){
+            var cantNotificaciones = 30;
             var notificacionesAlmacenadas = JSON.parse(localStorage.getItem("push-" + $rootScope.datos.cedula));
-            notificacionesAlmacenadas.splice(5, notificacionesAlmacenadas.length-5);            
+            notificacionesAlmacenadas.splice(cantNotificaciones, notificacionesAlmacenadas.length-cantNotificaciones);            
             localStorage.setItem("push-" + $rootScope.datos.cedula, JSON.stringify(notificacionesAlmacenadas));
         }
 
@@ -129,9 +130,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
                     alertPopup.then(function (res) {
                         fueLeido();
-                        if(jsonData.additionalData && jsonData.additionalData.launchURL){ 
-                            window.open(jsonData.additionalData.launchURL);
-                        }
+                        window.open(jsonData.additionalData.launchURL);
                     });
                 }
 
@@ -148,8 +147,8 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
             var almacenarNotificacion = function (jsonData) {
                 try {
                     var notificacion;
-                    if(jsonData.additionalData && jsonData.additionalData.launchURL){                        
-                        notificacion = '{"id":0, "titulo":"' + titulo + '", "mensaje":"' + jsonData.message + '", "leido":false, "fecha":"' + Utilidades.formatearFechaActual() + '", "url":"' + jsonData.additionalData.launchURL + '"}';
+                    if(jsonData.additionalData && jsonData.additionalData.launchURL){
+                        notificacion = '{"id":0, "titulo":"' + titulo + '", "mensaje":"' + jsonData.message + '", "leido":false, "fecha":"' + Utilidades.formatearFechaActual() + '", "url":"' + jsonData.additionalData.launchURL + '"}';      
                     }else{
                         notificacion = '{"id":0, "titulo":"' + titulo + '", "mensaje":"' + jsonData.message + '", "leido":false, "fecha":"' + Utilidades.formatearFechaActual() + '"}';
                     }
