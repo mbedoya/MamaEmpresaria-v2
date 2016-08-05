@@ -16,7 +16,7 @@
 
                 <ion-radio ng-repeat="respuesta in obtenerPregunta().posiblesRespuestas" ng-click="contestarPregunta($index)" >
                     <img src="img/encuesta{{respuesta.posibleRespuesta}}.png" ng-if="obtenerPregunta().codigo == 4" />
-                    <span ng-if="obtenerPregunta().codigo != 4">{{respuesta.posibleRespuesta}}</span>
+                    <span >{{respuesta.posibleRespuesta}}</span>
                 </ion-radio>   
                         
             </ion-list>
@@ -24,7 +24,7 @@
             <ion-list ng-show="EsPreguntaCerradaMultiple()">
                 <ion-checkbox ng-repeat="respuesta in obtenerPregunta().posiblesRespuestas" ng-click="contestarPregunta($index)">
                     <img src="img/encuesta{{respuesta.posibleRespuesta}}.png" ng-if="obtenerPregunta().codigo == 4" />
-                    <span ng-if="obtenerPregunta().codigo != 4">{{respuesta.posibleRespuesta}}</span>
+                    <span >{{respuesta.posibleRespuesta}}</span>
                 </ion-checkbox>
             </ion-list>
 

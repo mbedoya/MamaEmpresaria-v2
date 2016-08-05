@@ -17,16 +17,15 @@ moduloServicios
             enviarRespuestasEncuesta: function (respuestas, fx) {
 
                 if(!$rootScope.campanaEncuesta){
-                    $rootScope.campanaEncuesta = "2016" + $rootScope.campana.numero;
+                    $rootScope.campanaEncuesta = "2016" + $rootScope.campanaAnterior.numero;
                 }
 
                 //Adicionar información general a las respuestas
-                console.log(respuestas);
                 respuestas["codigo"] = $rootScope.numeroEncuesta;
-                respuestas["anoCampagna"] = $rootScope.campanaEncuesta;
+                respuestas["agnoCampagna"] = $rootScope.campanaEncuesta;
                 console.log(respuestas);
 
-                var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "crm/encuestas/guardarEncuesta";
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/crm/encuestas/guardarEncuesta";
 
                 var request = {
                     method: 'POST',

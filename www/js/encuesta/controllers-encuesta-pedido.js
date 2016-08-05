@@ -1,4 +1,4 @@
-moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $rootScope, $ionicLoading, $ionicPopup, $state, $http, $filter, $ionicHistory, Mama, Internet, GA, Encuesta, Utilidades) {
+moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $rootScope, $ionicLoading, $ionicPopup, $state, $filter, $ionicHistory, $ionicScrollDelegate, Mama, Internet, GA, Encuesta, Utilidades) {
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Encuesta Pedido");
@@ -22,17 +22,17 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
 
     $scope.continuar = function() {
 
-        console.log($scope.indiceRespuesta);
-        console.log($scope.EsPreguntaCerradaSimple());
+        console.log("Indice respuesta:" + $scope.indiceRespuesta);
+        console.log("Cerrada simple" + $scope.EsPreguntaCerradaSimple());
 
         //Validación de ingreso de respuesta cerrada única
-        if($scope.indiceRespuesta.length == 0 && $scope.EsPreguntaCerradaSimple()){
+        if($scope.indiceRespuesta == -1 && $scope.EsPreguntaCerradaSimple()){
             $scope.mostrarAyuda("","Debes seleccionar una opción");
             return;
         }
 
         //Validación de ingreso de respuesta cerrada múltiple
-        if($scope.indiceRespuesta.length == 0 && $scope.EsPreguntaCerradaMultiple()){
+        if($scope.indiceRespuesta == -1  && $scope.EsPreguntaCerradaMultiple()){
             $scope.mostrarAyuda("","Debes seleccionar mínimo una opción");
             return;
         }
@@ -45,15 +45,21 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
 
         //Obtener las respuestas dadas por la Mamá
         var respuestas = new Array();
-        respuestas.push($scope.indiceRespuesta);
+        if($scope.EsPreguntaCerradaSimple() || $scope.EsPreguntaCerradaMultiple()){
+            respuestas.push($scope.obtenerPregunta().posiblesRespuestas[$scope.indiceRespuesta].posibleRespuesta);
+        }else{
+            respuestas.push($scope.respuestaTexto.valor);
+        }
 
         //Crear el objeto de respuesta completo
         $scope.respuestas.push({ pregunta: $scope.obtenerPregunta().pregunta, respuestas: respuestas });
 
-        $scope.indiceRespuesta = "";
+        $scope.indiceRespuesta = -1;
+        $scope.respuestaTexto.valor = "";
 
         if($scope.indice + 1 < $scope.preguntas.length){
             $scope.indice++;
+            $ionicScrollDelegate.scrollTop();
         }else{
 
             $scope.loading =  $ionicLoading.show({
@@ -83,12 +89,11 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
     };
 
     $scope.contestarPregunta = function (indice) {
-        console.log("Indice respuesta: " + indice);
         $scope.indiceRespuesta = indice;
     }
 
     $scope.contestarPreguntaTexto = function () {
-        console.log("respuesta texto: " + $scope.respuestaTexto.valor);
+        
     }
 
     $scope.obtenerPregunta = function(){
@@ -124,7 +129,7 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
     $scope.inicializar = function() {
 
         $scope.respuestas = new Array();
-        $scope.indiceRespuesta = "";
+        $scope.indiceRespuesta = -1;
         $scope.respuestaTexto = { valor: ''};
         $scope.indice = -1;
 
@@ -152,5 +157,8 @@ moduloControlador.controller('EncuestaPedidoCtrl', function($scope, $location, $
         }
     }
 
-    $scope.inicializar();
+    $scope.$on('$ionicView.beforeEnter', function(){
+        $scope.inicializar();
+    });
+    
 });
