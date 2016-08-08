@@ -118,6 +118,11 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $location,
     }
 
     $scope.nombre = function(){
+
+        if(!$rootScope.datos.nombre){
+            return "";
+        }
+
         var nombrePascal = $rootScope.datos.nombre.split(' ');
         for	(index = 0; index < nombrePascal.length; index++) {
             nombrePascal[index] = nombrePascal[index].substring(0,1).toUpperCase() + nombrePascal[index].substring(1, nombrePascal[index].length).toLowerCase();
@@ -131,6 +136,9 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $location,
     }
 
     $scope.segmentoFormateado = function(){
+        if(!$rootScope.datos.segmento){
+            return "";
+        }
         return $rootScope.datos.segmento.toLocaleLowerCase().replace("í","i");
     }
 
