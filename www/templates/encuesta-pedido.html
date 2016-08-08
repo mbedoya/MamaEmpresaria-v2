@@ -14,7 +14,7 @@
 
             <ion-list ng-show="EsPreguntaCerradaSimple()">
 
-                <ion-radio ng-repeat="respuesta in obtenerPregunta().posiblesRespuestas" ng-click="contestarPregunta($index)" >
+                <ion-radio ng-repeat="respuesta in obtenerPregunta().posiblesRespuestas" ng-model="respuestaMultipleCerrada.valor" ng-value="respuesta.posibleRespuesta" ng-change="contestarPregunta($index)" >
                     <img src="img/encuesta{{respuesta.posibleRespuesta}}.png" ng-if="obtenerPregunta().codigo == 4" />
                     <span >{{respuesta.posibleRespuesta}}</span>
                 </ion-radio>   
@@ -22,14 +22,14 @@
             </ion-list>
 
             <ion-list ng-show="EsPreguntaCerradaMultiple()">
-                <ion-checkbox ng-repeat="respuesta in obtenerPregunta().posiblesRespuestas" ng-click="contestarPregunta($index)">
+                <ion-checkbox ng-repeat="respuesta in obtenerPregunta().posiblesRespuestas" ng-checked="respuestaMultipleMultiple.valor[$index]" ng-true-value="'respuesta.posibleRespuesta'" ng-false-value="null" ng-click="contestarPreguntaMultiple($index)">
                     <img src="img/encuesta{{respuesta.posibleRespuesta}}.png" ng-if="obtenerPregunta().codigo == 4" />
                     <span >{{respuesta.posibleRespuesta}}</span>
                 </ion-checkbox>
             </ion-list>
 
             <label class="login-input" ng-show="EsPreguntaAbierta()">
-                <input id="txtTexto" type="text" ng-model="respuestaTexto.valor" ng-change="contestarPreguntaTexto()" >
+                <input id="txtTexto" type="text" ng-model="respuestaTexto.valor" ng-change="contestarPreguntaAbierta()" >
             </label>
             </div>
             <div class="padding" ng-show="obtenerPregunta()">
