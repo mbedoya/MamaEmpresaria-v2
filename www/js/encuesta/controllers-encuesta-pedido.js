@@ -41,30 +41,31 @@ moduloControlador.controller('EncuestaPedidoCtrl', function ($scope, $location, 
                     $scope.respuestaTexto = { valor: $scope.preguntaContestada()[0] };
                 } else {
 
-                    for (var index = 0; index < $scope.obtenerPregunta().posiblesRespuestas.length; index++) {
-                        var element = $scope.obtenerPregunta().posiblesRespuestas[index];
+                    if ($scope.EsPreguntaCerradaMultiple()) {
+                        for (var index = 0; index < $scope.obtenerPregunta().posiblesRespuestas.length; index++) {
+                            var element = $scope.obtenerPregunta().posiblesRespuestas[index];
 
-                        var respTemp = $scope.preguntaContestada();
-                        if (respTemp) {
-                            var found = false;
-                            for (var i = 0; i < respTemp.length; i++) {
-                                var e = respTemp[i];
-                                if(e == element.posibleRespuesta){
-                                    found = true;
-                                    $scope.respuestaMultipleMultiple.valor.push(true);
-                                    break;
+                            var respTemp = $scope.preguntaContestada();
+                            if (respTemp) {
+                                var found = false;
+                                for (var i = 0; i < respTemp.length; i++) {
+                                    var e = respTemp[i];
+                                    if (e == element.posibleRespuesta) {
+                                        found = true;
+                                        $scope.respuestaMultipleMultiple.valor.push(true);
+                                        break;
+                                    }
                                 }
-                            }
-                            if(!found){
+                                if (!found) {
+                                    $scope.respuestaMultipleMultiple.valor.push(false);
+                                }
+                            } else {
                                 $scope.respuestaMultipleMultiple.valor.push(false);
                             }
-                        } else {
-                            $scope.respuestaMultipleMultiple.valor.push(false);
                         }
 
+                        console.log($scope.respuestaMultipleMultiple);
                     }
-
-                    console.log($scope.respuestaMultipleMultiple);
 
                 }
 
@@ -74,6 +75,9 @@ moduloControlador.controller('EncuestaPedidoCtrl', function ($scope, $location, 
 
     $scope.continuar = function () {
 
+        alert("a continuar");
+        alert("Pergunta contestada: " + $scope.preguntaContestada());
+
         //Validación de ingreso de respuesta cerrada única
         if (!$scope.preguntaContestada() && $scope.EsPreguntaCerradaSimple()) {
             $scope.mostrarAyuda("", "Debes seleccionar una opción");
@@ -81,25 +85,32 @@ moduloControlador.controller('EncuestaPedidoCtrl', function ($scope, $location, 
         }
 
         //Validación de ingreso de respuesta cerrada múltiple
-        if ($scope.indiceRespuesta == -1 && $scope.EsPreguntaCerradaMultiple()) {
+        if (!$scope.preguntaContestada() && $scope.EsPreguntaCerradaMultiple()) {
             $scope.mostrarAyuda("", "Debes seleccionar mínimo una opción");
             return;
         }
 
         //Validación de ingreso de respuesta cerrada múltiple
-        if (String($scope.respuestaTexto.valor).trim().length == 0 && $scope.EsPreguntaAbierta()) {
+        if (!$scope.preguntaContestada() && $scope.EsPreguntaAbierta()) {
             $scope.mostrarAyuda("", "Por favor contesta la pregunta");
             return;
         }
 
         if ($scope.indice + 1 < $scope.preguntas.length) {
+
+            alert("antes de moverse");
+
             $scope.indice++;
             $ionicScrollDelegate.scrollTop();
 
             //Actualizar la respuesta
             $scope.actualizarValoresRespuestas();
 
+            alert("movido");
+
         } else {
+
+            alert("a guardar");
 
             $scope.loading = $ionicLoading.show({
                 template: Utilidades.getPlantillaEspera('Enviando las respuestas de la Encuesta')
@@ -135,7 +146,7 @@ moduloControlador.controller('EncuestaPedidoCtrl', function ($scope, $location, 
             $scope.respuestas[$scope.indice].respuestas.push($scope.respuestaMultipleCerrada.valor);
         }
 
-        console.log($scope.respuestas);
+        alert($scope.respuestas[$scope.indice].respuestas[0]);
     }
 
     $scope.contestarPreguntaAbierta = function () {
@@ -147,7 +158,7 @@ moduloControlador.controller('EncuestaPedidoCtrl', function ($scope, $location, 
 
         console.log($scope.obtenerPregunta().posiblesRespuestas[indice].posibleRespuesta);
 
-        if(!$scope.preguntaContestada()){
+        if (!$scope.preguntaContestada()) {
             $scope.respuestas[$scope.indice].respuestas = new Array();
         }
 
@@ -156,8 +167,8 @@ moduloControlador.controller('EncuestaPedidoCtrl', function ($scope, $location, 
         //Buscar si no hay sido contestada, si ya lo ha sido entonces eliminarla, de lo contrario adicionarla
         for (var index = 0; index < $scope.preguntaContestada().length; index++) {
             var element = $scope.preguntaContestada()[index];
-            
-            if(element == $scope.obtenerPregunta().posiblesRespuestas[indice].posibleRespuesta){
+
+            if (element == $scope.obtenerPregunta().posiblesRespuestas[indice].posibleRespuesta) {
                 encontrado = true;
                 indiceEncontrado = index;
                 break;
@@ -167,7 +178,7 @@ moduloControlador.controller('EncuestaPedidoCtrl', function ($scope, $location, 
         if (encontrado) {
             $scope.respuestas[$scope.indice].respuestas.splice(indiceEncontrado, 1);
             $scope.respuestaMultipleMultiple.valor[indice] = false;
-        }else{
+        } else {
             $scope.respuestas[$scope.indice].respuestas.push($scope.obtenerPregunta().posiblesRespuestas[indice].posibleRespuesta);
             $scope.respuestaMultipleMultiple.valor[indice] = true;
         }
@@ -217,8 +228,6 @@ moduloControlador.controller('EncuestaPedidoCtrl', function ($scope, $location, 
             //Crear el objeto de respuesta completo
             $scope.respuestas.push({ pregunta: element.pregunta, respuestas: null });
         }
-
-        console.log($scope.respuestas);
     }
 
     $scope.inicializar = function () {
@@ -245,8 +254,6 @@ moduloControlador.controller('EncuestaPedidoCtrl', function ($scope, $location, 
                     $scope.indice = 0;
 
                     $scope.crearVectorRespuestas();
-
-                    console.log($scope.preguntas);
                 } else {
                     $location.path('/app/menu/tabs/home');
                     $scope.mostrarAyuda("Inicio de sesión", "No es posible cargar la Encuesta");
