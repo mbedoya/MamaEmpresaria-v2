@@ -161,6 +161,8 @@ moduloControlador.controller('MiPedidoCtrl', function($scope, $rootScope, $state
     $scope.ultimoEstadoPedidoActual = function(){
 
         if($scope.pedidoActual && $scope.pedidoActual.length > 0){
+
+            cantidad = $scope.pedidoActual.length;
             var estadoEncontrado = "";
 
             while(estadoEncontrado == ""){    
