@@ -147,6 +147,8 @@ moduloControlador.controller('EncuestaPedidoCtrl', function ($scope, $location, 
         }
 
         alert($scope.respuestas[$scope.indice].respuestas[0]);
+
+        $scope.$apply();
     }
 
     $scope.contestarPreguntaAbierta = function () {

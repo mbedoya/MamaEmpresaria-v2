@@ -2,28 +2,52 @@
     <ion-content>
 
         <div class="item item-divider">
-            <p ng-show="contNotificaciones>0">Tienes {{contNotificaciones}} notificaciones sin leer</p>
+            <p ng-show="contNotificaciones>0">Tienes {{contNotificaciones}} notificaciones nuevas</p>
             <p ng-hide="contNotificaciones>0">No tienes notificaciones nuevas</p>
         </div>
         <br />
-        <div class="list">    
+        <div class="list">
 
-            <div ng-click="mostrarNotificacion(notificacion)" ng-repeat="notificacion in notificacionesAlmacenadas | orderBy: '-id'" ng-class-odd="alternar(true)" ng-class-even="alternar(false)">
+            <div ng-click="mostrarNotificacion(notificacion)" ng-repeat="notificacion in notificacionesNuevas | orderBy: '-id'"
+                ng-class-odd="alternar(true)" ng-class-even="alternar(false)">
                 <div style="padding-left:40px">
-                    <i class="icon ion-android-mail" ng-hide="notificacion.leido"></i>
-                    <i class="icon ion-android-drafts" ng-show="notificacion.leido"></i>
+                    <i class="icon ion-android-mail"></i>
                     <p ng-show="notificacion.titulo"><strong>Titulo:</strong> {{notificacion.titulo}}</p>
-                    <p><strong>Mensaje:</strong> {{vistaPrevia(notificacion, 5)}}</p>
-                <p><strong>Fecha:</strong> {{fechaNotificacion  | date: 'EEE'}} {{fechaNotificacion | date:'dd' }} de {{ fechaNotificacion | date: 'MMMM' | pascal }} del {{ fechaNotificacion | date: 'yyyy' }}</p></span>
+                    <p>
+                        <strong>
+                            {{vistaPrevia(notificacion, 6)}}
+                        </strong> 
+                    </p>
+                    <p>
+                        {{fechaNotificacion | date: 'EEEE' | pascal}} {{fechaNotificacion | date:'dd' }} de {{
+                        fechaNotificacion | date: 'MMMM' | pascal }} del {{ fechaNotificacion | date: 'yyyy' }}
+                    </p>
+                </div>
+            </div>
+
+            <div ng-click="mostrarNotificacion(notificacion)" ng-repeat="notificacion in notificacionesAlmacenadas | orderBy: '-id'"
+                ng-class-odd="alternar(true)" ng-class-even="alternar(false)">
+                <div style="padding-left:40px">
+                    <i class="icon ion-android-drafts"></i>
+                    <p ng-show="notificacion.titulo"><strong>Titulo:</strong> {{notificacion.titulo}}</p>
+                    <p>
+                        <strong>
+                            {{vistaPrevia(notificacion, 6)}}
+                        </strong> 
+                    </p>
+                    <p>
+                        {{fechaNotificacion | date: 'EEEE' | pascal}} {{fechaNotificacion | date:'dd' }} de {{
+                        fechaNotificacion | date: 'MMMM' | pascal }} del {{ fechaNotificacion | date: 'yyyy' }}
+                    </p>
+                </div>
+            </div>
         </div>
-        </div>
-    </div>
 
 
 
-<input type="button" value="Cerrar" class="modal-button button button-block" ng-click="closeModal()">
+        <input type="button" value="Cerrar" class="modal-button button button-block" ng-click="closeModal()">
 
-<div style="height: 50px; "></div>
+        <div style="height: 50px; "></div>
 
-</ion-content>
+    </ion-content>
 </ion-modal-view>

@@ -65,7 +65,51 @@
 
 
 var moduloServicios = angular.module('novaventa.services', [])
-    
+
+    .factory('App', function ($rootScope, $ionicPopup, $firebaseObject) {
+
+        return {
+            verificarVersion: function () {
+
+                var fb = new Firebase("https://criteriochat.firebaseio.com/version");
+                var fbObject = $firebaseObject(fb);
+                fbObject.$bindTo($rootScope, "dato");
+
+                fbObject.$loaded(function () {
+
+                    if (!$rootScope.versionProduccion) {
+                        $rootScope.mamaNueva = $rootScope.dato.maNu;
+                    } else {
+                        $rootScope.mamaNueva = false;
+                    }
+
+                    var platform = device.platform;
+
+                    $rootScope.versionApp = AppVersion.version;
+                    if ($rootScope.dato.version != $rootScope.versionApp) {
+                        var actualizar = $ionicPopup.confirm({
+                            title: "Actualización App",
+                            template: "Tienes una actualización disponible ¿Deseas descargarla?"
+                        });
+
+                        actualizar.then(function (res) {
+                            if (res) {
+                                switch (platform.toLowerCase()) {
+                                    case "android":
+                                        window.open('market://details?id=com.novaventa.produccion.mamaempresaria', '_system', 'location=yes');
+                                        break;
+                                    case "ios":
+                                        window.open('itms-apps://itunes.apple.com/app/id1046598120', '_system', 'location=yes');
+                                        break;
+                                }
+                            }
+                        });
+                    }
+                })
+            }
+        }
+    })
+
     .factory('Pedido', function ($rootScope, $http, Utilidades) {
 
         this.ajustarEstadosPedido = function (estados) {
@@ -840,9 +884,9 @@ var moduloServicios = angular.module('novaventa.services', [])
                                                             //Si se notifica inmediatamente no son alcanzados todos los controladores
                                                             setTimeout(function () {
                                                                 //Notificar que el usuario se ha logueado
-                                                                if(window.plugins && window.plugins.OneSignal){
+                                                                if (window.plugins && window.plugins.OneSignal) {
                                                                     window.plugins.OneSignal.sendTags({ seccion: $rootScope.seccion, zona: $rootScope.zona, cedula: $rootScope.datos.cedula });
-                                                                }    
+                                                                }
                                                                 $rootScope.$broadcast('loggedin');
                                                                 console.log('loggedin');
                                                             }, 1500);
@@ -858,7 +902,7 @@ var moduloServicios = angular.module('novaventa.services', [])
                                                     //Si se notifica inmediatamente no son alcanzados todos los controladores
                                                     setTimeout(function () {
                                                         //Notificar que el usuario se ha logueado
-                                                        if(window.plugins && window.plugins.OneSignal){
+                                                        if (window.plugins && window.plugins.OneSignal) {
                                                             window.plugins.OneSignal.sendTags({ seccion: $rootScope.seccion, zona: $rootScope.zona, cedula: $rootScope.datos.cedula });
                                                         }
                                                         $rootScope.$broadcast('loggedin');

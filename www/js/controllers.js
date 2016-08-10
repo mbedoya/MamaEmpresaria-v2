@@ -166,12 +166,19 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
 
     $scope.buscarNotificacionPendiente = function(){
         $scope.contNotificaciones=0;
-        $scope.notificacionesAlmacenadas = JSON.parse(localStorage.getItem("push-"+$rootScope.datos.cedula));
+        $scope.notificacionesAlmacenadas = $rootScope.notificacionesHistorial; //JSON.parse(localStorage.getItem("push-"+$rootScope.datos.cedula));
+        $scope.notificacionesNuevas = $rootScope.notificacionesNuevas;
+        if ($scope.notificacionesNuevas) {
+            $scope.contNotificaciones=$scope.notificacionesNuevas.length; 
+        }
+
+        /*
         if($scope.notificacionesAlmacenadas){
             for(var i=0; i<$scope.notificacionesAlmacenadas.length; i++){
                 if(!$scope.notificacionesAlmacenadas[i].leido)$scope.contNotificaciones++;
             }
         }
+        */
     }
 
     $scope.irACambioClave = function() {
