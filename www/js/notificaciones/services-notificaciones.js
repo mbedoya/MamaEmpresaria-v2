@@ -8,14 +8,14 @@ moduloServicios
 
             },
 
-            //Se busca en Antares por la última fecha de consulta, que equivale a la última fecha en la cual la Mamá abre el App
-            obtenerDeAntares: function (fx) {
+            //Se busca en Antares por la última fecha de acceso al App y las locales como historial
+            consultar: function (fx) {
 
                 //Consultar si existía una última fecha de consulta
-                if (!localStorage.me_fechaConsultaNotificaicones) {
-                    localStorage.me_fechaConsultaNotificaicones = Utilidades.formatearFechaActual();
+                if (!localStorage.me_fechaConsultaNotificaciones) {
+                    localStorage.me_fechaConsultaNotificaciones = Utilidades.formatearFechaActual();
                 }
-                var fechaConsulta = localStorage.me_fechaConsultaNotificaicones;
+                var fechaConsulta = localStorage.me_fechaConsultaNotificaciones;
 
                 var urlServicio = "http://www.mocky.io/v2/57ab5fba120000e41a73b664"
                 //var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/crm/encuestas/guardarEncuesta";
@@ -33,7 +33,7 @@ moduloServicios
                     success(function (data, status, headers, config) {
 
                         //Almacenar esta fecha como la última fecha de consulta
-                        localStorage.me_fechaConsultaNotificaicones = Utilidades.formatearFechaActual();
+                        localStorage.me_fechaConsultaNotificaciones = Utilidades.formatearFechaActual();
 
                         //Verificar si ya habían notificaciones locales
                         var notificaciones;    
@@ -48,10 +48,13 @@ moduloServicios
                             localStorage.me_notificaciones = JSON.stringify(data.notificaciones);
                         }
 
+                        //Retornar las locales y las nuevas
                         fx(true, notificaciones, data.notificaciones);
                     }).
                     error(function (data, status, headers, config) {
-                        fx(false, {});
+
+                        //Si se produce error consultando en Antares mostrar sólo las locales
+                        fx(false, JSON.parse(localStorage.me_notificaciones), null);
                     });
             }
         }

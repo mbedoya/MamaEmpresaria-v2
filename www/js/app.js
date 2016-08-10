@@ -21,11 +21,13 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                 }
             }, false);
 
-            //Consultar las Notificaciones de Antares, esto para cuando una de ellas no haya llegado por OneSignal o no se haya podido guardar
-             Notificaciones.obtenerDeAntares(function (success, historial, nuevas) {
+            //Consultar las Notificaciones de Antares e Historial
+             Notificaciones.consultar(function (success, historial, antaresNuevas) {
                 if (success) { 
                     $rootScope.notificacionesHistorial = historial;
-                    $rootScope.notificacionesNuevas = nuevas;
+                    $rootScope.notificacionesNuevas = antaresNuevas;
+                }else{
+                    $rootScope.notificacionesHistorial = historial;
                 }
             });
 
