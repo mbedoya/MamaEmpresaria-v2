@@ -76,7 +76,6 @@ moduloControlador.controller('EncuestaPedidoCtrl', function ($scope, $location, 
     $scope.continuar = function () {
 
         alert("a continuar");
-        alert("Pergunta contestada: " + $scope.preguntaContestada());
 
         //Validación de ingreso de respuesta cerrada única
         if (!$scope.preguntaContestada() && $scope.EsPreguntaCerradaSimple()) {
@@ -98,19 +97,13 @@ moduloControlador.controller('EncuestaPedidoCtrl', function ($scope, $location, 
 
         if ($scope.indice + 1 < $scope.preguntas.length) {
 
-            alert("antes de moverse");
-
             $scope.indice++;
             $ionicScrollDelegate.scrollTop();
 
             //Actualizar la respuesta
             $scope.actualizarValoresRespuestas();
 
-            alert("movido");
-
         } else {
-
-            alert("a guardar");
 
             $scope.loading = $ionicLoading.show({
                 template: Utilidades.getPlantillaEspera('Enviando las respuestas de la Encuesta')
@@ -145,10 +138,6 @@ moduloControlador.controller('EncuestaPedidoCtrl', function ($scope, $location, 
             $scope.respuestas[$scope.indice].respuestas = new Array();
             $scope.respuestas[$scope.indice].respuestas.push($scope.respuestaMultipleCerrada.valor);
         }
-
-        alert($scope.respuestas[$scope.indice].respuestas[0]);
-
-        $scope.$apply();
     }
 
     $scope.contestarPreguntaAbierta = function () {

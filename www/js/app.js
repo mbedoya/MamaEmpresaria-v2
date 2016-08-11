@@ -26,6 +26,14 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                 if (success) { 
                     $rootScope.notificacionesHistorial = historial;
                     $rootScope.notificacionesNuevas = antaresNuevas;
+
+                    //Si hay notificaciones nuevas entonces mostrar la primera
+                    if (antaresNuevas && antaresNuevas.length > 0) {
+                        var alertPopup = $ionicPopup.alert({
+                            title: antaresNuevas[0].titulo,
+                            template: antaresNuevas[0].mensaje
+                        });
+                    }
                 }else{
                     $rootScope.notificacionesHistorial = historial;
                 }
