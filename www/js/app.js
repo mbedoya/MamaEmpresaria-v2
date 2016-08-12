@@ -27,8 +27,9 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                     $rootScope.notificacionesHistorial = historial;
                     $rootScope.notificacionesNuevas = antaresNuevas;
 
-                    //Si hay notificaciones nuevas entonces mostrar la primera
-                    if (antaresNuevas && antaresNuevas.length > 0) {
+                    //Si hay notificaciones nuevas hoy entonces mostrar la primera
+                    if (antaresNuevas && antaresNuevas.length > 0 &&
+                        Utilidades.formatearFechaActual() == Utilidades.formatearFechaCadena(antaresNuevas[0].fecha) ){
                         var alertPopup = $ionicPopup.alert({
                             title: antaresNuevas[0].titulo,
                             template: antaresNuevas[0].mensaje
@@ -636,6 +637,26 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                     'mas-interna-content': {
                         templateUrl: "templates/encuesta-pedido.html",
                         controller: 'EncuestaPedidoCtrl'
+                    }
+                }
+            })
+
+            .state('app.menu.tabs.mas.encuestapedidoresponder', {
+                url: "/encuestapedidoresponder",
+                views: {
+                    'mas-interna-content': {
+                        templateUrl: "templates/encuesta-pedido.html",
+                        controller: 'EncuestaPedidoResponderPreguntaCtrl'
+                    }
+                }
+            })
+
+            .state('app.menu.tabs.mas.encuestapedidoresponder2', {
+                url: "/encuestapedidoresponder2",
+                views: {
+                    'mas-interna-content': {
+                        templateUrl: "templates/encuesta-pedido.html",
+                        controller: 'EncuestaPedidoResponderPreguntaCtrl'
                     }
                 }
             })

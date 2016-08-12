@@ -8,7 +8,7 @@
 
         <div class="padding" ng-show="obtenerPregunta()" style="min-height:250px;">
             <div style="width: 100%">
-                <h5 style="text-align: center">Pregunta {{indice + 1}} de {{preguntas.length}}</h5>
+                <h5 style="text-align: center">Pregunta {{indicePregunta + 1}} de {{preguntasEncuesta.length}}</h5>
             </div>
             <h5>{{ obtenerPregunta().pregunta }}</h5>
 
@@ -31,8 +31,8 @@
                 <input id="txtTexto" type="text" ng-model="respuestaTexto.valor" ng-change="contestarPreguntaAbierta()" >
             </label>
             </div>
-            <div class="padding" ng-click="continuar()">
-                <input id="btnContinuar" name="btnContinuar" type="button" value="Continuar" class="button button-block button-footer" >
+            <div class="padding" ng-show="obtenerPregunta()" >
+                <input id="btnContinuar" name="btnContinuar" type="button" value="Continuar" class="button button-block button-footer" ng-click="continuar()" >
             </div>
 
             <div class="div-lista-footer"></div>

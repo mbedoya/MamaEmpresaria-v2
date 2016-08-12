@@ -1295,7 +1295,18 @@ var moduloServicios = angular.module('novaventa.services', [])
 
                 return dateStr;
             },
+            formatearFechaCadena: function (fecha) {
+
+                fecha = new Date(fecha);
+
+                var dateStr = self.padStr(fecha.getFullYear()) + "-" +
+                    self.padStr(1 + fecha.getMonth()) + "-" +
+                    self.padStr(fecha.getDate());
+
+                return dateStr;
+            },
             formatearFecha: function (fecha) {
+
                 var dateStr = self.padStr(fecha.getFullYear()) + "-" +
                     self.padStr(1 + fecha.getMonth()) + "-" +
                     self.padStr(fecha.getDate());
