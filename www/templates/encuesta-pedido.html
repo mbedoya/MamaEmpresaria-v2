@@ -12,10 +12,10 @@
             </div>
             <h5>{{ obtenerPregunta().pregunta }}</h5>
 
-            <ion-list ng-show="EsPreguntaCerradaSimple()">
+            <ion-list class="encuesta" ng-show="EsPreguntaCerradaSimple()">
 
-                <ion-radio ng-repeat="respuesta in obtenerPregunta().posiblesRespuestas" ng-model="respuestaMultipleCerrada.valor" ng-value="respuesta.posibleRespuesta" ng-change="contestarPregunta($index)" >
-                    <img src="img/encuesta{{respuesta.posibleRespuesta}}.png" ng-if="obtenerPregunta().codigo == 4" />
+                <ion-radio class="item-thumbnail-left" ng-repeat="respuesta in obtenerPregunta().posiblesRespuestas" ng-model="respuestaMultipleCerrada.valor" ng-value="respuesta.posibleRespuesta" ng-change="contestarPregunta($index)" >
+                    <img src="img/encuesta{{respuesta.posibleRespuesta}}.png" ng-if="obtenerPregunta().codigo == 5" />
                     <span >{{respuesta.posibleRespuesta}}</span>
                 </ion-radio>   
                         
@@ -28,7 +28,7 @@
             </ion-list>
 
             <label class="login-input" ng-show="EsPreguntaAbierta()">
-                <input id="txtTexto" type="text" ng-model="respuestaTexto.valor" ng-change="contestarPreguntaAbierta()" >
+                <input id="txtTexto" type="text" ng-model="respuestaTexto.valor" maxlength="150" ng-change="contestarPreguntaAbierta()" >
             </label>
             </div>
             <div class="padding" ng-show="obtenerPregunta()" >

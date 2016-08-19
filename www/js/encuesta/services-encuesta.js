@@ -25,6 +25,8 @@ moduloServicios
                 respuestas["agnoCampagna"] = $rootScope.campanaEncuesta;
                 console.log(respuestas);
 
+                console.log(JSON.stringify(respuestas));
+
                 var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/crm/encuestas/guardarEncuesta";
 
                 var request = {

@@ -11,29 +11,29 @@ moduloServicios
             //Se busca en Antares por la última fecha de acceso al App y las locales como historial
             consultar: function (fx) {
 
+                var fechaActual = Utilidades.formatearFechaActualCompleta();
+
                 //Consultar si existía una última fecha de consulta
                 if (!localStorage.me_fechaConsultaNotificaciones) {
-                    localStorage.me_fechaConsultaNotificaciones = Utilidades.formatearFechaActual();
+                    localStorage.me_fechaConsultaNotificaciones = fechaActual;
                 }
                 var fechaConsulta = localStorage.me_fechaConsultaNotificaciones;
 
-                var urlServicio = "http://www.mocky.io/v2/57ab5fba120000e41a73b664"
-                //var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/crm/encuestas/guardarEncuesta";
+                var urlServicio = $rootScope.configuracion.ip_servidores +  "/" + $rootScope.configuracion.instancia + "/notificaciones/getNotificaciones/" + fechaConsulta;
 
                 var request = {
-                    method: 'POST',
-                    url: urlServicio,
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    data: { fecha: fechaConsulta }
+                    method: 'GET',
+                    url: urlServicio
                 };
 
                 $http(request).
                     success(function (data, status, headers, config) {
 
+                        console.log("Notificaciones");
+                        console.log(data);
+
                         //Almacenar esta fecha como la última fecha de consulta
-                        localStorage.me_fechaConsultaNotificaciones = Utilidades.formatearFechaActual();
+                        localStorage.me_fechaConsultaNotificaciones = fechaActual;
 
                         //Verificar si ya habían notificaciones locales
                         var notificaciones;    
@@ -53,8 +53,13 @@ moduloServicios
                     }).
                     error(function (data, status, headers, config) {
 
-                        //Si se produce error consultando en Antares mostrar sólo las locales
-                        fx(false, JSON.parse(localStorage.me_notificaciones), null);
+                        //Si se produce error consultando en Antares mostrar sólo las locales (si hay)
+                        if (localStorage.me_notificaciones) {
+                            fx(false, JSON.parse(localStorage.me_notificaciones), null);                            
+                        }else{
+                            fx(false, null, null);
+                        }
+
                     });
             }
         }

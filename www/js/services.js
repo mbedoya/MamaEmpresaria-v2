@@ -1295,6 +1295,18 @@ var moduloServicios = angular.module('novaventa.services', [])
 
                 return dateStr;
             },
+            formatearFechaActualCompleta: function () {
+                var fecha = new Date();
+
+                var dateStr = self.padStr(fecha.getFullYear()) + "-" +
+                    self.padStr(1 + fecha.getMonth()) + "-" +
+                    self.padStr(fecha.getDate()) + " " +
+                    self.padStr(fecha.getHours()) + ":" +
+                    self.padStr(fecha.getMinutes()) + ":" +
+                    self.padStr(fecha.getSeconds());
+
+                return dateStr;
+            },
             formatearFechaCadena: function (fecha) {
 
                 fecha = new Date(fecha);
@@ -1377,7 +1389,6 @@ var moduloServicios = angular.module('novaventa.services', [])
 
                 return anoCampana;
             },
-
             getAnoCampanaSiguiente: function () {
                 var fecha = new Date();
                 var anoCampana;
@@ -1388,7 +1399,30 @@ var moduloServicios = angular.module('novaventa.services', [])
                 }
 
                 return anoCampana;
+            },
+            inicializar: function () {
+                //Indica si la versión se irá para Producción, esto modifica ip de servicios y google analytics
+                $rootScope.versionProduccion = false;
+
+                if ($rootScope.versionProduccion) {
+                    $rootScope.configuracion = { ip_servidores: 'https://transferenciaelectronica.novaventa.com.co', instancia: "AntaresSecureWebServices" };
+                    $rootScope.notificacionesPush = { apikey: 'a3839c5f-b4d9-49a1-9e6a-aebac01abba7', project: '531375899368' }
+                } else {
+                    $rootScope.configuracion = { ip_servidores: 'https://transferenciaelectronicatest.novaventa.com.co', instancia: "AntaresSecureWebServices3" };
+                    $rootScope.notificacionesPush = { apikey: 'adece4f8-1dbd-4713-9351-f8140d916bf4', project: '275683696350' }
+                }
+
+                //Número de campañas que se ejecutan al año
+                $rootScope.numeroCampanasAno = 18;
+                $rootScope.lineaAtencion = "01 8000 515 101";
+                $rootScope.correo = "servicioalcliente@novaventa.com";
+                $rootScope.urlChat = 'http://twnl.co/novaventas';
+                $rootScope.numeroEncuesta = '01';
+                //Eliminar toda las variables de estado de carga de información de pantallas
+                $rootScope.cargaDatos = { ventanaMiPedido: null, ventanaMisPuntos: null, ventanaInformacionFechas: null, ventanaInformacionEncuentros: null, ventanaBuzones: null, popupMamaNueva: null };
+
             }
+
         }
     })
     ;

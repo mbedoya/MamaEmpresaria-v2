@@ -6,6 +6,11 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
             // for form inputs)
 
 
+            //Establecer valores generales del App
+            if (!$rootScope.configuracion) {
+                Utilidades.inicializar();
+            }
+
             document.addEventListener("backbutton", function (e) {
 
                 if ($.mobile.activePage.is('#homepage')) {
@@ -20,25 +25,6 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                     navigator.app.backHistory()
                 }
             }, false);
-
-            //Consultar las Notificaciones de Antares e Historial
-             Notificaciones.consultar(function (success, historial, antaresNuevas) {
-                if (success) { 
-                    $rootScope.notificacionesHistorial = historial;
-                    $rootScope.notificacionesNuevas = antaresNuevas;
-
-                    //Si hay notificaciones nuevas hoy entonces mostrar la primera
-                    if (antaresNuevas && antaresNuevas.length > 0 &&
-                        Utilidades.formatearFechaActual() == Utilidades.formatearFechaCadena(antaresNuevas[0].fecha) ){
-                        var alertPopup = $ionicPopup.alert({
-                            title: antaresNuevas[0].titulo,
-                            template: antaresNuevas[0].mensaje
-                        });
-                    }
-                }else{
-                    $rootScope.notificacionesHistorial = historial;
-                }
-            });
 
             //INICIA JS PLUGIN PUSH
             /*var push = PushNotification.init({ "android": {"senderID": $rootScope.notificacionesPush.project},

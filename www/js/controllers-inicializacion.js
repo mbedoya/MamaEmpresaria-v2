@@ -1,171 +1,175 @@
-moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, $ionicPopup,$location, $ionicLoading, $ionicHistory, $http, $state, $filter, Internet, Mama, GA, Utilidades) {
+moduloControlador.controller('InicializacionCtrl', function ($scope, $rootScope, $ionicPopup, $location, $ionicLoading, $ionicHistory, $http, $state, $filter, Internet, Mama, GA, Utilidades, Notificaciones) {
 
     $scope.mostrarMensajeError = false;
 
-    //Indica si la versión se irá para Producción, esto modifica ip de servicios y google analytics
-    $rootScope.versionProduccion = false;
-
     //Existe un método en el rootscope para esto, sin embargo,
     //por ser la primera página algunas veces no está disponible
-    $scope.mostrarAyuda = function(titulo, mensaje) {
+    $scope.mostrarAyuda = function (titulo, mensaje) {
         var alertPopup = $ionicPopup.alert({
             title: "",
             template: mensaje
         });
     };
 
-    setTimeout(function(){
+    setTimeout(function () {
 
-        if(window.plugins && window.plugins.gaPlugin){
+        if (window.plugins && window.plugins.gaPlugin) {
 
             var codigoAnalytics = '';
-            if($rootScope.versionProduccion){
+            if ($rootScope.versionProduccion) {
                 codigoAnalytics = "UA-67054199-1";
-            }else{
+            } else {
                 codigoAnalytics = "UA-60445801-1";
             }
 
             $rootScope.gaPlugin = window.plugins.gaPlugin;
             $rootScope.gaPlugin.init(
-                function(){
+                function () {
                     //Registro en Analytics
                     GA.trackPage($rootScope.gaPlugin, "App Iniciada");
                 },
-                function(){
+                function () {
 
                 },
                 codigoAnalytics,
                 10);
         }
 
-        document.addEventListener("online", function(){
+        document.addEventListener("online", function () {
             $rootScope.$broadcast('online');
         }, false);
 
     }, 2000);
 
-    $scope.segmentoFormateado = function(){
-        if($rootScope.datos && $rootScope.datos.segmento){
-            return $rootScope.datos.segmento.toLocaleLowerCase().replace("í","i");
-        }else{
+    $scope.segmentoFormateado = function () {
+        if ($rootScope.datos && $rootScope.datos.segmento) {
+            return $rootScope.datos.segmento.toLocaleLowerCase().replace("í", "i");
+        } else {
             return "";
         }
     }
 
-    $scope.segmento = function(){
-        if($rootScope.datos &&  $rootScope.datos.segmento){
+    $scope.segmento = function () {
+        if ($rootScope.datos && $rootScope.datos.segmento) {
             return $rootScope.datos.segmento;
-        }else{
+        } else {
             return "";
         }
     }
 
-    $scope.nombre = function(){
-        if($rootScope.datos &&  $rootScope.datos.nombre){
+    $scope.nombre = function () {
+        if ($rootScope.datos && $rootScope.datos.nombre) {
             return $rootScope.datos.nombre;
-        }else{
+        } else {
             return "Mamá Empresaria";
         }
     }
 
-    $scope.inicializar = function(){
+    $scope.inicializar = function () {
 
-        if($rootScope.versionProduccion){
-            $rootScope.configuracion = { ip_servidores: 'https://transferenciaelectronica.novaventa.com.co', instancia: "AntaresSecureWebServices" };
-            $rootScope.notificacionesPush = {apikey: 'a3839c5f-b4d9-49a1-9e6a-aebac01abba7', project: '531375899368'}
-        }else{
-            $rootScope.configuracion = { ip_servidores: 'https://transferenciaelectronicatest.novaventa.com.co', instancia: "AntaresSecureWebServices3" };
-            $rootScope.notificacionesPush = {apikey: 'adece4f8-1dbd-4713-9351-f8140d916bf4', project: '275683696350'}        
+        //Establecer valores generales del App
+        if (!$rootScope.configuracion) {
+            Utilidades.inicializar();
         }
-
-        //Número de campañas que se ejecutan al año
-        $rootScope.numeroCampanasAno = 18;
-        $rootScope.lineaAtencion = "01 8000 515 101";
-        $rootScope.correo = "servicioalcliente@novaventa.com";
-        $rootScope.urlChat = 'http://twnl.co/novaventas';
-        $rootScope.numeroEncuesta = '01';
-        //Eliminar toda las variables de estado de carga de información de pantallas
-        $rootScope.cargaDatos = { ventanaMiPedido: null, ventanaMisPuntos: null, ventanaInformacionFechas: null, ventanaInformacionEncuentros: null, ventanaBuzones: null, popupMamaNueva: null};
 
         jQuery.support.cors = true;
         //$.mobile.allowCrossDomainPages = true;
 
         //Almacenar la cédula si hay almacenamiento local
-        if(localStorage && localStorage.cedula){
+        if (localStorage && localStorage.cedula) {
 
             $rootScope.datos = { cedula: localStorage.cedula, clave: localStorage.clave }
 
-            if(Internet.get()){
+            if (Internet.get()) {
 
-                $scope.loading =  $ionicLoading.show({
+                $scope.loading = $ionicLoading.show({
                     template: Utilidades.getPlantillaEspera('Iniciando sesión')
                 });
 
-                Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function(success, mensajeError, data){
+                Mama.autenticar($rootScope.datos.cedula, $rootScope, $http, $filter, Mama, function (success, mensajeError, data) {
 
                     $ionicLoading.hide();
 
-                    if(success){
+                    if (success) {
 
-                        if(data.valido == "1"){
+                        if (data.valido == "1") {
 
-                            $scope.loading =  $ionicLoading.show({
+                            $scope.loading = $ionicLoading.show({
                                 template: Utilidades.getPlantillaEspera('Iniciando sesión')
                             });
 
-                            Mama.getInformacionBasica(function(success, mensajeError){
+                            //Consultar las Notificaciones de Antares e Historial
+                            Notificaciones.consultar(function (success, historial, antaresNuevas) {
+                                if (success) {
+                                    $rootScope.notificacionesHistorial = historial;
+                                    $rootScope.notificacionesNuevas = antaresNuevas;
+
+                                    //Si hay notificaciones nuevas hoy entonces mostrar la primera
+                                    if (antaresNuevas && antaresNuevas.length > 0 &&
+                                        Utilidades.formatearFechaActual() == Utilidades.formatearFechaCadena(antaresNuevas[0].fecha)) {
+                                        var alertPopup = $ionicPopup.alert({
+                                            title: antaresNuevas[0].titulo,
+                                            template: antaresNuevas[0].mensaje
+                                        });
+                                    }
+                                } else {
+                                    $rootScope.notificacionesHistorial = historial;
+                                }
+                            });
+
+                            Mama.getInformacionBasica(function (success, mensajeError) {
 
                                 $ionicLoading.hide();
 
-                                if(success){
+                                if (success) {
 
                                     //Almacenar datos si hay almacenamiento local
-                                    if(localStorage){
+                                    if (localStorage) {
 
                                         localStorage.cedula = $rootScope.datos.cedula;
                                         localStorage.nombre = $rootScope.datos.nombre;
                                         localStorage.segmento = $rootScope.datos.segmento;
                                     }
 
-                                    $scope.datosInicio = {clave: '' };
+                                    $scope.datosInicio = { clave: '' };
 
                                     /*$ionicHistory.nextViewOptions({
                                      disableBack: true
                                      });*/
 
                                     //Si la Mamá tiene versión para aceptar entonces ir a terminos y condiciones
-                                    if ($rootScope.datos.versionHabeasData){
+                                    if ($rootScope.datos.versionHabeasData) {
                                         $rootScope.irAHomeLuegoTerminos = true;
                                         $location.path('/app/terminos-condiciones');
-                                    }else{
+                                    } else {
                                         $ionicHistory.nextViewOptions({
                                             historyRoot: true
                                         });
                                         $location.path('/app/menu/tabs/home');
                                     }
 
-                                }else{
+                                } else {
                                     $scope.mostrarAyuda("Creación de clave", mensajeError);
                                 }
 
                             });
 
-                        }else{
+                        } else {
                             $location.path('/app/login');
                         }
 
-                    }else{
+                    } else {
                         $scope.mostrarAyuda("Inicio de sesión", mensajeError);
                     }
 
                 });
 
-            }else{
+            } else {
                 $scope.mostrarMensajeError = true;
-                $scope.mostrarAyuda("Inicio de sesión","Esta aplicación sólo funciona con internet, verifica tu conexión")
+                $scope.mostrarAyuda("Inicio de sesión", "Esta aplicación sólo funciona con internet, verifica tu conexión")
             }
 
-        }else{
+        } else {
 
             $ionicHistory.nextViewOptions({
                 historyRoot: true
@@ -176,7 +180,7 @@ moduloControlador.controller('InicializacionCtrl', function($scope, $rootScope, 
         }
     }
 
-    $scope.$on('online', function(event, args){
+    $scope.$on('online', function (event, args) {
         $scope.inicializar(true);
     });
 

@@ -1188,6 +1188,20 @@ input[disabled]{
     background-color: #eb0c6e;   
 }
 
+.encuesta .item-thumbnail-left img{
+    max-width:50px !important;
+    max-height:50px !important;
+}
+
+.encuesta .item-thumbnail-left, .encuesta .item-content, .encuesta .item{
+    min-height: 70px !important;
+}
+
+.encuesta .item-content{
+    padding-top: 20px;
+    padding-left: 70px;
+}
+
 /* iphone < 5 */
 @media screen and (device-aspect-ratio: 2/3) {
     .bar-stable .left-buttons .button-clear {   

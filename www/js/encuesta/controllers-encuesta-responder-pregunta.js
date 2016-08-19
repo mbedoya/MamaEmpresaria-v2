@@ -39,8 +39,13 @@ moduloControlador.controller('EncuestaPedidoResponderPreguntaCtrl', function ($s
         //Respuesta Multiple Varias Selecciones
         $scope.respuestaMultipleMultiple = { valor: new Array() };
 
+        console.log("actualizando valores");
+        console.log($scope.preguntaContestada());
+
         if ($scope.EsPreguntaCerradaSimple() && $scope.preguntaContestada()) {
-            $scope.respuestaMultipleCerrada = { valor: $scope.preguntaContestada()[0] };
+            console.log("cerrada simple " + $scope.preguntaContestada()[0]);
+            $scope.respuestaMultipleCerrada.valor = $scope.preguntaContestada()[0];
+            
         } else {
 
             if ($scope.EsPreguntaAbierta() && $scope.preguntaContestada()) {
@@ -76,6 +81,11 @@ moduloControlador.controller('EncuestaPedidoResponderPreguntaCtrl', function ($s
             }
 
         }
+
+        setTimeout(function() {
+            console.log("timeout");
+            $scope.$apply();
+        }, 2000);
     }
 
     $scope.continuar = function () {
@@ -121,7 +131,8 @@ moduloControlador.controller('EncuestaPedidoResponderPreguntaCtrl', function ($s
                 $ionicLoading.hide();
 
                 if (success) {
-                    console.log("Encuesta enviada");
+                    console.log("Encuesta enviada: ");
+                    console.log(data);
                 } else {
                     console.log("Error al enviar encuesta");
                 }
@@ -135,11 +146,11 @@ moduloControlador.controller('EncuestaPedidoResponderPreguntaCtrl', function ($s
     };
 
     $scope.contestarPregunta = function (indice) {
+        $rootScope.respuestasEncuesta[$rootScope.indicePregunta].respuestas = new Array();
+        $rootScope.respuestasEncuesta[$rootScope.indicePregunta].respuestas.push($scope.respuestaMultipleCerrada.valor);
 
-        if ($scope.EsPreguntaCerradaSimple()) {
-            $rootScope.respuestasEncuesta[$rootScope.indicePregunta].respuestas = new Array();
-            $rootScope.respuestasEncuesta[$rootScope.indicePregunta].respuestas.push($scope.respuestaMultipleCerrada.valor);
-        }
+        console.log("Pregunta contestada");
+        console.log($rootScope.respuestasEncuesta[$rootScope.indicePregunta].respuestas);
     }
 
     $scope.contestarPreguntaAbierta = function () {
