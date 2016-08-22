@@ -208,6 +208,7 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $location,
     }
 
     $scope.inicializar = function(){
+
         if(window.plugins && window.plugins.OneSignal){
             window.plugins.OneSignal.sendTag("segmento", $rootScope.datos.segmento);
         }
@@ -219,6 +220,7 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $location,
                 template: "Mamá toda la información de la campaña estará disponible cuando montes tu primer pedido"
             });
         }
+
     }
 
     $scope.inicializar();
