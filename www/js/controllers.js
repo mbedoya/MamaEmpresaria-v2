@@ -105,6 +105,8 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     $scope.cerrarSesion = function() {
         if(localStorage && localStorage.cedula){
             localStorage.removeItem("cedula");
+            localStorage.removeItem("me_fechaConsultaNotificaciones");
+            localStorage.removeItem("me_notificaciones");
         }
         $ionicHistory.nextViewOptions({
             disableBack: true
