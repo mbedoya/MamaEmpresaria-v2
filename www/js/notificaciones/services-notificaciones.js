@@ -43,6 +43,8 @@ moduloServicios
 
                 //Consultar si existía una última fecha de consulta
                 if (!localStorage.me_fechaConsultaNotificaciones) {
+                    //Si no había fecha entonces buscar las de los 15 días anteriores
+                    fechaActual = Utilidades.formatearFechaNotificacionesCompleta();
                     localStorage.me_fechaConsultaNotificaciones = fechaActual;
                 }
                 var fechaConsulta = localStorage.me_fechaConsultaNotificaciones;
