@@ -26,134 +26,40 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                 }
             }, false);
 
-            //INICIA JS PLUGIN PUSH
-            /*var push = PushNotification.init({ "android": {"senderID": $rootScope.notificacionesPush.project},
-                                              "ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
-    
-    
-            push.on('notification', function(data) {
-                push.clearAllNotifications(function() {
-                    console.log('success');
-                }, function() {
-                    console.log('error');
-                });
-            });*/
-
-            //FIN JS PLUGIN PUSH
-
-            var eliminarNotificaciones = function () {
-                var cantNotificaciones = 30;
-                var notificacionesAlmacenadas = JSON.parse(localStorage.getItem("push-" + $rootScope.datos.cedula));
-                notificacionesAlmacenadas.splice(cantNotificaciones, notificacionesAlmacenadas.length - cantNotificaciones);
-                localStorage.setItem("push-" + $rootScope.datos.cedula, JSON.stringify(notificacionesAlmacenadas));
-            }
-
+            //Evento que se dispara cuando el dispositivo está listo
             document.addEventListener('deviceready', function () {
 
                 //Verificar la versión del App para notificar a la Mamá que debe actualizar
                 App.verificarVersion();
 
-                var titulo;
+                //Evento que se disparaba cuando se recibe una notificacion de OneSignal
+                var notificacionRecibida = function (jsonData) {
+                
+                    var mostrarNotificacion = true;
 
-                var notificationOpenedCallback = function (jsonData) {
-                    //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-                    //alert(jsonData.additionalData.title+"\n\n"+jsonData.message);
-
-                    var notificacionLeida = false;
-
-                    console.log(jsonData);
-
-                    if (jsonData.additionalData && jsonData.additionalData.title) {
-                        titulo = jsonData.additionalData.title;
+                    //Si ya hay notificaciones entonces el App estaba abierta y se debe adicionar al listado de nuevas.
+                    //Si estaba cerrada no se hace nada porque al cargar el App esta se traería
+                    if ($rootScope.notificacionesNuevas) {
+                        $rootScope.notificacionesNuevas.splice(0, { fecha: Utilidades.formatearFechaActual(), mensaje: jsonData.message });
                     } else {
-                        titulo = "";
+                        mostrarNotificacion = false;
                     }
 
-                    almacenarNotificacion(jsonData);
-
-                    if (titulo == "") {
-                        titulo = "Notificación Mamá Empresaria";
+                    if (mostrarNotificacion) {
+                        Notificaciones.mostrarNotificacionNueva($rootScope.notificacionesNuevas[0]);
                     }
-
-                    var alertPopup;
-
-                    if (jsonData.message.toLowerCase().indexOf("pedido") > -1 && !$rootScope.versionProduccion) {
-
-                        var confirmPopup = $ionicPopup.confirm({
-                            title: titulo,
-                            template: jsonData.message + ".<br /> ¿Deseas participar en una Encuesta de Satisfacción sobre tu Pedido?"
-                        });
-
-                        confirmPopup.then(function (res) {
-                            fueLeido();
-                            if (res) {
-                                $location.path('/app/menu/tabs/mas/encuestapedido');
-                            }
-                        });
-
-                    } else {
-
-                        var alertPopup = $ionicPopup.alert({
-                            title: titulo,
-                            template: jsonData.message
-                        });
-
-                        alertPopup.then(function (res) {
-                            fueLeido();
-                            if (jsonData.additionalData && jsonData.additionalData.launchURL) {
-                                window.open(jsonData.additionalData.launchURL);
-                            }
-                        });
-                    }
-
-                    eliminarNotificaciones();
 
                 };
-
-                var fueLeido = function () {
-                    var notificacionesAlmacenadas = JSON.parse(localStorage.getItem("push-" + $rootScope.datos.cedula));
-                    notificacionesAlmacenadas[notificacionesAlmacenadas.length - 1].leido = true;
-                    localStorage.setItem("push-" + $rootScope.datos.cedula, JSON.stringify(notificacionesAlmacenadas));
-                }
-
-                var almacenarNotificacion = function (jsonData) {
-                    try {
-                        var notificacion;
-                        if (jsonData.additionalData && jsonData.additionalData.launchURL) {
-                            notificacion = '{"id":0, "titulo":"' + titulo + '", "mensaje":"' + jsonData.message + '", "leido":false, "fecha":"' + Utilidades.formatearFechaActual() + '", "url":"' + jsonData.additionalData.launchURL + '"}';
-                        } else {
-                            notificacion = '{"id":0, "titulo":"' + titulo + '", "mensaje":"' + jsonData.message + '", "leido":false, "fecha":"' + Utilidades.formatearFechaActual() + '"}';
-                        }
-                    } catch (err) {
-                        alert(err.message);
-                    }
-                    var notificacionesAlmacenadas = JSON.parse(localStorage.getItem("push-" + $rootScope.datos.cedula));
-                    if (notificacionesAlmacenadas) {
-                        var json = JSON.parse(notificacion);
-                        json.id = notificacionesAlmacenadas.length;
-                        notificacionesAlmacenadas.push(json);
-                        localStorage.setItem("push-" + $rootScope.datos.cedula, JSON.stringify(notificacionesAlmacenadas));
-                    } else {
-                        notificacionesAlmacenadas = new Array();
-                        notificacionesAlmacenadas.push(JSON.parse(notificacion));
-                        localStorage.setItem("push-" + $rootScope.datos.cedula, JSON.stringify(notificacionesAlmacenadas));
-                    }
-                }
 
                 //INICIA JS DE ONE SIGNAL
 
                 window.plugins.OneSignal.init($rootScope.notificacionesPush.apikey,
                     { googleProjectNumber: $rootScope.notificacionesPush.project },
-                    notificationOpenedCallback);
+                    notificacionRecibida);
 
                 //window.plugins.OneSignal.enableInAppAlertNotification(true);
 
                 //window.plugins.OneSignal.enableNotificationsWhenActive(true);
-
-                /*document.addEventListener("pause", function () {
-                     navigator.app.exitApp();
-                     }, false);*/
-
 
                 //FIN JS ONE SIGNAL
 

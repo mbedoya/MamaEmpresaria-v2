@@ -107,10 +107,8 @@ moduloControlador.controller('InicializacionCtrl', function ($scope, $rootScope,
                                     //Si hay notificaciones nuevas hoy entonces mostrar la primera
                                     if (antaresNuevas && antaresNuevas.length > 0 &&
                                         Utilidades.formatearFechaActual() == Utilidades.formatearFechaCadena(antaresNuevas[0].fecha)) {
-                                        var alertPopup = $ionicPopup.alert({
-                                            title: antaresNuevas[0].titulo,
-                                            template: antaresNuevas[0].mensaje
-                                        });
+                                            
+                                            Notificaciones.mostrarNotificacionNueva(antaresNuevas[0]);
                                     }
                                 } else {
                                     $rootScope.notificacionesHistorial = historial;

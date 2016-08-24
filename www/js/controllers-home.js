@@ -220,7 +220,6 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $location,
                 template: "Mamá toda la información de la campaña estará disponible cuando montes tu primer pedido"
             });
         }
-
     }
 
     $scope.inicializar();

@@ -171,14 +171,6 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
         if ($scope.notificacionesNuevas) {
             $scope.contNotificaciones=$scope.notificacionesNuevas.length; 
         }
-
-        /*
-        if($scope.notificacionesAlmacenadas){
-            for(var i=0; i<$scope.notificacionesAlmacenadas.length; i++){
-                if(!$scope.notificacionesAlmacenadas[i].leido)$scope.contNotificaciones++;
-            }
-        }
-        */
     }
 
     $scope.irACambioClave = function() {
