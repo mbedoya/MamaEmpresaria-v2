@@ -77,16 +77,22 @@ var moduloServicios = angular.module('novaventa.services', [])
 
                 fbObject.$loaded(function () {
 
+                    //Información para otro proceso
                     if (!$rootScope.versionProduccion) {
                         $rootScope.mamaNueva = $rootScope.dato.maNu;
                     } else {
                         $rootScope.mamaNueva = false;
                     }
 
-                    var platform = device.platform;
+                    console.log("Actualizar " + $rootScope.dato);
 
+                    var platform = device.platform;
                     $rootScope.versionApp = AppVersion.version;
-                    if ($rootScope.dato.version != $rootScope.versionApp) {
+
+                    alert("versión app: " + $rootScope.versionApp);
+                    alert("versión firebase: " + $rootScope.dato.version);
+                    
+                    if ($rootScope.dato.version > $rootScope.versionApp) {
                         var actualizar = $ionicPopup.confirm({
                             title: "Actualización App",
                             template: "Tienes una actualización disponible ¿Deseas descargarla?"

@@ -5,6 +5,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
 
+            console.log("ionic ready");
 
             //Establecer valores generales del App
             if (!$rootScope.configuracion) {
@@ -28,6 +29,8 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
             //Evento que se dispara cuando el dispositivo está listo
             document.addEventListener('deviceready', function () {
+
+                console.log("device ready");
 
                 //Verificar la versión del App para notificar a la Mamá que debe actualizar
                 App.verificarVersion();
