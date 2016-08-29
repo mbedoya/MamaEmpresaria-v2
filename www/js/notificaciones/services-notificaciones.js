@@ -59,9 +59,6 @@ moduloServicios
                 $http(request).
                     success(function (data, status, headers, config) {
 
-                        console.log("Notificaciones");
-                        console.log(data);
-
                         //Almacenar esta fecha como la última fecha de consulta
                         localStorage.me_fechaConsultaNotificaciones = fechaActual;
 
@@ -71,12 +68,21 @@ moduloServicios
                             notificaciones = JSON.parse(localStorage.me_notificaciones);
                         }
 
+                        var notificacionesAAlmacenar;
+
                         //Guardar todas localmente 
                         if (notificaciones) {
-                            localStorage.me_notificaciones = JSON.stringify(notificaciones.concat(data.notificaciones));
+                            notificacionesAAlmacenar = data.notificaciones.concat(notificaciones);
                         } else {
-                            localStorage.me_notificaciones = JSON.stringify(data.notificaciones);
+                            notificacionesAAlmacenar = data.notificaciones;
                         }
+
+                        //Si el número de notificaciones supera las 30 entonces recortar, se muestran todas
+                        if (notificacionesAAlmacenar && notificacionesAAlmacenar.length > 30) {
+                            notificacionesAAlmacenar.length = 30;
+                        }
+                        
+                        localStorage.me_notificaciones = JSON.stringify(notificacionesAAlmacenar);
 
                         //Retornar las locales y las nuevas
                         fx(true, notificaciones, data.notificaciones);

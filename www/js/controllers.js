@@ -56,6 +56,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     $scope.openModal = function() {
         $scope.modal.show();
         $scope.buscarNotificacionPendiente();
+        $scope.notificacionesVistas = true;
     };
 
     $scope.closeModal = function() {
@@ -170,7 +171,7 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     }
 
     $scope.hayNotificacionesNuevas = function(){
-        return $rootScope.notificacionesNuevas && $rootScope.notificacionesNuevas.length > 0;
+        return !$scope.notificacionesVistas && $rootScope.notificacionesNuevas && $rootScope.notificacionesNuevas.length > 0;
     }
 
     $scope.buscarNotificacionPendiente = function(){
