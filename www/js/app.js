@@ -1,11 +1,9 @@
 angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.controllers', 'novaventa.services', 'firebase'])
 
-    .run(function ($ionicPlatform, $rootScope, $ionicPopup, $location, Campana, Utilidades, App, Notificaciones) {
+    .run(function ($ionicPlatform, $rootScope, $ionicPopup, $location, Campana, Utilidades, App, Notificaciones, $firebaseObject) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
-
-            console.log("ionic ready");
 
             //Establecer valores generales del App
             if (!$rootScope.configuracion) {
@@ -30,14 +28,12 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
             //Evento que se dispara cuando el dispositivo está listo
             document.addEventListener('deviceready', function () {
 
-                console.log("device ready");
-
                 //Verificar la versión del App para notificar a la Mamá que debe actualizar
                 App.verificarVersion();
 
                 //Evento que se disparaba cuando se recibe una notificacion de OneSignal
                 var notificacionRecibida = function (jsonData) {
-                
+
                     var mostrarNotificacion = true;
 
                     //Si ya hay notificaciones entonces el App estaba abierta y se debe adicionar al listado de nuevas.

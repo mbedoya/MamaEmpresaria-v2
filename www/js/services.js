@@ -88,11 +88,8 @@ var moduloServicios = angular.module('novaventa.services', [])
 
                     var platform = device.platform;
                     $rootScope.versionApp = AppVersion.version;
-
-                    alert("versión app: " + $rootScope.versionApp);
-                    alert("versión firebase: " + $rootScope.dato.version);
                     
-                    if ($rootScope.dato.version > $rootScope.versionApp) {
+                    if ($rootScope.dato.$value > $rootScope.versionApp) {
                         var actualizar = $ionicPopup.confirm({
                             title: "Actualización App",
                             template: "Tienes una actualización disponible ¿Deseas descargarla?"
