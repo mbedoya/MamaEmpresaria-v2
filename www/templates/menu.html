@@ -19,7 +19,7 @@
                 </button>
                 <button ng-class="hayNotificaciones()" ng-click="openModal()">
                 </button>
-                <div ng-show="contNotificaciones>0" class="fuente">{{contNotificaciones}}</div>
+                <div ng-show="hayNotificacionesNuevas()" class="fuente">{{notificacionesNuevas.length}}</div>
             </ion-nav-buttons>               
         </ion-nav-bar>
         <ion-nav-view name="menu-content"></ion-nav-view>

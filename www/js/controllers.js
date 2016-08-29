@@ -162,17 +162,20 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     }
 
     $scope.hayNotificaciones = function(){
-        if($scope.contNotificaciones>0)return "button button-icon ion-email icono-header-menu circle";
-        else return "button button-icon button-clear ion-email icono-header-menu";
+        if($scope.hayNotificacionesNuevas()){
+            return "button button-icon ion-email icono-header-menu circle";
+        }else{
+            return "button button-icon button-clear ion-email icono-header-menu";   
+        }
+    }
+
+    $scope.hayNotificacionesNuevas = function(){
+        return $rootScope.notificacionesNuevas && $rootScope.notificacionesNuevas.length > 0;
     }
 
     $scope.buscarNotificacionPendiente = function(){
         $scope.contNotificaciones=0;
         $scope.notificacionesAlmacenadas = $rootScope.notificacionesHistorial; //JSON.parse(localStorage.getItem("push-"+$rootScope.datos.cedula));
-        $scope.notificacionesNuevas = $rootScope.notificacionesNuevas;
-        if ($scope.notificacionesNuevas) {
-            $scope.contNotificaciones=$scope.notificacionesNuevas.length; 
-        }
     }
 
     $scope.irACambioClave = function() {
