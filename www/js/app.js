@@ -34,6 +34,8 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                 //Evento que se disparaba cuando se recibe una notificacion de OneSignal
                 var notificacionRecibida = function (jsonData) {
 
+                    alert(jsonData.message);
+
                     var mostrarNotificacion = true;
 
                     //Si ya hay notificaciones entonces el App estaba abierta y se debe adicionar al listado de nuevas.
@@ -55,10 +57,9 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                 window.plugins.OneSignal.init($rootScope.notificacionesPush.apikey,
                     { googleProjectNumber: $rootScope.notificacionesPush.project },
                     notificacionRecibida);
+                window.plugins.OneSignal.enableNotificationsWhenActive(true);
 
                 //window.plugins.OneSignal.enableInAppAlertNotification(true);
-
-                //window.plugins.OneSignal.enableNotificationsWhenActive(true);
 
                 //FIN JS ONE SIGNAL
 
