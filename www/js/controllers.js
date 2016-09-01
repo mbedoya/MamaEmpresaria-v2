@@ -104,6 +104,9 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     }
 
     $scope.cerrarSesion = function() {
+
+        $rootScope.notificacionesCargadas = false;
+
         if(localStorage && localStorage.cedula){
             localStorage.removeItem("cedula");
             localStorage.removeItem("me_fechaConsultaNotificaciones");

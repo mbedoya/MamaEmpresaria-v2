@@ -36,20 +36,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
                     alert(jsonData.message);
 
-                    var mostrarNotificacion = true;
-
-                    //Si ya hay notificaciones entonces el App estaba abierta y se debe adicionar al listado de nuevas.
-                    //Si estaba cerrada no se hace nada porque al cargar el App esta se traería
-                    if ($rootScope.notificacionesNuevas) {
-                        $rootScope.notificacionesNuevas.splice(0, { fecha: Utilidades.formatearFechaActual(), mensaje: jsonData.message });
-                    } else {
-                        mostrarNotificacion = false;
-                    }
-
-                    if (mostrarNotificacion) {
-                        Notificaciones.mostrarNotificacionNueva($rootScope.notificacionesNuevas[0]);
-                    }
-
+                    Notificaciones.proceasarNotificacionOneSignal({ fecha: Utilidades.formatearFechaActual(), mensaje: jsonData.message });
                 };
 
                 //INICIA JS DE ONE SIGNAL
