@@ -33,7 +33,7 @@ moduloServicios
 
                 //Si la notificacion es de pedido terminado entonces invitar a la encuesta
                 if (notificacion.mensaje.toLowerCase().indexOf("pedido") > -1
-                    && notificacion.message.toLowerCase().indexOf("entregado") > -1
+                    && notificacion.message.toLowerCase().indexOf("entrega") > -1
                     && !$rootScope.versionProduccion) {
 
                     var confirmPopup = $ionicPopup.confirm({
