@@ -118,7 +118,7 @@ moduloServicios
                         if (localStorage.getItem("me_notificaciones_" + $rootScope.datos.cedula)) {
                             fx(false, JSON.parse(localStorage.getItem("me_notificaciones_" + $rootScope.datos.cedula)), null);
                         } else {
-                            fx(false, null, null);
+                            fx(false, new Array(), new Array());
                         }
 
                     });
