@@ -23,9 +23,11 @@ moduloServicios
 
                     //Si la notificación no se ha encontrado entonces adicionarla a la lista y mostrarla
                     if (!notificacionEncontrada) {
-                        alert("Nueva notificación con notificaciones ya cargadas ");
+                        alert("nueva adicionada");
                         $rootScope.notificacionesNuevas.splice(0, notificacion);
+                        alert("nueva adicionada después 1");
                         this.mostrarNotificacionNueva(notificacion);
+                        alert("nueva adicionada después 2");
                     }
                 }
             },
@@ -116,7 +118,7 @@ moduloServicios
 
                         //Si se produce error consultando en Antares mostrar sólo las locales (si hay)
                         if (localStorage.getItem("me_notificaciones_" + $rootScope.datos.cedula)) {
-                            fx(false, JSON.parse(localStorage.getItem("me_notificaciones_" + $rootScope.datos.cedula)), null);
+                            fx(false, JSON.parse(localStorage.getItem("me_notificaciones_" + $rootScope.datos.cedula)), new Array());
                         } else {
                             fx(false, new Array(), new Array());
                         }
