@@ -210,6 +210,9 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     }
 
     $scope.condicionChat = function(){
+
+        return !$rootScope.versionProduccion;
+
         $scope.dato = $rootScope.dato;
         console.log("FIREBASE SEGMENTO", $scope.dato.segmentos);
         console.log("FIREBASE SEGMENTO", $scope.dato.zonas);

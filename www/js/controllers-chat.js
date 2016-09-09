@@ -6,7 +6,7 @@ moduloControlador.controller('ChatCtrl', function($scope, $rootScope, $sce, GA) 
     $scope.getRutaIframe = function(){
 
         //var ruta = 'http://www.google.com';
-        var ruta = $sce.trustAsResourceUrl('http://laboru.co/jivo/index.html');
+        var ruta = $sce.trustAsResourceUrl('index_en.html');
 
         console.log(ruta);
 
