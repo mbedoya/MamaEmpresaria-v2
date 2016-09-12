@@ -1,22 +1,18 @@
 moduloServicios
-    .factory('Notificaciones', function ($rootScope, $http, $ionicPopup, Utilidades) {
+    .factory('Notificaciones', function ($rootScope, $http, $ionicPopup, $location, Utilidades) {
 
         this.mostrarNotificacionNuevaInterna = function (notificacion) {
 
-            alert("mostrar");
-
             //Si la notificacion es de pedido terminado entonces invitar a la encuesta
             if (notificacion.mensaje.toLowerCase().indexOf("pedido") > -1
-                && notificacion.message.toLowerCase().indexOf("entrega") > -1
-                && !$rootScope.versionProduccion) {
+                && notificacion.mensaje.toLowerCase().indexOf("entrega") > -1) {
 
                 var confirmPopup = $ionicPopup.confirm({
-                    title: titulo,
-                    template: jsonData.message + ".<br /> ¿Deseas participar en una Encuesta de Satisfacción sobre tu Pedido?"
+                    title: "Notificaciones",
+                    template: notificacion.mensaje + ".<br /> ¿Deseas participar en una Encuesta de Satisfacción sobre tu Pedido?"
                 });
 
                 confirmPopup.then(function (res) {
-                    fueLeido();
                     if (res) {
                         $location.path('/app/menu/tabs/mas/encuestapedido');
                     }
@@ -55,11 +51,8 @@ moduloServicios
 
                     //Si la notificación no se ha encontrado entonces adicionarla a la lista y mostrarla
                     if (!notificacionEncontrada) {
-                        alert("nueva adicionada");
                         $rootScope.notificacionesNuevas.splice(0, notificacion);
-                        alert("nueva adicionada después 1");
                         self.mostrarNotificacionNuevaInterna(notificacion);
-                        alert("nueva adicionada después 2");
                     }
                 }
             },
