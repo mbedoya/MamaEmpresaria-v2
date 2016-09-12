@@ -53,6 +53,7 @@ moduloServicios
                     if (!notificacionEncontrada) {
                         $rootScope.notificacionesNuevas.splice(0, notificacion);
                         self.mostrarNotificacionNuevaInterna(notificacion);
+                        $rootScope.$apply();
                     }
                 }
             },
