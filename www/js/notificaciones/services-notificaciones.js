@@ -86,6 +86,8 @@ moduloServicios
 
                         $rootScope.notificacionesCargadas = true;
 
+                        console.log(data.notificaciones);
+
                         //Almacenar esta fecha como la última fecha de consulta
                         localStorage.setItem("me_fechaConsultaNotificaciones_" + $rootScope.datos.cedula, fechaActual);
 

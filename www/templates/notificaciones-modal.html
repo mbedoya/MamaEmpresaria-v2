@@ -8,7 +8,7 @@
         <br />
         <div class="list">
 
-            <div ng-click="mostrarNotificacion(notificacion)" ng-repeat="notificacion in notificacionesNuevas | orderBy: '-id'"
+            <div ng-click="mostrarNotificacion(notificacion)" ng-repeat="notificacion in notificacionesNuevas"
                 ng-class-odd="alternar(true)" ng-class-even="alternar(false)">
                 <div style="padding-left:40px">
                     <i class="icon ion-android-mail"></i>
@@ -25,7 +25,7 @@
                 </div>
             </div>
 
-            <div ng-click="mostrarNotificacion(notificacion)" ng-repeat="notificacion in notificacionesAlmacenadas | orderBy: '-id'"
+            <div ng-click="mostrarNotificacion(notificacion)" ng-repeat="notificacion in notificacionesAlmacenadas"
                 ng-class-odd="alternar(true)" ng-class-even="alternar(false)">
                 <div style="padding-left:40px">
                     <i class="icon ion-android-drafts"></i>
