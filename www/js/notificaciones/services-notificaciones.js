@@ -1,6 +1,36 @@
 moduloServicios
     .factory('Notificaciones', function ($rootScope, $http, $ionicPopup, Utilidades) {
 
+        this.mostrarNotificacionNuevaInterna = function (notificacion) {
+
+            //Si la notificacion es de pedido terminado entonces invitar a la encuesta
+            if (notificacion.mensaje.toLowerCase().indexOf("pedido") > -1
+                && notificacion.message.toLowerCase().indexOf("entrega") > -1
+                && !$rootScope.versionProduccion) {
+
+                var confirmPopup = $ionicPopup.confirm({
+                    title: titulo,
+                    template: jsonData.message + ".<br /> ¿Deseas participar en una Encuesta de Satisfacción sobre tu Pedido?"
+                });
+
+                confirmPopup.then(function (res) {
+                    fueLeido();
+                    if (res) {
+                        $location.path('/app/menu/tabs/mas/encuestapedido');
+                    }
+                });
+
+            } else {
+
+                var alertPopup = $ionicPopup.alert({
+                    title: "Notificaciones",
+                    template: notificacion.mensaje
+                });
+            }
+        };
+
+        var self = this;
+
         return {
 
             inicializar: function () {
@@ -8,9 +38,9 @@ moduloServicios
 
             },
 
-            proceasarNotificacionOneSignal: function(notificacion){
+            proceasarNotificacionOneSignal: function (notificacion) {
                 //Si las notificaciones ya han sido cargadas entonces verificar si la notificación ya la ha regresado Antares
-                if($rootScope.notificacionesCargadas){
+                if ($rootScope.notificacionesCargadas) {
                     var notificacionEncontrada = false;
                     //Verificar si la notifcación ya está en la lista
                     for (var index = 0; index < $rootScope.notificacionesNuevas.length; index++) {
@@ -26,37 +56,13 @@ moduloServicios
                         alert("nueva adicionada");
                         $rootScope.notificacionesNuevas.splice(0, notificacion);
                         alert("nueva adicionada después 1");
-                        this.mostrarNotificacionNueva(notificacion);
+                        self.mostrarNotificacionNuevaInterna(notificacion);
                         alert("nueva adicionada después 2");
                     }
                 }
             },
             mostrarNotificacionNueva: function (notificacion) {
-
-                //Si la notificacion es de pedido terminado entonces invitar a la encuesta
-                if (notificacion.mensaje.toLowerCase().indexOf("pedido") > -1
-                    && notificacion.message.toLowerCase().indexOf("entrega") > -1
-                    && !$rootScope.versionProduccion) {
-
-                    var confirmPopup = $ionicPopup.confirm({
-                        title: titulo,
-                        template: jsonData.message + ".<br /> ¿Deseas participar en una Encuesta de Satisfacción sobre tu Pedido?"
-                    });
-
-                    confirmPopup.then(function (res) {
-                        fueLeido();
-                        if (res) {
-                            $location.path('/app/menu/tabs/mas/encuestapedido');
-                        }
-                    });
-
-                } else {
-
-                    var alertPopup = $ionicPopup.alert({
-                        title: "Notificaciones",
-                        template: notificacion.mensaje
-                    });
-                }
+                self.mostrarNotificacionNuevaInterna(notificacion);
             },
 
             //Se busca en Antares por la última fecha de acceso al App y las locales como historial
@@ -89,7 +95,7 @@ moduloServicios
 
                         //Verificar si ya habían notificaciones locales
                         var notificaciones;
-                        if (localStorage.getItem("me_notificaciones_" + $rootScope.datos.cedula)){
+                        if (localStorage.getItem("me_notificaciones_" + $rootScope.datos.cedula)) {
                             notificaciones = JSON.parse(localStorage.getItem("me_notificaciones_" + $rootScope.datos.cedula));
                         }
 
@@ -106,7 +112,7 @@ moduloServicios
                         if (notificacionesAAlmacenar && notificacionesAAlmacenar.length > 30) {
                             notificacionesAAlmacenar.length = 30;
                         }
-                        
+
                         localStorage.setItem("me_notificaciones_" + $rootScope.datos.cedula, JSON.stringify(notificacionesAAlmacenar));
 
                         //Retornar las locales y las nuevas
