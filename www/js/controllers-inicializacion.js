@@ -104,9 +104,15 @@ moduloControlador.controller('InicializacionCtrl', function ($scope, $rootScope,
                                     $rootScope.notificacionesHistorial = historial;
                                     $rootScope.notificacionesNuevas = antaresNuevas;
 
+                                    if (antaresNuevas && antaresNuevas.length > 0) {
+                                        alert("hay nueva desde antares");
+                                    }
+
                                     //Si hay notificaciones nuevas hoy entonces mostrar la primera
                                     if (antaresNuevas && antaresNuevas.length > 0 &&
                                         Utilidades.formatearFechaActual() == Utilidades.formatearFechaCadena(antaresNuevas[0].fecha)) {
+
+                                            alert("hay nueva desde antares de hoy");
                                             
                                             Notificaciones.mostrarNotificacionNueva(antaresNuevas[0]);
                                     }
