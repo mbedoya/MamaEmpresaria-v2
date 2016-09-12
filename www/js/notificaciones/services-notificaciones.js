@@ -3,6 +3,8 @@ moduloServicios
 
         this.mostrarNotificacionNuevaInterna = function (notificacion) {
 
+            alert("mostrar");
+
             //Si la notificacion es de pedido terminado entonces invitar a la encuesta
             if (notificacion.mensaje.toLowerCase().indexOf("pedido") > -1
                 && notificacion.message.toLowerCase().indexOf("entrega") > -1
