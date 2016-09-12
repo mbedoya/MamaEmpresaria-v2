@@ -5,7 +5,7 @@ moduloServicios
 
             //Si la notificacion es de pedido terminado entonces invitar a la encuesta
             if (notificacion.mensaje.toLowerCase().indexOf("pedido") > -1
-                && notificacion.mensaje.toLowerCase().indexOf("entrega") > -1) {
+                && notificacion.mensaje.toLowerCase().indexOf("entregado") > -1) {
 
                 var confirmPopup = $ionicPopup.confirm({
                     title: "Notificaciones",
