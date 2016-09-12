@@ -33,9 +33,6 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
                 //Evento que se disparaba cuando se recibe una notificacion de OneSignal
                 var notificacionRecibida = function (jsonData) {
-
-                    alert(jsonData.message);
-
                     Notificaciones.proceasarNotificacionOneSignal({ fecha: Utilidades.formatearFechaActual(), mensaje: jsonData.message });
                 };
 
@@ -44,8 +41,7 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
                 window.plugins.OneSignal.init($rootScope.notificacionesPush.apikey,
                     { googleProjectNumber: $rootScope.notificacionesPush.project },
                     notificacionRecibida);
-                window.plugins.OneSignal.enableNotificationsWhenActive(true);
-
+                window.plugins.OneSignal.enableNotificationsWhenActive(false);
                 //window.plugins.OneSignal.enableInAppAlertNotification(true);
 
                 //FIN JS ONE SIGNAL
