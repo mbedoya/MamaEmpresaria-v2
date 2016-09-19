@@ -307,6 +307,28 @@ width: 100%;
     font-size:18px;
 }
 
+.button-continue {
+    background:#1594ac;
+    border-radius:8px;
+    border: 2px solid #1594ac;
+    box-shadow: 0px 4px 0px #1594ac;
+    text-shadow: 0px 2px 0px rgba(0,0,0,0.1);
+    color:white;
+    font-family: "Droid Sans Bold";
+    font-size:18px;
+}
+
+.button-cancel {
+    background:#e42012;
+    border-radius:8px;
+    border: 2px solid #e42012;
+    box-shadow: 0px 4px 0px #e42012;
+    text-shadow: 0px 2px 0px rgba(0,0,0,0.1);
+    color:white;
+    font-family: "Droid Sans Bold";
+    font-size:18px;
+}
+
 .login-button button:hover {
     color:white;
 }

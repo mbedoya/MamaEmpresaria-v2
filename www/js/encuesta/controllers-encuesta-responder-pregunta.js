@@ -1,4 +1,4 @@
-moduloControlador.controller('EncuestaPedidoResponderPreguntaCtrl', function ($scope, $location, $rootScope, $ionicLoading, $ionicPopup, $state, $filter, $ionicHistory, $ionicScrollDelegate, Mama, Internet, GA, Encuesta, Utilidades) {
+moduloControlador.controller('EncuestaPedidoResponderPreguntaCtrl', function ($scope, $location, $rootScope, $ionicLoading, $ionicPopup, $state, $filter, $ionicHistory, $ionicNavBarDelegate, $ionicScrollDelegate, Mama, Internet, GA, Encuesta, Utilidades) {
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Encuesta Pedido Responder Pregunta");
@@ -10,10 +10,39 @@ moduloControlador.controller('EncuestaPedidoResponderPreguntaCtrl', function ($s
         });
     };
 
+    $scope.mostrarImagenes = function(){
+        return $scope.obtenerPregunta().pregunta.toLowerCase() == "¿cómo calificas la actitud del transportador durante la entrega del pedido?";
+    }
+
+    $scope.irAHome = function () {
+        $ionicNavBarDelegate.showBackButton(true);
+        $ionicHistory.nextViewOptions({
+            hitoryRoot: true
+        });
+        $location.path('/app/menu/tabs/home');
+    }
+
+    $scope.salir = function () {
+        var confirmPopup = $ionicPopup.confirm({
+            title: "Encuesta",
+            template: "¿Deseas salir de la encuesta de Satisfacción sin contestarla?"
+        });
+
+        confirmPopup.then(function (res) {
+            if (res) {
+                $scope.irAHome();
+            }
+        });
+    }
+
+    $scope.volverAtras = function () {
+        $location.path('/app/menu/tabs/home');
+    }
+
     $scope.obtenerRutaRedireccion = function () {
-        if($location.path() == '/app/menu/tabs/mas/encuestapedidoresponder2'){
+        if ($location.path() == '/app/menu/tabs/mas/encuestapedidoresponder2') {
             return '/app/menu/tabs/mas/encuestapedidoresponder';
-        }else{
+        } else {
             return '/app/menu/tabs/mas/encuestapedidoresponder2'
         }
     }
@@ -45,7 +74,7 @@ moduloControlador.controller('EncuestaPedidoResponderPreguntaCtrl', function ($s
         if ($scope.EsPreguntaCerradaSimple() && $scope.preguntaContestada()) {
             console.log("cerrada simple " + $scope.preguntaContestada()[0]);
             $scope.respuestaMultipleCerrada.valor = $scope.preguntaContestada()[0];
-            
+
         } else {
 
             if ($scope.EsPreguntaAbierta() && $scope.preguntaContestada()) {
@@ -82,7 +111,7 @@ moduloControlador.controller('EncuestaPedidoResponderPreguntaCtrl', function ($s
 
         }
 
-        setTimeout(function() {
+        setTimeout(function () {
             console.log("timeout");
             $scope.$apply();
         }, 2000);
@@ -138,7 +167,7 @@ moduloControlador.controller('EncuestaPedidoResponderPreguntaCtrl', function ($s
                 }
 
                 $scope.mostrarAyuda("Inicio de sesión", "Encuesta finalizada! Muchas gracias por tu participación");
-                $location.path('/app/menu/tabs/home');
+                $scope.irAHome();
 
             });
 
@@ -246,6 +275,7 @@ moduloControlador.controller('EncuestaPedidoResponderPreguntaCtrl', function ($s
 
     $scope.$on('$ionicView.beforeEnter', function () {
         $scope.inicializar();
+        $ionicNavBarDelegate.showBackButton(false);
     });
 
 });

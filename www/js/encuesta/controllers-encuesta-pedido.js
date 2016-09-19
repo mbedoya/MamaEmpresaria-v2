@@ -10,6 +10,10 @@ moduloControlador.controller('EncuestaPedidoCtrl', function ($scope, $location, 
         });
     };
 
+    $scope.volverAtras = function(){
+        $location.path('/app/menu/tabs/home');
+    }
+
     $scope.crearVectorRespuestas = function () {
 
         for (var index = 0; index < $rootScope.preguntasEncuesta.length; index++) {
@@ -40,6 +44,7 @@ moduloControlador.controller('EncuestaPedidoCtrl', function ($scope, $location, 
                     $scope.crearVectorRespuestas();
 
                     $location.path('/app/menu/tabs/mas/encuestapedidoresponder');
+                    $location.replace();
 
                 } else {
                     $location.path('/app/menu/tabs/home');

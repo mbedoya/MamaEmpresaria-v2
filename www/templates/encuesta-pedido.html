@@ -15,7 +15,7 @@
             <ion-list class="encuesta" ng-show="EsPreguntaCerradaSimple()">
 
                 <ion-radio class="item-thumbnail-left" ng-repeat="respuesta in obtenerPregunta().posiblesRespuestas" ng-model="respuestaMultipleCerrada.valor" ng-value="respuesta.posibleRespuesta" ng-change="contestarPregunta($index)" >
-                    <img src="img/encuesta{{respuesta.posibleRespuesta}}.png" ng-if="obtenerPregunta().codigo == 5" />
+                    <img src="img/encuesta{{respuesta.posibleRespuesta}}.png" ng-if="mostrarImagenes()" />
                     <span >{{respuesta.posibleRespuesta}}</span>
                 </ion-radio>   
                         
@@ -32,7 +32,8 @@
             </label>
             </div>
             <div class="padding" ng-show="obtenerPregunta()" >
-                <input id="btnContinuar" name="btnContinuar" type="button" value="Continuar" class="button button-block button-footer" ng-click="continuar()" >
+                <input id="btnContinuar" name="btnContinuar" type="button" value="Continuar" class="button button-block button-continue" ng-click="continuar()" >
+                <input type="button" value="Salir" class="button button-block button-cancel" ng-click="salir()" >
             </div>
 
             <div class="div-lista-footer"></div>
