@@ -14,6 +14,13 @@ moduloServicios
 
                 confirmPopup.then(function (res) {
                     if (res) {
+
+                        //Obtener el número de la campaña
+                        console.log(notificacion.mensaje);
+                        var campana = notificacion.mensaje.toLowerCase().split("campaña:")[1].trim();
+                        console.log(campana);
+                        $rootScope.campanaEncuesta = campana;
+
                         $location.path('/app/menu/tabs/mas/encuestapedido');
                     }
                 });
