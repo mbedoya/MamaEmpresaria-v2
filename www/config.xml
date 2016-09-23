@@ -81,11 +81,15 @@
     <gap:splash src="res/screen/ios/splash.png"      gap:platform="ios"     width="768" height="1024" />
     <gap:splash src="res/screen/ios/splash.png"     gap:platform="ios"     width="1024" height="768" />
 
+    <!--
     <gap:splash src="res/screen/ios/splash.png" gap:platform="ios" width="2048" height="1536" />
     <gap:splash src="res/screen/ios/splash.png" gap:platform="ios" width="1536" height="2048" />
     <gap:splash src="res/screen/ios/splash.png" gap:platform="ios" width="2208" height="1242" />
     <gap:splash src="res/screen/ios/splash.png" gap:platform="ios" width="1242" height="2208" />
-    <gap:splash src="res/screen/ios/splash.png" gap:platform="ios" width="750" height="1334" />
+    <gap:splash src="res/screen/ios/splash.png" gap:platform="ios" width="750" height="1334" /> 
+    -->
+
+    
 
     <gap:splash src="res/screen/wp8/splash.png"      gap:platform="wp8"     width="768" height="1280" />
     <gap:splash src="res/screen/windows8/splash.png"     gap:platform="windows8"     width="620" height="300" />
