@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.novaventa.produccion.mamaempresaria" version="1.4"
+<widget id="com.novaventa.desarrollo.mamaempresaria" version="1.4"
         xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" 
         xmlns:gap = "http://phonegap.com/ns/1.0" >
+
+    <!-- com.novaventa.desarrollo.mamaempresaria -->
+    <!-- com.novaventa.produccion.mamaempresaria -->        
+
     <name>Mamá Empresaria</name>
     <description>
         Aplicación de Novaventa para las Mamás Empresarias
@@ -77,9 +81,9 @@
 
     <gap:splash src="res/screen/ios/splash.png"    gap:platform="ios"     width="320" height="480" />
     <gap:splash src="res/screen/ios/splash.png" gap:platform="ios"     width="640" height="960" />
-    <gap:splash src="res/screen/ios/splash.png" gap:platform="ios" 	  width="640" height="1136" />
     <gap:splash src="res/screen/ios/splash.png"      gap:platform="ios"     width="768" height="1024" />
     <gap:splash src="res/screen/ios/splash.png"     gap:platform="ios"     width="1024" height="768" />
+    <gap:splash src="res/screen/ios/splash.png" gap:platform="ios" width="640" height="1136" />
 
     <!-- 9.7-inch iPad Pro, iPad Air 2, iPad mini 4, iPad mini 2 -->
     <gap:splash src="res/screen/ios/Splash2048x1536.png" gap:platform="ios" width="2048" height="1536" />
