@@ -17,7 +17,7 @@
 
     <access origin="*"/>
 
-    <preference name="phonegap-version" value="cli-6.0.0" />
+     <preference name="phonegap-version" value="3.7.0" />
 
     <!-- iOS only -->
     <preference name="target-device" value="handset" />      <!-- all: possible values handset, tablet, or universal -->
@@ -79,23 +79,39 @@
     <gap:splash gap:platform="android" gap:qualifier="port-hdpi" src="res/screen/android/screen-hdpi-portrait.png" />
     <gap:splash gap:platform="android" gap:qualifier="port-xhdpi" src="res/screen/android/screen-xhdpi-portrait.png" />
 
+     <gap:splash src="res/screen/ios/splash.png"    gap:platform="ios"     width="320" height="480" />
+    <gap:splash src="res/screen/ios/splash.png" gap:platform="ios"     width="640" height="960" />
+    <gap:splash src="res/screen/ios/splash.png" gap:platform="ios" 	  width="640" height="1136" />
+    <gap:splash src="res/screen/ios/splash.png"      gap:platform="ios"     width="768" height="1024" />
+    <gap:splash src="res/screen/ios/splash.png"     gap:platform="ios"     width="1024" height="768" />
+
+    <!-- 
+
     <gap:splash src="res/screen/ios/splash.png"    gap:platform="ios"     width="320" height="480" />
     <gap:splash src="res/screen/ios/splash.png" gap:platform="ios"     width="640" height="960" />
     <gap:splash src="res/screen/ios/splash.png"      gap:platform="ios"     width="768" height="1024" />
     <gap:splash src="res/screen/ios/splash.png"     gap:platform="ios"     width="1024" height="768" />
     <gap:splash src="res/screen/ios/splash.png" gap:platform="ios" width="640" height="1136" />
 
-    <!-- 9.7-inch iPad Pro, iPad Air 2, iPad mini 4, iPad mini 2 -->
+    -->    
+
+    <!-- 9.7-inch iPad Pro, iPad Air 2, iPad mini 4, iPad mini 2 
     <gap:splash src="res/screen/ios/Splash2048x1536.png" gap:platform="ios" width="2048" height="1536" />
     <gap:splash src="res/screen/ios/Splash1536x2048.png" gap:platform="ios" width="1536" height="2048" />
 
-    <!-- iPhone SE -->
+    -->
+
+    <!-- iPhone SE 
     <gap:splash src="res/screen/ios/Default-568h@2x.png" gap:platform="ios" width="640" height="1136" />
     <gap:splash src="res/screen/ios/Splash1136x640.png" gap:platform="ios" width="1136" height="640" />
 
+    -->
+
+    <!-- Otros iOS 
     <gap:splash src="res/screen/ios/Splash2208x1242.png" gap:platform="ios" width="2208" height="1242" />
     <gap:splash src="res/screen/ios/Splash1242x2208.png" gap:platform="ios" width="1242" height="2208" />
-    <gap:splash src="res/screen/ios/Splash750x1334.png" gap:platform="ios" width="750" height="1334" />    
+    <gap:splash src="res/screen/ios/Splash750x1334.png" gap:platform="ios" width="750" height="1334" />
+    -->    
 
     <gap:splash src="res/screen/wp8/splash.png"      gap:platform="wp8"     width="768" height="1280" />
     <gap:splash src="res/screen/windows8/splash.png"     gap:platform="windows8"     width="620" height="300" />
