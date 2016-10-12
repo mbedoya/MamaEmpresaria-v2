@@ -28,8 +28,6 @@
     <preference name="BackupWebStorage" value="none"/>
     <preference name="Orientation" value="portrait" />
     <preference name="SplashScreen" value="splash" />
-<!--    <preference name="android-build-tool" value="gradle" />-->
-
 
     <feature name="StatusBar">
         <param name="ios-package" value="CDVStatusBar" onload="true"/>
@@ -39,9 +37,7 @@
         <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
     </feature>
 
-    <!-- <gap:plugin name="org.apache.cordova.geolocation" /> -->
     <gap:plugin name="com.adobe.plugins.gaplugin" />
-    <!-- <gap:plugin name="org.apache.cordova.network-information" /> -->
 
     <gap:plugin name="cordova-plugin-geolocation" source="npm" />
     <gap:plugin name="cordova-plugin-network-information" source="npm" />
@@ -53,9 +49,6 @@
     <gap:plugin name="cordova-plugin-queries-schemes" source="npm" />
     <gap:plugin name="cordova-plugin-appversion" source="npm" />
     <gap:plugin name="cordova-plugin-device" source="npm" />
-    <!--<plugin name="phonegap-plugin-push" source="npm">
-        <param name="SENDER_ID" value="275683696350" />
-    </plugin>-->
 
 
     <icon src="icon.png" />
