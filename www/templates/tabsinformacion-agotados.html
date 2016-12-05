@@ -2,7 +2,7 @@
     <ion-tab title="Campaña {{campana.numero}}" href="#/app/menu/tabs/mas/agotados/actual" >
         <ion-nav-view name="informacion-agotados-actual"></ion-nav-view>
     </ion-tab>
-    <ion-tab title="Campaña {{campana.numero+1}}" href="#/app/menu/tabs/mas/agotados/siguiente" >
+    <ion-tab title="Campaña {{aumentarCampana(campana.numero)}}" href="#/app/menu/tabs/mas/agotados/siguiente" >
         <ion-nav-view name="informacion-agotados-siguiente"></ion-nav-view>
     </ion-tab>
         <!--
