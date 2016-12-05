@@ -194,6 +194,11 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
         return Number($rootScope.datos.cupo) > 0 || Math.abs(Number($rootScope.datos.saldo)) > 0;
     }
 
+    $scope.aumentarCampana = function(campana){
+        if(campana >= 18) return 1;
+        return campana + 1;
+    }
+
     $scope.mostrarBadge = function(){
         return Pedido.hayPedido() && Pedido.estadoEncontrado('Novedad')
             && !Pedido.estadoEncontrado('Anulado')
