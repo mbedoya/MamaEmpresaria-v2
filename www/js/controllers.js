@@ -1007,6 +1007,10 @@ var moduloControlador = angular.module('novaventa.controllers', ['novaventa.filt
     }
 
     $scope.inicializar();
+
+    $scope.$on('loggedin', function(event, args){
+        $scope.inicializar();
+    });
 })
 
 ;
