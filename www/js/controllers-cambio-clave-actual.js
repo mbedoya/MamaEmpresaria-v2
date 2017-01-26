@@ -23,7 +23,13 @@ moduloControlador.controller('CambioClaveActualCtrl', function($scope, $location
 
         var clave = $("#txtCambioClaveActual").val();
 
-        //Cédula vacía
+        var validacion = Utilidades.validarFormatoClave(clave, false);
+        if(!validacion.exito){
+            $scope.mostrarAyuda("Inicio de sesión", validacion.mensaje);
+            return;
+        }  
+
+        /*//Cédula vacía
         if(!clave || clave.length == 0){
             $scope.mostrarAyuda("Inicio de sesión","Ingresa tu clave");
             return;
@@ -45,7 +51,7 @@ moduloControlador.controller('CambioClaveActualCtrl', function($scope, $location
         if(clave.indexOf(".") >= 0 || clave.indexOf(",") >= 0){
             $scope.mostrarAyuda("Inicio de sesión","Ingresa sólo números");
             return;
-        }
+        }*/
 
         try{
 

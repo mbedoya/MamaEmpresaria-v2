@@ -88,7 +88,7 @@ var moduloServicios = angular.module('novaventa.services', [])
 
                     var platform = device.platform;
                     $rootScope.versionApp = AppVersion.version;
-                    
+
                     if ($rootScope.dato.$value > $rootScope.versionApp) {
                         var actualizar = $ionicPopup.confirm({
                             title: "Actualización App",
@@ -1416,15 +1416,32 @@ var moduloServicios = angular.module('novaventa.services', [])
 
                 return anoCampana;
             },
+            validarFormatoClave: function (clave, letraObligatoria) {
+                var exito = true;
+                var mensaje = "";
+                var regex = letraObligatoria ? /^(\d{2,}[a-zA-Z]+)+/ : /^(\d{2,}[a-zA-Z]*)+/;
+                if (clave.length < 4) {
+                    mensaje = "La clave debe tener minimo 4 dígitos";
+                    exito = false;
+                } else if (!regex.test(clave.split("").sort().join(""))) {
+                    mensaje = letraObligatoria ? "La clave debe tener almenos dos numeros y una letra" : "La clave debe tener almenos dos numeros";
+                    exito = false;
+                }
+
+                return {
+                    exito: exito,
+                    mensaje: mensaje
+                }
+            },
             inicializar: function () {
                 //Indica si la versión se irá para Producción, esto modifica ip de servicios y google analytics
-                $rootScope.versionProduccion = true;
+                $rootScope.versionProduccion = false;
 
                 if ($rootScope.versionProduccion) {
                     $rootScope.configuracion = { ip_servidores: 'https://transferenciaelectronica.novaventa.com.co', instancia: "AntaresSecureWebServices" };
                     $rootScope.notificacionesPush = { apikey: 'a3839c5f-b4d9-49a1-9e6a-aebac01abba7', project: '531375899368' }
                 } else {
-                    $rootScope.configuracion = { ip_servidores: 'https://digitaltest.novaventa.com.co', instancia: "AntaresSecureWebServices1" };
+                    $rootScope.configuracion = { ip_servidores: 'https://digitaltest.novaventa.com.co', instancia: "AntaresSecureWebServices4" };
                     $rootScope.notificacionesPush = { apikey: 'adece4f8-1dbd-4713-9351-f8140d916bf4', project: '275683696350' }
                 }
 

@@ -74,9 +74,15 @@ moduloControlador.controller('ClaveCtrl', function ($scope, $location, $rootScop
 
         var clave = $("#txtClaveLogin").val();
 
+        var validacion = Utilidades.validarFormatoClave(clave, false);
+        if(!validacion.exito){
+            $scope.mostrarAyuda("Inicio de sesión", validacion.mensaje);
+            return;
+        }
+
         //alert($("#txtClave").val());
 
-        //Cédula vacía
+        /*//Cédula vacía
         if (!clave || clave.length == 0) {
             $scope.mostrarAyuda("Inicio de sesión", "Ingresa tu clave");
             return;
@@ -98,7 +104,7 @@ moduloControlador.controller('ClaveCtrl', function ($scope, $location, $rootScop
         if (clave.indexOf(".") >= 0 || clave.indexOf(",") >= 0) {
             $scope.mostrarAyuda("Inicio de sesión", "Ingresa sólo números");
             return;
-        }
+        }*/
 
         try {
 
