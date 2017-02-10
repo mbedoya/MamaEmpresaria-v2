@@ -11,7 +11,7 @@
         <h3>Hola    {{datos.nombre | pascal}}, ingresa tu clave</h3>
         <form ng-submit="capturarCedula()">
                 <label class="login-input">
-                    <input id="txtClaveLogin" class="clave" ng-model="modelo.clave" type="text" maxlength="10">
+                    <input id="txtClaveLogin" class="clave" ng-model="modelo.clave" type="text" maxlength="48">
                 </label>
                 <label class="login-button">
                     <input id="ingresar" type="button" value="Enviar" class="button button-block" ng-click="continuar()">
