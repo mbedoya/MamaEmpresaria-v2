@@ -1435,7 +1435,7 @@ var moduloServicios = angular.module('novaventa.services', [])
             },
             inicializar: function () {
                 //Indica si la versión se irá para Producción, esto modifica ip de servicios y google analytics
-                $rootScope.versionProduccion = false;
+                $rootScope.versionProduccion = true;
 
                 if ($rootScope.versionProduccion) {
                     $rootScope.configuracion = { ip_servidores: 'https://transferenciaelectronica.novaventa.com.co', instancia: "AntaresSecureWebServices" };
