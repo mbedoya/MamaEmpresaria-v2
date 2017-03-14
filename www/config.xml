@@ -44,8 +44,10 @@
     <gap:plugin name="cordova-plugin-geolocation" source="npm" />
     <gap:plugin name="cordova-plugin-network-information" source="npm" />
 
-    <gap:plugin name="onesignal-cordova-plugin-pgb-compat" source="npm" />
+    <gap:plugin name="cordova-plugin-google-analytics" source="npm" />
     
+    <gap:plugin name="onesignal-cordova-plugin-pgb-compat" source="npm" />
+    <gap:plugin name="cordova-plugin-googleplayservices" source="npm" />
     <gap:plugin name="cordova-plugin-android-support-v4" source="npm" />
 
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
