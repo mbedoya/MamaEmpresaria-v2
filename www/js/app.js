@@ -38,11 +38,23 @@ angular.module('novaventa', ['ngIOS9UIWebViewPatch', 'ionic', 'novaventa.control
 
                 //INICIA JS DE ONE SIGNAL
 
-                window.plugins.OneSignal.init($rootScope.notificacionesPush.apikey,
+                /*window.plugins.OneSignal.init($rootScope.notificacionesPush.apikey,
                     { googleProjectNumber: $rootScope.notificacionesPush.project },
                     notificacionRecibida);
                 window.plugins.OneSignal.enableNotificationsWhenActive(false);
-                //window.plugins.OneSignal.enableInAppAlertNotification(true);
+
+
+                var notificationOpenedCallback = function (jsonData) {
+                    console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+                };*/
+                var iosSettings = {};
+                iosSettings["kOSSettingsKeyAutoPrompt"] = true;
+
+                window.plugins.OneSignal
+                    .startInit($rootScope.notificacionesPush.apikey)
+                    .iOSSettings(iosSettings)
+                    .handleNotificationOpened(notificacionRecibida)
+                    .endInit();
 
                 //FIN JS ONE SIGNAL
 
