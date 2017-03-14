@@ -38,7 +38,7 @@
         <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
     </feature>
 
-    <plugin spec="https://github.com/phonegap-build/GAPlugin" source="git" />
+    <!--<plugin spec="https://github.com/phonegap-build/GAPlugin" source="git" />-->
 
 
     <gap:plugin name="cordova-plugin-geolocation" source="npm" />
