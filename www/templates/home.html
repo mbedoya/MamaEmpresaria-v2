@@ -26,7 +26,7 @@
                         <span ng-show="tieneEncuentro()">
                             Realízalo
                             <span ng-show="diasParaPago()>=1">el
-                                {{campana.fechaMontajePedido | date: 'dd' }} de  {{campana.fechaMontajePedido | date: 'MMMM' }}.</span>
+                                {{fechaPago() | date: 'dd' }} de  {{fechaPago() | date: 'MMMM' }}.</span>
                             <span ng-show="diasParaPago()<0 && !hoyEsEncuentro() && !hoyEsCorreteo()">el
                                 {{campana.fechaCorreteo | date: 'dd' }} de  {{campana.fechaCorreteo | date: 'MMMM' }}.</span>
                             <span ng-show="diasParaPago()<=0 && (hoyEsEncuentro() || hoyEsCorreteo())">hoy.</span> Tienes hasta las 12 de la noche

@@ -514,6 +514,12 @@ var moduloServicios = angular.module('novaventa.services', [])
                         fx(false, {});
                     });
 
+            },
+            getFechaPago: function (){
+                 if ($rootScope.fechasAnteriores && $rootScope.fechasAnteriores.length > 0) {   
+                    var fechaPagoAnterior = new Date( Utilidades.validarFormatoFecha( ($rootScope.fechasAnteriores.find(function (x){ return x.codigoActividad === "03"})).fecha));                           
+                    return fechaPagoAnterior;
+                }                 
             }
         }
     })

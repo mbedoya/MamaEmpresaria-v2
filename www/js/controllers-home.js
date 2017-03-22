@@ -56,6 +56,13 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $location,
         return $rootScope.pedido;
     }
 
+    $scope.fechaPago = function(){        
+        if(!$scope.pago){
+            $scope.pago = Campana.getFechaPago();
+        }
+        return $scope.pago;
+    }
+
     //Indica si ya se hizo el Encuentro para la campaña actual
     $scope.encuentroRealizado = function(){
         return Campana.encuentroRealizado();
@@ -186,13 +193,10 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $location,
 
     $scope.diasParaPago = function(){
 
-        var stringFecha =  Utilidades.formatearFechaActual();
+        var fechaActual = new Date();
+        var dias = Utilidades.diferenciaFechaDias(fechaActual, $scope.pago);
 
-        if($rootScope.campana && $rootScope.campana.fechaMontajePedido){
-            return Utilidades.diferenciaFechaDias(new Date(Utilidades.validarFormatoFecha(stringFecha)), new Date(Utilidades.validarFormatoFecha($rootScope.campana.fechaMontajePedido)));
-        }else{
-            return "";
-        }
+        return dias;
     }
 
     $scope.esAntesMediaNoche = function(){
@@ -212,7 +216,7 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $location,
         if(window.plugins && window.plugins.OneSignal){
             window.plugins.OneSignal.sendTag("segmento", $rootScope.datos.segmento);
         }
-        
+
         if(!$rootScope.cargaDatos.popupMamaNueva && $rootScope.mamaNueva){
 
             var alertPopup = $ionicPopup.alert({
