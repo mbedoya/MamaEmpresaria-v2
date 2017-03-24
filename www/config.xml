@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.novaventa.produccion.mamaempresaria" 
+<widget id="com.novaventa.desarrollo.mamaempresaria" 
         version = "1.5.0"
         versionCode = "10500"
         xmlns = "http://www.w3.org/ns/widgets" 
