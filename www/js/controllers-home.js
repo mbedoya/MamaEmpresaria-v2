@@ -1,4 +1,4 @@
-moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $location, $state, $ionicPopup, GA, Campana, Utilidades, Pedido) {
+moduloControlador.controller('HomeCtrl', function ($scope, $rootScope, $location, $state, $ionicPopup, GA, Campana, Utilidades, Pedido) {
 
     //Registro en Analytics
     GA.trackPage($rootScope.gaPlugin, "Home");
@@ -10,33 +10,33 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $location,
 
     // SÓLO PARA PRUEBAS
     // Se cambia el color del ícono de red social a rojo, para indicar que la app está apuntando a PRUEBAS
-    if(!$rootScope.versionProduccion){
+    if (!$rootScope.versionProduccion) {
         $("button.button-icon.icono-header-menu.button-clear.ion-social-rss").css("background-color", "red");
     }
 
-    $scope.irAEncuesta = function(){
+    $scope.irAEncuesta = function () {
         console.log("encuesta");
-        if(!$rootScope.versionProduccion){
+        if (!$rootScope.versionProduccion) {
             $location.path('/app/menu/tabs/mas/encuestapedido');
         }
     }
 
-    $scope.tieneEncuentro = function(){
+    $scope.tieneEncuentro = function () {
         return Campana.tieneEncuentro();
     }
 
-    $scope.mostrarCupo = function(){
+    $scope.mostrarCupo = function () {
         return Number($rootScope.datos.cupo) > 0;
     }
 
-    $scope.buscarEstado = function(estado){
+    $scope.buscarEstado = function (estado) {
         return Pedido.buscarEstado(estado);
     }
 
-    $scope.mamaEnMora = function(){
+    $scope.mamaEnMora = function () {
         var estadoNovedad = Pedido.buscarEstado('Novedad');
-        if(estadoNovedad){
-            if (estadoNovedad.motivo.toLowerCase().indexOf('morosa')>=0){
+        if (estadoNovedad) {
+            if (estadoNovedad.motivo.toLowerCase().indexOf('morosa') >= 0) {
                 return true;
             }
         }
@@ -47,46 +47,47 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $location,
     // El Saldo es de la próxima campaña si
     // ya se ha efectuado el encuentro y tengo información de pedido
     // y no tengo novedad de morosidad
-    $scope.saldoEsDeProximaCampana = function(){
+    $scope.saldoEsDeProximaCampana = function () {
         return false;
         //return $scope.encuentroRealizado() && !$scope.pedido().razonRechazo && !$scope.mamaEnMora();
     }
 
-    $scope.pedido = function(){
+    $scope.pedido = function () {
         return $rootScope.pedido;
     }
 
-    $scope.fechaPago = function(){        
-        if(!$scope.pago){
-            $scope.pago = Campana.getFechaPago();
-        }
-        return $scope.pago;
-    }
-
     //Indica si ya se hizo el Encuentro para la campaña actual
-    $scope.encuentroRealizado = function(){
+    $scope.encuentroRealizado = function () {
         return Campana.encuentroRealizado();
     }
 
     //Indica si hoy es encuentro
-    $scope.hoyEsEncuentro = function(){
-        return Campana.hoyEsEncuentro();
+    $scope.hoyEsEncuentro = function () {
+        if ($scope.pago) {
+            var fechaActual = new Date();
+            var coincidenFechas = Utilidades.formatearFecha(fechaActual) === Utilidades.formatearFecha($scope.pago);
+            return coincidenFechas;
+        }
     }
 
     //Indica si hoy es correteo
-    $scope.hoyEsCorreteo = function(){
-        return Campana.hoyEsCorreteo();
+    $scope.hoyEsCorreteo = function () {
+        if ($scope.pago2) {
+            var fechaActual = new Date();
+            var coincidenFechas = Utilidades.formatearFecha(fechaActual) === Utilidades.formatearFecha($scope.pago2);
+            return coincidenFechas;
+        }
     }
 
-    $scope.etiquetaSaldo = function(){
+    $scope.etiquetaSaldo = function () {
 
         var etiqueta = "Saldo a pagar";
 
-        if($rootScope.datos && $rootScope.datos.saldo){
+        if ($rootScope.datos && $rootScope.datos.saldo) {
 
-            if(Number($rootScope.datos.saldo) < 0) {
+            if (Number($rootScope.datos.saldo) < 0) {
                 etiqueta = "Saldo a favor";
-            }else{
+            } else {
                 etiqueta = "Debes pagar " + $scope.saldo() + " de la Campaña XXX";
             }
         }
@@ -94,104 +95,112 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $location,
         return etiqueta;
     }
 
-    $scope.clickCampana = function(){
+    $scope.clickCampana = function () {
         $scope.numeroClicksCampana++;
 
-        if($scope.numeroClicksCampana == 5){
+        if ($scope.numeroClicksCampana == 5) {
             console.log($rootScope.fechas);
             console.log($rootScope.fechasAnteriores);
             $scope.mostrarLog = true;
         }
     }
 
-    $scope.mostrarLogApp = function(){
+    $scope.mostrarLogApp = function () {
         return $scope.mostrarLog;
     }
 
-    $scope.estiloAlternateFechaPago = function(){
-        if($scope.mostrarCupo){
+    $scope.estiloAlternateFechaPago = function () {
+        if ($scope.mostrarCupo) {
             return "alternate";
-        }else{
+        } else {
             return "";
         }
     }
 
-    $scope.mostrarSaldoFavor = function(){
+    $scope.mostrarSaldoFavor = function () {
         return ($rootScope.datos && $rootScope.datos.saldo && Number($rootScope.datos.saldo) < 0);
     }
 
-    $scope.mostrarSaldoPagar = function(){
+    $scope.mostrarSaldoPagar = function () {
         return !$scope.mostrarSaldoFavor();
     }
 
-    $scope.nombre = function(){
+    $scope.nombre = function () {
 
-        if(!$rootScope.datos.nombre){
+        if (!$rootScope.datos.nombre) {
             return "";
         }
 
         var nombrePascal = $rootScope.datos.nombre.split(' ');
-        for	(index = 0; index < nombrePascal.length; index++) {
-            nombrePascal[index] = nombrePascal[index].substring(0,1).toUpperCase() + nombrePascal[index].substring(1, nombrePascal[index].length).toLowerCase();
+        for (index = 0; index < nombrePascal.length; index++) {
+            nombrePascal[index] = nombrePascal[index].substring(0, 1).toUpperCase() + nombrePascal[index].substring(1, nombrePascal[index].length).toLowerCase();
         }
 
         return nombrePascal.join(' ');
     }
 
-    $scope.segmento = function(){
+    $scope.segmento = function () {
         return $rootScope.datos.segmento;
     }
 
-    $scope.segmentoFormateado = function(){
-        if(!$rootScope.datos.segmento){
+    $scope.segmentoFormateado = function () {
+        if (!$rootScope.datos.segmento) {
             return "";
         }
-        return $rootScope.datos.segmento.toLocaleLowerCase().replace("í","i");
+        return $rootScope.datos.segmento.toLocaleLowerCase().replace("í", "i");
     }
 
-    $scope.saldo = function(){
+    $scope.saldo = function () {
         return Math.abs(Number($rootScope.datos.saldo));
     }
 
-    $scope.cupo = function(){
+    $scope.cupo = function () {
         return $rootScope.datos.cupo;
     }
 
-    $scope.numeroCampana = function(){
+    $scope.numeroCampana = function () {
         return $rootScope.campana.numero;
     }
 
-    $scope.fechaMontajePedidoCampana = function(){
+    $scope.fechaMontajePedidoCampana = function () {
         return $rootScope.campana.fechaMontajePedido;
     }
 
-    $scope.fechaCorreteo = function(){
+    $scope.fechaCorreteo = function () {
         return $rootScope.campana.fechaCorreteo;
     }
 
-    $scope.flexibilizacion = function(){
+    $scope.flexibilizacion = function () {
         return $rootScope.datos.valorFlexibilizacion;
     }
 
-    $scope.flexibilizacionPago = function(){
+    $scope.flexibilizacionPago = function () {
         //La flexibilización es mayor que el valor a Pagar?
-        if(Number($rootScope.datos.valorFlexibilizacion)>Number($rootScope.datos.saldo)){
+        if (Number($rootScope.datos.valorFlexibilizacion) > Number($rootScope.datos.saldo)) {
             return 0;
-        }else{
-            return Number($rootScope.datos.saldo)-Number($rootScope.datos.valorFlexibilizacion);
+        } else {
+            return Number($rootScope.datos.saldo) - Number($rootScope.datos.valorFlexibilizacion);
         }
     }
 
-    $scope.flexibilizacionDeuda = function(){
+    $scope.flexibilizacionDeuda = function () {
         //La flexibilización es mayor que el valor a Pagar?
-        if(Number($rootScope.datos.valorFlexibilizacion)>Number($rootScope.datos.saldo)){
+        if (Number($rootScope.datos.valorFlexibilizacion) > Number($rootScope.datos.saldo)) {
             return Number($rootScope.datos.saldo);
-        }else{
+        } else {
             return Number($rootScope.datos.valorFlexibilizacion);
         }
     }
 
-    $scope.diasParaPago = function(){
+    $scope.esAntesMediaNoche = function () {
+        return new Date().getHours() <= 23;
+    }
+
+    $scope.mostrarAyudaSaldoPagar = function () {
+        //$scope.mostrarAyuda('Pagos','El pago que dejas de hacer es debido al beneficio que tienes llamado "Flexibilización", los $' + $scope.flexibilizacionDeuda() + ' que quedas debiendo, los debes cancelar antes de tu próximo pedido.');
+    }
+
+    $scope.diasParaPago = function () {
 
         var fechaActual = new Date();
         var dias = Utilidades.diferenciaFechaDias(fechaActual, $scope.pago);
@@ -199,25 +208,27 @@ moduloControlador.controller('HomeCtrl', function($scope, $rootScope, $location,
         return dias;
     }
 
-    $scope.esAntesMediaNoche = function(){
-        return new Date().getHours() <= 23;
+    $scope.fechaPago1 = function () {
+        if (!$scope.pago) {
+            $scope.pago = Campana.getFechaPago1();
+        }
+        return $scope.pago;
     }
 
-    $scope.mostrarAyudaSaldoPagar = function(){
-        //$scope.mostrarAyuda('Pagos','El pago que dejas de hacer es debido al beneficio que tienes llamado "Flexibilización", los $' + $scope.flexibilizacionDeuda() + ' que quedas debiendo, los debes cancelar antes de tu próximo pedido.');
+    $scope.fechaPago2 = function () {
+        if (!$scope.pago2 && $scope.pago) {
+            $scope.pago2 = Campana.getFechaPago2($scope.pago);
+        }
+        return $scope.pago2;
     }
 
-    $scope.hoyEsCorreteo = function(){
-        return Campana.hoyEsCorreteo();
-    }
+    $scope.inicializar = function () {
 
-    $scope.inicializar = function(){
-
-        if(window.plugins && window.plugins.OneSignal){
+        if (window.plugins && window.plugins.OneSignal) {
             window.plugins.OneSignal.sendTag("segmento", $rootScope.datos.segmento);
         }
 
-        if(!$rootScope.cargaDatos.popupMamaNueva && $rootScope.mamaNueva){
+        if (!$rootScope.cargaDatos.popupMamaNueva && $rootScope.mamaNueva) {
 
             var alertPopup = $ionicPopup.alert({
                 title: "Información",

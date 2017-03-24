@@ -515,11 +515,22 @@ var moduloServicios = angular.module('novaventa.services', [])
                     });
 
             },
-            getFechaPago: function (){
-                 if ($rootScope.fechasAnteriores && $rootScope.fechasAnteriores.length > 0) {   
-                    var fechaPagoAnterior = new Date( Utilidades.validarFormatoFecha( ($rootScope.fechasAnteriores.find(function (x){ return x.codigoActividad === "03"})).fecha));                           
+            getFechaPago1: function () {
+                if ($rootScope.fechasAnteriores && $rootScope.fechasAnteriores.length > 0) {
+                    var fechaPagoAnterior = new Date(Utilidades.validarFormatoFecha(($rootScope.fechasAnteriores.find(function (x) { return x.codigoActividad === "03" })).fecha));
                     return fechaPagoAnterior;
-                }                 
+                }
+            },
+            getFechaPago2: function (fechaPago1) {
+                if ($rootScope.campana && $rootScope.campanaSiguiente) {
+                    var correteo = $rootScope.campana.fechaCorreteo;
+                    var fechaCorreteoActual = new Date(Utilidades.validarFormatoFecha(correteo));
+                    correteo = $rootScope.campanaSiguiente.fechaCorreteo;
+                    var fechaCorreteoSiguiente = new Date(Utilidades.validarFormatoFecha(correteo));
+                    var diferenciaActual = Math.abs( Utilidades.diferenciaFechaDias(fechaCorreteoActual, fechaPago1) );
+                    var diferenciaSiguiente = Math.abs( Utilidades.diferenciaFechaDias(fechaCorreteoSiguiente, fechaPago1) );
+                    return diferenciaActual < diferenciaSiguiente ? fechaCorreteoActual : fechaCorreteoSiguiente;
+                }
             }
         }
     })
@@ -989,6 +1000,71 @@ var moduloServicios = angular.module('novaventa.services', [])
 
                                                 }//mover de campaña
 
+
+                                                var ano = new Date().getFullYear();
+                                                var siguienteCampana = $rootScope.campana.numero + 1;
+                                                //Si la siguiente campana supera al numero de campanas al
+                                                //ano entonces moverse a la campana 1 del siguiente ano
+                                                if (siguienteCampana > $rootScope.numeroCampanasAno) {
+                                                    siguienteCampana = 1;
+                                                    ano = ano + 1;
+                                                }
+
+                                                Campana.getRecordatorios(ano, siguienteCampana, $rootScope.zona, function (success, data) {
+                                                    if (success) {
+
+                                                        encuentro = '';
+
+                                                        encuentroOriginal = '';
+
+                                                        reparto1 = '';
+
+                                                        reparto2 = '';
+
+                                                        correteo = '';
+                                                        for (i = 0; i < data.listaRecordatorios.length; i++) {
+
+                                                            //El Encuentro original se cambiara de nombre y se usará solo en casos especiales
+                                                            if (data.listaRecordatorios[i].actividad.toLowerCase() == 'encuentro') {
+                                                                encuentroOriginal = data.listaRecordatorios[i].fecha;
+                                                            }
+
+                                                            //Asociar el encuentro y la toma de pedido al encuentro
+                                                            if (data.listaRecordatorios[i].codigoActividad == "05") {
+                                                                encuentro = data.listaRecordatorios[i].fecha;
+                                                                tomaPedido = data.listaRecordatorios[i].fecha;
+                                                            }
+                                                            //correteo
+                                                            if (data.listaRecordatorios[i].codigoActividad == "07") {
+                                                                correteo = data.listaRecordatorios[i].fecha;
+                                                            }
+                                                            //reparto de pedido 1
+                                                            if (data.listaRecordatorios[i].codigoActividad == "02") {
+                                                                reparto1 = data.listaRecordatorios[i].fecha;
+                                                            }
+                                                            //reparto de pedido 2
+                                                            if (data.listaRecordatorios[i].codigoActividad == "04") {
+                                                                reparto2 = data.listaRecordatorios[i].fecha;
+                                                            }
+                                                        }
+
+                                                        //Correteo Anterior
+                                                        correteoAnterior = '';
+                                                        for (i = 0; i < $rootScope.fechas.length; i++) {
+                                                            if ($rootScope.fechas[i].codigoActividad == "07") {
+                                                                correteoAnterior = $rootScope.fechas[i].fecha;
+                                                            }
+                                                        }
+
+                                                        $rootScope.campanaSiguiente = {
+                                                            numero: data.campagna, fechaMontajePedido: encuentro, fechaEncuentro: encuentro,
+                                                            fechaEncuentroOriginal: encuentroOriginal, fechaCorreteo: correteo, fechaReparto1: reparto1, fechaReparto2: reparto2
+                                                        };
+
+                                                    } else {
+                                                    }
+                                                });
+
                                             } else {
                                             }//success
                                         });
@@ -1014,7 +1090,6 @@ var moduloServicios = angular.module('novaventa.services', [])
                 } else {
                     fx(true, mensajeError);
                 }
-
             },
             autenticar: function (cedula, rootScope, http, filter, factoryMama, fx) {
 
@@ -1441,13 +1516,13 @@ var moduloServicios = angular.module('novaventa.services', [])
             },
             inicializar: function () {
                 //Indica si la versión se irá para Producción, esto modifica ip de servicios y google analytics
-                $rootScope.versionProduccion = true;
+                $rootScope.versionProduccion = false;
 
                 if ($rootScope.versionProduccion) {
                     $rootScope.configuracion = { ip_servidores: 'https://transferenciaelectronica.novaventa.com.co', instancia: "AntaresSecureWebServices" };
                     $rootScope.notificacionesPush = { apikey: 'a3839c5f-b4d9-49a1-9e6a-aebac01abba7', project: '531375899368' }
                 } else {
-                    $rootScope.configuracion = { ip_servidores: 'https://digitaltest.novaventa.com.co', instancia: "AntaresSecureWebServices2" };
+                    $rootScope.configuracion = { ip_servidores: 'https://digitaltest.novaventa.com.co', instancia: "AntaresSecureWebServices3" };
                     $rootScope.notificacionesPush = { apikey: 'adece4f8-1dbd-4713-9351-f8140d916bf4', project: '275683696350' }
                 }
 
